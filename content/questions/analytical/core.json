@@ -2884,5 +2884,1143 @@
       "consecutive-constraint",
       "hard"
     ]
+  },
+  {
+    "id": "ana-0056",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "No Valid New Conclusion",
+    "difficulty": "Easy",
+    "question": "All auditors are employees. Some employees are lawyers. Which conclusion necessarily follows?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All auditors are employees."
+      },
+      {
+        "id": "B",
+        "text": "Some auditors are lawyers."
+      },
+      {
+        "id": "C",
+        "text": "All lawyers are auditors."
+      },
+      {
+        "id": "D",
+        "text": "Some lawyers are auditors."
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Both premises share the term “employees,” but neither premise says anything universal about it — the middle term is undistributed, so it cannot carry a link from auditors across to lawyers. Picture a firm of 20 auditors, all in the Audit Division, while every lawyer on the payroll sits in Legal: “all auditors are employees” is true, “some employees are lawyers” is true, and yet not one auditor is a lawyer. That single counter-example destroys B and D. When no new inference is available, the exam still needs one true option — and here it is premise 1 repeated word for word.",
+    "steps": [
+      "Step 1: Map the premises: auditors ⊆ employees, while the employees–lawyers relationship is only a partial overlap ('some').",
+      "Step 2: Ask whether the auditors and the lawyer-employees must meet. Build a counter-model: 20 auditors in Audit, all lawyer-employees in Legal. Both premises hold, overlap = zero.",
+      "Step 3: Because the overlap is optional rather than forced, neither 'Some auditors are lawyers' nor its converse is necessary — the middle term 'employees' is undistributed in both premises.",
+      "Step 4: With no new conclusion available, scan for anything guaranteed. Option A restates premise 1 exactly, so it is the only statement that must be true."
+    ],
+    "distractorExplanations": {
+      "B": "Assumes the lawyer-employees must be drawn partly from the auditors. Nothing forces that meeting — this is the classic undistributed-middle error, where a shared category is mistaken for a shared membership.",
+      "C": "Two errors at once: it upgrades a partial overlap ('some employees are lawyers') into a universal, and it reverses the direction so that lawyers become a subset of auditors.",
+      "D": "Simply B stated back to front. Converting an invalid inference does not repair it — if no auditor need be a lawyer, then no lawyer need be an auditor either."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "A valid syllogism must distribute the middle term at least once. If both premises only say 'some' about the shared category, no conclusion links the end terms — look for a restated premise."
+    },
+    "tags": [
+      "syllogism",
+      "logical-reasoning",
+      "undistributed-middle",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0057",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Universal Negative with a Particular Premise",
+    "difficulty": "Medium",
+    "question": "No confidential file is publicly accessible. Some digital records are publicly accessible. What follows?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All digital records are confidential."
+      },
+      {
+        "id": "B",
+        "text": "No digital record is confidential."
+      },
+      {
+        "id": "C",
+        "text": "Some confidential files are publicly accessible."
+      },
+      {
+        "id": "D",
+        "text": "Some digital records are not confidential files."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Premise 1 seals off the confidential set: nothing inside it is publicly accessible. Premise 2 hands us at least one digital record that IS publicly accessible. That record therefore cannot be sitting inside the confidential set — so at least some digital records are not confidential files. The conclusion inherits both features of its premises: the 'some' from the particular premise and the negative from the universal negative. Widening it to 'no digital record is confidential' is the trap, because the digital records that are not publicly accessible were never described at all.",
+    "steps": [
+      "Step 1: Translate premise 1: the confidential set and the publicly accessible set are completely separate — zero overlap.",
+      "Step 2: Translate premise 2: at least one digital record sits inside the publicly accessible set.",
+      "Step 3: Combine: that record lies in a set that shares nothing with 'confidential', so it is not a confidential file.",
+      "Step 4: Report only what one witness supports: some digital records are not confidential files."
+    ],
+    "distractorExplanations": {
+      "A": "The inference runs the opposite way — the publicly accessible digital records are pushed OUT of the confidential set, so calling them all confidential contradicts the premises rather than following from them.",
+      "B": "An illegitimate widening of 'some' into 'none'. Only the publicly accessible digital records were cleared; the restricted ones are unexamined and may be confidential.",
+      "C": "This flatly denies premise 1. An option that contradicts a given statement can never be a valid conclusion, however plausible the wording sounds."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Universal negative + particular affirmative → particular negative: 'No B is C' plus 'Some A are C' yields 'Some A are not B'. The conclusion keeps the 'some' and keeps the negative; it never hardens into 'no' or 'all'."
+    },
+    "tags": [
+      "syllogism",
+      "universal-negative",
+      "logical-reasoning",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0058",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Particular Affirmative Chain",
+    "difficulty": "Easy",
+    "question": "Some applicants are engineers. All engineers passed the technical test. Which conclusion follows?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All applicants passed."
+      },
+      {
+        "id": "B",
+        "text": "No engineer is an applicant."
+      },
+      {
+        "id": "C",
+        "text": "Some applicants passed the technical test."
+      },
+      {
+        "id": "D",
+        "text": "All passers are applicants."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Premise 1 guarantees that at least one person is both an applicant and an engineer. Premise 2 is universal, so it reaches every engineer without exception — including that applicant-engineer. Follow the chain: applicant → engineer → passer. What comes out the far end is a 'some' claim, because only part of the applicant pool entered the chain in the first place. This is the governing rule of mixed syllogisms: a conclusion can never be stronger than the weakest premise supporting it, so a particular premise caps the conclusion at 'some'.",
+    "steps": [
+      "Step 1: From 'Some applicants are engineers', pick one such person; call her Ana. Ana is both an applicant and an engineer.",
+      "Step 2: Apply the universal premise: all engineers passed the technical test, and Ana is an engineer, so Ana passed.",
+      "Step 3: Ana is an applicant who passed, which establishes at least one — therefore some applicants passed the technical test."
+    ],
+    "distractorExplanations": {
+      "A": "Illegitimately upgrades 'some' to 'all'. Only the applicants who are engineers were carried through the chain; the non-engineer applicants were never covered and may have failed.",
+      "B": "Contradicts premise 1 outright. 'Some applicants are engineers' asserts that the two groups DO overlap, so denying any overlap is not available as a conclusion.",
+      "D": "Reverses the direction of the relationship. The passers include every engineer, applicants or not, so the passer group cannot be folded back inside the applicants."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Chain a 'some' premise with an 'all' premise and the answer is always a 'some' statement. Once your subject class enters through 'some', cross out every option containing all, none, or every."
+    },
+    "tags": [
+      "syllogism",
+      "particular-affirmative",
+      "logical-reasoning",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0059",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Implicit Assumption in Service Design",
+    "difficulty": "Medium",
+    "question": "Statement: “The office should offer an online option to reduce counter congestion.” Which assumption is required?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All clients own expensive computers."
+      },
+      {
+        "id": "B",
+        "text": "Online services never encounter problems."
+      },
+      {
+        "id": "C",
+        "text": "Counter services will be abolished."
+      },
+      {
+        "id": "D",
+        "text": "Some clients will use the online option instead of the counter."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Congestion at a counter falls only if bodies stop arriving at that counter. The proposal therefore rests on a behavioural premise that is never stated: at least some clients will substitute the online channel for the physical queue. A required assumption is the WEAKEST claim the argument cannot survive without, which is why the modest 'some clients will use it instead' is correct while the sweeping alternatives are not. Test it by negation — if nobody switches, the online option simply runs alongside an unchanged queue and the stated benefit never materialises.",
+    "steps": [
+      "Step 1: Separate the argument: the proposal is 'offer an online option'; the promised outcome is 'reduce counter congestion'.",
+      "Step 2: Locate the gap. Offering a channel changes nothing unless client behaviour changes, so the missing premise must be about clients switching.",
+      "Step 3: Apply the negation test to each option: negate D ('no client will use the online option instead of the counter') and the argument dies immediately; negate A, B, or C and the argument still works.",
+      "Step 4: The required assumption is the weakest one that survives the test: some clients will use the online option instead of the counter."
+    ],
+    "distractorExplanations": {
+      "A": "Overshoots on two counts — 'all' clients and 'expensive' equipment. A shared phone or a barangay computer would serve, so this is far stronger than the argument needs.",
+      "B": "Flawless uptime is a bonus, not a premise. The proposal only needs the online channel to divert part of the traffic; occasional outages would slow that effect, not negate it.",
+      "C": "The goal is to REDUCE congestion at the counter, which presumes the counter still operates. Abolition is a different policy altogether, not a hidden premise of this one."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Negate each candidate assumption and ask whether the argument collapses. If it still stands, that statement was never required — and required assumptions are always modest, so distrust all, never, and every."
+    },
+    "tags": [
+      "assumption",
+      "implicit",
+      "policy",
+      "logical-reasoning",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0060",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Limits of Survey Data",
+    "difficulty": "Easy",
+    "question": "A survey of 40 volunteers found that 35 preferred Saturday training. Which conclusion is best supported?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All employees prefer Saturday training."
+      },
+      {
+        "id": "B",
+        "text": "Saturday training is always more effective."
+      },
+      {
+        "id": "C",
+        "text": "Most surveyed volunteers preferred Saturday training."
+      },
+      {
+        "id": "D",
+        "text": "The survey represents every government worker."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "35 out of 40 is 87.5% — comfortably 'most' — and the safe conclusion keeps every word of the finding inside the group actually surveyed. Any sample carries two hard limits. The first is SCOPE: the respondents were volunteers, a self-selected group whose availability on Saturdays is probably why they volunteered, so they cannot stand in for a whole workforce. The second is SUBJECT: the survey measured what people PREFER, and preference is not effectiveness. The credited option respects both limits, which is exactly why it reads as unexciting.",
+    "steps": [
+      "Step 1: Quantify the finding: 35 ÷ 40 = 0.875, so 87.5% of respondents chose Saturday — fairly described as 'most'.",
+      "Step 2: Fix the scope. The respondents are 40 volunteers, not the workforce, so the conclusion must be phrased about the surveyed volunteers.",
+      "Step 3: Fix the subject. The item measured preference, so effectiveness claims are off-limits.",
+      "Step 4: The only option that stays inside both boundaries is 'Most surveyed volunteers preferred Saturday training.'"
+    ],
+    "distractorExplanations": {
+      "A": "Generalises from 40 self-selected volunteers to every employee. Volunteers are the people already willing to give up a Saturday, so they are the least representative subgroup available.",
+      "B": "Swaps preference for effectiveness, and then adds 'always'. The survey asked what people like, and it measured nothing about learning outcomes at all.",
+      "D": "Asserts representativeness rather than establishing it. A voluntary sample of 40 has no claim to mirror an entire national workforce, and the item offers no sampling method to support it."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Every survey conclusion must pass two checks — scope (who was actually asked?) and subject (what was actually measured?). Words like all, always, and proves usually break one of them."
+    },
+    "tags": [
+      "conclusion",
+      "sampling",
+      "over-generalization",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0061",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Modus Tollens on a Conditional",
+    "difficulty": "Medium",
+    "question": "If the server is offline, online payments cannot be processed. Online payments are being processed. What follows?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The server was never maintained."
+      },
+      {
+        "id": "B",
+        "text": "Cash payments are prohibited."
+      },
+      {
+        "id": "C",
+        "text": "All payments are online."
+      },
+      {
+        "id": "D",
+        "text": "The server is not offline."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Write the rule as P → Q: if the server is offline (P), then payments cannot be processed (Q). The observation is that payments ARE processing, which is ¬Q. Denying the consequent forces you back up the arrow to deny the antecedent: ¬Q → ¬P, so the server is not offline. This is modus tollens, the valid mirror image of the fallacy of denying the antecedent (“the server is not offline, therefore payments must be processing”), which does not follow. Note how narrow the valid conclusion is — it fixes the server's online status and nothing else about maintenance, speed, or other payment channels.",
+    "steps": [
+      "Step 1: Formalise the conditional: server offline (P) → payments cannot be processed (Q).",
+      "Step 2: Read the new fact: payments ARE being processed, which is the denial of the consequent, ¬Q.",
+      "Step 3: Apply modus tollens: ¬Q → ¬P. If Q were caused, P would have blocked it, so P must be false.",
+      "Step 4: Conclude exactly that much: the server is not offline."
+    ],
+    "distractorExplanations": {
+      "A": "Maintenance history never appears in the conditional. Being online today says nothing about whether the server has ever been serviced — this imports an outside premise.",
+      "B": "Cash is outside the argument entirely. The rule connects the server's status to online payment processing and takes no position on other channels.",
+      "C": "Confuses 'online payments are being processed' with 'only online payments exist'. Observing one channel at work does not make it the sole channel."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Valid: deny the consequent → deny the antecedent (¬Q → ¬P, modus tollens). Invalid: denying the antecedent, and affirming the consequent. Two of the four moves are traps — memorise which two."
+    },
+    "tags": [
+      "modus-tollens",
+      "conditional",
+      "logical-reasoning",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0062",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Linear Ordering from Constraints",
+    "difficulty": "Medium",
+    "question": "Five reports P, Q, R, S, and T are filed from left to right. P is before Q; R is after Q; S is before P; T is after R. Which order is possible?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "S-P-Q-R-T"
+      },
+      {
+        "id": "B",
+        "text": "P-S-Q-T-R"
+      },
+      {
+        "id": "C",
+        "text": "S-Q-P-R-T"
+      },
+      {
+        "id": "D",
+        "text": "S-P-R-Q-T"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Do not test the options first — chain the constraints. S is before P, P is before Q, R is after Q, and T is after R, and every clue shares an endpoint with the next: S < P < Q < R < T. Because all five reports appear in one unbroken chain, the arrangement is not merely constrained but fully determined, and S-P-Q-R-T is the only sequence of the 120 possible orders that survives. Each wrong option breaks exactly one link, which makes the elimination fast once the chain is written down: check the four adjacencies of the chain against each option in turn.",
+    "steps": [
+      "Step 1: List the constraints as inequalities: S < P, P < Q, Q < R, R < T.",
+      "Step 2: Notice each inequality shares a term with the next, so they weld into a single chain: S < P < Q < R < T.",
+      "Step 3: A single chain covering all five items fixes every position: S = 1st, P = 2nd, Q = 3rd, R = 4th, T = 5th.",
+      "Step 4: Verify the eliminations: B places S after P, C places Q before P, and D places R before Q. Only S-P-Q-R-T obeys all four links."
+    ],
+    "distractorExplanations": {
+      "B": "Breaks the very first link by filing P ahead of S, and it also puts T before R. Reading the clues one at a time instead of chaining them is what lets this option slip through.",
+      "C": "Violates 'P is before Q' — Q sits second and P third. The option looks right because it opens with S and closes with T, which are indeed the true endpoints.",
+      "D": "Violates 'R is after Q' by filing R third and Q fourth. This is the trap for anyone who chains S < P and R < T correctly but never joins the two halves through Q."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Convert every ordering clue into an inequality, look for shared terms, and weld them into one chain before glancing at the options. A chain covering all n items leaves exactly one possible order."
+    },
+    "tags": [
+      "ordering",
+      "linear",
+      "constraints",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0063",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Vertical Arrangement",
+    "difficulty": "Medium",
+    "question": "Four offices occupy floors 1–4. Legal is above Finance. HR is below Finance. Records is above Legal. Which office is on the second floor?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "HR"
+      },
+      {
+        "id": "B",
+        "text": "Legal"
+      },
+      {
+        "id": "C",
+        "text": "Records"
+      },
+      {
+        "id": "D",
+        "text": "Finance"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Draw the building as an actual stack, bottom-up, and 'above' and 'below' stop inverting on you. Finance has Legal above it and HR below it, so Finance sits in the middle of that trio; Records then sits above Legal, extending the stack upward. The three clues weld into one chain, HR < Finance < Legal < Records, and because four offices fill four floors the chain assigns every floor uniquely: HR on 1, Finance on 2, Legal on 3, Records on 4. Whenever n items form a single unbroken chain across n slots, there is exactly one arrangement — no case-testing required.",
+    "steps": [
+      "Step 1: Convert each clue into a height inequality: Legal > Finance, HR < Finance, Records > Legal.",
+      "Step 2: Weld them through the shared terms: HR < Finance < Legal < Records.",
+      "Step 3: Assign floors bottom-up, since floor 1 is the lowest: HR = 1, Finance = 2, Legal = 3, Records = 4.",
+      "Step 4: The second floor is occupied by Finance."
+    ],
+    "distractorExplanations": {
+      "A": "HR is the only office with nothing below it in the chain, which pins it to floor 1. Learners who read 'HR is below Finance' as merely 'not the top' end up here.",
+      "B": "Legal is above Finance and below Records, so it lands on floor 3. Picking Legal usually means the stack was built top-down while the floors were numbered bottom-up.",
+      "C": "Records sits above Legal, which is already above Finance and HR — that forces Records to the top, floor 4, the furthest possible slot from the second floor."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Sketch vertical puzzles as a real stack with floor 1 at the bottom of your page, and write each clue as > or <. Inverting 'above/below' against the floor numbers is the classic stacking error."
+    },
+    "tags": [
+      "ordering",
+      "vertical",
+      "stacking",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0064",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Sequencing with an Immediacy Constraint",
+    "difficulty": "Hard",
+    "question": "A, B, C, D, and E present one at a time. B presents immediately after A. D presents last. C presents before A. Which sequence is possible?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A-B-C-E-D"
+      },
+      {
+        "id": "B",
+        "text": "C-B-A-E-D"
+      },
+      {
+        "id": "C",
+        "text": "C-A-B-E-D"
+      },
+      {
+        "id": "D",
+        "text": "E-A-C-B-D"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "“Immediately after” is stronger than “after”: treat [AB] as a single welded block that can never be split or reversed. Fix D in slot 5, leaving slots 1–4 for the block plus C and E, and require C to fall before the block. The block can occupy slots 2–3 (giving C-A-B-E-D) or slots 3–4 (giving C-E-A-B-D or E-C-A-B-D), so more than one arrangement is logically possible — but only C-A-B-E-D appears among the options, and the other three each break a named constraint. Checking the block first turns an intimidating item into a ten-second scan.",
+    "steps": [
+      "Step 1: Weld the immediacy constraint into a block: [AB], one unit, order fixed, never separated.",
+      "Step 2: Anchor D in slot 5 ('presents last'), leaving slots 1, 2, 3, 4 for [AB], C, and E.",
+      "Step 3: Require C before the block, so the block cannot start in slot 1; it starts in slot 2 or slot 3.",
+      "Step 4: Test the options against the block: only C-A-B-E-D keeps [AB] intact, in order, with C ahead of it and D last.",
+      "Step 5: The possible sequence is C-A-B-E-D."
+    ],
+    "distractorExplanations": {
+      "A": "Keeps [AB] intact but places C third, after A. That violates 'C presents before A' — the sequence satisfies two constraints out of three, which is precisely what makes it tempting.",
+      "B": "Splits and reverses the welded block: B lands in slot 2 and A in slot 3, so B presents immediately BEFORE A. 'Immediately after' fixes direction as well as adjacency.",
+      "D": "Places C third while A is second, breaking 'C presents before A', and it also drives A and B apart with C wedged between them, destroying the block."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Treat every 'immediately after/before' pair as one welded tile whose internal order is locked, then slide it through the legal slots. Ordinary 'before' clues allow gaps; immediacy clues never do."
+    },
+    "tags": [
+      "ordering",
+      "sequence",
+      "consecutive-constraint",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0065",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Object to Typical Action",
+    "difficulty": "Easy",
+    "question": "BOOK is to READ as SONG is to ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "WRITE"
+      },
+      {
+        "id": "B",
+        "text": "LISTEN"
+      },
+      {
+        "id": "C",
+        "text": "DRAW"
+      },
+      {
+        "id": "D",
+        "text": "COUNT"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "State the relationship as a full sentence before looking at the options: reading is the action by which a person RECEIVES the content of a book. A song is received by listening, so LISTEN completes the pair. WRITE is the designed trap — songs certainly are written, but so are books, which means WRITE describes the creation side of the pair rather than the reception side the original pair establishes. Analogy items are graded on the direction of the relationship, not on whether a word is merely associated with the topic, and here the direction is audience-facing.",
+    "distractorExplanations": {
+      "A": "Songs are indeed written — but books are written too, so WRITE sits on the creation side of the pair. The given relationship is reception (READ), and swapping sides is the error being tested.",
+      "C": "Drawing produces a picture and has nothing to do with taking in a song. It is an artistic action, which feels adjacent to music without matching the reception relationship.",
+      "D": "One can count beats in a song, but counting measures quantity rather than taking in the work. The pair BOOK : READ is about experiencing the content, not analysing it."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Before reading the options, finish the sentence 'A book is something you ___' and carry the same verb role to the second pair. Naming the relationship blocks merely topic-related words."
+    },
+    "tags": [
+      "analogy",
+      "word-analogy",
+      "object-to-action",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0066",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Instrument to Measured Quantity",
+    "difficulty": "Medium",
+    "question": "THERMOMETER is to TEMPERATURE as BAROMETER is to ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "HUMIDITY"
+      },
+      {
+        "id": "B",
+        "text": "WIND SPEED"
+      },
+      {
+        "id": "C",
+        "text": "RAINFALL"
+      },
+      {
+        "id": "D",
+        "text": "AIR PRESSURE"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The pair is INSTRUMENT : THE QUANTITY IT MEASURES. A thermometer measures temperature; a barometer measures atmospheric or air pressure. Every distractor is a genuine weather quantity, and each has its own instrument — a hygrometer for humidity, an anemometer for wind speed, a rain gauge for rainfall, and an altimeter for altitude (itself a repurposed barometer). The distractors feel plausible because falling barometric pressure is used to FORECAST rain and storms, so learners connect the barometer to the weather it predicts instead of the variable it actually reads on its dial.",
+    "distractorExplanations": {
+      "A": "Humidity is measured by a hygrometer. The confusion arises because both readings appear on the same weather report, not because a barometer senses moisture.",
+      "B": "Wind speed is measured by an anemometer — the spinning-cup instrument. Pressure differences do drive wind, but a barometer reads the pressure, never the resulting speed.",
+      "C": "Rainfall is measured by a rain gauge, in millimetres collected. A falling barometer helps PREDICT rain, and mistaking a prediction for a measurement is exactly the trap here."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Build the instrument set once: thermometer → temperature, barometer → air pressure, hygrometer → humidity, anemometer → wind speed, rain gauge → rainfall, altimeter → altitude."
+    },
+    "tags": [
+      "analogy",
+      "word-analogy",
+      "instrument-to-measurement",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0067",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Numerical Analogy — Squares",
+    "difficulty": "Easy",
+    "question": "12 is to 144 as 15 is to ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "225"
+      },
+      {
+        "id": "B",
+        "text": "180"
+      },
+      {
+        "id": "C",
+        "text": "210"
+      },
+      {
+        "id": "D",
+        "text": "250"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "A numerical analogy is solved by finding the single rule that turns the first number into the second exactly, then applying that same rule to the third. Here 12 × 12 = 144, so the rule is 'square it'. Applying it: 15 × 15 = 225. Run the standard checklist in order — squaring, doubling, then adding a constant — and squaring succeeds on the first try. Notice that 12 + 132 = 144 also 'works' arithmetically, but a rule that needs an arbitrary constant is always the weaker explanation; prefer the operation that needs no invented number.",
+    "steps": [
+      "Test the relationship in the first pair: 12 × 12 = 144, so 144 = 12².",
+      "Confirm no simpler rule fits: 12 doubled is 24 and 12 + 10 is 22, neither of which is 144.",
+      "Apply the squaring rule to the third term: 15² = 15 × 15 = 225.",
+      "The missing term is 225."
+    ],
+    "distractorExplanations": {
+      "B": "180 is 12 × 15, the cross-multiplication trap — it multiplies the two given numbers from opposite pairs instead of applying the first pair's rule to the second.",
+      "C": "210 comes from 15 × 14, squaring one step short. It is also 144 + 66, a near-miss produced by estimating rather than computing 15 × 15.",
+      "D": "250 is a rounded guess from 'a bit more than 200'. 15² is exactly 225, and 250 is not a perfect square at all."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Squares to 20 turn these items into recall: 121, 144, 169, 196, 225, 256, 289, 324, 361, 400. For any number ending in 5, multiply the tens digit by the next integer and append 25 — 15² → 1 × 2 = 2, then 25 → 225."
+    },
+    "tags": [
+      "numerical-analogy",
+      "perfect-squares",
+      "number-pattern",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0068",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Numerical Analogy — Cube Roots",
+    "difficulty": "Medium",
+    "question": "8 is to 2 as 125 is to ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "15"
+      },
+      {
+        "id": "B",
+        "text": "25"
+      },
+      {
+        "id": "C",
+        "text": "5"
+      },
+      {
+        "id": "D",
+        "text": "625"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The second term is smaller than the first, so the rule must reduce rather than build. Ask which root takes 8 to 2: the square root of 8 is about 2.83, but 2³ = 8 exactly, so the rule is 'take the cube root'. Applying it to 125: 5 × 5 × 5 = 125, so ∛125 = 5. The direction check comes first on every numerical analogy — if the output shrinks, restrict yourself to division, roots, and subtraction, which immediately rules out the multiplication-based options. The small cubes 8, 27, 64, 125, and 216 should be recognisable on sight.",
+    "steps": [
+      "Note the direction: 8 → 2 shrinks, so the rule divides or takes a root.",
+      "Test the square root: √8 ≈ 2.83, not 2, so squaring is not the relationship.",
+      "Test the cube root: 2 × 2 × 2 = 8, so ∛8 = 2 exactly — the rule is 'cube root'.",
+      "Apply it: 5 × 5 × 5 = 125, so ∛125 = 5.",
+      "The missing term is 5."
+    ],
+    "distractorExplanations": {
+      "A": "15 has no root relationship to 125 — it comes from splitting 125 loosely into 'about 15 squared'. 15² is 225, so this option fails the very check it is built on.",
+      "B": "25 is the square-root confusion: it treats 125 as a perfect square and takes 125 ÷ 5. But 125 is not a perfect square, and the first pair was governed by cubes.",
+      "D": "625 is 125 × 5, which multiplies when the pair clearly shrinks. Any option larger than the given term contradicts the direction established by 8 → 2."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "Memorise the small cubes — 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000 — and check direction first. Shrinking output means root, division, or subtraction; growing output means power or multiplication."
+    },
+    "tags": [
+      "numerical-analogy",
+      "cube-root",
+      "number-pattern",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0069",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Symbol Substitution",
+    "difficulty": "Medium",
+    "question": "If ★ means addition and ● means multiplication, what is 6 ● 3 ★ 4 using ordinary order of operations?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "18"
+      },
+      {
+        "id": "B",
+        "text": "22"
+      },
+      {
+        "id": "C",
+        "text": "28"
+      },
+      {
+        "id": "D",
+        "text": "42"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Symbol-substitution items are two-stage problems, and nearly all lost marks come from merging the stages. Stage one is pure translation: replace ● with × and ★ with +, which turns 6 ● 3 ★ 4 into 6 × 3 + 4. Stage two applies PEMDAS to the ordinary expression: multiplication outranks addition, so 6 × 3 = 18 first, then 18 + 4 = 22. The unfamiliar symbols are there to make you read left to right and forget precedence — rewriting the expression in standard notation on your answer sheet before computing removes the trap entirely.",
+    "steps": [
+      "Substitute the real operators: ● becomes × and ★ becomes +, giving 6 × 3 + 4.",
+      "Apply PEMDAS — multiplication before addition: 6 × 3 = 18.",
+      "Complete the addition: 18 + 4 = 22.",
+      "The value of the expression is 22."
+    ],
+    "distractorExplanations": {
+      "A": "18 is 6 × 3 with the '+ 4' never carried out — the answer is abandoned halfway. Stopping after the higher-precedence operation is the most frequent slip on these items.",
+      "C": "28 is the left-to-right error: 6 × (3 + 4) = 6 × 7. Working strictly left to right invents a bracket that the expression does not contain.",
+      "D": "42 mixes up the symbols, reading the expression as (6 + 3) × 4 − ... or as 6 × (3 + 4) with a further slip. It signals that the translation stage itself went wrong."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Work symbol items in two locked stages — translate every symbol into its real operator, THEN apply PEMDAS: parentheses, exponents, multiply/divide, add/subtract. Never compute while translating."
+    },
+    "tags": [
+      "symbol-substitution",
+      "order-of-operations",
+      "logical-reasoning",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0070",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Positional Substitution Code",
+    "difficulty": "Easy",
+    "question": "If MONDAY is coded as 123456 and DAY is coded as 456, what is MON coded as?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "126"
+      },
+      {
+        "id": "B",
+        "text": "345"
+      },
+      {
+        "id": "C",
+        "text": "156"
+      },
+      {
+        "id": "D",
+        "text": "123"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Two coding systems dominate the exam, and the first job is to identify which one is in play. An alphabet code would give M = 13, O = 15, N = 14 — two digits each, which cannot produce a six-digit code for a six-letter word. A POSITIONAL code numbers the letters by their place in the given word: M = 1, O = 2, N = 3, D = 4, A = 5, Y = 6. The second clue confirms it, since DAY → 4-5-6 matches those positions exactly. MON therefore takes the first three positions: 123. Always validate a hypothesis against the supplied example before applying it.",
+    "steps": [
+      "Step 1: Consider the alphabet code (A = 1 … Z = 26): M = 13, O = 15, N = 14 would give MONDAY a 12-digit code, not 123456. Reject it.",
+      "Step 2: Consider a positional code: each digit is the letter's place in MONDAY, so M = 1, O = 2, N = 3, D = 4, A = 5, Y = 6.",
+      "Step 3: Test the hypothesis on the second clue: D, A, Y occupy positions 4, 5, 6, and DAY is coded 456 ✓.",
+      "Step 4: Apply the confirmed mapping to MON: M = 1, O = 2, N = 3, so MON = 123."
+    ],
+    "distractorExplanations": {
+      "A": "126 keeps M = 1 and O = 2 but assigns N = 6, which is Y's position. It comes from reading the digits off the end of the word instead of tracking each letter.",
+      "B": "345 shifts the whole mapping one letter to the right, coding N-D-A rather than M-O-N. Misaligning the letters against their positions by one place is the classic slip here.",
+      "C": "156 takes M = 1 correctly and then borrows 5 and 6 from the DAY clue, treating that code as a pool of digits rather than as position-specific labels."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Know the two coding families. Alphabet code: A = 1 … Z = 26, so M = 13. Positional code: digits count places inside the given word, so M = 1. Test your guess against the example provided."
+    },
+    "tags": [
+      "coding",
+      "letter-code",
+      "positional-code",
+      "number-pattern",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0071",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Number Grid Pattern",
+    "difficulty": "Easy",
+    "question": "A 3×3 grid increases by 2 across each row: 5, 7, 9 / 11, 13, 15 / 17, 19, ?. What number is missing?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "21"
+      },
+      {
+        "id": "B",
+        "text": "20"
+      },
+      {
+        "id": "C",
+        "text": "23"
+      },
+      {
+        "id": "D",
+        "text": "25"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The stated rule settles it immediately: each row steps up by 2, so the missing cell is 19 + 2 = 21. What makes this item worth studying is the built-in second check. Read the grid as one continuous list — 5, 7, 9, 11, 13, 15, 17, 19, 21 — and it is simply the consecutive odd numbers starting at 5, which excludes any even answer outright. Read it by column instead and each column climbs by 6: 5, 11, 17 and 7, 13, 19 and 9, 15, 21. Row and column agree on 21, so the answer is confirmed twice from independent directions.",
+    "steps": [
+      "Apply the stated row rule to the last row: 17 → 19 → ?, each step +2, so ? = 19 + 2 = 21.",
+      "Cross-check by column: the third column runs 9, 15, 21, rising by 6 each time, which matches.",
+      "Cross-check the whole grid as one sequence: 5, 7, 9, 11, 13, 15, 17, 19, 21 — the consecutive odd numbers from 5.",
+      "Both the row and the column confirm the missing number is 21."
+    ],
+    "distractorExplanations": {
+      "B": "20 breaks the parity of the grid — every entry is odd, because odd + 2 is always odd. It comes from adding 1 rather than the stated step of 2.",
+      "C": "23 adds 4 instead of 2, effectively skipping the cell after 19. It would also break the column rule, since 9, 15, 23 is not a constant +6 climb.",
+      "D": "25 jumps three steps ahead to the 12th odd number in the run. It is the answer you get by continuing the sequence past the cell the question actually asks for."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Verify a number grid in two directions — solve by row, confirm by column. With a constant row step, the column step is that step times the number of columns (here 2 × 3 = 6)."
+    },
+    "tags": [
+      "number-pattern",
+      "grid",
+      "arithmetic-sequence",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0072",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Particular Premise with a Universal Negative",
+    "difficulty": "Medium",
+    "question": "If some permits are urgent and no urgent document is ignored, what must be true?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All permits are urgent."
+      },
+      {
+        "id": "B",
+        "text": "No permit is ignored."
+      },
+      {
+        "id": "C",
+        "text": "All documents are permits."
+      },
+      {
+        "id": "D",
+        "text": "Some permits are not ignored."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Split the permits into two piles: the urgent ones, whose existence premise 1 guarantees, and the rest, about which the premises are silent. The universal negative covers only the first pile — nothing urgent is ignored — so those permits are certainly not ignored. That yields exactly one safe claim: some permits are not ignored. The seductive answer is B, which quietly extends the protection to the second pile as well. Non-urgent permits were never mentioned, and they may sit ignored for weeks; a premise that begins with 'some' can never license a conclusion about all or none.",
+    "steps": [
+      "Step 1: Premise 1 guarantees at least one permit is urgent; call that subgroup the urgent permits.",
+      "Step 2: Premise 2 is universal over urgent documents: none of them is ignored, so no urgent permit is ignored.",
+      "Step 3: Those permits are therefore permits that are not ignored, which establishes 'some permits are not ignored'.",
+      "Step 4: Check the remaining permits: the non-urgent ones fall outside both premises, so no claim about all permits is available. The answer stops at 'some'."
+    ],
+    "distractorExplanations": {
+      "A": "Upgrades 'some permits are urgent' into 'all'. If every permit were urgent, the word 'some' in the premise would be pointless — in exam logic, 'some' explicitly leaves room for permits that are not urgent.",
+      "B": "The key trap. The protection covers urgent documents only, and the non-urgent permits are entirely unaccounted for — they may well be ignored, so 'no permit' overreaches.",
+      "C": "Reverses and universalises a relationship never stated. Permits are one kind of document; nothing suggests documents in general are permits."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "A quantifier ceiling governs every syllogism: if the premise about your subject class says 'some', the conclusion may only say 'some'. All, none, and never must trace back to a universal premise."
+    },
+    "tags": [
+      "syllogism",
+      "particular",
+      "universal-negative",
+      "logical-reasoning",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0073",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Weakening a Causal Claim",
+    "difficulty": "Medium",
+    "question": "Which fact most weakens the claim “The new schedule caused the rise in attendance”?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Attendance rose after the schedule changed."
+      },
+      {
+        "id": "B",
+        "text": "A free transportation program began on the same day as the new schedule."
+      },
+      {
+        "id": "C",
+        "text": "The schedule was announced in advance."
+      },
+      {
+        "id": "D",
+        "text": "The old schedule had fewer hours."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The standard way to attack a causal claim is not to deny the effect but to supply a rival cause for it. A free transportation programme launched on the very same day is a textbook confounding variable: attendance may have risen because travel became free, because the hours changed, or because of both, and the data as given cannot separate the two. That does not prove the schedule was irrelevant — it removes the ground for crediting the schedule alone, which is exactly what weakening means. Note that co-occurrence is what does the damage here; a programme launched a year earlier would explain far less.",
+    "steps": [
+      "Step 1: Identify the causal claim: new schedule (cause) → rise in attendance (effect).",
+      "Step 2: Recall the weakening strategy: introduce an alternative cause capable of producing the same effect over the same period.",
+      "Step 3: Test each option as a rival cause. Free transportation starting the same day plausibly lifts attendance on its own and is perfectly confounded with the schedule change.",
+      "Step 4: The most weakening fact is the simultaneous free transportation program."
+    ],
+    "distractorExplanations": {
+      "A": "This strengthens rather than weakens — it supplies the temporal sequence the claim depends on. It is still not proof, because sequence alone is not causation, but it works for the argument, not against it.",
+      "C": "Advance notice is neutral background about how the change was communicated. If anything, it made the new schedule easier to use, which supports the claim mildly.",
+      "D": "Describing the old schedule as having fewer hours explains the mechanism by which more hours could raise attendance — supporting detail, not a rival cause."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "To weaken a causal claim, hunt for an alternative cause, reversed causation, or a coincidental third factor; to strengthen one, rule those out. Simultaneous changes are the strongest weakeners."
+    },
+    "tags": [
+      "causation",
+      "confounding-variable",
+      "weaken-argument",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0074",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Strengthening a Proposal",
+    "difficulty": "Easy",
+    "question": "Which fact most strengthens the proposal to add a Saturday service counter?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The office walls were recently painted."
+      },
+      {
+        "id": "B",
+        "text": "Saturday electricity rates are unchanged."
+      },
+      {
+        "id": "C",
+        "text": "Some employees prefer online meetings."
+      },
+      {
+        "id": "D",
+        "text": "A client survey shows that many weekday workers cannot visit during current hours."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Strengthening evidence has to attach to the PURPOSE the proposal serves, not merely be true or vaguely encouraging. A Saturday counter exists to serve clients who cannot come on weekdays, so survey evidence of exactly that unmet demand goes straight to the heart of the case. Use relevance as your filter and ask of each option: does this make the proposal more likely to achieve its goal? Only D does. Option B is the instructive trap — reassuring, cost-related, and completely silent on whether anyone would actually use the new counter.",
+    "steps": [
+      "Step 1: State the proposal's purpose: a Saturday counter is meant to serve clients who cannot transact on weekdays.",
+      "Step 2: Ask what evidence would make that purpose more likely to be met: proof that such clients exist in numbers.",
+      "Step 3: Screen the options for relevance to demand rather than to cost, comfort, or unrelated preferences.",
+      "Step 4: The survey showing many weekday workers cannot visit during current hours establishes the unmet demand, so it most strengthens the proposal."
+    ],
+    "distractorExplanations": {
+      "A": "Fresh paint concerns the appearance of the office and has no bearing on whether Saturday service is needed or would be used. Pleasant facts are not the same as supporting evidence.",
+      "B": "The trap shape: irrelevant but reassuring. Unchanged electricity rates mean the plan is no more expensive than expected, which removes one objection without giving any positive reason to open on Saturday.",
+      "C": "A preference for online meetings concerns employees, not clients at a service counter — and if anything it points toward a different solution rather than supporting this one."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Strengthen and weaken items are relevance tests. Name the proposal's goal in one sentence, then keep only options that make that goal more or less achievable — cost and comfort are usually decoration."
+    },
+    "tags": [
+      "strengthen-argument",
+      "evidence",
+      "policy",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0075",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Interpreting “Only” Statements",
+    "difficulty": "Hard",
+    "question": "A rule states: “Only employees with clearance may enter the archive.” Which interpretation is correct?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Everyone with clearance must enter the archive."
+      },
+      {
+        "id": "B",
+        "text": "Only archive employees need clearance."
+      },
+      {
+        "id": "C",
+        "text": "Visitors may enter without clearance."
+      },
+      {
+        "id": "D",
+        "text": "Anyone who enters the archive must have clearance."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The word 'only' introduces a NECESSARY condition, and it reverses the direction of the conditional you are tempted to write. 'Only A may B' translates as 'If B, then A': if someone entered the archive, that person had clearance. It does not run the other way — clearance permits entry without requiring it. Keeping permission separate from obligation is the second half of the skill: 'may' grants a right, while 'must' imposes a duty, and swapping them produces option A. Because the rule states the sole gateway into the archive, it also admits no exceptions for visitors.",
+    "steps": [
+      "Step 1: Identify the logical role of 'only': it marks clearance as a necessary condition for entry, not a sufficient one.",
+      "Step 2: Translate using the reversal rule — 'Only A may B' becomes 'If B, then A': if a person entered the archive, then that person has clearance.",
+      "Step 3: Check the converse: does clearance compel entry? No — 'may' grants permission, not obligation, so cleared staff are free to stay out.",
+      "Step 4: The correct reading is that anyone who enters the archive must have clearance."
+    ],
+    "distractorExplanations": {
+      "A": "Converts permission into obligation. 'May enter' grants a right that cleared employees are free never to exercise; reading 'may' as 'must' is the most common misreading of access rules.",
+      "B": "Reverses and narrows the rule into a claim about who needs clearance in general, when the rule only governs who may enter the archive. It also invents a category, 'archive employees', that the rule never mentions.",
+      "C": "Contradicts the rule outright. If clearance is necessary for every entrant, visitors are covered too — an exception would have to be stated, and none is."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Translate before reasoning: 'All A are B' → if A then B, but 'Only A are B' → if B then A. 'Only' flips the arrow. Then separate may (permission) from must (obligation)."
+    },
+    "tags": [
+      "conditional",
+      "only-statements",
+      "necessary-condition",
+      "logical-reasoning",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0076",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Confounded Causal Inference",
+    "difficulty": "Medium",
+    "passage": "A training program improved test scores in two offices. However, both offices also introduced quieter study areas during the same period.",
+    "question": "Which conclusion is safest?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The score improvement cannot be attributed to the training alone."
+      },
+      {
+        "id": "B",
+        "text": "The training definitely caused the entire improvement."
+      },
+      {
+        "id": "C",
+        "text": "Quiet study areas had no effect."
+      },
+      {
+        "id": "D",
+        "text": "Training programs never improve performance."
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Two changes were introduced together in both offices, so their effects are perfectly entangled and no measurement here can apportion credit between them. The safest conclusion is therefore the modest one: the improvement cannot be attributed to the training alone. Read what that does and does not say — it never denies that the training helped, it only denies that the training can be credited by itself. Learn to hear the vocabulary of overreach in the wrong options: 'definitely' and 'entire', 'no effect', and 'never' all assert more than two co-occurring changes could ever establish.",
+    "steps": [
+      "Step 1: Note the design flaw: the training and the quiet study areas were introduced in the same offices during the same period.",
+      "Step 2: Recognise the consequence: with two simultaneous changes and one outcome, the causes are confounded and cannot be separated.",
+      "Step 3: Scan the options for overreaching language — 'definitely'/'entire', 'no effect', and 'never' each claim knowledge the study cannot supply.",
+      "Step 4: The safest conclusion is the modest one: the improvement cannot be attributed to the training alone."
+    ],
+    "distractorExplanations": {
+      "B": "'Definitely' and 'entire' claim both certainty and completeness while a rival cause sat in the same room the whole time. Confounded data can never support sole credit.",
+      "C": "Overcorrects in the opposite direction. The quiet areas are just as unmeasured as the training, so declaring them ineffective is as unsupported as declaring the training solely responsible.",
+      "D": "A sweeping universal drawn from one ambiguous study — and it contradicts the observed improvement. One inconclusive case cannot establish 'never'."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "When two changes land together, the only defensible conclusion is that their effects cannot be separated. Distrust choices carrying definitely, entire, never, or no effect."
+    },
+    "tags": [
+      "causation",
+      "confounding-variable",
+      "conclusion",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0077",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Implicit Assumption",
+    "difficulty": "Medium",
+    "question": "What assumption underlies the statement “The agency should publish simpler instructions so fewer applications will be returned”?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All applicants intentionally submit incomplete forms."
+      },
+      {
+        "id": "B",
+        "text": "Longer instructions are always more accurate."
+      },
+      {
+        "id": "C",
+        "text": "Some applications are returned because applicants misunderstand the instructions."
+      },
+      {
+        "id": "D",
+        "text": "Returned applications require no staff time."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Simplifying instructions can only cut returns if confusion over the instructions is causing at least part of the problem. That causal link is never stated, which makes it the assumption — and note how modest the correct version is. The hedged 'Some applications are returned because applicants misunderstand' is enough to keep the recommendation alive, whereas A's absolute 'All applicants intentionally' is both stronger than needed and self-defeating: deliberate incompleteness would not be cured by clearer wording. Required assumptions are the minimum the argument needs, never the maximum it could tolerate.",
+    "steps": [
+      "Step 1: Separate the recommendation ('publish simpler instructions') from the predicted result ('fewer applications will be returned').",
+      "Step 2: Find the unstated bridge: instructions must be part of why applications are returned, otherwise simplifying them changes nothing.",
+      "Step 3: Calibrate the strength. 'Some' returns caused by misunderstanding is sufficient; the argument does not need every return to stem from confusion.",
+      "Step 4: The underlying assumption is that some applications are returned because applicants misunderstand the instructions."
+    ],
+    "distractorExplanations": {
+      "A": "Two flaws: 'all' is far stronger than the argument needs, and 'intentionally' undercuts the proposal, since applicants who submit incomplete forms on purpose would not be helped by simpler wording.",
+      "B": "Irrelevant to the proposal, which is about simplicity rather than length — and it argues against the recommendation instead of supporting it. Required assumptions never contradict the conclusion.",
+      "D": "Reverses the motive. If returned applications cost no staff time, there would be no reason to reduce them; the argument quietly assumes the opposite of this."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Rank assumption options by strength and keep the weakest one that still holds the argument together. 'Some … because …' usually survives the negation test; 'all' and 'only' assert too much."
+    },
+    "tags": [
+      "assumption",
+      "implicit",
+      "hedged-language",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0078",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Plan to Finished Product",
+    "difficulty": "Easy",
+    "question": "BLUEPRINT is to BUILDING as OUTLINE is to ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "PENCIL"
+      },
+      {
+        "id": "B",
+        "text": "READER"
+      },
+      {
+        "id": "C",
+        "text": "DICTIONARY"
+      },
+      {
+        "id": "D",
+        "text": "ESSAY"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Say the relationship out loud as a full sentence: a blueprint is the preliminary plan drawn up before the building is constructed from it. Substituting the second pair, an outline is the preliminary plan drafted before the essay is written from it — so ESSAY completes the analogy. Naming the relationship this precisely lets you eliminate on structure rather than on feel. The distractors are each drawn from a different neighbouring role: the instrument used, the audience who receives the work, and an unrelated reference volume. None of them is the finished product that the plan becomes.",
+    "distractorExplanations": {
+      "A": "A pencil is the instrument an outline may be written with, not the finished work the outline becomes. Instrument-for-product is the most frequent substitution error in analogy items.",
+      "B": "A reader is the audience who receives the finished writing. The pair asks for the product built from the plan, and the audience stands outside that plan-to-product relationship entirely.",
+      "C": "A dictionary is a reference work, not something an outline is drafted for. It belongs to the world of writing without occupying the finished-product slot the analogy requires."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Fill in the frame 'X is the plan prepared before making Y' before reading the choices. Plan-to-product items attract three near-misses — the tool, the audience, and a related object."
+    },
+    "tags": [
+      "analogy",
+      "word-analogy",
+      "plan-to-product",
+      "easy"
+    ]
   }
 ]

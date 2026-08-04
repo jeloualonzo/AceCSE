@@ -3077,5 +3077,1554 @@
       "collocations",
       "formal-register"
     ]
+  },
+  {
+    "id": "verb-0066",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Synonyms",
+    "difficulty": "Easy",
+    "question": "The committee found the supporting documents INDISPENSABLE to the investigation. Which word is closest in meaning to INDISPENSABLE?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "excessive"
+      },
+      {
+        "id": "B",
+        "text": "optional"
+      },
+      {
+        "id": "C",
+        "text": "replaceable"
+      },
+      {
+        "id": "D",
+        "text": "essential"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Take the word apart: in- (not) + dispense (to do without, to set aside) + -able. Something indispensable is literally something you cannot do without, so 'essential' matches it exactly. The sentence supplies its own confirmation — the committee 'found' the documents indispensable to the investigation, meaning the investigation could not proceed without them. Watch the direction of the prefix: two of the wrong options (optional, replaceable) describe things a person CAN do without, which is precisely the meaning the in- cancels.",
+    "distractorExplanations": {
+      "A": "'Excessive' measures quantity — more than needed. Indispensable measures necessity. A file can be indispensable and still be a single page, so the two ideas never overlap.",
+      "B": "'Optional' is the straight opposite: it marks something you may skip. Examinees who read past the in- prefix land here, reversing the word instead of defining it.",
+      "C": "'Replaceable' means a substitute exists. Indispensable says no substitute exists. The shared -able ending makes this look like a match, but the meanings point in opposite directions."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Peel off the affixes before guessing: IN- (not) + DISPENSE (do without) + -ABLE. Words built on in-/im-/un- usually reverse a meaning you already know."
+    },
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
+  },
+  {
+    "id": "verb-0067",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Verb Tenses",
+    "difficulty": "Medium",
+    "question": "By the time the auditors arrived, the cashier ___ the daily collection report.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "had completed"
+      },
+      {
+        "id": "B",
+        "text": "has completed"
+      },
+      {
+        "id": "C",
+        "text": "completed"
+      },
+      {
+        "id": "D",
+        "text": "will complete"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Two finished actions sit on the same past timeline, and English marks which one happened first. The later action takes the simple past ('arrived'); the earlier action takes the past perfect, formed with had + past participle. 'By the time' is the giveaway phrase — it exists to announce that one event was already over when the other occurred. So the report was finished first: 'had completed.' Reverse the tenses and the sentence still has words, but it loses the sequence the reader needs.",
+    "distractorExplanations": {
+      "B": "'Has completed' is present perfect, which links an action to the present moment. The clause anchors everything in the past with 'arrived,' so a present-tense auxiliary clashes with the time frame.",
+      "C": "Simple past 'completed' places both actions on the same level and drops the order. Speech tolerates this; the exam tests whether you can mark the earlier action explicitly.",
+      "D": "'Will complete' points forward into the future, yet 'arrived' has already closed the timeline. A future form cannot follow a past-time marker in the same sentence."
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "Spot the pairing: 'By the time / before / after + SIMPLE PAST' in one clause → HAD + past participle in the other. Past perfect always names the earlier of two past events."
+    },
+    "reference": "Past Perfect Tense: the earlier of two completed past actions",
+    "tags": [
+      "grammar",
+      "verb-tenses",
+      "past-perfect"
+    ]
+  },
+  {
+    "id": "verb-0068",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Parallel Structure",
+    "difficulty": "Medium",
+    "question": "The memorandum was concise, accurate, and ___.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "organizing well"
+      },
+      {
+        "id": "B",
+        "text": "well organized"
+      },
+      {
+        "id": "C",
+        "text": "organization was good"
+      },
+      {
+        "id": "D",
+        "text": "well organization"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Items joined by 'and' in a series must share one grammatical form. Here the linking verb 'was' introduces a string of predicate adjectives describing the memorandum: concise, accurate, and — to keep the pattern — a third adjective. 'Well organized' is a participial adjective with its adverb, so the series reads cleanly: was concise / was accurate / was well organized. A quick test is to repeat the verb before each item; whichever option still sounds like English is the parallel one. Note the spelling convention too: no hyphen after the verb, but a hyphen before a noun ('a well-organized memorandum').",
+    "distractorExplanations": {
+      "A": "'Organizing well' is a verb form with an adverb, so it says the memorandum performs the organizing. The series needs a quality of the document, not an action by it.",
+      "C": "'Organization was good' smuggles a whole clause with its own subject and verb into a list of single adjectives. One item cannot outrank the others structurally.",
+      "D": "'Well organization' pairs an adverb with a noun, a combination English does not allow. Adverbs modify verbs, adjectives, or other adverbs — never nouns."
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "Test a series by silently repeating the verb before every item: 'was concise, was accurate, was well organized.' If one repetition breaks, that item is the parallelism error."
+    },
+    "reference": "Parallel Structure: coordinate adjectives in a series",
+    "tags": [
+      "grammar",
+      "parallel-structure"
+    ]
+  },
+  {
+    "id": "verb-0069",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Sentence Completion",
+    "subtopic": "Subordinating Conjunctions",
+    "difficulty": "Easy",
+    "question": "The manager approved the request, ___ the supporting receipt was missing.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "because"
+      },
+      {
+        "id": "B",
+        "text": "therefore"
+      },
+      {
+        "id": "C",
+        "text": "unless"
+      },
+      {
+        "id": "D",
+        "text": "although"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Read the two ideas and ask how they relate. Approving a request and a missing receipt pull against each other: the approval happened in spite of a problem that would normally block it. That relationship is concession, and 'although' is the subordinating conjunction that signals it. A reliable paraphrase test settles the item — substitute 'despite the fact that.' 'The manager approved the request, despite the fact that the supporting receipt was missing' preserves the sense perfectly, which none of the other three connectors can do.",
+    "distractorExplanations": {
+      "A": "'Because' makes the missing receipt the reason for approval, which inverts the logic. Offices withhold approval over missing documents; they do not grant it on that basis.",
+      "B": "'Therefore' is a conjunctive adverb signalling result, and it cannot subordinate a clause after a comma. Written this way it also produces a comma splice.",
+      "C": "'Unless' sets a condition meaning 'except if,' pointing to something that has not happened. The receipt is already missing, so a conditional connector misreads a settled fact."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "For connector items, try substituting 'despite the fact that.' If it fits, the answer is a concession word — although, though, even though, while."
+    },
+    "tags": [
+      "sentence-completion",
+      "transition-words",
+      "subordinate-clauses"
+    ]
+  },
+  {
+    "id": "verb-0070",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Sentence Completion",
+    "subtopic": "Verb Choice in Context",
+    "difficulty": "Medium",
+    "question": "The applicant was advised to ___ the documentary deficiency before Friday.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "aggravate"
+      },
+      {
+        "id": "B",
+        "text": "ignore"
+      },
+      {
+        "id": "C",
+        "text": "remedy"
+      },
+      {
+        "id": "D",
+        "text": "conceal"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Two clues in the sentence fix the answer. First, 'deficiency' names a defect — something lacking that must be supplied. Second, 'advised... before Friday' sets a deadline, and deadlines are given for corrective action, not for inaction. 'Remedy' means to put right or cure a defect, which is exactly what a public office asks of an applicant with incomplete papers. Note the family the word belongs to: remedy, remedial, remediation all describe repairing a shortfall, and each shows up in official correspondence.",
+    "distractorExplanations": {
+      "A": "'Aggravate' means to make worse. No office sets a deadline for worsening a problem, and the word contradicts the corrective purpose of the advice.",
+      "B": "'Ignore' is tempting because a deficiency can indeed be left alone — but then the deadline in the sentence would serve no function at all.",
+      "D": "'Conceal' means to hide. Hiding a deficiency leaves it unfixed and adds misrepresentation; the sentence describes routine compliance advice, not evasion."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Let the deadline decide the verb. A time limit attached to a defect always calls for a repair word — remedy, rectify, cure, comply — never a word for hiding or worsening it."
+    },
+    "tags": [
+      "sentence-completion",
+      "vocabulary-in-context",
+      "formal-register"
+    ]
+  },
+  {
+    "id": "verb-0071",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Subject-Verb Agreement",
+    "difficulty": "Medium",
+    "question": "Which sentence is grammatically correct?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The number of pending applications have decreased."
+      },
+      {
+        "id": "B",
+        "text": "A number of pending application has decreased."
+      },
+      {
+        "id": "C",
+        "text": "The number of pending application have been decreased."
+      },
+      {
+        "id": "D",
+        "text": "The number of pending applications has decreased."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The head of the subject is 'number,' a singular noun, and the phrase 'of pending applications' is only a prepositional modifier. A noun sitting inside a prepositional phrase can never control the verb, so the verb must be the singular 'has.' The article carries the whole distinction: 'the number' names one specific count and behaves as a singular, while 'a number of' means 'several' and behaves as a plural — 'A number of applications HAVE decreased.' Test it by covering everything between the head noun and the verb; what remains, 'The number... has decreased,' is unmistakable.",
+    "distractorExplanations": {
+      "A": "The plural verb is pulled toward the nearest noun, 'applications.' This proximity trap is the single most common agreement error, and the intervening phrase is exactly what triggers it.",
+      "B": "Two faults compound here: 'a number of' requires a plural noun and a plural verb, yet this sentence gives singular 'application' followed by singular 'has.'",
+      "C": "Besides the plural verb after singular 'the number,' the passive 'have been decreased' implies an outside agent reduced the applications, which the sentence never names."
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "Cover the 'of' phrase before choosing the verb. THE number of → one count → singular verb. A number of → several → plural verb. The article, not the noun after 'of,' decides."
+    },
+    "reference": "Subject-Verb Agreement: 'the number of' takes a singular verb; 'a number of' takes a plural verb",
+    "tags": [
+      "grammar",
+      "subject-verb-agreement",
+      "number-of"
+    ]
+  },
+  {
+    "id": "verb-0072",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Possessive Apostrophes",
+    "difficulty": "Medium",
+    "question": "Identify the correctly written sentence.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The employees lounge is beside the records room."
+      },
+      {
+        "id": "B",
+        "text": "The employees's lounge is beside the records room."
+      },
+      {
+        "id": "C",
+        "text": "The employee lounge's are beside the records room."
+      },
+      {
+        "id": "D",
+        "text": "The employees' lounge is beside the records room."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Build a possessive in two moves: write the owner exactly as it should appear, then add the marker. The owner here is more than one worker, so the plural 'employees' is written first; because it already ends in -s, only an apostrophe follows. That yields 'employees' lounge' — a lounge belonging to the employees. Compare the singular route: employee + 's = employee's lounge, a lounge for one worker. The apostrophe never goes before the -s of a regular plural, since that -s marks number, not ownership.",
+    "distractorExplanations": {
+      "A": "Dropping the apostrophe entirely leaves a bare plural noun modifying another noun. Nothing signals ownership, so the possessive relationship the sentence intends is simply unmarked.",
+      "B": "'Employees's' double-marks the possessive by adding 's to a plural that already ends in -s. English stops at the apostrophe for regular plurals.",
+      "C": "The apostrophe migrates to the wrong word: 'lounge's' makes the room the owner. The plural verb 'are' then disagrees with the singular 'lounge' as well."
+    },
+    "tip": {
+      "label": "Spelling Pattern",
+      "text": "Write the owner first, then add the marker. Owner ends in -s (employees, teachers) → apostrophe only. Owner does not (employee, children) → apostrophe + s."
+    },
+    "reference": "Possessive Apostrophes: a plural noun already ending in -s takes only an apostrophe",
+    "tags": [
+      "grammar",
+      "possessives",
+      "apostrophes"
+    ]
+  },
+  {
+    "id": "verb-0073",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Synonyms",
+    "difficulty": "Easy",
+    "question": "The evaluator remained IMPARTIAL despite pressure from both parties. IMPARTIAL means:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "fair and unbiased"
+      },
+      {
+        "id": "B",
+        "text": "easily persuaded"
+      },
+      {
+        "id": "C",
+        "text": "openly hostile"
+      },
+      {
+        "id": "D",
+        "text": "personally involved"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "'Partial' carries two senses in English — incomplete, and favouring one side. The prefix im- cancels the second sense here: to be impartial is to take no part, to lean toward neither party. The sentence reinforces this with 'despite pressure from both parties,' a phrase that only makes sense if the evaluator refused to tilt either way. Impartiality is more than a vocabulary item in Philippine public service; it is the working standard expected of evaluators, bids-and-awards members, and hearing officers, whose decisions must rest on the record rather than on who is pushing hardest.",
+    "distractorExplanations": {
+      "B": "'Easily persuaded' describes exactly what the evaluator resisted. Someone who yields to pressure has abandoned impartiality rather than demonstrated it.",
+      "C": "'Openly hostile' is still a form of taking sides — against someone. Impartiality rules out negative bias just as firmly as it rules out favouritism.",
+      "D": "'Personally involved' names a conflict of interest, the very condition that disqualifies an evaluator. Involvement destroys the distance impartiality requires."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Hear 'part' inside the word: to be partial is to take a part, a side. IM- cancels it. Same builder logic for impartial, imprudent, immaterial."
+    },
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "civic-context"
+    ]
+  },
+  {
+    "id": "verb-0074",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Double Negatives",
+    "difficulty": "Medium",
+    "question": "Choose the sentence that avoids a double negative.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The supply was not barely enough for the entire team."
+      },
+      {
+        "id": "B",
+        "text": "The supply was not hardly enough for the entire team."
+      },
+      {
+        "id": "C",
+        "text": "The supply was barely enough for the entire team."
+      },
+      {
+        "id": "D",
+        "text": "The supply was scarcely not enough for the entire team."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Some adverbs are negative even though they contain no 'not.' Barely, hardly, scarcely, seldom, and rarely all carry built-in negative force: 'barely enough' already means 'almost not enough.' Add a second negative and the two cancel logically while the sentence turns nonstandard — the writer says the opposite of what was intended. Only option C uses one negative word and stops there, giving the clean meaning that the supply just barely covered the team. The habit to build is scanning for hidden negatives before you scan for the word 'not.'",
+    "distractorExplanations": {
+      "A": "'Not barely' stacks a negative adverb on top of 'not.' Read literally it claims the supply was not almost-insufficient, which is not what any writer means by the phrase.",
+      "B": "'Not hardly' is the classic spoken double negative. 'Hardly' already means 'almost not,' so the added 'not' cancels it and leaves the sentence saying the supply was plentiful.",
+      "D": "Reversing the order to 'scarcely not' does not repair anything. Two negatives remain in one predicate, and the word order makes the intended meaning even harder to recover."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Memorise the hidden negatives — barely, hardly, scarcely, seldom, rarely, neither, nor. Pair any of them with 'not' or 'no' and you have written a double negative."
+    },
+    "reference": "Double Negatives: 'barely,' 'hardly,' and 'scarcely' already carry negative force",
+    "tags": [
+      "grammar",
+      "double-negatives",
+      "common-errors"
+    ]
+  },
+  {
+    "id": "verb-0075",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Punctuating Conjunctive Adverbs",
+    "difficulty": "Medium",
+    "question": "Choose the correctly punctuated sentence.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The deadline was extended, however all requirements remained unchanged."
+      },
+      {
+        "id": "B",
+        "text": "The deadline was extended however; all requirements remained unchanged."
+      },
+      {
+        "id": "C",
+        "text": "The deadline was extended however, all requirements remained unchanged."
+      },
+      {
+        "id": "D",
+        "text": "The deadline was extended; however, all requirements remained unchanged."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Both halves of this sentence can stand alone: 'The deadline was extended' and 'All requirements remained unchanged.' A conjunctive adverb such as however, therefore, moreover, or nevertheless is not strong enough to fuse two independent clauses the way and or but can. The punctuation pattern is fixed — semicolon before the adverb, comma after it: clause ; however , clause. A comma alone in that slot produces a comma splice, the error the other three options illustrate in different disguises. Splitting the sentence into two full sentences, with 'However,' opening the second, is equally correct.",
+    "distractorExplanations": {
+      "A": "A single comma cannot join two independent clauses; that is a comma splice. 'However' looks like a joiner but functions as an adverb, so it cannot rescue the punctuation.",
+      "B": "The semicolon lands after 'however' instead of before it, stranding the adverb at the end of the first clause where it modifies nothing and reads as an afterthought.",
+      "C": "Here the semicolon disappears altogether and the comma does double duty. The clauses are still spliced, and 'however' is left floating between them without punctuation to its left."
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "Memorise the shape: CLAUSE ; however , CLAUSE. Semicolon before the conjunctive adverb, comma after. Same pattern for therefore, moreover, nevertheless, consequently."
+    },
+    "reference": "Punctuation: two independent clauses joined by a conjunctive adverb take a semicolon before it and a comma after it",
+    "tags": [
+      "grammar",
+      "punctuation",
+      "conjunctive-adverbs",
+      "comma-splice"
+    ]
+  },
+  {
+    "id": "verb-0076",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Adverbs vs. Adjectives",
+    "difficulty": "Easy",
+    "question": "The officer spoke ___ so that every participant could understand the procedure.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "clear"
+      },
+      {
+        "id": "B",
+        "text": "clearness"
+      },
+      {
+        "id": "C",
+        "text": "clearest"
+      },
+      {
+        "id": "D",
+        "text": "clearly"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Ask what the missing word describes. It is not the officer but the speaking — the manner in which the officer delivered the explanation. Words that describe how an action is performed are adverbs, and the regular adverb of 'clear' is 'clearly.' Adjectives attach to nouns and pronouns ('a clear instruction'); adverbs attach to verbs, adjectives, and other adverbs ('spoke clearly'). Note that 'spoke' is an action verb, not a linking verb; after linking verbs such as seem, feel, or look, an adjective is correct instead ('the instruction seemed clear').",
+    "distractorExplanations": {
+      "A": "'Clear' is the adjective form. It works before a noun or after a linking verb, but 'spoke' is an action verb and needs an adverb to describe how the speaking was done.",
+      "B": "'Clearness' is a noun naming the quality itself. Dropping a noun after 'spoke' would make it the thing spoken, which is not the meaning the sentence builds.",
+      "C": "'Clearest' is the superlative adjective and implies a comparison among three or more speakers. The sentence compares nobody; it simply reports the manner of delivery."
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "Ask what the word modifies. A person or thing → adjective. An action → adverb, usually -ly. Exception: after linking verbs (is, seems, feels, looks), use the adjective."
+    },
+    "reference": "Adverbs modify verbs; adjectives modify nouns",
+    "tags": [
+      "grammar",
+      "adverbs",
+      "modifiers"
+    ]
+  },
+  {
+    "id": "verb-0077",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Sentence Completion",
+    "subtopic": "Verb Choice in Context",
+    "difficulty": "Easy",
+    "question": "The new filing system is intended to ___ the processing of requests.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "complicate"
+      },
+      {
+        "id": "B",
+        "text": "delay"
+      },
+      {
+        "id": "C",
+        "text": "facilitate"
+      },
+      {
+        "id": "D",
+        "text": "obstruct"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "'Intended to' announces a purpose, and purposes are stated in positive terms — an agency adopts a new system to improve something, never to damage it. 'Facilitate' means to make a process easier or smoother, which is the standard reason for reorganising records. The other three options share one feature: each names a harm. When three choices cluster on the negative side and one stands alone on the positive side, the design of the item is telling you that the sentence needs the positive word.",
+    "distractorExplanations": {
+      "A": "'Complicate' means to add difficulty. Reading it into a purpose clause would have the office deliberately adopting a system to make its own work harder.",
+      "B": "'Delay' slows a process down. It is a plausible unintended result of a badly built system, but the sentence states an intention, not an outcome.",
+      "D": "'Obstruct' means to block. Beyond contradicting the purpose, deliberately blocking the processing of requests would describe misconduct rather than administrative reform."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Watch for purpose signals — intended to, designed to, aims to, in order to. They almost always take a verb of improvement: facilitate, expedite, streamline, enhance."
+    },
+    "tags": [
+      "sentence-completion",
+      "vocabulary-in-context",
+      "civic-context"
+    ]
+  },
+  {
+    "id": "verb-0078",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Tense Consistency",
+    "difficulty": "Medium",
+    "question": "Choose the sentence with consistent verb tense.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The clerk checks the entries and forwarded the file."
+      },
+      {
+        "id": "B",
+        "text": "The clerk checked the entries and forwards the file."
+      },
+      {
+        "id": "C",
+        "text": "The clerk had checked the entries and forwards the file."
+      },
+      {
+        "id": "D",
+        "text": "The clerk checked the entries and forwarded the file to the supervisor."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "When one subject governs two verbs joined by 'and,' both verbs report events in the same time frame and must therefore carry the same tense unless the meaning genuinely requires a shift. Option D keeps both in the simple past — checked, forwarded — describing a single completed sequence at the clerk's desk. The rule is not that a paragraph may never change tense; it is that an unmotivated change inside one compound predicate leaves the reader unable to place the events. Read the subject with each verb in turn to test it: 'The clerk checked... the clerk forwarded' holds together.",
+    "distractorExplanations": {
+      "A": "Present 'checks' followed by past 'forwarded' splits one action sequence across two time frames, implying the forwarding happened before a habit that is still going on.",
+      "B": "The same clash appears in reverse order: a completed past action, 'checked,' is joined to a present-tense 'forwards' with no signal that the time frame has moved.",
+      "C": "Past perfect 'had checked' marks an action earlier than some other past event, but the sentence supplies no past event to precede — and 'forwards' then jumps to the present."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "In a compound predicate, pair the subject with each verb separately: 'The clerk checked... the clerk forwarded.' Any tense that changes without a time cue is the error."
+    },
+    "reference": "Tense Consistency across a compound predicate",
+    "tags": [
+      "grammar",
+      "verb-tenses",
+      "tense-consistency"
+    ]
+  },
+  {
+    "id": "verb-0079",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Filipino Vocabulary",
+    "difficulty": "Easy",
+    "question": "Alin ang pinakamalapit na kahulugan ng SALAT sa pangungusap na \"Salat sa kagamitan ang maliit na tanggapan\"?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "kulang"
+      },
+      {
+        "id": "B",
+        "text": "sagana"
+      },
+      {
+        "id": "C",
+        "text": "maayos"
+      },
+      {
+        "id": "D",
+        "text": "bago"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "SALAT describes a state of lacking — being short of, or deficient in, something. It appears most often in the frame 'salat sa ___,' where the missing thing follows the preposition: salat sa pagkain, salat sa tubig, salat sa kagamitan. The sentence itself supplies the clue through 'maliit na tanggapan,' a small office, which points to shortage rather than plenty. KULANG carries the same idea of insufficiency and is therefore the closest match. Filipino vocabulary items on the CSE frequently pair a word with its exact antonym among the options, so identify the direction of meaning before you choose.",
+    "distractorExplanations": {
+      "B": "SAGANA means abundant or well supplied — the direct antonym of SALAT. It is placed here to catch examinees who recognise the topic of the sentence but not the direction of the word.",
+      "C": "MAAYOS means orderly or in good condition. An office can be neat and still be short of equipment, so the word describes a different quality altogether.",
+      "D": "BAGO means new. It speaks to the age of the equipment rather than to how much of it exists, and the sentence says nothing about when anything was acquired."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Learn Filipino words in their usual frame. 'Salat sa ___' always names a shortage; if you can slot 'kulang sa ___' into the same sentence, the meaning is confirmed."
+    },
+    "tags": [
+      "vocabulary",
+      "filipino",
+      "synonyms"
+    ]
+  },
+  {
+    "id": "verb-0080",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Antonyms",
+    "difficulty": "Medium",
+    "question": "Which word is opposite in meaning to METICULOUS?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "thorough"
+      },
+      {
+        "id": "B",
+        "text": "precise"
+      },
+      {
+        "id": "C",
+        "text": "methodical"
+      },
+      {
+        "id": "D",
+        "text": "careless"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Meticulous describes extreme attention to detail — the auditor who checks every column twice. Its opposite is the absence of that care, which is 'careless.' The structure of this item is worth studying: thorough, precise, and methodical all sit in the same neighbourhood of meaning as meticulous, so they reinforce one another and leave the fourth word standing apart. Whenever three options in an antonym item cluster into a synonym group, the lone outsider is almost always the answer, because a test writer cannot place two valid opposites among four choices.",
+    "distractorExplanations": {
+      "A": "'Thorough' means complete and leaving nothing out, which is close to meticulous rather than opposed to it. Choosing it means answering the synonym question the item did not ask.",
+      "B": "'Precise' names exactness. A meticulous worker is precise almost by definition, so the two words travel together and cannot stand as antonyms.",
+      "C": "'Methodical' means working in an orderly, systematic way. That is how meticulous care is usually carried out, making this another near-synonym rather than a contrast."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "On antonym items, first sort the four options into meaning groups. If three cluster together, the odd one out is the answer — a valid item can hold only one true opposite."
+    },
+    "tags": [
+      "vocabulary",
+      "antonyms"
+    ]
+  },
+  {
+    "id": "verb-0081",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Commonly Confused Words",
+    "difficulty": "Medium",
+    "question": "Choose the sentence in which all words are used correctly.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The principle reason for the delay was the missing document."
+      },
+      {
+        "id": "B",
+        "text": "The principal reason for the delay were the missing document."
+      },
+      {
+        "id": "C",
+        "text": "The principal reason for the delay was the missing document."
+      },
+      {
+        "id": "D",
+        "text": "The principle reason of the delay was the missing document."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Two words that sound identical do different jobs. 'Principal' is chiefly an adjective meaning main or most important — the principal reason, the principal office — and as a noun it names the head of a school or a sum of money. 'Principle' is only a noun, naming a rule, standard, or belief: a principle of accountability. Because the blank position here modifies 'reason,' the sentence needs the adjective. Option C also gets the verb right: the subject is the singular 'reason,' not the plural-looking material around it, so 'was' is correct.",
+    "distractorExplanations": {
+      "A": "'Principle' is a noun and cannot modify 'reason.' The sentence would be claiming the reason is a rule or standard, which is not the meaning intended.",
+      "B": "Word choice is right but the verb is not. The subject is the singular 'reason,' so 'were' disagrees; the noun after a linking verb never controls agreement.",
+      "D": "This option repeats the principle-for-principal error and compounds it with the unidiomatic 'reason of.' English fixes the preposition here as 'reason for.'"
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "PrincipAL is your PAL — the main one, and always usable as an adjective. PrinciplE ends in -LE like RULE, and it is only ever a noun."
+    },
+    "reference": "principal (chief, main) vs. principle (a rule or standard)",
+    "tags": [
+      "grammar",
+      "commonly-confused-words",
+      "word-choice"
+    ]
+  },
+  {
+    "id": "verb-0082",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Synonyms",
+    "difficulty": "Easy",
+    "question": "The word ACCOUNTABILITY most nearly means:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "freedom from all rules"
+      },
+      {
+        "id": "B",
+        "text": "authority without limits"
+      },
+      {
+        "id": "C",
+        "text": "avoidance of public scrutiny"
+      },
+      {
+        "id": "D",
+        "text": "responsibility for one's actions"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Accountability is the obligation to answer for what one has done — literally, to give an account of it. The word joins two ideas: a person holds a duty, and someone else is entitled to ask how that duty was discharged. Article XI, Section 1 of the 1987 Constitution builds the whole framework of public ethics on it, declaring that public office is a public trust and that officers must at all times be accountable to the people. Note the direction: accountability adds an obligation, while the three wrong options each remove one, which is why they read as its opposites rather than its definition.",
+    "distractorExplanations": {
+      "A": "'Freedom from all rules' describes the absence of obligation. Accountability works the other way — it binds an official to standards and to the people those standards protect.",
+      "B": "'Authority without limits' confuses power with answerability. Accountability is the check placed on authority, not an expansion of it.",
+      "C": "'Avoidance of public scrutiny' names precisely what accountability forbids. Being accountable means submitting to examination, not escaping it."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Hear 'account' inside the word: to be accountable is to owe an account of your actions. The constitutional anchor is 'public office is a public trust.'"
+    },
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "civic-context",
+      "accountability"
+    ]
+  },
+  {
+    "id": "verb-0083",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Sentence Completion",
+    "subtopic": "Context Clues",
+    "difficulty": "Medium",
+    "question": "The explanation was so ___ that even first-time applicants understood the procedure.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "obscure"
+      },
+      {
+        "id": "B",
+        "text": "lucid"
+      },
+      {
+        "id": "C",
+        "text": "ambiguous"
+      },
+      {
+        "id": "D",
+        "text": "technical"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The frame 'so ___ that...' is a result construction: whatever fills the blank must be the cause of the outcome that follows. The outcome is that even newcomers, the least prepared readers possible, grasped the procedure. Only a word meaning exceptionally clear can produce that result, and 'lucid' — from the Latin lux, light — means transparently clear, easy to follow. Read the causal link out loud before choosing; three of the four options would make the sentence claim that confusion produced understanding.",
+    "distractorExplanations": {
+      "A": "'Obscure' means hard to understand. Inserted here it would have unclear writing causing comprehension, which reverses the cause-and-effect the sentence sets up.",
+      "C": "'Ambiguous' means open to more than one reading. Multiple possible meanings hinder first-time applicants rather than helping them follow a procedure.",
+      "D": "'Technical' is the subtlest trap because technical writing can be accurate. Accuracy is not accessibility, though, and technical language is what typically blocks a first-time reader."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Treat 'so ___ that...' as an arrow. Read the result after 'that' first, then pick the word that could cause it. The clue always sits on the far side of the blank."
+    },
+    "tags": [
+      "sentence-completion",
+      "context-clues",
+      "vocabulary"
+    ]
+  },
+  {
+    "id": "verb-0084",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Conciseness",
+    "difficulty": "Medium",
+    "question": "Which sentence expresses the idea most concisely?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Applicants must submit the form by Friday."
+      },
+      {
+        "id": "B",
+        "text": "It is required that applicants should submit the form by Friday."
+      },
+      {
+        "id": "C",
+        "text": "Applicants are required to make a submission of the form by Friday."
+      },
+      {
+        "id": "D",
+        "text": "The form is something that applicants must submit on or before Friday."
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Concise does not mean shortest by luck; it means no word is left in the sentence without work to do. Option A carries the full instruction — who acts, what they must do, by when — in seven words, with the modal 'must' doing the job of obligation on its own. The three rejected versions each illustrate a named wordiness pattern: the expletive opener that delays the real subject, the nominalisation that buries a verb inside a noun, and the empty relative clause that props up a placeholder. Learn the three patterns and conciseness items become a matter of recognition rather than counting words.",
+    "distractorExplanations": {
+      "B": "'It is required that' is an expletive opener: the pronoun 'it' points to nothing and pushes the real subject three words back. Pairing it with 'should' also states the obligation twice.",
+      "C": "'Make a submission of' is a nominalisation — the verb 'submit' has been turned into a noun and now needs a weak helper verb to function. Restoring the verb removes four words.",
+      "D": "'The form is something that' is an empty relative clause. It fronts a placeholder noun and delays the actual instruction, adding length without adding meaning."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Hunt three wordiness patterns: expletive openers (It is... that, There are... which), nominalisations (make a submission of = submit), and empty relatives (is something that)."
+    },
+    "tags": [
+      "grammar",
+      "conciseness",
+      "redundancy",
+      "formal-register"
+    ]
+  },
+  {
+    "id": "verb-0085",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Error Identification",
+    "subtopic": "Run-on Sentences",
+    "difficulty": "Medium",
+    "question": "Which sentence contains a run-on error?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The office closed early, but the employees continued working remotely."
+      },
+      {
+        "id": "B",
+        "text": "Although the office closed early, the employees continued working remotely."
+      },
+      {
+        "id": "C",
+        "text": "The office closed early; the employees continued working remotely."
+      },
+      {
+        "id": "D",
+        "text": "The office closed early the employees continued working remotely."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "A run-on, sometimes called a fused sentence, occurs when two independent clauses are pushed together with nothing between them — no punctuation and no joining word. Option D does exactly that: 'The office closed early' and 'the employees continued working remotely' each have a subject and a finite verb, yet the reader is given no signal where the first ends. English offers four repairs: a period, a semicolon, a comma plus a coordinating conjunction, or subordination of one clause. Options A, B, and C demonstrate three of them, which is why only D remains defective.",
+    "distractorExplanations": {
+      "A": "A comma plus the coordinating conjunction 'but' is one of the standard joins for two independent clauses. The comma alone would fail, but with 'but' present the sentence is sound.",
+      "B": "'Although' subordinates the first clause, so only one independent clause is left and the comma correctly marks the boundary. Subordination is a legitimate run-on repair.",
+      "C": "A semicolon links two closely related independent clauses without a conjunction. This is precisely the punctuation the run-on in option D is missing."
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "Count the subject-verb pairs. Two independent clauses need one of four fixes: period, semicolon, comma + FANBOYS conjunction, or a subordinator. Nothing at all is a run-on; a bare comma is a splice."
+    },
+    "reference": "Run-on Sentences: two independent clauses fused without punctuation or a conjunction",
+    "tags": [
+      "error-identification",
+      "run-on",
+      "sentence-correction"
+    ]
+  },
+  {
+    "id": "verb-0086",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Dangling Modifiers",
+    "difficulty": "Medium",
+    "question": "Choose the best revision: \"Being incomplete, the evaluator returned the application.\"",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Being incomplete, the application returned the evaluator."
+      },
+      {
+        "id": "B",
+        "text": "The evaluator, being incomplete, returned the application."
+      },
+      {
+        "id": "C",
+        "text": "Incomplete, the evaluator had the application returned by it."
+      },
+      {
+        "id": "D",
+        "text": "Because the application was incomplete, the evaluator returned it."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "An introductory participial phrase attaches itself to whatever noun follows the comma. In the original, 'Being incomplete' lands on 'the evaluator,' so the sentence unintentionally says the evaluator was the incomplete one. There are two clean repairs: rename the intended subject immediately after the comma, or convert the phrase into a full subordinate clause with its own subject. Option D takes the second route — 'Because the application was incomplete' states outright what was lacking, and the main clause then reports what the evaluator did. Meaning and grammar line up with no ambiguity left.",
+    "distractorExplanations": {
+      "A": "The modifier now sits correctly beside 'the application,' but the main clause has been reversed: an application cannot return an evaluator. Fixing the dangler broke the sense.",
+      "B": "Moving the phrase into the middle does not change what it modifies. Placed right after 'the evaluator,' it states even more plainly that the evaluator was incomplete.",
+      "C": "'Incomplete' still dangles onto the evaluator, and the trailing 'by it' has no clear antecedent. The passive construction adds obscurity without repairing the modifier."
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "After an opening -ing or -ed phrase, the very next noun must be the doer. If it is not, either swap in the right subject or expand the phrase into a because/when clause."
+    },
+    "reference": "Dangling Modifiers: an introductory participial phrase must modify the subject that follows it",
+    "tags": [
+      "grammar",
+      "modifiers",
+      "dangling-modifiers",
+      "sentence-correction"
+    ]
+  },
+  {
+    "id": "verb-0087",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Paragraph Organization",
+    "subtopic": "Logical Sequence",
+    "difficulty": "Medium",
+    "question": "Arrange the sentences into the most logical paragraph.\n\n(1) Finally, the validated records are archived.\n(2) First, the receiving clerk checks whether the form is complete.\n(3) The evaluator then verifies the supporting documents.\n(4) After approval, the result is released to the applicant.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2-3-4-1"
+      },
+      {
+        "id": "B",
+        "text": "1-2-3-4"
+      },
+      {
+        "id": "C",
+        "text": "2-4-3-1"
+      },
+      {
+        "id": "D",
+        "text": "3-2-1-4"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This paragraph describes a procedure, and procedures are ordered by their signal words rather than by guesswork. Four markers do all the work here: 'First' can only open, 'then' must follow something already mentioned, 'After approval' presupposes that an evaluation has already taken place, and 'Finally' must close. Chain them and the office workflow appears in its natural order — receive, verify, release, archive. The reliable habit for sequence items is to lock the first and last sentences using their markers, since that alone usually eliminates three of the four options before you examine the middle.",
+    "steps": [
+      "Step 1 — Anchor the opening. Sentence 2 begins with 'First,' the strongest opening marker in the set, and it also describes the earliest physical event: the clerk receiving the form.",
+      "Step 2 — Anchor the closing. Sentence 1 begins with 'Finally' and describes archiving, an action that can only happen once everything else is done.",
+      "Step 3 — Place the continuation. Sentence 3 contains 'then,' which requires a preceding step, and verifying supporting documents logically follows the completeness check in sentence 2.",
+      "Step 4 — Place the dependent step. Sentence 4 opens with 'After approval,' so it must come after the evaluation in sentence 3 and before the archiving in sentence 1.",
+      "Step 5 — Read the assembled order: 2-3-4-1 — receive, verify, release, archive."
+    ],
+    "distractorExplanations": {
+      "B": "Putting sentence 1 first opens the paragraph with 'Finally,' a word that announces an ending. Archiving records before any of them have been checked also reverses the workflow.",
+      "C": "This order releases the result to the applicant (sentence 4) before the evaluator has verified the documents (sentence 3), so approval would precede the evaluation it depends on.",
+      "D": "Beginning with 'then' in sentence 3 leaves the reader with no prior step to connect it to, and archiving in sentence 1 is placed before the release in sentence 4."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Lock the ends first. 'First, To begin, Initially' can only open; 'Finally, Lastly, In conclusion' can only close. Fixing those two positions usually eliminates most options at once."
+    },
+    "tags": [
+      "paragraph-organization",
+      "logical-sequence",
+      "chronological-order"
+    ]
+  },
+  {
+    "id": "verb-0088",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Paragraph Organization",
+    "subtopic": "Topic Sentence",
+    "difficulty": "Medium",
+    "question": "Which sentence should come FIRST in a paragraph explaining disaster preparation?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Families should also store water and medicine."
+      },
+      {
+        "id": "B",
+        "text": "After every drill, officials should evaluate the response."
+      },
+      {
+        "id": "C",
+        "text": "Preparation begins with identifying the hazards that may affect the community."
+      },
+      {
+        "id": "D",
+        "text": "Finally, residents should review what they learned."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "A topic sentence has two identifying features: it points forward rather than backward, and it covers the widest ground. Test each candidate for backward-pointing signals — 'also' adds to something already said, 'After every drill' assumes a drill has been described, and 'Finally' closes a list that must already exist. Only option C stands on its own with no unstated antecedent, and it names the general starting point, hazard identification, under which the specific measures in the other sentences would fall. Any sentence that cannot be understood without knowing what came before it is, by definition, not the opener.",
+    "steps": [
+      "Step 1 — Scan for backward-pointing signals. Option A carries 'also,' which can only add to a point already made.",
+      "Step 2 — Continue the scan. Option B opens with 'After every drill,' presupposing that drills have already been introduced, and option D opens with 'Finally,' which marks a closing item.",
+      "Step 3 — Check what remains. Option C contains no such signal and needs no earlier sentence to make sense.",
+      "Step 4 — Confirm by scope. Hazard identification is a general first stage; storing supplies, running drills, and reviewing lessons are specific actions that fit beneath it.",
+      "Step 5 — Option C is therefore the topic sentence."
+    ],
+    "distractorExplanations": {
+      "A": "The word 'also' is a linking signal that requires a preceding recommendation. Opening a paragraph with an addition leaves the reader searching for the point being added to.",
+      "B": "Evaluating a response 'after every drill' assumes drills have already been established as part of the plan, and it describes a late-stage review rather than a starting point.",
+      "D": "'Finally' explicitly labels the sentence as the last item in a sequence. It also narrows to one closing action, which is the opposite of what a topic sentence must do."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "A topic sentence never leans on an earlier one. Strike out any candidate containing also, however, therefore, this, finally, or a backward time cue — the survivor is your opener."
+    },
+    "tags": [
+      "paragraph-organization",
+      "topic-sentence"
+    ]
+  },
+  {
+    "id": "verb-0089",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Paragraph Organization",
+    "subtopic": "Irrelevant Sentence",
+    "difficulty": "Easy",
+    "question": "Which sentence does NOT belong in the paragraph?\n\n(1) Digital records can speed up retrieval.\n(2) Access controls can protect confidential files.\n(3) Regular backups reduce the risk of permanent loss.\n(4) The cafeteria introduced a new lunch menu.\n(5) Staff training helps prevent handling errors.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Sentence 1"
+      },
+      {
+        "id": "B",
+        "text": "Sentence 2"
+      },
+      {
+        "id": "C",
+        "text": "Sentence 3"
+      },
+      {
+        "id": "D",
+        "text": "Sentence 4"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Paragraph unity means every sentence advances one controlling idea. State that idea before judging any sentence: here, four of the five describe ways of managing records well — faster retrieval, restricted access, protection against loss, and fewer handling errors. Sentence 4 reports a change in cafeteria food. It is a perfectly good sentence and may even be true of the same office, but sharing a workplace is not the same as sharing a topic. Relevance is judged against the controlling idea, never against whether the statement is accurate or interesting on its own.",
+    "steps": [
+      "Step 1 — Derive the controlling idea from the sentences that agree. Retrieval speed, access control, backups, and training all concern managing records well.",
+      "Step 2 — Test sentence 1: faster retrieval is a benefit of good records management. It fits.",
+      "Step 3 — Test sentences 2 and 3: access controls and backups both protect records. Both fit.",
+      "Step 4 — Test sentence 5: training staff to handle records correctly supports the same idea. It fits.",
+      "Step 5 — Test sentence 4: a new lunch menu concerns cafeteria service, not records. It is the sentence that breaks unity."
+    ],
+    "distractorExplanations": {
+      "A": "Retrieval speed is one of the main reasons offices digitise records at all. Sentence 1 supports the controlling idea directly and belongs in the paragraph.",
+      "B": "Protecting confidential files through access controls is a core records-management concern. Naming a security measure does not make the sentence off-topic.",
+      "C": "Backups guard against permanent loss of records, which is the same subject the surrounding sentences develop. Sentence 3 sits comfortably within the paragraph."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Write the controlling idea in your own words first, then test each sentence against it. A sentence can be true, well written, and about the same office and still break unity."
+    },
+    "tags": [
+      "paragraph-organization",
+      "unity",
+      "irrelevant-sentence"
+    ]
+  },
+  {
+    "id": "verb-0090",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "subtopic": "Main Idea",
+    "difficulty": "Medium",
+    "passage": "The city opened an online appointment system. Walk-in congestion declined, but some senior citizens struggled to use the platform. The city therefore retained an assisted service desk.",
+    "question": "What is the main idea of the passage?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The city completely prohibited walk-in transactions."
+      },
+      {
+        "id": "B",
+        "text": "The online system failed to reduce congestion."
+      },
+      {
+        "id": "C",
+        "text": "The city combined digital service with assistance for users who needed it."
+      },
+      {
+        "id": "D",
+        "text": "The assisted desk replaced the appointment system."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "A main idea has to account for the whole passage, not one sentence of it. Three movements appear here: the city launched an online system, the system worked but left some senior citizens behind, and the city responded by keeping an assisted desk. Option C holds all three together — a digital channel plus human help for those who need it. The other options each seize on one part and distort it. Beware of absolutes such as 'completely,' 'failed,' and 'replaced'; the passage reports a measured adjustment, and a main idea that overstates the text is wrong even when it names the right topic.",
+    "distractorExplanations": {
+      "A": "Nothing in the passage bans walk-ins. Congestion 'declined,' which means walk-ins continued at a lower volume, and the assisted desk exists precisely to serve people in person.",
+      "B": "The text states plainly that walk-in congestion declined, so the system succeeded at its primary purpose. Difficulty for some users is a separate finding, not a failure of the system.",
+      "D": "Both services operate side by side. The desk was 'retained' alongside the appointment system, and retaining something is the opposite of replacing what it supplements."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "A main idea must cover every sentence. If an option ignores part of the passage or hardens it with completely, always, failed, or replaced, it is a distortion rather than a summary."
+    },
+    "tags": [
+      "reading-comprehension",
+      "main-idea",
+      "civic-context"
+    ]
+  },
+  {
+    "id": "verb-0091",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "subtopic": "Details",
+    "difficulty": "Easy",
+    "passage": "The city opened an online appointment system. Walk-in congestion declined, but some senior citizens struggled to use the platform. The city therefore retained an assisted service desk.",
+    "question": "Based on the passage, why was the assisted service desk retained?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "To help people who had difficulty using the online platform"
+      },
+      {
+        "id": "B",
+        "text": "To increase walk-in congestion"
+      },
+      {
+        "id": "C",
+        "text": "To cancel online appointments"
+      },
+      {
+        "id": "D",
+        "text": "To collect additional fees"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Detail questions are answered by locating the sentence, not by reasoning about the topic. The word 'therefore' in the final sentence is the pointer: it tells the reader that whatever precedes it is the cause of what follows. What precedes it is that some senior citizens struggled to use the platform; what follows is the decision to retain the assisted desk. Option A restates that cause. Train yourself to treat therefore, thus, so, consequently, and as a result as arrows — the reason is always sitting immediately upstream of them.",
+    "distractorExplanations": {
+      "B": "Reducing congestion was the point of the online system, and the passage records that it fell. No agency would keep a service in order to make its own queues longer.",
+      "C": "Cancellation appears nowhere in the text. The desk assists people who cannot use the platform; it does not undo appointments made through it.",
+      "D": "Fees are never mentioned. This option imports a familiar assumption about government transactions rather than anything the passage actually states."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Treat therefore, thus, so, and consequently as arrows pointing backward. For a 'why' question, the reason sits in the clause immediately before the signal word."
+    },
+    "tags": [
+      "reading-comprehension",
+      "details",
+      "civic-context"
+    ]
+  },
+  {
+    "id": "verb-0092",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "subtopic": "Summarizing",
+    "difficulty": "Medium",
+    "passage": "Public feedback revealed that the original schedule excluded many night-shift workers. The office added Saturday appointments and saw higher participation.",
+    "question": "Which of the following best summarizes the passage?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Night-shift workers opposed all appointments."
+      },
+      {
+        "id": "B",
+        "text": "Saturday work always reduces participation."
+      },
+      {
+        "id": "C",
+        "text": "The original schedule was already inclusive."
+      },
+      {
+        "id": "D",
+        "text": "Adjusting service hours improved access for workers."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "A summary compresses the whole passage to a general level while adding nothing the text does not support. The passage runs a simple chain: a problem is identified through feedback, the office changes its hours, participation rises. Option D captures the chain at one level of abstraction — service hours were adjusted, and access improved. The other three fail on a single test each. Two of them insert absolutes, 'all' and 'always,' that no two-sentence passage could establish, and the third denies the very problem the first sentence reports.",
+    "distractorExplanations": {
+      "A": "The workers objected to a schedule that shut them out, not to appointments as such. The blanket word 'all' converts a specific complaint into a sweeping rejection.",
+      "B": "This inverts the outcome and universalises it. Participation rose after Saturday slots were added, and one office's result cannot support a claim about what 'always' happens.",
+      "C": "The opening sentence says the original schedule excluded many night-shift workers, so calling it inclusive contradicts the passage rather than condensing it."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Cross out any option containing all, none, always, never, or only unless the passage states it outright. Absolutes are the fastest way to spot an overreaching summary."
+    },
+    "tags": [
+      "reading-comprehension",
+      "summarizing",
+      "main-idea"
+    ]
+  },
+  {
+    "id": "verb-0093",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Vocabulary in Context",
+    "difficulty": "Easy",
+    "question": "The word MITIGATE in \"Trees help mitigate urban heat\" most nearly means:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "measure"
+      },
+      {
+        "id": "B",
+        "text": "predict"
+      },
+      {
+        "id": "C",
+        "text": "create"
+      },
+      {
+        "id": "D",
+        "text": "lessen"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Mitigate comes from the Latin mitis, meaning mild or gentle, and it means to make something less severe. The object it takes is almost always a harm: mitigate damage, mitigate risk, mitigate the effects of a typhoon. In the sentence, urban heat is the problem and trees are the intervention, so the verb must name a reduction. The word is worth knowing beyond vocabulary items — disaster management documents in the Philippines pair mitigation with preparedness, response, and recovery as the four phases of the cycle, and there it carries this same sense of reducing severity in advance.",
+    "distractorExplanations": {
+      "A": "'Measure' means to quantify. Instruments measure heat; trees act on it. The sentence describes an effect on the temperature, not an assessment of it.",
+      "B": "'Predict' means to forecast in advance. Nothing about planting trees anticipates future heat, and the sentence reports a present benefit rather than a projection.",
+      "C": "'Create' points in the opposite direction. Concrete and vehicles create urban heat; the whole reason trees are planted is to counteract what those sources produce."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Check the object of the verb. MITIGATE always takes a harm — damage, risk, heat, loss — and always means to soften it. If the object is a benefit, the word is wrong."
+    },
+    "tags": [
+      "vocabulary",
+      "vocabulary-in-context",
+      "context-clues"
+    ]
+  },
+  {
+    "id": "verb-0094",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "subtopic": "Inference",
+    "difficulty": "Medium",
+    "question": "Which statement is an inference from: \"All counters were occupied, yet the queue moved steadily because transactions averaged only four minutes\"?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Fast transactions helped prevent the queue from stalling."
+      },
+      {
+        "id": "B",
+        "text": "Several counters were closed."
+      },
+      {
+        "id": "C",
+        "text": "Each transaction lasted an hour."
+      },
+      {
+        "id": "D",
+        "text": "No clients were waiting."
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "An inference is a conclusion the text supports without stating it in those words. The sentence supplies a cause with 'because': short four-minute transactions are the reason the queue kept moving despite every counter being busy. Option A puts that relationship in different words, which is exactly what an inference should do. The three rejected options are not weak inferences; they are contradictions. Learn to sort options into three bins — restated by the text, supported but unstated, and denied by the text. Only the middle bin can hold the answer, and anything in the third bin can be eliminated on sight.",
+    "distractorExplanations": {
+      "B": "The sentence opens with 'All counters were occupied,' which rules out closures. This option does not go beyond the text; it denies the first clause outright.",
+      "C": "An hour per transaction contradicts the stated average of four minutes, and it would also make the steady movement of the queue impossible.",
+      "D": "A queue that 'moved steadily' is by definition a queue with people in it. Claiming nobody waited erases the very thing the sentence is describing."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Sort every option into restates, supports, or contradicts. Inference answers live in the middle bin — new wording, same logic. Anything that fights a stated fact is out immediately."
+    },
+    "tags": [
+      "reading-comprehension",
+      "inference"
+    ]
+  },
+  {
+    "id": "verb-0095",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Commonly Confused Words",
+    "difficulty": "Medium",
+    "question": "Choose the word that correctly completes the sentence: The new policy will ___ how records are classified.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "effect"
+      },
+      {
+        "id": "B",
+        "text": "affects"
+      },
+      {
+        "id": "C",
+        "text": "affect"
+      },
+      {
+        "id": "D",
+        "text": "effected"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Two questions settle this item. First, form: the modal 'will' is always followed by a bare infinitive, so any inflected verb is out before meaning is even considered. Second, meaning: the policy influences an existing practice, and the verb for influencing is 'affect.' Honesty about the harder half of the rule pays off here — 'effect' genuinely can be a verb, meaning to bring about or accomplish, as in 'effect change' or 'effect a settlement.' But that sense requires the policy to create classification itself rather than to shape how it is done, which is not what the sentence says.",
+    "distractorExplanations": {
+      "A": "'Effect' as a verb means to bring something into being. Records are already being classified, so the policy shapes an existing practice rather than creating one from nothing.",
+      "B": "The meaning is right but the form is not. A modal such as 'will' takes the bare infinitive, so 'will affects' doubles the tense marking and cannot stand.",
+      "D": "'Effected' is a past-tense form placed after the future marker 'will,' which is impossible, and it also carries the 'bring about' sense the sentence does not need."
+    },
+    "tip": {
+      "label": "Mnemonic",
+      "text": "RAVEN: Remember, Affect is a Verb, Effect is a Noun. Then check the form — after will, can, must, should, always use the bare infinitive."
+    },
+    "reference": "affect (verb, to influence) vs. effect (noun, a result)",
+    "tags": [
+      "grammar",
+      "commonly-confused-words",
+      "affect-effect"
+    ]
+  },
+  {
+    "id": "verb-0096",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Subject-Verb Agreement",
+    "difficulty": "Medium",
+    "question": "Choose the sentence with correct subject–verb agreement.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Ten kilometers are a long distance to walk."
+      },
+      {
+        "id": "B",
+        "text": "Ten kilometer is a long distance to walk."
+      },
+      {
+        "id": "C",
+        "text": "Ten kilometers have been a long distance to walk."
+      },
+      {
+        "id": "D",
+        "text": "Ten kilometers is a long distance to walk in extreme heat."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "A plural noun does not always mean a plural subject. When a quantity of distance, money, time, or weight is treated as one amount rather than as separate units, it takes a singular verb: ten kilometers is a long walk, five hundred pesos is a fair price, two hours is enough time. The clue is the singular complement — 'a long distance' names one thing, confirming that the subject is being handled as a single measurement. The plural -s stays on 'kilometers' because that is how the unit is written after any number above one; only the verb reflects the singular idea.",
+    "distractorExplanations": {
+      "A": "A plural verb splits the ten kilometers into ten separate items. The complement 'a long distance' is singular, which shows the sentence means one continuous stretch.",
+      "B": "Trimming the -s from 'kilometer' is the error here. Any number greater than one takes the plural noun form, even though the verb that follows stays singular.",
+      "C": "Two problems combine: the plural 'have' misreads the measurement as separate units, and the present perfect implies an ongoing state where a simple statement of fact is meant."
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "One amount, one verb. Distance, money, time, and weight take a singular verb when the total is treated as a single quantity: 'Two hours IS enough,' 'Five hundred pesos IS the fee.'"
+    },
+    "reference": "Subject-Verb Agreement: a measurement treated as a single quantity takes a singular verb",
+    "tags": [
+      "grammar",
+      "subject-verb-agreement",
+      "measurements"
+    ]
+  },
+  {
+    "id": "verb-0097",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Formal Register",
+    "difficulty": "Easy",
+    "question": "Which revision is most appropriate for formal writing?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Due to weather being super bad, the activity got moved."
+      },
+      {
+        "id": "B",
+        "text": "The agency postponed the activity because of severe weather."
+      },
+      {
+        "id": "C",
+        "text": "The activity was, like, postponed by the agency."
+      },
+      {
+        "id": "D",
+        "text": "Bad weather kinda made the agency postpone it."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Formal register is a set of habits, not a matter of long words. Official writing names the actor, uses precise vocabulary, states the cause plainly, and avoids intensifiers, hedges, and fillers borrowed from speech. Option B does all four: the agency acts, 'postponed' is the exact verb, 'severe weather' is the technical description used in advisories, and 'because of' states the reason without padding. Reading the other three aloud reveals the markers that disqualify them — 'super,' 'got,' 'like,' and 'kinda' all belong to casual conversation and would never survive a memorandum.",
+    "distractorExplanations": {
+      "A": "'Super bad' is a conversational intensifier and 'got moved' is a colloquial passive. Both weaken a sentence that should name the agency and state the cause precisely.",
+      "C": "'Like' is a spoken filler with no grammatical role. The passive also hides nothing useful here, since the agency is named anyway and could simply act as the subject.",
+      "D": "'Kinda' hedges a fact that is not in doubt, and 'bad weather' is vaguer than the standard term. Formal writing states causes without softening them."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Scan for spoken markers first — super, kinda, sort of, like, got, stuff, a lot of. One of them is enough to disqualify an option on any formal-register item."
+    },
+    "tags": [
+      "grammar",
+      "formal-register",
+      "word-choice"
+    ]
+  },
+  {
+    "id": "verb-0098",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Cause and Effect Connectors",
+    "difficulty": "Easy",
+    "question": "Choose the sentence that clearly expresses cause and effect.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Because heavy rain flooded the road, the examination was postponed."
+      },
+      {
+        "id": "B",
+        "text": "Although it rained, the examination continued."
+      },
+      {
+        "id": "C",
+        "text": "If it rains, bring an umbrella."
+      },
+      {
+        "id": "D",
+        "text": "The applicant went to the office to obtain a permit."
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Connectors sort into families, and each family answers a different question. Cause and effect answers 'why did this happen?' and uses because, since, as, so, therefore, and consequently. Option A supplies a genuine cause, flooded roads, and its genuine result, a postponed examination. The other three sentences are all grammatical, but each belongs to a different family: concession admits something that might have prevented the outcome, condition sets a circumstance that has not yet occurred, and purpose names an intended goal. Identifying the family before comparing options makes this item type nearly automatic.",
+    "distractorExplanations": {
+      "B": "'Although' signals concession. It concedes an obstacle and then reports that the outcome happened anyway, which is the reverse of a cause producing an effect.",
+      "C": "'If' introduces a condition about something that may or may not occur. No rain has fallen yet, so no cause exists and no effect has been produced.",
+      "D": "The infinitive 'to obtain' expresses purpose — the goal the applicant had in mind. A purpose looks forward to an intended result; a cause looks back at what produced one."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Sort connectors into four families: CAUSE (because, since, therefore) - CONCESSION (although, even though) - CONDITION (if, unless) - PURPOSE (to, in order to, so that)."
+    },
+    "tags": [
+      "grammar",
+      "cause-effect",
+      "transition-words"
+    ]
+  },
+  {
+    "id": "verb-0099",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "subtopic": "Inference",
+    "difficulty": "Medium",
+    "question": "What does the statement \"Speed is not enough when accuracy is sacrificed\" imply?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Speed is always more important than accuracy."
+      },
+      {
+        "id": "B",
+        "text": "Efficient service must also be accurate."
+      },
+      {
+        "id": "C",
+        "text": "Accuracy has no place in public service."
+      },
+      {
+        "id": "D",
+        "text": "Fast service is necessarily inaccurate."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The whole item turns on the phrase 'not enough.' Saying something is not enough concedes that it counts for something while insisting that it does not suffice on its own. Speed therefore remains desirable; what the statement rejects is speed purchased at the cost of accuracy. The implication is that both qualities are required together, which option B states. The trap is a familiar one in reasoning items: readers convert 'insufficient' into 'worthless' and then pick the option that dismisses speed entirely. Keep the two ideas apart — 'not enough' subtracts sufficiency, never value.",
+    "distractorExplanations": {
+      "A": "Ranking speed above accuracy is the position the statement argues against. 'Not enough' downgrades speed's standing on its own; it does not elevate speed over anything.",
+      "C": "This reverses the sentence completely. Accuracy is the quality being defended, and the whole clause exists to insist that it must not be sacrificed.",
+      "D": "Claiming fast service must be inaccurate overshoots. The statement warns about a trade-off that can happen, not one that always happens; speed and accuracy can coexist."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "'Not enough' means necessary but insufficient. It never means worthless. Options that erase the first quality entirely have overshot the claim and can be eliminated."
+    },
+    "tags": [
+      "reading-comprehension",
+      "inference",
+      "civic-context"
+    ]
+  },
+  {
+    "id": "verb-0100",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Paragraph Organization",
+    "subtopic": "Concluding Sentence",
+    "difficulty": "Medium",
+    "question": "Which statement best completes the paragraph?\n\n\"Reliable public data helps citizens understand government programs. It also allows researchers to evaluate outcomes. ___\"",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Nevertheless, all records should always remain secret."
+      },
+      {
+        "id": "B",
+        "text": "For example, inaccurate data improves accountability."
+      },
+      {
+        "id": "C",
+        "text": "Therefore, agencies should publish accurate data in accessible formats."
+      },
+      {
+        "id": "D",
+        "text": "In contrast, citizens should avoid official information."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Read the shape of the paragraph before reading the options. Two sentences list benefits of reliable public data, and the second is linked to the first by 'also,' confirming that the ideas accumulate rather than compete. A closer must therefore draw the consequence of an accumulated case, and the transition that does that is 'Therefore.' Option C also matches in content, converting the two benefits into a recommendation that agencies publish accurately and accessibly. The transition word is the fastest filter available: a contrast signal placed after two agreeing sentences announces an argument that never happened.",
+    "steps": [
+      "Step 1 — Identify the pattern. Both sentences state benefits of reliable public data, and 'also' in the second marks addition, not contrast.",
+      "Step 2 — Decide what the closer must do. A list of agreeing benefits calls for a conclusion drawn from them, so the transition needed is one of result.",
+      "Step 3 — Filter by transition word. 'Nevertheless' and 'In contrast' both signal opposition, and 'For example' promises an illustration rather than a conclusion.",
+      "Step 4 — Check the surviving option for content. 'Therefore, agencies should publish accurate data in accessible formats' follows directly from the two stated benefits.",
+      "Step 5 — Option C is the concluding sentence."
+    ],
+    "distractorExplanations": {
+      "A": "'Nevertheless' sets up an objection the paragraph never raised, and secrecy contradicts the benefits just described. The absolute 'always' compounds the mismatch.",
+      "B": "'For example' promises an illustration of the preceding point, yet the sentence delivers the opposite claim: inaccurate data undermines accountability rather than improving it.",
+      "D": "'In contrast' signals opposition where the paragraph has been building agreement, and advising citizens to avoid official information reverses the paragraph's first benefit."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Filter conclusion items by transition word before reading content. Agreeing sentences take a result signal (therefore, thus, consequently); only a shift in direction earns however or in contrast."
+    },
+    "tags": [
+      "paragraph-organization",
+      "concluding-sentence",
+      "transition-words"
+    ]
   }
 ]

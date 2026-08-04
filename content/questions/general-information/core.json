@@ -3630,5 +3630,548 @@
       "sovereignty",
       "self-determination"
     ]
+  },
+  {
+    "id": "gen-0078",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Accountability of Public Officers",
+    "difficulty": "Easy",
+    "question": "Under the 1987 Philippine Constitution, public office is a:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "private privilege"
+      },
+      {
+        "id": "B",
+        "text": "hereditary right"
+      },
+      {
+        "id": "C",
+        "text": "commercial franchise"
+      },
+      {
+        "id": "D",
+        "text": "public trust"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Article XI, Section 1 opens the article on accountability with one sentence and one command: 'Public office is a public trust. Public officers and employees must, at all times, be accountable to the people, serve them with utmost responsibility, integrity, loyalty, and efficiency, act with patriotism and justice, and lead modest lives.' Calling office a trust has teeth. Authority is held on behalf of the people rather than owned, so it can be withdrawn and must always be answered for. That single word is the doctrinal root of impeachment (Art. XI, Secs. 2–3), of the SALN requirement, and of the entire Code of Conduct in RA 6713.",
+    "distractorExplanations": {
+      "A": "A privilege is personal and exercised at the holder's pleasure — the exact opposite of a trust held for someone else. Public office confers no private entitlement to its powers or perquisites.",
+      "B": "Hereditary succession describes a monarchy. Art. XI, Sec. 1 works with the republican principle of Art. II, Sec. 1: office is filled by election or merit-based appointment, never inherited.",
+      "C": "A franchise is a state grant to operate a business for profit, typically a utility under Art. XII. Public office is not run for gain, which is why RA 6713 bars using one's position for private advantage."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Art. XI, Sec. 1 = 'Public office is a public trust.' Memorise the four service words — responsibility, integrity, loyalty, efficiency — then patriotism, justice, and modest lives."
+    },
+    "reference": "1987 Constitution, Art. XI, Sec. 1",
+    "tags": [
+      "constitution",
+      "accountability",
+      "public trust",
+      "ethics"
+    ]
+  },
+  {
+    "id": "gen-0079",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Bill of Rights",
+    "difficulty": "Easy",
+    "question": "Which constitutional right protects a person from being compelled to testify against himself or herself?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Right against self-incrimination"
+      },
+      {
+        "id": "B",
+        "text": "Right to travel"
+      },
+      {
+        "id": "C",
+        "text": "Right to information"
+      },
+      {
+        "id": "D",
+        "text": "Freedom of assembly"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Article III, Section 17 is among the shortest provisions in the Bill of Rights: 'No person shall be compelled to be a witness against himself.' Its reach is narrower than most examinees assume. It bars compelled testimonial evidence — being forced to speak or answer in a way that helps establish one's own guilt. An accused may refuse to take the stand at all; an ordinary witness must testify but may invoke the privilege question by question as incriminating questions arise. What the clause does not do is stop the State from prosecuting, and it does not shield purely physical evidence such as fingerprints, photographs, or DNA samples.",
+    "distractorExplanations": {
+      "B": "Liberty of abode and the right to travel (Art. III, Sec. 6) may be impaired only in the interest of national security, public safety, or public health as provided by law. It governs movement, not testimony.",
+      "C": "The right to information (Art. III, Sec. 7) lets a citizen demand records FROM the government. Sec. 17 runs the opposite way — it stops the State from extracting information out of you.",
+      "D": "Art. III, Sec. 4 protects the peaceable assembly and petition of a group, a collective political right. Self-incrimination is invoked by one individual inside an investigation, hearing, or trial."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Self-incrimination covers COMPELLED TESTIMONY only. Accused = may refuse the witness stand entirely. Ordinary witness = must appear, then objects question by question."
+    },
+    "reference": "1987 Constitution, Art. III, Sec. 17",
+    "tags": [
+      "constitution",
+      "bill of rights",
+      "self-incrimination",
+      "civil liberties"
+    ]
+  },
+  {
+    "id": "gen-0080",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Bill of Rights",
+    "difficulty": "Medium",
+    "question": "A search warrant may generally be issued only upon probable cause determined personally by:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "a police investigator"
+      },
+      {
+        "id": "B",
+        "text": "a prosecutor alone"
+      },
+      {
+        "id": "C",
+        "text": "any elected official"
+      },
+      {
+        "id": "D",
+        "text": "a judge"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Article III, Section 2 allows no search warrant or warrant of arrest to issue 'except upon probable cause to be determined personally by the judge after examination under oath or affirmation of the complainant and the witnesses he may produce, and particularly describing the place to be searched and the persons or things to be seized.' The load-bearing word is 'personally': the judge must examine the applicant himself and may not delegate it or rubber-stamp a submitted affidavit. Lodging the finding with a neutral magistrate instead of the party doing the investigating is what makes the safeguard real — and evidence seized under an invalid warrant is inadmissible under the exclusionary rule of Sec. 3(2).",
+    "distractorExplanations": {
+      "A": "The police apply for the warrant and supply the supporting affidavits, so they are the interested party. Letting the investigator make the finding would dissolve the very check the provision was written to create.",
+      "B": "Prosecutors do determine probable cause — but to FILE an information after preliminary investigation. Probable cause to ISSUE a warrant is a distinct judicial function reserved to the judge.",
+      "C": "No elected executive — mayor, governor, or President — may issue a warrant. The Constitution confines the power to judges precisely because they stand outside the political and investigative process."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Art. III, Sec. 2 four-part test: (1) probable cause, (2) determined PERSONALLY by a judge, (3) after examination under oath, (4) particular description of place and things. Fail one and Sec. 3(2) excludes the evidence."
+    },
+    "reference": "1987 Constitution, Art. III, Sec. 2",
+    "tags": [
+      "constitution",
+      "bill of rights",
+      "search warrant",
+      "due process"
+    ]
+  },
+  {
+    "id": "gen-0081",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Government Structure",
+    "subtopic": "Three Branches of Government",
+    "difficulty": "Easy",
+    "question": "Which branch of government interprets laws in actual controversies?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Executive"
+      },
+      {
+        "id": "B",
+        "text": "Legislative"
+      },
+      {
+        "id": "C",
+        "text": "Judiciary"
+      },
+      {
+        "id": "D",
+        "text": "Commission on Audit"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Article VIII, Section 1 vests judicial power in the Supreme Court and in such lower courts as may be established by law, and defines that power as including 'the duty of the courts of justice to settle actual controversies involving rights which are legally demandable and enforceable, and to determine whether or not there has been a grave abuse of discretion amounting to lack or excess of jurisdiction on the part of any branch or instrumentality of the Government.' Two phrases repay memorising. 'Actual controversies' means courts resolve live disputes between real parties — no advisory opinions on hypothetical facts. The 'grave abuse' clause is the 1987 innovation that made expanded judicial review a duty.",
+    "distractorExplanations": {
+      "A": "The Executive enforces and implements laws (Art. VII). Agencies necessarily read statutes to apply them, which is what makes this tempting — but their construction always yields to the courts' final interpretation.",
+      "B": "Congress enacts, amends, and repeals laws (Art. VI) and can pass a clarifying statute for the future. It cannot supply the authoritative meaning of a law in a case already before the courts.",
+      "D": "COA is a constitutional commission under Art. IX-D that audits government revenues and expenditures — not a branch of government at all. Its rulings are themselves reviewable by the Supreme Court."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Legislative MAKES, Executive ENFORCES, Judiciary INTERPRETS. The constitutional commissions (CSC, COMELEC, COA), the CHR, and the Ombudsman are independent bodies — never a fourth branch."
+    },
+    "reference": "1987 Constitution, Art. VIII, Sec. 1",
+    "tags": [
+      "constitution",
+      "judiciary",
+      "separation of powers",
+      "judicial review"
+    ]
+  },
+  {
+    "id": "gen-0082",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "RA 6713 Code of Conduct",
+    "subtopic": "Norms of Conduct",
+    "difficulty": "Medium",
+    "question": "Under RA 6713, providing service without unfair discrimination regardless of party affiliation reflects:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "simple living"
+      },
+      {
+        "id": "B",
+        "text": "nationalism and patriotism"
+      },
+      {
+        "id": "C",
+        "text": "professionalism"
+      },
+      {
+        "id": "D",
+        "text": "political neutrality"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Section 4(A)(d) of RA 6713 states the norm of Political Neutrality: public officials and employees 'shall provide service to everyone without unfair discrimination and regardless of party affiliation or preference.' The clean test that separates this norm from its neighbours is the question each one answers. Political neutrality governs WHOM you serve equally; professionalism, at Sec. 4(A)(b), governs HOW competently you serve. A clerk who releases permits quickly but only for supporters of the winning candidate has met the standard of professionalism and breached political neutrality. This norm is also what allows a career civil service to survive a change of administration intact.",
+    "distractorExplanations": {
+      "A": "Simple living (Sec. 4(A)(h)) requires officials to lead modest lives appropriate to their position and income and to avoid ostentatious display of wealth. It regulates lifestyle, not client treatment.",
+      "B": "Nationalism and patriotism (Sec. 4(A)(f)) demands loyalty to the Republic and promotion of Filipino products, resources, and technology. It concerns national loyalty, not partisan even-handedness.",
+      "C": "Professionalism (Sec. 4(A)(b)) requires the highest degree of excellence and devotion to duty. It tempts because impartiality feels professional — but the norm named for party-blind service is political neutrality."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "Sort the norms by the question they answer: political neutrality = WHOM you serve (everyone, regardless of party); professionalism = HOW WELL you serve; simple living = HOW you live."
+    },
+    "reference": "RA 6713, Sec. 4(A)(d)",
+    "tags": [
+      "RA 6713",
+      "norms of conduct",
+      "political neutrality",
+      "ethics"
+    ]
+  },
+  {
+    "id": "gen-0083",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "RA 6713 Code of Conduct",
+    "subtopic": "Norms of Conduct",
+    "difficulty": "Medium",
+    "question": "Under RA 6713, using government resources efficiently and economically primarily reflects:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "commitment to public interest"
+      },
+      {
+        "id": "B",
+        "text": "responsiveness to the public"
+      },
+      {
+        "id": "C",
+        "text": "justness and sincerity"
+      },
+      {
+        "id": "D",
+        "text": "simple living"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Section 4(A)(a) of RA 6713 defines Commitment to Public Interest: officials 'shall always uphold the public interest over and above personal interest,' and all government resources and powers 'must be employed and used efficiently, effectively, honestly and economically, particularly to avoid wastage in public funds and revenues.' Budgets, supplies, service vehicles, equipment, and paid working hours all sit inside that sentence. The line to draw is against option D: simple living governs an official's PERSONAL lifestyle and spending, while this norm governs the stewardship of PUBLIC resources. Overtime claimed for idle work and an office vehicle used for private errands are Sec. 4(A)(a) violations.",
+    "distractorExplanations": {
+      "B": "Responsiveness to the public (Sec. 4(A)(e)) requires extending prompt, courteous, and adequate service and providing information on policies truthfully. It is client-facing, not resource-facing.",
+      "C": "Justness and sincerity (Sec. 4(A)(c)) requires acting with justice, refraining from oppressive or dishonest conduct, and giving priority to the underprivileged. It targets fairness in dealings, not thrift.",
+      "D": "The classic trap, because both norms sound frugal. Simple living restrains what the official spends on himself; economical handling of government money and property is commitment to public interest."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Ask whose wallet is open. Wasting PUBLIC funds breaches commitment to public interest; flaunting PRIVATE wealth breaches simple living. Same instinct for restraint, two different wallets."
+    },
+    "reference": "RA 6713, Sec. 4(A)(a)",
+    "tags": [
+      "RA 6713",
+      "norms of conduct",
+      "commitment to public interest",
+      "public funds"
+    ]
+  },
+  {
+    "id": "gen-0084",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "RA 6713 Code of Conduct",
+    "subtopic": "Norms of Conduct",
+    "difficulty": "Easy",
+    "question": "Which is one of the norms of conduct expressly listed in RA 6713?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Personal enrichment"
+      },
+      {
+        "id": "B",
+        "text": "Partisan loyalty"
+      },
+      {
+        "id": "C",
+        "text": "Professionalism"
+      },
+      {
+        "id": "D",
+        "text": "Preferential treatment"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "RA 6713, Sec. 4(A) enumerates eight norms in this statutory order: (a) commitment to public interest, (b) professionalism, (c) justness and sincerity, (d) political neutrality, (e) responsiveness to the public, (f) nationalism and patriotism, (g) commitment to democracy, and (h) simple living. Professionalism, at letter (b), obliges officials to perform and discharge their duties 'with the highest degree of excellence, professionalism, intelligence and skill,' with utmost devotion to duty, and to discourage wrong perceptions of their roles as dispensers of undue patronage. Notice how the item is engineered: the three wrong options are not merely absent from the list — each is the precise inversion of a norm on it.",
+    "distractorExplanations": {
+      "A": "This inverts norm (a), commitment to public interest, which requires upholding public interest over personal interest. Enriching oneself through office is penalised by RA 3019 and RA 7080, not prescribed.",
+      "B": "This inverts norm (d), political neutrality, which commands service to everyone regardless of party affiliation or preference. A public servant's loyalty runs to the Republic and the people, not a party.",
+      "D": "This inverts norm (c), justness and sincerity, and is the same evil professionalism warns against when it tells officials not to act as dispensers of undue patronage."
+    },
+    "tip": {
+      "label": "Mnemonic",
+      "text": "Eight norms in statutory order — Public interest, Professionalism, Justness, Political neutrality, Responsiveness, Nationalism, Democracy, Simple living: PPJP + RNDS. If an option names a vice, it is not a norm."
+    },
+    "reference": "RA 6713, Sec. 4(A)(b)",
+    "tags": [
+      "RA 6713",
+      "norms of conduct",
+      "professionalism",
+      "ethics"
+    ]
+  },
+  {
+    "id": "gen-0085",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine History",
+    "subtopic": "Katipunan and the Revolution",
+    "difficulty": "Easy",
+    "question": "The Katipunan was founded primarily to seek:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "annexation to the United States"
+      },
+      {
+        "id": "B",
+        "text": "restoration of the galleon trade"
+      },
+      {
+        "id": "C",
+        "text": "membership in the Spanish parliament only"
+      },
+      {
+        "id": "D",
+        "text": "independence from Spanish rule"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Andrés Bonifacio founded the Kataas-taasang, Kagalang-galangang Katipunan ng mga Anak ng Bayan in July 1892, within days of José Rizal's arrest and the order deporting him to Dapitan. That timing is the substance of the answer, not a detail: Rizal's detention convinced Bonifacio that petitioning Spain for reform had reached a dead end, so the Katipunan was organised as a secret revolutionary society aiming at separation from Spain by armed struggle. Its oath-taking rites, its Kartilya, and its cell structure all presumed a break with the colonial order rather than a better place inside it.",
+    "distractorExplanations": {
+      "A": "American annexation entered Philippine politics only after 1898, through the Treaty of Paris and later the Federalista party. In 1892 the United States figured nowhere in the Katipunan's programme.",
+      "B": "The Manila–Acapulco galleon trade ended in 1815, three generations earlier. It was a Spanish commercial monopoly that enriched colonial officials — never a nationalist demand.",
+      "C": "This is precisely what the Propaganda Movement and La Liga Filipina wanted: representation and reform WITHIN Spain. Bonifacio founded the Katipunan because that assimilationist path had failed."
+    },
+    "tip": {
+      "label": "Historical Note",
+      "text": "Reform versus revolution: Propaganda Movement and La Liga Filipina sought Filipino representation inside Spain; the Katipunan (1892) sought out of it. Rizal's arrest is the hinge between the two."
+    },
+    "reference": "Philippine History: Kataas-taasang, Kagalang-galangang Katipunan ng mga Anak ng Bayan (founded 1892)",
+    "tags": [
+      "Philippine history",
+      "Katipunan",
+      "Bonifacio",
+      "revolution",
+      "independence"
+    ]
+  },
+  {
+    "id": "gen-0086",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine History",
+    "subtopic": "Philippine Revolution",
+    "difficulty": "Medium",
+    "question": "Which document proclaimed Philippine independence on June 12, 1898?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Treaty of Paris"
+      },
+      {
+        "id": "B",
+        "text": "Act of the Proclamation of Independence of the Filipino People"
+      },
+      {
+        "id": "C",
+        "text": "Malolos Constitution"
+      },
+      {
+        "id": "D",
+        "text": "Pact of Biak-na-Bato"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The Act of the Proclamation of Independence of the Filipino People was drafted and read aloud by Ambrosio Rianzares Bautista, Emilio Aguinaldo's war counsellor and special delegate, at Aguinaldo's house in Kawit, Cavite on 12 June 1898. The flag sewn in Hong Kong by Marcela Agoncillo was unfurled that afternoon and the Marcha Nacional Filipina was played for the first time. Dating each distractor leaves you with the entire revolutionary timeline: Pact of Biak-na-Bato in December 1897, the Act of Proclamation in June 1898, the Treaty of Paris in December 1898, and the Malolos Constitution in January 1899.",
+    "distractorExplanations": {
+      "A": "Signed 10 December 1898, six months AFTER the proclamation, it transferred the Philippines from Spain to the United States for $20 million. It disposed of the islands rather than freeing them.",
+      "C": "Promulgated 21 January 1899, it organised the First Philippine Republic and its government. It presupposed the independence already proclaimed at Kawit; it did not proclaim it.",
+      "D": "The December 1897 agreement that suspended hostilities and sent Aguinaldo into exile in Hong Kong with an indemnity. A truce with Spain is the opposite of a declaration of independence."
+    },
+    "tip": {
+      "label": "Historical Note",
+      "text": "Sequence worth memorising: Biak-na-Bato Dec 1897 → Kawit proclamation 12 June 1898 → Treaty of Paris Dec 1898 → Malolos Constitution Jan 1899. Only the second one declares independence."
+    },
+    "reference": "Philippine History: Act of the Proclamation of Independence of the Filipino People, 12 June 1898, Kawit, Cavite",
+    "tags": [
+      "Philippine history",
+      "independence",
+      "1898",
+      "Kawit",
+      "Aguinaldo"
+    ]
+  },
+  {
+    "id": "gen-0087",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Environment Management and Protection",
+    "subtopic": "Clean Air",
+    "difficulty": "Easy",
+    "question": "Which law is known as the Philippine Clean Air Act of 1999?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Republic Act No. 9003"
+      },
+      {
+        "id": "B",
+        "text": "Republic Act No. 9275"
+      },
+      {
+        "id": "C",
+        "text": "Republic Act No. 10121"
+      },
+      {
+        "id": "D",
+        "text": "Republic Act No. 8749"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Republic Act No. 8749 is the Philippine Clean Air Act of 1999. It builds a comprehensive air-quality management policy: airsheds as the geographic unit of regulation, national ambient air quality guideline values and emission standards, motor-vehicle emission testing as a condition of registration, and the well-known ban on incineration of municipal, biomedical, and hazardous waste. Statute-number items reward learning the family rather than the single law, because the distractors are always drawn from its siblings — air is 8749, solid waste is 9003, water is 9275, and disaster risk reduction is 10121.",
+    "distractorExplanations": {
+      "A": "RA 9003 is the Ecological Solid Waste Management Act of 2000 — segregation at source, materials recovery facilities, and the prohibition on new open dumps. It governs waste, not air.",
+      "B": "RA 9275 is the Philippine Clean Water Act of 2004, which manages water quality through water quality management areas. Being the water twin of the Clean Air Act is exactly what makes it confusable.",
+      "C": "RA 10121 is the Philippine Disaster Risk Reduction and Management Act of 2010, which created the NDRRMC and its councils. Environmental in theme, but it regulates preparedness, not emissions."
+    },
+    "tip": {
+      "label": "Mnemonic",
+      "text": "Environmental statute numbers: AIR 8749 (1999), WASTE 9003 (2000), WATER 9275 (2004), DISASTER 10121 (2010). They rise in chronological order, so the smallest number is the oldest law."
+    },
+    "reference": "RA 8749 (Philippine Clean Air Act of 1999)",
+    "tags": [
+      "RA 8749",
+      "clean air",
+      "environment",
+      "Philippine laws"
+    ]
+  },
+  {
+    "id": "gen-0088",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Environment Management and Protection",
+    "subtopic": "Solid Waste Management",
+    "difficulty": "Medium",
+    "question": "Which practice best follows the ecological solid-waste hierarchy?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Burn mixed waste in open areas."
+      },
+      {
+        "id": "B",
+        "text": "Rely on landfills as the first option."
+      },
+      {
+        "id": "C",
+        "text": "Reduce waste before considering reuse, recycling, or disposal."
+      },
+      {
+        "id": "D",
+        "text": "Mix hazardous and biodegradable waste."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "RA 9003, the Ecological Solid Waste Management Act of 2000, is organised around a hierarchy: reduce → reuse → recycle → treat → dispose, with final disposal as the last resort. Section 2(c) declares the State policy of setting 'guidelines and targets for solid waste avoidance and volume reduction through source reduction and waste minimization measures, including composting, recycling, re-use, recovery, green charcoal process, and others, before collection, treatment and disposal,' while Sec. 2(d) requires best environmental practices 'excluding incineration.' Waste never generated costs nothing to collect, treat, or bury — which is why reduction at source outranks every downstream step.",
+    "distractorExplanations": {
+      "A": "Open burning of solid waste is a prohibited act under RA 9003, and RA 8749, Sec. 20 separately bans incineration of municipal, biomedical, and hazardous waste. Burning mixed waste also releases dioxins and furans.",
+      "B": "Sanitary landfills are legitimate facilities — but they sit at the END of the hierarchy. Treating disposal as the first option inverts the statute and guarantees the very waste volumes the law exists to shrink.",
+      "D": "RA 9003 mandates segregation at source. Mixing hazardous with biodegradable waste contaminates compost and recyclables and pushes toxic material into ordinary collection routes."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "Hierarchy order: REDUCE → REUSE → RECYCLE → TREAT → DISPOSE. Disposal is never the first answer, and burning is never an answer at all under RA 9003 and RA 8749."
+    },
+    "reference": "RA 9003 (Ecological Solid Waste Management Act of 2000), Sec. 2",
+    "tags": [
+      "RA 9003",
+      "solid waste",
+      "waste hierarchy",
+      "environment",
+      "ecology"
+    ]
+  },
+  {
+    "id": "gen-0089",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Environment Management and Protection",
+    "subtopic": "Atmospheric Composition",
+    "difficulty": "Easy",
+    "question": "Which gas is most abundant in Earth's atmosphere?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Nitrogen"
+      },
+      {
+        "id": "B",
+        "text": "Oxygen"
+      },
+      {
+        "id": "C",
+        "text": "Carbon dioxide"
+      },
+      {
+        "id": "D",
+        "text": "Argon"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "By volume, dry air is roughly 78% nitrogen, 21% oxygen, 0.93% argon, and about 0.04% carbon dioxide, with neon, helium, and methane in trace amounts; water vapour varies from near zero to a few percent and is excluded from the 'dry air' figures. Because nitrogen and oxygen together account for about 99% of the atmosphere, every pollutant regulated under RA 8749 — particulate matter, sulfur dioxide, nitrogen dioxide, carbon monoxide, ozone, lead — is a trace constituent measured in micrograms per cubic metre or parts per million. That is exactly why small concentration changes matter so much, and why 'most abundant' and 'most consequential' are different questions.",
+    "distractorExplanations": {
+      "B": "Oxygen ranks second at about 21%. It sustains respiration and combustion, so it feels like it should top the list, but there is roughly four times as much nitrogen in the same volume of air.",
+      "C": "Carbon dioxide is only about 0.04% of dry air. Its prominence in climate discussion makes it feel abundant — a reminder that climatic influence and sheer quantity are separate measures.",
+      "D": "Argon is third at about 0.93%, the most abundant noble gas in air and used in incandescent bulbs and welding shields. Still well under 1% of the total."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Dry air by volume: N₂ 78%, O₂ 21%, Ar 0.93%, CO₂ 0.04%. Nitrogen plus oxygen ≈ 99%, so every air pollutant regulated under RA 8749 is a trace gas."
+    },
+    "reference": "Atmospheric composition: dry air is approximately 78% nitrogen, 21% oxygen, 0.93% argon, and 0.04% carbon dioxide",
+    "tags": [
+      "environment",
+      "atmosphere",
+      "air quality",
+      "clean air"
+    ]
   }
 ]
