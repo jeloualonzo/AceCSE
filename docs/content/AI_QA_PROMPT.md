@@ -90,6 +90,16 @@ cite it as schema authority.
 Read the subject's existing `core.json` before reviewing a batch for that subject. Style is defined
 by that file, not by your priors about what a good question looks like.
 
+**Dedup against the whole subject directory, not just `core.json`.** New batches are landed as their
+own files named `YYYY-MM-DD-HHMM-<descriptive-name>.json` (standard: `MASTER_GUIDE.md` §8.1), so a
+subject directory holds `core.json` plus every batch not yet consolidated. Checking only `core.json`
+will miss collisions with recently landed batches.
+
+Also verify the batch file's own **name** conforms to the standard — lowercase, kebab-case, hyphens
+only, `YYYY-MM-DD-HHMM-` prefix — and that it is not an edit to `core.json`. A batch appended
+directly to `core.json` is a MAJOR finding: report it and ask for the batch to be re-landed as its
+own file. A non-conforming filename is MINOR: report the correct name, do not rename it yourself.
+
 # SCHEMA REFERENCE
 
 Key order in every item:
@@ -499,7 +509,8 @@ not manufacture findings to look thorough.
 
 - Batch file: `<path>`
 - Subject: `<subject>`
-- Existing corpus to dedup against: `content/questions/<subject>/core.json`
+- Existing corpus to dedup against: every `.json` file in `content/questions/<subject>/` —
+  `core.json` plus any already-landed `YYYY-MM-DD-HHMM-*.json` batch files
 - Item ids in scope: `<range>`
 - Items explicitly out of scope (frozen, report-only): all pre-existing ids in the corpus file
 - Additional context: `<batch-specific notes, e.g. "source exam had five options; 5→4 reduction was

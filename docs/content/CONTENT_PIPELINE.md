@@ -268,27 +268,92 @@ escalated; MINOR/NIT logged and left alone.
 
 ---
 
-# Stage 10 — Merge into the repo
+# Stage 10 — Land the batch in the repo
 
-**In:** QA-approved items. **Out:** updated `content/questions/<subject>/core.json`.
-**Actor:** deterministic merge script (`merge.py` in the last batch).
+**In:** QA-approved items. **Out:** one **new** file per subject at
+`content/questions/<subject>/YYYY-MM-DD-HHMM-<descriptive-name>.json`.
+**Actor:** deterministic write script.
 
-Append only. Never rewrite existing entries. Never reindex ids. Preserve the canonical key order:
+**Never append a batch to `core.json`.** `core.json` is the subject's frozen baseline. Each batch is
+a new file whose name carries its processing date, generation time, and source — the standard is
+specified in `MASTER_GUIDE.md` §8.1 and summarised here:
+
+```
+YYYY-MM-DD-HHMM-<descriptive-name>.json      lowercase, kebab-case, hyphens only
+2026-08-05-1430-jvc-professional-mock.json
+2026-08-06-2015-facebook-public-questions.json
+2026-08-07-0930-csc-review-center-set-a.json
+2026-08-09-1800-ocr-book-volume-1.json
+```
+
+One batch spanning several subjects produces one file **per subject directory**, all sharing the same
+date-time prefix and descriptive name — that shared prefix is what ties them back together as a
+single import:
+
+```
+content/questions/verbal/2026-08-05-1430-jvc-professional-mock.json
+content/questions/numerical/2026-08-05-1430-jvc-professional-mock.json
+content/questions/analytical/2026-08-05-1430-jvc-professional-mock.json
+content/questions/general-information/2026-08-05-1430-jvc-professional-mock.json
+```
+
+Within a batch file: never rewrite existing entries, never reindex ids, and preserve the canonical
+key order:
 
 ```
 id, examLevel, subject, topic, subtopic?, difficulty, question, passage?, choices,
 correctOptionId, explanation, steps?, distractorExplanations, tip, reference?, source?, tags
 ```
 
-Then re-run `npm run validate:questions` on the **merged** bank — cross-file duplicate ids and
-cross-file duplicate stems only surface after the merge — followed by `npm run typecheck`.
+Then run `npm run validate:questions` across the **whole tree** — cross-file duplicate ids and
+cross-file duplicate stems only surface once the batch file is in place — followed by
+`npm run typecheck` and `npm run build`.
 
 **Critical repo hazard:** `src/data/questionBank.ts` glob-imports `../../content/questions/**/*.json`
 eagerly. **Any** `.json` file anywhere under `content/questions/` ships to production. Staging files,
 rejected batches, and backups must live outside that tree. Never write `out_verbal.json` into it.
+This hazard is exactly why the batch filename is a standard rather than a preference: a
+convention-conforming name is the signal that a file has passed QA and is meant to ship.
 
-**Exit criteria:** merged bank validates; per-subject counts, letter distribution, and difficulty
-distribution recorded for the next batch's balance plan.
+**Exit criteria:** the batch file(s) validate in place; per-subject counts, letter distribution, and
+difficulty distribution recorded for the next batch's balance plan.
+
+## The batch-file workflow, end to end
+
+1. The AI processes the raw questions (Stages 1–9).
+2. The AI emits **one new batch JSON per subject**, named per the standard above.
+3. Save each file under the correct subject folder in `content/questions/`.
+4. Run `npm run validate:questions` (then `npm run typecheck` and `npm run build`).
+5. Commit and push. The commit adds files rather than rewriting `core.json`, so the diff is
+   reviewable and the batch is revertible by deleting a file.
+6. **Periodically** consolidate older batch files into `core.json` as a maintenance task — only
+   after validation and deduplication, never as part of an import.
+
+## Consolidation (maintenance task, not part of an import)
+
+Batch files accumulate. Consolidating them into `core.json` is a deliberate, separate operation,
+worth doing when a subject directory has grown to roughly 10–15 batch files or when a source has
+been audited and confirmed good.
+
+Procedure:
+
+1. Pick the batch files to fold in — oldest first, and only ones that have been live long enough to
+   be trusted.
+2. Append their items to the subject's `core.json`, preserving key order and making no content edits.
+3. **Delete the batch files in the same commit.** This is the step people forget, and forgetting it
+   duplicates every id in the batch.
+4. Run `npm run validate:questions`. A forgotten deletion fails here: the validator treats duplicate
+   ids as fatal. That failure is the safety net — do not work around it by renaming.
+5. Commit as a pure maintenance change (`chore(content): consolidate <n> batch files into core.json`)
+   with no new questions mixed in, so the diff is verifiable as content-neutral.
+
+Why the deletion matters mechanically: the loader keeps the **first** id it encounters and drops
+later duplicates with a dev-only warning, and date-prefixed filenames sort before `core.json`. So a
+half-finished consolidation would silently shadow the `core.json` copies rather than erroring at
+runtime — the build validator is what turns that into a loud failure.
+
+Consolidation is optional. A subject with 30 batch files and a clean validator run is not broken;
+it is just noisier to browse. Never consolidate to "tidy up" mid-import.
 
 ---
 
@@ -419,7 +484,16 @@ class of QA finding.
 
 **`id-alloc.mjs`** — Reads the maximum numeric suffix per subject prefix (`verb-`, `num-`, `gen-`,
 `ana-`, `cler-`, ignoring the legacy `seed-*` ids) and allocates the next contiguous block. Prevents
-the id collisions that otherwise only surface at Stage 10.
+the id collisions that otherwise only surface at Stage 10. It must scan **every** `.json` file in each
+subject directory — `core.json` plus all landed batch files — not just `core.json`; and it must compare
+numeric suffixes, not strings, because `seed-*` ids sort lexically above the numbered ones.
+
+**`batch-name.mjs`** — Given a subject and a source description, emits the
+`YYYY-MM-DD-HHMM-<descriptive-name>.json` filename per `MASTER_GUIDE.md` §8.1: slugs the description
+to lowercase kebab-case, strips disallowed characters, stamps the current date and time, and refuses
+to overwrite an existing path. Pair it with a `convention-lint` check in CI that fails any file under
+`content/questions/` whose name is neither `core.json` nor a conforming batch name — that check is
+what keeps a stray staging file from shipping through the eager glob.
 
 ---
 
@@ -573,11 +647,15 @@ Planning rules of thumb:
 - [ ] Confirm the reviewer did not rewrite passing items — if it touched most of the batch, discard
       its edits and re-run it.
 
-**Merge and ship**
-- [ ] Append with the merge script; canonical key order; no existing item modified.
-- [ ] Confirm no batch or staging `.json` file was left anywhere under `content/questions/`.
-- [ ] Re-run the validator on the merged bank; run `npm run typecheck`.
-- [ ] Confirm `QUESTION_BANK.length` matches the expected merged count.
+**Land and ship**
+- [ ] Write one **new** batch file per subject at
+      `content/questions/<subject>/YYYY-MM-DD-HHMM-<descriptive-name>.json`; canonical key order; no
+      existing item modified; nothing appended to `core.json`.
+- [ ] Confirm the filename conforms: lowercase, kebab-case, hyphens only, zero-padded date and
+      `HHMM`, and the same date-time prefix reused across every subject file in this batch.
+- [ ] Confirm no staging or rejected `.json` file was left anywhere under `content/questions/`.
+- [ ] Re-run the validator across the whole tree; run `npm run typecheck` and `npm run build`.
+- [ ] Confirm `QUESTION_BANK.length` matches the expected new total.
 
 **Report** (mandatory — every batch ends with this)
 - [ ] Received · imported · rejected, with rejection reasons broken out.

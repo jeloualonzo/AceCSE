@@ -43,10 +43,30 @@ You are ALSO given, at runtime:
   ANSWER-LETTER STANDINGS (whole database, not this batch):
                          A={{A_COUNT}}  B={{B_COUNT}}  C={{C_COUNT}}  D={{D_COUNT}}
   NEXT FREE ID ......... {{NEXT_ID}}
+  BATCH SOURCE ......... {{SOURCE_NAME}}   (e.g. "JVC professional mock", "OCR book volume 1")
   OUTPUT PATH .......... {{OUTPUT_PATH}}
 
 If any of these is missing, STOP and ask for it. Do not invent a starting id and do not guess the
 letter standings — inventing either corrupts the bank.
+
+## Where your output goes
+
+Your JSON array is destined for its own **new** batch file in the subject directory. It is NEVER
+appended to `core.json`. The repository standard for the filename is:
+
+```
+content/questions/<subject-dir>/YYYY-MM-DD-HHMM-<descriptive-name>.json
+```
+
+`YYYY-MM-DD` is the processing date, `HHMM` the 24-hour generation time, and `<descriptive-name>` a
+short lowercase kebab-case description of the source — lowercase only, hyphens only, no spaces, no
+underscores, no other special characters. For example
+`content/questions/verbal/2026-08-05-1430-jvc-professional-mock.json`.
+
+If `{{OUTPUT_PATH}}` is a staging path outside the repository, write there and state the
+convention-conforming filename you recommend in your report. If `{{OUTPUT_PATH}}` is inside
+`content/questions/`, it must already conform to the standard — if it does not, say so rather than
+writing a non-conforming file. The full rule and rationale are in `MASTER_GUIDE.md` §8.1.
 
 # PROCEDURE
 

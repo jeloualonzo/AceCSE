@@ -314,7 +314,8 @@ These caused real reclassifications and are binding:
 | Element | Convention | Example |
 | --- | --- | --- |
 | Subject directory | lowercase, hyphenated, matches the subject | `general-information/` |
-| Content file | always `core.json` | `verbal/core.json` |
+| Baseline content file | `core.json`, one per subject — the historical accumulation | `verbal/core.json` |
+| New batch file | `YYYY-MM-DD-HHMM-<descriptive-name>.json` — see §8.1 | `verbal/2026-08-05-1430-jvc-professional-mock.json` |
 | `subject` | exact enum string, Title Case | `Analytical Reasoning` |
 | `topic` | Title Case, reuse existing string verbatim | `Grammar & Usage` |
 | `subtopic` | Title Case, descriptive phrase; en dash for a qualifier | `Suffix Vowel Error — -ance` |
@@ -323,8 +324,88 @@ These caused real reclassifications and are binding:
 | `examLevel` | `Professional` \| `Subprofessional` \| `Both` | — |
 | Option ids | uppercase `A`,`B`,`C`,`D`, in that order | — |
 
-Batch working files (outside the repo) follow `work_<subject>.md` for work orders and
-`out_<subject>.json` for the authored output, which is then merged into the subject `core.json`.
+Batch working files live **outside** the repository and follow `work_<subject>.md` for work orders
+and `out_<subject>.json` for the authored output.
+
+### 8.1 Batch file naming — official standard
+
+**New question batches are never appended directly to `core.json`.** Every imported batch is
+committed as its own JSON file inside the relevant subject directory, named:
+
+```
+YYYY-MM-DD-HHMM-<descriptive-name>.json
+```
+
+| Segment | Meaning | Rule |
+| --- | --- | --- |
+| `YYYY-MM-DD` | date the batch was processed | zero-padded |
+| `HHMM` | 24-hour time the batch was generated | zero-padded, no colon |
+| `<descriptive-name>` | where the questions came from — source, exam name, review centre, OCR file, PDF title, social post | lowercase kebab-case, short but meaningful |
+
+Filename rules, all mandatory:
+
+- lowercase only
+- kebab-case only
+- no spaces
+- no underscores
+- no special characters except hyphens
+- `.json` extension
+
+Conforming examples:
+
+```
+content/questions/verbal/2026-08-05-1430-jvc-professional-mock.json
+content/questions/numerical/2026-08-06-0900-cse-review-book-1.json
+content/questions/general-information/2026-08-06-2015-facebook-public-questions.json
+content/questions/analytical/2026-08-07-0930-csc-review-center-set-a.json
+content/questions/clerical/2026-08-08-2130-facebook-group-set-4.json
+content/questions/verbal/2026-08-09-1800-ocr-book-volume-1.json
+content/questions/numerical/2026-08-10-1030-ocr-practice-test-a.json
+```
+
+Non-conforming — do not do this: `Batch_2.json`, `verbal-new.json`, `2026_08_05_batch.json`,
+`2026-8-5-1430-mock.json` (segments not zero-padded), `2026-08-05-1430-JVC-Mock.json` (uppercase),
+`2026-08-05-jvc-mock.json` (missing `HHMM`).
+
+**Why this is the standard:**
+
+- **Preserves Git history.** A new file is an addition, so `git log --follow` on a batch file shows
+  that batch's entire life. Appending 93 items to a 3,000-line `core.json` buries them in a diff
+  nobody can review.
+- **Makes every import traceable.** The filename alone answers when a batch landed and where it
+  came from, without consulting a commit message or an external log.
+- **Identifies the source immediately.** Provenance is part of the path, which matters when a
+  source later turns out to be unreliable and its items need auditing as a group.
+- **Avoids merge conflicts.** Two batches prepared in parallel touch two different files and merge
+  cleanly; two batches appending to the same `core.json` conflict on the closing bracket every time.
+- **Allows multiple AIs to generate batches independently.** Different models, or different subject
+  agents in the same run, can each emit their own file with no coordination and no shared write lock.
+- **Makes reviewing and reverting easy.** Reviewing a batch is opening one file. Reverting one is
+  deleting one file — not surgically extracting 93 objects from a merged array.
+- **Keeps `core.json` stable.** A file that rarely changes is a file whose diffs are meaningful, and
+  it stops being a perpetual source of churn and conflict.
+
+**Mechanics — no code change is required.** `src/data/questionBank.ts` discovers content with
+`import.meta.glob('../../content/questions/**/*.json', { eager: true })`, and
+`scripts/validate-questions.mjs` walks the same tree recursively, so a correctly placed batch file is
+loaded and validated automatically the moment it exists.
+
+Two loader behaviours are worth knowing:
+
+1. Files are loaded in path order (`localeCompare`), and a date-prefixed filename sorts **before**
+   `core.json` because digits precede letters. Ordering has no effect on exam generation, which
+   samples the whole bank, but it does decide which copy of a duplicated id survives: the loader
+   keeps the **first** id it sees and drops later ones with a dev-only warning.
+2. That silent drop is backstopped by the build validator, which treats a duplicate id as a **fatal**
+   error. So if a merge maintenance pass copies items into `core.json` and forgets to delete the
+   batch file, `npm run validate:questions` fails loudly rather than shipping a half-shadowed bank.
+
+**Hazard.** The glob ships *anything* under `content/questions/`. Only validated, accepted batches
+belong there. Staging output, rejected items, and backups must live outside that tree — see the
+pipeline doc's Stage 10.
+
+For the end-to-end operating procedure and the periodic consolidation task, see
+`CONTENT_PIPELINE.md`.
 
 ---
 
@@ -870,8 +951,8 @@ file you are appending to.
   Supreme Court E-Library, csc.gov.ph, DENR-EMB for environmental statutes.
 - **Never invent a section number.** If you cannot verify a provision with confidence, write the
   explanation without the citation and set `"reference": "VERIFY"`, then flag it in the batch
-  report so the orchestrator resolves it before merge. `VERIFY` must never survive into a merged
-  `core.json`.
+  report so the orchestrator resolves it before the batch is landed. `VERIFY` must never survive
+  into a committed batch file or `core.json`.
 - If a supplied citation looks wrong, set `"reference": "VERIFY"` and report it. Do not silently
   change a citation you were given.
 
@@ -1183,7 +1264,9 @@ misconception distractor or reject the item.
 
 - **Never modify any file outside the content files you were assigned.** Batch authoring touches
   exactly one `out_<subject>.json`, which the orchestrator merges.
-- Content lives at `content/questions/<subject-dir>/core.json`. Root is a JSON array.
+- Content lives under `content/questions/<subject-dir>/`. Root of every file is a JSON array.
+  `core.json` is the subject's baseline; new batches are separate files named
+  `YYYY-MM-DD-HHMM-<descriptive-name>.json` (§8.1). Never append a batch to `core.json`.
 - **JSON style:** UTF-8, 2-space indent, no trailing commas, `"` quotes, trailing newline.
 - **Key order** (canonical): `id, examLevel, subject, topic, subtopic, difficulty, passage?, question, choices, correctOptionId, explanation, steps?, distractorExplanations, tip, reference?, tags`.
   Eight key orders exist in the bank; seven items (`verb-0037`–`verb-0042`, `seed-verb-004`) put

@@ -26,9 +26,17 @@ commas, no comments.
 The runtime bank (`src/data/questionBank.ts`) discovers files with
 `import.meta.glob('../../content/questions/**/*.json')`, so **any** `.json` file anywhere under
 `content/questions/` (including new subdirectories) is picked up with no code change. The build-time
-validator walks the same tree recursively. One subject = one directory = one `core.json` is the
-current convention; adding `content/questions/numerical/batch-002.json` would work but is not the
-established pattern.
+validator walks the same tree recursively.
+
+`core.json` is each subject's **baseline** file — the historical accumulation. It is **not** where new
+work goes. Every new batch is committed as its own file in the subject directory, named
+`YYYY-MM-DD-HHMM-<descriptive-name>.json`, for example
+`content/questions/numerical/2026-08-06-0900-cse-review-book-1.json`. **Never append a batch directly
+to `core.json`.** The naming standard and its rationale are specified in `MASTER_GUIDE.md` §8.1; the
+operating procedure is in `CONTENT_PIPELINE.md`.
+
+Only validated, accepted batches may live under `content/questions/` — the glob ships everything it
+finds there. Staging output and rejected items belong outside that tree.
 
 ---
 
