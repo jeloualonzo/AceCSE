@@ -1,0 +1,2888 @@
+[
+  {
+    "id": "ana-0001",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Creator to Product",
+    "difficulty": "Easy",
+    "question": "ARCHITECT : BLUEPRINT :: COMPOSER : ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Concert"
+      },
+      {
+        "id": "B",
+        "text": "Score"
+      },
+      {
+        "id": "C",
+        "text": "Instrument"
+      },
+      {
+        "id": "D",
+        "text": "Melody"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "An architect's defining professional output is the blueprint — a written, structured plan of what will be built. A composer's defining professional output is the score — a written musical notation that specifies every note and rhythm for performers. Both pairs follow the pattern CREATOR : WRITTEN PLAN THEY PRODUCE, not the performance or building itself.",
+    "steps": [
+      "Step 1: Identify the relationship — ARCHITECT produces a BLUEPRINT as a written plan before the work is executed.",
+      "Step 2: Apply the same logic to COMPOSER — what written plan does a composer produce before the music is performed?",
+      "Step 3: A score (musical notation) is to a composer what a blueprint is to an architect — both are the creator's formal, documented plan."
+    ],
+    "distractorExplanations": {
+      "A": "A concert is the live performance event, not something the composer produces independently — it is the execution, not the plan.",
+      "C": "An instrument is a tool used to perform music, not something a composer creates as their professional output.",
+      "D": "A melody is one element within a composition; it is not the formal written document that represents the composer's complete work."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "In creator-to-product analogies, always identify what the first person PRODUCES as output — not what they use as a tool or what results from their work."
+    },
+    "tags": [
+      "analogy",
+      "worker-to-product",
+      "word-analogy"
+    ]
+  },
+  {
+    "id": "ana-0002",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Cause to Effect",
+    "difficulty": "Easy",
+    "question": "DROUGHT : FAMINE :: FLOOD : ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Displacement"
+      },
+      {
+        "id": "B",
+        "text": "Rain"
+      },
+      {
+        "id": "C",
+        "text": "River"
+      },
+      {
+        "id": "D",
+        "text": "Storm"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "A drought is a prolonged lack of rainfall that directly causes famine by destroying crops and cutting off food supply. A flood is an overflow of water that directly causes displacement — forcing people from their homes and communities. Both pairs express a natural disaster and the specific human crisis it produces. Rain, river, and storm are related to water but are not consequences of flooding; they are causes or contexts.",
+    "steps": [
+      "Step 1: Determine the relationship — DROUGHT is a cause; FAMINE is its direct human consequence.",
+      "Step 2: Match the pattern — FLOOD is a cause; what is its direct human consequence?",
+      "Step 3: Floods force people from their homes → DISPLACEMENT is the human crisis floods directly produce."
+    ],
+    "distractorExplanations": {
+      "B": "Rain is what a drought lacks and can precede a flood, but it is a cause or precondition — not a consequence of flooding.",
+      "C": "A river may overflow during a flood, but a river is part of the flood mechanism, not the resulting human crisis.",
+      "D": "A storm can accompany or trigger flooding, but it is a parallel weather event, not a consequence that flooding causes."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Confusing related concepts with the actual effect. Ask: 'What does this disaster CAUSE to happen to people?' — keep the chain of causation in the same direction."
+    },
+    "tags": [
+      "analogy",
+      "cause-effect",
+      "word-analogy"
+    ]
+  },
+  {
+    "id": "ana-0003",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Antonym Pair",
+    "difficulty": "Easy",
+    "question": "MISERLY : GENEROUS :: TIMID : ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Careful"
+      },
+      {
+        "id": "B",
+        "text": "Nervous"
+      },
+      {
+        "id": "C",
+        "text": "Quiet"
+      },
+      {
+        "id": "D",
+        "text": "Bold"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Miserly means reluctant to spend or share, making generous its direct opposite in terms of giving behavior. Timid means lacking courage or showing shyness, making bold its direct opposite — bold describes someone who acts with confidence and courage. Both pairs are antonyms involving personality or behavioral traits. Careful, nervous, and quiet all share elements of caution or restraint, making them easy distractors.",
+    "steps": [
+      "Step 1: Identify the relationship — MISERLY and GENEROUS are antonyms (opposite attitudes toward giving).",
+      "Step 2: Find the antonym of TIMID — timid means lacking confidence or being hesitant.",
+      "Step 3: BOLD means courageous and confident — the direct opposite of timid."
+    ],
+    "distractorExplanations": {
+      "A": "Careful suggests caution and thoughtfulness, which is related to being timid but is not its direct antonym — a careful person can be bold.",
+      "B": "Nervous is closer in meaning to timid (both involve anxiety), not an antonym.",
+      "C": "Quiet refers to noise level or speech volume, not to courage or assertiveness — it does not contrast with timid."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When the pair is antonyms, beware of near-synonyms dressed up as opposites. 'Careful' and 'nervous' overlap with timid — only 'bold' is its true behavioral opposite."
+    },
+    "tags": [
+      "analogy",
+      "antonym",
+      "word-analogy"
+    ]
+  },
+  {
+    "id": "ana-0004",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Tool to User",
+    "difficulty": "Medium",
+    "question": "SCALPEL : SURGEON :: GAVEL : ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Judge"
+      },
+      {
+        "id": "B",
+        "text": "Courtroom"
+      },
+      {
+        "id": "C",
+        "text": "Verdict"
+      },
+      {
+        "id": "D",
+        "text": "Lawyer"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "A scalpel is the distinctive instrument that identifies and enables a surgeon's professional function — without it, surgery cannot be performed. A gavel is the distinctive instrument that identifies and enables a judge's professional function — the judge strikes it to signal authority, start and end sessions, and maintain order. The pattern is TOOL : PROFESSIONAL WHO USES IT as their defining instrument, not merely someone who works in the same domain.",
+    "steps": [
+      "Step 1: Determine the relationship — a SCALPEL is the signature tool of a SURGEON.",
+      "Step 2: A GAVEL is used by whom as their signature tool of professional authority?",
+      "Step 3: A JUDGE uses a gavel to exercise authority in court — not a lawyer, who argues cases, or the courtroom itself, which is a place."
+    ],
+    "distractorExplanations": {
+      "B": "A courtroom is the venue where a gavel is used, not the person who uses it — this confuses place with professional.",
+      "C": "A verdict is the outcome of a trial, not the person associated with the gavel.",
+      "D": "A lawyer works in court but does not use a gavel — only the judge wields this instrument."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "In tool-to-user analogies, the tool must be specifically associated with that professional's defining role — not just used in the same environment."
+    },
+    "tags": [
+      "analogy",
+      "tool-to-user",
+      "word-analogy"
+    ]
+  },
+  {
+    "id": "ana-0005",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Part to Whole",
+    "difficulty": "Medium",
+    "question": "PETAL : FLOWER :: CHAPTER : ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Story"
+      },
+      {
+        "id": "B",
+        "text": "Author"
+      },
+      {
+        "id": "C",
+        "text": "Book"
+      },
+      {
+        "id": "D",
+        "text": "Paragraph"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "A petal is one structural component that, combined with others, makes up a whole flower. A chapter is one structural component that, combined with others, makes up a whole book. Both pairs follow the part-to-whole relationship. Story is tempting because it suggests narrative, but a chapter belongs to a book (the physical/structural whole) rather than a story (an abstract narrative). Paragraph is the smaller unit inside a chapter, reversing the direction.",
+    "steps": [
+      "Step 1: PETAL is a PART; FLOWER is the WHOLE that contains it.",
+      "Step 2: CHAPTER is a PART — what is the WHOLE that contains multiple chapters?",
+      "Step 3: A BOOK is made up of chapters, matching the same part-to-whole structure."
+    ],
+    "distractorExplanations": {
+      "A": "A story is a narrative concept, not the physical structure that contains chapters — a story can be told across multiple books.",
+      "B": "An author creates a book but is not the whole that a chapter belongs to.",
+      "D": "A paragraph is a smaller unit inside a chapter — this reverses the relationship, making chapter the whole and paragraph the part."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "For part-to-whole analogies, always place the SMALLER unit first. If you see the small-to-large direction flipped in the choices, eliminate it immediately."
+    },
+    "tags": [
+      "analogy",
+      "part-to-whole",
+      "word-analogy"
+    ]
+  },
+  {
+    "id": "ana-0006",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Degree of Intensity",
+    "difficulty": "Medium",
+    "question": "IRRITATED : FURIOUS :: CONTENT : ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Ecstatic"
+      },
+      {
+        "id": "B",
+        "text": "Happy"
+      },
+      {
+        "id": "C",
+        "text": "Calm"
+      },
+      {
+        "id": "D",
+        "text": "Satisfied"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Irritated is a mild degree of anger, while furious is its extreme, intense form — the relationship is lesser to greater intensity of the same emotion. Content is a mild, quiet degree of happiness. Ecstatic is the extreme, overwhelming form of happiness or joy. Happy and satisfied are both in the mild-to-moderate range, not at the intensity extreme. Calm describes absence of agitation, not an intensified form of contentment.",
+    "steps": [
+      "Step 1: IRRITATED (mild anger) → FURIOUS (extreme anger): the pattern is mild form → extreme form of the same emotion.",
+      "Step 2: CONTENT (mild happiness) → ? (extreme happiness): find the word at the highest intensity of the same emotion.",
+      "Step 3: ECSTATIC means overwhelmingly joyful — the extreme end of the happiness spectrum."
+    ],
+    "distractorExplanations": {
+      "B": "Happy is in the same moderate range as content — it does not represent the extreme intensification the pattern demands.",
+      "C": "Calm describes emotional stability or lack of disturbance, not an intensified form of contentment.",
+      "D": "Satisfied overlaps closely with content and represents roughly the same mild level, not the heightened extreme."
+    },
+    "tip": {
+      "label": "Degree of Intensity",
+      "text": "Map emotions on a spectrum before answering — mild, moderate, extreme. The analogy jumps from one END to the other, so your answer must be at the opposite extreme."
+    },
+    "tags": [
+      "analogy",
+      "degree",
+      "word-analogy"
+    ]
+  },
+  {
+    "id": "ana-0007",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Worker to Raw Material",
+    "difficulty": "Medium",
+    "question": "POTTER : CLAY :: WEAVER : ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Needle"
+      },
+      {
+        "id": "B",
+        "text": "Thread"
+      },
+      {
+        "id": "C",
+        "text": "Cloth"
+      },
+      {
+        "id": "D",
+        "text": "Loom"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "A potter's raw material — the primary substance they shape and transform — is clay. A weaver's raw material is thread, which they interlace to create woven fabric. Both pairs express CRAFTSPERSON : RAW MATERIAL THEY TRANSFORM. Cloth is the finished product (not raw material). A loom is the tool the weaver uses (not the material). A needle is a sewing tool, not a weaving raw material.",
+    "steps": [
+      "Step 1: POTTER works with CLAY as the primary raw substance they transform through their craft.",
+      "Step 2: WEAVER works with what as their primary raw substance? They interlace strands to create fabric.",
+      "Step 3: THREAD is the raw strand that a weaver transforms — not the loom (tool) or cloth (finished product)."
+    ],
+    "distractorExplanations": {
+      "A": "A needle is used in sewing, not weaving — and even if it were, it would be a tool, not a raw material.",
+      "C": "Cloth is the finished product that results from weaving — placing the end product where the raw material should go reverses the relationship.",
+      "D": "A loom is the tool or equipment used for weaving — the pattern asks for the raw material, not the instrument."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Always distinguish between raw material, tool, and finished product. In worker-to-material analogies, the answer is what gets transformed, not what does the transforming."
+    },
+    "tags": [
+      "analogy",
+      "worker-to-material",
+      "word-analogy"
+    ]
+  },
+  {
+    "id": "ana-0008",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Antonym Pair (Advanced Vocabulary)",
+    "difficulty": "Hard",
+    "question": "MENDACIOUS : TRUTHFUL :: SYCOPHANTIC : ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Flattering"
+      },
+      {
+        "id": "B",
+        "text": "Obsequious"
+      },
+      {
+        "id": "C",
+        "text": "Sincere"
+      },
+      {
+        "id": "D",
+        "text": "Critical"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Mendacious means habitually dishonest or lying; its antonym is truthful — marked by honest, accurate expression. Sycophantic means excessively praising others in a calculated, insincere way to gain favor. Its antonym is sincere — expressing genuine, authentic feelings rather than calculated flattery. The common axis is authenticity: mendacious/sycophantic describe inauthentic behavior; truthful/sincere describe authentic behavior. Critical describes one who finds fault and is unrelated to the authenticity axis.",
+    "steps": [
+      "Step 1: MENDACIOUS = habitually dishonest → TRUTHFUL = honest; antonyms on the axis of authenticity in speech.",
+      "Step 2: SYCOPHANTIC = insincerely flattering to gain favor → its antonym must mean genuinely expressing one's real views.",
+      "Step 3: SINCERE = genuine, authentic — the direct opposite of calculated, insincere flattery. Obsequious is a near-synonym of sycophantic, not an antonym."
+    ],
+    "distractorExplanations": {
+      "A": "Flattering is essentially what sycophantic behavior does — it is not an antonym but a near-synonym.",
+      "B": "Obsequious means servile or fawning, which is a synonym or close relative of sycophantic, not its opposite.",
+      "D": "Critical means finding faults, which is opposite in tone to flattery, but the specific antonym axis here is sincerity versus insincerity — not praise versus criticism."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "For advanced vocabulary analogies, define each word precisely before searching for opposites. Sycophantic is specifically about INSINCERE praise — its opposite must address the insincerity, not merely the praise."
+    },
+    "tags": [
+      "analogy",
+      "antonym",
+      "advanced-vocabulary",
+      "word-analogy"
+    ]
+  },
+  {
+    "id": "ana-0009",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Specialist to Product",
+    "difficulty": "Hard",
+    "question": "CARTOGRAPHER : MAP :: LEXICOGRAPHER : ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Grammar"
+      },
+      {
+        "id": "B",
+        "text": "Language"
+      },
+      {
+        "id": "C",
+        "text": "Vocabulary"
+      },
+      {
+        "id": "D",
+        "text": "Dictionary"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "A cartographer is a specialist who creates maps as their primary professional output — the map is the tangible reference document produced by their expertise. A lexicographer is a specialist who creates dictionaries — compiling, defining, and organizing word entries into a reference volume. Both pairs share the pattern SPECIALIST : THE SPECIFIC REFERENCE DOCUMENT THEY PRODUCE. Grammar, language, and vocabulary are concepts a lexicographer studies or documents, not the product they produce.",
+    "steps": [
+      "Step 1: CARTOGRAPHER → creates a MAP as their reference output.",
+      "Step 2: LEXICOGRAPHER → creates what as their reference output? A lexicographer compiles words, definitions, and usage.",
+      "Step 3: The product is a DICTIONARY — a specific, structured reference document, just as a map is a structured geographic reference."
+    ],
+    "distractorExplanations": {
+      "A": "Grammar is a system of linguistic rules — a separate discipline studied by grammarians, not the output of a lexicographer.",
+      "B": "Language is the broad subject of study, not the specific product a lexicographer produces.",
+      "C": "Vocabulary is the collection of words in a language — it is the subject matter, not the document produced."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Greek/Latin roots help: 'carto' = map, 'lexico' = word, 'grapher' = one who writes/records. Recognizing specialist roots will quickly reveal their outputs on the exam."
+    },
+    "tags": [
+      "analogy",
+      "specialist-to-product",
+      "advanced-vocabulary",
+      "word-analogy"
+    ]
+  },
+  {
+    "id": "ana-0010",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Degree of Intensity (Advanced)",
+    "difficulty": "Hard",
+    "question": "WHISPER : SHOUT :: TRICKLE : ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Torrent"
+      },
+      {
+        "id": "B",
+        "text": "Stream"
+      },
+      {
+        "id": "C",
+        "text": "Drop"
+      },
+      {
+        "id": "D",
+        "text": "Puddle"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "A whisper is an extremely small, low-intensity output of sound; a shout is its extreme, high-intensity counterpart. A trickle is an extremely small, minimal flow of liquid; a torrent is its extreme, high-intensity counterpart — a violent, overwhelming rush of water. Both pairs move from the minimal extreme to the maximum extreme of the same phenomenon. A stream is a moderate flow, not the extreme. A drop is smaller than a trickle, not its intensified opposite. A puddle is a static collection, not a flow.",
+    "steps": [
+      "Step 1: WHISPER (minimal sound intensity) → SHOUT (maximum sound intensity): the pattern is MINIMUM to MAXIMUM.",
+      "Step 2: TRICKLE is the minimum end of liquid flow — find the maximum end.",
+      "Step 3: TORRENT is a violent, overwhelming rush of water — the extreme maximum of liquid flow, matching the pattern."
+    ],
+    "distractorExplanations": {
+      "B": "A stream is a moderate flow — significant but not at the extreme maximum the pattern requires.",
+      "C": "A drop is even smaller than a trickle, making it a lesser degree in the same direction rather than the intensified opposite.",
+      "D": "A puddle is a small, static body of water — it is not a flow and does not represent intensity of movement at all."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Degree analogies use a spectrum: minimum → maximum. First confirm the direction (small to large or large to small), then find the answer that sits at the opposite extreme of the same spectrum."
+    },
+    "tags": [
+      "analogy",
+      "degree",
+      "word-analogy"
+    ]
+  },
+  {
+    "id": "ana-0011",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Universal Affirmative Syllogism",
+    "difficulty": "Easy",
+    "question": "All licensed engineers passed the board examination. Ramon is a licensed engineer. Which conclusion must be true?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Ramon passed the board examination."
+      },
+      {
+        "id": "B",
+        "text": "Ramon is the best engineer."
+      },
+      {
+        "id": "C",
+        "text": "All engineers are like Ramon."
+      },
+      {
+        "id": "D",
+        "text": "Ramon did not need to take the board examination."
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This is a classic deductive syllogism in the form: All A are B; Ramon is A; therefore Ramon is B. 'All licensed engineers passed the board examination' establishes a universal rule covering every member of the set. 'Ramon is a licensed engineer' places Ramon inside that set. Therefore, the rule must apply to Ramon — he passed the board exam. This is a necessary (100% certain) conclusion, not merely a probable one.",
+    "steps": [
+      "Step 1: Major premise — All licensed engineers (set A) passed the board exam (property B).",
+      "Step 2: Minor premise — Ramon belongs to set A (licensed engineer).",
+      "Step 3: Apply the universal rule to the individual: Ramon must also have property B → Ramon passed the board examination."
+    ],
+    "distractorExplanations": {
+      "B": "Being 'the best engineer' is a comparative judgment not supported by any premise — the argument says nothing about rankings.",
+      "C": "A universal claim about 'all engineers' being like Ramon reverses the logical direction and introduces a comparison not in the premises.",
+      "D": "The premises clearly state the board examination is the qualifying requirement — concluding Ramon avoided it directly contradicts the premises."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "All A are B + X is A → X is B. This is modus ponens applied to universal statements. The conclusion MUST follow — it is not a guess or probability."
+    },
+    "tags": [
+      "logical-reasoning",
+      "syllogism",
+      "deduction",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0012",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Universal Negative Syllogism",
+    "difficulty": "Easy",
+    "question": "No civil servant earns less than the minimum wage. Elena is a civil servant. Which of the following must be true?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Elena earns exactly the minimum wage."
+      },
+      {
+        "id": "B",
+        "text": "Elena is the highest-paid civil servant."
+      },
+      {
+        "id": "C",
+        "text": "All civil servants earn the same wage."
+      },
+      {
+        "id": "D",
+        "text": "Elena does not earn less than the minimum wage."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The universal negative statement 'No civil servant earns less than the minimum wage' means every single civil servant earns at minimum wage or above. Elena is a civil servant, so the rule applies to her: Elena does not earn less than the minimum wage. Notice that this does not tell us her exact wage — she could earn exactly the minimum or more than it. Choices A, B, and C all make additional claims (exact amount, highest paid, uniformity) that go beyond what the premises guarantee.",
+    "steps": [
+      "Step 1: 'No civil servant earns less than minimum wage' → For ALL civil servants: wage ≥ minimum wage.",
+      "Step 2: Elena is a civil servant → Elena is in the set covered by the rule.",
+      "Step 3: Apply the rule to Elena: Elena's wage ≥ minimum wage → Elena does NOT earn less than minimum wage."
+    ],
+    "distractorExplanations": {
+      "A": "The rule says Elena earns AT LEAST minimum wage — it could be more. 'Exactly the minimum' is too specific and unwarranted.",
+      "B": "Nothing in the premises ranks civil servants' wages against each other — we cannot conclude Elena is the highest paid.",
+      "C": "The premises set a floor (minimum wage), not a ceiling or requirement for uniformity — civil servants can earn different amounts above the minimum."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "'No A does X' means every A avoids X. It sets a boundary, not an exact amount. Avoid reading more precision into the conclusion than the premise provides."
+    },
+    "tags": [
+      "logical-reasoning",
+      "syllogism",
+      "universal-negative",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0013",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Particular Affirmative Syllogism",
+    "difficulty": "Medium",
+    "question": "All senators are lawyers. Some lawyers are professors. Which conclusion is valid?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All senators are professors."
+      },
+      {
+        "id": "B",
+        "text": "Some lawyers are senators."
+      },
+      {
+        "id": "C",
+        "text": "All professors are senators."
+      },
+      {
+        "id": "D",
+        "text": "No senator is a professor."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "From 'All senators are lawyers,' we know that every senator is also a lawyer — senators are a subset of lawyers. This directly means some lawyers (namely, all the senators) are senators. Choice B is valid because it simply re-states this subset relationship from the perspective of the lawyers group. We cannot conclude that any senator is a professor because the 'some lawyers are professors' might refer to a completely different portion of the lawyers group that does not overlap with senators.",
+    "steps": [
+      "Step 1: All senators are lawyers → senators ⊆ lawyers. This means some members of the lawyers group ARE senators.",
+      "Step 2: Check Choice B: 'Some lawyers are senators' — this is directly true from Step 1.",
+      "Step 3: Verify we cannot strengthen to 'All senators are professors': 'Some lawyers are professors' may describe a different, non-overlapping subset of lawyers who are not senators."
+    ],
+    "distractorExplanations": {
+      "A": "The senators-professors overlap is not established — 'some lawyers are professors' might be entirely outside the senator subset of lawyers.",
+      "C": "This reverses 'some lawyers are professors' into 'all professors are senators,' which is an invalid conversion — the 'some' cannot be universalized or reversed this way.",
+      "D": "We cannot conclude no senator is a professor either — there could be overlap; we simply do not know."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "'All A are B' means A ⊆ B, so 'some B are A' is always valid. But 'some B are C' does NOT guarantee any overlap between A and C unless stated."
+    },
+    "tags": [
+      "logical-reasoning",
+      "syllogism",
+      "particular-affirmative",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0014",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Affirming the Consequent (Fallacy)",
+    "difficulty": "Medium",
+    "question": "If it rains, the street floods. The street is flooded. Which conclusion follows?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "It rained."
+      },
+      {
+        "id": "B",
+        "text": "It did not rain."
+      },
+      {
+        "id": "C",
+        "text": "It will rain again."
+      },
+      {
+        "id": "D",
+        "text": "It may or may not have rained."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "This is the logical fallacy of 'affirming the consequent.' The rule is: IF rain (P) THEN flood (Q). Observing Q (flood) tells us P (rain) was a sufficient cause of Q, but Q could have other causes — a burst pipe, a broken canal, or a storm drain overflow. We cannot conclude with certainty that it rained. The street is flooded, but we cannot determine whether rain caused it. The only valid conclusion is that it may or may not have rained — rain is possible but not guaranteed.",
+    "steps": [
+      "Step 1: The conditional is P→Q: If rain, then flood.",
+      "Step 2: We are given Q (flood is observed) — this is affirming the consequent.",
+      "Step 3: Affirming Q does not guarantee P, because Q might have causes other than P. The correct answer acknowledges this uncertainty: it may or may not have rained."
+    ],
+    "distractorExplanations": {
+      "A": "Concluding 'It rained' commits the fallacy of affirming the consequent — rain is one possible cause, not the only one.",
+      "B": "Concluding 'It did not rain' ignores that rain is still a valid cause of the observed flood.",
+      "C": "Future rain predictions are entirely beyond the scope of the given premises."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "P→Q does NOT mean Q→P. When you see the effect (Q), you cannot conclude the cause (P) with certainty — other causes may exist. This is one of the most tested logic errors in the CSE."
+    },
+    "tags": [
+      "logical-reasoning",
+      "conditional",
+      "fallacy",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0015",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Modus Tollens",
+    "difficulty": "Medium",
+    "question": "No members of the audit team accept gifts from clients. Rodrigo accepts gifts from clients. Which conclusion must be true?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Rodrigo is not a member of the audit team."
+      },
+      {
+        "id": "B",
+        "text": "Rodrigo is dishonest."
+      },
+      {
+        "id": "C",
+        "text": "All gift-takers are not in the audit team."
+      },
+      {
+        "id": "D",
+        "text": "Some audit team members accept gifts."
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The universal negative 'No audit team members accept gifts' means membership in the audit team and accepting gifts are mutually exclusive. Rodrigo accepts gifts — he belongs to the gift-accepting group. Since no audit team member belongs to that group, Rodrigo cannot be on the audit team. This is a valid modus tollens inference: All audit team members ∉ gift-takers; Rodrigo ∈ gift-takers; therefore Rodrigo ∉ audit team.",
+    "steps": [
+      "Step 1: 'No audit team members accept gifts' → audit team ∩ gift-acceptors = empty set.",
+      "Step 2: Rodrigo is a gift-acceptor → Rodrigo ∈ gift-acceptors group.",
+      "Step 3: Since the intersection is empty and Rodrigo is in gift-acceptors, Rodrigo cannot be in the audit team."
+    ],
+    "distractorExplanations": {
+      "B": "Dishonesty is a moral judgment not asserted by the premises — accepting a gift does not logically guarantee dishonesty in the argument's terms.",
+      "C": "This is actually equivalent to the first premise restated — it is redundant, not a new conclusion that must follow from the combination.",
+      "D": "This directly contradicts the first premise, which says NO audit team members accept gifts."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Modus tollens: If P→Q is true and Q is false, then P must be false. Equivalently, if 'no P does Q' and X does Q, then X is not P."
+    },
+    "tags": [
+      "logical-reasoning",
+      "modus-tollens",
+      "universal-negative",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0016",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Chain Syllogism",
+    "difficulty": "Hard",
+    "question": "All honest officials disclose their assets. Some officials who disclose their assets are investigated. No investigated official is promoted. Which of the following must be true?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All honest officials are investigated."
+      },
+      {
+        "id": "B",
+        "text": "No honest official discloses assets."
+      },
+      {
+        "id": "C",
+        "text": "All honest officials are promoted."
+      },
+      {
+        "id": "D",
+        "text": "Some officials who disclose assets are not promoted."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Premise 2 says some disclosers are investigated. Premise 3 says no investigated official is promoted — therefore those investigated disclosers are not promoted. Combining: some officials who disclose assets (the investigated ones) are not promoted. This is the only conclusion that can be drawn with certainty. We cannot conclude all honest officials are investigated because Premise 2 only guarantees SOME disclosers are investigated, and not all honest officials may be among those. Note: the chain honest→disclose and some disclosers are investigated does not guarantee any honest official is investigated.",
+    "steps": [
+      "Step 1: All honest officials → disclose assets (honest ⊆ disclosers).",
+      "Step 2: Some disclosers → investigated. This 'some' may or may not overlap with the honest subset.",
+      "Step 3: No investigated official → promoted. Therefore the investigated disclosers (from Step 2) are not promoted.",
+      "Step 4: Combining Steps 2 and 3: some disclosers are not promoted. This is the certain conclusion."
+    ],
+    "distractorExplanations": {
+      "A": "Only SOME disclosers are investigated — not all. Since honest officials are a subset of disclosers, we cannot guarantee any honest official falls into the investigated group.",
+      "B": "This contradicts Premise 1 directly, which states all honest officials DO disclose assets.",
+      "C": "We established some disclosers are not promoted; we cannot claim all honest officials are promoted without knowing they avoid the investigated group."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "In chain syllogisms with 'some,' be careful: 'some A are B' and 'all B are C' gives 'some A are C.' But 'some A are B' and 'some B are C' gives NO guarantee about A and C."
+    },
+    "tags": [
+      "logical-reasoning",
+      "chain-syllogism",
+      "particular",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0017",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Exclusive Disjunction",
+    "difficulty": "Hard",
+    "question": "Either the project is over budget or the timeline was extended, but not both. The project is over budget. Which conclusion must follow?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The timeline was also extended."
+      },
+      {
+        "id": "B",
+        "text": "The project will be cancelled."
+      },
+      {
+        "id": "C",
+        "text": "The timeline was not extended."
+      },
+      {
+        "id": "D",
+        "text": "The budget and timeline are both on track."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The premise uses an exclusive disjunction (XOR): exactly one of the two conditions is true — over budget OR timeline extended, but not both. Given that 'the project is over budget' is true, the exclusive 'not both' clause means the timeline was NOT extended. This is a direct application of the exclusive-or rule: if P is true in a P XOR Q statement, then Q must be false.",
+    "steps": [
+      "Step 1: Exclusive disjunction: P XOR Q — exactly one of {over budget, timeline extended} is true.",
+      "Step 2: Given P = True (project is over budget).",
+      "Step 3: Since exactly one must be true and P is already true, Q must be False → the timeline was NOT extended."
+    ],
+    "distractorExplanations": {
+      "A": "If the timeline were also extended, BOTH would be true — this violates the 'not both' clause of the exclusive disjunction.",
+      "B": "Project cancellation is never mentioned in the premises — it is an invented consequence.",
+      "D": "We know the project IS over budget, so concluding everything is 'on track' directly contradicts a stated premise."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Exclusive disjunction (XOR): P XOR Q means exactly one is true. If P is given as true, Q must be false. This differs from inclusive 'or' where both could be true."
+    },
+    "tags": [
+      "logical-reasoning",
+      "disjunction",
+      "exclusive-or",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0018",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Categorical Inference",
+    "difficulty": "Hard",
+    "question": "All career employees have served at least five years. No probationary employee has served five years or more. Felix has served exactly five years. Which conclusion is valid?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Felix is a probationary employee."
+      },
+      {
+        "id": "B",
+        "text": "Felix is a career employee."
+      },
+      {
+        "id": "C",
+        "text": "Felix has not served five years."
+      },
+      {
+        "id": "D",
+        "text": "Felix may be either career or probationary."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Felix has served exactly five years. Premise 2 states no probationary employee has served five years or more — therefore Felix cannot be probationary. Premise 1 states all career employees have served at least five years — Felix has served exactly five years, which satisfies 'at least five years.' The question is whether serving five years is sufficient to be career. Since probationary is ruled out by Premise 2 and the only other category is career, Felix must be a career employee. The logic eliminates all other possibilities.",
+    "steps": [
+      "Step 1: Felix served exactly 5 years. Test probationary: 'No probationary employee served ≥5 years' → Felix's 5 years disqualifies him from probationary.",
+      "Step 2: Since Felix is not probationary, he belongs to another category — career employees (the only alternative given).",
+      "Step 3: Verify: career employees have served ≥5 years; Felix served exactly 5 → he meets the career criterion. Consistent."
+    ],
+    "distractorExplanations": {
+      "A": "Probationary employees have served LESS than five years — Felix's five years directly disqualifies him from this category.",
+      "C": "Felix is explicitly stated to have served exactly five years — this directly contradicts the given fact.",
+      "D": "The disjunction is resolved: probationary is eliminated by Premise 2, so Felix must be career — there is no remaining ambiguity."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "When a universal negative eliminates one category, check what remains. If only two categories exist and one is ruled out, the other must apply by elimination."
+    },
+    "tags": [
+      "logical-reasoning",
+      "categorical",
+      "elimination",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0019",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Linear Ordering",
+    "difficulty": "Easy",
+    "passage": "Four friends — Lani, Mira, Nora, and Ora — finish a relay race one after another with no ties. Mira finishes before Nora. Lani finishes last. Ora finishes before Mira.",
+    "question": "Who finishes third?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Lani"
+      },
+      {
+        "id": "B",
+        "text": "Mira"
+      },
+      {
+        "id": "C",
+        "text": "Nora"
+      },
+      {
+        "id": "D",
+        "text": "Ora"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Placing Lani last (4th) is the anchor. The three clues Ora before Mira and Mira before Nora create a strict chain: Ora → Mira → Nora. These three must occupy positions 1, 2, and 3 respectively. The only valid arrangement is Ora (1st), Mira (2nd), Nora (3rd), Lani (4th). Nora occupies the third position.",
+    "steps": [
+      "Step 1: Lani is last → Lani = 4th. Positions 1–3 belong to Mira, Nora, and Ora.",
+      "Step 2: Ora finishes before Mira → Ora is ahead of Mira.",
+      "Step 3: Mira finishes before Nora → Mira is ahead of Nora.",
+      "Step 4: Combine: Ora (1st) → Mira (2nd) → Nora (3rd) → Lani (4th). Third place is Nora."
+    ],
+    "distractorExplanations": {
+      "A": "Lani is explicitly stated to finish last (4th), not third.",
+      "B": "Mira is 2nd in the chain Ora→Mira→Nora, not 3rd.",
+      "D": "Ora leads the chain, placing her 1st, not 3rd."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Start with the most constrained position — in this case, the anchor (Lani = last). Then build the chain from the remaining clues in order."
+    },
+    "tags": [
+      "ordering",
+      "arrangement",
+      "linear",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0020",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Linear Ordering",
+    "difficulty": "Easy",
+    "passage": "Five applicants — A, B, C, D, and E — are interviewed one at a time. C is interviewed third. B is interviewed immediately before C. A is interviewed last. D is interviewed first.",
+    "question": "Who is interviewed fourth?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A"
+      },
+      {
+        "id": "B",
+        "text": "B"
+      },
+      {
+        "id": "C",
+        "text": "D"
+      },
+      {
+        "id": "D",
+        "text": "E"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Four of the five positions can be filled directly: D=1st (given), B is immediately before C and C=3rd so B=2nd, C=3rd (given), A=5th (last). The only position remaining is 4th, which must be assigned to the only unplaced applicant: E. The full order is D, B, C, E, A.",
+    "steps": [
+      "Step 1: D=1st and C=3rd are given directly.",
+      "Step 2: B is immediately before C → B=2nd.",
+      "Step 3: A is last → A=5th.",
+      "Step 4: Positions filled: 1=D, 2=B, 3=C, 5=A. Only 4th is unfilled → E=4th."
+    ],
+    "distractorExplanations": {
+      "A": "A is last (5th), not 4th — the clue 'A is interviewed last' is explicit.",
+      "B": "B is immediately before C (3rd), placing B in 2nd position, not 4th.",
+      "C": "D is given as first, not fourth."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Use elimination: fill every position you can determine directly, then the remaining person fills the remaining slot. This avoids trial-and-error entirely."
+    },
+    "tags": [
+      "ordering",
+      "arrangement",
+      "linear",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0021",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Linear Seating",
+    "difficulty": "Medium",
+    "passage": "Five colleagues — A, B, C, D, and E — sit in a row of seats numbered 1 (leftmost) to 5 (rightmost). C occupies seat 1. A sits immediately to the left of B. D sits immediately to the left of E. B is not adjacent to D.",
+    "question": "Who sits in the middle seat (seat 3)?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "E"
+      },
+      {
+        "id": "B",
+        "text": "B"
+      },
+      {
+        "id": "C",
+        "text": "D"
+      },
+      {
+        "id": "D",
+        "text": "A"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "C is fixed in seat 1. The remaining four seats (2–5) must accommodate the pairs A–B (A immediately left of B) and D–E (D immediately left of E), subject to the constraint that B and D are not adjacent. Placing D=2, E=3 and then A–B in seats 4–5 would put B(5) and D(2) three seats apart — non-adjacent — but we must also verify the pair fits. Alternatively, D=2, E=3, A=4, B=5 satisfies: A left of B (4 left of 5 ✓), D left of E (2 left of 3 ✓), B(5) and D(2) are 3 apart — not adjacent ✓. The arrangement is C(1), D(2), E(3), A(4), B(5). E sits in seat 3.",
+    "steps": [
+      "Step 1: C=1 is fixed. Seats 2–5 remain for A, B, D, E.",
+      "Step 2: Two consecutive pairs must fit: [A,B] (A immediately left of B) and [D,E] (D immediately left of E).",
+      "Step 3: Try D=2, E=3 → E occupies seat 3. Place A=4, B=5 → A immediately left of B ✓.",
+      "Step 4: Check adjacency: B is in seat 5, D is in seat 2. |5−2|=3 > 1 → B not adjacent to D ✓.",
+      "Step 5: Full order: C(1), D(2), E(3), A(4), B(5). Seat 3 = E."
+    ],
+    "distractorExplanations": {
+      "B": "B ends up in seat 5 (the rightmost seat), not seat 3, in the only valid arrangement.",
+      "C": "D occupies seat 2, not seat 3, in order to create a valid D–E consecutive pair that also keeps B non-adjacent to D.",
+      "D": "A occupies seat 4 as the left member of the A–B pair, not seat 3."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "With two consecutive pairs and one anchor, try the pair placements systematically. The non-adjacency constraint between B and D rules out arrangements where the two pairs are side by side."
+    },
+    "tags": [
+      "ordering",
+      "seating",
+      "pairs",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0022",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Ranking",
+    "difficulty": "Medium",
+    "passage": "Six students — P, Q, R, S, T, and U — are ranked 1 (best) through 6 (lowest) in a competition. R ranks 1st. U ranks 2nd. T ranks 3rd. Q ranks last. P ranks higher than Q, and S is ranked immediately below P.",
+    "question": "Who is ranked 4th?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "P"
+      },
+      {
+        "id": "B",
+        "text": "Q"
+      },
+      {
+        "id": "C",
+        "text": "S"
+      },
+      {
+        "id": "D",
+        "text": "T"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Four positions are fixed by direct clues: R=1st, U=2nd, T=3rd, Q=6th. That leaves P and S to fill ranks 4th and 5th. The clue 'S is ranked immediately below P' means S's rank number = P's rank number + 1. In the remaining slots (4 and 5), the only way to satisfy this is P=4th and S=5th. This also confirms that P(4th) ranks higher than Q(6th), satisfying the remaining constraint.",
+    "steps": [
+      "Step 1: Direct placements: R=1, U=2, T=3, Q=6.",
+      "Step 2: P and S occupy ranks 4 and 5 (the only remaining positions).",
+      "Step 3: 'S immediately below P' → S's rank = P's rank + 1 → P=4, S=5.",
+      "Step 4: Check: P(4th) > Q(6th) in rank order ✓. Full ranking: R, U, T, P, S, Q."
+    ],
+    "distractorExplanations": {
+      "B": "Q is explicitly stated to be last (6th rank), not 4th.",
+      "C": "S must be immediately below P — if S were 4th, P would have to be 3rd, but T is already 3rd. S is 5th.",
+      "D": "T is explicitly stated to be 3rd, not 4th."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Fill all anchor positions first. When only two slots remain and one must be immediately below the other, the order is forced — the higher-ranking one takes the lower number."
+    },
+    "tags": [
+      "ordering",
+      "ranking",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0023",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Circular Seating",
+    "difficulty": "Medium",
+    "passage": "Four coworkers — W, X, Y, and Z — sit at a square table with one person on each side. W sits directly across from Z. X sits immediately to the right of W in clockwise order.",
+    "question": "Who sits to the immediate left of Z?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "W"
+      },
+      {
+        "id": "B",
+        "text": "X"
+      },
+      {
+        "id": "C",
+        "text": "Y"
+      },
+      {
+        "id": "D",
+        "text": "Z"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Fix W at any position (say, clockwise position 1 — North). Since X is immediately to the right of W in clockwise order, X is at position 2 (East). Since Z is directly across from W, Z is at position 3 (South). Y fills the remaining position 4 (West). The clockwise sequence is W→X→Z→Y. The seat immediately to the LEFT of Z is the seat you reach by going counter-clockwise from Z — one step counter-clockwise from Z (South) is X (East). Therefore X sits to the immediate left of Z.",
+    "steps": [
+      "Step 1: Fix W at position 1 (North). X is immediately right of W in clockwise → X=2 (East).",
+      "Step 2: Z is directly across from W → Z=3 (South). Y fills position 4 (West).",
+      "Step 3: Clockwise order: W(N) → X(E) → Z(S) → Y(W) → W(N).",
+      "Step 4: 'Immediate left of Z' means counter-clockwise from Z: one step counter-clockwise from position 3 is position 2 = X."
+    ],
+    "distractorExplanations": {
+      "A": "W is directly across from Z (opposite side of the table), not to Z's immediate left.",
+      "C": "Y is to the immediate RIGHT of Z in counter-clockwise order (or left in clockwise) — wait, Y is at position 4 (West). One step counter-clockwise from Z(South) goes to X(East), not Y(West). Y is to Z's immediate right (clockwise direction) — not left.",
+      "D": "Z cannot be to their own left — a person occupies a single seat."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "In circular seating, always decide whether 'left' means clockwise or counter-clockwise and stay consistent. Assign compass directions to the positions to visualize more clearly."
+    },
+    "tags": [
+      "ordering",
+      "circular",
+      "seating",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0024",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Vertical Arrangement",
+    "difficulty": "Medium",
+    "passage": "Five storage boxes — Red, Blue, Green, Yellow, and White — are stacked vertically in positions 1 (top) to 5 (bottom). Blue is at the bottom. Green is directly above Blue. Red is neither at the top nor at the bottom. White is positioned below Yellow.",
+    "question": "Which color box is at the top?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Red"
+      },
+      {
+        "id": "B",
+        "text": "Yellow"
+      },
+      {
+        "id": "C",
+        "text": "White"
+      },
+      {
+        "id": "D",
+        "text": "Green"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Blue=5 (bottom) and Green=4 (directly above Blue) are anchored. Positions 1–3 contain Red, Yellow, and White. Red cannot be position 1 (not at top) or position 5 (not at bottom — already taken by Blue), so Red is at position 2 or 3. White must be below Yellow (White has a higher position number than Yellow). If Yellow=1 and White=2, Red takes position 3 — Red is neither top nor bottom ✓. This satisfies all constraints. Yellow is at the top.",
+    "steps": [
+      "Step 1: Blue=5, Green=4 (directly above Blue).",
+      "Step 2: Positions 1, 2, 3 remain for Red, Yellow, White.",
+      "Step 3: Red ≠ position 1 and Red ≠ position 5 → Red is in position 2 or 3.",
+      "Step 4: White below Yellow → White's position number > Yellow's position number.",
+      "Step 5: Try Yellow=1: White must be at 2 or 3. Place White=2, Red=3 → satisfies all. Yellow is at position 1 (top)."
+    ],
+    "distractorExplanations": {
+      "A": "Red is explicitly prohibited from the top position — 'Red is neither at the top nor at the bottom' rules out position 1.",
+      "C": "White must be below Yellow (higher position number than Yellow), so White cannot be at position 1 (top) if Yellow is anywhere below it.",
+      "D": "Green is fixed at position 4, directly above Blue at position 5 — Green is near the bottom, not the top."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Always anchor the most constrained positions first — Blue(bottom) and Green(4th) give you the bottom of the stack. Then use the remaining constraints to place the top."
+    },
+    "tags": [
+      "ordering",
+      "vertical",
+      "stacking",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0025",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Linear Seating with Constraints",
+    "difficulty": "Hard",
+    "passage": "Five colleagues — Anna, Beth, Chris, Dan, and Eve — stand in seats 1 (leftmost) to 5 (rightmost) for a photo. Anna stands in seat 1. Beth stands immediately to the right of Chris. Dan is not adjacent to Anna. Eve stands immediately to the right of Dan.",
+    "question": "Who stands in the middle (seat 3)?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Anna"
+      },
+      {
+        "id": "B",
+        "text": "Beth"
+      },
+      {
+        "id": "C",
+        "text": "Chris"
+      },
+      {
+        "id": "D",
+        "text": "Dan"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Anna is anchored at seat 1. Dan cannot be in seat 2 (adjacent to Anna) and Eve must be immediately right of Dan, so Dan–Eve is a consecutive pair starting at seat 3 or later. If Dan=3, Eve=4, then Chris–Beth pair must fill seats 2 and {5} — but Chris–Beth needs consecutive seats and positions 2 and 5 are not consecutive. If Dan=4 and Eve=5, then seats 2 and 3 remain for Chris and Beth. Chris–Beth requires Chris immediately left of Beth → Chris=2, Beth=3. Check: Dan(4) and Anna(1) — |4−1|=3, not adjacent ✓. Full arrangement: Anna(1), Chris(2), Beth(3), Dan(4), Eve(5).",
+    "steps": [
+      "Step 1: Anna=1 (anchor). Dan ≠ seat 2 (not adjacent to Anna in seat 1).",
+      "Step 2: Eve is immediately right of Dan → [Dan, Eve] is a consecutive pair.",
+      "Step 3: Dan cannot be seat 2, so [Dan,Eve] starts at seat 3, 4, or (if Dan=4, Eve=5) seat 4.",
+      "Step 4: Try Dan=4, Eve=5. Remaining seats 2 and 3 go to Chris and Beth. Beth immediately right of Chris → Chris=2, Beth=3.",
+      "Step 5: Verify non-adjacency: |Dan(4)−Anna(1)|=3 > 1 ✓. Seat 3 = Beth."
+    ],
+    "distractorExplanations": {
+      "A": "Anna is in seat 1, not seat 3.",
+      "C": "Chris is in seat 2 (immediately left of Beth in seat 3) — Chris is not in the middle.",
+      "D": "Dan is in seat 4, to the right of the middle, not in seat 3."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Work from the most restrictive constraint: Dan cannot be adjacent to Anna (seat 1) AND must have Eve immediately to his right. This limits Dan to seats 3 or 4. Test each case and discard the one that causes contradictions."
+    },
+    "tags": [
+      "ordering",
+      "seating",
+      "constraints",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0026",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Linear Arrangement with Non-Adjacency",
+    "difficulty": "Hard",
+    "passage": "Five books — History (H), Math (M), Science (S), English (E), and Art (A) — are placed on a shelf from position 1 (leftmost) to 5 (rightmost). History is in position 1. Art is in position 5. Science is immediately to the right of Math. English is not adjacent to Math.",
+    "question": "In which position is English?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Position 2"
+      },
+      {
+        "id": "B",
+        "text": "Position 3"
+      },
+      {
+        "id": "C",
+        "text": "Position 4"
+      },
+      {
+        "id": "D",
+        "text": "Position 5"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "H=1 and A=5 are fixed. Positions 2, 3, 4 hold M, S, and E. Science is immediately right of Math → the pair [M,S] must be consecutive in positions 2–4. The only consecutive pair within 2–4 is [2,3] (M=2, S=3) or [3,4] (M=3, S=4). If M=2, S=3: English must not be adjacent to Math (position 2). Adjacent positions to position 2 are 1 and 3. Position 1 is H, position 3 is S. The only remaining position for E is 4. |4−2|=2 > 1 → E is not adjacent to M ✓. Arrangement: H(1), M(2), S(3), E(4), A(5). English is in position 4.",
+    "steps": [
+      "Step 1: H=1, A=5. Positions 2, 3, 4 for M, S, E.",
+      "Step 2: [M,S] consecutive → try M=2, S=3. Remaining position for E = 4.",
+      "Step 3: Check English not adjacent to Math: |E(4) − M(2)| = 2 > 1 → not adjacent ✓.",
+      "Step 4: Try M=3, S=4 as alternative: E must go to position 2. |E(2) − M(3)| = 1 → adjacent ✗. This case fails.",
+      "Step 5: Only valid arrangement: H(1), M(2), S(3), E(4), A(5). English = position 4."
+    ],
+    "distractorExplanations": {
+      "A": "Position 2 is occupied by Math — if English were in position 2, there would be no room for Math, which must start the M–S consecutive pair.",
+      "B": "Position 3 is occupied by Science (immediately right of Math at position 2) in the valid arrangement.",
+      "D": "Position 5 is fixed as Art — English cannot go there."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When you have a consecutive pair (M,S), test each valid starting position and check the non-adjacency constraint after placing the remaining element. Eliminate the arrangement where the constraint is violated."
+    },
+    "tags": [
+      "ordering",
+      "shelf",
+      "non-adjacency",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0027",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Implicit Assumption",
+    "difficulty": "Easy",
+    "question": "Statement: 'Students who study daily perform better on examinations.' Which of the following is an assumption of this statement?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All students study daily."
+      },
+      {
+        "id": "B",
+        "text": "Examinations are the only way to measure student performance."
+      },
+      {
+        "id": "C",
+        "text": "Regular study improves performance."
+      },
+      {
+        "id": "D",
+        "text": "Students who do not study daily always fail."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "An assumption is an unstated premise that the statement must take for granted in order to be meaningful. The statement 'students who study daily perform better on examinations' only makes sense if one assumes that regular study actually causes or contributes to improved performance — otherwise the claim has no logical basis. Choice C, 'regular study improves performance,' is exactly that foundational assumption. The statement does not require all students to study daily (A), does not claim examinations are the only measure (B), and does not guarantee failure for non-daily studiers (D).",
+    "steps": [
+      "Step 1: An implicit assumption must be an unstated belief the statement NEEDS to be valid.",
+      "Step 2: The statement says daily studying leads to better exam results — this requires assuming that studying actually improves performance (otherwise why would daily study help?).",
+      "Step 3: Choice C states exactly this foundational link — it is the hidden premise that makes the statement logically coherent."
+    ],
+    "distractorExplanations": {
+      "A": "The statement is about the subset who DO study daily — it makes no claim that all students follow this practice.",
+      "B": "The statement uses exams as one benchmark, not as the exclusive measure — this is an over-extension not assumed.",
+      "D": "'Always fail' is an absolute claim about non-daily studiers that goes far beyond what the statement implies — the statement merely says daily studiers perform better, not that others always fail."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "An assumption is what must be TRUE for the statement to make sense, not what the statement says. Ask: 'If this assumption were false, would the statement collapse?' If yes, it is an implicit assumption."
+    },
+    "tags": [
+      "assumption",
+      "implicit",
+      "critical-thinking",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0028",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Scheduling",
+    "difficulty": "Medium",
+    "passage": "Five project tasks — P1, P2, P3, P4, and P5 — are scheduled one per day from Monday to Friday. P3 is scheduled on Wednesday. P4 is scheduled on Friday. P1 is scheduled the day immediately after P5. P2 is not scheduled on Monday or Friday.",
+    "question": "On what day is P2 scheduled?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Monday"
+      },
+      {
+        "id": "B",
+        "text": "Tuesday"
+      },
+      {
+        "id": "C",
+        "text": "Thursday"
+      },
+      {
+        "id": "D",
+        "text": "Friday"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "P3=Wednesday and P4=Friday are fixed. The remaining days are Monday, Tuesday, and Thursday, which must accommodate P1, P2, and P5. P2 cannot be Monday or Friday; Friday is P4 and Monday is still available but prohibited for P2 — so P2 is on Tuesday or Thursday. P5 and P1 must be consecutive days (P1 immediately after P5). Among Monday, Tuesday, Thursday, the only consecutive day pair is Monday–Tuesday. Therefore P5=Monday and P1=Tuesday. This leaves Thursday for P2. Full schedule: P5(Mon), P1(Tue), P3(Wed), P2(Thu), P4(Fri).",
+    "steps": [
+      "Step 1: P3=Wednesday, P4=Friday (anchors).",
+      "Step 2: Remaining days for P1, P2, P5: Monday, Tuesday, Thursday.",
+      "Step 3: P2 ≠ Monday and P2 ≠ Friday → P2 is Tuesday or Thursday.",
+      "Step 4: [P5, P1] must be consecutive days. Among Mon/Tue/Thu, only Mon–Tue are consecutive. So P5=Monday, P1=Tuesday.",
+      "Step 5: Thursday is the only day left → P2=Thursday."
+    ],
+    "distractorExplanations": {
+      "A": "Monday is explicitly prohibited for P2, and it is also taken by P5 in the only valid schedule.",
+      "B": "Tuesday is taken by P1 (which must immediately follow P5 on Monday) — P2 cannot be Tuesday.",
+      "D": "Friday is explicitly prohibited for P2, and it is taken by P4."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "For scheduling puzzles, anchor fixed days first, then look for consecutive-day constraints — they severely limit possibilities. Check all remaining days for the consecutive pair before assigning others."
+    },
+    "tags": [
+      "ordering",
+      "scheduling",
+      "consecutive",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0029",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Linear Ordering",
+    "difficulty": "Easy",
+    "passage": "Four runners — Alma, Ben, Carl, and Diana — finish a race with no ties. Alma finishes before Ben but after Diana. Carl finishes last. Ben does not finish second.",
+    "question": "Who finishes first?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Alma"
+      },
+      {
+        "id": "B",
+        "text": "Ben"
+      },
+      {
+        "id": "C",
+        "text": "Carl"
+      },
+      {
+        "id": "D",
+        "text": "Diana"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Carl=4th (last) is the anchor. The chain 'Diana before Alma, Alma before Ben' means Diana→Alma→Ben must fill positions 1, 2, 3 in that relative order. Ben cannot be 2nd, so Ben is not in position 2 — he must be in position 3. Alma is in position 2, and Diana is in position 1. The full order is Diana(1st), Alma(2nd), Ben(3rd), Carl(4th). Diana finishes first.",
+    "steps": [
+      "Step 1: Carl=4th (given last). Positions 1–3 for Diana, Alma, Ben.",
+      "Step 2: Diana before Alma, and Alma before Ben → the chain is Diana < Alma < Ben in finish position.",
+      "Step 3: Ben ≠ 2nd → Ben must be 3rd (the only other option since Diana must precede Alma, who precedes Ben).",
+      "Step 4: Ben=3rd, Alma=2nd, Diana=1st. Full order: Diana, Alma, Ben, Carl."
+    ],
+    "distractorExplanations": {
+      "A": "Alma is between Diana and Ben — Alma must finish after Diana, so Alma cannot be first.",
+      "B": "Ben finishes after both Diana and Alma — Ben cannot finish first.",
+      "C": "Carl finishes last (4th), not first."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Identify the full chain of 'before/after' relationships first. The person at the START of the longest chain (with no one ahead of them) is in first place."
+    },
+    "tags": [
+      "ordering",
+      "linear",
+      "chain",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0030",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Implicit Assumption",
+    "difficulty": "Easy",
+    "question": "Statement: 'The government should invest in renewable energy to reduce dependence on imported fuel.' Which assumption underlies this statement?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Renewable energy is more expensive than imported fuel."
+      },
+      {
+        "id": "B",
+        "text": "Imported fuel will never run out."
+      },
+      {
+        "id": "C",
+        "text": "All citizens support renewable energy."
+      },
+      {
+        "id": "D",
+        "text": "Renewable energy can reduce dependence on imported fuel."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The statement recommends investing in renewable energy precisely because this will reduce dependence on imported fuel. The foundational assumption is that renewable energy is capable of substituting for or reducing the use of imported fuel — otherwise, the recommendation makes no sense. Without this assumption (D), the investment would have no logical connection to the stated goal. Choices A, B, and C either contradict the recommendation, go beyond the scope, or make unsupported absolute claims.",
+    "steps": [
+      "Step 1: The statement proposes an action (invest in renewable) to achieve a goal (reduce import dependence).",
+      "Step 2: The implicit assumption is the causal link: renewable energy MUST BE CAPABLE of reducing import dependence — otherwise recommending it for that purpose is irrational.",
+      "Step 3: Choice D captures this assumed causal link exactly."
+    ],
+    "distractorExplanations": {
+      "A": "If renewable energy is more expensive, it could still reduce import dependence — cost is irrelevant to the assumed causal mechanism. Also, assuming higher cost would undermine (not support) the recommendation.",
+      "B": "'Imported fuel will never run out' is an assumption that would weaken the urgency of the recommendation, not support it.",
+      "C": "Universal citizen support is not assumed — the government can act regardless of unanimous public opinion."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "When a statement proposes ACTION → GOAL, the core assumption is always that the action CAN achieve the goal. This causal link is always implicit."
+    },
+    "tags": [
+      "assumption",
+      "implicit",
+      "policy",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0031",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Underlying Assumption in Policy Argument",
+    "difficulty": "Medium",
+    "question": "Statement: 'Because traffic congestion in the city has increased by 40 percent over the past decade, the city council should ban private vehicles in the central business district during peak hours.' Which assumption is most critical to this argument?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All city residents own private vehicles."
+      },
+      {
+        "id": "B",
+        "text": "Traffic data have been fabricated."
+      },
+      {
+        "id": "C",
+        "text": "Public transportation in the city is non-existent."
+      },
+      {
+        "id": "D",
+        "text": "Banning private vehicles during peak hours will reduce congestion in the central business district."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The argument moves from evidence (40% congestion increase) to a policy recommendation (ban private vehicles during peak hours). The critical assumption is that the recommended policy will actually achieve the goal — that banning private vehicles during peak hours will reduce congestion. Without this assumption, the recommendation has no logical foundation connecting the problem to the solution. A, B, and C are either irrelevant, contradictory to the argument's use of data, or overly extreme.",
+    "steps": [
+      "Step 1: Identify the structure: Evidence (congestion up 40%) → Recommendation (ban vehicles).",
+      "Step 2: The argument assumes that the recommended action will SOLVE the stated problem.",
+      "Step 3: Choice D states this causal assumption: banning vehicles will reduce congestion — the hidden bridge between the evidence and recommendation."
+    ],
+    "distractorExplanations": {
+      "A": "Whether all or only some residents own vehicles does not determine whether a ban would reduce congestion — the percentage of vehicle owners is not the key assumption.",
+      "B": "If data were fabricated, the argument would collapse entirely — but the argument itself relies on the data being valid, so it assumes the opposite of B.",
+      "C": "The argument does not require public transit to be nonexistent — it only requires that removing private vehicles from the CBD during peak hours reduces congestion."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "In policy arguments, the critical assumption is the bridge between the problem and the solution: 'This action will achieve this goal.' Always look for what makes the policy recommendation WORK."
+    },
+    "tags": [
+      "assumption",
+      "policy",
+      "critical-thinking",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0032",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Logical Conclusion (Contrapositive)",
+    "difficulty": "Medium",
+    "question": "Given: 'All applicants who pass the written test are interviewed. Marisol was not interviewed.' Which conclusion follows?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Marisol did not pass the written test."
+      },
+      {
+        "id": "B",
+        "text": "Marisol passed the written test but was skipped."
+      },
+      {
+        "id": "C",
+        "text": "The written test results are unreliable."
+      },
+      {
+        "id": "D",
+        "text": "Marisol will be interviewed next time."
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The rule is: IF pass written test (P) → THEN interviewed (Q). Marisol was NOT interviewed (not Q). By modus tollens (contrapositive): NOT Q → NOT P. Therefore Marisol did NOT pass the written test. This is a valid logical inference. Choice B contradicts the universal rule — if Marisol passed, she would have been interviewed with certainty. C and D are outside the scope of the premises.",
+    "steps": [
+      "Step 1: Rule: Pass test (P) → Interviewed (Q).",
+      "Step 2: Given: Marisol was NOT interviewed → ¬Q.",
+      "Step 3: Contrapositive: ¬Q → ¬P → Marisol did NOT pass the written test."
+    ],
+    "distractorExplanations": {
+      "B": "The universal rule guarantees that ALL test-passers are interviewed — there is no exception for being 'skipped.' If Marisol passed, she would have been interviewed.",
+      "C": "No information challenges the reliability of the test — this conclusion is entirely unsupported.",
+      "D": "Future interviews are beyond the scope of the premises — no conclusion about future events is warranted."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Contrapositive: If P→Q, then ¬Q→¬P. When you know the effect (Q) did NOT happen, you can conclude the cause (P) also did not happen — this is always a valid inference."
+    },
+    "tags": [
+      "assumption",
+      "contrapositive",
+      "modus-tollens",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0033",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Implicit Assumption in Social Policy",
+    "difficulty": "Medium",
+    "question": "Statement: 'Providing free legal aid to low-income citizens ensures equal access to justice.' Which of the following is an assumption of this statement?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Low-income citizens are guilty of more crimes."
+      },
+      {
+        "id": "B",
+        "text": "Without legal aid, low-income citizens cannot afford legal representation."
+      },
+      {
+        "id": "C",
+        "text": "All lawyers who provide legal aid are highly competent."
+      },
+      {
+        "id": "D",
+        "text": "Equal access to justice means all citizens receive the same legal outcome."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The statement proposes that free legal aid ensures equal access to justice for low-income citizens. This is only meaningful if the current situation is one where low-income citizens LACK access to legal representation because of financial barriers — otherwise, providing free aid addresses a non-existent problem. Choice B captures this essential prerequisite assumption: without legal aid, low-income citizens cannot afford representation, which is what creates the access gap the policy aims to close.",
+    "steps": [
+      "Step 1: The statement claims that free legal aid → equal access to justice for low-income citizens.",
+      "Step 2: This claim assumes there is currently a barrier preventing equal access — specifically, the inability to afford legal services.",
+      "Step 3: Choice B states this assumed barrier: without legal aid, low-income citizens cannot afford representation."
+    ],
+    "distractorExplanations": {
+      "A": "The statement is about access to justice, not about guilt or crime rates — assuming low-income citizens commit more crimes is both unsupported and irrelevant.",
+      "C": "Lawyer competence is a quality concern not assumed or addressed in the statement — the statement focuses on access, not service quality.",
+      "D": "'Same legal outcome' is not what 'equal access to justice' means — equal access means equal opportunity to use the legal system, not identical results."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "When a statement proposes a remedy, it assumes the problem the remedy is designed to solve actually exists. The assumed barrier is always implicit — find it by asking 'Why would this remedy be needed at all?'"
+    },
+    "tags": [
+      "assumption",
+      "social-policy",
+      "implicit",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0034",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Multi-Premise Logical Conclusion",
+    "difficulty": "Hard",
+    "question": "Premises: (1) If employee performance drops, then either workload increased or morale decreased. (2) Workload did not increase. (3) Employee performance dropped. What can be validly concluded?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Workload increased and morale decreased."
+      },
+      {
+        "id": "B",
+        "text": "Morale decreased."
+      },
+      {
+        "id": "C",
+        "text": "Employee performance will recover."
+      },
+      {
+        "id": "D",
+        "text": "Workload will increase next month."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Premise 1: Performance drop → (workload increased OR morale decreased). Premise 3 gives us the antecedent: performance dropped. Applying modus ponens: workload increased OR morale decreased must be true. Premise 2 says workload did NOT increase. With one disjunct false, the other must be true (disjunctive syllogism): morale decreased. This is the only conclusion that follows with logical necessity from the three premises combined.",
+    "steps": [
+      "Step 1: Premise 3 + Premise 1 (modus ponens): performance dropped → workload increased OR morale decreased.",
+      "Step 2: Therefore: 'workload increased OR morale decreased' is true.",
+      "Step 3: Premise 2: workload did NOT increase — one disjunct is false.",
+      "Step 4: Disjunctive syllogism: if (A OR B) is true and A is false, then B must be true. Therefore: morale decreased."
+    ],
+    "distractorExplanations": {
+      "A": "Workload did NOT increase (Premise 2 — directly stated) — concluding it did contradicts a given premise.",
+      "C": "Recovery of performance is not addressed in any premise — no future predictions can be derived from these statements.",
+      "D": "Future workload changes are entirely outside the scope of the given premises."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Disjunctive syllogism: If (P OR Q) is true and P is false, then Q must be true. This rule converts an either/or into a certainty once one option is eliminated."
+    },
+    "tags": [
+      "assumption",
+      "disjunctive-syllogism",
+      "multi-premise",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0035",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Geometric Sequence",
+    "difficulty": "Easy",
+    "question": "What is the next number in the series: 3, 6, 12, 24, 48, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "72"
+      },
+      {
+        "id": "B",
+        "text": "84"
+      },
+      {
+        "id": "C",
+        "text": "96"
+      },
+      {
+        "id": "D",
+        "text": "100"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "This is a geometric sequence with a constant ratio of 2. Each term is produced by multiplying the previous term by 2: 3×2=6, 6×2=12, 12×2=24, 24×2=48, 48×2=96. Geometric sequences grow by a fixed multiplicative factor, unlike arithmetic sequences that grow by a fixed additive step.",
+    "steps": [
+      "Step 1: Calculate the ratio between consecutive terms: 6÷3=2, 12÷6=2, 24÷12=2, 48÷24=2.",
+      "Step 2: Confirm constant ratio = 2 (geometric sequence).",
+      "Step 3: Apply the ratio: 48 × 2 = 96."
+    ],
+    "distractorExplanations": {
+      "A": "72 would result from adding 24 to 48 — this applies an arithmetic step, not the geometric ratio of ×2.",
+      "B": "84 has no relationship to any pattern in this sequence.",
+      "D": "100 is a round number but has no mathematical connection to the doubling pattern."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "To identify a geometric sequence, divide consecutive terms. If the quotient is constant, you have found the common ratio — multiply the last term by that ratio to get the next."
+    },
+    "tags": [
+      "number-pattern",
+      "geometric-sequence",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0036",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Perfect Squares",
+    "difficulty": "Easy",
+    "question": "What is the next number in the series: 1, 4, 9, 16, 25, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "30"
+      },
+      {
+        "id": "B",
+        "text": "34"
+      },
+      {
+        "id": "C",
+        "text": "36"
+      },
+      {
+        "id": "D",
+        "text": "49"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Each term is the square of its position number (n²): 1=1², 4=2², 9=3², 16=4², 25=5². The sixth term is 6²=36. This is the perfect squares sequence — one of the most commonly tested patterns on the CSE. Memorizing squares up to 15² will save time on the exam.",
+    "steps": [
+      "Step 1: Identify the terms as perfect squares: 1=1², 4=2², 9=3², 16=4², 25=5².",
+      "Step 2: Recognize the pattern: nth term = n².",
+      "Step 3: The 6th term = 6² = 36."
+    ],
+    "distractorExplanations": {
+      "A": "30 is not a perfect square — the difference from 25 would be 5, but differences in this sequence increase by 2 each time (3,5,7,9,11).",
+      "B": "34 is not a perfect square and does not fit the pattern.",
+      "D": "49 = 7² — this skips the 6th term entirely and would be the 7th term, not the next one."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Perfect squares: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225. The differences between consecutive squares are always consecutive odd numbers: 3, 5, 7, 9, 11..."
+    },
+    "tags": [
+      "number-pattern",
+      "perfect-squares",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0037",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Second-Order Differences",
+    "difficulty": "Medium",
+    "question": "What is the next number in the series: 2, 5, 10, 17, 26, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "37"
+      },
+      {
+        "id": "B",
+        "text": "33"
+      },
+      {
+        "id": "C",
+        "text": "35"
+      },
+      {
+        "id": "D",
+        "text": "39"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The first-order differences between consecutive terms are: 5−2=3, 10−5=5, 17−10=7, 26−17=9 — these are consecutive odd numbers increasing by 2 each time. The next difference is 11, giving 26+11=37. Alternatively, each term equals n²+1 for position n: 1²+1=2, 2²+1=5, 3²+1=10, 4²+1=17, 5²+1=26, 6²+1=37. Both methods confirm the answer is 37.",
+    "steps": [
+      "Step 1: Find first-order differences: 5−2=3, 10−5=5, 17−10=7, 26−17=9.",
+      "Step 2: Differences are odd numbers: 3, 5, 7, 9 — increasing by 2 each step.",
+      "Step 3: Next difference = 9+2 = 11.",
+      "Step 4: Next term = 26 + 11 = 37.",
+      "Step 5: Verify with formula n²+1: 6²+1 = 36+1 = 37 ✓"
+    ],
+    "distractorExplanations": {
+      "B": "33 results from adding 7 (the difference before the last) instead of the next difference of 11.",
+      "C": "35 results from adding 9 (the previous difference) instead of extending to 11.",
+      "D": "39 results from adding 13 (skipping one step in the odd-number sequence)."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When the differences are not constant (not arithmetic), look at the differences OF the differences (second-order differences). If those are constant, the pattern is quadratic — often expressible as n²±k."
+    },
+    "tags": [
+      "number-pattern",
+      "second-difference",
+      "quadratic",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0038",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Letter Series with Increasing Gaps",
+    "difficulty": "Medium",
+    "question": "What is the next letter in the series: A, C, F, J, O, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "S"
+      },
+      {
+        "id": "B",
+        "text": "U"
+      },
+      {
+        "id": "C",
+        "text": "T"
+      },
+      {
+        "id": "D",
+        "text": "V"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Converting to alphabet positions: A=1, C=3, F=6, J=10, O=15. The gaps between consecutive terms are: 3−1=2, 6−3=3, 10−6=4, 15−10=5 — increasing by 1 each step. The next gap is 6, giving position 15+6=21. The 21st letter of the alphabet is U.",
+    "steps": [
+      "Step 1: Assign alphabet positions: A=1, C=3, F=6, J=10, O=15.",
+      "Step 2: Find gaps: +2, +3, +4, +5 — increasing by 1.",
+      "Step 3: Next gap = +6.",
+      "Step 4: 15 + 6 = 21 → 21st letter = U."
+    ],
+    "distractorExplanations": {
+      "A": "S is the 19th letter — this would require a gap of +4 from O, but the pattern requires a gap of +6.",
+      "C": "T is the 20th letter — a gap of +5, but we have already used +5 (from J to O) and the next must be +6.",
+      "D": "V is the 22nd letter — a gap of +7, which is one step too far ahead in the pattern."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "For letter series, always convert to numbers first. It is far easier to spot arithmetic patterns in numbers than in letters. Memorize: A=1, E=5, J=10, O=15, T=20, Z=26 as anchor points."
+    },
+    "tags": [
+      "letter-pattern",
+      "increasing-gaps",
+      "alphabet-position",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0039",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Decreasing Second-Order Differences",
+    "difficulty": "Hard",
+    "question": "What is the next number in the series: 100, 95, 85, 70, 50, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "20"
+      },
+      {
+        "id": "B",
+        "text": "30"
+      },
+      {
+        "id": "C",
+        "text": "35"
+      },
+      {
+        "id": "D",
+        "text": "25"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The first-order differences are: 95−100=−5, 85−95=−10, 70−85=−15, 50−70=−20. These are negative multiples of 5 that increase in magnitude by 5 each step (−5, −10, −15, −20). The next difference is −25. Therefore: 50+(−25)=25.",
+    "steps": [
+      "Step 1: Compute differences: −5, −10, −15, −20.",
+      "Step 2: Differences form an arithmetic sequence decreasing by 5: −5, −10, −15, −20, −25.",
+      "Step 3: Next difference = −25.",
+      "Step 4: Next term = 50 − 25 = 25."
+    ],
+    "distractorExplanations": {
+      "A": "20 would result from subtracting 30 (not 25) — one step too far in the magnitude increase.",
+      "B": "30 results from subtracting 20 again (repeating the last difference instead of increasing it).",
+      "C": "35 would require subtracting only 15 — a smaller magnitude than −20, going in the wrong direction."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When differences are not constant, always check if THEY form their own arithmetic sequence. Here, the differences form −5, −10, −15, −20 (an arithmetic sequence with common difference −5)."
+    },
+    "tags": [
+      "number-pattern",
+      "second-difference",
+      "decreasing",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0040",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Letter Series with Decreasing Gaps",
+    "difficulty": "Hard",
+    "question": "What is the next letter in the series: Z, X, U, Q, L, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "G"
+      },
+      {
+        "id": "B",
+        "text": "E"
+      },
+      {
+        "id": "C",
+        "text": "F"
+      },
+      {
+        "id": "D",
+        "text": "D"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Converting to alphabet positions: Z=26, X=24, U=21, Q=17, L=12. The gaps are: 24−26=−2, 21−24=−3, 17−21=−4, 12−17=−5. These are consecutive negative integers decreasing by 1 in magnitude (−2, −3, −4, −5). The next gap is −6: 12+(−6)=6. The 6th letter is F.",
+    "steps": [
+      "Step 1: Alphabet positions: Z=26, X=24, U=21, Q=17, L=12.",
+      "Step 2: Differences: −2, −3, −4, −5 (each decreases by 1 more).",
+      "Step 3: Next difference = −6.",
+      "Step 4: 12 − 6 = 6 → 6th letter = F."
+    ],
+    "distractorExplanations": {
+      "A": "G is the 7th letter — that would require a gap of −5 (repeating the last gap instead of decreasing by 1 more).",
+      "B": "E is the 5th letter — this requires a gap of −7, which skips one step in the pattern.",
+      "D": "D is the 4th letter — this requires a gap of −8, skipping two steps in the pattern."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "In descending letter series with widening gaps, the errors usually come from either repeating the last gap or adding 1 too many. Write out the differences explicitly to avoid this trap."
+    },
+    "tags": [
+      "letter-pattern",
+      "decreasing-gaps",
+      "alphabet-position",
+      "hard"
+    ]
+  },
+  {
+    "id": "seed-ana-001",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Multiplicative Sequence with Constant Addition",
+    "difficulty": "Medium",
+    "question": "Find the next number in the following numerical sequence:\n\n5, 11, 23, 47, 95, ____",
+    "choices": [
+      {
+        "id": "A",
+        "text": "143"
+      },
+      {
+        "id": "B",
+        "text": "181"
+      },
+      {
+        "id": "C",
+        "text": "191"
+      },
+      {
+        "id": "D",
+        "text": "201"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Each term is generated by the rule: multiply by 2, then add 1. Starting from 5: 5×2+1=11, 11×2+1=23, 23×2+1=47, 47×2+1=95, 95×2+1=191. This hybrid pattern combines a geometric factor (×2) with an arithmetic addition (+1), making it trickier than a pure geometric or arithmetic sequence. Recognizing the ×2+1 rule is the key insight.",
+    "steps": [
+      "Step 1: Compute differences: 11−5=6, 23−11=12, 47−23=24, 95−47=48. Differences double each time.",
+      "Step 2: Since differences double, the next difference = 48×2 = 96.",
+      "Step 3: Next term = 95 + 96 = 191.",
+      "Step 4: Verify with formula n×2+1: 95×2+1 = 190+1 = 191 ✓"
+    ],
+    "distractorExplanations": {
+      "A": "143 results from adding 48 again (the same last difference) instead of doubling it to 96.",
+      "B": "181 does not correspond to any consistent application of the pattern.",
+      "D": "201 results from doubling and adding a slightly different constant — not the correct +1."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When differences double each time, the underlying rule is often ×2 ± constant. Test: if each term = (previous × 2) + k for some constant k, find k. Here k=1."
+    },
+    "tags": [
+      "number-series",
+      "multiplicative",
+      "pattern-recognition"
+    ]
+  },
+  {
+    "id": "seed-ana-002",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Syllogism with Overlapping Sets",
+    "difficulty": "Hard",
+    "question": "Statements:\n- All division chiefs are licensed civil service eligibility holders.\n- Some division chiefs are certified project managers.\n\nWhich conclusion logically follows?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All certified project managers are division chiefs."
+      },
+      {
+        "id": "B",
+        "text": "Some certified project managers are licensed civil service eligibility holders."
+      },
+      {
+        "id": "C",
+        "text": "No certified project manager is a division chief."
+      },
+      {
+        "id": "D",
+        "text": "All licensed eligibility holders are certified project managers."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Premise 1: All division chiefs (DC) are eligibility holders (EH) → DC ⊆ EH. Premise 2: Some DC are certified project managers (CPM) → there exists an overlap between DC and CPM. Since DC ⊆ EH, any member of DC is also in EH. The CPM members who are also DC (guaranteed to exist by Premise 2) must therefore also be in EH. Thus, some CPM are EH. This is the only conclusion that is guaranteed. We cannot say 'all' CPM are DC (Premise 2 only says 'some'), and we cannot say 'none' are DC (Premise 2 directly contradicts that).",
+    "steps": [
+      "Step 1: DC ⊆ EH (all division chiefs hold eligibility).",
+      "Step 2: DC ∩ CPM ≠ ∅ (some division chiefs are also project managers — at least one exists in the overlap).",
+      "Step 3: Those in DC∩CPM are also in EH (since DC ⊆ EH).",
+      "Step 4: Therefore, the overlap DC∩CPM ⊆ EH → some CPM are EH. Choice B is valid."
+    ],
+    "distractorExplanations": {
+      "A": "Premise 2 says SOME DC are CPM — it does not say all CPM are DC. The subset could go either way.",
+      "C": "Premise 2 directly states some DC ARE CPM — this directly contradicts 'no CPM is a DC.'",
+      "D": "The premises say all DC are EH, not that all EH are CPM. This reversal is an invalid conversion."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Use Venn diagrams: draw DC inside EH (subset). Draw CPM overlapping with DC but extending outside. The overlap region (DC∩CPM) must also lie inside EH. That overlap is the basis for 'some CPM are EH.'"
+    },
+    "tags": [
+      "syllogism",
+      "logical-deduction",
+      "venn-diagram"
+    ]
+  },
+  {
+    "id": "seed-ana-003",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Assumption and Conclusion",
+    "subtopic": "Evaluating Implicit Assumptions",
+    "difficulty": "Medium",
+    "question": "Statement: \"The agency will implement flexible working hours to alleviate employee burnout and increase overall daily output.\"\n\nAssumption I: Employee burnout negatively impacts current output.\nAssumption II: Flexible working hours will be adopted by every government office in the country.\n\nWhich assumption is implicitly made?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Only Assumption I is implicit"
+      },
+      {
+        "id": "B",
+        "text": "Only Assumption II is implicit"
+      },
+      {
+        "id": "C",
+        "text": "Both Assumption I and II are implicit"
+      },
+      {
+        "id": "D",
+        "text": "Neither Assumption I nor II is implicit"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Assumption I is implicit because the statement proposes flexible hours to both alleviate burnout AND increase output. The link between these two goals requires the unstated belief that burnout is currently suppressing output — otherwise, curing burnout would have nothing to do with increasing output. Assumption II claims all government offices nationwide will adopt the policy, but the statement only concerns this specific agency. A policy decision by one agency does not assume or require national adoption, making Assumption II an over-extension and not an implicit assumption of this statement.",
+    "steps": [
+      "Step 1: Test Assumption I — does the statement require 'burnout reduces output' to be valid? Yes: the solution (flexible hours) targets both burnout AND output; connecting them requires assuming burnout hurts output.",
+      "Step 2: Test Assumption II — does the statement require nationwide adoption? No: the statement is scoped to one agency only. National rollout is neither stated nor required.",
+      "Step 3: Only Assumption I is implicitly needed for the statement to be coherent."
+    ],
+    "distractorExplanations": {
+      "B": "Assumption II is not implicit — nationwide adoption is not required by a single agency's policy decision.",
+      "C": "Including Assumption II is an over-extension — it reads more into the scope of the statement than is present.",
+      "D": "Assumption I is clearly implicit — without it, the connection between reducing burnout and increasing output is unexplained."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "An assumption is implicit ONLY if the statement's logic NEEDS it to work. Watch for scope-expansion traps like Assumption II — they extend the statement far beyond its intended context."
+    },
+    "tags": [
+      "assumptions",
+      "critical-thinking",
+      "implicit"
+    ]
+  },
+  {
+    "id": "ana-0041",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Letter-to-Number Cipher (A1Z26)",
+    "difficulty": "Easy",
+    "question": "In a letter-code system: ACE = 1-3-5 and BED = 2-5-4. Using the same code, what is the code for ZIP?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "26-9-16"
+      },
+      {
+        "id": "B",
+        "text": "26-10-16"
+      },
+      {
+        "id": "C",
+        "text": "25-9-16"
+      },
+      {
+        "id": "D",
+        "text": "26-9-17"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This cipher assigns each letter its position number in the alphabet: A=1, B=2, C=3, ..., Z=26. Verification: ACE → A=1, C=3, E=5 → 1-3-5 ✓. BED → B=2, E=5, D=4 → 2-5-4 ✓. Applying the same rule: ZIP → Z=26, I=9, P=16 → 26-9-16. This is the A1Z26 cipher — the most fundamental letter-to-number encoding system.",
+    "steps": [
+      "Step 1: Decode the pattern from ACE=1-3-5: A is the 1st letter, C is the 3rd, E is the 5th. Each letter maps to its alphabetical position number.",
+      "Step 2: Confirm with BED=2-5-4: B=2nd, E=5th, D=4th ✓.",
+      "Step 3: Apply to ZIP: Z is the 26th letter → 26; I is the 9th → 9; P is the 16th → 16.",
+      "Step 4: ZIP = 26-9-16."
+    ],
+    "distractorExplanations": {
+      "B": "Using I=10 confuses I (9th letter) with J (10th letter) — I and J are commonly swapped.",
+      "C": "Using Z=25 confuses Z (26th) with Y (25th) — both are near the end of the alphabet.",
+      "D": "Using P=17 confuses P (16th letter) with Q (17th letter)."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Anchor points for A1Z26: A=1, E=5, J=10, M=13, P=16, T=20, Z=26. Memorize these to quickly place other letters without counting from A each time."
+    },
+    "tags": [
+      "cipher",
+      "A1Z26",
+      "letter-code",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0042",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Letter-Sum Cipher (A1Z26)",
+    "difficulty": "Easy",
+    "question": "In a number code: CAT = 24 and DOG = 26. Using the same code where each letter is replaced by its position in the alphabet and the values are added, what is the code for APE?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "20"
+      },
+      {
+        "id": "B",
+        "text": "22"
+      },
+      {
+        "id": "C",
+        "text": "25"
+      },
+      {
+        "id": "D",
+        "text": "27"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The code adds up the A1Z26 position values of each letter. Verify: CAT → C=3, A=1, T=20 → 3+1+20=24 ✓. DOG → D=4, O=15, G=7 → 4+15+7=26 ✓. For APE: A=1, P=16, E=5 → 1+16+5=22.",
+    "steps": [
+      "Step 1: Identify the rule — each letter = its alphabetical position; sum the values.",
+      "Step 2: Verify: CAT = C(3)+A(1)+T(20) = 24 ✓. DOG = D(4)+O(15)+G(7) = 26 ✓.",
+      "Step 3: Apply to APE: A=1, P=16, E=5.",
+      "Step 4: Sum: 1+16+5 = 22."
+    ],
+    "distractorExplanations": {
+      "A": "20 results from using A=1, P=15 (confusing P with O), E=4 — a 1-position shift error on each letter.",
+      "C": "25 results from using A=1, P=17 (confusing P with Q), E=7 — position errors stacking.",
+      "D": "27 results from miscounting P as 17 (Q's position) and E as 5: 1+17+5+4=... various errors compound."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "To quickly find P's position: A(1)...J(10)...P is 6 letters after J → P=16. Alternatively: count from Z backward — Z=26, Y=25, X=24, W=23, V=22, U=21, T=20, S=19, R=18, Q=17, P=16."
+    },
+    "tags": [
+      "cipher",
+      "A1Z26",
+      "letter-sum",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0043",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Shift Cipher (Caesar Cipher)",
+    "difficulty": "Medium",
+    "question": "In a letter code, each letter is replaced by the letter that appears 3 positions later in the alphabet (wrapping from Z back to A). If CAT is coded as FDW, what is the code for SUN?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "VXQ"
+      },
+      {
+        "id": "B",
+        "text": "TXQ"
+      },
+      {
+        "id": "C",
+        "text": "VXP"
+      },
+      {
+        "id": "D",
+        "text": "UXQ"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This is a Caesar shift cipher with a shift of +3: each letter advances 3 positions in the alphabet. Verify: C(3)+3=F(6), A(1)+3=D(4), T(20)+3=W(23) → FDW ✓. Apply to SUN: S(19)+3=V(22), U(21)+3=X(24), N(14)+3=Q(17) → VXQ.",
+    "steps": [
+      "Step 1: Confirm the shift — CAT→FDW means C→F (+3), A→D (+3), T→W (+3). Shift = +3.",
+      "Step 2: Apply to S: S is the 19th letter; 19+3=22 → V (22nd letter).",
+      "Step 3: Apply to U: U is the 21st letter; 21+3=24 → X (24th letter).",
+      "Step 4: Apply to N: N is the 14th letter; 14+3=17 → Q (17th letter).",
+      "Step 5: SUN → VXQ."
+    ],
+    "distractorExplanations": {
+      "B": "TXQ uses T for S, which applies a shift of +1 instead of +3 to the first letter.",
+      "C": "VXP uses P for N, which would be a shift of +2 on the last letter instead of +3.",
+      "D": "UXQ uses U for S, which applies a shift of +2 instead of +3 to the first letter."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "For shift ciphers, always verify the shift size using the given example first. Do NOT assume the shift is always +3 — it could be any number. Count carefully: C(3) → F(6): difference = 6-3 = 3."
+    },
+    "tags": [
+      "cipher",
+      "caesar-shift",
+      "letter-code",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0044",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Mirror Cipher (Atbash)",
+    "difficulty": "Medium",
+    "question": "In a letter code, each letter is replaced by its alphabetical mirror: A↔Z, B↔Y, C↔X, D↔W, and so on. If ACE is coded as ZXV, what is the code for MAP?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "NZK"
+      },
+      {
+        "id": "B",
+        "text": "NZL"
+      },
+      {
+        "id": "C",
+        "text": "MZK"
+      },
+      {
+        "id": "D",
+        "text": "NZJ"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This is the Atbash cipher: each letter maps to its 'mirror' partner across the alphabet midpoint (A↔Z, B↔Y, C↔X, D↔W, E↔V, F↔U, G↔T, H↔S, I↔R, J↔Q, K↔P, L↔O, M↔N). The formula is: code position = 27 − original position. Verify: A(1)→Z(26) ✓, C(3)→X(24) ✓, E(5)→V(22) ✓ → ZXV ✓. Apply to MAP: M(13)→N(14)=N, A(1)→Z(26)=Z, P(16)→K(11)=K → NZK.",
+    "steps": [
+      "Step 1: Identify the cipher rule — Atbash: position → 27 − position. A(1)→26(Z), B(2)→25(Y), etc.",
+      "Step 2: Verify with ACE: A(1)→27−1=26=Z, C(3)→27−3=24=X, E(5)→27−5=22=V → ZXV ✓.",
+      "Step 3: Apply to M: M=13 → 27−13=14=N.",
+      "Step 4: Apply to A: A=1 → 27−1=26=Z.",
+      "Step 5: Apply to P: P=16 → 27−16=11=K. MAP → NZK."
+    ],
+    "distractorExplanations": {
+      "B": "NZL uses L (12th letter) for P, but 27−16=11=K, not L.",
+      "C": "MZK uses M for M — the cipher requires M to map to N (its mirror), not remain as M.",
+      "D": "NZJ uses J (10th letter) for P; the correct mirror of P(16) is K(11), not J(10)."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Atbash mirror pairs: A↔Z, B↔Y, C↔X, D↔W, E↔V, F↔U, G↔T, H↔S, I↔R, J↔Q, K↔P, L↔O, M↔N. Note M and N are each other's mirrors — they are the two middle letters."
+    },
+    "tags": [
+      "cipher",
+      "atbash",
+      "mirror-cipher",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0045",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Modified Letter-Sum Cipher",
+    "difficulty": "Hard",
+    "question": "In a number code: CAT = 48 and DOG = 52. Using the same rule (sum each letter's alphabetical position, then double the result), what is the code for MAP?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "54"
+      },
+      {
+        "id": "B",
+        "text": "58"
+      },
+      {
+        "id": "C",
+        "text": "60"
+      },
+      {
+        "id": "D",
+        "text": "62"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The rule is: add up each letter's A1Z26 position value, then multiply by 2. Verify: CAT → C(3)+A(1)+T(20)=24; 24×2=48 ✓. DOG → D(4)+O(15)+G(7)=26; 26×2=52 ✓. Apply to MAP: M(13)+A(1)+P(16)=30; 30×2=60.",
+    "steps": [
+      "Step 1: Decode the rule. CAT=48: if letter sum were 24, then 24×2=48 ✓. So rule is: sum positions, then ×2.",
+      "Step 2: Verify with DOG: D=4, O=15, G=7 → 4+15+7=26; 26×2=52 ✓.",
+      "Step 3: Find letter values for MAP: M=13, A=1, P=16.",
+      "Step 4: Sum: 13+1+16=30.",
+      "Step 5: Apply ×2: 30×2=60."
+    ],
+    "distractorExplanations": {
+      "A": "54 would result from MAP sum=27 (using M=12, A=1, P=14 — incorrect positions), then ×2=54.",
+      "B": "58 would result from MAP sum=29 (off by 1 on one letter position), then ×2=58.",
+      "D": "62 results from MAP sum=31 (using P=17, which is Q's position), then ×2=62."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "First decode the formula from the given examples before computing. Here, both examples show sum×2 — but the multiplier could be any number. Always derive the rule, never assume it."
+    },
+    "tags": [
+      "cipher",
+      "A1Z26",
+      "modified-sum",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0046",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Fibonacci Sequence",
+    "difficulty": "Easy",
+    "question": "What is the next number in the series: 1, 1, 2, 3, 5, 8, 13, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "18"
+      },
+      {
+        "id": "B",
+        "text": "20"
+      },
+      {
+        "id": "C",
+        "text": "21"
+      },
+      {
+        "id": "D",
+        "text": "26"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "This is the Fibonacci sequence, where each term is the sum of the two terms immediately before it. Starting: 1+1=2, 1+2=3, 2+3=5, 3+5=8, 5+8=13, 8+13=21. The next term after 13 is 8+13=21. The Fibonacci sequence appears in nature (flower petals, spiral shells) and is one of the most famous number sequences in mathematics.",
+    "steps": [
+      "Step 1: Identify the rule — each term = sum of the previous two terms.",
+      "Step 2: Verify: 1+1=2 ✓, 1+2=3 ✓, 2+3=5 ✓, 3+5=8 ✓, 5+8=13 ✓.",
+      "Step 3: Apply the rule: the two terms before the blank are 8 and 13.",
+      "Step 4: 8+13=21."
+    ],
+    "distractorExplanations": {
+      "A": "18 results from adding only 5+13=18, skipping the correct pairing — you must add the two MOST RECENT terms.",
+      "B": "20 results from adding 7+13, but 7 is not in the sequence — this suggests guessing a midpoint.",
+      "D": "26 results from doubling 13 (applying a ×2 rule instead of the addition rule)."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Fibonacci sequence: each term = previous two terms SUMMED. Memorize: 1,1,2,3,5,8,13,21,34,55,89... The differences between terms are also Fibonacci numbers — a key verification trick."
+    },
+    "tags": [
+      "sequence",
+      "fibonacci",
+      "addition-pattern",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0047",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Alternating Pattern",
+    "difficulty": "Medium",
+    "question": "What is the next number in the series: 2, 4, 3, 5, 4, 6, 5, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "6"
+      },
+      {
+        "id": "B",
+        "text": "7"
+      },
+      {
+        "id": "C",
+        "text": "8"
+      },
+      {
+        "id": "D",
+        "text": "9"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The series alternates between two operations applied in order: add 2, then subtract 1, then add 2, then subtract 1, and so on. The differences are: 4−2=+2, 3−4=−1, 5−3=+2, 4−5=−1, 6−4=+2, 5−6=−1. The pattern of differences is +2, −1, +2, −1, repeating. The last operation applied was −1 (6→5). The next operation is +2, giving 5+2=7.",
+    "steps": [
+      "Step 1: Compute differences: +2, −1, +2, −1, +2, −1.",
+      "Step 2: Identify the alternating rule: even positions get +2, odd positions get −1 (or equivalently, the pattern cycles +2, −1).",
+      "Step 3: The last difference was −1 (from 6 to 5). The next difference in the cycle is +2.",
+      "Step 4: 5 + 2 = 7."
+    ],
+    "distractorExplanations": {
+      "A": "6 results from applying −1 again (not the next step in the +2/−1 alternation).",
+      "C": "8 results from applying +2 twice in a row, misreading the alternating pattern.",
+      "D": "9 results from adding +4, which does not correspond to any part of the alternating rule."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When a sequence seems irregular, write out the differences. If the differences themselves repeat (like +2, −1, +2, −1), you have an alternating pattern — determine where you are in the cycle to find the next step."
+    },
+    "tags": [
+      "sequence",
+      "alternating-pattern",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0048",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Exponential Sequence (Powers of 2)",
+    "difficulty": "Medium",
+    "question": "What is the next number in the series: 2, 4, 8, 16, 32, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "48"
+      },
+      {
+        "id": "B",
+        "text": "56"
+      },
+      {
+        "id": "C",
+        "text": "60"
+      },
+      {
+        "id": "D",
+        "text": "64"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Each term is double the previous term (multiply by 2), producing the powers of 2: 2=2¹, 4=2², 8=2³, 16=2⁴, 32=2⁵, 64=2⁶. This is a geometric sequence with a common ratio of 2. The next term is 32×2=64, which is also 2⁶.",
+    "steps": [
+      "Step 1: Check ratios: 4÷2=2, 8÷4=2, 16÷8=2, 32÷16=2. Constant ratio = 2.",
+      "Step 2: This is a geometric sequence (×2 each step) — the powers of 2.",
+      "Step 3: Each term = 2ⁿ for position n: 2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32, 2⁶=64.",
+      "Step 4: Next term = 32 × 2 = 64."
+    ],
+    "distractorExplanations": {
+      "A": "48 results from adding 16 to 32 (applying an arithmetic step equal to the previous-to-last difference) — the rule is multiply, not add.",
+      "B": "56 has no relation to the doubling pattern.",
+      "C": "60 is also unrelated to the powers-of-2 sequence."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Powers of 2: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024. These appear frequently in technology (data storage, binary) and in CSE pattern questions. Memorize up to 2¹⁰."
+    },
+    "tags": [
+      "sequence",
+      "geometric",
+      "powers-of-2",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0049",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Triangular Numbers",
+    "difficulty": "Hard",
+    "question": "What is the next number in the series: 1, 3, 6, 10, 15, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "18"
+      },
+      {
+        "id": "B",
+        "text": "20"
+      },
+      {
+        "id": "C",
+        "text": "21"
+      },
+      {
+        "id": "D",
+        "text": "25"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "This is the sequence of triangular numbers. The differences between consecutive terms are: 3−1=2, 6−3=3, 10−6=4, 15−10=5 — consecutive integers increasing by 1. The next difference is 6, giving 15+6=21. Each triangular number can be computed as T(n)=n(n+1)/2: T(1)=1, T(2)=3, T(3)=6, T(4)=10, T(5)=15, T(6)=6×7/2=21.",
+    "steps": [
+      "Step 1: Find differences: +2, +3, +4, +5 — increasing by 1 each step.",
+      "Step 2: The next difference = 5+1 = 6.",
+      "Step 3: Next term = 15+6 = 21.",
+      "Step 4: Verify with formula T(n)=n(n+1)/2: T(6)=6×7÷2=42÷2=21 ✓."
+    ],
+    "distractorExplanations": {
+      "A": "18 results from adding 3 (same as the very first difference), not the continuing next difference of 6.",
+      "B": "20 results from adding 5 again (repeating the last difference instead of increasing it to 6).",
+      "D": "25 = 5², which might seem appealing if you confuse this with perfect squares, but the triangular sequence is not the same as perfect squares."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Triangular numbers: 1, 3, 6, 10, 15, 21, 28, 36, 45, 55. The differences increase by 1 each step (2, 3, 4, 5, 6...). Formula: T(n) = n(n+1)/2. Also note: the sum of any two consecutive triangular numbers is a perfect square!"
+    },
+    "tags": [
+      "sequence",
+      "triangular-numbers",
+      "second-difference",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0050",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Basic Categorical Syllogism",
+    "difficulty": "Easy",
+    "question": "All government employees who complete 15 years of service are entitled to early retirement benefits. Maria has completed 18 years of government service. Which conclusion must be true?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Maria is the most senior employee in her office."
+      },
+      {
+        "id": "B",
+        "text": "Maria has already retired."
+      },
+      {
+        "id": "C",
+        "text": "Maria is entitled to early retirement benefits."
+      },
+      {
+        "id": "D",
+        "text": "Maria will retire within the next year."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "This is a straightforward universal affirmative syllogism. Major premise: All employees with 15+ years of service are entitled to early retirement benefits. Minor premise: Maria has completed 18 years, which exceeds the 15-year threshold. Conclusion: Maria falls within the set of employees entitled to early retirement benefits, so she must be entitled to them. The other choices introduce assumptions about seniority, current status, or future plans that are not stated in the premises.",
+    "steps": [
+      "Step 1: Major premise — All government employees with ≥15 years → entitled to early retirement.",
+      "Step 2: Minor premise — Maria has 18 years ≥ 15 years → Maria belongs to the qualifying group.",
+      "Step 3: Apply the universal rule: Maria must be entitled to early retirement benefits."
+    ],
+    "distractorExplanations": {
+      "A": "Seniority ranking among employees is not mentioned in the premises — having 18 years does not make her the most senior.",
+      "B": "Being entitled to early retirement does not mean she has already retired — entitlement and action are different.",
+      "D": "Future retirement plans are not addressed by the premises — nothing about timeline is given."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "All A → B, and X qualifies as A, therefore X gets B. This is modus ponens with universal premises — the conclusion is certain, not probable. 'Must be true' is the signal that a deductive answer is required."
+    },
+    "tags": [
+      "logical-deduction",
+      "syllogism",
+      "modus-ponens",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0051",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Logic Grid Puzzle",
+    "difficulty": "Medium",
+    "passage": "Five employees — Ana, Ben, Carlo, Dina, and Emil — are assigned to offices numbered 101 through 105 (one person per office). The following clues apply:\n1. Carlo is in office 103.\n2. Ana's office number is lower than Ben's office number.\n3. Dina is in office 101.\n4. Emil is not in office 102.\n5. Ben is in office 105.",
+    "question": "Which office is assigned to Ana?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Office 102"
+      },
+      {
+        "id": "B",
+        "text": "Office 103"
+      },
+      {
+        "id": "C",
+        "text": "Office 104"
+      },
+      {
+        "id": "D",
+        "text": "Office 105"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Clues 1, 3, and 5 fix three employees: Dina=101, Carlo=103, Ben=105. The remaining offices are 102 and 104, to be assigned to Ana and Emil. Clue 4 says Emil is NOT in office 102, so Emil must be in office 104 and Ana in office 102. Verification: Ana(102) < Ben(105) ✓ (satisfies Clue 2). Full assignment: Dina=101, Ana=102, Carlo=103, Emil=104, Ben=105.",
+    "steps": [
+      "Step 1: Apply direct clues — Dina=101, Carlo=103, Ben=105.",
+      "Step 2: Offices 102 and 104 remain for Ana and Emil.",
+      "Step 3: Clue 4: Emil ≠ 102 → Emil=104, which forces Ana=102.",
+      "Step 4: Verify Clue 2: Ana(102) < Ben(105) ✓. All clues satisfied."
+    ],
+    "distractorExplanations": {
+      "B": "Office 103 is assigned to Carlo (Clue 1) — Ana cannot be in 103.",
+      "C": "Office 104 goes to Emil (since Emil cannot be in 102) — Ana must take 102.",
+      "D": "Office 105 is assigned to Ben (Clue 5) — Ana cannot be in 105."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "For logic grid puzzles, always start with direct clues (person = specific location) to eliminate options. Then use negative clues (not in 102) to force assignments among the remaining possibilities."
+    },
+    "tags": [
+      "logical-deduction",
+      "logic-grid",
+      "elimination",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0052",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Hypothetical Syllogism (Chain Reasoning)",
+    "difficulty": "Hard",
+    "question": "Consider the following statements:\n1. If the budget is approved, the project begins.\n2. If the project begins, the team is assembled.\n3. The budget was not approved.\n\nWhich conclusion is valid?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The team was assembled."
+      },
+      {
+        "id": "B",
+        "text": "The project did not begin and the team was not assembled."
+      },
+      {
+        "id": "C",
+        "text": "The project began even though the budget was not approved."
+      },
+      {
+        "id": "D",
+        "text": "No conclusion can be drawn about the project or the team."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The two conditional rules form a chain: budget approved (P) → project begins (Q) → team assembled (R). Statement 3 gives NOT P (budget was not approved). Denying the antecedent (P) does NOT allow us to conclude NOT Q or NOT R — this is the fallacy of denying the antecedent. The project might have begun for a different reason (a special authorization, a donor, etc.), and the team might have been assembled regardless. We cannot validly conclude anything about Q or R from NOT P alone.",
+    "steps": [
+      "Step 1: Chain: P→Q→R (budget→project→team).",
+      "Step 2: Given: NOT P (budget not approved).",
+      "Step 3: Test the logic: P→Q does NOT mean NOT P→NOT Q. The project might start without the budget approval.",
+      "Step 4: Since we cannot conclude NOT Q, we also cannot conclude NOT R.",
+      "Step 5: No valid conclusion can be drawn — only a probability, not a certainty."
+    ],
+    "distractorExplanations": {
+      "A": "We cannot guarantee the team was assembled — the conditionals only run forward from P, and P is false.",
+      "B": "Concluding 'project did not begin AND team not assembled' commits the fallacy of denying the antecedent — a classic CSE trap.",
+      "C": "While logically possible, we cannot assert this as a valid deductive conclusion from the premises alone — it requires an additional premise."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Denying the antecedent is the #1 logical fallacy in CSE exams: P→Q, NOT P → does NOT guarantee NOT Q. The conditional only guarantees Q when P is present — NOT P leaves Q's truth value unknown."
+    },
+    "tags": [
+      "logical-deduction",
+      "conditional-chain",
+      "fallacy",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0053",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Linear Seating with Consecutive Constraint",
+    "difficulty": "Easy",
+    "passage": "Five students — A, B, C, D, and E — sit in seats numbered 1 (leftmost) to 5 (rightmost). A sits in seat 1. C sits immediately to the right of B. E sits in seat 5. D sits more than one seat away from E.",
+    "question": "Who sits in seat 3?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A"
+      },
+      {
+        "id": "B",
+        "text": "B"
+      },
+      {
+        "id": "C",
+        "text": "C"
+      },
+      {
+        "id": "D",
+        "text": "D"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "A=1 and E=5 are anchors. The B–C pair (C immediately right of B) must occupy two of the remaining seats: 2, 3, and 4. D must also be in that group, with |D's seat − E's seat(5)| > 1, meaning D is in seat 3 or lower (not seats 4 or 5). The only way to arrange B, C, D in seats 2, 3, 4 with C immediately right of B and D not adjacent to E: place D=2, B=3, C=4 — but then |D(2)−E(5)|=3 > 1 ✓ AND B–C pair (3,4) is consecutive ✓. Wait — let me re-check all placements. B–C options in seats 2–4: (B=2,C=3) or (B=3,C=4). If B=2,C=3: D=4. |D(4)−E(5)|=1 — D is adjacent to E ✗. If B=3,C=4: D=2. |D(2)−E(5)|=3 > 1 ✓. Valid arrangement: A(1), D(2), B(3), C(4), E(5). Seat 3 = B.",
+    "steps": [
+      "Step 1: Anchor A=1 and E=5. Remaining seats 2,3,4 for B, C, D.",
+      "Step 2: B–C pair: C is immediately right of B → consecutive in order [B, C].",
+      "Step 3: Try B=2, C=3: D must be in seat 4. |D(4)−E(5)|=1 — adjacent to E ✗.",
+      "Step 4: Try B=3, C=4: D must be in seat 2. |D(2)−E(5)|=3 > 1 ✓.",
+      "Step 5: Valid arrangement: A(1), D(2), B(3), C(4), E(5). Seat 3 = B."
+    ],
+    "distractorExplanations": {
+      "A": "A is in seat 1 (the anchor), not seat 3.",
+      "C": "C sits immediately right of B. In the valid arrangement B=3, so C=4, not seat 3.",
+      "D": "D must be far from E (seat 5) — placing D in seat 4 would make D adjacent to E, violating the constraint. D ends up in seat 2."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "For linear seating, list all possible placements of the consecutive pair first, then check constraints for the remaining person. Eliminating invalid cases quickly narrows the answer."
+    },
+    "tags": [
+      "ordering",
+      "seating",
+      "consecutive-pair",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0054",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Scheduling with Consecutive Constraints",
+    "difficulty": "Medium",
+    "passage": "Six tasks — A, B, C, D, E, and F — are scheduled one per day from Monday to Saturday. The following conditions apply:\n1. C is scheduled on Wednesday.\n2. F is scheduled on Saturday.\n3. B is scheduled the day immediately after A.\n4. E is scheduled the day immediately after D.\n5. F is not scheduled on a day adjacent to E.",
+    "question": "On which day is Task A scheduled?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Monday"
+      },
+      {
+        "id": "B",
+        "text": "Tuesday"
+      },
+      {
+        "id": "C",
+        "text": "Thursday"
+      },
+      {
+        "id": "D",
+        "text": "Friday"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Clues 1 and 2 fix C=Wednesday and F=Saturday. Remaining days Monday, Tuesday, Thursday, Friday are for A, B, D, E. The [A,B] consecutive pair and [D,E] consecutive pair must fit in Monday–Friday (excluding Wednesday). F=Saturday is adjacent to Friday only, so E ≠ Friday (Clue 5: F not adjacent to E means E ≠ Friday). Among Mon/Tue/Thu/Fri: consecutive day pairs are Mon–Tue and Thu–Fri. Since E ≠ Friday, the [D,E] pair cannot be Thu–Fri. So [D,E] = Mon–Tue (D=Mon, E=Tue) and [A,B] = Thu–Fri (A=Thu, B=Fri). Check: F(Sat) adjacent to B(Fri) not E — F not adjacent to E(Tue) ✓. Full schedule: D(Mon), E(Tue), C(Wed), A(Thu), B(Fri), F(Sat).",
+    "steps": [
+      "Step 1: Fix C=Wednesday and F=Saturday. Remaining days: Mon, Tue, Thu, Fri for A, B, D, E.",
+      "Step 2: Consecutive day pairs available (excluding Wed): Mon–Tue and Thu–Fri.",
+      "Step 3: Clue 5: F(Sat) not adjacent to E → E ≠ Friday.",
+      "Step 4: [D,E] pair cannot be Thu–Fri (since E would be Friday ✗). So D=Mon, E=Tue.",
+      "Step 5: [A,B] takes Thu–Fri: A=Thursday, B=Friday. Full schedule: D,E,C,A,B,F."
+    ],
+    "distractorExplanations": {
+      "A": "Monday is taken by D in the only valid schedule — the [D,E] consecutive pair must start Monday.",
+      "B": "Tuesday is taken by E — placing A on Tuesday would displace E without a valid alternative for the [D,E] pair.",
+      "D": "Friday is taken by B — placing A on Friday would require B on Saturday, but Saturday is F's fixed day."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "With two consecutive pairs and two anchor points, first identify which day pairs are available, then use elimination constraints (like 'E not on Friday') to assign each pair to its only valid slot."
+    },
+    "tags": [
+      "ordering",
+      "scheduling",
+      "consecutive-constraint",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0055",
+    "examLevel": "Both",
+    "subject": "Analytical Reasoning",
+    "topic": "Ordering and Arrangement",
+    "subtopic": "Ranking with Consecutive Constraint",
+    "difficulty": "Hard",
+    "passage": "Five athletes — P, Q, R, S, and T — compete in a race and are ranked from 1st (fastest) to 5th (slowest), with no ties. The following conditions apply:\n1. R finishes 3rd.\n2. T finishes before S.\n3. Q finishes last.\n4. T finishes immediately after P (P finishes one place ahead of T).",
+    "question": "Who finishes 1st?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "P"
+      },
+      {
+        "id": "B",
+        "text": "Q"
+      },
+      {
+        "id": "C",
+        "text": "S"
+      },
+      {
+        "id": "D",
+        "text": "T"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "R=3rd and Q=5th are anchored. Positions 1, 2, and 4 remain for P, S, and T. T is immediately after P (P then T in consecutive places), and T is before S. Possible consecutive pairs for [P,T] in positions 1,2,4: (1,2) — valid since they are consecutive. (2,4) is not consecutive (positions 3 is already R). So P=1st and T=2nd. S fills the remaining position 4th. Check T(2nd) before S(4th) ✓. Full ranking: P(1st), T(2nd), R(3rd), S(4th), Q(5th).",
+    "steps": [
+      "Step 1: Anchor R=3rd and Q=5th. Remaining positions 1, 2, 4 for P, S, T.",
+      "Step 2: [P, T] must be consecutive (T immediately after P). Available consecutive pairs from {1,2,4}: only (1,2).",
+      "Step 3: So P=1st, T=2nd. S takes the remaining position 4th.",
+      "Step 4: Verify T(2nd) < S(4th) in ranking → T finishes before S ✓.",
+      "Step 5: Full ranking: P(1), T(2), R(3), S(4), Q(5). P finishes 1st."
+    ],
+    "distractorExplanations": {
+      "B": "Q finishes last (5th) as stated in Clue 3 — Q cannot finish 1st.",
+      "C": "S finishes 4th in the only valid arrangement — S is not 1st.",
+      "D": "T finishes 2nd, immediately after P who is 1st — T cannot be 1st as P must precede T."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "When you have a consecutive pair constraint and multiple candidate positions, check which pairs of remaining positions are actually numerically consecutive. Positions 2 and 4 are NOT consecutive (3 is between them and it's taken) — this is the key insight that forces P=1, T=2."
+    },
+    "tags": [
+      "ordering",
+      "ranking",
+      "consecutive-constraint",
+      "hard"
+    ]
+  }
+]

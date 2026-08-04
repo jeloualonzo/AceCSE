@@ -1,23 +1,19 @@
 import type { Question } from '@/types';
-import analytical from '../../content/questions/analytical.json';
-import clerical from '../../content/questions/clerical.json';
-import clericalSupplement from '../../content/questions/clerical-supplement.json';
-import general from '../../content/questions/general.json';
-import numerical from '../../content/questions/numerical.json';
-import seed from '../../content/questions/seed.json';
-import verbal from '../../content/questions/verbal.json';
 
 /**
  * The validated local question bank.
  *
- * Content lives in /content/questions/*.json and is validated both at build
- * time (`npm run validate:questions`) and defensively here at load time.
- * Invalid items are dropped (never silently mangled) with a console warning
- * in development.
- *
- * As authored subject files land in /content/questions they are imported and
- * concatenated below.
+ * Content lives in modular datasets under /content/questions/<subject>/*.json
+ * and is discovered automatically via glob import — adding a new dataset file
+ * requires no code change. Everything is validated at build time
+ * (`npm run validate:questions`) and defensively here at load time; invalid
+ * items are dropped (never silently mangled) with a console warning in dev.
  */
+
+const modules = import.meta.glob<unknown[]>('../../content/questions/**/*.json', {
+  eager: true,
+  import: 'default',
+});
 
 const OPTION_IDS = new Set(['A', 'B', 'C', 'D']);
 
@@ -49,10 +45,11 @@ function isValidQuestion(q: unknown): q is Question {
   );
 }
 
-function loadBank(sources: unknown[][]): Question[] {
+function loadBank(sources: [string, unknown[]][]): Question[] {
   const seen = new Set<string>();
   const bank: Question[] = [];
-  for (const source of sources) {
+  for (const [, source] of sources) {
+    if (!Array.isArray(source)) continue;
     for (const raw of source) {
       if (!isValidQuestion(raw)) {
         if (import.meta.env.DEV) {
@@ -73,15 +70,9 @@ function loadBank(sources: unknown[][]): Question[] {
   return bank;
 }
 
-export const QUESTION_BANK: readonly Question[] = loadBank([
-  numerical as unknown[],
-  analytical as unknown[],
-  verbal as unknown[],
-  clerical as unknown[],
-  clericalSupplement as unknown[],
-  general as unknown[],
-  seed as unknown[],
-]);
+export const QUESTION_BANK: readonly Question[] = loadBank(
+  Object.entries(modules).sort(([a], [b]) => a.localeCompare(b))
+);
 
 /** Fast id → question lookup. */
 export const QUESTION_INDEX: ReadonlyMap<string, Question> = new Map(

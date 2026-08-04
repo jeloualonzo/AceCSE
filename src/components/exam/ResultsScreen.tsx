@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import {
   Award,
-  BookOpen,
   CheckCircle2,
   ChevronDown,
   ChevronUp,
@@ -11,6 +10,7 @@ import {
   XCircle,
 } from 'lucide-react';
 import type { Attempt, Question } from '@/types';
+import { ExplanationPanel } from './ExplanationPanel';
 import { PASSING_PERCENTAGE } from '@/config/exam';
 import { formatDuration } from '@/lib/time';
 
@@ -364,19 +364,8 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                           })}
                         </div>
 
-                        <div className="p-4 rounded-xl bg-slate-800/80 border border-slate-700/80 text-xs sm:text-sm space-y-1">
-                          <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-emerald-400 text-xs">
-                            <BookOpen className="w-3.5 h-3.5" aria-hidden="true" />
-                            <span>Explanation</span>
-                          </div>
-                          <p className="text-slate-200 leading-relaxed pt-1">
-                            {question.explanation}
-                          </p>
-                          {question.reference && (
-                            <p className="text-slate-400 text-xs pt-1">
-                              Reference: {question.reference}
-                            </p>
-                          )}
+                        <div className="p-4 sm:p-5 rounded-xl bg-slate-800/80 border border-slate-700/80">
+                          <ExplanationPanel question={question} selectedOptionId={item.selected} />
                         </div>
                       </>
                     )}

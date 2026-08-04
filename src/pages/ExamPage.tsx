@@ -33,6 +33,7 @@ export interface ExamLaunchRequest {
 }
 
 type Stage =
+  | { name: 'conflict'; request: ExamLaunchRequest; saved: ExamSession }
   | { name: 'pre'; session: ExamSession }
   | { name: 'active'; session: ExamSession }
   | { name: 'results'; attempt: Attempt; launch: ExamLaunchRequest };
@@ -84,6 +85,13 @@ export const ExamPage: React.FC = () => {
     if (stage !== null) return;
     const request = (location.state as { launch?: ExamLaunchRequest } | null)?.launch;
     if (request) {
+      // Never silently destroy an in-progress session: ask first.
+      const existing = loadActiveSession();
+      if (existing && (existing.deadlineAt === null || existing.deadlineAt > Date.now())) {
+        setStage({ name: 'conflict', request, saved: existing });
+        window.history.replaceState({}, '');
+        return;
+      }
       try {
         const session = buildFromRequest(request);
         setStage(request.kind === 'simulation' ? { name: 'pre', session } : { name: 'active', session });
@@ -119,7 +127,8 @@ export const ExamPage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const session = stage && stage.name !== 'results' ? stage.session : null;
+  const session =
+    stage && (stage.name === 'pre' || stage.name === 'active') ? stage.session : null;
 
   const finishSession = useCallback(
     (finished: ExamSession, completedAt: number = Date.now()) => {
@@ -222,6 +231,61 @@ export const ExamPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center" role="status" aria-label="Loading">
         <div className="w-8 h-8 rounded-full border-2 border-slate-300 border-t-emerald-600 animate-spin" />
+      </div>
+    );
+  }
+
+  if (stage.name === 'conflict') {
+    const resumeSaved = () => {
+      const saved = stage.saved;
+      setStage({ name: 'active', session: saved });
+      const firstUnanswered = saved.questionIds.findIndex((id) => !saved.answers[id]);
+      setCurrentIndex(firstUnanswered === -1 ? saved.questionIds.length - 1 : firstUnanswered);
+    };
+    const discardAndStart = () => {
+      clearActiveSession();
+      try {
+        const session = buildFromRequest(stage.request);
+        setStage(
+          stage.request.kind === 'simulation' ? { name: 'pre', session } : { name: 'active', session }
+        );
+        if (stage.request.kind === 'practice') saveActiveSession(session);
+        setCurrentIndex(0);
+      } catch {
+        navigate('/app/dashboard', { replace: true });
+      }
+    };
+    const savedMode = stage.saved.config.mode === 'simulation' ? 'simulation' : 'practice session';
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 font-sans">
+        <div
+          className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 max-w-md w-full"
+          role="alertdialog"
+          aria-labelledby="conflict-title"
+        >
+          <h1 id="conflict-title" className="text-lg font-extrabold text-slate-900 mb-2">
+            You have an unfinished {savedMode}
+          </h1>
+          <p className="text-sm text-slate-600 leading-relaxed mb-6">
+            {Object.keys(stage.saved.answers).length} of {stage.saved.questionIds.length} questions
+            answered{stage.saved.deadlineAt ? ' — its timer is still running' : ''}. Starting a new
+            session will discard it permanently.
+          </p>
+          <div className="space-y-3">
+            <button
+              onClick={resumeSaved}
+              className="w-full min-h-[48px] rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
+            >
+              Resume Unfinished Session
+            </button>
+            <button
+              onClick={discardAndStart}
+              className="w-full min-h-[48px] rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
+            >
+              Discard It and Start New
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

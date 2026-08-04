@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check, X, BookOpen, Lightbulb } from 'lucide-react';
 import type { Question, OptionId } from '@/types';
+import { ExplanationPanel } from './ExplanationPanel';
 
 export interface QuestionCardProps {
   question: Question;
@@ -127,29 +128,26 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         })}
       </div>
 
-      {/* Instant explanation (practice mode) */}
+      {/* Instant structured explanation (practice mode) */}
       {isRevealed && (
         <div
-          className={`p-4 sm:p-5 rounded-xl border text-xs sm:text-sm space-y-2 ${
+          className={`p-4 sm:p-5 rounded-xl border ${
             isCorrect
-              ? 'bg-emerald-950/40 border-emerald-500/40'
+              ? 'bg-emerald-950/30 border-emerald-500/40'
               : 'bg-slate-800/80 border-slate-700/80'
           }`}
           role="status"
           aria-live="polite"
         >
           <div
-            className={`flex items-center gap-1.5 font-bold uppercase tracking-wider text-xs ${
+            className={`flex items-center gap-1.5 font-bold uppercase tracking-wider text-xs mb-3 ${
               isCorrect ? 'text-emerald-400' : 'text-rose-400'
             }`}
           >
             <Lightbulb className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>{isCorrect ? 'Correct' : `Incorrect — the answer is ${question.correctOptionId}`}</span>
+            <span>{isCorrect ? 'Correct' : 'Not quite — here is the full breakdown'}</span>
           </div>
-          <p className="text-slate-200 leading-relaxed">{question.explanation}</p>
-          {question.reference && (
-            <p className="text-slate-400 text-xs">Reference: {question.reference}</p>
-          )}
+          <ExplanationPanel question={question} selectedOptionId={selectedOptionId} />
         </div>
       )}
     </div>
