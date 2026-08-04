@@ -25,7 +25,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4 sm:space-y-6">
-      {/* Meta row: subject/topic badges + flag toggle */}
+      {/* Meta row: subject and topic badges */}
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2 flex-wrap min-w-0">
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700/80">

@@ -6,7 +6,7 @@ lie to the user**. No fake data, no inflated question counts, no fabricated prog
 
 ## Current State (2026-08)
 
-- Full rewrite from the original AI Studio scaffold: real routing, real auth, real persistence.
+- Full rewrite from the original scaffold: real routing, real auth, real persistence.
 - Question bank: ~239 validated original questions across all five subjects
   (`content/questions/*.json`). Full 170-item Professional simulation is unlocked; the
   Subprofessional full exam stays locked until Clerical Ability supply reaches 35.
