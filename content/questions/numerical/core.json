@@ -1,0 +1,3384 @@
+[
+  {
+    "id": "num-0001",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Fractions",
+    "subtopic": "Addition of Fractions",
+    "difficulty": "Easy",
+    "question": "What is 3/8 + 5/12?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "19/24"
+      },
+      {
+        "id": "B",
+        "text": "1/2"
+      },
+      {
+        "id": "C",
+        "text": "8/20"
+      },
+      {
+        "id": "D",
+        "text": "7/12"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "To add fractions, you need a common denominator — a number that both 8 and 12 divide into evenly. The least common multiple of 8 and 12 is 24. Convert each fraction: 3/8 becomes 9/24 (multiply top and bottom by 3), and 5/12 becomes 10/24 (multiply top and bottom by 2). Now that the denominators match, simply add the numerators: 9 + 10 = 19. The answer is 19/24, which is already in its simplest form since 19 is prime.",
+    "steps": [
+      "Find the least common multiple (LCM) of 8 and 12: multiples of 8 are 8, 16, 24; multiples of 12 are 12, 24 — so LCM = 24.",
+      "Convert 3/8 to 24ths: 3/8 × 3/3 = 9/24.",
+      "Convert 5/12 to 24ths: 5/12 × 2/2 = 10/24.",
+      "Add the numerators: 9/24 + 10/24 = 19/24. The denominator stays 24."
+    ],
+    "distractorExplanations": {
+      "B": "1/2 = 12/24, which would only be correct if the fractions were added incorrectly — perhaps by averaging the numerators (3+5=8) and the denominators (8+12=20) and simplifying 8/20 = 2/5, which is still wrong. A common error is to add numerators and denominators directly.",
+      "C": "8/20 results from the classic mistake of adding numerators together (3+5=8) and denominators together (8+12=20) — a method that does NOT work for fraction addition.",
+      "D": "7/12 appears if someone only converts one fraction and adds incorrectly, or picks the wrong common denominator. Always convert both fractions to the same denominator before adding."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "LCM of two numbers = (first × second) ÷ GCD. Here GCD(8,12)=4, so LCM = 8×12÷4 = 24. Use this to find common denominators quickly."
+    },
+    "tags": [
+      "fractions",
+      "addition",
+      "basic-operations",
+      "LCM"
+    ]
+  },
+  {
+    "id": "num-0002",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Decimals",
+    "subtopic": "Multiplication of Decimals",
+    "difficulty": "Easy",
+    "question": "What is 4.25 × 3.6?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "14.7"
+      },
+      {
+        "id": "B",
+        "text": "15.9"
+      },
+      {
+        "id": "C",
+        "text": "16.2"
+      },
+      {
+        "id": "D",
+        "text": "15.3"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The cleanest way to multiply decimals is to first ignore the decimal points, multiply the whole numbers, and then count the total decimal places. Multiply 425 × 36: 425 × 36 = 425 × 30 + 425 × 6 = 12,750 + 2,550 = 15,300. Now count decimal places: 4.25 has 2 decimal places and 3.6 has 1, making 3 total. Place the decimal 3 digits from the right: 15,300 → 15.300 = 15.3. Many test-takers get tripped up by placing the decimal one position off, which is why 14.7, 15.9, and 16.2 are tempting wrong answers.",
+    "steps": [
+      "Remove the decimal points and multiply as whole numbers: 425 × 36.",
+      "Compute 425 × 30 = 12,750 and 425 × 6 = 2,550.",
+      "Add the partial products: 12,750 + 2,550 = 15,300.",
+      "Count total decimal places: 4.25 has 2 places; 3.6 has 1 place — total = 3.",
+      "Place the decimal 3 digits from the right in 15300: result = 15.300 = 15.3."
+    ],
+    "distractorExplanations": {
+      "A": "14.7 would arise if the decimal is placed 4 positions from the right instead of 3, giving 1.530 — then doubling it in an error. More likely it comes from an arithmetic slip in the multiplication step.",
+      "B": "15.9 could result from rounding or computing 4.25 × 3.75 instead of 3.6, or from an arithmetic error such as computing 425 × 37 instead of 425 × 36.",
+      "C": "16.2 comes from rounding 4.25 up to 4.5 before multiplying: 4.5 × 3.6 = 16.2 — a shortcut that introduces error when the original values are not rounded."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Always count decimal places in BOTH factors and add them together. 4.25 (2 places) × 3.6 (1 place) = answer with 3 decimal places total."
+    },
+    "tags": [
+      "decimals",
+      "multiplication",
+      "basic-operations"
+    ]
+  },
+  {
+    "id": "num-0003",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Order of Operations",
+    "subtopic": "PEMDAS/BODMAS",
+    "difficulty": "Easy",
+    "question": "Evaluate: 48 ÷ (6 – 2) × 3 + 5",
+    "choices": [
+      {
+        "id": "A",
+        "text": "23"
+      },
+      {
+        "id": "B",
+        "text": "41"
+      },
+      {
+        "id": "C",
+        "text": "44"
+      },
+      {
+        "id": "D",
+        "text": "38"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Order of operations (PEMDAS: Parentheses, Exponents, Multiplication/Division left-to-right, Addition/Subtraction left-to-right) is the rule that tells us the sequence for solving expressions. Start inside the parenthesis: 6 – 2 = 4. The expression is now 48 ÷ 4 × 3 + 5. Division and multiplication are equal in priority and go left-to-right: 48 ÷ 4 = 12, then 12 × 3 = 36. Finally, add: 36 + 5 = 41. A very common mistake is doing 4 × 3 = 12 first and then dividing 48 ÷ 12 = 4, which gives the wrong answer of 17.",
+    "steps": [
+      "Parentheses first: 6 – 2 = 4. Expression becomes 48 ÷ 4 × 3 + 5.",
+      "Division before multiplication (left-to-right): 48 ÷ 4 = 12. Expression becomes 12 × 3 + 5.",
+      "Multiplication next: 12 × 3 = 36. Expression becomes 36 + 5.",
+      "Addition last: 36 + 5 = 41."
+    ],
+    "distractorExplanations": {
+      "A": "23 results from computing multiplication before division: 48 ÷ (4 × 3) + 5 = 48 ÷ 12 + 5 = 4 + 5 = 9 — not 23. Alternatively, 23 can come from ignoring the parentheses and computing incorrectly left-to-right.",
+      "C": "44 results from doing 48 ÷ 4 = 12, then adding 5 before multiplying: (12 + 5) × 3 = 17 × 3 — that gives 51, not 44. More likely, 44 arises from computing 3 + 5 = 8 first, then 48 ÷ 4 × 8 = 96 — another order-of-operations error.",
+      "D": "38 results from computing the division correctly (48 ÷ 4 = 12) but then adding 5 before multiplying by 3: 12 + 5 = 17, then 17 × 3 = 51 — actually 51 not 38; or from a subtraction slip after ignoring part of the expression."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "When multiplication and division appear side by side with no parentheses, work strictly left-to-right. '48 ÷ 4 × 3' means (48 ÷ 4) × 3 = 36, NOT 48 ÷ (4 × 3) = 4."
+    },
+    "tags": [
+      "order-of-operations",
+      "basic-operations",
+      "PEMDAS"
+    ]
+  },
+  {
+    "id": "num-0004",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Fractions",
+    "subtopic": "Subtraction of Mixed Numbers",
+    "difficulty": "Medium",
+    "question": "What is 7¾ – 3⅝?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4 3/8"
+      },
+      {
+        "id": "B",
+        "text": "4 1/8"
+      },
+      {
+        "id": "C",
+        "text": "3 7/8"
+      },
+      {
+        "id": "D",
+        "text": "4 5/8"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "With mixed numbers, the easiest approach is to convert to improper fractions before subtracting. For 7¾: multiply the whole number by the denominator and add the numerator: 7×4 + 3 = 31, so 7¾ = 31/4. For 3⅝: 3×8 + 5 = 29, so 3⅝ = 29/8. Now find a common denominator — 8. Convert 31/4 to 62/8. Subtract: 62/8 – 29/8 = 33/8. Convert back: 33 ÷ 8 = 4 remainder 1, so 33/8 = 4 1/8. Notice that simply subtracting whole parts (7–3=4) and fraction parts (3/4 – 5/8) separately requires borrowing when the second fraction is larger, which is a common source of error.",
+    "steps": [
+      "Convert 7¾ to an improper fraction: (7 × 4) + 3 = 31, so 7¾ = 31/4.",
+      "Convert 3⅝ to an improper fraction: (3 × 8) + 5 = 29, so 3⅝ = 29/8.",
+      "Find a common denominator (LCD of 4 and 8 is 8): 31/4 = 62/8.",
+      "Subtract: 62/8 – 29/8 = 33/8.",
+      "Convert back to a mixed number: 33 ÷ 8 = 4 remainder 1, so the answer is 4 1/8."
+    ],
+    "distractorExplanations": {
+      "A": "4 3/8 comes from computing 7 – 3 = 4 for the whole part, and then subtracting 5/8 – 3/4 (reversing the order) to get 5/8 – 6/8 = –1/8 and mishandling the negative sign by taking the absolute value to get 1/8... but 3/8 would require 6/8 – 3/8. This is a borrowing confusion error.",
+      "C": "3 7/8 occurs when someone borrows 1 from the whole to handle the fractions but borrows incorrectly: 6 + (4/4 + 3/4) – 3 – 5/8 = 3 + 11/8 – 5/8 — a common mis-step in the regrouping process.",
+      "D": "4 5/8 results from subtracting the whole numbers correctly (7–3=4) but then adding the fractions (3/4 + 5/8 = 6/8 + 5/8 = 11/8) instead of subtracting, which is a sign-direction error."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "Converting mixed numbers to improper fractions before operating avoids the tricky 'borrowing' step. Always convert first, operate, then convert back."
+    },
+    "tags": [
+      "fractions",
+      "mixed-numbers",
+      "subtraction"
+    ]
+  },
+  {
+    "id": "num-0005",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Decimals",
+    "subtopic": "Division by Decimals",
+    "difficulty": "Medium",
+    "question": "What is 56.7 ÷ 0.035?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1,620"
+      },
+      {
+        "id": "B",
+        "text": "16,200"
+      },
+      {
+        "id": "C",
+        "text": "162"
+      },
+      {
+        "id": "D",
+        "text": "1,720"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Dividing by a decimal is made simple by eliminating the decimal in the divisor. Since 0.035 has three decimal places, multiply both the dividend and divisor by 1,000: 56.7 × 1,000 = 56,700 and 0.035 × 1,000 = 35. Now divide: 56,700 ÷ 35. You can simplify by dividing both by 5: 11,340 ÷ 7 = 1,620. The key insight is that multiplying both numbers by the same value does not change the quotient — it's the same as moving the decimal point to the right in both numbers simultaneously.",
+    "steps": [
+      "Identify the number of decimal places in the divisor: 0.035 has 3 decimal places.",
+      "Multiply both dividend and divisor by 10³ = 1,000: 56.7 × 1,000 = 56,700 and 0.035 × 1,000 = 35.",
+      "Divide: 56,700 ÷ 35.",
+      "Simplify: divide both by 5 → 11,340 ÷ 7 = 1,620."
+    ],
+    "distractorExplanations": {
+      "B": "16,200 results from multiplying by 10,000 instead of 1,000 (adding an extra zero), essentially treating 0.035 as 0.0035.",
+      "C": "162 results from only multiplying by 100 (two decimal places) instead of 1,000 (three decimal places), so the divisor becomes 3.5 instead of 35, and 56,700 ÷ 350 = 162.",
+      "D": "1,720 does not arise from a clean method — it likely results from an arithmetic error during long division, perhaps using 33 instead of 35 as the divisor."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When dividing by a decimal, count its decimal places (0.035 → 3 places), then multiply BOTH numbers by 10 raised to that power. The decimal disappears from the divisor and the problem becomes simple whole-number division."
+    },
+    "tags": [
+      "decimals",
+      "division",
+      "basic-operations"
+    ]
+  },
+  {
+    "id": "num-0006",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Fractions",
+    "subtopic": "Multiplication of Fractions",
+    "difficulty": "Medium",
+    "question": "What is (2/3) × (9/14)?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3/7"
+      },
+      {
+        "id": "B",
+        "text": "2/7"
+      },
+      {
+        "id": "C",
+        "text": "11/42"
+      },
+      {
+        "id": "D",
+        "text": "9/21"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Multiplying fractions is actually the friendliest operation: just multiply the numerators together and the denominators together. Here, that gives (2 × 9) / (3 × 14) = 18/42. But wait — before multiplying out completely, look for cross-cancellation to make the arithmetic easier. The 3 in the denominator of the first fraction and the 9 in the numerator of the second share a common factor of 3: 9 ÷ 3 = 3 and 3 ÷ 3 = 1. Similarly, 2 and 14 share a factor of 2: 2 ÷ 2 = 1 and 14 ÷ 2 = 7. After cross-cancelling: (1 × 3) / (1 × 7) = 3/7. This cross-cancellation trick saves time on exam day.",
+    "steps": [
+      "Write the multiplication: (2/3) × (9/14).",
+      "Cross-cancel: 3 and 9 share factor 3 → 9/3 = 3, 3/3 = 1. Also 2 and 14 share factor 2 → 2/2 = 1, 14/2 = 7.",
+      "Multiply simplified numerators: 1 × 3 = 3.",
+      "Multiply simplified denominators: 1 × 7 = 7.",
+      "Result: 3/7."
+    ],
+    "distractorExplanations": {
+      "B": "2/7 results from cross-cancelling only the factor of 3 (getting 2/(1×14/3)... leading to confusion) or from computing (2×1)/(1×7) after an error in the cross-cancel — cancelling the 9 to 1 instead of 3.",
+      "C": "11/42 likely comes from adding the numerators (2+9=11) instead of multiplying — a classic confusion between addition and multiplication of fractions.",
+      "D": "9/21 simplifies to 3/7, so if chosen it means the test-taker arrived at the right value but failed to simplify. Also, 9/21 could arise from incorrectly computing (2+9)/(14+…) type errors."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "Before multiplying fractions, cancel common factors diagonally across the multiplication sign. This keeps numbers small and reduces simplification at the end."
+    },
+    "tags": [
+      "fractions",
+      "multiplication",
+      "simplification",
+      "cross-cancellation"
+    ]
+  },
+  {
+    "id": "num-0007",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Fractions",
+    "subtopic": "Complex Fractions",
+    "difficulty": "Hard",
+    "question": "What is (5/6 + 1/4) ÷ (7/8 – 1/3)?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2"
+      },
+      {
+        "id": "B",
+        "text": "5/3"
+      },
+      {
+        "id": "C",
+        "text": "3/2"
+      },
+      {
+        "id": "D",
+        "text": "13/8"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Think of this as two separate fraction problems — one for the numerator and one for the denominator — before dividing. Numerator: 5/6 + 1/4. The LCD of 6 and 4 is 12, so 5/6 = 10/12 and 1/4 = 3/12. Sum = 13/12. Denominator: 7/8 – 1/3. The LCD of 8 and 3 is 24, so 7/8 = 21/24 and 1/3 = 8/24. Difference = 13/24. Now divide: (13/12) ÷ (13/24) = (13/12) × (24/13). The 13s cancel! You get 24/12 = 2. The beautiful thing here is that both the numerator and denominator simplify to multiples of 13, causing complete cancellation.",
+    "steps": [
+      "Compute the numerator: 5/6 + 1/4. LCD = 12 → 10/12 + 3/12 = 13/12.",
+      "Compute the denominator: 7/8 – 1/3. LCD = 24 → 21/24 – 8/24 = 13/24.",
+      "Divide: (13/12) ÷ (13/24) = (13/12) × (24/13).",
+      "Cancel the 13s: (1/12) × (24/1) = 24/12 = 2."
+    ],
+    "distractorExplanations": {
+      "B": "5/3 might arise from computing the numerator correctly (13/12) but making a sign error in the denominator (adding instead of subtracting, giving 21/24 + 8/24 = 29/24), then dividing 13/12 by 29/24 ≈ 1.07… — not 5/3. More likely it comes from intermediate arithmetic errors in converting to common denominators.",
+      "C": "3/2 could arise from computing the numerator incorrectly, for example 5/6 + 1/4 = 6/10 = 3/5 (wrong method), then dividing by a correctly computed denominator.",
+      "D": "13/8 results from forgetting to compute the denominator separately and instead treating the subtraction in the denominator incorrectly, or from dividing 13/12 ÷ 1 (computing the denominator as 1 through an error)."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "With complex fractions, always resolve the top and bottom separately first, then divide. Never try to operate across the main fraction bar in one step."
+    },
+    "tags": [
+      "fractions",
+      "complex-fractions",
+      "division"
+    ]
+  },
+  {
+    "id": "num-0008",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Fractions",
+    "subtopic": "Mixed Number Operations",
+    "difficulty": "Hard",
+    "question": "Evaluate: 2⅔ × 1½ – (4/5 ÷ 2/3)",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2 4/5"
+      },
+      {
+        "id": "B",
+        "text": "3 1/5"
+      },
+      {
+        "id": "C",
+        "text": "2 1/5"
+      },
+      {
+        "id": "D",
+        "text": "2 3/5"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Following PEMDAS, multiplication and division are performed before subtraction. Step 1 — handle the multiplication: 2⅔ = 8/3 and 1½ = 3/2. Multiply: (8/3) × (3/2) = 24/6 = 4. Step 2 — handle the division inside parentheses: (4/5) ÷ (2/3) = (4/5) × (3/2) = 12/10 = 6/5. Step 3 — subtract: 4 – 6/5 = 20/5 – 6/5 = 14/5 = 2 4/5. Notice that the multiplication of the mixed numbers comes out to a whole number (4), which is a nice simplification.",
+    "steps": [
+      "Convert mixed numbers: 2⅔ = 8/3 and 1½ = 3/2.",
+      "Multiply: (8/3) × (3/2) = 24/6 = 4.",
+      "Division in parentheses: (4/5) ÷ (2/3) = (4/5) × (3/2) = 12/10 = 6/5.",
+      "Subtract: 4 – 6/5 = 20/5 – 6/5 = 14/5.",
+      "Convert to mixed number: 14/5 = 2 4/5."
+    ],
+    "distractorExplanations": {
+      "B": "3 1/5 = 16/5 results from adding instead of subtracting in the final step: 4 + 6/5 = 20/5 + 6/5 = 26/5 = 5 1/5 — actually that's not 3 1/5 either. More likely, 3 1/5 comes from a computation error in the division step, perhaps computing (4/5) ÷ (2/3) = (4×2)/(5×3) = 8/15 instead of 6/5, then 4 – 8/15 ≈ 3.47, rounded or misread.",
+      "C": "2 1/5 = 11/5 would result from computing the division step as 1 (perhaps (4/5) × (5/4) = 1, confusing reciprocals) and then 4 – 1 = 3, then miscalculating further — or from an arithmetic slip after correctly reaching 14/5.",
+      "D": "2 3/5 = 13/5 could arise from computing the division step as (4/5) ÷ (2/3) = (4/3) ÷ (2/5) — swapping which fraction is inverted — giving 20/6 = 10/3, then 4 – 10/3 = 12/3 – 10/3 = 2/3, and converting incorrectly."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "When dividing fractions, flip (take the reciprocal of) the SECOND fraction only, then multiply. Never flip the first fraction."
+    },
+    "tags": [
+      "fractions",
+      "mixed-numbers",
+      "order-of-operations"
+    ]
+  },
+  {
+    "id": "num-0009",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Finding a Percentage of a Number",
+    "difficulty": "Easy",
+    "question": "What is 35% of 2,400?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "720"
+      },
+      {
+        "id": "B",
+        "text": "840"
+      },
+      {
+        "id": "C",
+        "text": "860"
+      },
+      {
+        "id": "D",
+        "text": "780"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The word 'of' in percentage problems always means 'multiply.' So 35% of 2,400 means 35/100 × 2,400, or equivalently 0.35 × 2,400. You can do this in friendly steps: 10% of 2,400 is 240. So 30% = 3 × 240 = 720. And 5% is half of 10% = 120. Therefore 35% = 720 + 120 = 840. Breaking it into 10% chunks is a powerful mental math technique that eliminates arithmetic errors.",
+    "steps": [
+      "Convert 35% to a decimal: 35 ÷ 100 = 0.35.",
+      "Multiply: 0.35 × 2,400.",
+      "Break it down: 0.30 × 2,400 = 720 and 0.05 × 2,400 = 120.",
+      "Add: 720 + 120 = 840."
+    ],
+    "distractorExplanations": {
+      "A": "720 equals 30% of 2,400 (0.30 × 2,400 = 720). This is the result of stopping at 30% and forgetting to add the remaining 5%.",
+      "C": "860 has no clean derivation — it likely results from a mental arithmetic slip, perhaps computing 0.35 × 2,400 as 0.36 × 2,400 – 40 = 864 – 40 = 824 (another error), or from an off-by-one error in a different method.",
+      "D": "780 results from computing 32.5% instead of 35%, or from computing 0.35 × 2,400 but making an arithmetic error: 35 × 24 = 840 but writing 780 (forgetting to multiply correctly — perhaps 35 × 22 = 770 or some slip near that value)."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "Find 10% first (just move the decimal one place left), then multiply or halve to get any other percentage. 35% = 30% + 5% = 3×(10%) + half of (10%)."
+    },
+    "tags": [
+      "percentages",
+      "basic-percentage"
+    ]
+  },
+  {
+    "id": "num-0010",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Percentage Increase",
+    "difficulty": "Easy",
+    "question": "A government employee's monthly salary is ₱18,000. After a 12% salary adjustment, what is the new monthly salary?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱19,800"
+      },
+      {
+        "id": "B",
+        "text": "₱20,160"
+      },
+      {
+        "id": "C",
+        "text": "₱20,400"
+      },
+      {
+        "id": "D",
+        "text": "₱21,600"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "When a salary increases by 12%, the new salary is 112% of the original — because you keep 100% of what you had and gain 12% more. Method 1: Find 12% of ₱18,000 = 0.12 × 18,000 = ₱2,160. Add to original: ₱18,000 + ₱2,160 = ₱20,160. Method 2 (faster): Multiply directly by 1.12 → ₱18,000 × 1.12 = ₱20,160. Both methods give the same answer. The shortcut of multiplying by 1.12 is especially useful in timed tests.",
+    "steps": [
+      "Compute the salary increase: 12% of ₱18,000 = 0.12 × 18,000 = ₱2,160.",
+      "Add the increase to the original salary: ₱18,000 + ₱2,160 = ₱20,160."
+    ],
+    "distractorExplanations": {
+      "A": "₱19,800 corresponds to a 10% increase (₱18,000 × 1.10 = ₱19,800), not 12%. This is the result of using 10% instead of 12%.",
+      "C": "₱20,400 corresponds to approximately a 13.3% increase (₱20,400 – ₱18,000 = ₱2,400; 2,400/18,000 = 13.3%). This may arise from computing 12% of 20,000 (= 2,400) and adding to the original, using a wrong base.",
+      "D": "₱21,600 = ₱18,000 × 1.20, which corresponds to a 20% increase — confusing 12% with 20%."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "New value after a p% increase = Original × (1 + p/100). For a 12% raise: ₱18,000 × 1.12 = ₱20,160."
+    },
+    "tags": [
+      "percentages",
+      "salary",
+      "increase"
+    ]
+  },
+  {
+    "id": "num-0011",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Percent of a Percent",
+    "difficulty": "Medium",
+    "question": "What is 20% of 30% of 500?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "30"
+      },
+      {
+        "id": "B",
+        "text": "35"
+      },
+      {
+        "id": "C",
+        "text": "25"
+      },
+      {
+        "id": "D",
+        "text": "40"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This is a 'percent of a percent' problem — and you need to work from right to left (or innermost to outermost). First, find 30% of 500: 0.30 × 500 = 150. Then, find 20% of that result: 0.20 × 150 = 30. Alternatively, you can combine the percentages upfront: 20% of 30% = 0.20 × 0.30 = 0.06 = 6%. So the problem reduces to 6% of 500 = 0.06 × 500 = 30. Both methods confirm the answer is 30.",
+    "steps": [
+      "Compute 30% of 500: 0.30 × 500 = 150.",
+      "Compute 20% of 150: 0.20 × 150 = 30."
+    ],
+    "distractorExplanations": {
+      "B": "35 might come from computing (20% + 30%)/2 × 500 = 25% × 500 / some wrong approach, or from finding 7% of 500 = 35 — possibly adding 0.20 + 0.30 – something incorrectly.",
+      "C": "25 results from computing only one percentage, perhaps 5% of 500 = 25, or from computing 30% of 500 = 150 and then taking 1/6 instead of 20%.",
+      "D": "40 results from computing 8% of 500 = 40 — perhaps from multiplying the percentages as whole numbers (20 × 30 = 600) then dividing by the wrong amount, or from confusing '20% of 30%' with '20% + 30% – 10%' = 40%."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "Chained percentages multiply: '20% of 30%' = 0.20 × 0.30 = 0.06 = 6%. Apply that single percentage to the base: 6% of 500 = 30."
+    },
+    "tags": [
+      "percentages",
+      "percent-of-percent"
+    ]
+  },
+  {
+    "id": "num-0012",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Reverse Percentage",
+    "difficulty": "Medium",
+    "question": "After a 15% discount, a laptop bag costs ₱2,295. What was its original price?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱2,640"
+      },
+      {
+        "id": "B",
+        "text": "₱2,700"
+      },
+      {
+        "id": "C",
+        "text": "₱2,580"
+      },
+      {
+        "id": "D",
+        "text": "₱2,650"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "A 15% discount means the buyer pays only 100% – 15% = 85% of the original price. So ₱2,295 represents 85% of the unknown original price. To work backwards, divide by the decimal form of that percentage: ₱2,295 ÷ 0.85 = ₱2,700. You can verify: 15% of ₱2,700 = ₱405 and ₱2,700 – ₱405 = ₱2,295. The most common error here is adding 15% to ₱2,295 instead of dividing by 0.85 — that gives ₱2,295 × 1.15 = ₱2,639.25, which is close to distractor A but still wrong.",
+    "steps": [
+      "Recognize that ₱2,295 is 85% of the original price (since 100% – 15% = 85%).",
+      "Set up the equation: 0.85 × Original = ₱2,295.",
+      "Solve: Original = ₱2,295 ÷ 0.85 = ₱2,700.",
+      "Verify: 15% of ₱2,700 = ₱405; ₱2,700 – ₱405 = ₱2,295. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "₱2,640 (approximately) comes from adding 15% back to the discounted price: ₱2,295 × 1.15 ≈ ₱2,639. This is a classic reverse-percentage trap — adding the percentage to the discounted price uses the wrong base.",
+      "C": "₱2,580 might arise from adding a straight ₱285 to the discounted price (computing 15% of a slightly different base), or from arithmetic errors in the division step.",
+      "D": "₱2,650 has no clean derivation — it likely results from estimating or rounding incorrectly mid-calculation, perhaps computing ₱2,295 ÷ 0.87 (using 13% instead of 15%)."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "To find the original price BEFORE a discount, DIVIDE the sale price by (1 – discount%). Do NOT add the discount percentage to the sale price — that uses the wrong base and gives a slightly too-low answer."
+    },
+    "tags": [
+      "percentages",
+      "reverse-percentage",
+      "discount"
+    ]
+  },
+  {
+    "id": "num-0013",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Ratio and Proportion",
+    "subtopic": "Dividing in a Given Ratio",
+    "difficulty": "Medium",
+    "question": "A year-end bonus of ₱7,200 is divided between Ana and Ben in the ratio 5:4. How much does Ana receive?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱3,600"
+      },
+      {
+        "id": "B",
+        "text": "₱4,000"
+      },
+      {
+        "id": "C",
+        "text": "₱3,200"
+      },
+      {
+        "id": "D",
+        "text": "₱4,500"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "When a total is split in a ratio, think of the ratio parts as equal slices of a pie. A ratio of 5:4 means there are 5 + 4 = 9 equal parts in total. Each part is worth ₱7,200 ÷ 9 = ₱800. Ana gets 5 parts: 5 × ₱800 = ₱4,000. Ben gets 4 parts: 4 × ₱800 = ₱3,200. Quick check: ₱4,000 + ₱3,200 = ₱7,200. The ratio 5:4 does NOT mean Ana gets 5/4 of Ben's share added to half the total — it means her fraction of the total is 5/9.",
+    "steps": [
+      "Add the ratio parts: 5 + 4 = 9 total parts.",
+      "Find the value of one part: ₱7,200 ÷ 9 = ₱800 per part.",
+      "Compute Ana's share: 5 parts × ₱800 = ₱4,000.",
+      "Verify: Ben's share = 4 × ₱800 = ₱3,200; total = ₱4,000 + ₱3,200 = ₱7,200. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "₱3,600 = ₱7,200 ÷ 2, which is simply half the total. This results from ignoring the ratio entirely and splitting the bonus equally between the two people.",
+      "C": "₱3,200 is actually Ben's share (4/9 of ₱7,200), not Ana's. This error comes from assigning the smaller portion to Ana instead of the larger one.",
+      "D": "₱4,500 = 5/8 of ₱7,200, which would be Ana's share only if the ratio were 5:3 (giving 8 total parts). The error is computing 5 + 3 = 8 instead of 5 + 4 = 9."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Person's share = (Their ratio part ÷ Sum of all parts) × Total amount. Ana: (5 ÷ 9) × ₱7,200 = ₱4,000."
+    },
+    "tags": [
+      "ratio",
+      "proportion",
+      "money"
+    ]
+  },
+  {
+    "id": "num-0014",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Ratio and Proportion",
+    "subtopic": "Inverse Proportion",
+    "difficulty": "Medium",
+    "question": "If 8 workers can complete a landscaping project in 6 days, how many days will 12 workers need to finish the same project, assuming equal productivity?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4 days"
+      },
+      {
+        "id": "B",
+        "text": "5 days"
+      },
+      {
+        "id": "C",
+        "text": "3 days"
+      },
+      {
+        "id": "D",
+        "text": "4.5 days"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This is a classic inverse proportion problem: when you add more workers, the time decreases. The total amount of work stays constant. We measure work in 'worker-days' — the number of workers multiplied by the days needed. Here, total work = 8 workers × 6 days = 48 worker-days. With 12 workers, the time needed = 48 ÷ 12 = 4 days. Think of it this way: more workers means the same pile of work is shared among more people, so each person works fewer days. This is fundamentally different from direct proportion, where more of one thing means more of another.",
+    "steps": [
+      "Compute total work in worker-days: 8 workers × 6 days = 48 worker-days.",
+      "Set up the equation for 12 workers: 12 × d = 48.",
+      "Solve for d: d = 48 ÷ 12 = 4 days."
+    ],
+    "distractorExplanations": {
+      "B": "5 days has no clean derivation from the given numbers. It might arise from a misapplication of direct proportion: thinking more workers → more days, then computing 6 × (12/8) – something, leading to an approximate value.",
+      "C": "3 days results from halving the original 6 days because 12 is 1.5 times 8, so someone might reason the time halves — but if workers increase by a factor of 1.5 (×12/8), time decreases by the same factor: 6 ÷ 1.5 = 4, not 3.",
+      "D": "4.5 days results from averaging 4 and 5, or from computing (8 + 12)/2 = 10 workers and then an incorrect calculation, showing a confusion between inverse and direct proportion."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Inverse proportion: Workers₁ × Days₁ = Workers₂ × Days₂. Equivalently: Days₂ = (Workers₁ × Days₁) ÷ Workers₂."
+    },
+    "tags": [
+      "ratio",
+      "inverse-proportion",
+      "work"
+    ]
+  },
+  {
+    "id": "num-0015",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Percentage Decrease",
+    "difficulty": "Medium",
+    "question": "The price of rice dropped from ₱4,500 per sack to ₱3,780 per sack. By what percentage did the price decrease?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "14%"
+      },
+      {
+        "id": "B",
+        "text": "19%"
+      },
+      {
+        "id": "C",
+        "text": "18%"
+      },
+      {
+        "id": "D",
+        "text": "16%"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Percentage change is always computed using the ORIGINAL value as the base — not the new value. Here, the actual decrease is ₱4,500 – ₱3,780 = ₱720. To express this as a percentage of the original price: (₱720 ÷ ₱4,500) × 100. Simplify ₱720/₱4,500 = 72/450 = 8/50 = 16/100 = 16%. So the price fell by 16%. A common mistake is dividing the decrease by the NEW price instead of the original, which gives (720 ÷ 3,780) × 100 ≈ 19% — a plausible but wrong answer.",
+    "steps": [
+      "Find the actual decrease: ₱4,500 – ₱3,780 = ₱720.",
+      "Divide by the ORIGINAL price: ₱720 ÷ ₱4,500 = 0.16.",
+      "Convert to percentage: 0.16 × 100 = 16%."
+    ],
+    "distractorExplanations": {
+      "A": "14% would mean a decrease of ₱4,500 × 0.14 = ₱630, but the actual decrease is ₱720. This results from an arithmetic error, perhaps computing 720/5,000 instead of 720/4,500.",
+      "B": "19% results from dividing the decrease by the NEW price instead of the original: 720 ÷ 3,780 ≈ 0.1905 ≈ 19%. Always use the ORIGINAL value as the denominator.",
+      "C": "18% would mean a decrease of ₱810 (18% of ₱4,500), but the actual decrease is ₱720. This might come from rounding 720/4,500 to 0.18 due to a calculation error."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Percentage Change = (Amount of Change ÷ Original Value) × 100. Always divide by the ORIGINAL — never the new value."
+    },
+    "tags": [
+      "percentages",
+      "percentage-change",
+      "decrease"
+    ]
+  },
+  {
+    "id": "num-0016",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Successive Percentage Changes",
+    "difficulty": "Medium",
+    "question": "A school supplies dealer buys a notebook at ₱800, marks it up by 40%, then offers a 20% discount on the marked price. What is the final selling price?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱896"
+      },
+      {
+        "id": "B",
+        "text": "₱912"
+      },
+      {
+        "id": "C",
+        "text": "₱880"
+      },
+      {
+        "id": "D",
+        "text": "₱924"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This problem involves two successive percentage changes. The key insight is that the 20% discount is applied to the MARKED price, not the original cost. Step 1: Compute the marked price after a 40% markup on ₱800 = ₱800 × 1.40 = ₱1,120. Step 2: Apply a 20% discount to the marked price: ₱1,120 × (1 – 0.20) = ₱1,120 × 0.80 = ₱896. Notice that a 40% markup followed by a 20% discount does NOT return to the original cost — the combined effect is a net increase of 1.40 × 0.80 = 1.12, or 12% above cost. The final selling price of ₱896 is above the cost of ₱800.",
+    "steps": [
+      "Compute the marked price: ₱800 × 1.40 = ₱1,120.",
+      "Apply the 20% discount to the marked price: ₱1,120 × 0.80 = ₱896."
+    ],
+    "distractorExplanations": {
+      "B": "₱912 might arise from computing the net percentage change as 40% – 20% = 20% and applying: ₱800 × 1.20 = ₱960 — actually ₱960, not ₱912. Or from an arithmetic slip in the 80% multiplication step.",
+      "C": "₱880 = ₱800 × 1.10, which corresponds to a net 10% increase — perhaps from computing 40% – 30% = 10% through a rounding error, or from applying the 20% discount to the original ₱800 instead of the marked price ₱1,120.",
+      "D": "₱924 would represent a 15.5% net increase on the original cost, with no obvious derivation — likely an arithmetic error in the multiplication step or from confusing markup on cost with markup on selling price."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "A p% increase followed by a q% decrease is NOT a net change of (p–q)%. The actual net multiplier is (1 + p/100) × (1 – q/100). Here: 1.40 × 0.80 = 1.12, a net 12% increase."
+    },
+    "tags": [
+      "percentages",
+      "markup",
+      "discount",
+      "successive-changes"
+    ]
+  },
+  {
+    "id": "num-0017",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Ratio and Proportion",
+    "subtopic": "Compound Proportion",
+    "difficulty": "Hard",
+    "question": "If 5 machines produce 150 parts in 3 hours, how many parts will 8 machines produce in 5 hours at the same rate?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "400"
+      },
+      {
+        "id": "B",
+        "text": "420"
+      },
+      {
+        "id": "C",
+        "text": "350"
+      },
+      {
+        "id": "D",
+        "text": "480"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This is a compound proportion problem involving two variables (machines and hours), both directly proportional to output. The cleanest approach is to find the production rate per machine per hour first. Rate = 150 parts ÷ (5 machines × 3 hours) = 150 ÷ 15 = 10 parts per machine per hour. Now multiply by the new values: 10 × 8 machines × 5 hours = 400 parts. You can also use ratios: Output scales as (8/5) × (5/3) relative to 150, giving 150 × (8/5) × (5/3) = 150 × 8/3 = 1,200/3 = 400.",
+    "steps": [
+      "Find the unit rate: 150 ÷ (5 × 3) = 150 ÷ 15 = 10 parts per machine per hour.",
+      "Apply to new scenario: 10 × 8 machines × 5 hours = 400 parts."
+    ],
+    "distractorExplanations": {
+      "B": "420 has no clean derivation from the given values — likely an arithmetic slip, perhaps computing 10 × 8 × 5 = 400 and adding 20 from a miscalculation.",
+      "C": "350 results from scaling only by the machine ratio and ignoring the time change: 150 × (8/5) × 1 (not × 5/3) = 240, which is not 350 either. More likely, 350 comes from computing the unit rate incorrectly as 150/(5+3) = 18.75 and then 18.75 × 8 × … ≈ 350.",
+      "D": "480 results from computing 10 × 8 × 6 = 480 (using 6 hours instead of 5), or from computing the rate as 150/(5×3) = 10 but then multiplying by the wrong combination: 10 × 8 × 6."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "For compound proportion: find the unit rate first (output per machine per hour), then multiply by the new number of machines and new time."
+    },
+    "tags": [
+      "ratio",
+      "proportion",
+      "compound-proportion"
+    ]
+  },
+  {
+    "id": "num-0018",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Successive Percentage Changes",
+    "difficulty": "Hard",
+    "question": "A government project fund of ₱500,000 grew by 10% in its first year, then decreased by 5% in its second year. What is the fund's value at the end of the second year?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱525,000"
+      },
+      {
+        "id": "B",
+        "text": "₱522,500"
+      },
+      {
+        "id": "C",
+        "text": "₱527,500"
+      },
+      {
+        "id": "D",
+        "text": "₱520,000"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Successive percentage changes must be applied sequentially — each one uses the result of the previous step as its new base, not the original amount. Year 1: ₱500,000 grows by 10%, giving ₱500,000 × 1.10 = ₱550,000. Year 2: ₱550,000 decreases by 5%, giving ₱550,000 × 0.95 = ₱522,500. Notice the net result is NOT simply 10% – 5% = 5% more than the original. The actual net effect is 1.10 × 0.95 = 1.045, meaning a net 4.5% gain — not 5%. This compounding effect is the central concept in finance and in CSE successive-change problems.",
+    "steps": [
+      "Year 1 growth: ₱500,000 × 1.10 = ₱550,000.",
+      "Year 2 decrease: ₱550,000 × 0.95 = ₱522,500."
+    ],
+    "distractorExplanations": {
+      "A": "₱525,000 = ₱500,000 × 1.05, which corresponds to a simple net 5% gain (10% – 5% = 5%). This is the trap of subtracting percentages directly — it ignores the compounding effect.",
+      "C": "₱527,500 is close but not exact. It might result from applying the 5% decrease to the wrong base, such as applying it to ₱555,000 (an inflated Year 1 figure) or from rounding an intermediate step.",
+      "D": "₱520,000 = ₱500,000 × 1.04, corresponding to a 4% net gain. This might arise from computing 1.10 × 0.95 ≈ 1.04 through rounding, or from some averaging of the two rates."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "A 10% gain followed by a 5% loss is NOT a net 5% gain. Apply each percentage to the new balance: 1.10 × 0.95 = 1.045 — a net 4.5% gain."
+    },
+    "tags": [
+      "percentages",
+      "successive-changes",
+      "compound"
+    ]
+  },
+  {
+    "id": "num-0019",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Arithmetic Sequence",
+    "difficulty": "Easy",
+    "question": "What is the next number in the series: 4, 9, 14, 19, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "24"
+      },
+      {
+        "id": "B",
+        "text": "25"
+      },
+      {
+        "id": "C",
+        "text": "22"
+      },
+      {
+        "id": "D",
+        "text": "26"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The first step in any number series is to find the differences between consecutive terms: 9 – 4 = 5, 14 – 9 = 5, 19 – 14 = 5. The common difference is 5 throughout — this is an arithmetic sequence. Because the difference is constant, the next term is simply the last term plus 5: 19 + 5 = 24. Arithmetic sequences are characterized by a fixed 'step' added each time, like a staircase with equal-height steps.",
+    "steps": [
+      "Find the differences: 9–4=5, 14–9=5, 19–14=5. The common difference is 5.",
+      "Add the common difference to the last term: 19 + 5 = 24."
+    ],
+    "distractorExplanations": {
+      "B": "25 would be the next term if the common difference were 6 rather than 5 (19 + 6 = 25). Check: 9–4=5, not 6.",
+      "C": "22 would require a difference of only 3 in the last step (19 + 3 = 22), breaking the constant difference pattern.",
+      "D": "26 would require a common difference of 7 in the last step, inconsistent with the established pattern of 5."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Always check the difference between consecutive terms first. If it's constant, you have an arithmetic sequence and the pattern is simply 'add the common difference.'"
+    },
+    "tags": [
+      "number-series",
+      "arithmetic-sequence"
+    ]
+  },
+  {
+    "id": "num-0020",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Geometric Sequence",
+    "difficulty": "Easy",
+    "question": "What comes next: 3, 6, 12, 24, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "48"
+      },
+      {
+        "id": "B",
+        "text": "44"
+      },
+      {
+        "id": "C",
+        "text": "36"
+      },
+      {
+        "id": "D",
+        "text": "40"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "When differences between terms are not constant, look at the ratio between consecutive terms instead: 6 ÷ 3 = 2, 12 ÷ 6 = 2, 24 ÷ 12 = 2. Each term is exactly double the previous one — this is a geometric sequence with a common ratio of 2. The next term is 24 × 2 = 48. Geometric sequences grow exponentially and appear frequently in Philippine Civil Service Exam number series questions. If the ratio is greater than 1, the sequence grows; if between 0 and 1, it shrinks.",
+    "steps": [
+      "Find the ratio between consecutive terms: 6÷3=2, 12÷6=2, 24÷12=2. Common ratio = 2.",
+      "Multiply the last term by the common ratio: 24 × 2 = 48."
+    ],
+    "distractorExplanations": {
+      "B": "44 would result from adding a difference of 20 to the last term (24 + 20 = 44), treating this as an arithmetic sequence with a common difference of 20. But 24 – 12 = 12 ≠ 20, so this is not an arithmetic pattern.",
+      "C": "36 would be the next term if the common difference were 12 (an arithmetic approach: 24 + 12 = 36). While 12 is the last difference, the rule is multiplication by 2, not addition of 12.",
+      "D": "40 has no logical derivation from the given series — it might come from adding 16 (a guess based on some other pattern) or from a careless arithmetic error."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "If dividing consecutive terms gives the same number, it's a geometric sequence. Multiply the last term by that common ratio to find the next term."
+    },
+    "tags": [
+      "number-series",
+      "geometric-sequence"
+    ]
+  },
+  {
+    "id": "num-0021",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Increasing Differences",
+    "difficulty": "Medium",
+    "question": "Find the missing term: 2, 5, 9, 14, 20, ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "27"
+      },
+      {
+        "id": "B",
+        "text": "28"
+      },
+      {
+        "id": "C",
+        "text": "25"
+      },
+      {
+        "id": "D",
+        "text": "26"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "When neither the terms nor the ratios are constant, look at the differences and see if THOSE form a pattern. Here, the differences between consecutive terms are: 5–2=3, 9–5=4, 14–9=5, 20–14=6. The differences themselves form an arithmetic sequence: 3, 4, 5, 6 — increasing by 1 each time. The next difference should be 7, making the missing term 20 + 7 = 27. This is a second-level pattern: the sequence of differences is itself arithmetic.",
+    "steps": [
+      "Compute differences: 5–2=3, 9–5=4, 14–9=5, 20–14=6.",
+      "Observe that the differences increase by 1 each time: 3, 4, 5, 6, so next difference = 7.",
+      "Add to last term: 20 + 7 = 27."
+    ],
+    "distractorExplanations": {
+      "B": "28 would result from adding 8 as the next difference (skipping one step in the pattern: 3, 4, 5, 6, 8), perhaps because someone noticed the differences increase but miscounted the step size.",
+      "C": "25 would result from adding only 5 (repeating the second-to-last difference instead of continuing the pattern: 3, 4, 5, 6, 5), not recognizing that the differences are still increasing.",
+      "D": "26 results from adding 6 (repeating the most recent difference rather than incrementing it to 7), missing the pattern that the differences themselves increase by 1."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When the terms and ratios are both irregular, write out the differences between terms. Then check if those differences form their own arithmetic or geometric pattern."
+    },
+    "tags": [
+      "number-series",
+      "increasing-differences"
+    ]
+  },
+  {
+    "id": "num-0022",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Fibonacci Sequence",
+    "difficulty": "Medium",
+    "question": "What is the next term: 1, 1, 2, 3, 5, 8, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "12"
+      },
+      {
+        "id": "B",
+        "text": "13"
+      },
+      {
+        "id": "C",
+        "text": "14"
+      },
+      {
+        "id": "D",
+        "text": "11"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "This is the famous Fibonacci sequence, and it has a beautifully simple rule: each term is the sum of the two terms before it. Starting from 1, 1: 1+1=2, 1+2=3, 2+3=5, 3+5=8. The next term continues the same rule: 5+8=13. The Fibonacci sequence appears in nature (sunflower seed spirals, nautilus shells, tree branching) and is a classic pattern in CSE numerical reasoning. Once you spot it, the answer follows immediately from adding the last two terms.",
+    "steps": [
+      "Recognize the rule: each term = sum of the previous two terms.",
+      "Apply: the two terms before the blank are 5 and 8.",
+      "Compute: 5 + 8 = 13."
+    ],
+    "distractorExplanations": {
+      "A": "12 would be the next term if one mistakenly adds only 4 to the last term (8 + 4 = 12) — perhaps seeing a pattern of differences (+0, +1, +1, +2, +3) and adding 4 next, which is close but not the Fibonacci rule.",
+      "C": "14 would result from adding only the last term to itself (8 + 6 = 14 — using 6 from somewhere) or from computing the next number as 8 + 6 through a pattern-matching error on the differences.",
+      "D": "11 would result from adding 3 to the last term (8 + 3 = 11), perhaps using the second-to-last difference (3) instead of adding the two preceding terms of the sequence."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Fibonacci rule: next term = sum of the two terms immediately before it. If you see 1, 1, 2, 3, 5 in a sequence, you're looking at Fibonacci — the next term is always 5 + 8 = 13."
+    },
+    "tags": [
+      "number-series",
+      "fibonacci"
+    ]
+  },
+  {
+    "id": "num-0023",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Multiply-and-Add Pattern",
+    "difficulty": "Medium",
+    "question": "Identify the next term: 2, 5, 11, 23, ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "43"
+      },
+      {
+        "id": "B",
+        "text": "47"
+      },
+      {
+        "id": "C",
+        "text": "45"
+      },
+      {
+        "id": "D",
+        "text": "46"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Sometimes a number series follows a hidden algebraic rule rather than simple addition or multiplication alone. Let's check: 2×2+1=5 ✓, 5×2+1=11 ✓, 11×2+1=23 ✓. The rule is: multiply by 2, then add 1. Applying this to 23: 23×2+1 = 46+1 = 47. This 'multiply-then-add' pattern is a common trick in CSE exams. When simple arithmetic differences don't work, try multiplying each term by a small integer and see if adding or subtracting a constant gives the next term.",
+    "steps": [
+      "Test the rule 'multiply by 2 then add 1': 2×2+1=5 ✓, 5×2+1=11 ✓, 11×2+1=23 ✓.",
+      "Apply to 23: 23×2 = 46, then 46+1 = 47."
+    ],
+    "distractorExplanations": {
+      "A": "43 would fit if the rule were 'multiply by 2 then subtract 3': 23×2–3=43. But this rule fails for earlier terms: 11×2–3=19 ≠ 23.",
+      "C": "45 = 23×2–1, which applies a 'multiply by 2 then subtract 1' rule. But checking earlier terms: 11×2–1=21≠23 — this rule doesn't hold consistently.",
+      "D": "46 = 23×2+0, the result of just doubling without adding 1 — forgetting the '+1' part of the rule. Checking: 11×2=22≠23."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When differences are growing rapidly, try multiplying each term and adding a constant. Test: next = (current × n) + k. Use two consecutive pairs to find n and k."
+    },
+    "tags": [
+      "number-series",
+      "multiply-add-pattern"
+    ]
+  },
+  {
+    "id": "num-0024",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Perfect Squares",
+    "difficulty": "Medium",
+    "question": "What number comes next: 1, 4, 9, 16, 25, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "30"
+      },
+      {
+        "id": "B",
+        "text": "36"
+      },
+      {
+        "id": "C",
+        "text": "34"
+      },
+      {
+        "id": "D",
+        "text": "35"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Recognize these as perfect squares: 1=1², 4=2², 9=3², 16=4², 25=5². The sequence lists the squares of the natural numbers in order. The next natural number is 6, and 6² = 36. Alternatively, notice that the differences between consecutive terms are 3, 5, 7, 9 — odd numbers increasing by 2 each time. The next difference is 11, and 25 + 11 = 36. Both approaches confirm the answer.",
+    "steps": [
+      "Identify the terms as perfect squares: 1²=1, 2²=4, 3²=9, 4²=16, 5²=25.",
+      "The next term in the pattern is 6² = 36."
+    ],
+    "distractorExplanations": {
+      "A": "30 would result from simply adding 5 (the last difference is 25–16=9; 5 is less than that). More likely it comes from noticing the sum of consecutive differences and making an arithmetic slip.",
+      "C": "34 = 25 + 9, which incorrectly repeats the previous difference (25–16=9) instead of the next odd number (11).",
+      "D": "35 = 25 + 10, which incorrectly uses an even-number difference. In the sequence of differences (3, 5, 7, 9, 11...), only odd numbers appear."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Perfect squares appear often in CSE series questions. Memorize squares up to 15²=225. Also, the differences between consecutive perfect squares are always the odd numbers 3, 5, 7, 9, 11..."
+    },
+    "tags": [
+      "number-series",
+      "perfect-squares"
+    ]
+  },
+  {
+    "id": "num-0025",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Interleaved Sequences",
+    "difficulty": "Hard",
+    "question": "What is the missing number: 3, 7, 4, 10, 5, 13, 6, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "16"
+      },
+      {
+        "id": "B",
+        "text": "7"
+      },
+      {
+        "id": "C",
+        "text": "14"
+      },
+      {
+        "id": "D",
+        "text": "15"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Some series are actually two separate sequences woven together, alternating positions. Separate the terms by position: odd positions (1st, 3rd, 5th, 7th) give 3, 4, 5, 6 — increasing by 1 each time. Even positions (2nd, 4th, 6th, 8th) give 7, 10, 13, ? — increasing by 3 each time. The 8th term (even position) continues the second sequence: 13 + 3 = 16. The trick to spotting interleaved sequences is to notice that the standard pattern-finding methods fail until you separate the odd and even positions.",
+    "steps": [
+      "Separate by position: odd-position terms = 3, 4, 5, 6 (difference of 1 each); even-position terms = 7, 10, 13, ? (difference of 3 each).",
+      "The blank is the 8th term (even position), so apply the even-position pattern: 13 + 3 = 16."
+    ],
+    "distractorExplanations": {
+      "B": "7 would be the next term if this were a simple alternating pattern that cycles back, but the even-position terms are not repeating — they increase by 3.",
+      "C": "14 = 13 + 1, which applies the odd-position increment (difference of 1) to an even-position term — mixing up which rule applies to which subsequence.",
+      "D": "15 = 13 + 2, which uses an increment of 2 rather than the correct increment of 3 for the even-position subsequence."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When a series seems random, try separating it into two sub-sequences — one for odd-indexed terms and one for even-indexed terms. Each sub-sequence may follow a simple rule."
+    },
+    "tags": [
+      "number-series",
+      "interleaved-sequences"
+    ]
+  },
+  {
+    "id": "num-0026",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Second-Difference Pattern",
+    "difficulty": "Hard",
+    "question": "Find the next term: 1, 3, 7, 13, 21, ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "29"
+      },
+      {
+        "id": "B",
+        "text": "31"
+      },
+      {
+        "id": "C",
+        "text": "33"
+      },
+      {
+        "id": "D",
+        "text": "35"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "This series requires looking at two levels of differences. First differences (between consecutive terms): 3–1=2, 7–3=4, 13–7=6, 21–13=8 — the differences are even numbers: 2, 4, 6, 8. These first differences form an arithmetic sequence with a common difference of 2. So the next first difference is 10, and the next term in the original series is 21 + 10 = 31. This is called a 'constant second-difference' pattern and it means the sequence is actually a quadratic (the terms can be expressed as an² + bn + c).",
+    "steps": [
+      "Compute first differences: 3–1=2, 7–3=4, 13–7=6, 21–13=8.",
+      "Observe the first differences form an arithmetic sequence: 2, 4, 6, 8 (common difference = 2).",
+      "The next first difference = 8 + 2 = 10.",
+      "Add to the last term: 21 + 10 = 31."
+    ],
+    "distractorExplanations": {
+      "A": "29 results from adding 8 (the last first-difference) instead of 10 (the next one): 21 + 8 = 29. This comes from repeating the most recent increment rather than continuing the pattern.",
+      "C": "33 results from adding 12 (skipping one step in the second-difference pattern: 2, 4, 6, 8, 12 — jumping by 4 instead of 2): 21 + 12 = 33.",
+      "D": "35 results from adding 14 to 21, perhaps doubling the last difference (8×2=16 — not quite) or using an incorrect second-difference of 4."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "If a series' differences are themselves arithmetic, you have a second-difference pattern. The next difference continues that arithmetic sequence — then add it to the last term."
+    },
+    "tags": [
+      "number-series",
+      "second-differences"
+    ]
+  },
+  {
+    "id": "num-0027",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Work Rate",
+    "subtopic": "Combined Work Rate",
+    "difficulty": "Easy",
+    "question": "Carla can finish encoding a report in 6 hours, and Dana can finish the same report in 4 hours. Working together, how long will they take?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2 hours"
+      },
+      {
+        "id": "B",
+        "text": "2 hours 30 minutes"
+      },
+      {
+        "id": "C",
+        "text": "2 hours 24 minutes"
+      },
+      {
+        "id": "D",
+        "text": "3 hours"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Work rate problems use the key idea that rates add when people work together. Carla's rate = 1/6 of the report per hour (she finishes 1 whole report in 6 hours). Dana's rate = 1/4 of the report per hour. Combined rate = 1/6 + 1/4. To add these fractions, use the common denominator 12: 2/12 + 3/12 = 5/12 of the report per hour. Time to finish the whole report = 1 ÷ (5/12) = 12/5 = 2.4 hours. Convert 0.4 hours to minutes: 0.4 × 60 = 24 minutes. Total = 2 hours 24 minutes. Notice that the combined time is less than either individual time, which is a good sanity check.",
+    "steps": [
+      "Express each person's rate as a fraction of the report per hour: Carla = 1/6; Dana = 1/4.",
+      "Add rates: 1/6 + 1/4 = 2/12 + 3/12 = 5/12 of the report per hour.",
+      "Time = 1 ÷ (5/12) = 12/5 = 2.4 hours.",
+      "Convert 0.4 hours to minutes: 0.4 × 60 = 24 minutes.",
+      "Answer: 2 hours 24 minutes."
+    ],
+    "distractorExplanations": {
+      "A": "2 hours = 12/6, which would be the time if Dana worked alone at double Carla's rate. This might arise from simply halving the harmonic mean, or from computing 4+6 ÷ (something)=2.",
+      "B": "2 hours 30 minutes = 2.5 hours, which comes from naively averaging the two individual times: (6+4)/2 = 5 hours... actually that gives 5, not 2.5. More likely it comes from computing 4×6/(4+6) × 1.something from a formula error.",
+      "D": "3 hours results from averaging the two times: (6+4)/2 ÷ something, or from the incorrect rule 'combined time = shorter time × longer time ÷ sum × factor' applied incorrectly."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Combined time for two workers = (A × B) ÷ (A + B), where A and B are individual times. Here: (6 × 4) ÷ (6 + 4) = 24 ÷ 10 = 2.4 hours = 2 h 24 min."
+    },
+    "tags": [
+      "work-rate",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0028",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Work Rate",
+    "subtopic": "Sequential Pipe Problems",
+    "difficulty": "Medium",
+    "question": "Pipe A can fill a tank in 12 minutes and Pipe B in 18 minutes. Pipe A is opened first. After 3 minutes, Pipe B is also opened. How many total minutes does it take to fill the tank?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "7.4 min"
+      },
+      {
+        "id": "B",
+        "text": "8.4 min"
+      },
+      {
+        "id": "C",
+        "text": "9.0 min"
+      },
+      {
+        "id": "D",
+        "text": "10.2 min"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "This is a two-phase work rate problem. Phase 1: Pipe A works alone for 3 minutes, filling 3 × (1/12) = 3/12 = 1/4 of the tank. Remaining: 1 – 1/4 = 3/4 of the tank. Phase 2: Both pipes work together. Combined rate = 1/12 + 1/18 = 3/36 + 2/36 = 5/36 of the tank per minute. Time to fill the remaining 3/4: (3/4) ÷ (5/36) = (3/4) × (36/5) = 108/20 = 5.4 minutes. Total time = 3 + 5.4 = 8.4 minutes.",
+    "steps": [
+      "Phase 1 (Pipe A alone, 3 min): fills 3 × 1/12 = 1/4 of the tank. Remaining = 3/4.",
+      "Phase 2 combined rate: 1/12 + 1/18 = 3/36 + 2/36 = 5/36 per minute.",
+      "Time for Phase 2: (3/4) ÷ (5/36) = (3/4) × (36/5) = 108/20 = 5.4 minutes.",
+      "Total time: 3 + 5.4 = 8.4 minutes."
+    ],
+    "distractorExplanations": {
+      "A": "7.4 minutes results from computing the combined time as if both pipes started together from the beginning: (12×18)/(12+18) = 216/30 = 7.2 minutes, then adjusting slightly — ignoring that Pipe A was running alone for 3 minutes first.",
+      "C": "9.0 minutes might result from Phase 1 computation being 4 minutes instead of 3, or from computing the combined rate as 1/12 + 1/18 = 5/36 but then applying it to the full tank (1 ÷ 5/36 = 7.2 min) and adding an arbitrary offset.",
+      "D": "10.2 minutes results from a Phase 1 error (perhaps computing 3/12 = 1/3 instead of 1/4) and then dividing the remaining 2/3 by 5/36: (2/3)÷(5/36) = 24/5 = 4.8 min, giving 3+4.8 = 7.8 — not 10.2. More likely it comes from inverting the combined rate."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "For sequential pipe/work problems: (1) compute what is done in Phase 1, (2) subtract from 1 to get remaining work, (3) divide remaining work by the combined rate for Phase 2 time, (4) add Phase 1 time."
+    },
+    "tags": [
+      "work-rate",
+      "pipes",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0029",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Work Rate",
+    "subtopic": "Finding an Unknown Rate",
+    "difficulty": "Hard",
+    "question": "Efren can complete a filing task in 10 days. He works alone for 4 days, then Felix joins him and they finish the remaining work in 3 more days. How many days would Felix need to complete the task alone?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "12 days"
+      },
+      {
+        "id": "B",
+        "text": "15 days"
+      },
+      {
+        "id": "C",
+        "text": "8 days"
+      },
+      {
+        "id": "D",
+        "text": "10 days"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The goal is to find Felix's rate. First, account for all the work Efren does: in 4 + 3 = 7 days total, Efren contributes 7 × (1/10) = 7/10 of the task. The total work is 1 (the whole task), so Felix's contribution in 3 days = 1 – 7/10 = 3/10 of the task. Felix did 3/10 of the task in 3 days, so his daily rate = (3/10) ÷ 3 = 1/10 per day. This means Felix would take 10 days to complete the task alone — the same rate as Efren in this particular scenario.",
+    "steps": [
+      "Efren's total work in 4+3=7 days: 7 × (1/10) = 7/10 of the task.",
+      "Felix's contribution = 1 – 7/10 = 3/10 of the task (done in 3 days).",
+      "Felix's daily rate = (3/10) ÷ 3 = 1/10 per day.",
+      "Felix alone: 1 ÷ (1/10) = 10 days."
+    ],
+    "distractorExplanations": {
+      "A": "12 days would mean Felix's rate = 1/12 per day and his contribution = 3 × 1/12 = 1/4 of the task. Then total work = 7/10 + 1/4 = 14/20 + 5/20 = 19/20 ≠ 1 — so 12 days doesn't work.",
+      "B": "15 days would mean Felix's rate = 1/15 per day and contribution = 3 × 1/15 = 1/5 of the task. Total = 7/10 + 1/5 = 7/10 + 2/10 = 9/10 ≠ 1 — doesn't work either.",
+      "C": "8 days would mean Felix's rate = 1/8 and contribution = 3/8. But Efren does 7/10 and 7/10 + 3/8 = 28/40 + 15/40 = 43/40 > 1 — impossible."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "In multi-phase work problems, find each person's total contribution across all phases, then use: (person's work done) ÷ (days they worked) = their daily rate."
+    },
+    "tags": [
+      "work-rate",
+      "word-problems",
+      "algebra"
+    ]
+  },
+  {
+    "id": "num-0030",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Age Problems",
+    "subtopic": "Future Age Conditions",
+    "difficulty": "Easy",
+    "question": "Mia is 3 times as old as her son. In 8 years, she will be twice as old as her son. How old is her son now?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "6"
+      },
+      {
+        "id": "B",
+        "text": "10"
+      },
+      {
+        "id": "C",
+        "text": "8"
+      },
+      {
+        "id": "D",
+        "text": "7"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Age problems become straightforward when you assign a variable and translate the English sentences into equations. Let S = the son's current age. Then Mia's current age = 3S (she is 3 times older). In 8 years, the son will be S + 8 and Mia will be 3S + 8. The future condition says Mia will be twice the son's age: 3S + 8 = 2(S + 8). Expand: 3S + 8 = 2S + 16. Subtract 2S: S + 8 = 16. Subtract 8: S = 8. Check: son is 8, Mia is 24. In 8 years: son is 16, Mia is 32 = 2 × 16. ✓",
+    "steps": [
+      "Let S = son's current age. Mia's age = 3S.",
+      "In 8 years: son's age = S + 8; Mia's age = 3S + 8.",
+      "Set up equation: 3S + 8 = 2(S + 8).",
+      "Expand and solve: 3S + 8 = 2S + 16 → S = 8.",
+      "Verify: Mia = 24; in 8 years Mia is 32, son is 16, and 32 = 2 × 16. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "6 would mean Mia is currently 18. In 8 years: Mia 26, son 14. Is 26 = 2×14 = 28? No. So 6 doesn't satisfy the future condition.",
+      "B": "10 would mean Mia is 30. In 8 years: Mia 38, son 18. Is 38 = 2×18 = 36? No. So 10 is also wrong.",
+      "D": "7 would mean Mia is 21. In 8 years: Mia 29, son 15. Is 29 = 2×15 = 30? No. Close but not correct."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "In age problems, set up a variable for one person's current age. Add the number of years to both ages, then write the future condition as an equation."
+    },
+    "tags": [
+      "age-problems",
+      "word-problems",
+      "algebra"
+    ]
+  },
+  {
+    "id": "num-0031",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Age Problems",
+    "subtopic": "Sum of Ages",
+    "difficulty": "Medium",
+    "question": "Romy is 6 years older than Sonia. In 4 years, the sum of their ages will be 50. How old is Romy now?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "20"
+      },
+      {
+        "id": "B",
+        "text": "22"
+      },
+      {
+        "id": "C",
+        "text": "24"
+      },
+      {
+        "id": "D",
+        "text": "26"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "This problem links a current age difference to a future age sum — two conditions that together pin down the exact ages. Let Sonia's current age = S. Then Romy's current age = S + 6. In 4 years: Sonia will be S + 4 and Romy will be S + 6 + 4 = S + 10. Their future sum is 50: (S + 4) + (S + 10) = 50. Combine: 2S + 14 = 50. Subtract 14: 2S = 36. Divide by 2: S = 18. So Romy is S + 6 = 18 + 6 = 24 years old now. Check: in 4 years Romy is 28 and Sonia is 22, and 28 + 22 = 50. ✓",
+    "steps": [
+      "Let Sonia's age = S; Romy's age = S + 6.",
+      "In 4 years: Sonia = S+4; Romy = S+10.",
+      "Future sum equation: (S+4) + (S+10) = 50 → 2S + 14 = 50.",
+      "Solve: 2S = 36 → S = 18. Romy = 18 + 6 = 24."
+    ],
+    "distractorExplanations": {
+      "A": "20 gives Sonia's age as 14. In 4 years: Romy 24, Sonia 18; sum = 42 ≠ 50. The future sum condition is not satisfied.",
+      "B": "22 gives Sonia's age as 16. In 4 years: Romy 26, Sonia 20; sum = 46 ≠ 50. Still not right.",
+      "D": "26 gives Sonia's age as 20. In 4 years: Romy 30, Sonia 24; sum = 54 ≠ 50. This is 4 too many, meaning Romy was rounded up by 2 years."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When both current and future ages are involved, always write the future ages in terms of current variables first. A future age is simply (current age + number of years)."
+    },
+    "tags": [
+      "age-problems",
+      "word-problems",
+      "algebra"
+    ]
+  },
+  {
+    "id": "num-0032",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Mixture Problems",
+    "subtopic": "Mixture by Cost",
+    "difficulty": "Medium",
+    "question": "Cashews worth ₱320 per kilogram are mixed with peanuts worth ₱80 per kilogram to produce 10 kg of a mixture worth ₱200 per kilogram. How many kilograms of cashews are needed?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4 kg"
+      },
+      {
+        "id": "B",
+        "text": "6 kg"
+      },
+      {
+        "id": "C",
+        "text": "5 kg"
+      },
+      {
+        "id": "D",
+        "text": "7 kg"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Mixture problems balance the total value of the ingredients. If x kg of cashews (at ₱320/kg) are mixed with (10 – x) kg of peanuts (at ₱80/kg), the total value must equal 10 kg × ₱200/kg = ₱2,000. Set up the equation: 320x + 80(10 – x) = 2,000. Expand: 320x + 800 – 80x = 2,000. Simplify: 240x = 1,200. Solve: x = 5 kg of cashews. The remaining 5 kg are peanuts. Verify: 5 × 320 + 5 × 80 = 1,600 + 400 = ₱2,000 = 10 × 200. ✓",
+    "steps": [
+      "Let x = kg of cashews; then (10 – x) = kg of peanuts.",
+      "Total value equation: 320x + 80(10 – x) = 200 × 10 = 2,000.",
+      "Expand: 320x + 800 – 80x = 2,000 → 240x = 1,200.",
+      "Solve: x = 5 kg of cashews."
+    ],
+    "distractorExplanations": {
+      "A": "4 kg of cashews would give total value = 4×320 + 6×80 = 1,280 + 480 = ₱1,760 ≠ ₱2,000. The mixture price would be ₱176/kg, not ₱200.",
+      "B": "6 kg of cashews would give 6×320 + 4×80 = 1,920 + 320 = ₱2,240 ≠ ₱2,000. The mixture price would be ₱224/kg, not ₱200.",
+      "D": "7 kg of cashews would give 7×320 + 3×80 = 2,240 + 240 = ₱2,480 ≠ ₱2,000. This mix is too heavy on the expensive ingredient."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Mixture equation: (qty₁ × price₁) + (qty₂ × price₂) = (total qty × mixture price). Set up algebraically, with qty₂ = total – qty₁."
+    },
+    "tags": [
+      "mixture-problems",
+      "word-problems",
+      "algebra"
+    ]
+  },
+  {
+    "id": "num-0033",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Mixture Problems",
+    "subtopic": "Concentration Problems",
+    "difficulty": "Hard",
+    "question": "A laboratory has 30 liters of a 40% acid solution. How many liters of pure acid must be added to raise the concentration to 60%?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "12 L"
+      },
+      {
+        "id": "B",
+        "text": "18 L"
+      },
+      {
+        "id": "C",
+        "text": "10 L"
+      },
+      {
+        "id": "D",
+        "text": "15 L"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Concentration problems track the amount of pure solute (acid) through the mixing process. Start: 30 L of 40% acid contains 0.40 × 30 = 12 L of pure acid. When we add x liters of pure acid (100% acid), the new total volume is (30 + x) liters and the new total acid is (12 + x) liters. The new concentration must be 60%: (12 + x) / (30 + x) = 0.60. Cross-multiply: 12 + x = 0.60(30 + x) = 18 + 0.60x. Subtract 0.60x: 0.40x = 6. Divide: x = 15 liters. Check: (12+15)/(30+15) = 27/45 = 0.60 = 60%. ✓",
+    "steps": [
+      "Compute current acid: 0.40 × 30 = 12 L of pure acid.",
+      "Let x = liters of pure acid to add. New volume = 30 + x; new acid = 12 + x.",
+      "Set up equation: (12 + x) / (30 + x) = 0.60.",
+      "Cross-multiply: 12 + x = 18 + 0.60x → 0.40x = 6 → x = 15 L."
+    ],
+    "distractorExplanations": {
+      "A": "12 L added would give (12+12)/(30+12) = 24/42 ≈ 57.1%, not 60%. This comes from incorrectly equating the amount to add with the current acid content.",
+      "B": "18 L added would give (12+18)/(30+18) = 30/48 = 62.5%, not 60%. This slightly overshoots the target concentration.",
+      "C": "10 L added would give (12+10)/(30+10) = 22/40 = 55%, not 60%. Likely from solving 0.40x = 4 (arithmetic error) instead of 0.40x = 6."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "In concentration problems, track the PURE SUBSTANCE (acid, salt, alcohol), not the solution volume. New concentration = (old pure amount + added pure amount) ÷ (old volume + added volume)."
+    },
+    "tags": [
+      "mixture-problems",
+      "concentration",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0034",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "subtopic": "Basic DST Calculation",
+    "difficulty": "Easy",
+    "question": "A provincial bus travels at 60 km/h. How far will it travel in 2 hours and 30 minutes?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "120 km"
+      },
+      {
+        "id": "B",
+        "text": "160 km"
+      },
+      {
+        "id": "C",
+        "text": "150 km"
+      },
+      {
+        "id": "D",
+        "text": "145 km"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The Distance-Speed-Time relationship is one of the most important formulas in mathematics: Distance = Speed × Time. The critical step here is converting the time to a single unit. 2 hours 30 minutes = 2.5 hours (because 30 minutes = 30/60 = 0.5 hours). Then: Distance = 60 km/h × 2.5 h = 150 km. A common mistake is to work with the minutes without converting: someone might compute 60 × 2 = 120 (ignoring the 30 minutes) or 60 × 230 = 13,800 (treating the time as 230 hours). Always convert time to a single consistent unit first.",
+    "steps": [
+      "Convert time: 2 hours 30 minutes = 2 + 30/60 = 2.5 hours.",
+      "Apply Distance = Speed × Time: D = 60 × 2.5 = 150 km."
+    ],
+    "distractorExplanations": {
+      "A": "120 km = 60 × 2, which is the result of ignoring the 30-minute portion and computing only for 2 full hours.",
+      "B": "160 km doesn't have a clean derivation from 60 km/h in 2.5 hours. It might arise from mistakenly using a speed of 64 km/h, or from an arithmetic error.",
+      "D": "145 km might come from using 2 hours 25 minutes instead of 2 hours 30 minutes, i.e., 60 × 2.417 ≈ 145 — a time-conversion error."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Distance = Speed × Time (DST triangle). Always convert time to HOURS (or the same unit as speed) before multiplying. 30 min = 0.5 h; 45 min = 0.75 h."
+    },
+    "tags": [
+      "distance-speed-time",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0035",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "subtopic": "Average Speed (Round Trip)",
+    "difficulty": "Medium",
+    "question": "Roldan drives from Manila to Batangas at 80 km/h and returns along the same route at 60 km/h. What is his average speed for the entire round trip?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "70 km/h"
+      },
+      {
+        "id": "B",
+        "text": "68 km/h"
+      },
+      {
+        "id": "C",
+        "text": "68.57 km/h"
+      },
+      {
+        "id": "D",
+        "text": "72 km/h"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Average speed is total distance divided by total time — NOT the simple average of the two speeds. Let the one-way distance be d km. Going: time = d/80 hours. Returning: time = d/60 hours. Total distance = 2d km. Total time = d/80 + d/60 = 3d/240 + 4d/240 = 7d/240. Average speed = 2d ÷ (7d/240) = 2d × 240/(7d) = 480/7 ≈ 68.57 km/h. The formula 2v₁v₂/(v₁+v₂) = 2×80×60/(80+60) = 9,600/140 = 480/7 ≈ 68.57 km/h confirms this. The arithmetic mean (70 km/h) is wrong because Roldan spends more time at the slower speed.",
+    "steps": [
+      "Let one-way distance = d km.",
+      "Time going = d/80 h; time returning = d/60 h.",
+      "Total distance = 2d; total time = d/80 + d/60 = 7d/240.",
+      "Average speed = 2d ÷ (7d/240) = 480/7 ≈ 68.57 km/h."
+    ],
+    "distractorExplanations": {
+      "A": "70 km/h is the simple arithmetic mean (80+60)/2 = 70. This ignores that more time is spent traveling at 60 km/h, so the actual average is pulled toward the slower speed.",
+      "B": "68 km/h is a rounded version of the correct answer and is sometimes seen as an option to catch people who know the harmonic mean formula but round too aggressively mid-calculation.",
+      "D": "72 km/h has no clean derivation — it may result from computing (80+60)/2 + a small adjustment, or from using an incorrect formula such as (80×60)/(80–60) = 240."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "For round-trip average speed at two different speeds: Average = 2v₁v₂ ÷ (v₁ + v₂). This is the HARMONIC mean, not the arithmetic mean."
+    },
+    "tags": [
+      "distance-speed-time",
+      "average-speed",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0036",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "subtopic": "Approaching Objects",
+    "difficulty": "Medium",
+    "question": "Two trains are 360 km apart and moving toward each other. Train A travels at 90 km/h and Train B at 70 km/h. In how many hours will they meet?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2.5 hours"
+      },
+      {
+        "id": "B",
+        "text": "2.0 hours"
+      },
+      {
+        "id": "C",
+        "text": "3.0 hours"
+      },
+      {
+        "id": "D",
+        "text": "2.25 hours"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "When two objects move toward each other, their speeds add together to form a combined closing speed — this is the rate at which the distance between them shrinks. Combined speed = 90 + 70 = 160 km/h. Time to close a gap of 360 km = 360 ÷ 160 = 2.25 hours. Think of it this way: in 1 hour, Train A closes 90 km and Train B closes 70 km of the gap simultaneously, for a combined 160 km per hour of gap reduction. After 2.25 hours: Train A has traveled 90 × 2.25 = 202.5 km and Train B has traveled 70 × 2.25 = 157.5 km, and 202.5 + 157.5 = 360 km. ✓",
+    "steps": [
+      "Combined closing speed = 90 + 70 = 160 km/h.",
+      "Time = Total distance ÷ Combined speed = 360 ÷ 160 = 2.25 hours."
+    ],
+    "distractorExplanations": {
+      "A": "2.5 hours would require a combined speed of 360 ÷ 2.5 = 144 km/h, but 90 + 70 = 160, not 144. This likely arises from using only one train's speed, e.g., 360 ÷ 90 × 0.625.",
+      "B": "2.0 hours would require a combined speed of 180 km/h, which is 90 + 90 — perhaps from doubling Train A's speed, or from using 360 ÷ 180 = 2.",
+      "C": "3.0 hours would require a combined speed of 120 km/h, perhaps from using only one of the two speeds (360 ÷ 120 = 3) — forgetting that BOTH trains contribute to closing the gap."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Trains (or people) moving TOWARD each other: add their speeds. Moving in the SAME direction: subtract speeds. Time = Distance ÷ (Combined speed)."
+    },
+    "tags": [
+      "distance-speed-time",
+      "approaching",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0037",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "subtopic": "Chase Problems",
+    "difficulty": "Hard",
+    "question": "Runner A starts at 7:00 AM at 8 km/h. Runner B starts at 8:00 AM from the same point at 12 km/h in the same direction. At what time does Runner B catch Runner A?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "9:00 AM"
+      },
+      {
+        "id": "B",
+        "text": "10:30 AM"
+      },
+      {
+        "id": "C",
+        "text": "10:00 AM"
+      },
+      {
+        "id": "D",
+        "text": "11:00 AM"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Chase problems require finding when the faster traveler closes the head-start gap of the slower one. By the time Runner B starts at 8:00 AM, Runner A has already been running for 1 hour, covering 8 km/h × 1 h = 8 km. This is Runner B's deficit. Runner B gains on Runner A at a rate of 12 – 8 = 4 km/h. Time for B to close the 8 km gap = 8 km ÷ 4 km/h = 2 hours after B starts. Runner B starts at 8:00 AM, so they meet at 8:00 AM + 2 hours = 10:00 AM. At that point, both are 24 km from the start (Runner A: 8 km/h × 3 h = 24; Runner B: 12 km/h × 2 h = 24). ✓",
+    "steps": [
+      "Head-start distance: Runner A runs 1 hour before B starts → 8 × 1 = 8 km ahead.",
+      "Relative speed of B gaining on A: 12 – 8 = 4 km/h.",
+      "Time to close gap: 8 km ÷ 4 km/h = 2 hours after 8:00 AM.",
+      "Meeting time: 8:00 AM + 2 hours = 10:00 AM."
+    ],
+    "distractorExplanations": {
+      "A": "9:00 AM (1 hour after B starts) would mean B closes 4 km in 1 hour but needs to close 8 km — only halfway there. This might come from computing 8 ÷ 8 = 1 hour (dividing by A's speed instead of the relative speed).",
+      "B": "10:30 AM arises from adding 2.5 hours to 8:00 AM — perhaps from computing 8 ÷ (12-8+1) = 8/5 = 1.6 hours, or from some combination of the two runners' times.",
+      "D": "11:00 AM (3 hours after B starts) would mean the gap was 12 km, not 8 km — perhaps from thinking A had a 2-hour head start (8 AM start assumed for both, then misreading 8 AM as 2 hours before 10 AM)."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Chase problem: Time for B to catch A = (Head-start distance) ÷ (Speed of B – Speed of A). Then add to B's start time to get the meeting time."
+    },
+    "tags": [
+      "distance-speed-time",
+      "chase",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0038",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "subtopic": "Simple Interest",
+    "difficulty": "Medium",
+    "question": "Perla invests ₱50,000 in a time deposit paying 6% simple interest per year. How much interest does she earn after 3 years?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱8,000"
+      },
+      {
+        "id": "B",
+        "text": "₱10,000"
+      },
+      {
+        "id": "C",
+        "text": "₱7,500"
+      },
+      {
+        "id": "D",
+        "text": "₱9,000"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Simple interest is interest calculated only on the original principal — it does not compound (no interest on interest). The formula is: I = P × r × t, where P is the principal, r is the annual interest rate as a decimal, and t is the time in years. Here: I = ₱50,000 × 0.06 × 3 = ₱50,000 × 0.18 = ₱9,000. The total amount after 3 years would be ₱50,000 + ₱9,000 = ₱59,000. Note that 6% per year for 3 years means she earns 6% × 3 = 18% of her principal in total interest — a straightforward multiplication.",
+    "steps": [
+      "Identify: P = ₱50,000; r = 6% = 0.06; t = 3 years.",
+      "Apply Simple Interest formula: I = P × r × t = 50,000 × 0.06 × 3.",
+      "Compute: 50,000 × 0.06 = 3,000 per year × 3 years = ₱9,000."
+    ],
+    "distractorExplanations": {
+      "A": "₱8,000 would correspond to I = 50,000 × 0.06 × 8/3, or could arise from using 16% total interest instead of 18%. There's no clean pathway to ₱8,000 from the given values.",
+      "B": "₱10,000 would correspond to 20% total interest (0.20 × 50,000) — perhaps from mistakenly using a 6.67% annual rate or 10% for 2 years, or confusing 6% with a higher rate.",
+      "C": "₱7,500 = 50,000 × 0.05 × 3 — the result of using a 5% interest rate instead of 6%. This is a reading error, treating 6% as 5%."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Simple Interest: I = P × r × t. Total amount = P + I = P(1 + rt). Simple interest earns the SAME amount each year — it does NOT grow on previous interest."
+    },
+    "tags": [
+      "money",
+      "simple-interest",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0039",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "subtopic": "Systems of Equations (Coins)",
+    "difficulty": "Medium",
+    "question": "Jessa has a mix of ₱1 coins and ₱5 coins totaling ₱47. She has 23 coins altogether. How many ₱5 coins does she have?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4"
+      },
+      {
+        "id": "B",
+        "text": "8"
+      },
+      {
+        "id": "C",
+        "text": "5"
+      },
+      {
+        "id": "D",
+        "text": "6"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Coin problems set up a system of two equations in two unknowns — one for the COUNT of coins, one for the TOTAL VALUE. Let x = number of ₱5 coins and y = number of ₱1 coins. Equation 1 (count): x + y = 23. Equation 2 (value): 5x + y = 47. Subtract Equation 1 from Equation 2: (5x + y) – (x + y) = 47 – 23 → 4x = 24 → x = 6. Check: y = 23 – 6 = 17. Total value: 6 × 5 + 17 × 1 = 30 + 17 = ₱47. ✓",
+    "steps": [
+      "Let x = number of ₱5 coins; y = number of ₱1 coins.",
+      "Count equation: x + y = 23.",
+      "Value equation: 5x + y = 47.",
+      "Subtract: 4x = 24 → x = 6.",
+      "Check: y = 17; value = 6×5 + 17×1 = 30+17 = ₱47. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "4 five-peso coins: value = 4×5 + 19×1 = 20+19 = ₱39 ≠ ₱47. The total value is too low because there are too few high-value coins.",
+      "B": "8 five-peso coins: value = 8×5 + 15×1 = 40+15 = ₱55 ≠ ₱47. The total value is too high — too many ₱5 coins.",
+      "C": "5 five-peso coins: value = 5×5 + 18×1 = 25+18 = ₱43 ≠ ₱47. Still short of the required ₱47 total."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "For coin problems, subtract the count equation from the value equation to immediately eliminate the ₱1 coin variable. The coefficient of x in the value equation (5) minus 1 = 4, so 4x = value total – count total."
+    },
+    "tags": [
+      "money",
+      "coins",
+      "systems-of-equations",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0040",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "subtopic": "Compound Interest",
+    "difficulty": "Hard",
+    "question": "A credit cooperative places ₱100,000 in an account earning 8% interest compounded annually. What is the total amount at the end of 2 years?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱116,000"
+      },
+      {
+        "id": "B",
+        "text": "₱116,640"
+      },
+      {
+        "id": "C",
+        "text": "₱117,200"
+      },
+      {
+        "id": "D",
+        "text": "₱115,840"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Compound interest is 'interest on interest' — after each period, the earned interest is added to the principal, and the next period's interest is calculated on this larger amount. The formula is A = P(1 + r)ⁿ, where P is the principal, r is the rate per period, and n is the number of periods. Here: A = ₱100,000 × (1.08)² = ₱100,000 × 1.1664 = ₱116,640. Breaking it down: Year 1 interest = 8% × ₱100,000 = ₱8,000. New balance = ₱108,000. Year 2 interest = 8% × ₱108,000 = ₱8,640 (₱640 more than Year 1 because interest now applies to the larger base). Total = ₱108,000 + ₱8,640 = ₱116,640.",
+    "steps": [
+      "Year 1: ₱100,000 × 1.08 = ₱108,000.",
+      "Year 2: ₱108,000 × 1.08 = ₱116,640.",
+      "Alternatively: A = 100,000 × (1.08)² = 100,000 × 1.1664 = ₱116,640."
+    ],
+    "distractorExplanations": {
+      "A": "₱116,000 is the simple interest answer: ₱100,000 + (₱100,000 × 0.08 × 2) = ₱100,000 + ₱16,000 = ₱116,000. This ignores the fact that Year 2 interest is earned on ₱108,000, not ₱100,000.",
+      "C": "₱117,200 might arise from computing Year 2 interest on the wrong base, perhaps ₱100,000 × (1.08 + 0.08) = ₱100,000 × 1.16 + extra, or from a calculation error where 8% of ₱108,000 is computed as ₱9,200 instead of ₱8,640.",
+      "D": "₱115,840 might come from computing 8% of the simple interest total (₱116,000 × 0.08 = ₱9,280... that doesn't match). More likely it's an arithmetic error in computing (1.08)² = 1.1584 — perhaps computing 1.08² as 1.1584 instead of 1.1664."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Compound Interest: A = P × (1 + r)ⁿ. The difference from simple interest is that each year's interest builds on all previous interest. For 2 years at 8%: multiply by 1.08 twice, not just add 16%."
+    },
+    "tags": [
+      "money",
+      "compound-interest",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0041",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "subtopic": "Reading Tables",
+    "difficulty": "Easy",
+    "passage": "Municipality of Baybayon — Employment Summary: Administration Department: 12 Regular, 8 Casual (Total 20). Finance Department: 9 Regular, 6 Casual (Total 15). Health Department: 15 Regular, 10 Casual (Total 25). Overall: 36 Regular, 24 Casual.",
+    "question": "Based on the employment summary, how many total employees does the Municipality of Baybayon have?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "55"
+      },
+      {
+        "id": "B",
+        "text": "65"
+      },
+      {
+        "id": "C",
+        "text": "58"
+      },
+      {
+        "id": "D",
+        "text": "60"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Data interpretation questions reward systematic reading. There are two equivalent ways to find the total. Method 1: Add department totals — Administration (20) + Finance (15) + Health (25) = 60 employees. Method 2: Add employment status totals — Regular (36) + Casual (24) = 60 employees. Both methods should agree. When they do, you can be confident in the answer. In the exam, always cross-check your reading of the table using two different aggregation methods where possible.",
+    "steps": [
+      "By department: 20 (Admin) + 15 (Finance) + 25 (Health) = 60.",
+      "By status: 36 (Regular) + 24 (Casual) = 60.",
+      "Both methods confirm: total = 60 employees."
+    ],
+    "distractorExplanations": {
+      "A": "55 results from adding only two of the three departments (e.g., 20 + 15 + 20 = 55 using a wrong Health total, or 36 + 19 casual from a miscount).",
+      "B": "65 results from adding an incorrect total for one department, perhaps misreading Health as 30 instead of 25: 20 + 15 + 30 = 65.",
+      "C": "58 might result from misreading Casual employees in one department, perhaps counting Administration casual as 6 instead of 8: 20 – 2 + 15 + 25 = 58."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Always verify totals by adding from two different directions (by row AND by column). If both give the same answer, you've correctly read the table."
+    },
+    "tags": [
+      "data-interpretation",
+      "tables",
+      "addition"
+    ]
+  },
+  {
+    "id": "num-0042",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "subtopic": "Percentage from Table",
+    "difficulty": "Medium",
+    "passage": "Municipality of Baybayon — Employment Summary: Administration Department: 12 Regular, 8 Casual (Total 20). Finance Department: 9 Regular, 6 Casual (Total 15). Health Department: 15 Regular, 10 Casual (Total 25). Overall: 36 Regular, 24 Casual.",
+    "question": "What percentage of the municipality's total employees are on casual status?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "35%"
+      },
+      {
+        "id": "B",
+        "text": "45%"
+      },
+      {
+        "id": "C",
+        "text": "40%"
+      },
+      {
+        "id": "D",
+        "text": "42%"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "To find the percentage of casual employees, you need two numbers: the number of casual employees and the total number of employees. From the table: Casual employees = 24 (the column total for Casual). Total employees = 60 (all employees). Percentage = (Casual ÷ Total) × 100 = (24 ÷ 60) × 100 = 0.40 × 100 = 40%. You can simplify 24/60 by dividing both by 12: 2/5 = 0.40 = 40%. The regular employees form the remaining 60%, which you can verify: 36/60 = 60%.",
+    "steps": [
+      "Casual employees = 24; total employees = 60.",
+      "Percentage = (24 ÷ 60) × 100.",
+      "Simplify: 24/60 = 2/5 = 0.40 = 40%."
+    ],
+    "distractorExplanations": {
+      "A": "35% would mean 0.35 × 60 = 21 casual employees, but the table shows 24. This is a miscount of one department's casual staff.",
+      "B": "45% would mean 0.45 × 60 = 27 casual employees, but the total is 24. This might arise from misreading the casual count in one department (e.g., reading Administration as 11 Casual instead of 8).",
+      "D": "42% has no clean derivation — 0.42 × 60 = 25.2 (not a whole number), so it comes from a rounding error or miscount of 25 casual employees instead of 24."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "24 out of 60 is the same as 24/60. Simplify by dividing both by their GCD (12): 2/5 = 40%. Memorize common fractions: 1/4=25%, 1/3≈33%, 2/5=40%, 1/2=50%."
+    },
+    "tags": [
+      "data-interpretation",
+      "percentages",
+      "tables"
+    ]
+  },
+  {
+    "id": "num-0043",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "subtopic": "Ratio from Table",
+    "difficulty": "Medium",
+    "passage": "Municipality of Baybayon — Employment Summary: Administration Department: 12 Regular, 8 Casual (Total 20). Finance Department: 9 Regular, 6 Casual (Total 15). Health Department: 15 Regular, 10 Casual (Total 25). Overall: 36 Regular, 24 Casual.",
+    "question": "In the Finance Department, what is the ratio of Regular employees to Casual employees in its simplest form?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "9:6"
+      },
+      {
+        "id": "B",
+        "text": "2:3"
+      },
+      {
+        "id": "C",
+        "text": "3:2"
+      },
+      {
+        "id": "D",
+        "text": "4:3"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The Finance Department has 9 Regular and 6 Casual employees. The ratio of Regular to Casual is 9:6. To simplify a ratio, divide both sides by their greatest common divisor (GCD). GCD of 9 and 6 is 3. Divide both by 3: 9/3 : 6/3 = 3:2. The simplified ratio is 3:2, meaning for every 3 regular employees in Finance, there are 2 casual employees. Note that option A (9:6) is the unsimplified form — it represents the correct relationship but is not the simplest form.",
+    "steps": [
+      "Read the table: Finance has 9 Regular and 6 Casual.",
+      "Write the ratio: Regular : Casual = 9 : 6.",
+      "Find the GCD of 9 and 6: GCD = 3.",
+      "Simplify: 9÷3 : 6÷3 = 3 : 2."
+    ],
+    "distractorExplanations": {
+      "A": "9:6 is the correct relationship but is not fully simplified — the question asks for the simplest form. Both 9 and 6 are divisible by 3.",
+      "B": "2:3 reverses the order — this is the Casual-to-Regular ratio, not Regular-to-Casual. The question asks for Regular:Casual.",
+      "D": "4:3 would apply to the Overall municipality (36:24 = 36/12:24/12 = 3:2... actually still 3:2). 4:3 has no basis in the Finance figures."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "To simplify a ratio, divide both parts by their GCD. Always pay attention to the order — the question asks 'A to B,' so put A first."
+    },
+    "tags": [
+      "data-interpretation",
+      "ratio",
+      "tables"
+    ]
+  },
+  {
+    "id": "num-0044",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "subtopic": "Budget Utilization",
+    "difficulty": "Medium",
+    "passage": "Provincial Engineering Office — Quarterly Road-Repair Budget Utilization: Q1 ₱480,000; Q2 ₱520,000; Q3 ₱450,000; Q4 ₱550,000. Total approved annual budget: ₱2,500,000.",
+    "question": "What percentage of the annual budget was actually utilized by the Provincial Engineering Office?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "75%"
+      },
+      {
+        "id": "B",
+        "text": "85%"
+      },
+      {
+        "id": "C",
+        "text": "78%"
+      },
+      {
+        "id": "D",
+        "text": "80%"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Budget utilization rate compares what was actually spent to what was approved. First, total the quarterly expenditures: ₱480,000 + ₱520,000 + ₱450,000 + ₱550,000 = ₱2,000,000 actually utilized. Utilization rate = (Actual ÷ Approved) × 100 = (₱2,000,000 ÷ ₱2,500,000) × 100 = 0.80 × 100 = 80%. This means 20% of the budget went unspent. In government work, budget utilization rates are closely monitored — an 80% utilization is generally considered acceptable.",
+    "steps": [
+      "Total actual spending: 480,000 + 520,000 + 450,000 + 550,000 = ₱2,000,000.",
+      "Utilization rate = (2,000,000 ÷ 2,500,000) × 100 = 0.80 × 100 = 80%."
+    ],
+    "distractorExplanations": {
+      "A": "75% = ₱1,875,000 utilized — this is short by ₱125,000 compared to the actual ₱2,000,000. It results from an error in summing the quarterly figures, perhaps missing Q4 and dividing differently.",
+      "B": "85% = ₱2,125,000 utilized — this overshoots the actual ₱2,000,000 by ₱125,000. Likely results from mistakenly summing Q1+Q2+Q3+Q4 with an inflated Q4 value (say ₱675,000 instead of ₱550,000).",
+      "C": "78% ≈ ₱1,950,000 utilized — slightly below the actual amount. This could arise from an arithmetic error summing the four quarters (perhaps adding only three and estimating the fourth)."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Budget utilization = (Total Spent ÷ Total Approved) × 100%. First add all quarterly figures carefully, then divide by the full-year budget."
+    },
+    "tags": [
+      "data-interpretation",
+      "percentages",
+      "budget"
+    ]
+  },
+  {
+    "id": "num-0045",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "subtopic": "Comparative Averages",
+    "difficulty": "Hard",
+    "passage": "Provincial Engineering Office — Quarterly Road-Repair Budget Utilization: Q1 ₱480,000; Q2 ₱520,000; Q3 ₱450,000; Q4 ₱550,000. Total approved annual budget: ₱2,500,000.",
+    "question": "By how much does the average of Q2 and Q4 spending exceed the average of Q1 and Q3 spending?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱60,000"
+      },
+      {
+        "id": "B",
+        "text": "₱80,000"
+      },
+      {
+        "id": "C",
+        "text": "₱75,000"
+      },
+      {
+        "id": "D",
+        "text": "₱70,000"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "This question asks you to compute two averages from table data and then find their difference. Average of Q2 and Q4: (₱520,000 + ₱550,000) ÷ 2 = ₱1,070,000 ÷ 2 = ₱535,000. Average of Q1 and Q3: (₱480,000 + ₱450,000) ÷ 2 = ₱930,000 ÷ 2 = ₱465,000. Difference = ₱535,000 – ₱465,000 = ₱70,000. The 'even' quarters (Q2 and Q4) had on average ₱70,000 more spending than the 'odd' quarters (Q1 and Q3) — a pattern that might suggest seasonal or project-cycle effects on road repair spending.",
+    "steps": [
+      "Average of Q2 and Q4: (520,000 + 550,000) ÷ 2 = 1,070,000 ÷ 2 = ₱535,000.",
+      "Average of Q1 and Q3: (480,000 + 450,000) ÷ 2 = 930,000 ÷ 2 = ₱465,000.",
+      "Difference: ₱535,000 – ₱465,000 = ₱70,000."
+    ],
+    "distractorExplanations": {
+      "A": "₱60,000 would result from a calculation error, perhaps using Q4=₱530,000 instead of ₱550,000: (520+530)/2=525 and (480+450)/2=465; 525–465=60.",
+      "B": "₱80,000 results from subtracting the individual figures rather than their averages: (520,000 – 480,000) = 40,000 and (550,000 – 450,000) = 100,000, then averaging: (40,000+100,000)/2 = 70,000 — actually that gives 70,000. More likely ₱80,000 comes from computing (Q2+Q4) – (Q1+Q3) = 140,000 without dividing by 2.",
+      "C": "₱75,000 might arise from averaging the differences of paired quarters incorrectly: (520–480 + 550–450)/2 = (40,000+100,000)/2 = 70,000 — that's actually the correct answer. ₱75,000 could arise from using wrong quarter values in the computation."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "When comparing two averages with equal sample sizes, the difference of averages = (sum of first group – sum of second group) ÷ n. Here: (1,070,000 – 930,000) ÷ 2 = 140,000 ÷ 2 = ₱70,000."
+    },
+    "tags": [
+      "data-interpretation",
+      "averages",
+      "comparison"
+    ]
+  },
+  {
+    "id": "num-0046",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Averages",
+    "subtopic": "Arithmetic Mean",
+    "difficulty": "Easy",
+    "question": "A student scored 82, 75, 91, 68, and 84 on five quizzes. What is the average score?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "78"
+      },
+      {
+        "id": "B",
+        "text": "82"
+      },
+      {
+        "id": "C",
+        "text": "79"
+      },
+      {
+        "id": "D",
+        "text": "80"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The arithmetic mean (average) is found by adding all values and dividing by the count of values. Sum = 82 + 75 + 91 + 68 + 84. Let's add methodically: 82 + 75 = 157; 157 + 91 = 248; 248 + 68 = 316; 316 + 84 = 400. Divide by 5 scores: 400 ÷ 5 = 80. The answer is 80. A useful mental check: if you suspect the average is around 80, compare each score to 80 — the deviations are +2, –5, +11, –12, +4. These deviations sum to zero (2–5+11–12+4 = 0), confirming that 80 is the exact mean.",
+    "steps": [
+      "Sum all scores: 82 + 75 + 91 + 68 + 84 = 400.",
+      "Divide by the number of scores: 400 ÷ 5 = 80."
+    ],
+    "distractorExplanations": {
+      "A": "78 results from a sum error — perhaps adding the five numbers as 390 instead of 400, and 390÷5=78. Check: 82+75=157, not 155.",
+      "B": "82 is the first score listed, and some test-takers mistakenly select it as the average when pressed for time, without computing the actual sum.",
+      "C": "79 results from a sum of 395 (off by 5), giving 395÷5=79. This might come from misreading 84 as 79 or 68 as 63 in the addition."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "To verify an average, check that deviations above and below the mean cancel out. For mean=80: deviations are +2, –5, +11, –12, +4, which sum to 0. ✓"
+    },
+    "tags": [
+      "averages",
+      "arithmetic-mean"
+    ]
+  },
+  {
+    "id": "num-0047",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Averages",
+    "subtopic": "Weighted Average",
+    "difficulty": "Easy",
+    "question": "Three exams were given with weights 1, 1, and 2, respectively. A student scored 78, 85, and 90 on the three exams. What is the weighted average?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "84.33"
+      },
+      {
+        "id": "B",
+        "text": "85.00"
+      },
+      {
+        "id": "C",
+        "text": "85.75"
+      },
+      {
+        "id": "D",
+        "text": "86.25"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "In a weighted average, some values count more than others. Here the third exam counts double (weight 2), meaning it has twice the influence on the final average as either of the first two exams. Weighted sum = (78 × 1) + (85 × 1) + (90 × 2) = 78 + 85 + 180 = 343. Total weight = 1 + 1 + 2 = 4. Weighted average = 343 ÷ 4 = 85.75. Notice that the third exam's score of 90 is the highest, and the weighted average (85.75) is pulled higher than the simple average (78+85+90)/3 = 251/3 ≈ 83.67 — confirming that the heavy-weighted high score is pulling the result up.",
+    "steps": [
+      "Multiply each score by its weight: 78×1=78; 85×1=85; 90×2=180.",
+      "Sum the weighted scores: 78+85+180=343.",
+      "Sum the weights: 1+1+2=4.",
+      "Divide: 343÷4=85.75."
+    ],
+    "distractorExplanations": {
+      "A": "84.33 = 253/3, which is close to the simple (unweighted) average of the three scores: (78+85+90)/3 = 253/3 ≈ 84.33. This is the result of ignoring the weights entirely.",
+      "B": "85.00 might arise from computing a partially weighted average — for instance, using only the last two scores weighted: (85+90×2)/(1+2) = 265/3 ≈ 88.3, or from some other incomplete method.",
+      "D": "86.25 = 345/4, which would result from the weighted sum of 345 instead of 343 — perhaps computing 90×2=182 instead of 180, or misadding 78+85=165 instead of 163."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Weighted average = Σ(score × weight) ÷ Σ(weights). The score with a higher weight has a bigger effect on the average — think of it as counting that score multiple times."
+    },
+    "tags": [
+      "averages",
+      "weighted-average"
+    ]
+  },
+  {
+    "id": "num-0048",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Basic Algebra",
+    "subtopic": "Linear Equations",
+    "difficulty": "Medium",
+    "question": "Solve for x: 3x – 7 = 2(x + 4)",
+    "choices": [
+      {
+        "id": "A",
+        "text": "x = 12"
+      },
+      {
+        "id": "B",
+        "text": "x = 18"
+      },
+      {
+        "id": "C",
+        "text": "x = 15"
+      },
+      {
+        "id": "D",
+        "text": "x = 21"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Solving a linear equation means isolating x on one side. Start by expanding the right side: 2(x + 4) = 2x + 8. The equation becomes 3x – 7 = 2x + 8. To isolate x, move the x-term to the left by subtracting 2x from both sides: 3x – 2x – 7 = 8 → x – 7 = 8. Add 7 to both sides: x = 15. Always verify by substituting back: left side = 3(15) – 7 = 45 – 7 = 38. Right side = 2(15 + 4) = 2 × 19 = 38. Both sides equal 38, so x = 15 is correct.",
+    "steps": [
+      "Expand: 2(x+4) = 2x+8. Equation: 3x–7 = 2x+8.",
+      "Subtract 2x from both sides: x–7 = 8.",
+      "Add 7 to both sides: x = 15.",
+      "Verify: 3(15)–7 = 38 = 2(15+4) = 38. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "x=12: Check: 3(12)–7=29 and 2(12+4)=32. Not equal — x=12 does not satisfy the equation.",
+      "B": "x=18: Check: 3(18)–7=47 and 2(18+4)=44. Not equal — likely results from expanding 2(x+4) as 2x+4 (forgetting to multiply 4 by 2): then 3x–7=2x+4 → x=11 (still wrong), or from a different expansion error.",
+      "D": "x=21: Check: 3(21)–7=56 and 2(21+4)=50. Not equal — may result from incorrectly moving terms, e.g., adding 2x to both sides instead of subtracting."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "When expanding brackets, multiply EVERY term inside by the number outside. 2(x+4) = 2x + 8, NOT 2x + 4. Then collect x-terms on one side, constants on the other."
+    },
+    "tags": [
+      "algebra",
+      "linear-equations",
+      "basic-algebra"
+    ]
+  },
+  {
+    "id": "num-0049",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Averages",
+    "subtopic": "Finding a Missing Value",
+    "difficulty": "Medium",
+    "question": "The average of five numbers is 38. Four of the numbers are 30, 42, 35, and 46. What is the fifth number?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "35"
+      },
+      {
+        "id": "B",
+        "text": "39"
+      },
+      {
+        "id": "C",
+        "text": "37"
+      },
+      {
+        "id": "D",
+        "text": "33"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "When the average and count are known, you can compute the required total sum. Total sum of all five numbers = average × count = 38 × 5 = 190. Sum of the four known numbers = 30 + 42 + 35 + 46 = 153. The fifth number must be the difference: 190 – 153 = 37. Verify: 30 + 42 + 35 + 46 + 37 = 190 and 190 ÷ 5 = 38. ✓ This 'reverse average' technique is extremely common on the Philippine Civil Service Exam.",
+    "steps": [
+      "Required total: 38 × 5 = 190.",
+      "Sum of known four: 30+42+35+46 = 153.",
+      "Fifth number: 190 – 153 = 37."
+    ],
+    "distractorExplanations": {
+      "A": "35 is already one of the given four numbers. Choosing 35 would make the sum 30+42+35+46+35=188, giving average 188÷5=37.6, not 38.",
+      "B": "39 would give total = 30+42+35+46+39=192, and 192÷5=38.4 ≠ 38. This might come from computing 38×5=195 (arithmetic error) and then 195–153=42 — but 42 is not a choice, so the solver might round to 39.",
+      "D": "33 would give total = 153+33=186, and 186÷5=37.2 ≠ 38. Might come from computing the sum of four numbers as 157 (off by 4) and then 190–157=33."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "Missing value = (Target average × Count) – (Sum of known values). This works whenever you know the average, the count, and all values but one."
+    },
+    "tags": [
+      "averages",
+      "missing-value",
+      "basic-algebra"
+    ]
+  },
+  {
+    "id": "num-0050",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Basic Algebra",
+    "subtopic": "Systems of Equations",
+    "difficulty": "Hard",
+    "question": "If x + y = 20 and 3x – y = 28, what is the value of x?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "10"
+      },
+      {
+        "id": "B",
+        "text": "14"
+      },
+      {
+        "id": "C",
+        "text": "16"
+      },
+      {
+        "id": "D",
+        "text": "12"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Systems of two equations with two unknowns can often be solved by the elimination method — adding or subtracting equations to cancel one variable. Here, y appears as +y in the first equation and –y in the second. Adding both equations eliminates y entirely: (x + y) + (3x – y) = 20 + 28 → 4x = 48 → x = 12. Now find y: y = 20 – x = 20 – 12 = 8. Verify both equations: 12 + 8 = 20 ✓ and 3(12) – 8 = 36 – 8 = 28 ✓. Elimination is usually faster than substitution for CSE-style algebra problems when coefficients line up nicely like this.",
+    "steps": [
+      "Add the equations: (x+y) + (3x–y) = 20+28 → 4x = 48.",
+      "Divide: x = 48÷4 = 12.",
+      "Find y: y = 20–12 = 8.",
+      "Verify: 12+8=20 ✓ and 3(12)–8=28 ✓."
+    ],
+    "distractorExplanations": {
+      "A": "x=10 gives y=10. Check: 3(10)–10=20 ≠ 28. This might arise from dividing the sum of the constants (20+28=48) by 4 incorrectly, or from solving only the first equation without using the second.",
+      "B": "x=14 gives y=6. Check: 3(14)–6=36 ≠ 28. Might come from subtracting (not adding) the equations: (3x–y)–(x+y) = 28–20 → 2x–2y=8 → x–y=4, then solving x–y=4 and x+y=20 gives x=12 — actually the right answer. So x=14 likely comes from an arithmetic slip in the subtraction step.",
+      "C": "x=16 gives y=4. Check: 3(16)–4=44 ≠ 28. Might come from using substitution with an error: from x+y=20 → y=20–x, then 3x–(20–x)=28 → 4x=48 → x=12 (correct). Using x=16 likely stems from computing 4x=64 (adding 48+16=64 by error)."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "Elimination works best when the same variable has opposite signs in the two equations (+y and –y). Simply ADD the equations — the opposite-sign variable cancels."
+    },
+    "tags": [
+      "algebra",
+      "systems-of-equations",
+      "basic-algebra"
+    ]
+  },
+  {
+    "id": "seed-num-001",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Work Rate",
+    "subtopic": "Combined Rate — Multiple Workers",
+    "difficulty": "Medium",
+    "question": "If 15 civil service officers can validate 450 official application folders in 6 working days, how many days will it take 10 officers working at the same rate to validate 600 folders?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "8 days"
+      },
+      {
+        "id": "B",
+        "text": "10 days"
+      },
+      {
+        "id": "C",
+        "text": "12 days"
+      },
+      {
+        "id": "D",
+        "text": "14 days"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "This is a compound proportion problem combining work output, number of workers, and time. Start by finding the unit rate — how many folders one officer validates per day. Total work = 450 folders done by 15 officers in 6 days. Rate per officer per day = 450 ÷ (15 × 6) = 450 ÷ 90 = 5 folders per officer per day. With 10 officers, their combined daily output = 10 × 5 = 50 folders per day. Days to validate 600 folders = 600 ÷ 50 = 12 days. The key insight is finding the per-unit rate first, then scaling up to the new scenario.",
+    "steps": [
+      "Find the unit rate: 450 folders ÷ (15 officers × 6 days) = 5 folders per officer per day.",
+      "New daily output with 10 officers: 10 × 5 = 50 folders per day.",
+      "Days needed: 600 ÷ 50 = 12 days."
+    ],
+    "distractorExplanations": {
+      "A": "8 days: 10 officers × 8 days = 80 officer-days; output = 80 × 5 = 400 folders — short of the 600 needed. This might come from using the wrong unit rate or computing 450/15 = 30 per day for the whole group and dividing incorrectly.",
+      "B": "10 days: 10 officers × 10 days = 100 officer-days; output = 500 folders — still not 600. Likely from computing 600/10 = 60 folders/day needed but then dividing by the wrong rate.",
+      "D": "14 days: 10 × 14 × 5 = 700 folders — too many. This might arise from computing the new daily rate as 600/(15×6)... or from an inverse proportion error."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "For compound work problems: Rate per person per day = Total output ÷ (People × Days). Then Days needed = Required output ÷ (New people × Rate per person per day)."
+    },
+    "tags": [
+      "work-rate",
+      "compound-proportion",
+      "word-problems",
+      "algebra"
+    ]
+  },
+  {
+    "id": "seed-num-002",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Salary Deductions",
+    "difficulty": "Easy",
+    "question": "A municipal clerk receives a monthly basic salary of ₱32,000. If a total of 12.5% is deducted for GSIS, Pag-IBIG, PhilHealth, and withholding tax, what is the clerk's net take-home pay for the month?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱27,000"
+      },
+      {
+        "id": "B",
+        "text": "₱28,000"
+      },
+      {
+        "id": "C",
+        "text": "₱28,400"
+      },
+      {
+        "id": "D",
+        "text": "₱29,200"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Finding take-home pay after a deduction is a straightforward percentage calculation. The deduction is 12.5% of the basic salary, meaning the employee keeps 100% – 12.5% = 87.5% of their salary. Method 1 (deduction first): Deduction = 12.5% × ₱32,000 = 0.125 × 32,000 = ₱4,000. Take-home = ₱32,000 – ₱4,000 = ₱28,000. Method 2 (multiplier): Take-home = ₱32,000 × 0.875 = ₱28,000. Both confirm ₱28,000. Note that 12.5% = 1/8, so the deduction is simply ₱32,000 ÷ 8 = ₱4,000 — a neat mental math shortcut for this specific percentage.",
+    "steps": [
+      "Compute total deduction: 12.5% of ₱32,000 = 0.125 × 32,000 = ₱4,000.",
+      "Take-home pay = ₱32,000 – ₱4,000 = ₱28,000."
+    ],
+    "distractorExplanations": {
+      "A": "₱27,000 corresponds to a deduction of ₱5,000 (15.625%), not 12.5%. This might arise from mistakenly computing 12.5% of ₱40,000 or using a higher base.",
+      "C": "₱28,400 corresponds to a deduction of ₱3,600 (11.25%), not 12.5%. Likely from computing 0.125 × 32,000 = 3,600 (arithmetic error — perhaps 125 × 32 ÷ 1,000 = 4 but misplacing the decimal).",
+      "D": "₱29,200 corresponds to a deduction of ₱2,800 (8.75%), which would be a 12.5% deduction applied to ₱22,400 instead of ₱32,000 — a misread of the salary figure."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "12.5% = 1/8. To compute 12.5% of any amount, just divide by 8. Here: ₱32,000 ÷ 8 = ₱4,000 deduction. Take-home = ₱32,000 – ₱4,000 = ₱28,000."
+    },
+    "tags": [
+      "percentages",
+      "salary-deductions",
+      "government-work"
+    ]
+  },
+  {
+    "id": "seed-num-003",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Ratio and Proportion",
+    "subtopic": "Dividing in a Given Ratio",
+    "difficulty": "Medium",
+    "question": "The ratio of administrative assistants to administrative aides in a regional department is 3:5. If there are 40 total administrative personnel in that division, how many are administrative aides?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "15"
+      },
+      {
+        "id": "B",
+        "text": "20"
+      },
+      {
+        "id": "C",
+        "text": "25"
+      },
+      {
+        "id": "D",
+        "text": "30"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "A ratio of 3:5 means that for every 3 assistants, there are 5 aides — a total of 8 'parts.' If the whole group has 40 people, each part is worth 40 ÷ 8 = 5 people. Aides have 5 parts, so the number of aides = 5 × 5 = 25. Assistants have 3 parts: 3 × 5 = 15. Check: 15 + 25 = 40. ✓ The question asks specifically for administrative AIDES (the second number in the ratio, 5 parts), not assistants (3 parts).",
+    "steps": [
+      "Total ratio parts: 3 + 5 = 8 parts.",
+      "Value of each part: 40 ÷ 8 = 5 people per part.",
+      "Administrative aides = 5 parts × 5 = 25."
+    ],
+    "distractorExplanations": {
+      "A": "15 is the number of administrative ASSISTANTS (3 parts × 5 = 15), not aides. The question asks for aides, which correspond to the larger ratio share (5 parts).",
+      "B": "20 = 40 ÷ 2 = half the total, which would be the result of splitting equally between assistants and aides — ignoring the ratio entirely.",
+      "D": "30 corresponds to 6 parts out of 8 (30/40 = 6/8 = 3/4), which has no logical basis in the 3:5 ratio. Likely from computing 5/8 × 40 = 25 but writing 30 from a calculation slip."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Read the question carefully — it asks for the second group (aides, 5 parts), not the first. In a ratio A:B, always identify which group you need before computing."
+    },
+    "tags": [
+      "ratio",
+      "proportion",
+      "government-work"
+    ]
+  },
+  {
+    "id": "seed-num-004",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "subtopic": "Budget Allocation and Utilization",
+    "difficulty": "Hard",
+    "question": "An agency budget of ₱12,000,000 was allocated among three units: Operations (50%), Administration (30%), and Research (20%). If the Research unit spent only 75% of its allocated fund, how much unexpended money remains in Research?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱400,000"
+      },
+      {
+        "id": "B",
+        "text": "₱600,000"
+      },
+      {
+        "id": "C",
+        "text": "₱800,000"
+      },
+      {
+        "id": "D",
+        "text": "₱1,800,000"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "This problem requires two sequential percentage calculations. First, find Research's allocated budget: 20% of ₱12,000,000 = 0.20 × 12,000,000 = ₱2,400,000. Second, find how much Research actually spent: 75% of ₱2,400,000 = 0.75 × 2,400,000 = ₱1,800,000. Third, the unexpended amount is what Research did NOT spend: 100% – 75% = 25% of its allocation = 0.25 × ₱2,400,000 = ₱600,000. Alternatively: ₱2,400,000 – ₱1,800,000 = ₱600,000. Notice that ₱1,800,000 (option D) is what Research spent, not what remained — a classic trap that tests whether you computed the right thing.",
+    "steps": [
+      "Research allocation: 20% of ₱12,000,000 = ₱2,400,000.",
+      "Research spent: 75% of ₱2,400,000 = ₱1,800,000.",
+      "Unexpended: ₱2,400,000 – ₱1,800,000 = ₱600,000. (Or: 25% × ₱2,400,000 = ₱600,000.)"
+    ],
+    "distractorExplanations": {
+      "A": "₱400,000 might come from computing 25% of the wrong base — perhaps 25% of ₱1,600,000 (mistaking Research's allocation as 80%×20% of total, or some other fraction).",
+      "C": "₱800,000 might arise from computing 20% of ₱12,000,000 = ₱2,400,000 but then taking 1/3 unspent instead of 1/4: ₱2,400,000 ÷ 3 = ₱800,000 — confusing 25% unspent with 33% unspent.",
+      "D": "₱1,800,000 is the amount Research actually SPENT (75% of ₱2,400,000), not the unexpended portion. The question asks for what remains — a critical read-carefully trap."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Always compute BOTH what was spent AND what remained. Unexpended = allocation – spent = 25% of allocation. Don't confuse '75% spent' with '75% remaining.'"
+    },
+    "tags": [
+      "data-interpretation",
+      "percentages",
+      "budget",
+      "government-work"
+    ]
+  },
+  {
+    "id": "seed-num-005",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Averages",
+    "subtopic": "Finding a Missing Value",
+    "difficulty": "Medium",
+    "question": "The average score of 4 department heads on a management evaluation was 88. When a 5th department head was evaluated, the overall average increased to 90. What score did the 5th department head receive?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "92"
+      },
+      {
+        "id": "B",
+        "text": "95"
+      },
+      {
+        "id": "C",
+        "text": "98"
+      },
+      {
+        "id": "D",
+        "text": "100"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "When a new member joins a group and the average increases, the newcomer's score must be higher than the new average. Here's how to find it precisely. The sum of the first 4 scores = 88 × 4 = 352. The sum of all 5 scores = 90 × 5 = 450. The 5th score = 450 – 352 = 98. Notice that the average rose by 2 points (from 88 to 90) across all 5 people — the new member essentially 'contributed' 2 extra points to each of the 5 averages, meaning their contribution was 2 × 5 = 10 points above the new average of 90: 90 + 10 = 100... wait, that's not right. The correct way: 5th score = 450 – 352 = 98. Verify: (352 + 98) / 5 = 450 / 5 = 90. ✓",
+    "steps": [
+      "Sum of first 4 scores: 88 × 4 = 352.",
+      "Required total for 5 people at average 90: 90 × 5 = 450.",
+      "5th score: 450 – 352 = 98."
+    ],
+    "distractorExplanations": {
+      "A": "92: Adding 92 gives total = 352+92 = 444, and 444÷5 = 88.8 ≠ 90. Too low — the new member's score must be at least 90 to raise the average to 90.",
+      "B": "95: Adding 95 gives total = 447, and 447÷5 = 89.4 ≠ 90. Still not enough to reach an average of 90.",
+      "D": "100: Adding 100 gives total = 452, and 452÷5 = 90.4 ≠ 90. Slightly too high. This might come from reasoning '2 extra points × 5 people = 10 points above old average of 88 → 88+10=98' — actually that IS the right answer! Or from using the new average instead of the new total."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "New score = (New average × New count) – (Old average × Old count) = (90×5) – (88×4) = 450 – 352 = 98."
+    },
+    "tags": [
+      "averages",
+      "missing-value",
+      "statistics"
+    ]
+  },
+  {
+    "id": "num-0051",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Geometry",
+    "subtopic": "Area of a Rectangle",
+    "difficulty": "Easy",
+    "question": "A rectangular government office measures 12 meters long and 8.5 meters wide. What is the area of the floor in square meters?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "96 m²"
+      },
+      {
+        "id": "B",
+        "text": "102 m²"
+      },
+      {
+        "id": "C",
+        "text": "41 m²"
+      },
+      {
+        "id": "D",
+        "text": "108 m²"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The area of a rectangle is found by multiplying its length by its width — this tells you how many unit squares fit inside the shape. Area = length × width = 12 m × 8.5 m = 102 m². You can compute this as 12 × 8 = 96 plus 12 × 0.5 = 6, giving 96 + 6 = 102 m². Area is always measured in square units, which is why the answer is in m² (square meters). This formula applies directly to any rectangular floor plan, plot of land, or document.",
+    "steps": [
+      "Identify the formula: Area of rectangle = Length × Width.",
+      "Substitute values: Area = 12 m × 8.5 m.",
+      "Compute: 12 × 8 = 96 and 12 × 0.5 = 6, so Area = 96 + 6 = 102 m²."
+    ],
+    "distractorExplanations": {
+      "A": "96 m² = 12 × 8, which ignores the 0.5 m portion of the width. This comes from rounding 8.5 down to 8 before multiplying.",
+      "C": "41 m² = 2(12 + 8.5) = 2 × 20.5 = 41, which is the PERIMETER, not the area. A common mix-up between area (multiply) and perimeter (add all sides).",
+      "D": "108 m² would require 12 × 9 = 108, rounding 8.5 up to 9 instead of multiplying by the exact value."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Area = Length × Width (multiply sides). Perimeter = 2(Length + Width) (add all sides). Never confuse the two — area fills the inside; perimeter traces the border."
+    },
+    "tags": [
+      "geometry",
+      "area",
+      "rectangle"
+    ]
+  },
+  {
+    "id": "num-0052",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Geometry",
+    "subtopic": "Area of a Triangle",
+    "difficulty": "Medium",
+    "question": "A triangular park has a base of 24 meters and a height of 15 meters. If a developer plans to tile the park at ₱350 per square meter, how much will the tiling cost?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱63,000"
+      },
+      {
+        "id": "B",
+        "text": "₱126,000"
+      },
+      {
+        "id": "C",
+        "text": "₱94,500"
+      },
+      {
+        "id": "D",
+        "text": "₱87,500"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This is a two-step problem: first find the area of the triangle, then multiply by the cost per square meter. Area of a triangle = ½ × base × height = ½ × 24 m × 15 m = ½ × 360 = 180 m². The triangle formula uses ½ because a triangle is exactly half a rectangle with the same base and height. Tiling cost = 180 m² × ₱350/m² = ₱63,000. A common mistake is to forget the ½, computing 24 × 15 = 360 m² and then multiplying by ₱350 to get ₱126,000 — exactly double the correct answer.",
+    "steps": [
+      "Area of triangle = ½ × base × height = ½ × 24 × 15 = 180 m².",
+      "Tiling cost = Area × Cost per m² = 180 × ₱350 = ₱63,000."
+    ],
+    "distractorExplanations": {
+      "B": "₱126,000 = 360 m² × ₱350, which comes from computing 24 × 15 = 360 without the ½ — forgetting that the triangle formula includes a halving factor.",
+      "C": "₱94,500 = 270 m² × ₱350, where 270 = ¾ × 360 — no standard derivation. Likely from a different incorrect formula, perhaps ¾ × base × height.",
+      "D": "₱87,500 = 250 m² × ₱350, arising from computing the area as ½ × 25 × 25 or another dimension error — perhaps misreading base as 25 instead of 24."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Area of triangle = ½ × base × height. Remember the ½ — a triangle fills exactly half the rectangle with the same base and height. Multiply by cost/m² for pricing problems."
+    },
+    "tags": [
+      "geometry",
+      "area",
+      "triangle",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0053",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Geometry",
+    "subtopic": "Perimeter and Angles of a Triangle",
+    "difficulty": "Medium",
+    "question": "A triangular plot of land has sides of 35 m, 48 m, and 52 m. One interior angle measures 62°. What is the sum of the other two interior angles?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "118°"
+      },
+      {
+        "id": "B",
+        "text": "122°"
+      },
+      {
+        "id": "C",
+        "text": "128°"
+      },
+      {
+        "id": "D",
+        "text": "180°"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "One of the most fundamental facts in geometry is that the three interior angles of any triangle always add up to exactly 180°. This is true for all triangles — scalene, isoceles, equilateral, right, obtuse, acute. If one angle is 62°, the other two together must account for the remaining 180° – 62° = 118°. The perimeter information (35 + 48 + 52 = 135 m) is extra information designed to test whether you correctly identify what is relevant — only the angle data is needed here.",
+    "steps": [
+      "Recall the angle sum property: the interior angles of any triangle sum to 180°.",
+      "Subtract the known angle: 180° – 62° = 118°.",
+      "The other two interior angles together measure 118°."
+    ],
+    "distractorExplanations": {
+      "B": "122° would result from computing 180° – 58° (reading the given angle as 58° instead of 62°), a simple misreading error.",
+      "C": "128° would result from computing 180° – 52° (substituting the longest side length 52 for the angle), confusing the side measurements with angle values.",
+      "D": "180° is the total of ALL three angles, not just the two remaining ones — choosing this means forgetting to subtract the given 62°."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Triangle Angle Sum: all three interior angles of any triangle always add up to 180°. Sum of any two angles = 180° minus the third angle."
+    },
+    "tags": [
+      "geometry",
+      "angles",
+      "triangle",
+      "perimeter"
+    ]
+  },
+  {
+    "id": "num-0054",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Geometry",
+    "subtopic": "Area and Perimeter of a Circle",
+    "difficulty": "Hard",
+    "question": "A circular fountain in a plaza has a radius of 7 meters. What is its area? (Use π ≈ 22/7)",
+    "choices": [
+      {
+        "id": "A",
+        "text": "44 m²"
+      },
+      {
+        "id": "B",
+        "text": "154 m²"
+      },
+      {
+        "id": "C",
+        "text": "308 m²"
+      },
+      {
+        "id": "D",
+        "text": "49 m²"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The area of a circle is given by the formula A = πr², where r is the radius. With r = 7 m and π ≈ 22/7: A = (22/7) × 7² = (22/7) × 49 = 22 × 7 = 154 m². The beauty of using π ≈ 22/7 with a radius of 7 (or any multiple of 7) is that the 7 in the denominator of 22/7 cancels neatly with factors of 7 in r². Here: (22/7) × 49 = 22 × 49/7 = 22 × 7 = 154. The circumference (perimeter of a circle) would be 2πr = 2 × (22/7) × 7 = 44 m — that's option A, which traps those who compute circumference instead of area.",
+    "steps": [
+      "Formula: Area of circle = πr².",
+      "Substitute: A = (22/7) × 7² = (22/7) × 49.",
+      "Simplify: 49/7 = 7, so A = 22 × 7 = 154 m²."
+    ],
+    "distractorExplanations": {
+      "A": "44 m² = 2πr = 2 × (22/7) × 7 = 44 — this is the CIRCUMFERENCE (perimeter), not the area. A common mix-up between area (πr²) and circumference (2πr).",
+      "C": "308 m² = 154 × 2 — results from computing πr² correctly (154) but then doubling for an unknown reason, or from computing π × (2r)² = π × 196 = (22/7) × 196 = 616... not 308. More likely from using diameter (14) instead of radius in the formula: (22/7) × 14 × 7 = 308.",
+      "D": "49 m² = r² = 7² = 49, forgetting to multiply by π. This comes from computing only the radius squared without applying the π factor."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Circle Area = πr² (square the radius, then multiply by π). Circle Circumference = 2πr (double the radius, then multiply by π). When r=7 and π=22/7, use π×7²=22×7=154."
+    },
+    "tags": [
+      "geometry",
+      "area",
+      "circle",
+      "perimeter"
+    ]
+  },
+  {
+    "id": "num-0055",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Statistics",
+    "subtopic": "Mean, Median, Mode",
+    "difficulty": "Easy",
+    "question": "A government auditor checked five disbursement amounts (in thousands): 12, 18, 12, 25, and 8. What is the mode of these values?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "15"
+      },
+      {
+        "id": "B",
+        "text": "12"
+      },
+      {
+        "id": "C",
+        "text": "18"
+      },
+      {
+        "id": "D",
+        "text": "25"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The mode is the value that appears most often in a data set. It is the easiest of the three 'center' measures to find — just look for repeats. In the set {8, 12, 12, 18, 25}, the value 12 appears twice while all other values appear only once. Therefore, the mode is 12. The mode is particularly useful in reporting the most common outcome in a data set, like the most frequent score on an exam or the most common transaction amount. A set can have one mode (unimodal), two modes (bimodal), or no mode (all values unique).",
+    "steps": [
+      "List the data in order: 8, 12, 12, 18, 25.",
+      "Identify the value that appears most often: 12 appears twice.",
+      "Mode = 12."
+    ],
+    "distractorExplanations": {
+      "A": "15 is the arithmetic mean (8+12+12+18+25 = 75; 75÷5 = 15), not the mode. This is the result of confusing 'mode' with 'mean.'",
+      "C": "18 appears only once in the data set — it has no more frequency than 8 or 25. Choosing it likely means ignoring the count of each value.",
+      "D": "25 is the maximum value in the set, not the most frequent. Choosing it confuses 'mode' with 'maximum' or 'range.'"
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Mode = most frequent value. Mean = sum ÷ count. Median = middle value when sorted. The MODE is the one that 'repeats' the most — think MOde = MOst Often."
+    },
+    "tags": [
+      "statistics",
+      "mode",
+      "central-tendency"
+    ]
+  },
+  {
+    "id": "num-0056",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Statistics",
+    "subtopic": "Median",
+    "difficulty": "Easy",
+    "question": "Six civil service exam scores are: 72, 88, 65, 95, 80, and 76. What is the median score?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "78"
+      },
+      {
+        "id": "B",
+        "text": "80"
+      },
+      {
+        "id": "C",
+        "text": "79.33"
+      },
+      {
+        "id": "D",
+        "text": "82"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The median is the middle value when data is arranged in order. For an even number of values, there is no single middle value, so the median is the average of the two middle values. First, sort the scores: 65, 72, 76, 80, 88, 95. With 6 values, the two middle values are the 3rd and 4th: 76 and 80. Median = (76 + 80) ÷ 2 = 156 ÷ 2 = 78. The median is a robust measure — unlike the mean, it is not affected by extreme values (outliers). If the score of 95 were changed to 999, the median would remain 78.",
+    "steps": [
+      "Sort the data in ascending order: 65, 72, 76, 80, 88, 95.",
+      "With 6 values (even count), identify the two middle values: 3rd = 76 and 4th = 80.",
+      "Median = (76 + 80) ÷ 2 = 156 ÷ 2 = 78."
+    ],
+    "distractorExplanations": {
+      "B": "80 is the 4th value in the sorted list — the upper-middle value — but the median requires averaging both middle values when the count is even. Choosing just 80 ignores the 3rd value (76).",
+      "C": "79.33 ≈ (65+72+76+80+88+95)/6 = 476/6 ≈ 79.33, which is the MEAN, not the median. Confusing median with mean is the most common error in statistics questions.",
+      "D": "82 = (76+88)/2, which averages the 3rd and 5th values instead of the correct 3rd and 4th (76 and 80) — a miscount of the middle positions."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "To find the median: (1) sort the data, (2) if odd count → pick the middle; (3) if even count → average the two middle values. Always sort first — never find the median from unsorted data."
+    },
+    "tags": [
+      "statistics",
+      "median",
+      "central-tendency"
+    ]
+  },
+  {
+    "id": "num-0057",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Statistics",
+    "subtopic": "Range and Mean",
+    "difficulty": "Medium",
+    "question": "Seven employees submitted their monthly commute distances (in km): 5, 12, 8, 20, 3, 15, and 9. What is the range of these distances?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "14 km"
+      },
+      {
+        "id": "B",
+        "text": "10.29 km"
+      },
+      {
+        "id": "C",
+        "text": "17 km"
+      },
+      {
+        "id": "D",
+        "text": "9 km"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The range measures the spread of a data set — how far apart the highest and lowest values are. Range = Maximum value – Minimum value. From the data {3, 5, 8, 9, 12, 15, 20}, the maximum is 20 km and the minimum is 3 km. Range = 20 – 3 = 17 km. This tells us the commute distances span 17 km from the shortest to the longest. The range is the simplest measure of variability — a larger range means more spread-out data. Unlike the standard deviation, it only uses the two extreme values.",
+    "steps": [
+      "Identify the maximum: 20 km.",
+      "Identify the minimum: 3 km.",
+      "Range = Maximum – Minimum = 20 – 3 = 17 km."
+    ],
+    "distractorExplanations": {
+      "A": "14 km = 20 – 6... no clean derivation. Might come from using 9 (the median after sorting) as the minimum: 20 – 9 = 11, or from misreading the minimum as 6 instead of 3.",
+      "B": "10.29 km ≈ (5+12+8+20+3+15+9)/7 = 72/7 ≈ 10.29 — this is the arithmetic MEAN, not the range. A classic confusion between spread (range) and center (mean).",
+      "D": "9 km = 12 – 3 — using 12 as the maximum instead of 20, probably from misreading or misidentifying the largest value in the unsorted list."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Range = Maximum – Minimum. It measures the total spread of the data using only the two extreme values. Always sort (or scan for largest and smallest) before computing the range."
+    },
+    "tags": [
+      "statistics",
+      "range",
+      "data-spread"
+    ]
+  },
+  {
+    "id": "num-0058",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Statistics",
+    "subtopic": "Weighted Mean and Central Tendency",
+    "difficulty": "Hard",
+    "question": "The monthly salaries of 5 employees in a regional office are ₱18,000; ₱22,000; ₱18,000; ₱35,000; and ₱32,000. Which statement is correct?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Mean = ₱25,000; Median = ₱25,000"
+      },
+      {
+        "id": "B",
+        "text": "Mean = ₱25,000; Median = ₱18,000"
+      },
+      {
+        "id": "C",
+        "text": "Mean = ₱25,000; Mode = ₱25,000"
+      },
+      {
+        "id": "D",
+        "text": "Median = ₱22,000; Mode = ₱18,000"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Sorting the salaries: ₱18,000; ₱18,000; ₱22,000; ₱32,000; ₱35,000. Mean = (18,000 + 18,000 + 22,000 + 32,000 + 35,000) ÷ 5 = 125,000 ÷ 5 = ₱25,000. Median (middle of 5 sorted values, position 3) = ₱22,000. Mode (most frequent value) = ₱18,000 (appears twice). So mean = ₱25,000, median = ₱22,000, and mode = ₱18,000. Option D states 'Median = ₱22,000; Mode = ₱18,000' — both correct. Notice that none of the three measures of center are equal here, which is typical for skewed data (the two high salaries pull the mean upward).",
+    "steps": [
+      "Sort: ₱18,000; ₱18,000; ₱22,000; ₱32,000; ₱35,000.",
+      "Mean = (18+18+22+32+35) ×1000 ÷ 5 = 125,000 ÷ 5 = ₱25,000.",
+      "Median = 3rd value = ₱22,000.",
+      "Mode = ₱18,000 (appears twice, all others once).",
+      "Check option D: Median = ₱22,000 ✓; Mode = ₱18,000 ✓."
+    ],
+    "distractorExplanations": {
+      "A": "Mean = ₱25,000 is correct, but Median = ₱25,000 is wrong. The median is the MIDDLE value when sorted — the 3rd of 5 values is ₱22,000, not ₱25,000. The mean happens to equal ₱25,000 here, but confusing mean and median is a classic error.",
+      "B": "Mean = ₱25,000 is correct, but Median = ₱18,000 is wrong. The median is the 3rd sorted value = ₱22,000, not ₱18,000. ₱18,000 is the mode.",
+      "C": "Mean = ₱25,000 is correct, but Mode = ₱25,000 is wrong — ₱25,000 doesn't appear in the data at all. The mode is ₱18,000."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Mean, Median, Mode — three different measures! Mean: add all and divide. Median: sort and pick the middle. Mode: find the most repeated value. They are only equal for perfectly symmetric, bell-shaped data."
+    },
+    "tags": [
+      "statistics",
+      "mean",
+      "median",
+      "mode",
+      "central-tendency"
+    ]
+  },
+  {
+    "id": "num-0059",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Simple and Compound Interest",
+    "subtopic": "Simple Interest — Finding Total Amount",
+    "difficulty": "Easy",
+    "question": "Rico borrows ₱15,000 at a simple interest rate of 8% per year for 2 years. What is the total amount he must repay?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱16,200"
+      },
+      {
+        "id": "B",
+        "text": "₱17,400"
+      },
+      {
+        "id": "C",
+        "text": "₱17,000"
+      },
+      {
+        "id": "D",
+        "text": "₱16,800"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Simple interest loans charge the same amount of interest each year, calculated on the original principal only. Interest formula: I = P × r × t = ₱15,000 × 0.08 × 2 = ₱15,000 × 0.16 = ₱2,400. Total repayment = Principal + Interest = ₱15,000 + ₱2,400 = ₱17,400. Year by year: Year 1 interest = ₱15,000 × 0.08 = ₱1,200; Year 2 interest = ₱1,200 (same, because simple interest always charges on the original principal). Total interest = ₱2,400; Total repayment = ₱17,400. This is why lenders prefer compound interest — in simple interest, the interest amount never grows.",
+    "steps": [
+      "Compute simple interest: I = P × r × t = 15,000 × 0.08 × 2 = ₱2,400.",
+      "Total repayment = Principal + Interest = ₱15,000 + ₱2,400 = ₱17,400."
+    ],
+    "distractorExplanations": {
+      "A": "₱16,200 = ₱15,000 + ₱1,200, which is only 1 year of interest (8% for 1 year) instead of 2 years. The borrower forgot to multiply by t = 2.",
+      "C": "₱17,000 = ₱15,000 + ₱2,000, corresponding to an interest of ₱2,000 (≈ 6.67% for 2 years or 6% × 2 = ₱1,800... actually ₱2,000/15,000/2 ≈ 6.67% rate). Likely from computing 15,000 × 0.07 × 2 ≈ 2,100 then rounding, or using an incorrect 6.67% rate.",
+      "D": "₱16,800 = ₱15,000 + ₱1,800, which corresponds to I = 15,000 × 0.06 × 2 = ₱1,800 — using a 6% rate instead of 8%."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Simple Interest: I = P × r × t. Total Amount = P + I = P(1 + rt). Interest grows LINEARLY — the same fixed amount each year."
+    },
+    "tags": [
+      "simple-interest",
+      "money",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0060",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Simple and Compound Interest",
+    "subtopic": "Simple Interest — Finding Rate or Time",
+    "difficulty": "Medium",
+    "question": "A savings account earned ₱4,800 in simple interest over 4 years on a principal of ₱20,000. What was the annual interest rate?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4%"
+      },
+      {
+        "id": "B",
+        "text": "5%"
+      },
+      {
+        "id": "C",
+        "text": "6%"
+      },
+      {
+        "id": "D",
+        "text": "8%"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "You can rearrange the simple interest formula I = P × r × t to solve for any unknown. Here we need the rate r. Rearranging: r = I ÷ (P × t) = ₱4,800 ÷ (₱20,000 × 4) = 4,800 ÷ 80,000 = 0.06 = 6% per year. This means the account grew by 6% of the original deposit each year. Check: ₱20,000 × 0.06 × 4 = ₱4,800. ✓ The key is to always express r as a decimal first, then convert to percentage by multiplying by 100.",
+    "steps": [
+      "Formula: I = P × r × t. Rearrange for r: r = I ÷ (P × t).",
+      "Substitute: r = 4,800 ÷ (20,000 × 4) = 4,800 ÷ 80,000.",
+      "Compute: 4,800 ÷ 80,000 = 0.06 = 6%."
+    ],
+    "distractorExplanations": {
+      "A": "4% would give interest = 20,000 × 0.04 × 4 = ₱3,200 ≠ ₱4,800. Too low — dividing by 100,000 instead of 80,000.",
+      "B": "5% would give interest = 20,000 × 0.05 × 4 = ₱4,000 ≠ ₱4,800. Still short of the actual interest earned.",
+      "D": "8% would give interest = 20,000 × 0.08 × 4 = ₱6,400 ≠ ₱4,800. Too high — might come from dividing 4,800 by 20,000 only (ignoring the 4 years): 4,800/20,000 = 0.24, then misinterpreting as 8%."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "To find the rate: r = I ÷ (P × t). To find time: t = I ÷ (P × r). Always isolate the unknown by dividing. Remember to express the answer as a percentage (× 100)."
+    },
+    "tags": [
+      "simple-interest",
+      "money",
+      "algebra"
+    ]
+  },
+  {
+    "id": "num-0061",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Simple and Compound Interest",
+    "subtopic": "Compound Interest — Semi-annual",
+    "difficulty": "Hard",
+    "question": "Corazon invests ₱80,000 at 10% interest per year, compounded semi-annually. What is the total amount after 1 year?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱88,000"
+      },
+      {
+        "id": "B",
+        "text": "₱88,200"
+      },
+      {
+        "id": "C",
+        "text": "₱87,600"
+      },
+      {
+        "id": "D",
+        "text": "₱89,000"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "When interest is compounded semi-annually (twice a year), each compounding period uses half the annual rate. Semi-annual rate = 10% ÷ 2 = 5% per half-year. Number of periods in 1 year = 2. Using A = P(1 + r/n)^(nt): A = ₱80,000 × (1 + 0.10/2)^(2×1) = ₱80,000 × (1.05)² = ₱80,000 × 1.1025 = ₱88,200. Breaking it down: After 6 months: ₱80,000 × 1.05 = ₱84,000. After 12 months: ₱84,000 × 1.05 = ₱88,200. The extra ₱200 compared to simple interest (₱8,000) or annual compounding comes from the 5% interest earned on the first half-year's interest (₱4,000 × 5% = ₱200).",
+    "steps": [
+      "Semi-annual rate = 10% ÷ 2 = 5% = 0.05.",
+      "After Period 1 (6 months): ₱80,000 × 1.05 = ₱84,000.",
+      "After Period 2 (12 months): ₱84,000 × 1.05 = ₱88,200."
+    ],
+    "distractorExplanations": {
+      "A": "₱88,000 = ₱80,000 + ₱8,000 = ₱80,000 × 1.10, which is the result of simple interest (or annual compounding for 1 year) at 10% — not semi-annual compounding. Semi-annual compounding yields slightly MORE than annual because of the mid-year reinvestment.",
+      "C": "₱87,600 has no standard derivation from the given values — might arise from computing 10%/2 = 5% but applying it only once (₱80,000 × 1.05 = ₱84,000... not ₱87,600), or from an arithmetic error.",
+      "D": "₱89,000 would correspond to earning ₱9,000 interest, implying an effective rate above 10%. No standard semi-annual compounding at 10% produces this."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Compound interest with n periods/year: A = P × (1 + r/n)^(n×t). For semi-annual: n=2, so rate per period = r/2 and periods = 2×years. Always halve the rate when doubling the frequency."
+    },
+    "tags": [
+      "compound-interest",
+      "semi-annual",
+      "money"
+    ]
+  },
+  {
+    "id": "num-0062",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Simple and Compound Interest",
+    "subtopic": "Comparing Simple vs. Compound Interest",
+    "difficulty": "Medium",
+    "question": "Two banks offer different deals on a ₱50,000 deposit for 3 years: Bank A offers 7% simple interest; Bank B offers 6% compounded annually. Which bank gives a higher final amount, and by how much?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Bank A by ₱950"
+      },
+      {
+        "id": "B",
+        "text": "Bank B by ₱191.60"
+      },
+      {
+        "id": "C",
+        "text": "Bank A by ₱550"
+      },
+      {
+        "id": "D",
+        "text": "They give the same amount"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Compare both banks by computing the final amounts. Bank A (simple interest at 7% for 3 years): Interest = ₱50,000 × 0.07 × 3 = ₱10,500. Final amount = ₱50,000 + ₱10,500 = ₱60,500. Bank B (6% compounded annually for 3 years): A = ₱50,000 × (1.06)³ = ₱50,000 × 1.191016 = ₱59,550.80. Difference = ₱60,500 – ₱59,550.80 = ₱949.20 ≈ ₱950. Bank A gives more in this case because a higher rate (7%) with simple interest beats a lower rate (6%) with compounding over just 3 years. Compounding only 'wins' over simple interest when the rate or time is large enough.",
+    "steps": [
+      "Bank A: I = 50,000 × 0.07 × 3 = ₱10,500; Final = ₱60,500.",
+      "Bank B: A = 50,000 × (1.06)³ = 50,000 × 1.191016 = ₱59,550.80.",
+      "Difference: ₱60,500 – ₱59,550.80 ≈ ₱949.20 ≈ ₱950.",
+      "Bank A yields approximately ₱950 more."
+    ],
+    "distractorExplanations": {
+      "B": "Bank B by ₱191.60 would be the correct direction only if Bank B's compounding somehow exceeded Bank A's simple interest — which doesn't happen here (6% < 7%). This might arise from computing (1.06)³ ≈ 1.1910 but comparing against 6% simple interest instead of 7%.",
+      "C": "Bank A by ₱550 might arise from computing Bank B's amount as ₱59,950 (using (1.06)³ ≈ 1.199 instead of 1.191) and then finding 60,500 – 59,950 = 550.",
+      "D": "They are not equal: Bank A gives ₱60,500 and Bank B gives ₱59,550.80. The 1% rate difference (7% vs 6%) is large enough to outweigh the compounding advantage over just 3 years."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Higher interest rate doesn't always mean compounding wins. For short periods, simple interest at a higher rate can beat compound interest at a lower rate. Always compute both and compare."
+    },
+    "tags": [
+      "simple-interest",
+      "compound-interest",
+      "comparison",
+      "money"
+    ]
+  },
+  {
+    "id": "num-0063",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Probability",
+    "subtopic": "Basic Probability",
+    "difficulty": "Easy",
+    "question": "A bag contains 5 red marbles, 3 blue marbles, and 2 green marbles. If one marble is drawn at random, what is the probability that it is blue?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1/3"
+      },
+      {
+        "id": "B",
+        "text": "3/10"
+      },
+      {
+        "id": "C",
+        "text": "1/5"
+      },
+      {
+        "id": "D",
+        "text": "3/8"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Probability measures how likely an event is to occur. The basic formula is: P(event) = Number of favorable outcomes ÷ Total number of possible outcomes. Favorable outcomes = blue marbles = 3. Total outcomes = all marbles = 5 + 3 + 2 = 10. P(blue) = 3/10. This means that if you draw a marble many times (replacing it each time), you would expect to pick blue about 3 out of every 10 draws. Note that 3/10 = 0.30 = 30% — probability can be expressed as a fraction, decimal, or percentage, but fractions are the standard form in CSE questions.",
+    "steps": [
+      "Count favorable outcomes: blue marbles = 3.",
+      "Count total possible outcomes: 5 + 3 + 2 = 10.",
+      "P(blue) = favorable ÷ total = 3 ÷ 10 = 3/10."
+    ],
+    "distractorExplanations": {
+      "A": "1/3 would be correct if there were 3 equal groups of equal size — but the groups are 5, 3, and 2, not equal. This comes from dividing 1 by the number of colors (3) rather than using the count of blue marbles.",
+      "C": "1/5 = 2/10, which would be the probability of drawing a green marble (2 out of 10), not blue (3 out of 10). A reading error — picking the wrong color's count.",
+      "D": "3/8 would be correct only if there were 8 total marbles (5+3=8, ignoring green). This comes from failing to include all 10 marbles in the denominator."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "P(event) = Favorable outcomes ÷ Total outcomes. Probability is always between 0 (impossible) and 1 (certain). Use the TOTAL count of ALL items in the denominator."
+    },
+    "tags": [
+      "probability",
+      "basic-probability"
+    ]
+  },
+  {
+    "id": "num-0064",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Probability",
+    "subtopic": "Complementary Probability",
+    "difficulty": "Medium",
+    "question": "In a Civil Service Exam batch of 40 examinees, 28 passed. If one examinee is chosen at random to receive an award, what is the probability that the selected person did NOT pass?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "7/10"
+      },
+      {
+        "id": "B",
+        "text": "3/10"
+      },
+      {
+        "id": "C",
+        "text": "12/40"
+      },
+      {
+        "id": "D",
+        "text": "7/20"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "When a question asks for the probability of something NOT happening, use the complement rule: P(not A) = 1 – P(A). Number who passed = 28; number who did NOT pass = 40 – 28 = 12. P(did not pass) = 12/40 = 3/10. Alternatively, P(passed) = 28/40 = 7/10, so P(not passed) = 1 – 7/10 = 3/10. Both methods give the same result. The complement rule is powerful because it's often easier to compute 'one minus' a probability than to count unfavorable outcomes directly.",
+    "steps": [
+      "Count who did not pass: 40 – 28 = 12.",
+      "P(did not pass) = 12/40.",
+      "Simplify: 12/40 = 3/10."
+    ],
+    "distractorExplanations": {
+      "A": "7/10 = 28/40, which is the probability of selecting someone who DID pass — the complement of what is asked. The question asks for NOT passing.",
+      "C": "12/40 is the correct fraction but not in its simplest form. Since the answer choices include 3/10 (the simplified form), 12/40 is technically correct but requires simplification. The question expects the fully reduced fraction.",
+      "D": "7/20 = 14/40, which is neither the passing (28/40) nor failing (12/40) probability — no clean derivation. Might arise from confusing 7 and 14 in the simplification."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "P(NOT A) = 1 – P(A). This 'complement rule' lets you compute the probability of failure if you know the probability of success, and vice versa. Always simplify fractions to their lowest terms."
+    },
+    "tags": [
+      "probability",
+      "complement-rule",
+      "basic-probability"
+    ]
+  },
+  {
+    "id": "num-0065",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Probability",
+    "subtopic": "Probability of Combined Events",
+    "difficulty": "Hard",
+    "question": "A box contains 4 defective items and 6 good items. Two items are drawn one after another WITHOUT replacement. What is the probability that both items drawn are defective?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2/15"
+      },
+      {
+        "id": "B",
+        "text": "4/25"
+      },
+      {
+        "id": "C",
+        "text": "1/6"
+      },
+      {
+        "id": "D",
+        "text": "16/100"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "When drawing WITHOUT replacement, the composition of the box changes after the first draw, so the two draws are dependent events. P(1st draw is defective) = 4/10 (4 defective out of 10 total). After drawing one defective item, the box now has 3 defective and 6 good items (9 total). P(2nd draw is defective | 1st was defective) = 3/9 = 1/3. For both to happen, multiply the probabilities: P(both defective) = (4/10) × (3/9) = 12/90 = 2/15. The 'without replacement' condition is critical — it means each draw affects the next.",
+    "steps": [
+      "P(1st defective) = 4/10 (4 defective out of 10).",
+      "After removing 1 defective, box has 9 items: 3 defective, 6 good.",
+      "P(2nd defective | 1st was defective) = 3/9.",
+      "P(both defective) = (4/10) × (3/9) = 12/90 = 2/15."
+    ],
+    "distractorExplanations": {
+      "B": "4/25 = (4/10) × (4/10) = (2/5)², which is the probability if both were drawn WITH replacement (the box resets after each draw). Choosing this ignores the 'without replacement' condition.",
+      "C": "1/6 might come from computing (4/10) × (3/9) = 12/90 but simplifying incorrectly: 12/90 → dividing by 8 instead of 6 → 3/22.5 (wrong) or from computing 12/72 = 1/6.",
+      "D": "16/100 = (4/10)² using the WITH replacement formula — same error as option B, treating the events as independent."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "WITHOUT replacement: after each draw, update BOTH the numerator and denominator. For 2 defective from 10 items (4 defective): (4/10) × (3/9) = 2/15. WITH replacement: (4/10) × (4/10) = 4/25."
+    },
+    "tags": [
+      "probability",
+      "dependent-events",
+      "without-replacement"
+    ]
+  }
+]

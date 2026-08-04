@@ -26,20 +26,47 @@ export interface QuestionChoice {
   text: string;
 }
 
+/**
+ * A short labeled learning aid shown after the explanation.
+ * Labels read like a coach: "Exam Tip", "Common Mistake", "Remember",
+ * "Grammar Rule", "Math Shortcut", "Mnemonic", "Law Reminder", …
+ */
+export interface QuestionTip {
+  label: string;
+  text: string;
+}
+
 export interface Question {
   id: string;
   examLevel: QuestionLevel;
   subject: Subject;
   topic: string;
+  /** Finer-grained classification within the topic, e.g. "Simple Interest". */
+  subtopic?: string;
   difficulty: Difficulty;
   question: string;
   /** Optional stimulus text (reading passage, data table description, puzzle setup). */
   passage?: string;
   choices: QuestionChoice[];
   correctOptionId: OptionId;
+  /**
+   * Why the correct answer is correct — written to teach, assuming the reader
+   * has never learned the topic. Never a bare restatement of the answer.
+   */
   explanation: string;
+  /** Worked solution, one step per entry, for computational/logic items. */
+  steps?: string[];
+  /**
+   * Why each incorrect option is wrong — the misconception it represents,
+   * not just "incorrect". Keyed by option id; the correct option is omitted.
+   */
+  distractorExplanations?: Partial<Record<OptionId, string>>;
+  /** Short retention aid ("Exam Tip", "Common Mistake", "Mnemonic", …). */
+  tip?: QuestionTip;
   /** Citation for fact-based items, e.g. "1987 Constitution, Art. VII, Sec. 4". */
   reference?: string;
+  /** Where the item was researched/derived from, when distinct from reference. */
+  source?: string;
   tags: string[];
 }
 
