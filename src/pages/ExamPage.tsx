@@ -35,7 +35,7 @@ export interface ExamLaunchRequest {
 type Stage =
   | { name: 'pre'; session: ExamSession }
   | { name: 'active'; session: ExamSession }
-  | { name: 'results'; attempt: Attempt; flagged: Set<string>; launch: ExamLaunchRequest };
+  | { name: 'results'; attempt: Attempt; launch: ExamLaunchRequest };
 
 function buildFromRequest(request: ExamLaunchRequest): ExamSession {
   if (request.kind === 'simulation') {
@@ -90,7 +90,9 @@ export const ExamPage: React.FC = () => {
         if (request.kind === 'practice') saveActiveSession(session);
       } catch (error) {
         if (error instanceof InsufficientBankError) {
-          navigate('/app/practice', { replace: true });
+          navigate(request.kind === 'simulation' ? '/app/simulation' : '/app/practice', {
+            replace: true,
+          });
           return;
         }
         throw error;
@@ -102,7 +104,7 @@ export const ExamPage: React.FC = () => {
 
     const saved = loadActiveSession();
     if (!saved) {
-      navigate('/app/practice', { replace: true });
+      navigate('/app/dashboard', { replace: true });
       return;
     }
     if (saved.deadlineAt !== null && saved.deadlineAt <= Date.now()) {
@@ -127,7 +129,6 @@ export const ExamPage: React.FC = () => {
       setStage({
         name: 'results',
         attempt,
-        flagged: new Set(finished.flagged),
         launch: launchFromSession(finished),
       });
       if (user) {
@@ -166,15 +167,6 @@ export const ExamPage: React.FC = () => {
     return map;
   }, [session]);
 
-  const flaggedByNumber = useMemo(() => {
-    const map: Record<number, boolean> = {};
-    const flagged = new Set(session?.flagged ?? []);
-    session?.questionIds.forEach((id, index) => {
-      if (flagged.has(id)) map[index + 1] = true;
-    });
-    return map;
-  }, [session]);
-
   const startSimulation = useCallback(() => {
     if (stage?.name !== 'pre') return;
     // Reset the clock to the actual start moment.
@@ -201,16 +193,6 @@ export const ExamPage: React.FC = () => {
     [currentQuestionId, updateSession]
   );
 
-  const handleToggleFlag = useCallback(() => {
-    if (!currentQuestionId) return;
-    updateSession((prev) => ({
-      ...prev,
-      flagged: prev.flagged.includes(currentQuestionId)
-        ? prev.flagged.filter((id) => id !== currentQuestionId)
-        : [...prev.flagged, currentQuestionId],
-    }));
-  }, [currentQuestionId, updateSession]);
-
   const handleExit = useCallback(() => {
     // The session is persisted; exiting never destroys progress.
     navigate('/app/dashboard');
@@ -230,7 +212,7 @@ export const ExamPage: React.FC = () => {
         );
         if (launch.kind === 'practice') saveActiveSession(rebuilt);
       } catch {
-        navigate('/app/practice', { replace: true });
+        navigate('/app/dashboard', { replace: true });
       }
     },
     [navigate]
@@ -277,7 +259,6 @@ export const ExamPage: React.FC = () => {
         <ResultsScreen
           attempt={stage.attempt}
           questionIndex={QUESTION_INDEX}
-          flaggedQuestionIds={stage.flagged}
           onRetake={() => handleRetake(stage.launch)}
           onReturnToDashboard={() => navigate('/app/dashboard')}
         />
@@ -302,7 +283,8 @@ export const ExamPage: React.FC = () => {
         currentQuestionNumber={currentIndex + 1}
         totalQuestions={totalQuestions}
         userAnswers={answersByNumber}
-        flaggedQuestions={flaggedByNumber}
+        exitLabel={isPractice ? 'Exit Practice' : 'Exit Exam'}
+        onRestart={isPractice ? () => handleRetake(launchFromSession(activeSession)) : undefined}
         onSelectQuestionNumber={(num) => setCurrentIndex(num - 1)}
         onPrevQuestion={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
         onNextQuestion={() => setCurrentIndex((prev) => Math.min(totalQuestions - 1, prev + 1))}
@@ -311,9 +293,7 @@ export const ExamPage: React.FC = () => {
           <QuestionCard
             question={currentQuestion}
             selectedOptionId={activeSession.answers[currentQuestion.id] ?? null}
-            isFlagged={activeSession.flagged.includes(currentQuestion.id)}
             onSelectOption={handleSelectOption}
-            onToggleFlag={handleToggleFlag}
             instantFeedback={isPractice}
           />
         ) : (

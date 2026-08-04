@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, Flag, ChevronLeft, ChevronRight, Info } from 'lucide-react';
+import { Clock, ChevronLeft, ChevronRight, Info } from 'lucide-react';
 
 interface ProductPreviewSectionProps {
   onStartPracticing?: () => void;
@@ -8,11 +8,9 @@ interface ProductPreviewSectionProps {
 export const ProductPreviewSection: React.FC<ProductPreviewSectionProps> = ({ onStartPracticing }) => {
   const [selectedItem, setSelectedItem] = useState(24);
   const [selectedOption, setSelectedOption] = useState<string | null>('B');
-  const [isFlagged, setIsFlagged] = useState(true);
 
   // Sample items state simulation
   const answeredItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
-  const flaggedItems = [8, 15, 24, 42];
 
   const previewQuestions: Record<number, {
     category: string;
@@ -20,7 +18,7 @@ export const ProductPreviewSection: React.FC<ProductPreviewSectionProps> = ({ on
     options: { id: string; text: string }[];
   }> = {
     24: {
-      category: 'Numerical Ability • Work Word Problems',
+      category: 'Numerical Ability — Work Word Problems',
       text: 'An office administrative clerk can encode 1,200 records in 6 hours. If a second clerk joins and together they encode 1,200 records in 2 hours and 24 minutes, how long would it take the second clerk working alone to encode 1,200 records?',
       options: [
         { id: 'A', text: '3 hours 30 minutes' },
@@ -31,7 +29,7 @@ export const ProductPreviewSection: React.FC<ProductPreviewSectionProps> = ({ on
       ],
     },
     25: {
-      category: 'Verbal Ability • Grammar & Correct Usage',
+      category: 'Verbal Ability — Grammar & Correct Usage',
       text: 'Identify the section containing an error in grammar or structure: "The regional director together with his division heads (A) / are attending (B) / the annual civil service conference (C) / in Baguio City (D) / No error (E)."',
       options: [
         { id: 'A', text: 'together with his division heads' },
@@ -100,17 +98,6 @@ export const ProductPreviewSection: React.FC<ProductPreviewSectionProps> = ({ on
                   <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                     {currentQ.category}
                   </span>
-                  <button
-                    onClick={() => setIsFlagged(!isFlagged)}
-                    className={`inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded border transition-colors cursor-pointer ${
-                      isFlagged
-                        ? 'bg-amber-50 text-amber-800 border-amber-300'
-                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
-                    }`}
-                  >
-                    <Flag className={`w-3.5 h-3.5 ${isFlagged ? 'fill-amber-500 text-amber-600' : ''}`} />
-                    <span>{isFlagged ? 'Flagged for Review' : 'Flag Question'}</span>
-                  </button>
                 </div>
 
                 {/* Item Number & Question Statement */}
@@ -206,10 +193,6 @@ export const ProductPreviewSection: React.FC<ProductPreviewSectionProps> = ({ on
                     <span>Answered</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-3 h-3 rounded bg-amber-100 border border-amber-400"></span>
-                    <span>Flagged</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
                     <span className="w-3 h-3 rounded bg-white border border-slate-300"></span>
                     <span>Unanswered</span>
                   </div>
@@ -225,13 +208,10 @@ export const ProductPreviewSection: React.FC<ProductPreviewSectionProps> = ({ on
                     const num = idx + 1;
                     const isCurrent = num === selectedItem;
                     const isAns = answeredItems.includes(num);
-                    const isFlag = flaggedItems.includes(num);
 
                     let bgClass = 'bg-white text-slate-700 border-slate-200';
                     if (isCurrent) {
                       bgClass = 'bg-slate-900 text-white border-slate-900 ring-2 ring-slate-400 font-bold';
-                    } else if (isFlag) {
-                      bgClass = 'bg-amber-100 text-amber-900 border-amber-400 font-semibold';
                     } else if (isAns) {
                       bgClass = 'bg-emerald-600 text-white border-emerald-600 font-medium';
                     }

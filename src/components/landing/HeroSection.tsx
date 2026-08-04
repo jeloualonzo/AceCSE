@@ -3,12 +3,12 @@ import { ArrowRight, Shield, Clock, BookOpen } from 'lucide-react';
 
 interface HeroSectionProps {
   onStartPracticing: () => void;
-  onTryQuestion: () => void;
+  onSignIn: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   onStartPracticing,
-  onTryQuestion,
+  onSignIn,
 }) => {
   return (
     <section className="bg-white pt-12 pb-16 sm:pt-20 sm:pb-24 border-b border-slate-200">
@@ -42,10 +42,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </button>
 
             <button
-              onClick={onTryQuestion}
+              onClick={onSignIn}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-50 hover:bg-slate-100 text-slate-800 font-semibold text-base px-6 py-3.5 rounded-lg border border-slate-300 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
             >
-              <span>Try a Sample Question</span>
+              <span>Sign In</span>
             </button>
           </div>
 
@@ -55,12 +55,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <Shield className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Professional & Subprofessional</span>
             </div>
-            <span className="hidden sm:inline text-slate-300">•</span>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Timed Practice Exams</span>
             </div>
-            <span className="hidden sm:inline text-slate-300">•</span>
             <div className="flex items-center gap-2">
               <BookOpen className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Detailed Explanations</span>

@@ -15,12 +15,7 @@ export const HistoryPage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900">Exam History</h1>
-          <p className="text-sm text-slate-500 mt-0.5">
-            Every completed simulation and practice session on your account.
-          </p>
-        </div>
+        <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900">History</h1>
         <button
           onClick={handleExport}
           disabled={attempts.length === 0}
@@ -42,10 +37,10 @@ export const HistoryPage: React.FC = () => {
       ) : attempts.length === 0 ? (
         <div className="bg-white rounded-xl border border-dashed border-slate-300 p-8 sm:p-12 text-center">
           <History className="w-10 h-10 text-slate-300 mx-auto mb-4" aria-hidden="true" />
-          <h2 className="text-base font-bold text-slate-900 mb-1">No completed attempts</h2>
+          <h2 className="text-base font-bold text-slate-900 mb-1">No exam history yet</h2>
           <p className="text-sm text-slate-500 max-w-md mx-auto">
             Finish a simulation or practice session and it will appear here with its full subject
-            breakdown. History syncs to your account and works offline.
+            breakdown.
           </p>
         </div>
       ) : (
@@ -62,13 +57,13 @@ export const HistoryPage: React.FC = () => {
                   >
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-slate-900 truncate">
-                        {attempt.mode === 'simulation' ? 'Timed Simulation' : 'Subject Practice'} ·{' '}
-                        {attempt.examLevel}
+                        {attempt.mode === 'simulation' ? 'Exam Simulation' : 'Practice'}
                       </p>
-                      <p className="text-xs text-slate-500">
-                        {formatDateTime(attempt.completedAt)} · {attempt.questionCount} questions ·{' '}
-                        {formatDuration(attempt.durationSeconds)}
-                      </p>
+                      <div className="flex items-center gap-x-3 flex-wrap text-xs text-slate-500">
+                        <span>{formatDateTime(attempt.completedAt)}</span>
+                        <span>{attempt.questionCount} questions</span>
+                        <span>{formatDuration(attempt.durationSeconds)}</span>
+                      </div>
                     </div>
                     <div className="flex items-center gap-3 shrink-0">
                       <span className="font-mono font-bold text-sm sm:text-base text-slate-800">

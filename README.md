@@ -22,16 +22,17 @@ from your actual results.
 - **Honest exam sizes.** Simulation tiers (20 / 50 / 100 / full) unlock only when the validated
   question bank can fill them with unique questions. Questions are never repeated or relabeled
   to fake a longer exam.
-- **Subject practice** — Numerical, Analytical, Verbal, Clerical, and General Information
-  drills with instant feedback, worked explanations, and optional per-question timing.
+- **Practice mode, clearly separate from simulation** — subject drills with instant feedback,
+  worked explanations, changeable answers, skipping, restart anytime, and optional timing.
+  Simulation stays pressure-only: no feedback until the final results page.
 - **Crash-proof sessions.** Deadline-based timing (immune to interval drift and background-tab
   throttling) and local session persistence — a refresh never destroys an in-progress exam.
 - **Real diagnostics.** Score, subject mastery, weak-area detection, pass rate, and a readiness
   estimate — all derived from your attempt history. Honest empty states until data exists.
 - **Full item review** after every session: your answer, the correct answer, the rationale,
   and legal references for fact-based items.
-- **Guest-first accounts.** Start instantly with an anonymous account; upgrade to a permanent
-  email account later without losing any data.
+- **Google sign-in.** One-tap account with your Google profile; history follows you across
+  devices.
 - **Offline-friendly.** Firestore offline persistence keeps history readable and queues writes
   until connectivity returns.
 - **Verified question bank.** Original items authored against primary sources (1987
@@ -46,7 +47,7 @@ from your actual results.
 | UI | React 19, TypeScript (strict), Tailwind CSS v4 |
 | Routing | React Router 7 |
 | Build | Vite 6 |
-| Backend | Firebase Authentication (anonymous + email), Cloud Firestore |
+| Backend | Firebase Authentication (Google), Cloud Firestore |
 | Icons | Lucide |
 
 ## Installation
@@ -82,7 +83,7 @@ cp .env.example .env.local
 ### Firebase setup
 
 1. Create a Firebase project and a web app.
-2. Enable **Authentication → Sign-in methods**: Anonymous and Email/Password.
+2. Enable **Authentication → Sign-in methods**: Google.
 3. Create a **Cloud Firestore** database.
 4. Deploy the security rules: `firebase deploy --only firestore:rules` (rules live in
    [`firestore.rules`](firestore.rules)).
@@ -129,12 +130,11 @@ per-subject supply and answer-letter balance.
 
 ## Roadmap
 
-- [ ] Grow the validated bank to full-exam supply for both levels (Subprofessional full exam
-      currently locked pending more Clerical Ability items)
+- [ ] Keep growing the validated question bank for retake variety
 - [ ] Bookmarks and per-question notes
 - [ ] Improvement-over-time charts
 - [ ] Question versioning and moderation workflow (admin)
-- [ ] Google sign-in linking
+- [ ] Professional-level launch (engine already supports it)
 - [ ] PWA install + full offline exams
 - [ ] Community question review pipeline
 

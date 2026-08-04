@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Clock, XCircle, ArrowLeft, ArrowRight, CheckCircle2, Grid } from 'lucide-react';
+import { Clock, XCircle, ArrowLeft, ArrowRight, CheckCircle2, Grid, RotateCcw } from 'lucide-react';
 
 interface ExamFocusLayoutProps {
   /** Formatted time remaining, or a label like "Untimed" for practice. */
   timeRemainingFormatted: string;
   onExitExam: () => void;
   onSubmitExam: () => void;
+  /** Practice mode: restart the session with fresh questions. */
+  onRestart?: () => void;
+  /** Label for the exit control ("Exit Exam" / "Exit Practice"). */
+  exitLabel?: string;
   children: React.ReactNode;
   currentQuestionNumber: number;
   totalQuestions: number;
   userAnswers?: Record<number, string>;
-  flaggedQuestions?: Record<number, boolean>;
   onSelectQuestionNumber?: (num: number) => void;
   onPrevQuestion?: () => void;
   onNextQuestion?: () => void;
@@ -20,11 +23,12 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
   timeRemainingFormatted,
   onExitExam,
   onSubmitExam,
+  onRestart,
+  exitLabel = 'Exit Exam',
   children,
   currentQuestionNumber,
   totalQuestions,
   userAnswers = {},
-  flaggedQuestions = {},
   onSelectQuestionNumber,
   onPrevQuestion,
   onNextQuestion,
@@ -74,15 +78,26 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
       <header className="bg-slate-900 border-b border-slate-800 relative shrink-0">
         <div className="h-14 sm:h-16 px-4 sm:px-6 flex items-center justify-between">
           
-          {/* Left: Exit Action */}
-          <button
-            onClick={onExitExam}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-white px-3 py-1.5 min-h-[40px] rounded-lg border border-slate-700/80 hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
-            aria-label="Exit Exam"
-          >
-            <XCircle className="w-4 h-4 text-slate-400" />
-            <span>Exit Exam</span>
-          </button>
+          {/* Left: Exit + optional Restart */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onExitExam}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-white px-3 py-1.5 min-h-[40px] rounded-lg border border-slate-700/80 hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
+              aria-label={exitLabel}
+            >
+              <XCircle className="w-4 h-4 text-slate-400" />
+              <span>{exitLabel}</span>
+            </button>
+            {onRestart && (
+              <button
+                onClick={onRestart}
+                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-white px-3 py-1.5 min-h-[40px] rounded-lg border border-slate-700/80 hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              >
+                <RotateCcw className="w-4 h-4 text-slate-400" aria-hidden="true" />
+                <span>Restart</span>
+              </button>
+            )}
+          </div>
 
           {/* Center: Current Question & Palette Toggle */}
           <div className="flex items-center gap-2">
@@ -157,7 +172,6 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
               {Array.from({ length: totalQuestions }, (_, i) => i + 1).map((num) => {
                 const isCurrent = num === currentQuestionNumber;
                 const isAnswered = !!userAnswers[num];
-                const isFlagged = !!flaggedQuestions[num];
 
                 return (
                   <button
@@ -176,9 +190,6 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
                     aria-label={`Go to question ${num}${isAnswered ? ', answered' : ', unanswered'}`}
                   >
                     <span>{num}</span>
-                    {isFlagged && (
-                      <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-amber-400" />
-                    )}
                   </button>
                 );
               })}

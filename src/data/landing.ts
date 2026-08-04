@@ -231,10 +231,10 @@ export const CORE_FEATURES: CoreFeature[] = [
     id: 'simulation',
     title: 'Realistic Exam Simulation',
     subtitle: 'Simulate the exact pressure, timing, and format of the Civil Service Exam.',
-    description: 'Practice under full 170-item, 3-hour and 10-minute exam conditions or 165-item Subprofessional timing. Features full item navigation, question flagging, and zero distractions.',
+    description: 'Practice under full 170-item, 3-hour and 10-minute exam conditions or 165-item Subprofessional timing. Features full item navigation and zero distractions.',
     highlights: [
       'Exact time-limit enforcement and item distribution',
-      'Item-palette navigation to review skipped or flagged questions',
+      'Item-palette navigation to revisit skipped questions',
       'Realistic computer-assisted testing interface',
     ],
     iconName: 'Clock',

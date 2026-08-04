@@ -74,7 +74,6 @@ export interface ExamSession {
   /** Epoch ms wall-clock deadline; null when untimed. */
   deadlineAt: number | null;
   answers: Record<string, OptionId>;
-  flagged: string[];
 }
 
 // ---------------------------------------------------------------------------

@@ -5,7 +5,6 @@ import {
   CheckCircle2,
   ChevronDown,
   ChevronUp,
-  Flag,
   HelpCircle,
   LayoutDashboard,
   RotateCcw,
@@ -18,25 +17,22 @@ import { formatDuration } from '@/lib/time';
 interface ResultsScreenProps {
   attempt: Attempt;
   questionIndex: ReadonlyMap<string, Question>;
-  flaggedQuestionIds: ReadonlySet<string>;
   onRetake: () => void;
   onReturnToDashboard: () => void;
 }
 
-type ReviewFilter = 'ALL' | 'CORRECT' | 'INCORRECT' | 'UNANSWERED' | 'FLAGGED';
+type ReviewFilter = 'ALL' | 'CORRECT' | 'INCORRECT' | 'UNANSWERED';
 
 const FILTERS: { id: ReviewFilter; label: string }[] = [
   { id: 'ALL', label: 'All' },
   { id: 'CORRECT', label: 'Correct' },
   { id: 'INCORRECT', label: 'Incorrect' },
   { id: 'UNANSWERED', label: 'Unanswered' },
-  { id: 'FLAGGED', label: 'Flagged' },
 ];
 
 export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   attempt,
   questionIndex,
-  flaggedQuestionIds,
   onRetake,
   onReturnToDashboard,
 }) => {
@@ -48,9 +44,8 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   const counts = useMemo(() => {
     const incorrect = attempt.items.filter((i) => !i.isCorrect && i.selected !== null).length;
     const unanswered = attempt.items.filter((i) => i.selected === null).length;
-    const flagged = attempt.items.filter((i) => flaggedQuestionIds.has(i.questionId)).length;
-    return { incorrect, unanswered, flagged };
-  }, [attempt.items, flaggedQuestionIds]);
+    return { incorrect, unanswered };
+  }, [attempt.items]);
 
   const filteredItems = useMemo(
     () =>
@@ -60,10 +55,9 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
           if (filter === 'CORRECT') return item.isCorrect;
           if (filter === 'INCORRECT') return !item.isCorrect && item.selected !== null;
           if (filter === 'UNANSWERED') return item.selected === null;
-          if (filter === 'FLAGGED') return flaggedQuestionIds.has(item.questionId);
           return true;
         }),
-    [attempt.items, filter, flaggedQuestionIds]
+    [attempt.items, filter]
   );
 
   const filterCount = (id: ReviewFilter): number => {
@@ -76,8 +70,6 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
         return counts.incorrect;
       case 'UNANSWERED':
         return counts.unanswered;
-      case 'FLAGGED':
-        return counts.flagged;
     }
   };
 
@@ -151,20 +143,16 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                     / {attempt.questionCount} correct
                   </span>
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-300 mt-1">
-                  {isSimulation ? (
-                    <>
-                      Passing mark:{' '}
-                      <strong className="text-white">{PASSING_PERCENTAGE}%</strong> · Time used:{' '}
-                      <strong className="text-white">{formatDuration(attempt.durationSeconds)}</strong>
-                    </>
-                  ) : (
-                    <>
-                      Time spent:{' '}
-                      <strong className="text-white">{formatDuration(attempt.durationSeconds)}</strong>
-                    </>
+                <div className="flex items-center justify-center sm:justify-start gap-2 mt-2 flex-wrap">
+                  {isSimulation && (
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-200">
+                      Passing mark {PASSING_PERCENTAGE}%
+                    </span>
                   )}
-                </p>
+                  <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-200">
+                    {formatDuration(attempt.durationSeconds)} {isSimulation ? 'used' : 'spent'}
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -247,9 +235,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                   onClick={() => setFilter(id)}
                   className={`px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
                     filter === id
-                      ? id === 'FLAGGED'
-                        ? 'bg-amber-600 text-white font-bold'
-                        : 'bg-emerald-600 text-white font-bold'
+                      ? 'bg-emerald-600 text-white font-bold'
                       : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
                   }`}
                 >
@@ -270,7 +256,6 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                 if (!question) return null;
                 const isUnanswered = item.selected === null;
                 const isExpanded = expanded[item.questionId] ?? !item.isCorrect;
-                const isFlagged = flaggedQuestionIds.has(item.questionId);
 
                 return (
                   <div
@@ -302,11 +287,6 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                         ) : (
                           <span className="inline-flex items-center gap-1 text-xs font-bold text-rose-400 bg-rose-950/60 border border-rose-500/40 px-2.5 py-0.5 rounded-full">
                             <XCircle className="w-3.5 h-3.5" aria-hidden="true" /> Incorrect
-                          </span>
-                        )}
-                        {isFlagged && (
-                          <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-300 bg-amber-500/20 border border-amber-500/40 px-2 py-0.5 rounded-md">
-                            <Flag className="w-3 h-3 fill-amber-300" aria-hidden="true" /> Flagged
                           </span>
                         )}
                       </div>

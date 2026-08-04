@@ -69,7 +69,7 @@ export const InteractiveQuestionSection: React.FC = () => {
           {/* Card Header */}
           <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
-              {currentQuestion.category} • {currentQuestion.level} Level
+              {currentQuestion.category} — {currentQuestion.level} Level
             </span>
             <span className="text-xs text-slate-500">
               Sample Question

@@ -1,93 +1,70 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ArrowRight, KeyRound, ShieldCheck, UserRound } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
-type AuthView = 'signin' | 'signup' | 'reset';
-
-function firebaseErrorMessage(error: unknown): string {
+function errorMessage(error: unknown): string | null {
   const code = (error as { code?: string })?.code ?? '';
   switch (code) {
-    case 'auth/invalid-credential':
-    case 'auth/wrong-password':
-    case 'auth/user-not-found':
-      return 'Incorrect email or password.';
-    case 'auth/email-already-in-use':
-      return 'That email is already registered — sign in instead.';
-    case 'auth/invalid-email':
-      return 'That email address is not valid.';
-    case 'auth/weak-password':
-      return 'Password must be at least 6 characters.';
-    case 'auth/too-many-requests':
-      return 'Too many attempts. Please wait a moment and try again.';
+    case 'auth/popup-closed-by-user':
+    case 'auth/cancelled-popup-request':
+      return null; // user changed their mind — not an error worth showing
+    case 'auth/popup-blocked':
+      return 'Your browser blocked the sign-in window. Allow pop-ups for this site and try again.';
     case 'auth/network-request-failed':
       return 'Network error — check your connection and try again.';
     case 'auth/operation-not-allowed':
-      return 'This sign-in method is not enabled for this project yet.';
+      return 'Google sign-in is not enabled for this project yet.';
     default:
-      return 'Something went wrong. Please try again.';
+      return 'Sign-in failed. Please try again.';
   }
 }
 
+/** Official Google "G" mark for the sign-in button. */
+const GoogleMark: React.FC = () => (
+  <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+    <path
+      fill="#EA4335"
+      d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+    />
+    <path
+      fill="#4285F4"
+      d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+    />
+    <path
+      fill="#FBBC05"
+      d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+    />
+    <path
+      fill="#34A853"
+      d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+    />
+  </svg>
+);
+
 export const AuthPage: React.FC = () => {
-  const { user, initializing, continueAsGuest, signInWithEmail, signUpWithEmail, resetPassword } =
-    useAuth();
+  const { user, initializing, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const destination = (location.state as { from?: string } | null)?.from ?? '/app/dashboard';
 
-  const [view, setView] = useState<AuthView>('signin');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [busy, setBusy] = useState<'guest' | 'form' | null>(null);
+  const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [resetSent, setResetSent] = useState(false);
 
   useEffect(() => {
     if (!initializing && user) navigate(destination, { replace: true });
   }, [initializing, user, navigate, destination]);
 
-  const handleGuest = async () => {
+  const handleGoogle = async () => {
     setError(null);
-    setBusy('guest');
+    setBusy(true);
     try {
-      await continueAsGuest();
+      await signInWithGoogle();
     } catch (err) {
-      setError(firebaseErrorMessage(err));
-      setBusy(null);
+      setError(errorMessage(err));
+      setBusy(false);
     }
   };
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setError(null);
-    setBusy('form');
-    try {
-      if (view === 'signin') {
-        await signInWithEmail(email.trim(), password);
-      } else if (view === 'signup') {
-        await signUpWithEmail(name, email.trim(), password);
-      } else {
-        await resetPassword(email.trim());
-        setResetSent(true);
-        setBusy(null);
-        return;
-      }
-    } catch (err) {
-      setError(firebaseErrorMessage(err));
-      setBusy(null);
-    }
-  };
-
-  const switchView = (next: AuthView) => {
-    setView(next);
-    setError(null);
-    setResetSent(false);
-  };
-
-  const inputClass =
-    'w-full min-h-[48px] px-3.5 rounded-lg border border-slate-300 bg-white text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500';
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
@@ -107,150 +84,29 @@ export const AuthPage: React.FC = () => {
       </header>
 
       <main className="flex-1 flex items-center justify-center px-4 py-8">
-        <div className="w-full max-w-md space-y-5">
-          {/* Guest fast path */}
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-7">
-            <h1 className="text-lg sm:text-xl font-extrabold text-slate-900 mb-1">
-              Start practicing in seconds
-            </h1>
-            <p className="text-sm text-slate-500 mb-5">
-              No signup required. Your progress is saved to a guest account you can make permanent
-              anytime.
-            </p>
-            <button
-              onClick={handleGuest}
-              disabled={busy !== null}
-              className="w-full inline-flex items-center justify-center gap-2 min-h-[52px] rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white text-sm sm:text-base font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
+        <div className="w-full max-w-sm bg-white rounded-2xl border border-slate-200 shadow-sm p-7 sm:p-8 text-center">
+          <h1 className="text-xl font-extrabold text-slate-900 mb-2">Sign in to AceCSE</h1>
+          <p className="text-sm text-slate-500 mb-7 leading-relaxed">
+            Your simulations, practice sessions, and history stay saved to your account.
+          </p>
+
+          <button
+            onClick={handleGoogle}
+            disabled={busy}
+            className="w-full inline-flex items-center justify-center gap-3 min-h-[52px] rounded-xl bg-white border border-slate-300 hover:bg-slate-50 disabled:opacity-60 text-slate-800 text-sm sm:text-base font-semibold transition-colors cursor-pointer shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+          >
+            <GoogleMark />
+            {busy ? 'Signing in…' : 'Continue with Google'}
+          </button>
+
+          {error && (
+            <p
+              className="mt-4 text-xs font-semibold text-rose-700 bg-rose-50 border border-rose-200 rounded-lg px-3 py-2 text-left"
+              role="alert"
             >
-              <UserRound className="w-5 h-5" aria-hidden="true" />
-              {busy === 'guest' ? 'Starting…' : 'Continue as Guest'}
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </button>
-          </div>
-
-          {/* Email auth */}
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-7">
-            <div className="flex items-center gap-1.5 mb-5" role="tablist" aria-label="Authentication options">
-              <button
-                role="tab"
-                aria-selected={view === 'signin'}
-                onClick={() => switchView('signin')}
-                className={`px-3.5 py-2 min-h-[40px] rounded-lg text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                  view === 'signin' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'
-                }`}
-              >
-                Sign In
-              </button>
-              <button
-                role="tab"
-                aria-selected={view === 'signup'}
-                onClick={() => switchView('signup')}
-                className={`px-3.5 py-2 min-h-[40px] rounded-lg text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                  view === 'signup' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'
-                }`}
-              >
-                Create Account
-              </button>
-            </div>
-
-            {view === 'reset' && resetSent ? (
-              <div className="space-y-4">
-                <p className="text-sm text-slate-700" role="status">
-                  If an account exists for <strong>{email}</strong>, a password reset link is on
-                  its way.
-                </p>
-                <button
-                  onClick={() => switchView('signin')}
-                  className="text-xs font-bold text-emerald-700 hover:text-emerald-800 cursor-pointer focus:outline-none focus-visible:underline"
-                >
-                  Back to sign in
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-3.5">
-                {view === 'signup' && (
-                  <div>
-                    <label htmlFor="auth-name" className="block text-xs font-semibold text-slate-600 mb-1.5">
-                      Name
-                    </label>
-                    <input
-                      id="auth-name"
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Your name"
-                      maxLength={60}
-                      className={inputClass}
-                    />
-                  </div>
-                )}
-                <div>
-                  <label htmlFor="auth-email" className="block text-xs font-semibold text-slate-600 mb-1.5">
-                    Email
-                  </label>
-                  <input
-                    id="auth-email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    className={inputClass}
-                  />
-                </div>
-                {view !== 'reset' && (
-                  <div>
-                    <label htmlFor="auth-password" className="block text-xs font-semibold text-slate-600 mb-1.5">
-                      Password
-                    </label>
-                    <input
-                      id="auth-password"
-                      type="password"
-                      required
-                      minLength={6}
-                      autoComplete={view === 'signup' ? 'new-password' : 'current-password'}
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder={view === 'signup' ? 'At least 6 characters' : 'Your password'}
-                      className={inputClass}
-                    />
-                  </div>
-                )}
-
-                {error && (
-                  <p className="text-xs font-semibold text-rose-700 bg-rose-50 border border-rose-200 rounded-lg px-3 py-2" role="alert">
-                    {error}
-                  </p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={busy !== null}
-                  className="w-full min-h-[48px] rounded-xl bg-slate-900 hover:bg-slate-800 disabled:opacity-60 text-white text-sm font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
-                >
-                  {busy === 'form'
-                    ? 'Please wait…'
-                    : view === 'signin'
-                      ? 'Sign In'
-                      : view === 'signup'
-                        ? 'Create Account'
-                        : 'Send Reset Link'}
-                </button>
-
-                {view === 'signin' && (
-                  <button
-                    type="button"
-                    onClick={() => switchView('reset')}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-800 cursor-pointer focus:outline-none focus-visible:underline"
-                  >
-                    <KeyRound className="w-3.5 h-3.5" aria-hidden="true" />
-                    Forgot password?
-                  </button>
-                )}
-              </form>
-            )}
-          </div>
+              {error}
+            </p>
+          )}
         </div>
       </main>
     </div>

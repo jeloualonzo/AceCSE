@@ -29,7 +29,7 @@ export async function ensureProfile(user: User): Promise<void> {
     displayName: user.displayName ?? null,
     email: user.email ?? null,
     isAnonymous: user.isAnonymous,
-    preferredExamLevel: 'Professional',
+    preferredExamLevel: 'Subprofessional',
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   });

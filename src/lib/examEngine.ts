@@ -155,7 +155,6 @@ export function buildSimulationSession(level: ExamLevel, questionCount: number):
     startedAt,
     deadlineAt: startedAt + durationSeconds * 1000,
     answers: {},
-    flagged: [],
   };
 }
 
@@ -200,6 +199,5 @@ export function buildPracticeSession(
     startedAt,
     deadlineAt: durationSeconds ? startedAt + durationSeconds * 1000 : null,
     answers: {},
-    flagged: [],
   };
 }

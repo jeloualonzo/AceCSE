@@ -10,8 +10,11 @@ lie to the user**. No fake data, no inflated question counts, no fabricated prog
 - Question bank: ~239 validated original questions across all five subjects
   (`content/questions/*.json`). Full 170-item Professional simulation is unlocked; the
   Subprofessional full exam stays locked until Clerical Ability supply reaches 35.
-- Firebase: Anonymous + Email/Password auth, Firestore profiles + attempt history with offline
-  persistence, least-privilege rules in `firestore.rules`.
+- Firebase: Google sign-in ONLY (product decision — no email/password, no anonymous yet),
+  Firestore profiles + attempt history with offline persistence, least-privilege rules in
+  `firestore.rules`.
+- Product focus: Subprofessional level first. Professional stays fully supported in the
+  engine/data model but is hidden from the UI (`ACTIVE_EXAM_LEVEL` in AppLayout).
 
 ## Architecture
 
@@ -35,8 +38,8 @@ Landing (/) → Auth (/auth) → App shell (/app/*) → Exam focus mode (/app/ex
   `ExamPage` resumes it after refresh/crash. Expired timed sessions grade as-is at deadline.
 - **`src/pages/ExamPage.tsx`** — owns the session state machine: `pre → active → results`.
   Launches come from router state (`ExamLaunchRequest`); resume comes from localStorage.
-- **`src/context/AuthContext.tsx`** — anonymous-first auth; `linkGuestToEmail` upgrades a
-  guest to a permanent account without losing data.
+- **`src/context/AuthContext.tsx`** — Google sign-in via popup; nothing else. Unauthenticated
+  visitors never reach the app shell (RequireAuth).
 
 ## Firestore
 
@@ -79,3 +82,18 @@ moderation, migrate to a `questions` collection with public read + admin-only wr
 - Attempt review stores question ids; if a question is removed from the bank, grading skips it
   and ResultsScreen hides it gracefully. Prefer deactivating over deleting bank questions.
 - Bookmarks, notes, admin moderation, Google sign-in linking, PWA — see README roadmap.
+
+## Product Rules (owner-set — do not "improve" without asking)
+
+- **Simulation and Practice are two different products.** Simulation = pressure and realism:
+  timed, no feedback, no explanations, one final results page. Practice = learning: untimed by
+  default, instant explanations, answers changeable, skip and restart freely. Never merge their
+  UX again. They live on separate pages (`SimulationPage`, `PracticePage`).
+- **No flag/bookmark feature in the MVP** — intentionally removed; do not reintroduce.
+- **No page subtitles under titles, no divider lines under titles, no "•"/"·" metadata
+  separators.** Use whitespace, stacked label/value pairs, or badges.
+- **Landing page is the default entry.** Get Started (primary) and Sign In (secondary) both lead
+  to Google auth.
+- **No fake data, ever.** Empty states like "No exam history yet." until real data exists.
+- When a UX decision is ambiguous, follow the existing AceCSE vision — not generic SaaS patterns
+  — and ask the owner rather than inventing.

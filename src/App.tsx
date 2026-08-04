@@ -5,6 +5,7 @@ import { AppLayout } from '@/components/shell/AppLayout';
 import { LandingPage } from '@/pages/LandingPage';
 import { AuthPage } from '@/pages/AuthPage';
 import { DashboardPage } from '@/pages/DashboardPage';
+import { SimulationPage } from '@/pages/SimulationPage';
 import { PracticePage } from '@/pages/PracticePage';
 import { HistoryPage } from '@/pages/HistoryPage';
 import { SettingsPage } from '@/pages/SettingsPage';
@@ -38,6 +39,7 @@ export default function App() {
           >
             <Route index element={<Navigate to="/app/dashboard" replace />} />
             <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="simulation" element={<SimulationPage />} />
             <Route path="practice" element={<PracticePage />} />
             <Route path="history" element={<HistoryPage />} />
             <Route path="settings" element={<SettingsPage />} />

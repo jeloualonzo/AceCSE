@@ -1,16 +1,15 @@
 import React from 'react';
-import { Flag, Check, X, BookOpen, Lightbulb } from 'lucide-react';
+import { Check, X, BookOpen, Lightbulb } from 'lucide-react';
 import type { Question, OptionId } from '@/types';
 
 export interface QuestionCardProps {
   question: Question;
   selectedOptionId: OptionId | null;
-  isFlagged: boolean;
   onSelectOption: (optionId: OptionId) => void;
-  onToggleFlag: () => void;
   /**
-   * Practice mode: once answered, reveal correctness and the explanation and
-   * lock the answer. Simulation mode leaves feedback for the results screen.
+   * Practice mode: reveal correctness and the explanation as soon as an
+   * option is chosen. The answer stays changeable — practice is for learning.
+   * Simulation mode leaves all feedback for the results screen.
    */
   instantFeedback?: boolean;
 }
@@ -18,9 +17,7 @@ export interface QuestionCardProps {
 export const QuestionCard: React.FC<QuestionCardProps> = ({
   question,
   selectedOptionId,
-  isFlagged,
   onSelectOption,
-  onToggleFlag,
   instantFeedback = false,
 }) => {
   const isRevealed = instantFeedback && selectedOptionId !== null;
@@ -39,22 +36,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           </span>
         </div>
 
-        <button
-          onClick={onToggleFlag}
-          className={`inline-flex items-center gap-2 px-3 py-1.5 min-h-[44px] rounded-lg text-xs font-semibold transition-all cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-amber-400 ${
-            isFlagged
-              ? 'bg-amber-500/20 text-amber-300 border border-amber-500/50 font-bold'
-              : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-700/60'
-          }`}
-          aria-pressed={isFlagged}
-          aria-label={isFlagged ? 'Unflag question' : 'Flag question for review'}
-        >
-          <Flag
-            className={`w-4 h-4 ${isFlagged ? 'fill-amber-400 text-amber-400' : 'text-slate-400'}`}
-            aria-hidden="true"
-          />
-          <span className="hidden sm:inline">{isFlagged ? 'Flagged' : 'Flag Question'}</span>
-        </button>
       </div>
 
       {/* Stimulus passage, when present */}
@@ -105,13 +86,10 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           return (
             <button
               key={option.id}
-              onClick={() => !isRevealed && onSelectOption(option.id)}
-              disabled={isRevealed}
+              onClick={() => onSelectOption(option.id)}
               role="radio"
               aria-checked={isSelected}
-              className={`w-full text-left p-4 min-h-[56px] rounded-xl border transition-all flex items-center justify-between gap-4 focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-400 focus-visible:outline-offset-2 ${
-                isRevealed ? 'cursor-default' : 'cursor-pointer'
-              } ${optionStyle}`}
+              className={`w-full text-left p-4 min-h-[56px] rounded-xl border transition-all flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-400 focus-visible:outline-offset-2 ${optionStyle}`}
             >
               <div className="flex items-start sm:items-center gap-3.5 flex-1 min-w-0">
                 <span

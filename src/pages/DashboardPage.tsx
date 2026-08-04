@@ -67,12 +67,7 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
-      <div>
-        <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900">Dashboard</h1>
-        <p className="text-sm text-slate-500 mt-0.5">
-          Preparing for the {examLevel} level examination.
-        </p>
-      </div>
+      <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900">Dashboard</h1>
 
       {activeSession && (
         <Link
@@ -83,12 +78,12 @@ export const DashboardPage: React.FC = () => {
             <div className="flex items-center gap-3 min-w-0">
               <PlayCircle className="w-6 h-6 text-emerald-400 shrink-0" aria-hidden="true" />
               <div className="min-w-0">
-                <p className="text-sm font-bold">Resume your in-progress session</p>
+                <p className="text-sm font-bold">
+                  Resume your {activeSession.config.mode === 'simulation' ? 'simulation' : 'practice session'}
+                </p>
                 <p className="text-xs text-slate-400 truncate">
-                  {activeSession.config.mode === 'simulation' ? 'Simulation' : 'Practice'} ·{' '}
-                  {Object.keys(activeSession.answers).length} of{' '}
-                  {activeSession.questionIds.length} answered
-                  {activeSession.deadlineAt && ' · timer still running'}
+                  {Object.keys(activeSession.answers).length} of {activeSession.questionIds.length}{' '}
+                  answered{activeSession.deadlineAt ? ' — timer still running' : ''}
                 </p>
               </div>
             </div>
@@ -97,34 +92,49 @@ export const DashboardPage: React.FC = () => {
         </Link>
       )}
 
-      {/* Quick actions */}
+      {/* Two products, two doors */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <button
           onClick={launchSimulation}
           disabled={!bestSimulation}
-          className="text-left bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-xl p-5 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
+          className="text-left bg-slate-900 hover:bg-slate-800 disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-xl p-5 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
         >
-          <ClipboardList className="w-6 h-6 mb-3" aria-hidden="true" />
-          <p className="font-bold text-sm sm:text-base">Start Timed Simulation</p>
-          <p className="text-xs text-emerald-100 mt-1">
-            {bestSimulation
-              ? `${bestSimulation.questionCount} questions · ${formatDuration(bestSimulation.durationSeconds)} · CSC proportions`
-              : 'Not enough validated questions yet'}
+          <ClipboardList className="w-6 h-6 mb-3 text-emerald-400" aria-hidden="true" />
+          <p className="font-bold text-sm sm:text-base">Exam Simulation</p>
+          <p className="text-xs text-slate-400 mt-1">
+            Real conditions. Timed, no feedback until the end.
           </p>
+          {bestSimulation && (
+            <div className="flex items-center gap-2 mt-3">
+              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-200">
+                {bestSimulation.questionCount} Questions
+              </span>
+              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-200">
+                {formatDuration(bestSimulation.durationSeconds)}
+              </span>
+            </div>
+          )}
         </button>
         <Link
           to="/app/practice"
           className="bg-white hover:bg-slate-50 border border-slate-200 rounded-xl p-5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
         >
           <BookOpen className="w-6 h-6 mb-3 text-emerald-600" aria-hidden="true" />
-          <p className="font-bold text-sm sm:text-base text-slate-900">Subject Practice</p>
+          <p className="font-bold text-sm sm:text-base text-slate-900">Practice</p>
           <p className="text-xs text-slate-500 mt-1">
-            Untimed drills with instant explanations, by subject.
+            Learn at your pace. Instant explanations, no pressure.
           </p>
+          <div className="flex items-center gap-2 mt-3">
+            <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800">
+              Untimed
+            </span>
+            <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800">
+              By Subject
+            </span>
+          </div>
         </Link>
       </div>
 
-      {/* Stats */}
       {loading ? (
         <div className="bg-white rounded-xl border border-slate-200 p-8 text-center text-sm text-slate-400" role="status">
           Loading your progress…
@@ -136,7 +146,7 @@ export const DashboardPage: React.FC = () => {
               icon={<ClipboardList className="w-4.5 h-4.5" aria-hidden="true" />}
               label="Total Attempts"
               value={String(stats.totalAttempts)}
-              hint={`${stats.simulationCount} simulations · ${stats.practiceCount} practice`}
+              hint={`${stats.simulationCount} simulations, ${stats.practiceCount} practice`}
             />
             <StatCard
               icon={<Target className="w-4.5 h-4.5" aria-hidden="true" />}
@@ -162,7 +172,6 @@ export const DashboardPage: React.FC = () => {
             />
           </div>
 
-          {/* Subject mastery — real aggregates */}
           {stats.subjectMastery.length > 0 && (
             <div className="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 space-y-4">
               <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
@@ -208,9 +217,8 @@ export const DashboardPage: React.FC = () => {
             </div>
           )}
 
-          {/* Recent attempts — real history */}
           <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-            <div className="px-5 sm:px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+            <div className="px-5 sm:px-6 pt-5 pb-2 flex items-center justify-between">
               <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
                 Recent Attempts
               </h2>
@@ -226,13 +234,13 @@ export const DashboardPage: React.FC = () => {
                 <li key={attempt.id} className="px-5 sm:px-6 py-3.5 flex items-center justify-between gap-4">
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-slate-900 truncate">
-                      {attempt.mode === 'simulation' ? 'Timed Simulation' : 'Subject Practice'} ·{' '}
-                      {attempt.examLevel}
+                      {attempt.mode === 'simulation' ? 'Exam Simulation' : 'Practice'}
                     </p>
-                    <p className="text-xs text-slate-500">
-                      {formatDate(attempt.completedAt)} · {attempt.questionCount} questions ·{' '}
-                      {formatDuration(attempt.durationSeconds)}
-                    </p>
+                    <div className="flex items-center gap-x-3 flex-wrap text-xs text-slate-500">
+                      <span>{formatDate(attempt.completedAt)}</span>
+                      <span>{attempt.questionCount} questions</span>
+                      <span>{formatDuration(attempt.durationSeconds)}</span>
+                    </div>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <span className="font-mono font-bold text-sm text-slate-800">
@@ -253,11 +261,10 @@ export const DashboardPage: React.FC = () => {
       ) : (
         <div className="bg-white rounded-xl border border-dashed border-slate-300 p-8 sm:p-12 text-center">
           <Target className="w-10 h-10 text-slate-300 mx-auto mb-4" aria-hidden="true" />
-          <h2 className="text-base font-bold text-slate-900 mb-1">No attempts yet</h2>
+          <h2 className="text-base font-bold text-slate-900 mb-1">No exam history yet</h2>
           <p className="text-sm text-slate-500 max-w-md mx-auto">
-            Your scores, subject mastery, and readiness estimate will appear here after your first
-            simulation or practice session. Everything shown is computed from your real results —
-            nothing is invented.
+            Your scores, subject mastery, and readiness estimate appear here after your first
+            simulation or practice session.
           </p>
         </div>
       )}

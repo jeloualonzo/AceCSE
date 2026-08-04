@@ -18,15 +18,11 @@ export const LandingPage: React.FC = () => {
   // Signed-in visitors go straight to the app; everyone else to the auth flow.
   const enterApp = () => navigate(user ? '/app/dashboard' : '/auth');
 
-  const scrollToSampleQuestion = () => {
-    document.getElementById('try-question')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-emerald-100 selection:text-emerald-900">
       <Navbar onStartPracticing={enterApp} onEnterApp={enterApp} />
       <main>
-        <HeroSection onStartPracticing={enterApp} onTryQuestion={scrollToSampleQuestion} />
+        <HeroSection onStartPracticing={enterApp} onSignIn={enterApp} />
         <ProductPreviewSection onStartPracticing={enterApp} />
         <InteractiveQuestionSection />
         <ExamCoverageSection />
