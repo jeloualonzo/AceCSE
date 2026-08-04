@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Clock, XCircle, ArrowLeft, ArrowRight, CheckCircle2, Grid } from 'lucide-react';
 
 interface ExamFocusLayoutProps {
-  examTitle?: string;
-  currentSubject?: string;
+  /** Formatted time remaining, or a label like "Untimed" for practice. */
   timeRemainingFormatted: string;
   onExitExam: () => void;
   onSubmitExam: () => void;
@@ -119,7 +118,12 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
         
         {/* Minimal Question Navigation Palette Drawer */}
         {isPaletteOpen && (
-          <div className="absolute inset-y-0 left-0 z-30 w-full sm:w-80 bg-slate-900 border-r border-slate-800 shadow-xl flex flex-col p-4 overflow-y-auto">
+          <div
+            role="dialog"
+            aria-modal="false"
+            aria-label="Question navigation"
+            className="absolute inset-y-0 left-0 z-30 w-full sm:w-80 bg-slate-900 border-r border-slate-800 shadow-xl flex flex-col p-4 overflow-y-auto"
+          >
             <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Question Navigation

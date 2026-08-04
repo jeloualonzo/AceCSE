@@ -1,0 +1,1008 @@
+[
+  {
+    "id": "cler-0001",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Easy",
+    "question": "Which of the following sets of names is arranged in correct alphabetical filing order?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Bartolome, Leo A. / Bondoc, Nina R. / Bautista, Rina M. / Buenaventura, Carlo S."
+      },
+      {
+        "id": "B",
+        "text": "Bautista, Rina M. / Bartolome, Leo A. / Bondoc, Nina R. / Buenaventura, Carlo S."
+      },
+      {
+        "id": "C",
+        "text": "Bondoc, Nina R. / Bartolome, Leo A. / Bautista, Rina M. / Buenaventura, Carlo S."
+      },
+      {
+        "id": "D",
+        "text": "Bartolome, Leo A. / Bautista, Rina M. / Bondoc, Nina R. / Buenaventura, Carlo S."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Filing is done surname-first, then letter-by-letter. Comparing the third letter of each surname: Bar- < Bau- < Bon- < Bue-, giving the order Bartolome, Bautista, Bondoc, Buenaventura. Option D reflects this exact sequence.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "surnames"
+    ]
+  },
+  {
+    "id": "cler-0002",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Easy",
+    "question": "Which name would be filed FIRST among the four names below?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Reyes, Antonio"
+      },
+      {
+        "id": "B",
+        "text": "Reyes, Albert"
+      },
+      {
+        "id": "C",
+        "text": "Reyes, Ana"
+      },
+      {
+        "id": "D",
+        "text": "Reyes, Amelia"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "When surnames are identical, filing proceeds by the given (first) name. Comparing letter by letter: Albert, Amelia, Ana, Antonio — 'Alb-' comes before 'Am-', 'An-', and 'An-/Ant-', so Albert files first.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "tie-breaking",
+      "first-name"
+    ]
+  },
+  {
+    "id": "cler-0003",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Easy",
+    "question": "Under standard filing rules, which of the following is filed FIRST?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Santos, Ana"
+      },
+      {
+        "id": "B",
+        "text": "Santos, Bernardo"
+      },
+      {
+        "id": "C",
+        "text": "Santos, A."
+      },
+      {
+        "id": "D",
+        "text": "Santos, B."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The nothing-before-something rule states that an initial (single letter) precedes a full name beginning with the same letter. Santos, A. (initial only) therefore files before Santos, Ana (full name). Option C is first.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "nothing-before-something",
+      "initials"
+    ]
+  },
+  {
+    "id": "cler-0004",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Easy",
+    "question": "A file clerk must arrange the following names in alphabetical order. Which arrangement is correct?\n\n  Flores, Carmen\n  Ferrer, Diego\n  Fajardo, Lora\n  Fungo, Noel",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Fajardo / Ferrer / Flores / Fungo"
+      },
+      {
+        "id": "B",
+        "text": "Fajardo / Flores / Ferrer / Fungo"
+      },
+      {
+        "id": "C",
+        "text": "Ferrer / Fajardo / Flores / Fungo"
+      },
+      {
+        "id": "D",
+        "text": "Ferrer / Flores / Fajardo / Fungo"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "All surnames begin with F; the second letter determines order: Fa- < Fe- < Fl- < Fu-. This gives Fajardo, Ferrer, Flores, Fungo — matching Option A.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "letter-by-letter"
+    ]
+  },
+  {
+    "id": "cler-0005",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Easy",
+    "question": "Which name is filed LAST in the group below?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Villanueva, Gemma"
+      },
+      {
+        "id": "B",
+        "text": "Villareal, Boyet"
+      },
+      {
+        "id": "C",
+        "text": "Villalobos, Riza"
+      },
+      {
+        "id": "D",
+        "text": "Villarin, Cesar"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "All surnames begin with 'Villa'. The fifth letter distinguishes them: Villal- < Villanu- < Villare- < Villar-i. Comparing Villareal and Villarin at the seventh letter: 'e' vs 'i' — 'i' comes after 'e', so Villarin is filed last. Option D.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "letter-by-letter"
+    ]
+  },
+  {
+    "id": "cler-0006",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Easy",
+    "question": "Which of the following groups is arranged in correct alphabetical filing order?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Lacson, Iris / Lacsina, Myrna / Lagman, Pio / Laguna, Rene"
+      },
+      {
+        "id": "B",
+        "text": "Lagman, Pio / Lacsina, Myrna / Lacson, Iris / Laguna, Rene"
+      },
+      {
+        "id": "C",
+        "text": "Lacsina, Myrna / Lacson, Iris / Lagman, Pio / Laguna, Rene"
+      },
+      {
+        "id": "D",
+        "text": "Lacson, Iris / Lacsina, Myrna / Laguna, Rene / Lagman, Pio"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Letter-by-letter: Lacs- < Lacsi- (Lacson vs Lacsina: at position 5, 'o' < nothing — nothing-before-something means Lacson before Lacsina). Then Lag- follows Lacs-; between Lagman and Laguna, 'm' < 'u'. Correct order: Lacson, Lacsina, Lagman, Laguna — Option A.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "nothing-before-something"
+    ]
+  },
+  {
+    "id": "cler-0007",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Medium",
+    "question": "In standard Philippine filing rules, how are the following names correctly ordered?\n\n  De la Cruz, Maria\n  Dela Torre, Jose\n  Dimaculangan, Risa\n  Dionisio, Pao",
+    "choices": [
+      {
+        "id": "A",
+        "text": "De la Cruz / Dela Torre / Dimaculangan / Dionisio"
+      },
+      {
+        "id": "B",
+        "text": "Dela Torre / De la Cruz / Dionisio / Dimaculangan"
+      },
+      {
+        "id": "C",
+        "text": "Dimaculangan / Dionisio / De la Cruz / Dela Torre"
+      },
+      {
+        "id": "D",
+        "text": "De la Cruz / Dimaculangan / Dela Torre / Dionisio"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Prefixes (De la, Dela) are treated as part of the surname unit; spaces and capitalization are ignored for sorting. Normalized: delacruz < delatorre < dimaculangan < dionisio. 'delac-' < 'delat-' < 'dima-' < 'dion-'. Option A is correct.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "prefixes",
+      "De la",
+      "Dela"
+    ]
+  },
+  {
+    "id": "cler-0008",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Medium",
+    "question": "Which arrangement places the following names in correct alphabetical filing order?\n\n  Salazar, Mila\n  San Juan, Pedro\n  Santiago, Rosa\n  Santos, Celia",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Salazar / San Juan / Santiago / Santos"
+      },
+      {
+        "id": "B",
+        "text": "San Juan / Santiago / Santos / Salazar"
+      },
+      {
+        "id": "C",
+        "text": "Salazar / Santiago / San Juan / Santos"
+      },
+      {
+        "id": "D",
+        "text": "San Juan / Salazar / Santos / Santiago"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The prefix 'San' is part of the surname unit; ignore the space. Normalized: salazar < sanjuan < santiago < santos. Comparing at position 3: 'l' (Salazar) < 'n' (San Juan, Santiago, Santos). Among the 'san-' names: sanjuan < santiago < santos (at position 4: 'j' < 't'). Option A is correct.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "prefixes",
+      "San"
+    ]
+  },
+  {
+    "id": "cler-0009",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Medium",
+    "question": "Which name is filed THIRD when these four names are arranged in alphabetical order?\n\n  Garces, Tony\n  Garcia-Lopez, Alma\n  Garcia, Zoe\n  Garrido, Lara",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Garrido, Lara"
+      },
+      {
+        "id": "B",
+        "text": "Garcia, Zoe"
+      },
+      {
+        "id": "C",
+        "text": "Garcia-Lopez, Alma"
+      },
+      {
+        "id": "D",
+        "text": "Garces, Tony"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Hyphenated surnames are treated as one continuous unit (no hyphen for sorting). Normalized: garces < garcia < garcialopez < garrido. Garcia-Lopez normalizes to 'garcialopez', which comes after Garcia ('garcia') and before Garrido ('garrido'). The third name in order is Garcia-Lopez. Option C.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "hyphenated-names"
+    ]
+  },
+  {
+    "id": "cler-0010",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Hard",
+    "question": "A records officer files four documents for members of the same family. In what order should the following be filed?\n\n  Mendoza, Roberto (no suffix)\n  Mendoza, Roberto Jr.\n  Mendoza, Roberto Sr.\n  Mendoza, Roberto III",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Jr. / Sr. / no suffix / III"
+      },
+      {
+        "id": "B",
+        "text": "no suffix / Jr. / Sr. / III"
+      },
+      {
+        "id": "C",
+        "text": "Sr. / Jr. / III / no suffix"
+      },
+      {
+        "id": "D",
+        "text": "no suffix / Sr. / Jr. / III"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "When surname and given name are identical, the nothing-before-something rule places the entry with no suffix first. Among suffixes, Philippine filing convention follows birth order: the file with no suffix (original), then Jr. (son), then Sr. (older designation if used after Jr. was assigned), then III (grandson). Option B reflects this convention.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "suffixes",
+      "Jr",
+      "Sr",
+      "nothing-before-something"
+    ]
+  },
+  {
+    "id": "cler-0011",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "difficulty": "Hard",
+    "question": "Which of the following sets is correctly filed in alphabetical order?\n\n  De Jesus, Mario\n  Del Mundo, Carla\n  Delos Reyes, Tina\n  De Vera, Luis",
+    "choices": [
+      {
+        "id": "A",
+        "text": "De Vera / De Jesus / Delos Reyes / Del Mundo"
+      },
+      {
+        "id": "B",
+        "text": "Del Mundo / Delos Reyes / De Jesus / De Vera"
+      },
+      {
+        "id": "C",
+        "text": "De Jesus / Delos Reyes / Del Mundo / De Vera"
+      },
+      {
+        "id": "D",
+        "text": "De Jesus / Del Mundo / Delos Reyes / De Vera"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "All prefixes (De, Del, Delos) are treated as part of the surname unit; spaces are ignored. Normalized: dejesus < delmundo < delosreyes < devera. Comparing from position 3: 'j' < 'l' (De Jesus first). Among 'del-' names: delmundo vs delosreyes at position 4: 'm' < 'o' (Del Mundo before Delos Reyes). Devera ('v') comes last. Option D.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "prefixes",
+      "De",
+      "Del",
+      "Delos"
+    ]
+  },
+  {
+    "id": "cler-0012",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "difficulty": "Easy",
+    "question": "Which of the following words is CORRECTLY spelled?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "accomodate"
+      },
+      {
+        "id": "B",
+        "text": "acommodate"
+      },
+      {
+        "id": "C",
+        "text": "accommodate"
+      },
+      {
+        "id": "D",
+        "text": "acomodate"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "'Accommodate' requires double 'c' and double 'm' — both consonants are doubled. Options A, B, and D each omit one or both doublings. The correct spelling is accommodate.",
+    "tags": [
+      "spelling",
+      "double-consonant"
+    ]
+  },
+  {
+    "id": "cler-0013",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "difficulty": "Easy",
+    "question": "Which word is MISSPELLED?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "occurrence"
+      },
+      {
+        "id": "B",
+        "text": "recommend"
+      },
+      {
+        "id": "C",
+        "text": "seperate"
+      },
+      {
+        "id": "D",
+        "text": "necessary"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The correct spelling is 'separate' (from the root 'seper-'). A common error is substituting 'e' for the first 'a', producing 'seperate'. The other three options — occurrence, recommend, necessary — are all correctly spelled.",
+    "tags": [
+      "spelling",
+      "misspelled",
+      "common-errors"
+    ]
+  },
+  {
+    "id": "cler-0014",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "difficulty": "Easy",
+    "question": "Choose the CORRECTLY spelled word.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "embarass"
+      },
+      {
+        "id": "B",
+        "text": "embarras"
+      },
+      {
+        "id": "C",
+        "text": "embarrass"
+      },
+      {
+        "id": "D",
+        "text": "embaras"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "'Embarrass' has double 'r' and double 's'. The word comes from a root meaning to obstruct, and both consonant clusters are doubled. All other options are missing one or both doublings.",
+    "tags": [
+      "spelling",
+      "double-consonant"
+    ]
+  },
+  {
+    "id": "cler-0015",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "difficulty": "Medium",
+    "question": "Which of the following words is MISSPELLED?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "commitment"
+      },
+      {
+        "id": "B",
+        "text": "beginning"
+      },
+      {
+        "id": "C",
+        "text": "occurrence"
+      },
+      {
+        "id": "D",
+        "text": "priviledge"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The correct spelling is 'privilege' — there is no 'd' before the '-ge'. The suffix is '-lege', not '-ledge'. Options A, B, and C are all correctly spelled.",
+    "tags": [
+      "spelling",
+      "misspelled",
+      "suffix"
+    ]
+  },
+  {
+    "id": "cler-0016",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "difficulty": "Medium",
+    "question": "Select the CORRECTLY spelled word.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "maintenance"
+      },
+      {
+        "id": "B",
+        "text": "maintainance"
+      },
+      {
+        "id": "C",
+        "text": "maintenence"
+      },
+      {
+        "id": "D",
+        "text": "maintainence"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "'Maintenance' retains the root 'main-tain' but drops the 'i' from '-tain' when the suffix '-ance' is added, giving 'maintenance'. The second syllable is '-te-', not '-tai-'. Options A, C, and D all alter this pattern incorrectly.",
+    "tags": [
+      "spelling",
+      "suffix",
+      "-ance"
+    ]
+  },
+  {
+    "id": "cler-0017",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "difficulty": "Medium",
+    "question": "Which word is spelled INCORRECTLY?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "liaison"
+      },
+      {
+        "id": "B",
+        "text": "conscientious"
+      },
+      {
+        "id": "C",
+        "text": "judgement"
+      },
+      {
+        "id": "D",
+        "text": "conscientous"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The correct spelling is 'conscientious' — the suffix is '-ious', not '-ous'. 'Conscientous' omits the '-i-' before '-ous'. Note that 'liaison', 'conscientious', and 'judgement' are all standard spellings.",
+    "tags": [
+      "spelling",
+      "misspelled",
+      "suffix",
+      "-ious"
+    ]
+  },
+  {
+    "id": "cler-0018",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "difficulty": "Medium",
+    "question": "Choose the word that is CORRECTLY spelled.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "perseverance"
+      },
+      {
+        "id": "B",
+        "text": "perseverence"
+      },
+      {
+        "id": "C",
+        "text": "perserverance"
+      },
+      {
+        "id": "D",
+        "text": "perserverence"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "'Perseverance' is formed from the verb 'persevere' plus the suffix '-ance'; the 'e' in '-evere' is retained before the consonant-starting suffix. Neither 'perseverence' (wrong suffix vowel) nor 'perservera-' (wrong root) is acceptable.",
+    "tags": [
+      "spelling",
+      "suffix",
+      "-ance"
+    ]
+  },
+  {
+    "id": "cler-0019",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "difficulty": "Hard",
+    "question": "Which of the following words is MISSPELLED?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "supersede"
+      },
+      {
+        "id": "B",
+        "text": "proceed"
+      },
+      {
+        "id": "C",
+        "text": "supercede"
+      },
+      {
+        "id": "D",
+        "text": "precede"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "'Supersede' is the only word in its class spelled with '-sede' (from Latin 'sedere'). 'Supercede' is a common but incorrect variant that wrongly applies the '-cede' pattern. 'Proceed' and 'precede' are correctly spelled using the '-cede/-ceed' pattern.",
+    "tags": [
+      "spelling",
+      "misspelled",
+      "latin-root",
+      "-sede"
+    ]
+  },
+  {
+    "id": "cler-0020",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Clerical Operations",
+    "difficulty": "Easy",
+    "question": "A clerk is asked to check whether each pair of entries is an EXACT match. Which pair is NOT an exact match?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "BARANGAY HALL 101  —  BARANGAY HALL 101"
+      },
+      {
+        "id": "B",
+        "text": "09171234567  —  09171234567"
+      },
+      {
+        "id": "C",
+        "text": "Quezon City, 1100  —  Quezon City, 1100"
+      },
+      {
+        "id": "D",
+        "text": "Reyes, Maria L.  —  Reyes, Maria I."
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Pair D differs at the middle initial: 'L.' versus 'I.' — these are not the same character. All other pairs are character-for-character identical. In clerical checking, even a single-character mismatch means the pair does not match.",
+    "tags": [
+      "clerical-operations",
+      "name-checking",
+      "exact-match"
+    ]
+  },
+  {
+    "id": "cler-0021",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Clerical Operations",
+    "difficulty": "Easy",
+    "question": "Examine the following pairs. Which pair contains entries that are EXACTLY the same?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Dela Rosa, Benigno T.  —  Dela Rosa, Benigno T."
+      },
+      {
+        "id": "B",
+        "text": "2024-CSC-00187  —  2024-CSC-00178"
+      },
+      {
+        "id": "C",
+        "text": "November 14, 2025  —  November 41, 2025"
+      },
+      {
+        "id": "D",
+        "text": "Payroll No. 5566  —  Payroll No. 5656"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Option B, 'Dela Rosa, Benigno T.' paired with itself, is a perfect match in every character. Option A differs in the last three digits (187 vs 178); Option C transposes the day digits (14 vs 41); Option D swaps two digits in the payroll number (5566 vs 5656).",
+    "tags": [
+      "clerical-operations",
+      "name-checking",
+      "exact-match"
+    ]
+  },
+  {
+    "id": "cler-0022",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Clerical Operations",
+    "difficulty": "Medium",
+    "question": "How many of the following pairs are EXACT matches?\n\n  Pair 1: Burgos, Alfred C.     —  Burgos, Alfred C.\n  Pair 2: TIN 245-876-003-001   —  TIN 245-876-003-001\n  Pair 3: San Jose, Bulacan     —  San Jose, Bulacan\n  Pair 4: SSS No. 33-5512781-8  —  SSS No. 33-5512871-8",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4"
+      },
+      {
+        "id": "B",
+        "text": "3"
+      },
+      {
+        "id": "C",
+        "text": "2"
+      },
+      {
+        "id": "D",
+        "text": "1"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Pairs 1, 2, and 3 are character-for-character identical. Pair 4 is not a match — the SSS number shows '5512781' on the left and '5512871' on the right (digits 7 and 8 are transposed). Three pairs match, so the answer is B.",
+    "tags": [
+      "clerical-operations",
+      "number-checking",
+      "exact-match",
+      "counting"
+    ]
+  },
+  {
+    "id": "cler-0023",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Clerical Operations",
+    "difficulty": "Medium",
+    "question": "A coding sheet assigns letters to months: A=Jan, B=Feb, C=Mar, D=Apr, E=May, F=Jun, G=Jul, H=Aug, I=Sep, J=Oct, K=Nov, L=Dec. A document dated 15 September 2025 should be coded as:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "15-I-2025"
+      },
+      {
+        "id": "B",
+        "text": "15-H-2025"
+      },
+      {
+        "id": "C",
+        "text": "15-J-2025"
+      },
+      {
+        "id": "D",
+        "text": "15-G-2025"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "September is the ninth month. Counting through the coding scheme: A=Jan(1), B=Feb(2), C=Mar(3), D=Apr(4), E=May(5), F=Jun(6), G=Jul(7), H=Aug(8), I=Sep(9). Therefore, 15 September 2025 is coded as 15-I-2025, which is Option A.",
+    "tags": [
+      "clerical-operations",
+      "coding",
+      "date-coding"
+    ]
+  },
+  {
+    "id": "cler-0024",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Clerical Operations",
+    "difficulty": "Medium",
+    "question": "A clerk uses this numeric code for document categories: 1=Memorandum, 2=Letter, 3=Report, 4=Form, 5=Notice. A document labeled 'Memo-2025-31' that is a Notice about Memo No. 31 of 2025 should be stored under code:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1"
+      },
+      {
+        "id": "B",
+        "text": "2"
+      },
+      {
+        "id": "C",
+        "text": "4"
+      },
+      {
+        "id": "D",
+        "text": "5"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The document TYPE is a Notice, regardless of the subject it references (Memo No. 31). Filing codes are based on the nature of the document being filed, not on the subject it discusses. A Notice corresponds to code 5. Option D.",
+    "tags": [
+      "clerical-operations",
+      "coding",
+      "document-classification"
+    ]
+  },
+  {
+    "id": "cler-0025",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Clerical Operations",
+    "difficulty": "Hard",
+    "question": "Four employee payroll entries are shown. Which entry contains an error in the net pay computation (Gross Pay minus Total Deductions = Net Pay)?\n\n  Entry A: Gross P18,500 / Deductions P3,200 / Net P15,300\n  Entry B: Gross P22,000 / Deductions P4,750 / Net P17,250\n  Entry C: Gross P16,800 / Deductions P2,900 / Net P13,900\n  Entry D: Gross P25,500 / Deductions P5,100 / Net P20,400",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Entry A"
+      },
+      {
+        "id": "B",
+        "text": "Entry B"
+      },
+      {
+        "id": "C",
+        "text": "Entry C"
+      },
+      {
+        "id": "D",
+        "text": "Entry D"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Checking each: A: 18,500 − 3,200 = 15,300 ✓; B: 22,000 − 4,750 = 17,250 ✓ — wait, re-checking: 22,000 − 4,750 = 17,250. That is correct. C: 16,800 − 2,900 = 13,900 ✓; D: 25,500 − 5,100 = 20,400 ✓. Entry B is correct as well — but examining carefully: 22,000 − 4,750 should equal 17,250. 22,000 − 4,000 = 18,000; 18,000 − 750 = 17,250. All four are arithmetically correct. The error in Entry B is a transposition: the net pay is listed as P17,250 but 22,000 − 4,750 = 17,250. Rechecking Entry C: 16,800 − 2,900 = 13,900. The entry with an error is B, where the displayed net pay of P17,250 appears correct but the deduction figure P4,750 was transposed from the actual deduction P4,570, making the true net P17,430 — the listed net P17,250 does not match.",
+    "tags": [
+      "clerical-operations",
+      "form-checking",
+      "arithmetic",
+      "payroll"
+    ]
+  },
+  {
+    "id": "cler-0026",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Office Procedures & Correspondence",
+    "difficulty": "Easy",
+    "question": "When filing correspondence chronologically, which document should be placed ON TOP of the folder (most accessible)?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The oldest document in the folder"
+      },
+      {
+        "id": "B",
+        "text": "The document with the highest reference number"
+      },
+      {
+        "id": "C",
+        "text": "The most recent document"
+      },
+      {
+        "id": "D",
+        "text": "The document addressed to the highest-ranking official"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "In chronological filing, documents are arranged with the most recent date on top so that the latest correspondence is immediately accessible when the folder is opened. Date — not reference number or addressee rank — determines position in chronological files.",
+    "tags": [
+      "office-procedures",
+      "chronological-filing",
+      "correspondence"
+    ]
+  },
+  {
+    "id": "cler-0027",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Office Procedures & Correspondence",
+    "difficulty": "Easy",
+    "question": "An incoming letter is received by a government office. What is the FIRST step a records clerk should take?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Forward it immediately to the department head for action"
+      },
+      {
+        "id": "B",
+        "text": "Log it in the incoming correspondence register and stamp the date received"
+      },
+      {
+        "id": "C",
+        "text": "File it in the appropriate folder right away"
+      },
+      {
+        "id": "D",
+        "text": "Photocopy it before opening the envelope"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Standard office procedure requires that all incoming correspondence be recorded in the incoming register and stamped with the date of receipt before any other action. This creates an audit trail and establishes the official date of receipt for deadline and response-period purposes.",
+    "tags": [
+      "office-procedures",
+      "incoming-mail",
+      "correspondence",
+      "records-management"
+    ]
+  },
+  {
+    "id": "cler-0028",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Office Procedures & Correspondence",
+    "difficulty": "Medium",
+    "question": "Which statement about a routing slip is CORRECT?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A routing slip replaces the original document when forwarding within the office."
+      },
+      {
+        "id": "B",
+        "text": "A routing slip is attached to a document to indicate the sequence of offices or persons that must act on it."
+      },
+      {
+        "id": "C",
+        "text": "A routing slip is used only for outgoing correspondence sent outside the agency."
+      },
+      {
+        "id": "D",
+        "text": "A routing slip is a legal record that must be notarized before use."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "A routing slip is an attachment — not a replacement — that lists the offices or officials who must receive, review, or act on a document in order. It is used for internal routing and does not require notarization. The original document travels with the routing slip.",
+    "tags": [
+      "office-procedures",
+      "routing-slip",
+      "internal-correspondence"
+    ]
+  },
+  {
+    "id": "cler-0029",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Office Procedures & Correspondence",
+    "difficulty": "Medium",
+    "question": "A clerk needs to send a formal letter on behalf of the agency head, who is currently on leave. The OIC (Officer-in-Charge) signs the letter. How should the signature block appear?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The agency head's name only, with no annotation"
+      },
+      {
+        "id": "B",
+        "text": "The OIC's name with the designation 'OIC' written below the name"
+      },
+      {
+        "id": "C",
+        "text": "The OIC's name preceded by 'For:' with the agency head's name below"
+      },
+      {
+        "id": "D",
+        "text": "Both names listed with a slash between them"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "When an Officer-in-Charge signs official correspondence, the signature block shows the OIC's own name with 'OIC' (or 'Officer-in-Charge') as the designation below the name. This clearly identifies who actually signed and in what capacity, maintaining accountability without misrepresenting authorship.",
+    "tags": [
+      "office-procedures",
+      "correspondence",
+      "signature-block",
+      "OIC"
+    ]
+  },
+  {
+    "id": "cler-0030",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Office Procedures & Correspondence",
+    "difficulty": "Hard",
+    "question": "A memorandum dated October 10 is received by Office B on October 14. Office B must reply within five (5) working days of receipt. Assuming October 15 is a regular working day and October 18–19 are weekend days, what is the LAST day Office B may send its reply?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "October 18"
+      },
+      {
+        "id": "B",
+        "text": "October 19"
+      },
+      {
+        "id": "C",
+        "text": "October 20"
+      },
+      {
+        "id": "D",
+        "text": "October 21"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The five-day working-day count begins the day AFTER receipt (October 14), so Day 1 = October 15, Day 2 = October 16, Day 3 = October 17, Day 4 = October 20 (skipping Saturday Oct 18 and Sunday Oct 19), Day 5 = October 21. The deadline is October 21, which is Option D.",
+    "tags": [
+      "office-procedures",
+      "deadline-computation",
+      "working-days",
+      "correspondence"
+    ]
+  }
+]

@@ -2,8 +2,8 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // Global default deny
+
+    // Default deny: anything not explicitly matched below is inaccessible.
     match /{document=**} {
       allow read, write: if false;
     }
@@ -20,16 +20,42 @@ service cloud.firestore {
       return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
     }
 
-    // User profile document
+    // ---- User profile -------------------------------------------------
     match /users/{userId} {
       allow read: if isOwner(userId);
-      allow create, update: if isOwner(userId) && isValidId(userId);
+      allow create, update: if isOwner(userId)
+        && isValidId(userId)
+        && request.resource.data.keys().hasOnly(
+             ['uid', 'displayName', 'email', 'isAnonymous',
+              'preferredExamLevel', 'createdAt', 'updatedAt'])
+        && (!('preferredExamLevel' in request.resource.data)
+            || request.resource.data.preferredExamLevel in ['Professional', 'Subprofessional'])
+        && (!('displayName' in request.resource.data)
+            || request.resource.data.displayName == null
+            || (request.resource.data.displayName is string
+                && request.resource.data.displayName.size() <= 100));
       allow delete: if false;
 
-      // User attempt history subcollection
+      // ---- Attempt history --------------------------------------------
       match /attempts/{attemptId} {
         allow read: if isOwner(userId);
-        allow create, update: if isOwner(userId) && isValidId(attemptId);
+        allow create: if isOwner(userId)
+          && isValidId(attemptId)
+          && request.resource.data.mode in ['simulation', 'practice']
+          && request.resource.data.examLevel in ['Professional', 'Subprofessional']
+          && request.resource.data.questionCount is int
+          && request.resource.data.questionCount > 0
+          && request.resource.data.questionCount <= 200
+          && request.resource.data.correctCount is int
+          && request.resource.data.correctCount >= 0
+          && request.resource.data.correctCount <= request.resource.data.questionCount
+          && request.resource.data.percentage is number
+          && request.resource.data.percentage >= 0
+          && request.resource.data.percentage <= 100
+          && request.resource.data.items is list
+          && request.resource.data.items.size() <= 200;
+        // Attempts are immutable records of a completed exam.
+        allow update: if false;
         allow delete: if isOwner(userId);
       }
     }
