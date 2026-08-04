@@ -8,6 +8,11 @@ export interface QuestionCardProps {
   question: Question;
   /** 1-based position within the session, shown as a quiet label. */
   questionNumber?: number;
+  /**
+   * Session length. Rendered as "of N" on mobile only, where the header
+   * carries a navigation icon rather than a second "Q x / y" counter.
+   */
+  totalQuestions?: number;
   selectedOptionId: OptionId | null;
   onSelectOption: (optionId: OptionId) => void;
   /**
@@ -26,6 +31,7 @@ export interface QuestionCardProps {
 export const QuestionCard: React.FC<QuestionCardProps> = ({
   question,
   questionNumber,
+  totalQuestions,
   selectedOptionId,
   onSelectOption,
   instantFeedback = false,
@@ -58,6 +64,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           {questionNumber !== undefined && (
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
               Question {questionNumber}
+              {totalQuestions !== undefined && (
+                <span className="sm:hidden font-normal"> of {totalQuestions}</span>
+              )}
             </span>
           )}
           <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
@@ -83,7 +92,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       </div>
 
       {/* RIGHT: choices + explanation toggle */}
-      <div className="mt-5 lg:mt-0 space-y-3 lg:overflow-y-auto scrollbar-hide lg:pr-1 lg:pb-8 min-w-0">
+      {/* `lg:px-1` keeps the selected option's left border/ring off the scroll edge */}
+      <div className="mt-5 lg:mt-0 space-y-3 lg:overflow-y-auto scrollbar-hide lg:px-1 lg:pb-8 min-w-0">
         <div className="space-y-2.5" role="radiogroup" aria-label="Answer options">
           {question.choices.map((option) => {
             const isSelected = selectedOptionId === option.id;
@@ -96,7 +106,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                 className={`w-full text-left p-4 min-h-[56px] rounded-lg border transition-colors flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-500 focus-visible:outline-offset-2 ${
                   isSelected
                     ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 dark:border-emerald-500 text-slate-900 dark:text-white ring-1 ring-emerald-500/40'
-                    : 'bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700/70 text-slate-700 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800'
+                    : 'bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700/70 text-slate-700 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
                 <div className="flex items-start sm:items-center gap-3.5 flex-1 min-w-0">

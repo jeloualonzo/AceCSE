@@ -4,7 +4,7 @@ import { NAV_ITEMS } from '@/navigation/navConfig';
 
 export const AppSidebar: React.FC = () => {
   return (
-    <aside className="hidden md:flex flex-col w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 min-h-[calc(100vh-4rem)] p-4 shrink-0">
+    <aside className="hidden md:flex flex-col w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 p-4 shrink-0 md:sticky md:top-16 md:self-start md:h-[calc(100vh-4rem)] md:overflow-y-auto">
       <nav className="space-y-1.5 flex-1" aria-label="Primary">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;

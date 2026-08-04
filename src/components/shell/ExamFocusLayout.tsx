@@ -87,17 +87,24 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isPaletteOpen]);
 
-  const paletteButton = (extraClasses: string) => (
+  /**
+   * Question navigation trigger. `compact` drops the "Q x / y" text and keeps
+   * the icon only — used on mobile, where the counter already sits above the
+   * question itself and the timer owns the centre of the header.
+   */
+  const paletteButton = (extraClasses: string, compact = false) => (
     <button
       onClick={(e) => togglePalette(e.currentTarget)}
-      className={`inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${extraClasses}`}
+      className={`inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white ${compact ? 'px-2.5 min-w-[40px] justify-center' : 'px-2.5'} py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${extraClasses}`}
       aria-expanded={isPaletteOpen}
-      aria-label="Open question navigation"
+      aria-label={`Open question navigation, question ${currentQuestionNumber} of ${totalQuestions}`}
     >
       <Grid className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" />
-      <span>
-        Q {currentQuestionNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {totalQuestions}</span>
-      </span>
+      {!compact && (
+        <span>
+          Q {currentQuestionNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {totalQuestions}</span>
+        </span>
+      )}
     </button>
   );
 
@@ -138,9 +145,9 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
           {/* Center: the timer — most important element in an exam */}
           <div className="justify-self-center">{timerBadge}</div>
 
-          {/* Right: desktop navigation / mobile question indicator */}
+          {/* Right: desktop navigation / mobile question-palette trigger */}
           <div className="flex items-center gap-2 justify-self-end">
-            {paletteButton('sm:hidden')}
+            {paletteButton('sm:hidden', true)}
             <button
               onClick={onPrevQuestion}
               disabled={currentQuestionNumber <= 1}
@@ -248,7 +255,7 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
         */}
         <main
           ref={scrollRef}
-          className="flex-1 bg-slate-100 dark:bg-slate-950 overflow-y-auto lg:overflow-hidden p-4 sm:p-6 lg:p-8 flex"
+          className="flex-1 bg-white dark:bg-slate-950 overflow-y-auto lg:overflow-hidden p-4 sm:p-6 lg:p-8 flex"
         >
           <div className="w-full max-w-3xl lg:max-w-7xl mx-auto my-auto lg:my-0 lg:h-full">
             {children}

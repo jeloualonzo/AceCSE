@@ -357,6 +357,7 @@ export const ExamPage: React.FC = () => {
           <QuestionCard
             question={currentQuestion}
             questionNumber={currentIndex + 1}
+            totalQuestions={totalQuestions}
             selectedOptionId={activeSession.answers[currentQuestion.id] ?? null}
             onSelectOption={handleSelectOption}
             instantFeedback={isPractice}
