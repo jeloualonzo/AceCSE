@@ -1,0 +1,85 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "User profile document containing user preferences and metadata",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 100
+        },
+        "examLevel": {
+          "type": "string",
+          "enum": ["Professional", "Subprofessional"]
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": ["uid", "email"]
+    },
+    "ExamAttempt": {
+      "title": "Exam Attempt Record",
+      "description": "Record of a completed exam attempt and score analytics",
+      "type": "object",
+      "properties": {
+        "attemptId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "examLevel": {
+          "type": "string",
+          "enum": ["Professional", "Subprofessional"]
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "score": {
+          "type": "number"
+        },
+        "totalQuestions": {
+          "type": "number"
+        },
+        "percentage": {
+          "type": "number"
+        },
+        "isPassed": {
+          "type": "boolean"
+        },
+        "duration": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      },
+      "required": ["attemptId", "userId", "examLevel", "score", "totalQuestions", "percentage", "isPassed"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile collection indexed by Firebase Auth UID"
+    },
+    "/users/{userId}/attempts/{attemptId}": {
+      "schema": "ExamAttempt",
+      "description": "Historical exam attempts for a specific user"
+    }
+  }
+}
