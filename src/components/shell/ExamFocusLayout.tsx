@@ -88,23 +88,26 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
   }, [isPaletteOpen]);
 
   /**
-   * Question navigation trigger. `compact` drops the "Q x / y" text and keeps
-   * the icon only — used on mobile, where the counter already sits above the
-   * question itself and the timer owns the centre of the header.
+   * Question navigation trigger. Rendered exactly once per breakpoint: on the
+   * left of the header on desktop, on the right on mobile.
+   *
+   * `displayClasses` MUST carry the display utility. It is deliberately absent
+   * from the base string: Tailwind emits `.inline-flex` after `.hidden`, so an
+   * element carrying both `inline-flex` and `hidden` resolves to inline-flex and
+   * the "hidden" instance renders anyway — which is how this button previously
+   * appeared twice on mobile.
    */
-  const paletteButton = (extraClasses: string, compact = false) => (
+  const paletteButton = (displayClasses: string) => (
     <button
       onClick={(e) => togglePalette(e.currentTarget)}
-      className={`inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white ${compact ? 'px-2.5 min-w-[40px] justify-center' : 'px-2.5'} py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${extraClasses}`}
+      className={`${displayClasses} items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
       aria-expanded={isPaletteOpen}
       aria-label={`Open question navigation, question ${currentQuestionNumber} of ${totalQuestions}`}
     >
       <Grid className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" />
-      {!compact && (
-        <span>
-          Q {currentQuestionNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {totalQuestions}</span>
-        </span>
-      )}
+      <span>
+        Q {currentQuestionNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {totalQuestions}</span>
+      </span>
     </button>
   );
 
@@ -147,7 +150,7 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
 
           {/* Right: desktop navigation / mobile question-palette trigger */}
           <div className="flex items-center gap-2 justify-self-end">
-            {paletteButton('sm:hidden', true)}
+            {paletteButton('inline-flex sm:hidden')}
             <button
               onClick={onPrevQuestion}
               disabled={currentQuestionNumber <= 1}

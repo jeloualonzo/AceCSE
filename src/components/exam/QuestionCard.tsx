@@ -8,11 +8,6 @@ export interface QuestionCardProps {
   question: Question;
   /** 1-based position within the session, shown as a quiet label. */
   questionNumber?: number;
-  /**
-   * Session length. Rendered as "of N" on mobile only, where the header
-   * carries a navigation icon rather than a second "Q x / y" counter.
-   */
-  totalQuestions?: number;
   selectedOptionId: OptionId | null;
   onSelectOption: (optionId: OptionId) => void;
   /**
@@ -31,7 +26,6 @@ export interface QuestionCardProps {
 export const QuestionCard: React.FC<QuestionCardProps> = ({
   question,
   questionNumber,
-  totalQuestions,
   selectedOptionId,
   onSelectOption,
   instantFeedback = false,
@@ -64,9 +58,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           {questionNumber !== undefined && (
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
               Question {questionNumber}
-              {totalQuestions !== undefined && (
-                <span className="sm:hidden font-normal"> of {totalQuestions}</span>
-              )}
             </span>
           )}
           <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
