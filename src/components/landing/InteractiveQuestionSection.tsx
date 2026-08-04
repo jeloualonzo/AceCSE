@@ -1,227 +1,179 @@
 import React, { useState } from 'react';
-import { SAMPLE_QUESTIONS } from '../../data/landing';
-import { Check, X, ArrowRight, RefreshCw, Lightbulb } from 'lucide-react';
+import { Check, CheckCircle2, ChevronDown, ChevronUp, RotateCcw, XCircle } from 'lucide-react';
+import { SAMPLE_QUESTIONS } from '@/data/landing';
+import type { OptionId } from '@/types';
+import { ExplanationPanel } from '@/components/exam/ExplanationPanel';
 
+const CATEGORIES = ['Numerical', 'Verbal', 'Analytical', 'General Info'] as const;
+
+/**
+ * "Try a Real CSE Question" — the exact Practice-mode experience, on the
+ * landing page: answer, get a quiet verdict, expand the full teaching
+ * explanation. Same components, same philosophy as inside the app.
+ */
 export const InteractiveQuestionSection: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<'Numerical' | 'Verbal' | 'Analytical' | 'General Info'>('Numerical');
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<(typeof CATEGORIES)[number]>('Numerical');
+  const [selected, setSelected] = useState<OptionId | null>(null);
+  const [showExplanation, setShowExplanation] = useState(false);
 
-  const currentQuestion = SAMPLE_QUESTIONS.find((q) => q.category === activeCategory) || SAMPLE_QUESTIONS[0];
+  const sample =
+    SAMPLE_QUESTIONS.find((s) => s.category === activeCategory) ?? SAMPLE_QUESTIONS[0];
+  const question = sample.question;
+  const isCorrect = selected === question.correctOptionId;
 
-  const handleCategoryChange = (category: 'Numerical' | 'Verbal' | 'Analytical' | 'General Info') => {
+  const switchCategory = (category: (typeof CATEGORIES)[number]) => {
     setActiveCategory(category);
-    setSelectedOption(null);
-    setHasSubmitted(false);
+    setSelected(null);
+    setShowExplanation(false);
   };
 
-  const handleOptionSelect = (optionId: string) => {
-    if (hasSubmitted) return;
-    setSelectedOption(optionId);
+  const reset = () => {
+    setSelected(null);
+    setShowExplanation(false);
   };
-
-  const handleSubmit = () => {
-    if (!selectedOption) return;
-    setHasSubmitted(true);
-  };
-
-  const handleReset = () => {
-    setSelectedOption(null);
-    setHasSubmitted(false);
-  };
-
-  const isCorrect = selectedOption === currentQuestion.correctOptionId;
 
   return (
-    <section id="try-question" className="py-16 sm:py-24 bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+    <section id="try-question" className="py-16 sm:py-20 bg-slate-50 border-y border-slate-200">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">
             Try a Real CSE Question
           </h2>
-          <p className="text-slate-600 mt-3 text-base sm:text-lg">
-            Experience how AceCSE provides instant feedback and step-by-step rationales for every item.
+          <p className="text-sm sm:text-base text-slate-600">
+            Straight from our question bank — with the same teaching explanation you get inside
+            the reviewer.
           </p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {(['Numerical', 'Verbal', 'Analytical', 'General Info'] as const).map((cat) => (
+        {/* Category tabs */}
+        <div className="flex items-center justify-center gap-1.5 flex-wrap mb-6" role="tablist" aria-label="Question category">
+          {CATEGORIES.map((category) => (
             <button
-              key={cat}
-              onClick={() => handleCategoryChange(cat)}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
-                activeCategory === cat
-                  ? 'bg-emerald-600 text-white shadow-sm'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
+              key={category}
+              role="tab"
+              aria-selected={activeCategory === category}
+              onClick={() => switchCategory(category)}
+              className={`px-3.5 py-2 min-h-[40px] rounded-lg text-xs sm:text-sm font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
+                activeCategory === category
+                  ? 'bg-slate-900 text-white'
+                  : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
               }`}
             >
-              {cat}
+              {category}
             </button>
           ))}
         </div>
 
-        {/* Question Card Widget */}
-        <div className="max-w-3xl mx-auto bg-white rounded-xl border border-slate-300 shadow-sm overflow-hidden">
-          
-          {/* Card Header */}
-          <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
-              {currentQuestion.category} — {currentQuestion.level} Level
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-7 space-y-4">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+              {question.subject}
             </span>
-            <span className="text-xs text-slate-500">
-              Sample Question
+            <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-50 text-slate-500 border border-slate-200">
+              {question.topic}
             </span>
           </div>
 
-          {/* Card Content */}
-          <div className="p-6 sm:p-8">
-            <p className="text-slate-900 font-medium text-base sm:text-lg leading-relaxed mb-6 whitespace-pre-line">
-              {currentQuestion.question}
-            </p>
-
-            {/* Options */}
-            <div className="space-y-3 mb-6">
-              {currentQuestion.options.map((opt) => {
-                const isSelected = selectedOption === opt.id;
-                const isCorrectOption = opt.id === currentQuestion.correctOptionId;
-
-                let optionStyles = 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/50 text-slate-800';
-
-                if (hasSubmitted) {
-                  if (isCorrectOption) {
-                    optionStyles = 'bg-emerald-50 border-emerald-600 text-emerald-900 font-semibold ring-1 ring-emerald-600';
-                  } else if (isSelected && !isCorrectOption) {
-                    optionStyles = 'bg-rose-50 border-rose-500 text-rose-900 font-medium ring-1 ring-rose-500';
-                  } else {
-                    optionStyles = 'bg-white border-slate-200 opacity-60 text-slate-500';
-                  }
-                } else if (isSelected) {
-                  optionStyles = 'bg-slate-900 text-white border-slate-900 font-medium';
-                }
-
-                return (
-                  <button
-                    key={opt.id}
-                    type="button"
-                    onClick={() => handleOptionSelect(opt.id)}
-                    disabled={hasSubmitted}
-                    role="radio"
-                    aria-checked={isSelected}
-                    className={`w-full text-left flex items-center justify-between p-4 rounded-lg border transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
-                      hasSubmitted ? 'cursor-default' : 'cursor-pointer'
-                    } ${optionStyles}`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span
-                        className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${
-                          hasSubmitted && isCorrectOption
-                            ? 'bg-emerald-600 text-white'
-                            : hasSubmitted && isSelected && !isCorrectOption
-                            ? 'bg-rose-600 text-white'
-                            : isSelected
-                            ? 'bg-emerald-500 text-white'
-                            : 'bg-slate-100 text-slate-700 border border-slate-300'
-                        }`}
-                      >
-                        {opt.id}
-                      </span>
-                      <span className="text-sm sm:text-base">{opt.text}</span>
-                    </div>
-
-                    {hasSubmitted && isCorrectOption && (
-                      <Check className="w-5 h-5 text-emerald-600 shrink-0" />
-                    )}
-                    {hasSubmitted && isSelected && !isCorrectOption && (
-                      <X className="w-5 h-5 text-rose-600 shrink-0" />
-                    )}
-                  </button>
-                );
-              })}
+          {question.passage && (
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-xs sm:text-sm leading-relaxed whitespace-pre-line">
+              {question.passage}
             </div>
+          )}
 
-            {/* Actions */}
-            {!hasSubmitted ? (
-              <div className="flex items-center justify-between pt-2">
-                <span className="text-xs text-slate-500">
-                  Select an option to test your answer
-                </span>
+          <p className="text-base sm:text-lg font-medium text-slate-900 leading-relaxed whitespace-pre-line">
+            {question.question}
+          </p>
+
+          <div className="space-y-2.5" role="radiogroup" aria-label="Answer options">
+            {question.choices.map((option) => {
+              const isSelected = selected === option.id;
+              let style = 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/60 text-slate-800';
+              let badge = 'bg-slate-100 text-slate-600 border-slate-300';
+              if (isSelected) {
+                if (isCorrect) {
+                  style = 'bg-emerald-50 border-2 border-emerald-500 text-slate-900';
+                  badge = 'bg-emerald-600 text-white border-emerald-500';
+                } else {
+                  style = 'bg-rose-50 border-2 border-rose-400 text-slate-900';
+                  badge = 'bg-rose-500 text-white border-rose-400';
+                }
+              }
+              return (
                 <button
-                  onClick={handleSubmit}
-                  disabled={!selectedOption}
-                  className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors shadow-sm cursor-pointer"
+                  key={option.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={isSelected}
+                  onClick={() => setSelected(option.id)}
+                  className={`w-full text-left flex items-center gap-3 p-3.5 min-h-[52px] rounded-xl border transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${style}`}
                 >
-                  <span>Submit Answer</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span
+                    className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold font-mono border shrink-0 ${badge}`}
+                  >
+                    {option.id}
+                  </span>
+                  <span className="text-sm leading-snug flex-1">{option.text}</span>
+                  {isSelected && (
+                    <Check className="w-4 h-4 shrink-0 text-slate-500" aria-hidden="true" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {selected !== null && (
+            <div className="space-y-3" aria-live="polite">
+              {isCorrect ? (
+                <div className="flex items-center gap-2 rounded-xl bg-emerald-50 border border-emerald-200 px-4 py-3 text-sm font-bold text-emerald-800">
+                  <CheckCircle2 className="w-5 h-5 shrink-0" aria-hidden="true" />
+                  Correct
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 rounded-xl bg-rose-50 border border-rose-200 px-4 py-3 text-sm font-bold text-rose-800">
+                  <XCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
+                  Incorrect
+                </div>
+              )}
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setShowExplanation((v) => !v)}
+                  aria-expanded={showExplanation}
+                  className="flex-1 inline-flex items-center justify-center gap-2 min-h-[44px] rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                >
+                  {showExplanation ? (
+                    <>
+                      <ChevronUp className="w-4 h-4" aria-hidden="true" />
+                      Hide Explanation
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="w-4 h-4" aria-hidden="true" />
+                      Show Explanation
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={reset}
+                  className="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-600 text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                >
+                  <RotateCcw className="w-4 h-4" aria-hidden="true" />
+                  Reset
                 </button>
               </div>
-            ) : (
-              <div className="mt-6 pt-6 border-t border-slate-200 space-y-4">
-                
-                {/* Result Indicator Banner */}
-                <div
-                  className={`p-4 rounded-lg border flex items-start gap-3 ${
-                    isCorrect
-                      ? 'bg-emerald-50 border-emerald-300 text-emerald-900'
-                      : 'bg-rose-50 border-rose-300 text-rose-900'
-                  }`}
-                >
-                  {isCorrect ? (
-                    <Check className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                  ) : (
-                    <X className="w-5 h-5 text-rose-700 shrink-0 mt-0.5" />
-                  )}
-                  <div>
-                    <h4 className="text-sm font-bold">
-                      {isCorrect ? 'Correct Answer!' : 'Incorrect Choice'}
-                    </h4>
-                    <p className="text-xs mt-1 leading-relaxed">
-                      {currentQuestion.explanation.summary}
-                    </p>
-                  </div>
+
+              {showExplanation && (
+                <div className="rounded-r-xl border-l-4 border-l-emerald-500 border-y border-r border-slate-200 bg-emerald-50/40 p-4 sm:p-5">
+                  <ExplanationPanel
+                    question={question}
+                    selectedOptionId={selected}
+                    theme="light"
+                  />
                 </div>
-
-                {/* Step-by-step Explanation Box */}
-                <div className="p-5 bg-slate-50 rounded-lg border border-slate-200">
-                  <h5 className="text-xs font-bold uppercase tracking-wider text-slate-800 mb-3 flex items-center gap-2">
-                    <Lightbulb className="w-4 h-4 text-emerald-600" />
-                    Step-by-Step Rationale
-                  </h5>
-                  <ul className="space-y-2 mb-4 text-xs sm:text-sm text-slate-700">
-                    {currentQuestion.explanation.steps.map((step, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <span className="font-mono text-emerald-700 font-bold shrink-0">{idx + 1}.</span>
-                        <span>{step}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="p-3 bg-white rounded border border-slate-200 text-xs text-slate-800 font-medium">
-                    <span className="font-bold text-emerald-800">Key Takeaway: </span>
-                    {currentQuestion.explanation.keyTakeaway}
-                  </div>
-                </div>
-
-                {/* Try another / Reset */}
-                <div className="flex justify-end pt-2">
-                  <button
-                    onClick={handleReset}
-                    className="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded border border-slate-300 hover:bg-slate-50 cursor-pointer"
-                  >
-                    <RefreshCw className="w-3.5 h-3.5" />
-                    <span>Try Again</span>
-                  </button>
-                </div>
-
-              </div>
-            )}
-
-          </div>
-
+              )}
+            </div>
+          )}
         </div>
-
       </div>
     </section>
   );

@@ -1,19 +1,6 @@
-/** Landing-page-only content types. The exam engine uses the canonical Question model in src/types. */
+import type { Question } from '@/types';
 
-export interface DiagnosticQuestion {
-  id: string;
-  category: 'Numerical' | 'Verbal' | 'Analytical' | 'General Info';
-  level: 'Professional' | 'Subprofessional' | 'Both';
-  question: string;
-  passage?: string;
-  options: { id: string; text: string }[];
-  correctOptionId: string;
-  explanation: {
-    summary: string;
-    steps: string[];
-    keyTakeaway: string;
-  };
-}
+/** Landing-page-only content types. The exam engine uses the canonical Question model in src/types. */
 
 export interface SubjectCoverage {
   id: string;
@@ -47,103 +34,220 @@ export const TRUST_INDICATORS = [
   { label: 'Detailed Explanations', detail: 'Step-by-step rationales for every item' },
 ];
 
-export const SAMPLE_QUESTIONS: DiagnosticQuestion[] = [
+export interface SampleQuestion {
+  category: 'Numerical' | 'Verbal' | 'Analytical' | 'General Info';
+  question: Question;
+}
+
+/**
+ * Real, fully-enriched questions from the production bank — the landing page
+ * shows visitors exactly the teaching experience they get inside Practice.
+ */
+export const SAMPLE_QUESTIONS: SampleQuestion[] = [
   {
-    id: 'q-num-1',
-    category: 'Numerical',
-    level: 'Both',
-    question: 'A team of 4 civil engineers can complete a road inspection survey in 15 days. How many days will it take 6 civil engineers working at the same rate to complete the same survey?',
-    options: [
-      { id: 'A', text: '8 days' },
-      { id: 'B', text: '10 days' },
-      { id: 'C', text: '12 days' },
-      { id: 'D', text: '22.5 days' },
-      { id: 'E', text: '9 days' },
-    ],
-    correctOptionId: 'B',
-    explanation: {
-      summary: 'This is an inverse proportion problem because increasing the number of workers decreases the time needed to complete the work.',
-      steps: [
-        'Formula: Workers × Days = Constant Total Worker-Days',
-        'Total Work = 4 engineers × 15 days = 60 engineer-days',
-        'New Days needed = Total Work / New number of engineers',
-        'Days = 60 / 6 = 10 days',
+    "category": "Numerical",
+    "question": {
+      "id": "num-0001",
+      "examLevel": "Both",
+      "subject": "Numerical Reasoning",
+      "topic": "Fractions",
+      "subtopic": "Addition of Fractions",
+      "difficulty": "Easy",
+      "question": "What is 3/8 + 5/12?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "19/24"
+        },
+        {
+          "id": "B",
+          "text": "1/2"
+        },
+        {
+          "id": "C",
+          "text": "8/20"
+        },
+        {
+          "id": "D",
+          "text": "7/12"
+        }
       ],
-      keyTakeaway: 'Remember: More workers take fewer days (Inverse proportion: W₁ × D₁ = W₂ × D₂).',
-    },
+      "correctOptionId": "A",
+      "explanation": "To add fractions, you need a common denominator — a number that both 8 and 12 divide into evenly. The least common multiple of 8 and 12 is 24. Convert each fraction: 3/8 becomes 9/24 (multiply top and bottom by 3), and 5/12 becomes 10/24 (multiply top and bottom by 2). Now that the denominators match, simply add the numerators: 9 + 10 = 19. The answer is 19/24, which is already in its simplest form since 19 is prime.",
+      "steps": [
+        "Find the least common multiple (LCM) of 8 and 12: multiples of 8 are 8, 16, 24; multiples of 12 are 12, 24 — so LCM = 24.",
+        "Convert 3/8 to 24ths: 3/8 × 3/3 = 9/24.",
+        "Convert 5/12 to 24ths: 5/12 × 2/2 = 10/24.",
+        "Add the numerators: 9/24 + 10/24 = 19/24. The denominator stays 24."
+      ],
+      "distractorExplanations": {
+        "B": "1/2 = 12/24, which would only be correct if the fractions were added incorrectly — perhaps by averaging the numerators (3+5=8) and the denominators (8+12=20) and simplifying 8/20 = 2/5, which is still wrong. A common error is to add numerators and denominators directly.",
+        "C": "8/20 results from the classic mistake of adding numerators together (3+5=8) and denominators together (8+12=20) — a method that does NOT work for fraction addition.",
+        "D": "7/12 appears if someone only converts one fraction and adds incorrectly, or picks the wrong common denominator. Always convert both fractions to the same denominator before adding."
+      },
+      "tip": {
+        "label": "Math Shortcut",
+        "text": "LCM of two numbers = (first × second) ÷ GCD. Here GCD(8,12)=4, so LCM = 8×12÷4 = 24. Use this to find common denominators quickly."
+      },
+      "tags": [
+        "fractions",
+        "addition",
+        "basic-operations",
+        "LCM"
+      ]
+    }
   },
   {
-    id: 'q-verb-1',
-    category: 'Verbal',
-    level: 'Both',
-    question: 'Select the word or phrase that BEST completes the sentence adhering to formal administrative Philippine English rules:\n"The committee members __________ submitting their audited financial reports before the Friday deadline."',
-    options: [
-      { id: 'A', text: 'has been mandated to' },
-      { id: 'B', text: 'are mandated to' },
-      { id: 'C', text: 'is mandated for' },
-      { id: 'D', text: 'were been mandated to' },
-      { id: 'E', text: 'have mandated for' },
-    ],
-    correctOptionId: 'B',
-    explanation: {
-      summary: 'Subject-verb agreement: "committee members" is a plural noun phrase requiring a plural verb ("are").',
-      steps: [
-        'Identify the subject: "committee members" (plural).',
-        'The prepositional modifier "members" makes the subject count as plural.',
-        'Choose the matching plural active/passive auxiliary verb: "are mandated to".',
-        'Option A and C use singular verbs ("has", "is"), while D is ungrammatical.',
+    "category": "Verbal",
+    "question": {
+      "id": "verb-0051",
+      "examLevel": "Both",
+      "subject": "Verbal Ability",
+      "topic": "Vocabulary",
+      "subtopic": "Synonyms",
+      "difficulty": "Medium",
+      "question": "The senator's VOCIFEROUS objections during the committee hearing disrupted the proceedings for nearly an hour. VOCIFEROUS most nearly means:",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Loud and forceful"
+        },
+        {
+          "id": "B",
+          "text": "Logical and well-reasoned"
+        },
+        {
+          "id": "C",
+          "text": "Polite but persistent"
+        },
+        {
+          "id": "D",
+          "text": "Vague and disorganized"
+        }
       ],
-      keyTakeaway: 'When collective nouns are pluralized (e.g., "committee members"), always match with a plural verb.',
-    },
+      "correctOptionId": "A",
+      "explanation": "Vociferous comes from the Latin 'vox' (voice) and 'ferre' (to carry), meaning clamoring or shouting loudly, especially in protest. A vociferous objection is one expressed with great volume and insistence—it is not merely strong in content but loud in delivery. The context of disrupting proceedings for an hour reinforces this: polite or quiet objections would not derail a hearing for that long. 'Loud and forceful' captures both the volume and the intensity. Logical (B) describes the quality of reasoning, not volume. Polite but persistent (C) contradicts the disruptive nature of the objection. Vague and disorganized (D) says nothing about volume or force.",
+      "distractorExplanations": {
+        "B": "'Logical and well-reasoned' describes the quality of an argument's content, not its volume or forcefulness. A vociferous objection may or may not be logical.",
+        "C": "'Polite but persistent' implies courteous restraint—the opposite of the disruptive, clamoring quality that vociferous conveys.",
+        "D": "'Vague and disorganized' describes the structure of an argument, not its volume or emotional intensity; vociferous implies clarity of feeling, if not of thought."
+      },
+      "tip": {
+        "label": "Vocabulary Trick",
+        "text": "VOX = voice (Latin). Vociferous, vocalist, vocabulary—all from the same root. A vociferous person carries their voice far and loud. Think: VOICE + FORCE = vociferous."
+      },
+      "reference": "Latin root: vox (voice) + ferre (to carry)",
+      "tags": [
+        "vocabulary",
+        "synonyms",
+        "latin-roots"
+      ]
+    }
   },
   {
-    id: 'q-ana-1',
-    category: 'Analytical',
-    level: 'Professional',
-    question: 'Premise 1: All department division chiefs are required to attend the quarterly ethics seminar.\nPremise 2: Attorney Santos is a division chief.\nPremise 3: Everyone who attends the quarterly ethics seminar receives a compliance certificate.\nConclusion: Which of the following statements MUST be true?',
-    options: [
-      { id: 'A', text: 'Attorney Santos will receive a compliance certificate.' },
-      { id: 'B', text: 'Attorney Santos is the head of the ethics committee.' },
-      { id: 'C', text: 'Only division chiefs attend the quarterly ethics seminar.' },
-      { id: 'D', text: 'Attorney Santos does not need to attend if she has prior compliance.' },
-      { id: 'E', text: 'All seminar attendees are division chiefs.' },
-    ],
-    correctOptionId: 'A',
-    explanation: {
-      summary: 'Syllogism/Logical Deduction: Valid transitive conclusion.',
-      steps: [
-        'Premise 1 + 2: Atty. Santos is a division chief → She MUST attend the seminar.',
-        'Premise 3: Seminar attendee → Receives a compliance certificate.',
-        'Transitive rule: Atty. Santos attends → Atty. Santos receives a compliance certificate.',
-        'Option C and E commit the fallacy of converse affirmation.',
+    "category": "Analytical",
+    "question": {
+      "id": "ana-0041",
+      "examLevel": "Both",
+      "subject": "Analytical Reasoning",
+      "topic": "Number and Letter Pattern",
+      "subtopic": "Letter-to-Number Cipher (A1Z26)",
+      "difficulty": "Easy",
+      "question": "In a letter-code system: ACE = 1-3-5 and BED = 2-5-4. Using the same code, what is the code for ZIP?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "26-9-16"
+        },
+        {
+          "id": "B",
+          "text": "26-10-16"
+        },
+        {
+          "id": "C",
+          "text": "25-9-16"
+        },
+        {
+          "id": "D",
+          "text": "26-9-17"
+        }
       ],
-      keyTakeaway: 'Follow categorical logic strictly: If A → B and B → C, then A → C.',
-    },
+      "correctOptionId": "A",
+      "explanation": "This cipher assigns each letter its position number in the alphabet: A=1, B=2, C=3, ..., Z=26. Verification: ACE → A=1, C=3, E=5 → 1-3-5 ✓. BED → B=2, E=5, D=4 → 2-5-4 ✓. Applying the same rule: ZIP → Z=26, I=9, P=16 → 26-9-16. This is the A1Z26 cipher — the most fundamental letter-to-number encoding system.",
+      "steps": [
+        "Step 1: Decode the pattern from ACE=1-3-5: A is the 1st letter, C is the 3rd, E is the 5th. Each letter maps to its alphabetical position number.",
+        "Step 2: Confirm with BED=2-5-4: B=2nd, E=5th, D=4th ✓.",
+        "Step 3: Apply to ZIP: Z is the 26th letter → 26; I is the 9th → 9; P is the 16th → 16.",
+        "Step 4: ZIP = 26-9-16."
+      ],
+      "distractorExplanations": {
+        "B": "Using I=10 confuses I (9th letter) with J (10th letter) — I and J are commonly swapped.",
+        "C": "Using Z=25 confuses Z (26th) with Y (25th) — both are near the end of the alphabet.",
+        "D": "Using P=17 confuses P (16th letter) with Q (17th letter)."
+      },
+      "tip": {
+        "label": "Remember",
+        "text": "Anchor points for A1Z26: A=1, E=5, J=10, M=13, P=16, T=20, Z=26. Memorize these to quickly place other letters without counting from A each time."
+      },
+      "tags": [
+        "cipher",
+        "A1Z26",
+        "letter-code",
+        "easy"
+      ]
+    }
   },
   {
-    id: 'q-gen-1',
-    category: 'General Info',
-    level: 'Both',
-    question: 'Under Republic Act No. 6713 (Code of Conduct and Ethical Standards for Public Officials and Employees), public officials must respond to letters, telegrams, or other communications sent by the public within how many working days from receipt?',
-    options: [
-      { id: 'A', text: '5 working days' },
-      { id: 'B', text: '7 working days' },
-      { id: 'C', text: '15 working days' },
-      { id: 'D', text: '30 working days' },
-      { id: 'E', text: '10 calendar days' },
-    ],
-    correctOptionId: 'C',
-    explanation: {
-      summary: 'Section 5(a) of R.A. 6713 mandates prompt action on public communications.',
-      steps: [
-        'R.A. 6713 Section 5(a): "Act promptly on letters and requests."',
-        'All public officials and employees shall respond within fifteen (15) working days from receipt of communications.',
-        'The response must contain the action taken on the request.',
+    "category": "General Info",
+    "question": {
+      "id": "gen-0051",
+      "examLevel": "Both",
+      "subject": "General Information",
+      "topic": "Philippine History",
+      "subtopic": "Philippine Revolution",
+      "difficulty": "Medium",
+      "question": "Who drafted and read the Act of Declaration of Philippine Independence on June 12, 1898 at Kawit, Cavite?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Emilio Aguinaldo"
+        },
+        {
+          "id": "B",
+          "text": "Ambrosio Rianzares Bautista"
+        },
+        {
+          "id": "C",
+          "text": "Apolinario Mabini"
+        },
+        {
+          "id": "D",
+          "text": "Artemio Ricarte"
+        }
       ],
-      keyTakeaway: 'R.A. 6713 Section 5(a) explicitly specifies 15 working days as the statutory limit.',
-    },
-  },
-];
+      "correctOptionId": "B",
+      "explanation": "While Emilio Aguinaldo was the face of the revolution and the one who proclaimed Philippine independence, the intellectual heavy lifting for the declaration was done by Ambrosio Rianzares Bautista, Aguinaldo's War Counselor and Special Delegate. Bautista drafted the Act of Declaration of Philippine Independence and read it aloud to the crowd gathered at Aguinaldo's ancestral home in Kawit, Cavite on June 12, 1898 — between four and five o'clock in the afternoon. Ninety-eight persons signed the declaration. The national flag, sewn in Hong Kong by Marcela Agoncillo with her daughter Lorenza and Delfina Herboza, was hoisted publicly for the first time that afternoon, and the Marcha Nacional Filipina was played.",
+      "distractorExplanations": {
+        "A": "Aguinaldo proclaimed independence and was declared the Dictator and Supreme Chief of the Nation, but he did not draft or read the Act itself — that was Bautista's role as War Counselor and Special Delegate.",
+        "C": "Apolinario Mabini — the 'Sublime Paralytic' and Aguinaldo's chief adviser — was not yet at Kawit when independence was proclaimed. He actually arrived later and reportedly objected to the proclamation as premature, preferring to negotiate from a stronger military position.",
+        "D": "General Artemio Ricarte was present and addressed the crowd to explain the symbolism of the new flag's colors and markings, but he did not draft or read the formal Act of Declaration."
+      },
+      "tip": {
+        "label": "Historical Note",
+        "text": "June 12, 1898: Aguinaldo proclaimed, Bautista drafted and READ the Act, Mabini was NOT there (and objected later). The flag was made in Hong Kong by Marcela Agoncillo."
+      },
+      "reference": "National Historical Commission of the Philippines; Act of the Declaration of Philippine Independence, June 12, 1898",
+      "tags": [
+        "Philippine history",
+        "independence",
+        "1898",
+        "Kawit",
+        "Aguinaldo",
+        "Bautista"
+      ]
+    }
+  }
+] as SampleQuestion[];
 
 export const SUBJECT_COVERAGE: SubjectCoverage[] = [
   {

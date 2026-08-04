@@ -5,7 +5,7 @@ import { NAV_ITEMS } from '@/navigation/navConfig';
 export const AppBottomNav: React.FC = () => {
   return (
     <nav
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 px-1 pt-1 pb-[max(0.5rem,env(safe-area-inset-bottom))] flex items-center justify-around shadow-md"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-1 pt-1 pb-[max(0.5rem,env(safe-area-inset-bottom))] flex items-center justify-around shadow-md"
       aria-label="Primary"
     >
       {NAV_ITEMS.map((item) => {
@@ -15,16 +15,16 @@ export const AppBottomNav: React.FC = () => {
             key={item.id}
             to={item.path}
             className={({ isActive }) =>
-              `flex-1 min-h-[48px] flex flex-col items-center justify-center py-1 px-1 rounded-lg transition-colors cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600 focus-visible:outline-offset-1 active:bg-slate-100/60 ${
-                isActive ? 'text-emerald-700 font-bold' : 'text-slate-500 hover:text-slate-800'
+              `flex-1 min-h-[48px] flex flex-col items-center justify-center py-1 px-1 rounded-lg transition-colors cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600 focus-visible:outline-offset-1 active:bg-slate-100/60 dark:active:bg-slate-800/60 ${
+                isActive ? 'text-emerald-700 dark:text-emerald-400 font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
               }`
             }
           >
             {({ isActive }) => (
               <>
-                <div className={`p-1 rounded-md ${isActive ? 'bg-emerald-100/70' : ''}`}>
+                <div className={`p-1 rounded-md ${isActive ? 'bg-emerald-100/70 dark:bg-emerald-950/40' : ''}`}>
                   <Icon
-                    className={`w-5 h-5 ${isActive ? 'text-emerald-700 stroke-[2.2]' : 'text-slate-500'}`}
+                    className={`w-5 h-5 ${isActive ? 'text-emerald-700 dark:text-emerald-400 stroke-[2.2]' : 'text-slate-500 dark:text-slate-400'}`}
                     aria-hidden="true"
                   />
                 </div>

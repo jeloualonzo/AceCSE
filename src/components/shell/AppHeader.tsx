@@ -39,8 +39,9 @@ export const AppHeader: React.FC = () => {
 
   const handleSignOut = async () => {
     setIsProfileOpen(false);
-    await signOutUser();
+    // Leave the protected area first so the auth guard never flashes /auth.
     navigate('/', { replace: true });
+    await signOutUser();
   };
 
   const avatar = user?.photoURL ? (
@@ -48,16 +49,16 @@ export const AppHeader: React.FC = () => {
       src={user.photoURL}
       alt=""
       referrerPolicy="no-referrer"
-      className="w-8 h-8 rounded-full border border-slate-200 shrink-0"
+      className="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700 shrink-0"
     />
   ) : (
-    <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center border border-emerald-200 shrink-0">
+    <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 font-bold text-xs flex items-center justify-center border border-emerald-200 dark:border-emerald-700 shrink-0">
       {initialsFor(user?.displayName ?? null, user?.email ?? null)}
     </div>
   );
 
   return (
-    <header className="sticky top-0 z-30 bg-white border-b border-slate-200 h-16 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <header className="sticky top-0 z-30 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 h-16 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
       <Link
         to="/app/dashboard"
         className="flex items-center gap-3 focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600 focus-visible:outline-offset-2 rounded-lg"
@@ -66,7 +67,7 @@ export const AppHeader: React.FC = () => {
         <div className="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center text-white shadow-xs">
           <ShieldCheck className="w-5 h-5 stroke-[2.2]" aria-hidden="true" />
         </div>
-        <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
+        <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">
           Ace<span className="text-emerald-600">CSE</span>
         </span>
       </Link>
@@ -74,17 +75,17 @@ export const AppHeader: React.FC = () => {
       <div className="relative" ref={menuRef}>
         <button
           onClick={() => setIsProfileOpen((open) => !open)}
-          className="flex items-center gap-2.5 px-2 py-1.5 min-h-[44px] rounded-lg hover:bg-slate-100 transition-colors border border-transparent hover:border-slate-200 cursor-pointer text-left focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600 focus-visible:outline-offset-2"
+          className="flex items-center gap-2.5 px-2 py-1.5 min-h-[44px] rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-700 cursor-pointer text-left focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600 focus-visible:outline-offset-2"
           aria-expanded={isProfileOpen}
           aria-haspopup="menu"
           aria-label="Account menu"
         >
           {avatar}
-          <span className="hidden sm:inline text-xs font-bold text-slate-900 leading-none max-w-[160px] truncate">
+          <span className="hidden sm:inline text-xs font-bold text-slate-900 dark:text-white leading-none max-w-[160px] truncate">
             {displayName}
           </span>
           <ChevronDown
-            className={`w-4 h-4 text-slate-400 transition-transform shrink-0 ${isProfileOpen ? 'rotate-180' : ''}`}
+            className={`w-4 h-4 text-slate-400 dark:text-slate-500 transition-transform shrink-0 ${isProfileOpen ? 'rotate-180' : ''}`}
             aria-hidden="true"
           />
         </button>
@@ -92,11 +93,11 @@ export const AppHeader: React.FC = () => {
         {isProfileOpen && (
           <div
             role="menu"
-            className="absolute right-0 mt-2 w-64 bg-white rounded-xl border border-slate-200 shadow-lg py-2 z-50"
+            className="absolute right-0 mt-2 w-64 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-lg py-2 z-50"
           >
-            <div className="px-4 py-2.5 border-b border-slate-100">
-              <p className="text-xs font-bold text-slate-900 truncate">{displayName}</p>
-              {user?.email && <p className="text-xs text-slate-500 truncate">{user.email}</p>}
+            <div className="px-4 py-2.5 border-b border-slate-100 dark:border-slate-800">
+              <p className="text-xs font-bold text-slate-900 dark:text-white truncate">{displayName}</p>
+              {user?.email && <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user.email}</p>}
             </div>
 
             <button
@@ -105,18 +106,18 @@ export const AppHeader: React.FC = () => {
                 setIsProfileOpen(false);
                 navigate('/app/settings');
               }}
-              className="w-full min-h-[44px] px-4 py-2.5 text-xs text-left text-slate-700 hover:bg-slate-50 flex items-center gap-2 cursor-pointer focus:outline-none focus-visible:bg-slate-100"
+              className="w-full min-h-[44px] px-4 py-2.5 text-xs text-left text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2 cursor-pointer focus:outline-none focus-visible:bg-slate-100 dark:focus-visible:bg-slate-800"
             >
-              <Settings className="w-4 h-4 text-slate-400" aria-hidden="true" />
+              <Settings className="w-4 h-4 text-slate-400 dark:text-slate-500" aria-hidden="true" />
               <span>Settings</span>
             </button>
 
             <button
               role="menuitem"
               onClick={handleSignOut}
-              className="w-full min-h-[44px] px-4 py-2.5 text-xs text-left text-slate-700 hover:bg-slate-50 flex items-center gap-2 cursor-pointer focus:outline-none focus-visible:bg-slate-100"
+              className="w-full min-h-[44px] px-4 py-2.5 text-xs text-left text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2 cursor-pointer focus:outline-none focus-visible:bg-slate-100 dark:focus-visible:bg-slate-800"
             >
-              <LogOut className="w-4 h-4 text-slate-400" aria-hidden="true" />
+              <LogOut className="w-4 h-4 text-slate-400 dark:text-slate-500" aria-hidden="true" />
               <span>Sign out</span>
             </button>
           </div>

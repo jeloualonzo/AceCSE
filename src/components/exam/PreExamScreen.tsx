@@ -34,8 +34,8 @@ export const PreExamScreen: React.FC<PreExamScreenProps> = ({
         <span>Back</span>
       </button>
 
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="bg-slate-900 text-white px-6 sm:px-8 py-6">
+      <div className="bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700/70 shadow-sm overflow-hidden">
+        <div className="bg-slate-900 dark:bg-slate-900 text-white px-6 sm:px-8 py-6">
           <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
             <ShieldCheck className="w-4 h-4" aria-hidden="true" />
             <span>Timed Simulation</span>
@@ -52,49 +52,49 @@ export const PreExamScreen: React.FC<PreExamScreenProps> = ({
 
         <div className="p-6 sm:p-8 space-y-6">
           <dl className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex items-start gap-3">
               <ListChecks className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" aria-hidden="true" />
               <div>
-                <dt className="text-xs font-semibold text-slate-500">Questions</dt>
-                <dd className="text-lg font-extrabold text-slate-900">{questionCount}</dd>
+                <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Questions</dt>
+                <dd className="text-lg font-extrabold text-slate-900 dark:text-slate-100">{questionCount}</dd>
               </div>
             </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex items-start gap-3">
               <Clock className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" aria-hidden="true" />
               <div>
-                <dt className="text-xs font-semibold text-slate-500">Time Limit</dt>
-                <dd className="text-lg font-extrabold text-slate-900">
+                <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Time Limit</dt>
+                <dd className="text-lg font-extrabold text-slate-900 dark:text-slate-100">
                   {formatDuration(durationSeconds)}
                 </dd>
               </div>
             </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex items-start gap-3">
               <Target className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" aria-hidden="true" />
               <div>
-                <dt className="text-xs font-semibold text-slate-500">Passing Mark</dt>
-                <dd className="text-lg font-extrabold text-slate-900">{PASSING_PERCENTAGE}%</dd>
+                <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Passing Mark</dt>
+                <dd className="text-lg font-extrabold text-slate-900 dark:text-slate-100">{PASSING_PERCENTAGE}%</dd>
               </div>
             </div>
           </dl>
 
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
               Subject Composition
             </h2>
             <ul className="space-y-2">
               {Object.entries(distribution).map(([subject, count]) => (
                 <li
                   key={subject}
-                  className="flex items-center justify-between px-4 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-sm"
+                  className="flex items-center justify-between px-4 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-sm"
                 >
-                  <span className="font-medium text-slate-800">{subject}</span>
-                  <span className="font-bold text-slate-900 font-mono">{count} items</span>
+                  <span className="font-medium text-slate-800 dark:text-slate-200">{subject}</span>
+                  <span className="font-bold text-slate-900 dark:text-slate-100 font-mono">{count} items</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="rounded-xl bg-amber-50 border border-amber-200 p-4 text-xs sm:text-sm text-amber-900 leading-relaxed">
+          <div className="rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-500/30 p-4 text-xs sm:text-sm text-amber-900 dark:text-amber-400 leading-relaxed">
             The timer starts as soon as you begin and runs against the wall clock — exactly like
             the real examination. Your session is saved on this device, so an accidental refresh
             will not lose your progress.

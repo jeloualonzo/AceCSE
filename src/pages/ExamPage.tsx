@@ -229,8 +229,8 @@ export const ExamPage: React.FC = () => {
 
   if (!stage) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center" role="status" aria-label="Loading">
-        <div className="w-8 h-8 rounded-full border-2 border-slate-300 border-t-emerald-600 animate-spin" />
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center" role="status" aria-label="Loading">
+        <div className="w-8 h-8 rounded-full border-2 border-slate-300 dark:border-slate-700 border-t-emerald-600 animate-spin" />
       </div>
     );
   }
@@ -257,16 +257,16 @@ export const ExamPage: React.FC = () => {
     };
     const savedMode = stage.saved.config.mode === 'simulation' ? 'simulation' : 'practice session';
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 font-sans">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 font-sans">
         <div
-          className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 max-w-md w-full"
+          className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 sm:p-8 max-w-md w-full"
           role="alertdialog"
           aria-labelledby="conflict-title"
         >
-          <h1 id="conflict-title" className="text-lg font-extrabold text-slate-900 mb-2">
+          <h1 id="conflict-title" className="text-lg font-extrabold text-slate-900 dark:text-white mb-2">
             You have an unfinished {savedMode}
           </h1>
-          <p className="text-sm text-slate-600 leading-relaxed mb-6">
+          <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
             {Object.keys(stage.saved.answers).length} of {stage.saved.questionIds.length} questions
             answered{stage.saved.deadlineAt ? ' — its timer is still running' : ''}. Starting a new
             session will discard it permanently.
@@ -280,7 +280,7 @@ export const ExamPage: React.FC = () => {
             </button>
             <button
               onClick={discardAndStart}
-              className="w-full min-h-[48px] rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
+              className="w-full min-h-[48px] rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
             >
               Discard It and Start New
             </button>
@@ -292,7 +292,7 @@ export const ExamPage: React.FC = () => {
 
   if (stage.name === 'pre') {
     return (
-      <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col font-sans text-slate-900 dark:text-slate-100">
         <main className="flex-1">
           <PreExamScreen
             examLevel={stage.session.config.examLevel}
@@ -367,36 +367,36 @@ export const ExamPage: React.FC = () => {
 
       {isSubmitModalOpen && (
         <div
-          className="fixed inset-0 z-[60] bg-slate-950/80 flex items-center justify-center p-4 font-sans"
+          className="fixed inset-0 z-[60] bg-slate-950/60 dark:bg-slate-950/80 flex items-center justify-center p-4 font-sans"
           role="dialog"
           aria-modal="true"
           aria-labelledby="submit-modal-title"
         >
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl text-slate-100">
-            <div className="flex items-center gap-3 mb-4 text-emerald-400">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl text-slate-900 dark:text-slate-100">
+            <div className="flex items-center gap-3 mb-4 text-emerald-600 dark:text-emerald-400">
               <CheckCircle2 className="w-6 h-6 shrink-0" aria-hidden="true" />
-              <h3 id="submit-modal-title" className="text-lg font-bold text-white">
+              <h3 id="submit-modal-title" className="text-lg font-bold text-slate-900 dark:text-white">
                 Submit {isPractice ? 'Practice' : 'Exam'}?
               </h3>
             </div>
-            <div className="bg-slate-800/80 border border-slate-700/80 rounded-xl p-4 mb-6 space-y-3 text-xs sm:text-sm">
+            <div className="bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 rounded-xl p-4 mb-6 space-y-3 text-xs sm:text-sm">
               <div className="flex items-center justify-between">
-                <span className="text-slate-400 font-medium">Total questions</span>
-                <span className="font-bold text-white">{totalQuestions}</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium">Total questions</span>
+                <span className="font-bold text-slate-900 dark:text-white">{totalQuestions}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400 font-medium">Answered</span>
-                <span className="font-bold text-emerald-400">{answeredCount}</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium">Answered</span>
+                <span className="font-bold text-emerald-600 dark:text-emerald-400">{answeredCount}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400 font-medium">Unanswered</span>
-                <span className="font-bold text-amber-400">{totalQuestions - answeredCount}</span>
+                <span className="text-slate-500 dark:text-slate-400 font-medium">Unanswered</span>
+                <span className="font-bold text-amber-600 dark:text-amber-400">{totalQuestions - answeredCount}</span>
               </div>
             </div>
             <div className="flex items-center justify-end gap-3">
               <button
                 onClick={() => setIsSubmitModalOpen(false)}
-                className="px-4 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                className="px-4 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 dark:text-slate-300 dark:hover:text-white dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
               >
                 Keep Working
               </button>

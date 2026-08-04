@@ -92,6 +92,20 @@ moderation, migrate to a `questions` collection with public read + admin-only wr
 - **No flag/bookmark feature in the MVP** — intentionally removed; do not reintroduce.
 - **No page subtitles under titles, no divider lines under titles, no "•"/"·" metadata
   separators.** Use whitespace, stacked label/value pairs, or badges.
+- **Practice feedback is two-stage:** answering shows only a quiet Correct/Incorrect verdict;
+  the full teaching explanation is behind a "Show Explanation" accordion. Never auto-expand it.
+- **Explanations are callout-styled** (left emerald accent border, soft tinted background) so
+  they read as distinct from the question.
+- **Exam layout:** desktop is two-column (question/passage/explanation left, choices right)
+  with header-based navigation and the timer centered; mobile keeps the footer nav with the
+  timer centered in the header. Never use `items-center` on an overflow container (it clips
+  tall content) — auto margins center safely.
+- **Theme:** Light / Dark / System, persisted locally, set in Settings, applied via the `dark`
+  class on <html> (Tailwind class strategy, `@custom-variant` in index.css). App and exam
+  surfaces are light-first with `dark:` variants. Landing and Auth stay light-only.
+- **Landing:** primary CTA "Get Started with Google"; secondary scrolls to the sample question
+  — two CTAs must never do the same thing. The sample question uses real bank items and the
+  exact in-app ExplanationPanel (light theme).
 - **Landing page is the default entry.** Get Started (primary) and Sign In (secondary) both lead
   to Google auth.
 - **No fake data, ever.** Empty states like "No exam history yet." until real data exists.

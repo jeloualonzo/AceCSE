@@ -15,7 +15,11 @@ import type { ExamLaunchRequest } from '@/pages/ExamPage';
 export const SimulationPage: React.FC = () => {
   const navigate = useNavigate();
   const { examLevel } = useAppContext();
-  const options = useMemo(() => simulationOptions(examLevel), [examLevel]);
+  const options = useMemo(() => {
+    const all = simulationOptions(examLevel);
+    // The full exam is the primary feature — surface it first.
+    return [...all.filter((o) => o.isFullExam), ...all.filter((o) => !o.isFullExam)];
+  }, [examLevel]);
 
   const launch = (questionCount: number) => {
     const request: ExamLaunchRequest = { kind: 'simulation', examLevel, questionCount };
@@ -24,10 +28,10 @@ export const SimulationPage: React.FC = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
-      <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900">Exam Simulation</h1>
+      <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Exam Simulation</h1>
 
       {/* What simulation means — set the contract once, clearly */}
-      <div className="bg-slate-900 text-slate-200 rounded-2xl p-5 sm:p-6">
+      <div className="bg-slate-900 dark:bg-slate-800/80 dark:border dark:border-slate-700 text-slate-200 rounded-2xl p-5 sm:p-6">
         <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-3">
           <ShieldCheck className="w-4 h-4" aria-hidden="true" />
           <span>Real Examination Conditions</span>
@@ -54,24 +58,24 @@ export const SimulationPage: React.FC = () => {
             key={option.questionCount}
             className={`rounded-xl border p-5 flex flex-col ${
               option.available
-                ? 'bg-white border-slate-200'
-                : 'bg-slate-50 border-dashed border-slate-300'
+                ? 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800'
+                : 'bg-slate-50 dark:bg-slate-800/60 border-dashed border-slate-300 dark:border-slate-700'
             }`}
           >
             {option.isFullExam && (
-              <span className="self-start text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full mb-3">
+              <span className="self-start text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 px-2 py-0.5 rounded-full mb-3">
                 Full Exam
               </span>
             )}
 
             <dl className="space-y-3 mb-5">
               <div>
-                <dt className="text-xs font-semibold text-slate-500">Questions</dt>
-                <dd className="text-2xl font-extrabold text-slate-900">{option.questionCount}</dd>
+                <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Questions</dt>
+                <dd className="text-2xl font-extrabold text-slate-900 dark:text-white">{option.questionCount}</dd>
               </div>
               <div>
-                <dt className="text-xs font-semibold text-slate-500">Duration</dt>
-                <dd className="text-sm font-bold text-slate-800">
+                <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Duration</dt>
+                <dd className="text-sm font-bold text-slate-800 dark:text-slate-100">
                   {formatDuration(option.durationSeconds)}
                 </dd>
               </div>
@@ -87,11 +91,11 @@ export const SimulationPage: React.FC = () => {
               </button>
             ) : (
               <div className="mt-auto">
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400">
+                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 dark:text-slate-500">
                   <Lock className="w-3.5 h-3.5" aria-hidden="true" />
                   Locked
                 </div>
-                <p className="text-[11px] text-slate-400 mt-1 leading-snug">
+                <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1 leading-snug">
                   Needs more validated {option.missingSubjects.join(', ')} questions.
                 </p>
               </div>

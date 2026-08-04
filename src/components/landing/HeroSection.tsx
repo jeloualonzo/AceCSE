@@ -3,12 +3,12 @@ import { ArrowRight, Shield, Clock, BookOpen } from 'lucide-react';
 
 interface HeroSectionProps {
   onStartPracticing: () => void;
-  onSignIn: () => void;
+  onTryQuestion: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   onStartPracticing,
-  onSignIn,
+  onTryQuestion,
 }) => {
   return (
     <section className="bg-white pt-12 pb-16 sm:pt-20 sm:pb-24 border-b border-slate-200">
@@ -37,15 +37,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               onClick={onStartPracticing}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-base px-6 py-3.5 rounded-lg transition-colors shadow-xs cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
             >
-              <span>Get Started</span>
+              <span>Get Started with Google</span>
               <ArrowRight className="w-5 h-5" />
             </button>
 
             <button
-              onClick={onSignIn}
+              onClick={onTryQuestion}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-50 hover:bg-slate-100 text-slate-800 font-semibold text-base px-6 py-3.5 rounded-lg border border-slate-300 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
             >
-              <span>Sign In</span>
+              <span>Try a Sample Question</span>
             </button>
           </div>
 

@@ -68,24 +68,24 @@ export const AuthPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
-      <header className="h-16 px-4 sm:px-6 flex items-center">
-        <Link
-          to="/"
-          className="flex items-center gap-2.5 focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600 focus-visible:outline-offset-2 rounded-lg"
-          aria-label="AceCSE home"
-        >
-          <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
-            <ShieldCheck className="w-4.5 h-4.5 stroke-[2.2]" aria-hidden="true" />
-          </div>
-          <span className="text-lg font-bold tracking-tight">
-            Ace<span className="text-emerald-600">CSE</span>
-          </span>
-        </Link>
-      </header>
-
       <main className="flex-1 flex items-center justify-center px-4 py-8">
-        <div className="w-full max-w-sm bg-white rounded-2xl border border-slate-200 shadow-sm p-7 sm:p-8 text-center">
-          <h1 className="text-xl font-extrabold text-slate-900 mb-2">Sign in to AceCSE</h1>
+        <div className="w-full max-w-sm">
+          {/* Centered brand above the card */}
+          <Link
+            to="/"
+            className="flex flex-col items-center gap-3 mb-8 focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600 focus-visible:outline-offset-4 rounded-xl"
+            aria-label="AceCSE home"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-sm">
+              <ShieldCheck className="w-8 h-8 stroke-[2.2]" aria-hidden="true" />
+            </div>
+            <span className="text-2xl font-extrabold tracking-tight">
+              Ace<span className="text-emerald-600">CSE</span>
+            </span>
+          </Link>
+
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-7 sm:p-8 text-center">
+          <h1 className="text-xl font-extrabold text-slate-900 mb-2">Sign in to continue</h1>
           <p className="text-sm text-slate-500 mb-7 leading-relaxed">
             Your simulations, practice sessions, and history stay saved to your account.
           </p>
@@ -107,6 +107,7 @@ export const AuthPage: React.FC = () => {
               {error}
             </p>
           )}
+          </div>
         </div>
       </main>
     </div>

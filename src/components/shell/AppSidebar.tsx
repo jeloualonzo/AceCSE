@@ -4,7 +4,7 @@ import { NAV_ITEMS } from '@/navigation/navConfig';
 
 export const AppSidebar: React.FC = () => {
   return (
-    <aside className="hidden md:flex flex-col w-64 bg-white border-r border-slate-200 min-h-[calc(100vh-4rem)] p-4 shrink-0">
+    <aside className="hidden md:flex flex-col w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 min-h-[calc(100vh-4rem)] p-4 shrink-0">
       <nav className="space-y-1.5 flex-1" aria-label="Primary">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
@@ -15,15 +15,15 @@ export const AppSidebar: React.FC = () => {
               className={({ isActive }) =>
                 `w-full flex items-center gap-3 px-3.5 py-2.5 min-h-[44px] rounded-lg text-sm transition-colors cursor-pointer text-left focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600 focus-visible:outline-offset-2 ${
                   isActive
-                    ? 'bg-emerald-50 text-emerald-900 font-bold border border-emerald-200/80 shadow-2xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 font-medium'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-300 font-bold border border-emerald-200/80 dark:border-emerald-500/30 shadow-2xs'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/80 dark:hover:bg-slate-800 font-medium'
                 }`
               }
             >
               {({ isActive }) => (
                 <>
                   <Icon
-                    className={`w-5 h-5 shrink-0 ${isActive ? 'text-emerald-600' : 'text-slate-400'}`}
+                    className={`w-5 h-5 shrink-0 ${isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400 dark:text-slate-500'}`}
                     aria-hidden="true"
                   />
                   <span className="truncate">{item.label}</span>

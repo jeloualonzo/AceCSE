@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from '@/context/AuthContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 import { RequireAuth } from '@/components/auth/RequireAuth';
 import { AppLayout } from '@/components/shell/AppLayout';
 import { LandingPage } from '@/pages/LandingPage';
@@ -14,6 +15,7 @@ import { ExamPage } from '@/pages/ExamPage';
 export default function App() {
   return (
     <BrowserRouter>
+      <ThemeProvider>
       <AuthProvider>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -48,6 +50,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

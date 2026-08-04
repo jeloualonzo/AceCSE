@@ -23,7 +23,7 @@ export function useAppContext(): AppOutletContext {
 /** Authenticated shell: header, sidebar, bottom nav, and the routed page. */
 export const AppLayout: React.FC = () => {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col font-sans text-slate-900 dark:text-slate-100">
       <AppHeader />
       <div className="flex-1 flex">
         <AppSidebar />
