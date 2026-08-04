@@ -1,0 +1,613 @@
+[
+  {
+    "id": "seed-num-001",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Work & Rate Problems",
+    "difficulty": "Medium",
+    "question": "If 15 civil service officers can validate 450 official application folders in 6 working days, how many days will it take 10 officers working at the same constant rate to validate 600 folders?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "8 days"
+      },
+      {
+        "id": "B",
+        "text": "10 days"
+      },
+      {
+        "id": "C",
+        "text": "12 days"
+      },
+      {
+        "id": "D",
+        "text": "14 days"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Individual rate = 450 / (15 officers × 6 days) = 5 folders/officer-day. 10 officers produce 50 folders/day. Days required = 600 / 50 = 12 days.",
+    "tags": [
+      "algebra",
+      "work-rates",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "seed-num-002",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentage & Financial Math",
+    "difficulty": "Easy",
+    "question": "A municipal clerk receives a monthly basic salary of ₱32,000. If a total of 12.5% is deducted for GSIS, Pag-IBIG, PhilHealth, and withholding tax, what is the clerk’s net take-home pay for the month?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱27,000"
+      },
+      {
+        "id": "B",
+        "text": "₱28,000"
+      },
+      {
+        "id": "C",
+        "text": "₱28,400"
+      },
+      {
+        "id": "D",
+        "text": "₱29,200"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Total Deduction = ₱32,000 × 0.125 = ₱4,000. Net take-home pay = ₱32,000 - ₱4,000 = ₱28,000.",
+    "tags": [
+      "percentages",
+      "salary-deductions"
+    ]
+  },
+  {
+    "id": "seed-num-003",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Ratio & Proportion",
+    "difficulty": "Medium",
+    "question": "The ratio of administrative assistants to administrative aides in a regional department is 3:5. If there are 40 total administrative personnel in that division, how many are administrative aides?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "15"
+      },
+      {
+        "id": "B",
+        "text": "20"
+      },
+      {
+        "id": "C",
+        "text": "25"
+      },
+      {
+        "id": "D",
+        "text": "30"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Total ratio parts = 3 + 5 = 8 parts. Value per part = 40 / 8 = 5 personnel. Number of aides = 5 parts × 5 = 25 administrative aides.",
+    "tags": [
+      "ratio",
+      "proportion"
+    ]
+  },
+  {
+    "id": "seed-num-004",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation & Statistics",
+    "difficulty": "Hard",
+    "question": "An agency budget of ₱12,000,000 was allocated among three units: Operations (50%), Administration (30%), and Research (20%). If the Research unit spent only 75% of its allocated fund, how much unexpended money remains in Research?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱400,000"
+      },
+      {
+        "id": "B",
+        "text": "₱600,000"
+      },
+      {
+        "id": "C",
+        "text": "₱800,000"
+      },
+      {
+        "id": "D",
+        "text": "₱1,800,000"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Research allocation = 20% of ₱12,000,000 = ₱2,400,000. Spent = 75%, so unexpended portion = 25%. Unexpended amount = ₱2,400,000 × 0.25 = ₱600,000.",
+    "tags": [
+      "data-interpretation",
+      "percentages"
+    ]
+  },
+  {
+    "id": "seed-num-005",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Averages & Sequences",
+    "difficulty": "Medium",
+    "question": "The average score of 4 department heads on a management evaluation was 88. When a 5th department head was evaluated, the overall average increased to 90. What score did the 5th department head receive?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "92"
+      },
+      {
+        "id": "B",
+        "text": "95"
+      },
+      {
+        "id": "C",
+        "text": "98"
+      },
+      {
+        "id": "D",
+        "text": "100"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Initial total score = 4 × 88 = 352. New total score for 5 heads = 5 × 90 = 450. Score of 5th head = 450 - 352 = 98.",
+    "tags": [
+      "averages",
+      "statistics"
+    ]
+  },
+  {
+    "id": "seed-verb-001",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary & Synonyms",
+    "difficulty": "Easy",
+    "question": "Select the word that is MOST NEARLY SIMILAR in meaning to the capitalized word:\n\n\"The director’s MANDATORY directive regarding punctuality was met with strict compliance.\"",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Optional"
+      },
+      {
+        "id": "B",
+        "text": "Compulsory"
+      },
+      {
+        "id": "C",
+        "text": "Discretionary"
+      },
+      {
+        "id": "D",
+        "text": "Tentative"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "\"Mandatory\" means required by law or order; compulsory. \"Optional\" and \"Discretionary\" are antonyms.",
+    "tags": [
+      "synonyms",
+      "vocabulary"
+    ]
+  },
+  {
+    "id": "seed-verb-002",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary & Antonyms",
+    "difficulty": "Medium",
+    "question": "Choose the word that is MOST NEARLY OPPOSITE in meaning to the capitalized word:\n\n\"The committee appreciated her TRANSIENT assignment in the provincial extension office.\"",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Permanent"
+      },
+      {
+        "id": "B",
+        "text": "Fleeting"
+      },
+      {
+        "id": "C",
+        "text": "Temporary"
+      },
+      {
+        "id": "D",
+        "text": "Brief"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "\"Transient\" means lasting only for a short time (temporary/fleeting). The exact antonym is \"Permanent\".",
+    "tags": [
+      "antonyms",
+      "vocabulary"
+    ]
+  },
+  {
+    "id": "seed-verb-003",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Correct Usage",
+    "difficulty": "Medium",
+    "question": "Identify the sentence that follows the correct rules of English grammar and subject-verb agreement.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Neither the department head nor the staff members was present at the conference."
+      },
+      {
+        "id": "B",
+        "text": "Neither the department head nor the staff members were present at the conference."
+      },
+      {
+        "id": "C",
+        "text": "Neither the department head or the staff members are present at the conference."
+      },
+      {
+        "id": "D",
+        "text": "Neither the department head nor the staff members is present at the conference."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "When subjects are joined by \"neither... nor\", the verb agrees with the closer subject (\"staff members\", which is plural, requiring \"were\").",
+    "tags": [
+      "grammar",
+      "subject-verb-agreement"
+    ]
+  },
+  {
+    "id": "seed-verb-004",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Paragraph Organization",
+    "difficulty": "Hard",
+    "question": "Arrange the following sentences in logical order to form a coherent paragraph:\n\n1. Consequently, citizens receive prompt service without unnecessary bureaucratic delays.\n2. Digital transformation has revolutionized frontline government transactions.\n3. Online portals now permit applicants to submit requirements anytime.\n4. Furthermore, automated tracking reduces human processing error.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2 - 3 - 4 - 1"
+      },
+      {
+        "id": "B",
+        "text": "3 - 2 - 1 - 4"
+      },
+      {
+        "id": "C",
+        "text": "2 - 1 - 3 - 4"
+      },
+      {
+        "id": "D",
+        "text": "1 - 2 - 3 - 4"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Sentence 2 introduces the topic (Digital transformation). Sentence 3 details the first benefit (online submission). Sentence 4 adds a second benefit (automated tracking). Sentence 1 states the overall conclusion (Consequently...).",
+    "tags": [
+      "paragraph-organization",
+      "logic"
+    ]
+  },
+  {
+    "id": "seed-verb-005",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "difficulty": "Medium",
+    "passage": "Public office is a public trust. Public officers and employees must at all times be accountable to the people, serve them with utmost responsibility, integrity, loyalty, and efficiency, act with patriotism and justice, and lead modest lives. (Article XI, Section 1, 1987 Constitution)",
+    "question": "Based on the provided excerpt, which principle governs all public service personnel in the Philippines?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Public officers enjoy complete immunity while in active service."
+      },
+      {
+        "id": "B",
+        "text": "Public office is an absolute right awarded by executive privilege."
+      },
+      {
+        "id": "C",
+        "text": "Public officers are bound by public trust and must act with integrity and accountability."
+      },
+      {
+        "id": "D",
+        "text": "Financial transparency is optional for career service personnel."
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Article XI, Section 1 explicitly states that public office is a public trust, establishing accountability, integrity, and modest living as mandatory tenets.",
+    "tags": [
+      "reading-comprehension",
+      "constitution"
+    ]
+  },
+  {
+    "id": "seed-ana-001",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number & Symbol Series",
+    "difficulty": "Medium",
+    "question": "Find the next number in the following numerical sequence:\n\n5, 11, 23, 47, 95, ____",
+    "choices": [
+      {
+        "id": "A",
+        "text": "143"
+      },
+      {
+        "id": "B",
+        "text": "181"
+      },
+      {
+        "id": "C",
+        "text": "191"
+      },
+      {
+        "id": "D",
+        "text": "201"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Pattern is (n × 2) + 1: 5×2+1=11, 11×2+1=23, 23×2+1=47, 47×2+1=95, 95×2+1=191.",
+    "tags": [
+      "number-series",
+      "pattern-recognition"
+    ]
+  },
+  {
+    "id": "seed-ana-002",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Deductions & Syllogisms",
+    "difficulty": "Hard",
+    "question": "Statements:\n- All division chiefs are licensed civil service eligibility holders.\n- Some division chiefs are certified project managers.\n\nWhich conclusion logically follows?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "All certified project managers are division chiefs."
+      },
+      {
+        "id": "B",
+        "text": "Some certified project managers are licensed civil service eligibility holders."
+      },
+      {
+        "id": "C",
+        "text": "No certified project manager is a division chief."
+      },
+      {
+        "id": "D",
+        "text": "All licensed eligibility holders are certified project managers."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Since some division chiefs are project managers and ALL division chiefs hold eligibility, the overlap guarantees that some project managers hold civil service eligibility.",
+    "tags": [
+      "syllogism",
+      "logical-deduction"
+    ]
+  },
+  {
+    "id": "seed-ana-003",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Statement Analysis & Assumptions",
+    "difficulty": "Medium",
+    "question": "Statement: \"The agency will implement flexible working hours to alleviate employee burnout and increase overall daily output.\"\n\nAssumption I: Employee burnout negatively impacts current output.\nAssumption II: Flexible working hours will be adopted by every government office in the country.\n\nWhich assumption is implicitly made?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Only Assumption I is implicit"
+      },
+      {
+        "id": "B",
+        "text": "Only Assumption II is implicit"
+      },
+      {
+        "id": "C",
+        "text": "Both Assumption I and II are implicit"
+      },
+      {
+        "id": "D",
+        "text": "Neither Assumption I nor II is implicit"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The statement assumes burnout currently reduces output (Assumption I). It makes no assumption about other government offices nationwide (Assumption II).",
+    "tags": [
+      "assumptions",
+      "critical-thinking"
+    ]
+  },
+  {
+    "id": "seed-cler-001",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Alphabetizing & Filing Rules",
+    "difficulty": "Easy",
+    "question": "Which of the following personal names should be filed THIRD when arranged strictly according to standard alphabetical rules?\n\n1. De La Cruz, Juan\n2. Del Rosario, Maria\n3. De Castro, Pedro\n4. Del Fierro, Ana",
+    "choices": [
+      {
+        "id": "A",
+        "text": "De Castro, Pedro"
+      },
+      {
+        "id": "B",
+        "text": "De La Cruz, Juan"
+      },
+      {
+        "id": "C",
+        "text": "Del Fierro, Ana"
+      },
+      {
+        "id": "D",
+        "text": "Del Rosario, Maria"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Alphabetical order: 1. De Castro, Pedro -> 2. De La Cruz, Juan -> 3. Del Fierro, Ana -> 4. Del Rosario, Maria. Third name is Del Fierro, Ana.",
+    "tags": [
+      "filing",
+      "alphabetizing"
+    ]
+  },
+  {
+    "id": "seed-cler-002",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling & Error Identification",
+    "difficulty": "Easy",
+    "question": "Identify the word that is CORRECTLY spelled.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Accomodation"
+      },
+      {
+        "id": "B",
+        "text": "Accommodation"
+      },
+      {
+        "id": "C",
+        "text": "Acommodation"
+      },
+      {
+        "id": "D",
+        "text": "Accommodasion"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "\"Accommodation\" is correctly spelled with double \"c\" and double \"m\".",
+    "tags": [
+      "spelling",
+      "clerical-accuracy"
+    ]
+  },
+  {
+    "id": "seed-cler-003",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Coding & Document Inspection",
+    "difficulty": "Medium",
+    "question": "Compare the Original Code with the Transcribed Code:\n\nOriginal:  CSC-2026-PH-89014-X\nTranscribed: CSC-2026-PH-89041-X\n\nThe Transcribed Code is:",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Exactly identical to the Original"
+      },
+      {
+        "id": "B",
+        "text": "Different due to transposed numbers (14 vs 41)"
+      },
+      {
+        "id": "C",
+        "text": "Different due to incorrect letter prefix"
+      },
+      {
+        "id": "D",
+        "text": "Different due to missing hyphen"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "In the original, the last digits are 14, whereas in the transcribed version, they are transposed to 41.",
+    "tags": [
+      "coding-accuracy",
+      "clerical-inspection"
+    ]
+  },
+  {
+    "id": "seed-gen-001",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "R.A. 6713 Code of Ethics",
+    "difficulty": "Easy",
+    "question": "Under Republic Act No. 6713, within how many days after assumption of office must a public official file their Statement of Assets, Liabilities, and Net Worth (SALN)?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Within 15 days"
+      },
+      {
+        "id": "B",
+        "text": "Within 30 days"
+      },
+      {
+        "id": "C",
+        "text": "Within 60 days"
+      },
+      {
+        "id": "D",
+        "text": "Within 90 days"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Under Section 8 of RA 6713, the SALN must be filed within thirty (30) days after assumption of office, on or before April 30 of every year thereafter, and within 30 days after separation from service.",
+    "tags": [
+      "saln",
+      "ra6713",
+      "ethics"
+    ]
+  },
+  {
+    "id": "seed-gen-002",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Philippine Constitution",
+    "difficulty": "Medium",
+    "question": "According to the 1987 Philippine Constitution, where does sovereignty reside and from whom does all government authority emanate?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Sovereignty resides in the President and emanates from the Executive branch."
+      },
+      {
+        "id": "B",
+        "text": "Sovereignty resides in the people and all government authority emanates from them."
+      },
+      {
+        "id": "C",
+        "text": "Sovereignty resides in Congress and emanates from electoral laws."
+      },
+      {
+        "id": "D",
+        "text": "Sovereignty resides in the Supreme Court as the guardian of law."
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Article II, Section 1 of the 1987 Constitution states: \"The Philippines is a democratic and republican State. Sovereignty resides in the people and all government authority emanates from them.\"",
+    "tags": [
+      "constitution",
+      "sovereignty"
+    ]
+  },
+  {
+    "id": "seed-gen-003",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Environmental Laws & Rights",
+    "difficulty": "Easy",
+    "question": "Which constitutional right guarantees that the State shall protect and advance the right of the people to a balanced and healthful ecology in accord with the rhythm and harmony of nature?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Article II, Section 16"
+      },
+      {
+        "id": "B",
+        "text": "Article III, Section 1"
+      },
+      {
+        "id": "C",
+        "text": "Article VI, Section 2"
+      },
+      {
+        "id": "D",
+        "text": "Article XI, Section 4"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Article II, Section 16 mandates the State to protect and advance the right of the people to a balanced and healthful ecology.",
+    "tags": [
+      "environment",
+      "constitutional-rights"
+    ]
+  }
+]

@@ -1,6 +1,0 @@
-{
-  "name": "AceCSE",
-  "description": "Modern Civil Service Examination (CSE) Exam Simulator",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

@@ -1,0 +1,1646 @@
+[
+  {
+    "id": "num-0001",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Fractions",
+    "difficulty": "Easy",
+    "question": "What is 3/8 + 5/12?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "19/24"
+      },
+      {
+        "id": "B",
+        "text": "1/2"
+      },
+      {
+        "id": "C",
+        "text": "8/20"
+      },
+      {
+        "id": "D",
+        "text": "7/12"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Convert to a common denominator of 24: 3/8 = 9/24 and 5/12 = 10/24. Adding gives 19/24.",
+    "tags": [
+      "fractions",
+      "addition",
+      "basic-operations"
+    ]
+  },
+  {
+    "id": "num-0002",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Decimals",
+    "difficulty": "Easy",
+    "question": "What is 4.25 × 3.6?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "14.7"
+      },
+      {
+        "id": "B",
+        "text": "15.9"
+      },
+      {
+        "id": "C",
+        "text": "16.2"
+      },
+      {
+        "id": "D",
+        "text": "15.3"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Multiply 425 × 36 = 15,300, then place two decimal places to get 15.30. A common error is misplacing the decimal, yielding 1.53 or 153.",
+    "tags": [
+      "decimals",
+      "multiplication",
+      "basic-operations"
+    ]
+  },
+  {
+    "id": "num-0003",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Order of Operations",
+    "difficulty": "Easy",
+    "question": "Evaluate: 48 ÷ (6 – 2) × 3 + 5",
+    "choices": [
+      {
+        "id": "A",
+        "text": "23"
+      },
+      {
+        "id": "B",
+        "text": "41"
+      },
+      {
+        "id": "C",
+        "text": "44"
+      },
+      {
+        "id": "D",
+        "text": "38"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Following PEMDAS: first the parenthesis gives 6–2=4; then 48÷4=12; then 12×3=36; finally 36+5=41.",
+    "tags": [
+      "order-of-operations",
+      "basic-operations",
+      "PEMDAS"
+    ]
+  },
+  {
+    "id": "num-0004",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Fractions",
+    "difficulty": "Medium",
+    "question": "What is 7¾ – 3⅝?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4 3/8"
+      },
+      {
+        "id": "B",
+        "text": "4 1/8"
+      },
+      {
+        "id": "C",
+        "text": "3 7/8"
+      },
+      {
+        "id": "D",
+        "text": "4 5/8"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Convert: 7¾ = 31/4 = 62/8 and 3⅝ = 29/8. Subtracting: 62/8 – 29/8 = 33/8 = 4 1/8.",
+    "tags": [
+      "fractions",
+      "mixed-numbers",
+      "subtraction"
+    ]
+  },
+  {
+    "id": "num-0005",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Decimals",
+    "difficulty": "Medium",
+    "question": "What is 56.7 ÷ 0.035?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1,620"
+      },
+      {
+        "id": "B",
+        "text": "16,200"
+      },
+      {
+        "id": "C",
+        "text": "162"
+      },
+      {
+        "id": "D",
+        "text": "1,720"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Multiply both numerator and denominator by 1,000: 56,700 ÷ 35 = 1,620. Shifting the decimal in the divisor correctly avoids the common error of getting 162 or 16,200.",
+    "tags": [
+      "decimals",
+      "division",
+      "basic-operations"
+    ]
+  },
+  {
+    "id": "num-0006",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Fractions",
+    "difficulty": "Medium",
+    "question": "What is (2/3) × (9/14)?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3/7"
+      },
+      {
+        "id": "B",
+        "text": "2/7"
+      },
+      {
+        "id": "C",
+        "text": "11/42"
+      },
+      {
+        "id": "D",
+        "text": "9/21"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Multiply numerators and denominators: (2×9)/(3×14) = 18/42. Simplify by dividing by 6: 3/7.",
+    "tags": [
+      "fractions",
+      "multiplication",
+      "simplification"
+    ]
+  },
+  {
+    "id": "num-0007",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Fractions",
+    "difficulty": "Hard",
+    "question": "What is (5/6 + 1/4) ÷ (7/8 – 1/3)?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2"
+      },
+      {
+        "id": "B",
+        "text": "5/3"
+      },
+      {
+        "id": "C",
+        "text": "3/2"
+      },
+      {
+        "id": "D",
+        "text": "13/8"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Numerator: 5/6+1/4 = 10/12+3/12 = 13/12. Denominator: 7/8–1/3 = 21/24–8/24 = 13/24. Dividing: (13/12)÷(13/24) = (13/12)×(24/13) = 24/12 = 2.",
+    "tags": [
+      "fractions",
+      "complex-fractions",
+      "division"
+    ]
+  },
+  {
+    "id": "num-0008",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Fractions",
+    "difficulty": "Hard",
+    "question": "Evaluate: 2⅔ × 1½ – (4/5 ÷ 2/3)",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2 4/5"
+      },
+      {
+        "id": "B",
+        "text": "3 1/5"
+      },
+      {
+        "id": "C",
+        "text": "2 1/5"
+      },
+      {
+        "id": "D",
+        "text": "2 3/5"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "First: 2⅔ × 1½ = (8/3)(3/2) = 4. Second: (4/5)÷(2/3) = (4/5)(3/2) = 12/10 = 6/5. Result: 4 – 6/5 = 20/5 – 6/5 = 14/5 = 2 4/5.",
+    "tags": [
+      "fractions",
+      "mixed-numbers",
+      "order-of-operations"
+    ]
+  },
+  {
+    "id": "num-0009",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "difficulty": "Easy",
+    "question": "What is 35% of 2,400?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "720"
+      },
+      {
+        "id": "B",
+        "text": "840"
+      },
+      {
+        "id": "C",
+        "text": "860"
+      },
+      {
+        "id": "D",
+        "text": "780"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "35% of 2,400 = 0.35 × 2,400 = 840. A common distractor is confusing 35% with 30% (which gives 720).",
+    "tags": [
+      "percentages",
+      "basic-percentage"
+    ]
+  },
+  {
+    "id": "num-0010",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "difficulty": "Easy",
+    "question": "A government employee's monthly salary is ₱18,000. After a 12% salary adjustment, what is the new monthly salary?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱19,800"
+      },
+      {
+        "id": "B",
+        "text": "₱20,160"
+      },
+      {
+        "id": "C",
+        "text": "₱20,400"
+      },
+      {
+        "id": "D",
+        "text": "₱21,600"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Increase = 12% × ₱18,000 = ₱2,160. New salary = ₱18,000 + ₱2,160 = ₱20,160.",
+    "tags": [
+      "percentages",
+      "salary",
+      "increase"
+    ]
+  },
+  {
+    "id": "num-0011",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "difficulty": "Medium",
+    "question": "What is 20% of 30% of 500?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "30"
+      },
+      {
+        "id": "B",
+        "text": "35"
+      },
+      {
+        "id": "C",
+        "text": "25"
+      },
+      {
+        "id": "D",
+        "text": "40"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "First find 30% of 500 = 150, then 20% of 150 = 30. Alternatively, 0.20 × 0.30 × 500 = 0.06 × 500 = 30.",
+    "tags": [
+      "percentages",
+      "percent-of-percent"
+    ]
+  },
+  {
+    "id": "num-0012",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "difficulty": "Medium",
+    "question": "After a 15% discount, a laptop bag costs ₱2,295. What was its original price?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱2,640"
+      },
+      {
+        "id": "B",
+        "text": "₱2,700"
+      },
+      {
+        "id": "C",
+        "text": "₱2,580"
+      },
+      {
+        "id": "D",
+        "text": "₱2,650"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "After a 15% discount, the customer pays 85% of the original price. So original = ₱2,295 ÷ 0.85 = ₱2,700.",
+    "tags": [
+      "percentages",
+      "reverse-percentage",
+      "discount"
+    ]
+  },
+  {
+    "id": "num-0013",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Ratio and Proportion",
+    "difficulty": "Medium",
+    "question": "A year-end bonus of ₱7,200 is divided between Ana and Ben in the ratio 5:4. How much does Ana receive?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱3,600"
+      },
+      {
+        "id": "B",
+        "text": "₱4,000"
+      },
+      {
+        "id": "C",
+        "text": "₱3,200"
+      },
+      {
+        "id": "D",
+        "text": "₱4,500"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The total is 5+4=9 parts. Ana's share = (5/9) × ₱7,200 = ₱4,000. Ben gets the remaining ₱3,200.",
+    "tags": [
+      "ratio",
+      "proportion",
+      "money"
+    ]
+  },
+  {
+    "id": "num-0014",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Ratio and Proportion",
+    "difficulty": "Medium",
+    "question": "If 8 workers can complete a landscaping project in 6 days, how many days will 12 workers need to finish the same project, assuming equal productivity?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4 days"
+      },
+      {
+        "id": "B",
+        "text": "5 days"
+      },
+      {
+        "id": "C",
+        "text": "3 days"
+      },
+      {
+        "id": "D",
+        "text": "4.5 days"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This is inverse proportion: workers × days = constant. 8 × 6 = 12 × d → d = 48/12 = 4 days.",
+    "tags": [
+      "ratio",
+      "inverse-proportion",
+      "work"
+    ]
+  },
+  {
+    "id": "num-0015",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "difficulty": "Medium",
+    "question": "The price of rice dropped from ₱4,500 per sack to ₱3,780 per sack. By what percentage did the price decrease?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "14%"
+      },
+      {
+        "id": "B",
+        "text": "19%"
+      },
+      {
+        "id": "C",
+        "text": "18%"
+      },
+      {
+        "id": "D",
+        "text": "16%"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Decrease = ₱4,500 – ₱3,780 = ₱720. Percentage decrease = (720/4,500) × 100 = 16%.",
+    "tags": [
+      "percentages",
+      "percentage-change",
+      "decrease"
+    ]
+  },
+  {
+    "id": "num-0016",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "difficulty": "Medium",
+    "question": "A school supplies dealer buys a notebook at ₱800, marks it up by 40%, then offers a 20% discount on the marked price. What is the final selling price?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱896"
+      },
+      {
+        "id": "B",
+        "text": "₱912"
+      },
+      {
+        "id": "C",
+        "text": "₱880"
+      },
+      {
+        "id": "D",
+        "text": "₱924"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Marked price = ₱800 × 1.40 = ₱1,120. After 20% discount: ₱1,120 × 0.80 = ₱896. Note that a 40% markup followed by a 20% discount does NOT return to cost.",
+    "tags": [
+      "percentages",
+      "markup",
+      "discount",
+      "successive-changes"
+    ]
+  },
+  {
+    "id": "num-0017",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Ratio and Proportion",
+    "difficulty": "Hard",
+    "question": "If 5 machines produce 150 parts in 3 hours, how many parts will 8 machines produce in 5 hours at the same rate?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "400"
+      },
+      {
+        "id": "B",
+        "text": "420"
+      },
+      {
+        "id": "C",
+        "text": "350"
+      },
+      {
+        "id": "D",
+        "text": "480"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Rate per machine per hour = 150 ÷ (5 × 3) = 10 parts. Parts produced = 10 × 8 × 5 = 400.",
+    "tags": [
+      "ratio",
+      "proportion",
+      "compound-proportion"
+    ]
+  },
+  {
+    "id": "num-0018",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "difficulty": "Hard",
+    "question": "A government project fund of ₱500,000 grew by 10% in its first year, then decreased by 5% in its second year. What is the fund's value at the end of the second year?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱525,000"
+      },
+      {
+        "id": "B",
+        "text": "₱522,500"
+      },
+      {
+        "id": "C",
+        "text": "₱527,500"
+      },
+      {
+        "id": "D",
+        "text": "₱520,000"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "After Year 1: ₱500,000 × 1.10 = ₱550,000. After Year 2: ₱550,000 × 0.95 = ₱522,500. The net result is not simply 5% net gain because changes apply to different bases.",
+    "tags": [
+      "percentages",
+      "successive-changes",
+      "compound"
+    ]
+  },
+  {
+    "id": "num-0019",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "difficulty": "Easy",
+    "question": "What is the next number in the series: 4, 9, 14, 19, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "24"
+      },
+      {
+        "id": "B",
+        "text": "25"
+      },
+      {
+        "id": "C",
+        "text": "22"
+      },
+      {
+        "id": "D",
+        "text": "26"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This is an arithmetic sequence with a common difference of 5. Adding 5 to the last term: 19 + 5 = 24.",
+    "tags": [
+      "number-series",
+      "arithmetic-sequence"
+    ]
+  },
+  {
+    "id": "num-0020",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "difficulty": "Easy",
+    "question": "What comes next: 3, 6, 12, 24, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "48"
+      },
+      {
+        "id": "B",
+        "text": "44"
+      },
+      {
+        "id": "C",
+        "text": "36"
+      },
+      {
+        "id": "D",
+        "text": "40"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Each term is multiplied by 2 (geometric sequence, common ratio = 2). Next term: 24 × 2 = 48.",
+    "tags": [
+      "number-series",
+      "geometric-sequence"
+    ]
+  },
+  {
+    "id": "num-0021",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "difficulty": "Medium",
+    "question": "Find the missing term: 2, 5, 9, 14, 20, ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "27"
+      },
+      {
+        "id": "B",
+        "text": "28"
+      },
+      {
+        "id": "C",
+        "text": "25"
+      },
+      {
+        "id": "D",
+        "text": "26"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The differences between terms are 3, 4, 5, 6, 7 — increasing by 1 each time. The next difference is 7, so 20 + 7 = 27.",
+    "tags": [
+      "number-series",
+      "increasing-differences"
+    ]
+  },
+  {
+    "id": "num-0022",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "difficulty": "Medium",
+    "question": "What is the next term: 1, 1, 2, 3, 5, 8, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "12"
+      },
+      {
+        "id": "B",
+        "text": "13"
+      },
+      {
+        "id": "C",
+        "text": "14"
+      },
+      {
+        "id": "D",
+        "text": "11"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "This is the Fibonacci sequence where each term is the sum of the two preceding terms. 5 + 8 = 13.",
+    "tags": [
+      "number-series",
+      "fibonacci"
+    ]
+  },
+  {
+    "id": "num-0023",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "difficulty": "Medium",
+    "question": "Identify the next term: 2, 5, 11, 23, ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "43"
+      },
+      {
+        "id": "B",
+        "text": "47"
+      },
+      {
+        "id": "C",
+        "text": "45"
+      },
+      {
+        "id": "D",
+        "text": "46"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The rule is: multiply by 2 then add 1. Check: 2×2+1=5; 5×2+1=11; 11×2+1=23; 23×2+1=47.",
+    "tags": [
+      "number-series",
+      "multiply-add-pattern"
+    ]
+  },
+  {
+    "id": "num-0024",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "difficulty": "Medium",
+    "question": "What number comes next: 1, 4, 9, 16, 25, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "30"
+      },
+      {
+        "id": "B",
+        "text": "36"
+      },
+      {
+        "id": "C",
+        "text": "34"
+      },
+      {
+        "id": "D",
+        "text": "35"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "These are perfect squares: 1²=1, 2²=4, 3²=9, 4²=16, 5²=25. The next is 6²=36.",
+    "tags": [
+      "number-series",
+      "perfect-squares"
+    ]
+  },
+  {
+    "id": "num-0025",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "difficulty": "Hard",
+    "question": "What is the missing number: 3, 7, 4, 10, 5, 13, 6, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "16"
+      },
+      {
+        "id": "B",
+        "text": "7"
+      },
+      {
+        "id": "C",
+        "text": "14"
+      },
+      {
+        "id": "D",
+        "text": "15"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Two interleaved sequences: odd positions (3, 4, 5, 6) increase by 1; even positions (7, 10, 13, ?) increase by 3. Next even-position term = 13 + 3 = 16.",
+    "tags": [
+      "number-series",
+      "interleaved-sequences"
+    ]
+  },
+  {
+    "id": "num-0026",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "difficulty": "Hard",
+    "question": "Find the next term: 1, 3, 7, 13, 21, ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "29"
+      },
+      {
+        "id": "B",
+        "text": "31"
+      },
+      {
+        "id": "C",
+        "text": "33"
+      },
+      {
+        "id": "D",
+        "text": "35"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "First differences: 2, 4, 6, 8 — increasing by 2 each time (constant second difference of 2). The next first difference is 10, so 21 + 10 = 31.",
+    "tags": [
+      "number-series",
+      "second-differences"
+    ]
+  },
+  {
+    "id": "num-0027",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Work Rate",
+    "difficulty": "Easy",
+    "question": "Carla can finish encoding a report in 6 hours, and Dana can finish the same report in 4 hours. Working together, how long will they take?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2 hours"
+      },
+      {
+        "id": "B",
+        "text": "2 hours 30 minutes"
+      },
+      {
+        "id": "C",
+        "text": "2 hours 24 minutes"
+      },
+      {
+        "id": "D",
+        "text": "3 hours"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Combined rate = 1/6 + 1/4 = 2/12 + 3/12 = 5/12 of the report per hour. Time = 12/5 = 2.4 hours = 2 hours 24 minutes.",
+    "tags": [
+      "work-rate",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0028",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Work Rate",
+    "difficulty": "Medium",
+    "question": "Pipe A can fill a tank in 12 minutes and Pipe B in 18 minutes. Pipe A is opened first. After 3 minutes, Pipe B is also opened. How many total minutes does it take to fill the tank?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "7.4 min"
+      },
+      {
+        "id": "B",
+        "text": "8.4 min"
+      },
+      {
+        "id": "C",
+        "text": "9.0 min"
+      },
+      {
+        "id": "D",
+        "text": "10.2 min"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "In 3 min, Pipe A fills 3/12 = 1/4 of the tank. Remaining: 3/4. Combined rate = 1/12+1/18 = 5/36 per min. Time to fill remaining = (3/4)÷(5/36) = 27/5 = 5.4 min. Total = 3 + 5.4 = 8.4 min.",
+    "tags": [
+      "work-rate",
+      "pipes",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0029",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Work Rate",
+    "difficulty": "Hard",
+    "question": "Efren can complete a filing task in 10 days. He works alone for 4 days, then Felix joins him and they finish the remaining work in 3 more days. How many days would Felix need to complete the task alone?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "12 days"
+      },
+      {
+        "id": "B",
+        "text": "15 days"
+      },
+      {
+        "id": "C",
+        "text": "8 days"
+      },
+      {
+        "id": "D",
+        "text": "10 days"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Efren does 4/10 = 2/5 in 4 days; remaining = 3/5. In 3 days, Efren does 3/10. Felix does 3/5 – 3/10 = 3/10 in 3 days, so Felix's rate is 1/10 per day, meaning Felix alone needs 10 days.",
+    "tags": [
+      "work-rate",
+      "word-problems",
+      "algebra"
+    ]
+  },
+  {
+    "id": "num-0030",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Age Problems",
+    "difficulty": "Easy",
+    "question": "Mia is 3 times as old as her son. In 8 years, she will be twice as old as her son. How old is her son now?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "6"
+      },
+      {
+        "id": "B",
+        "text": "10"
+      },
+      {
+        "id": "C",
+        "text": "8"
+      },
+      {
+        "id": "D",
+        "text": "7"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Let son's age = S; Mia's age = 3S. In 8 years: 3S+8 = 2(S+8) → 3S+8 = 2S+16 → S = 8. Mia is currently 24.",
+    "tags": [
+      "age-problems",
+      "word-problems",
+      "algebra"
+    ]
+  },
+  {
+    "id": "num-0031",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Age Problems",
+    "difficulty": "Medium",
+    "question": "Romy is 6 years older than Sonia. In 4 years, the sum of their ages will be 50. How old is Romy now?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "20"
+      },
+      {
+        "id": "B",
+        "text": "22"
+      },
+      {
+        "id": "C",
+        "text": "24"
+      },
+      {
+        "id": "D",
+        "text": "26"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Let Sonia's current age = S; Romy's = S+6. In 4 years: (S+6+4)+(S+4) = 50 → 2S+14 = 50 → S = 18. Romy is now 18+6 = 24.",
+    "tags": [
+      "age-problems",
+      "word-problems",
+      "algebra"
+    ]
+  },
+  {
+    "id": "num-0032",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Mixture Problems",
+    "difficulty": "Medium",
+    "question": "Cashews worth ₱320 per kilogram are mixed with peanuts worth ₱80 per kilogram to produce 10 kg of a mixture worth ₱200 per kilogram. How many kilograms of cashews are needed?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4 kg"
+      },
+      {
+        "id": "B",
+        "text": "6 kg"
+      },
+      {
+        "id": "C",
+        "text": "5 kg"
+      },
+      {
+        "id": "D",
+        "text": "7 kg"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Let x = kg of cashews; peanuts = 10–x. Equation: 320x + 80(10–x) = 200×10 → 240x = 1,200 → x = 5.",
+    "tags": [
+      "mixture-problems",
+      "word-problems",
+      "algebra"
+    ]
+  },
+  {
+    "id": "num-0033",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Mixture Problems",
+    "difficulty": "Hard",
+    "question": "A laboratory has 30 liters of a 40% acid solution. How many liters of pure acid must be added to raise the concentration to 60%?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "12 L"
+      },
+      {
+        "id": "B",
+        "text": "18 L"
+      },
+      {
+        "id": "C",
+        "text": "10 L"
+      },
+      {
+        "id": "D",
+        "text": "15 L"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Acid before: 0.40×30 = 12 L. Let x = liters of pure acid added. Equation: (12+x)/(30+x) = 0.60 → 12+x = 18+0.6x → 0.4x = 6 → x = 15.",
+    "tags": [
+      "mixture-problems",
+      "concentration",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0034",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "difficulty": "Easy",
+    "question": "A provincial bus travels at 60 km/h. How far will it travel in 2 hours and 30 minutes?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "120 km"
+      },
+      {
+        "id": "B",
+        "text": "160 km"
+      },
+      {
+        "id": "C",
+        "text": "150 km"
+      },
+      {
+        "id": "D",
+        "text": "145 km"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Convert 2 h 30 min = 2.5 hours. Distance = speed × time = 60 × 2.5 = 150 km.",
+    "tags": [
+      "distance-speed-time",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0035",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "difficulty": "Medium",
+    "question": "Roldan drives from Manila to Batangas at 80 km/h and returns along the same route at 60 km/h. What is his average speed for the entire round trip?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "70 km/h"
+      },
+      {
+        "id": "B",
+        "text": "68 km/h"
+      },
+      {
+        "id": "C",
+        "text": "68.57 km/h"
+      },
+      {
+        "id": "D",
+        "text": "72 km/h"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Average speed for equal distances = 2v₁v₂/(v₁+v₂) = 2×80×60/(80+60) = 9,600/140 ≈ 68.57 km/h. Simply averaging 80 and 60 gives 70, which is a common wrong answer.",
+    "tags": [
+      "distance-speed-time",
+      "average-speed",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0036",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "difficulty": "Medium",
+    "question": "Two trains are 360 km apart and moving toward each other. Train A travels at 90 km/h and Train B at 70 km/h. In how many hours will they meet?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2.5 hours"
+      },
+      {
+        "id": "B",
+        "text": "2.0 hours"
+      },
+      {
+        "id": "C",
+        "text": "3.0 hours"
+      },
+      {
+        "id": "D",
+        "text": "2.25 hours"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "When moving toward each other, the combined closing speed = 90+70 = 160 km/h. Time = 360÷160 = 2.25 hours.",
+    "tags": [
+      "distance-speed-time",
+      "approaching",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0037",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "difficulty": "Hard",
+    "question": "Runner A starts at 7:00 AM at 8 km/h. Runner B starts at 8:00 AM from the same point at 12 km/h in the same direction. At what time does Runner B catch Runner A?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "9:00 AM"
+      },
+      {
+        "id": "B",
+        "text": "10:30 AM"
+      },
+      {
+        "id": "C",
+        "text": "10:00 AM"
+      },
+      {
+        "id": "D",
+        "text": "11:00 AM"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "By 8:00 AM, Runner A has a 8 km head start. B gains on A at 12–8 = 4 km/h. Time to close the gap = 8÷4 = 2 hours after 8:00 AM, which is 10:00 AM.",
+    "tags": [
+      "distance-speed-time",
+      "chase",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0038",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "difficulty": "Medium",
+    "question": "Perla invests ₱50,000 in a time deposit paying 6% simple interest per year. How much interest does she earn after 3 years?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱8,000"
+      },
+      {
+        "id": "B",
+        "text": "₱10,000"
+      },
+      {
+        "id": "C",
+        "text": "₱7,500"
+      },
+      {
+        "id": "D",
+        "text": "₱9,000"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Simple interest = Principal × Rate × Time = ₱50,000 × 0.06 × 3 = ₱9,000.",
+    "tags": [
+      "money",
+      "simple-interest",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0039",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "difficulty": "Medium",
+    "question": "Jessa has a combination of ₱1 coins and ₱5 coins totaling ₱47. She has 23 coins in all. How many ₱5 coins does she have?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4"
+      },
+      {
+        "id": "B",
+        "text": "8"
+      },
+      {
+        "id": "C",
+        "text": "5"
+      },
+      {
+        "id": "D",
+        "text": "6"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Let x = ₱5 coins and y = ₱1 coins. System: x+y=23 and 5x+y=47. Subtracting: 4x=24 → x=6.",
+    "tags": [
+      "money",
+      "coins",
+      "systems-of-equations",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0040",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "difficulty": "Hard",
+    "question": "A credit cooperative places ₱100,000 in an account earning 8% interest compounded annually. What is the total amount at the end of 2 years?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱116,000"
+      },
+      {
+        "id": "B",
+        "text": "₱116,640"
+      },
+      {
+        "id": "C",
+        "text": "₱117,200"
+      },
+      {
+        "id": "D",
+        "text": "₱115,840"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "A = P(1+r)ⁿ = 100,000 × (1.08)² = 100,000 × 1.1664 = ₱116,640. Simple interest for 2 years would give only ₱116,000, which is a common distractor.",
+    "tags": [
+      "money",
+      "compound-interest",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0041",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "difficulty": "Easy",
+    "passage": "The Municipality of Baybayon Employment Summary shows the following: Administration Department — 12 Regular, 8 Casual (Total 20); Finance Department — 9 Regular, 6 Casual (Total 15); Health Department — 15 Regular, 10 Casual (Total 25). Overall totals: 36 Regular, 24 Casual.",
+    "question": "Based on the employment summary, how many total employees does the Municipality of Baybayon have?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "55"
+      },
+      {
+        "id": "B",
+        "text": "65"
+      },
+      {
+        "id": "C",
+        "text": "58"
+      },
+      {
+        "id": "D",
+        "text": "60"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Total = 20 (Admin) + 15 (Finance) + 25 (Health) = 60. Alternatively, 36 Regular + 24 Casual = 60.",
+    "tags": [
+      "data-interpretation",
+      "tables",
+      "addition"
+    ]
+  },
+  {
+    "id": "num-0042",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "difficulty": "Medium",
+    "passage": "The Municipality of Baybayon Employment Summary shows the following: Administration Department — 12 Regular, 8 Casual (Total 20); Finance Department — 9 Regular, 6 Casual (Total 15); Health Department — 15 Regular, 10 Casual (Total 25). Overall totals: 36 Regular, 24 Casual.",
+    "question": "What percentage of the municipality's total employees are on casual status?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "35%"
+      },
+      {
+        "id": "B",
+        "text": "45%"
+      },
+      {
+        "id": "C",
+        "text": "40%"
+      },
+      {
+        "id": "D",
+        "text": "42%"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Casual employees = 24; total = 60. Percentage = (24/60) × 100 = 40%.",
+    "tags": [
+      "data-interpretation",
+      "percentages",
+      "tables"
+    ]
+  },
+  {
+    "id": "num-0043",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "difficulty": "Medium",
+    "passage": "The Municipality of Baybayon Employment Summary shows the following: Administration Department — 12 Regular, 8 Casual (Total 20); Finance Department — 9 Regular, 6 Casual (Total 15); Health Department — 15 Regular, 10 Casual (Total 25). Overall totals: 36 Regular, 24 Casual.",
+    "question": "In the Finance Department, what is the ratio of Regular employees to Casual employees in its simplest form?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "9:6"
+      },
+      {
+        "id": "B",
+        "text": "2:3"
+      },
+      {
+        "id": "C",
+        "text": "3:2"
+      },
+      {
+        "id": "D",
+        "text": "4:3"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Finance has 9 Regular and 6 Casual. Ratio = 9:6. Dividing both by 3 gives the simplified ratio 3:2.",
+    "tags": [
+      "data-interpretation",
+      "ratio",
+      "tables"
+    ]
+  },
+  {
+    "id": "num-0044",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "difficulty": "Medium",
+    "passage": "The Provincial Engineering Office recorded its quarterly road-repair budget utilization (in ₱): Q1 — ₱480,000; Q2 — ₱520,000; Q3 — ₱450,000; Q4 — ₱550,000. The total approved budget for the year was ₱2,500,000.",
+    "question": "What percentage of the annual budget was actually utilized by the Provincial Engineering Office?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "75%"
+      },
+      {
+        "id": "B",
+        "text": "85%"
+      },
+      {
+        "id": "C",
+        "text": "78%"
+      },
+      {
+        "id": "D",
+        "text": "80%"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Total utilized = 480,000+520,000+450,000+550,000 = ₱2,000,000. Utilization rate = (2,000,000/2,500,000)×100 = 80%.",
+    "tags": [
+      "data-interpretation",
+      "percentages",
+      "budget"
+    ]
+  },
+  {
+    "id": "num-0045",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "difficulty": "Hard",
+    "passage": "The Provincial Engineering Office recorded its quarterly road-repair budget utilization (in ₱): Q1 — ₱480,000; Q2 — ₱520,000; Q3 — ₱450,000; Q4 — ₱550,000. The total approved budget for the year was ₱2,500,000.",
+    "question": "By how much does the average of Q2 and Q4 spending exceed the average of Q1 and Q3 spending?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "₱60,000"
+      },
+      {
+        "id": "B",
+        "text": "₱80,000"
+      },
+      {
+        "id": "C",
+        "text": "₱75,000"
+      },
+      {
+        "id": "D",
+        "text": "₱70,000"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Average of Q2 & Q4 = (520,000+550,000)/2 = ₱535,000. Average of Q1 & Q3 = (480,000+450,000)/2 = ₱465,000. Difference = ₱535,000 – ₱465,000 = ₱70,000.",
+    "tags": [
+      "data-interpretation",
+      "averages",
+      "comparison"
+    ]
+  },
+  {
+    "id": "num-0046",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Averages",
+    "difficulty": "Easy",
+    "question": "A student scored 82, 75, 91, 68, and 84 on five quizzes. What is the average score?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "78"
+      },
+      {
+        "id": "B",
+        "text": "82"
+      },
+      {
+        "id": "C",
+        "text": "79"
+      },
+      {
+        "id": "D",
+        "text": "80"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Sum = 82+75+91+68+84 = 400. Average = 400÷5 = 80.",
+    "tags": [
+      "averages",
+      "basic-algebra"
+    ]
+  },
+  {
+    "id": "num-0047",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Averages",
+    "difficulty": "Easy",
+    "question": "Three exams were given with weights 1, 1, and 2, respectively. A student scored 78, 85, and 90 on the three exams. What is the weighted average?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "84.33"
+      },
+      {
+        "id": "B",
+        "text": "85.00"
+      },
+      {
+        "id": "C",
+        "text": "85.75"
+      },
+      {
+        "id": "D",
+        "text": "86.25"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Weighted average = (78×1 + 85×1 + 90×2)/(1+1+2) = (78+85+180)/4 = 343/4 = 85.75.",
+    "tags": [
+      "averages",
+      "weighted-average",
+      "basic-algebra"
+    ]
+  },
+  {
+    "id": "num-0048",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Basic Algebra",
+    "difficulty": "Medium",
+    "question": "Solve for x: 3x – 7 = 2(x + 4)",
+    "choices": [
+      {
+        "id": "A",
+        "text": "x = 12"
+      },
+      {
+        "id": "B",
+        "text": "x = 18"
+      },
+      {
+        "id": "C",
+        "text": "x = 15"
+      },
+      {
+        "id": "D",
+        "text": "x = 21"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Expand: 3x–7 = 2x+8. Subtract 2x from both sides: x–7 = 8. Add 7: x = 15. Verify: 3(15)–7 = 38 = 2(15+4) = 38. ✓",
+    "tags": [
+      "algebra",
+      "linear-equations",
+      "basic-algebra"
+    ]
+  },
+  {
+    "id": "num-0049",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Averages",
+    "difficulty": "Medium",
+    "question": "The average of five numbers is 38. Four of the numbers are 30, 42, 35, and 46. What is the fifth number?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "35"
+      },
+      {
+        "id": "B",
+        "text": "39"
+      },
+      {
+        "id": "C",
+        "text": "37"
+      },
+      {
+        "id": "D",
+        "text": "33"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Total of all five = 38×5 = 190. Sum of four known numbers = 30+42+35+46 = 153. Fifth number = 190–153 = 37.",
+    "tags": [
+      "averages",
+      "missing-value",
+      "basic-algebra"
+    ]
+  },
+  {
+    "id": "num-0050",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Basic Algebra",
+    "difficulty": "Hard",
+    "question": "If x + y = 20 and 3x – y = 28, what is the value of x?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "10"
+      },
+      {
+        "id": "B",
+        "text": "14"
+      },
+      {
+        "id": "C",
+        "text": "16"
+      },
+      {
+        "id": "D",
+        "text": "12"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Adding the two equations eliminates y: (x+y)+(3x–y) = 20+28 → 4x = 48 → x = 12. Then y = 20–12 = 8. Verify: 3(12)–8 = 28. ✓",
+    "tags": [
+      "algebra",
+      "systems-of-equations",
+      "basic-algebra"
+    ]
+  }
+]
