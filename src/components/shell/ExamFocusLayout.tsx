@@ -250,7 +250,7 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
           ref={scrollRef}
           className="flex-1 bg-slate-100 dark:bg-slate-950 overflow-y-auto lg:overflow-hidden p-4 sm:p-6 lg:p-8 flex"
         >
-          <div className="w-full max-w-3xl lg:max-w-6xl mx-auto my-auto lg:my-0 lg:h-full">
+          <div className="w-full max-w-3xl lg:max-w-7xl mx-auto my-auto lg:my-0 lg:h-full">
             {children}
           </div>
         </main>

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck, ChevronDown, LogOut, Settings } from 'lucide-react';
+import { ChevronDown, LogOut, Settings } from 'lucide-react';
+import { BrandMark } from '@/components/BrandMark';
 import { useAuth } from '@/context/AuthContext';
 
 function initialsFor(displayName: string | null, email: string | null): string {
@@ -64,9 +65,7 @@ export const AppHeader: React.FC = () => {
         className="flex items-center gap-3 focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600 focus-visible:outline-offset-2 rounded-lg"
         aria-label="AceCSE dashboard"
       >
-        <div className="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center text-white shadow-xs">
-          <ShieldCheck className="w-5 h-5 stroke-[2.2]" aria-hidden="true" />
-        </div>
+        <BrandMark className="w-9 h-9" />
         <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">
           Ace<span className="text-emerald-600">CSE</span>
         </span>

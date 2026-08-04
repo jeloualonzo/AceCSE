@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, CheckCircle2, ChevronDown, ChevronUp, RotateCcw, XCircle } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp, RotateCcw } from 'lucide-react';
 import { SAMPLE_QUESTIONS } from '@/data/landing';
 import type { OptionId } from '@/types';
 import { ExplanationPanel } from '@/components/exam/ExplanationPanel';
@@ -19,7 +19,6 @@ export const InteractiveQuestionSection: React.FC = () => {
   const sample =
     SAMPLE_QUESTIONS.find((s) => s.category === activeCategory) ?? SAMPLE_QUESTIONS[0];
   const question = sample.question;
-  const isCorrect = selected === question.correctOptionId;
 
   const switchCategory = (category: (typeof CATEGORIES)[number]) => {
     setActiveCategory(category);
@@ -87,17 +86,12 @@ export const InteractiveQuestionSection: React.FC = () => {
           <div className="space-y-2.5" role="radiogroup" aria-label="Answer options">
             {question.choices.map((option) => {
               const isSelected = selected === option.id;
-              let style = 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/60 text-slate-800';
-              let badge = 'bg-slate-100 text-slate-600 border-slate-300';
-              if (isSelected) {
-                if (isCorrect) {
-                  style = 'bg-emerald-50 border-2 border-emerald-500 text-slate-900';
-                  badge = 'bg-emerald-600 text-white border-emerald-500';
-                } else {
-                  style = 'bg-rose-50 border-2 border-rose-400 text-slate-900';
-                  badge = 'bg-rose-500 text-white border-rose-400';
-                }
-              }
+              const style = isSelected
+                ? 'bg-emerald-50 border-emerald-500 text-slate-900 ring-1 ring-emerald-500/40'
+                : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/60 text-slate-800';
+              const badge = isSelected
+                ? 'bg-emerald-600 text-white border-emerald-500'
+                : 'bg-slate-100 text-slate-600 border-slate-300';
               return (
                 <button
                   key={option.id}
@@ -123,18 +117,6 @@ export const InteractiveQuestionSection: React.FC = () => {
 
           {selected !== null && (
             <div className="space-y-3" aria-live="polite">
-              {isCorrect ? (
-                <div className="flex items-center gap-2 rounded-xl bg-emerald-50 border border-emerald-200 px-4 py-3 text-sm font-bold text-emerald-800">
-                  <CheckCircle2 className="w-5 h-5 shrink-0" aria-hidden="true" />
-                  Correct
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 rounded-xl bg-rose-50 border border-rose-200 px-4 py-3 text-sm font-bold text-rose-800">
-                  <XCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
-                  Incorrect
-                </div>
-              )}
-
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowExplanation((v) => !v)}
@@ -163,7 +145,7 @@ export const InteractiveQuestionSection: React.FC = () => {
               </div>
 
               {showExplanation && (
-                <div className="rounded-r-xl border-l-4 border-l-emerald-500 border-y border-r border-slate-200 bg-emerald-50/40 p-4 sm:p-5">
+                <div className="rounded-r-lg border-l-4 border-l-emerald-500 border-y border-r border-slate-200 bg-white shadow-sm p-4 sm:p-5">
                   <ExplanationPanel
                     question={question}
                     selectedOptionId={selected}

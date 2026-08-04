@@ -1,5 +1,6 @@
 import React from 'react';
-import { ShieldCheck, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { BrandMark } from '@/components/BrandMark';
 
 interface NavbarProps {
   onStartPracticing: () => void;
@@ -21,9 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartPracticing, onEnterApp })
           
           {/* Brand Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center text-white shadow-xs">
-              <ShieldCheck className="w-6 h-6 stroke-[2.2]" />
-            </div>
+            <BrandMark className="w-10 h-10" />
             <span className="text-xl font-bold tracking-tight text-slate-900">
               Ace<span className="text-emerald-600">CSE</span>
             </span>

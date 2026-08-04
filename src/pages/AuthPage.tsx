@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ShieldCheck } from 'lucide-react';
+import { BrandMark } from '@/components/BrandMark';
 import { useAuth } from '@/context/AuthContext';
 
 function errorMessage(error: unknown): string | null {
@@ -76,9 +76,7 @@ export const AuthPage: React.FC = () => {
             className="flex flex-col items-center gap-3 mb-8 focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600 focus-visible:outline-offset-4 rounded-xl"
             aria-label="AceCSE home"
           >
-            <div className="w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-sm">
-              <ShieldCheck className="w-8 h-8 stroke-[2.2]" aria-hidden="true" />
-            </div>
+            <BrandMark className="w-14 h-14" />
             <span className="text-2xl font-extrabold tracking-tight">
               Ace<span className="text-emerald-600">CSE</span>
             </span>

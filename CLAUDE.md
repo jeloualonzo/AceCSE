@@ -92,10 +92,18 @@ moderation, migrate to a `questions` collection with public read + admin-only wr
 - **No flag/bookmark feature in the MVP** — intentionally removed; do not reintroduce.
 - **No page subtitles under titles, no divider lines under titles, no "•"/"·" metadata
   separators.** Use whitespace, stacked label/value pairs, or badges.
-- **Practice feedback is two-stage:** answering shows only a quiet Correct/Incorrect verdict;
-  the full teaching explanation is behind a "Show Explanation" accordion. Never auto-expand it.
-- **Explanations are callout-styled** (left emerald accent border, soft tinted background) so
-  they read as distinct from the question.
+- **Practice feedback is calm:** selection styling is always emerald (never red/green
+  verdict colors), there is NO separate Correct/Incorrect banner, and the full teaching
+  explanation sits behind a "Show Explanation" accordion. The explanation itself carries the
+  verdict. Applies to Practice and the landing sample question alike.
+- **Explanations look like documentation, not alerts:** white (light) / dark surface (dark)
+  card with only a left emerald accent border. No tinted green backgrounds.
+- **Questions are not carded:** question number label, subject badge, question, passage, and
+  choices sit directly on the page; only the explanation is a card.
+- **Radius scale is professional** (Linear/GitHub register): global tokens in index.css remap
+  rounded-lg→6px, rounded-xl→8px, rounded-2xl→10px. Don't reintroduce bubble radii.
+- **Brand mark:** src/components/BrandMark.tsx (A-with-check on emerald tile), mirrored in
+  public/favicon.svg. Keep the two in sync; don't revert to placeholder icons.
 - **Exam layout:** desktop is two-column (question/passage/explanation left, choices right)
   with header-based navigation and the timer centered; mobile keeps the footer nav with the
   timer centered in the header. Never use `items-center` on an overflow container (it clips

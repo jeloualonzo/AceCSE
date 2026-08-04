@@ -30,14 +30,14 @@ export const ExplanationPanel: React.FC<ExplanationPanelProps> = ({
     sectionHeading: dark ? 'text-slate-300' : 'text-slate-600',
     stepsBox: dark ? 'bg-slate-900/70 border-slate-700/60' : 'bg-slate-50 border-slate-200',
     stepBadge: dark ? 'bg-slate-700 text-slate-200' : 'bg-slate-200 text-slate-700',
-    wrongPickRow: dark ? 'bg-rose-950/40 border border-rose-500/30' : 'bg-rose-50 border border-rose-200',
+    wrongPickRow: dark ? 'bg-slate-800/70 border border-slate-600/60' : 'bg-slate-100 border border-slate-300',
     wrongPickBadge: dark
-      ? 'bg-rose-500 text-slate-950 border-rose-400'
-      : 'bg-rose-500 text-white border-rose-400',
+      ? 'bg-slate-600 text-white border-slate-500'
+      : 'bg-slate-500 text-white border-slate-400',
     optionBadge: dark
       ? 'bg-slate-800 text-slate-300 border-slate-600'
       : 'bg-slate-100 text-slate-600 border-slate-300',
-    wrongPickLabel: dark ? 'text-rose-300' : 'text-rose-700',
+    wrongPickLabel: dark ? 'text-slate-100' : 'text-slate-900',
     tipBox: dark ? 'bg-emerald-950/40 border-emerald-500/30' : 'bg-emerald-50 border-emerald-200',
     tipLabel: dark ? 'text-emerald-300' : 'text-emerald-800',
     tipIcon: dark ? 'text-emerald-400' : 'text-emerald-600',

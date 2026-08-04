@@ -77,7 +77,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
 
   return (
     <div className="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-4 sm:p-6 lg:p-8 font-sans">
-      <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
+      <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
@@ -366,7 +366,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                           })}
                         </div>
 
-                        <div className="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80">
+                        <div className="p-4 sm:p-5 rounded-r-lg border-l-4 border-l-emerald-500 border-y border-r border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-900">
                           <ExplanationPanel question={question} selectedOptionId={item.selected} theme={resolvedTheme} />
                         </div>
                       </>

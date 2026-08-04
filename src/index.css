@@ -3,6 +3,17 @@
 /* Class-strategy dark mode: `dark` on <html> activates every dark: variant. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * Professional radius scale (Linear/GitHub/Stripe register, not Material
+ * bubbles). Remaps Tailwind's radius tokens globally: lg 8->6px, xl 12->8px,
+ * 2xl 16->10px.
+ */
+@theme {
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.625rem;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

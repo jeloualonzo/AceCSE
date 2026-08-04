@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck } from 'lucide-react';
+import { BrandMark } from '@/components/BrandMark';
 
 export const Footer: React.FC = () => {
   const scrollToSection = (id: string) => {
@@ -17,9 +17,7 @@ export const Footer: React.FC = () => {
           
           {/* Brand */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
+            <BrandMark className="w-9 h-9" />
             <span className="text-lg font-bold text-slate-900 tracking-tight">
               Ace<span className="text-emerald-600">CSE</span>
             </span>

@@ -25,7 +25,7 @@ export const PreExamScreen: React.FC<PreExamScreenProps> = ({
   onBack,
 }) => {
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <button
         onClick={onBack}
         className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 mb-6 min-h-[44px] px-2 -ml-2 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-600"

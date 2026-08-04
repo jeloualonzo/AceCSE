@@ -66,7 +66,7 @@ export const DashboardPage: React.FC = () => {
   const hasData = attempts.length > 0;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
       <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Dashboard</h1>
 
       {activeSession && (
