@@ -6,7 +6,7 @@ import {
   SUBJECTS_BY_LEVEL,
   simulationDurationSeconds,
 } from '@/config/exam';
-import { QUESTION_BANK } from '@/data/questionBank';
+import { loadQuestions, loadQuestionsForLevel, subjectAvailability } from '@/data/questionBank';
 
 /**
  * The exam engine. Guiding rule: never lie.
@@ -15,25 +15,16 @@ import { QUESTION_BANK } from '@/data/questionBank';
  * - Subjects are never relabeled; a question keeps its authored subject.
  * - A simulation size is only offered when the bank can honestly fill its
  *   blueprint-proportional subject distribution with unique questions.
+ *
+ * Availability questions (counts, unlocked tiers) are answered synchronously
+ * from the build-time manifest; only building an actual session downloads
+ * question content, and only for the subjects that session needs.
  */
 
-export function questionsForLevel(level: ExamLevel, bank: readonly Question[] = QUESTION_BANK): Question[] {
-  return bank.filter((q) => q.examLevel === 'Both' || q.examLevel === level);
-}
+export { subjectAvailability } from '@/data/questionBank';
 
-/** Unique-question supply per subject for a level. */
-export function subjectAvailability(
-  level: ExamLevel,
-  bank: readonly Question[] = QUESTION_BANK
-): Record<Subject, number> {
-  const counts = Object.fromEntries(SUBJECTS_BY_LEVEL[level].map((s) => [s, 0])) as Record<
-    Subject,
-    number
-  >;
-  for (const q of questionsForLevel(level, bank)) {
-    if (q.subject in counts) counts[q.subject] += 1;
-  }
-  return counts;
+export function questionsForLevel(level: ExamLevel, bank: readonly Question[]): Question[] {
+  return bank.filter((q) => q.examLevel === 'Both' || q.examLevel === level);
 }
 
 /**
@@ -71,13 +62,11 @@ export interface SimulationOption {
 
 /**
  * All simulation sizes for a level, each honestly marked available or not
- * based on current per-subject bank supply.
+ * based on current per-subject bank supply. Synchronous — driven by the
+ * build-time manifest, no question content required.
  */
-export function simulationOptions(
-  level: ExamLevel,
-  bank: readonly Question[] = QUESTION_BANK
-): SimulationOption[] {
-  const availability = subjectAvailability(level, bank);
+export function simulationOptions(level: ExamLevel): SimulationOption[] {
+  const availability = subjectAvailability(level);
   const sizes: number[] = [...SIMULATION_TIERS, EXAM_BLUEPRINT[level].totalItems];
   return sizes.map((size) => {
     const needed = scaledDistribution(level, size);
@@ -122,8 +111,11 @@ export class InsufficientBankError extends Error {
  * order (as in the real CSC exam) and randomized within each section.
  * Throws InsufficientBankError rather than repeating or relabeling questions.
  */
-export function buildSimulationSession(level: ExamLevel, questionCount: number): ExamSession {
-  const pool = questionsForLevel(level);
+export async function buildSimulationSession(
+  level: ExamLevel,
+  questionCount: number
+): Promise<ExamSession> {
+  const pool = questionsForLevel(level, await loadQuestionsForLevel(level));
   const needed = scaledDistribution(level, questionCount);
   const bySubject = new Map<Subject, Question[]>(
     SUBJECTS_BY_LEVEL[level].map((s) => [s, pool.filter((q) => q.subject === s)])
@@ -162,13 +154,15 @@ export function buildSimulationSession(level: ExamLevel, questionCount: number):
  * Build a practice session over the chosen subjects. Questions are drawn
  * evenly across subjects (never repeated) and shuffled together.
  */
-export function buildPracticeSession(
+export async function buildPracticeSession(
   level: ExamLevel,
   subjects: Subject[],
   questionCount: number,
   timed: boolean
-): ExamSession {
-  const pool = questionsForLevel(level).filter((q) => subjects.includes(q.subject));
+): Promise<ExamSession> {
+  const pool = questionsForLevel(level, await loadQuestions(subjects)).filter((q) =>
+    subjects.includes(q.subject)
+  );
   if (pool.length === 0) throw new InsufficientBankError(subjects);
 
   const perSubject = Math.ceil(questionCount / subjects.length);
@@ -200,4 +194,11 @@ export function buildPracticeSession(
     deadlineAt: durationSeconds ? startedAt + durationSeconds * 1000 : null,
     answers: {},
   };
+}
+
+/** The subjects a session's question ids can reference (for lazy index loads). */
+export function subjectsOfSession(session: ExamSession): Subject[] {
+  return session.config.mode === 'practice' && session.config.subjects?.length
+    ? session.config.subjects
+    : SUBJECTS_BY_LEVEL[session.config.examLevel];
 }

@@ -1,80 +1,123 @@
-import type { Question } from '@/types';
+import type { ExamLevel, Question, Subject } from '@/types';
+import manifest from 'virtual:question-manifest';
+import {
+  DIR_BY_SUBJECT,
+  isValidQuestion,
+  supplyForLevel,
+  type QuestionManifest,
+} from '@/data/questionShape';
+import { SUBJECTS_BY_LEVEL } from '@/config/exam';
 
 /**
- * The validated local question bank.
+ * The question bank, lazily loaded.
  *
  * Content lives in modular datasets under /content/questions/<subject>/*.json
- * and is discovered automatically via glob import — adding a new dataset file
- * requires no code change. Everything is validated at build time
- * (`npm run validate:questions`) and defensively here at load time; invalid
- * items are dropped (never silently mangled) with a console warning in dev.
+ * (one file per authored batch — see docs/content/JSON_SPEC.md). GitHub stays
+ * the source of truth; nothing lives in Firestore.
+ *
+ * How it scales to tens of thousands of questions:
+ *
+ *  - `import.meta.glob` WITHOUT `eager` makes Vite emit every dataset file as
+ *    its own content-hashed chunk. Nothing is downloaded until a session
+ *    actually needs that subject, and adding a batch file requires no code
+ *    change — the glob and the build-time manifest both discover it.
+ *  - Supply counts come from `virtual:question-manifest` (a few hundred
+ *    bytes, computed at build time), so Dashboard/Simulation/Practice render
+ *    availability instantly with zero question payload.
+ *  - Loaded subjects are cached in memory for the tab's lifetime, and the
+ *    hashed chunk files are cached by the browser HTTP cache and the CDN
+ *    edge (immutable URLs). A hand-rolled IndexedDB/Cache-API layer would
+ *    only duplicate that with added staleness risk, so we deliberately
+ *    don't have one.
+ *
+ * Everything is validated at build time (`npm run validate:questions`) and
+ * defensively here at load time; invalid items are dropped (never silently
+ * mangled) with a console warning in dev.
  */
 
-const modules = import.meta.glob<unknown[]>('../../content/questions/**/*.json', {
-  eager: true,
+const modules = import.meta.glob<Question[]>('../../content/questions/**/*.json', {
   import: 'default',
 });
 
-const OPTION_IDS = new Set(['A', 'B', 'C', 'D']);
+export const QUESTION_MANIFEST: QuestionManifest = manifest;
 
-function isValidQuestion(q: unknown): q is Question {
-  if (typeof q !== 'object' || q === null) return false;
-  const question = q as Record<string, unknown>;
-  const choices = question.choices;
-  return (
-    typeof question.id === 'string' &&
-    question.id.length > 0 &&
-    typeof question.question === 'string' &&
-    question.question.length > 0 &&
-    typeof question.explanation === 'string' &&
-    typeof question.subject === 'string' &&
-    typeof question.topic === 'string' &&
-    ['Professional', 'Subprofessional', 'Both'].includes(question.examLevel as string) &&
-    ['Easy', 'Medium', 'Hard'].includes(question.difficulty as string) &&
-    Array.isArray(choices) &&
-    choices.length === 4 &&
-    choices.every(
-      (c) =>
-        typeof c === 'object' &&
-        c !== null &&
-        OPTION_IDS.has((c as { id?: string }).id ?? '') &&
-        typeof (c as { text?: string }).text === 'string'
-    ) &&
-    OPTION_IDS.has(question.correctOptionId as string) &&
-    Array.isArray(question.tags)
-  );
+/** Unique-question supply per subject for a level — synchronous, no fetch. */
+export function subjectAvailability(level: ExamLevel): Record<Subject, number> {
+  return Object.fromEntries(
+    SUBJECTS_BY_LEVEL[level].map((subject) => [
+      subject,
+      supplyForLevel(QUESTION_MANIFEST.subjects[subject], level),
+    ])
+  ) as Record<Subject, number>;
 }
 
-function loadBank(sources: [string, unknown[]][]): Question[] {
-  const seen = new Set<string>();
-  const bank: Question[] = [];
-  for (const [, source] of sources) {
-    if (!Array.isArray(source)) continue;
-    for (const raw of source) {
-      if (!isValidQuestion(raw)) {
-        if (import.meta.env.DEV) {
-          console.warn('[questionBank] Dropped invalid question:', raw);
+// ---------------------------------------------------------------------------
+// Lazy loading, one subject directory at a time
+// ---------------------------------------------------------------------------
+
+/** Module paths grouped by their `content/questions/<dir>/` directory. */
+const pathsByDir = new Map<string, string[]>();
+for (const path of Object.keys(modules)) {
+  const match = path.match(/content\/questions\/([^/]+)\//);
+  if (!match) continue;
+  const list = pathsByDir.get(match[1]) ?? [];
+  list.push(path);
+  pathsByDir.set(match[1], list);
+}
+
+/** In-memory cache: subject directory → validated questions. */
+const loadedByDir = new Map<string, Promise<Question[]>>();
+
+function loadDir(dir: string): Promise<Question[]> {
+  const cached = loadedByDir.get(dir);
+  if (cached) return cached;
+
+  const paths = (pathsByDir.get(dir) ?? []).sort();
+  const promise = Promise.all(paths.map((path) => modules[path]())).then((datasets) => {
+    const seen = new Set<string>();
+    const questions: Question[] = [];
+    for (const dataset of datasets) {
+      if (!Array.isArray(dataset)) continue;
+      for (const raw of dataset) {
+        if (!isValidQuestion(raw)) {
+          if (import.meta.env.DEV) console.warn('[questionBank] Dropped invalid question:', raw);
+          continue;
         }
-        continue;
-      }
-      if (seen.has(raw.id)) {
-        if (import.meta.env.DEV) {
-          console.warn(`[questionBank] Dropped duplicate id: ${raw.id}`);
+        if (seen.has(raw.id)) {
+          if (import.meta.env.DEV) console.warn(`[questionBank] Dropped duplicate id: ${raw.id}`);
+          continue;
         }
-        continue;
+        seen.add(raw.id);
+        questions.push(raw);
       }
-      seen.add(raw.id);
-      bank.push(raw);
     }
-  }
-  return bank;
+    return questions;
+  });
+
+  loadedByDir.set(dir, promise);
+  promise.catch(() => loadedByDir.delete(dir)); // allow retry after a network failure
+  return promise;
 }
 
-export const QUESTION_BANK: readonly Question[] = loadBank(
-  Object.entries(modules).sort(([a], [b]) => a.localeCompare(b))
-);
+/**
+ * Load (and cache) all questions for the given subjects. Chunks are fetched
+ * in parallel; repeat calls are free.
+ */
+export async function loadQuestions(subjects: readonly Subject[]): Promise<Question[]> {
+  const dirs = [...new Set(subjects.map((subject) => DIR_BY_SUBJECT[subject]))];
+  const bySubject = await Promise.all(dirs.map(loadDir));
+  return bySubject.flat();
+}
 
-/** Fast id → question lookup. */
-export const QUESTION_INDEX: ReadonlyMap<string, Question> = new Map(
-  QUESTION_BANK.map((q) => [q.id, q])
-);
+/** Load the given subjects and index them by question id. */
+export async function loadQuestionIndex(
+  subjects: readonly Subject[]
+): Promise<Map<string, Question>> {
+  const questions = await loadQuestions(subjects);
+  return new Map(questions.map((q) => [q.id, q]));
+}
+
+/** Every subject a session of this level might reference. */
+export function loadQuestionsForLevel(level: ExamLevel): Promise<Question[]> {
+  return loadQuestions(SUBJECTS_BY_LEVEL[level]);
+}

@@ -33,6 +33,20 @@ const VALID_DIFFICULTIES = new Set(['Easy', 'Medium', 'Hard']);
 const VALID_OPTIONS = ['A', 'B', 'C', 'D'];
 const VALID_OPTION_SET = new Set(VALID_OPTIONS);
 
+/**
+ * Directory convention (mirrors src/data/questionShape.ts): every dataset file
+ * lives under content/questions/<dir>/ and every question in it must carry
+ * the subject that directory maps to. The runtime lazy-loader depends on this
+ * to fetch only the subjects a session needs.
+ */
+const SUBJECT_BY_DIR = {
+  numerical: 'Numerical Reasoning',
+  analytical: 'Analytical Reasoning',
+  verbal: 'Verbal Ability',
+  clerical: 'Clerical Ability',
+  'general-information': 'General Information',
+};
+
 function* jsonFiles(dir) {
   for (const entry of readdirSync(dir).sort()) {
     const path = join(dir, entry);
@@ -71,6 +85,16 @@ for (const path of jsonFiles(questionsDir)) {
     continue;
   }
 
+  // ---- directory-convention gates ----------------------------------------
+  const topDir = file.split(/[\\/]/)[0];
+  const dirSubject = SUBJECT_BY_DIR[topDir];
+  if (!dirSubject) {
+    errors.push(
+      `${file}: dataset files must live under content/questions/<subject>/ ` +
+        `(one of: ${Object.keys(SUBJECT_BY_DIR).join(', ')})`
+    );
+  }
+
   for (const q of items) {
     total += 1;
     const where = `${file} → ${q?.id ?? '<missing id>'}`;
@@ -82,6 +106,8 @@ for (const path of jsonFiles(questionsDir)) {
 
     if (!VALID_LEVELS.has(q.examLevel)) errors.push(`${where}: bad examLevel "${q.examLevel}"`);
     if (!VALID_SUBJECTS.has(q.subject)) errors.push(`${where}: bad subject "${q.subject}"`);
+    else if (dirSubject && q.subject !== dirSubject)
+      errors.push(`${where}: subject "${q.subject}" does not match its directory (${topDir}/ ⇒ ${dirSubject})`);
     if (!VALID_DIFFICULTIES.has(q.difficulty)) errors.push(`${where}: bad difficulty "${q.difficulty}"`);
     if (typeof q.topic !== 'string' || !q.topic) errors.push(`${where}: missing topic`);
     if (q.subtopic !== undefined && (typeof q.subtopic !== 'string' || !q.subtopic))

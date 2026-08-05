@@ -20,5 +20,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "content"]
+  "include": ["src", "scripts/vite-plugin-question-manifest.ts", "vite.config.ts"]
 }

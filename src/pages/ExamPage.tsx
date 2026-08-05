@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
-import type { Attempt, ExamSession, OptionId, Subject } from '@/types';
+import type { Attempt, ExamSession, OptionId, Question, Subject } from '@/types';
 import {
   buildPracticeSession,
   buildSimulationSession,
   InsufficientBankError,
+  subjectsOfSession,
 } from '@/lib/examEngine';
 import { gradeSession } from '@/lib/grading';
-import { QUESTION_INDEX } from '@/data/questionBank';
+import { loadQuestionIndex } from '@/data/questionBank';
 import {
   clearActiveSession,
   loadActiveSession,
@@ -18,6 +19,8 @@ import { saveAttempt } from '@/services/attempts';
 import { useAuth } from '@/context/AuthContext';
 import { useCountdown } from '@/hooks/useCountdown';
 import { formatHMS } from '@/lib/time';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { FullScreenLoader } from '@/components/FullScreenLoader';
 import { ExamFocusLayout } from '@/components/shell/ExamFocusLayout';
 import { QuestionCard } from '@/components/exam/QuestionCard';
 import { PreExamScreen } from '@/components/exam/PreExamScreen';
@@ -32,13 +35,16 @@ export interface ExamLaunchRequest {
   timed?: boolean;
 }
 
+type QuestionIndex = ReadonlyMap<string, Question>;
+
 type Stage =
   | { name: 'conflict'; request: ExamLaunchRequest; saved: ExamSession }
   | { name: 'pre'; session: ExamSession }
   | { name: 'active'; session: ExamSession }
-  | { name: 'results'; attempt: Attempt; launch: ExamLaunchRequest };
+  | { name: 'results'; attempt: Attempt; launch: ExamLaunchRequest }
+  | { name: 'error' };
 
-function buildFromRequest(request: ExamLaunchRequest): ExamSession {
+function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
   if (request.kind === 'simulation') {
     return buildSimulationSession(request.examLevel, request.questionCount);
   }
@@ -60,14 +66,22 @@ function launchFromSession(session: ExamSession): ExamLaunchRequest {
   };
 }
 
-function distributionOf(session: ExamSession): Partial<Record<Subject, number>> {
+function distributionOf(
+  session: ExamSession,
+  index: QuestionIndex
+): Partial<Record<Subject, number>> {
   const distribution: Partial<Record<Subject, number>> = {};
   for (const id of session.questionIds) {
-    const question = QUESTION_INDEX.get(id);
+    const question = index.get(id);
     if (!question) continue;
     distribution[question.subject] = (distribution[question.subject] ?? 0) + 1;
   }
   return distribution;
+}
+
+function firstUnansweredIndex(session: ExamSession): number {
+  const first = session.questionIds.findIndex((id) => !session.answers[id]);
+  return first === -1 ? session.questionIds.length - 1 : first;
 }
 
 export const ExamPage: React.FC = () => {
@@ -76,26 +90,48 @@ export const ExamPage: React.FC = () => {
   const { user } = useAuth();
 
   const [stage, setStage] = useState<Stage | null>(null);
+  const [questionIndex, setQuestionIndex] = useState<QuestionIndex | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [saveError, setSaveError] = useState(false);
 
-  // ---- Session bootstrap: launch request > resumable session > bail out ----
-  useEffect(() => {
-    if (stage !== null) return;
-    const request = (location.state as { launch?: ExamLaunchRequest } | null)?.launch;
-    if (request) {
-      // Never silently destroy an in-progress session: ask first.
-      const existing = loadActiveSession();
-      if (existing && (existing.deadlineAt === null || existing.deadlineAt > Date.now())) {
-        setStage({ name: 'conflict', request, saved: existing });
-        window.history.replaceState({}, '');
-        return;
+  const finishWith = useCallback(
+    (finished: ExamSession, index: QuestionIndex, completedAt: number = Date.now()) => {
+      const attempt = gradeSession(finished, index, completedAt);
+      clearActiveSession();
+      setIsSubmitModalOpen(false);
+      setStage({ name: 'results', attempt, launch: launchFromSession(finished) });
+      if (user) {
+        void saveAttempt(user.uid, attempt).catch(() => setSaveError(true));
       }
+    },
+    [user]
+  );
+
+  /** Load the questions a session needs (lazy chunks), then enter its stage. */
+  const activateSession = useCallback(async (session: ExamSession, entry: 'pre' | 'active') => {
+    setStage(null); // loader while chunks arrive (in-memory + HTTP cached after first load)
+    try {
+      const index = await loadQuestionIndex(subjectsOfSession(session));
+      setQuestionIndex(index);
+      if (entry === 'active') {
+        saveActiveSession(session);
+        setCurrentIndex(firstUnansweredIndex(session));
+      }
+      setStage(entry === 'pre' ? { name: 'pre', session } : { name: 'active', session });
+    } catch {
+      setStage({ name: 'error' });
+    }
+  }, []);
+
+  /** Build a brand-new session from a launch request and activate it. */
+  const launchNew = useCallback(
+    async (request: ExamLaunchRequest) => {
+      setStage(null);
+      setSaveError(false);
       try {
-        const session = buildFromRequest(request);
-        setStage(request.kind === 'simulation' ? { name: 'pre', session } : { name: 'active', session });
-        if (request.kind === 'practice') saveActiveSession(session);
+        const session = await buildFromRequest(request);
+        await activateSession(session, request.kind === 'simulation' ? 'pre' : 'active');
       } catch (error) {
         if (error instanceof InsufficientBankError) {
           navigate(request.kind === 'simulation' ? '/app/simulation' : '/app/practice', {
@@ -103,10 +139,26 @@ export const ExamPage: React.FC = () => {
           });
           return;
         }
-        throw error;
+        setStage({ name: 'error' });
       }
+    },
+    [activateSession, navigate]
+  );
+
+  // ---- Session bootstrap: launch request > resumable session > bail out ----
+  useEffect(() => {
+    if (stage !== null) return;
+    const request = (location.state as { launch?: ExamLaunchRequest } | null)?.launch;
+    if (request) {
       // Clear router state so a refresh doesn't rebuild a fresh session.
       window.history.replaceState({}, '');
+      // Never silently destroy an in-progress session: ask first.
+      const existing = loadActiveSession();
+      if (existing && (existing.deadlineAt === null || existing.deadlineAt > Date.now())) {
+        setStage({ name: 'conflict', request, saved: existing });
+        return;
+      }
+      void launchNew(request);
       return;
     }
 
@@ -117,41 +169,44 @@ export const ExamPage: React.FC = () => {
     }
     if (saved.deadlineAt !== null && saved.deadlineAt <= Date.now()) {
       // Timed out while away: grade honestly with the answers that exist.
-      finishSession(saved, saved.deadlineAt);
+      void loadQuestionIndex(subjectsOfSession(saved))
+        .then((index) => {
+          setQuestionIndex(index);
+          finishWith(saved, index, saved.deadlineAt ?? Date.now());
+        })
+        .catch(() => setStage({ name: 'error' }));
       return;
     }
-    setStage({ name: 'active', session: saved });
-    // Resume at the first unanswered question.
-    const firstUnanswered = saved.questionIds.findIndex((id) => !saved.answers[id]);
-    setCurrentIndex(firstUnanswered === -1 ? saved.questionIds.length - 1 : firstUnanswered);
+    void activateSession(saved, 'active');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const session =
     stage && (stage.name === 'pre' || stage.name === 'active') ? stage.session : null;
 
+  useDocumentTitle(
+    stage?.name === 'results'
+      ? 'Results'
+      : session?.config.mode === 'practice'
+        ? 'Practice Session'
+        : 'Exam Simulation'
+  );
+
   const finishSession = useCallback(
     (finished: ExamSession, completedAt: number = Date.now()) => {
-      const attempt = gradeSession(finished, QUESTION_INDEX, completedAt);
-      clearActiveSession();
-      setIsSubmitModalOpen(false);
-      setStage({
-        name: 'results',
-        attempt,
-        launch: launchFromSession(finished),
-      });
-      if (user) {
-        void saveAttempt(user.uid, attempt).catch(() => setSaveError(true));
-      }
+      if (!questionIndex) return;
+      finishWith(finished, questionIndex, completedAt);
     },
-    [user]
+    [finishWith, questionIndex]
   );
 
   // Deadline-driven countdown (null while untimed).
   const secondsRemaining = useCountdown(
     stage?.name === 'active' ? stage.session.deadlineAt : null,
     () => {
-      if (stage?.name === 'active') finishSession(stage.session, stage.session.deadlineAt ?? Date.now());
+      if (stage?.name === 'active') {
+        finishSession(stage.session, stage.session.deadlineAt ?? Date.now());
+      }
     }
   );
 
@@ -166,7 +221,7 @@ export const ExamPage: React.FC = () => {
   }, []);
 
   const currentQuestionId = session?.questionIds[currentIndex];
-  const currentQuestion = currentQuestionId ? QUESTION_INDEX.get(currentQuestionId) : undefined;
+  const currentQuestion = currentQuestionId ? questionIndex?.get(currentQuestionId) : undefined;
 
   const answersByNumber = useMemo(() => {
     const map: Record<number, string> = {};
@@ -209,51 +264,47 @@ export const ExamPage: React.FC = () => {
 
   const handleRetake = useCallback(
     (launch: ExamLaunchRequest) => {
-      setStage(null);
       setCurrentIndex(0);
-      setSaveError(false);
-      navigate('/app/exam', { replace: true, state: { launch } });
-      // Rebuild directly since the effect above only runs on mount.
-      try {
-        const rebuilt = buildFromRequest(launch);
-        setStage(
-          launch.kind === 'simulation' ? { name: 'pre', session: rebuilt } : { name: 'active', session: rebuilt }
-        );
-        if (launch.kind === 'practice') saveActiveSession(rebuilt);
-      } catch {
-        navigate('/app/dashboard', { replace: true });
-      }
+      void launchNew(launch);
     },
-    [navigate]
+    [launchNew]
   );
 
   if (!stage) {
+    return <FullScreenLoader />;
+  }
+
+  if (stage.name === 'error') {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center" role="status" aria-label="Loading">
-        <div className="w-8 h-8 rounded-full border-2 border-slate-300 dark:border-slate-700 border-t-emerald-600 animate-spin" />
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 font-sans">
+        <div
+          className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 sm:p-8 max-w-md w-full text-center"
+          role="alert"
+        >
+          <h1 className="text-lg font-extrabold text-slate-900 dark:text-white mb-2">
+            Could not load questions
+          </h1>
+          <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+            The question set for this session could not be downloaded. Check your connection and
+            try again — any in-progress session stays saved on this device.
+          </p>
+          <button
+            onClick={() => navigate('/app/dashboard', { replace: true })}
+            className="w-full min-h-[48px] rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
+          >
+            Back to Dashboard
+          </button>
+        </div>
       </div>
     );
   }
 
   if (stage.name === 'conflict') {
-    const resumeSaved = () => {
-      const saved = stage.saved;
-      setStage({ name: 'active', session: saved });
-      const firstUnanswered = saved.questionIds.findIndex((id) => !saved.answers[id]);
-      setCurrentIndex(firstUnanswered === -1 ? saved.questionIds.length - 1 : firstUnanswered);
-    };
+    const resumeSaved = () => void activateSession(stage.saved, 'active');
     const discardAndStart = () => {
       clearActiveSession();
-      try {
-        const session = buildFromRequest(stage.request);
-        setStage(
-          stage.request.kind === 'simulation' ? { name: 'pre', session } : { name: 'active', session }
-        );
-        if (stage.request.kind === 'practice') saveActiveSession(session);
-        setCurrentIndex(0);
-      } catch {
-        navigate('/app/dashboard', { replace: true });
-      }
+      setCurrentIndex(0);
+      void launchNew(stage.request);
     };
     const savedMode = stage.saved.config.mode === 'simulation' ? 'simulation' : 'practice session';
     return (
@@ -298,10 +349,10 @@ export const ExamPage: React.FC = () => {
             examLevel={stage.session.config.examLevel}
             questionCount={stage.session.config.questionCount}
             durationSeconds={stage.session.config.durationSeconds ?? 0}
-            distribution={distributionOf(stage.session)}
+            distribution={questionIndex ? distributionOf(stage.session, questionIndex) : {}}
             isFullExam={false}
             onStartExam={startSimulation}
-            onBack={() => navigate('/app/practice')}
+            onBack={() => navigate('/app/simulation')}
           />
         </main>
       </div>
@@ -322,7 +373,7 @@ export const ExamPage: React.FC = () => {
         )}
         <ResultsScreen
           attempt={stage.attempt}
-          questionIndex={QUESTION_INDEX}
+          questionIndex={questionIndex ?? new Map()}
           onRetake={() => handleRetake(stage.launch)}
           onReturnToDashboard={() => navigate('/app/dashboard')}
         />
