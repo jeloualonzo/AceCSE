@@ -1,0 +1,7 @@
+# Security headers for Cloudflare Workers static assets.
+# (Also honored by Cloudflare Pages if the deployment target ever changes.)
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

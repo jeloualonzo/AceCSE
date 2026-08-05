@@ -22,18 +22,35 @@ service cloud.firestore {
 
     // ---- User profile -------------------------------------------------
     match /users/{userId} {
-      allow read: if isOwner(userId);
-      allow create, update: if isOwner(userId)
-        && isValidId(userId)
-        && request.resource.data.keys().hasOnly(
+      function isValidProfilePayload() {
+        return request.resource.data.keys().hasOnly(
              ['uid', 'displayName', 'email', 'isAnonymous',
               'preferredExamLevel', 'createdAt', 'updatedAt'])
+        && (!('uid' in request.resource.data)
+            || request.resource.data.uid == userId)
         && (!('preferredExamLevel' in request.resource.data)
             || request.resource.data.preferredExamLevel in ['Professional', 'Subprofessional'])
         && (!('displayName' in request.resource.data)
             || request.resource.data.displayName == null
             || (request.resource.data.displayName is string
-                && request.resource.data.displayName.size() <= 100));
+                && request.resource.data.displayName.size() <= 100))
+        && (!('email' in request.resource.data)
+            || request.resource.data.email == null
+            || (request.resource.data.email is string
+                && request.resource.data.email.size() <= 320));
+      }
+
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId)
+        && isValidId(userId)
+        && isValidProfilePayload();
+      // Same payload gates as create, plus: the account-creation timestamp
+      // is immutable once written.
+      allow update: if isOwner(userId)
+        && isValidId(userId)
+        && isValidProfilePayload()
+        && (!('createdAt' in resource.data)
+            || request.resource.data.createdAt == resource.data.createdAt);
       allow delete: if false;
 
       // ---- Attempt history --------------------------------------------
@@ -52,6 +69,13 @@ service cloud.firestore {
           && request.resource.data.percentage is number
           && request.resource.data.percentage >= 0
           && request.resource.data.percentage <= 100
+          && request.resource.data.passed is bool
+          && request.resource.data.durationSeconds is int
+          && request.resource.data.durationSeconds >= 0
+          && request.resource.data.startedAt is number
+          && request.resource.data.completedAt is number
+          && request.resource.data.subjects is list
+          && request.resource.data.subjects.size() <= 5
           && request.resource.data.items is list
           && request.resource.data.items.size() <= 200;
         // Attempts are immutable records of a completed exam.

@@ -2,8 +2,11 @@ import type { Attempt } from '@/types';
 import { formatDateTime } from './time';
 
 function csvEscape(value: string): string {
-  if (/[",\n]/.test(value)) return `"${value.replace(/"/g, '""')}"`;
-  return value;
+  // Neutralize spreadsheet formula injection: a leading =, +, -, @ (or a
+  // tab/CR before one) would otherwise execute when opened in Excel/Sheets.
+  const guarded = /^[=+\-@\t\r]/.test(value) ? `'${value}` : value;
+  if (/[",\n\r]/.test(guarded)) return `"${guarded.replace(/"/g, '""')}"`;
+  return guarded;
 }
 
 /** Serialize the user's real attempt history to CSV. */
