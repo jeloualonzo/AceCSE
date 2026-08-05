@@ -6,6 +6,10 @@ import { PRACTICE_SIZES, SUBJECTS_BY_LEVEL } from '@/config/exam';
 import { subjectAvailability } from '@/lib/examEngine';
 import { useAppContext } from '@/components/shell/AppLayout';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+
+/** A preset question count, or the entire available supply. */
+type PracticeSize = (typeof PRACTICE_SIZES)[number] | 'all';
 
 /**
  * Practice — for learning, not pressure. Untimed by default, instant
@@ -13,23 +17,36 @@ import type { ExamLaunchRequest } from '@/pages/ExamPage';
  * restart anytime.
  */
 export const PracticePage: React.FC = () => {
+  useDocumentTitle('Practice');
   const navigate = useNavigate();
   const { examLevel } = useAppContext();
 
   const [selectedSubjects, setSelectedSubjects] = useState<Subject[]>([]);
-  const [practiceSize, setPracticeSize] = useState<number>(PRACTICE_SIZES[0]);
+  const [practiceSize, setPracticeSize] = useState<PracticeSize>(PRACTICE_SIZES[0]);
   const [practiceTimed, setPracticeTimed] = useState(false);
 
   const availability = useMemo(() => subjectAvailability(examLevel), [examLevel]);
 
+  const selectedSupply = selectedSubjects.reduce((sum, s) => sum + availability[s], 0);
+
   const toggleSubject = (subject: Subject) => {
-    setSelectedSubjects((prev) =>
-      prev.includes(subject) ? prev.filter((s) => s !== subject) : [...prev, subject]
-    );
+    setSelectedSubjects((prev) => {
+      const next = prev.includes(subject)
+        ? prev.filter((s) => s !== subject)
+        : [...prev, subject];
+      // Keep the size choice honest: if the new supply can no longer fill the
+      // chosen preset, fall back to the largest preset that still fits.
+      const nextSupply = next.reduce((sum, s) => sum + availability[s], 0);
+      setPracticeSize((size) => {
+        if (size === 'all' || size <= nextSupply) return size;
+        const largestFitting = [...PRACTICE_SIZES].reverse().find((s) => s <= nextSupply);
+        return largestFitting ?? 'all';
+      });
+      return next;
+    });
   };
 
-  const selectedSupply = selectedSubjects.reduce((sum, s) => sum + availability[s], 0);
-  const effectiveSize = Math.min(practiceSize, selectedSupply);
+  const effectiveSize = practiceSize === 'all' ? selectedSupply : Math.min(practiceSize, selectedSupply);
   const canStart = selectedSubjects.length > 0 && effectiveSize > 0;
 
   const start = () => {
@@ -109,22 +126,40 @@ export const PracticePage: React.FC = () => {
         <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
           <fieldset>
             <legend className="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2">Questions</legend>
-            <div className="flex items-center gap-2" role="radiogroup" aria-label="Number of questions">
-              {PRACTICE_SIZES.map((size) => (
-                <button
-                  key={size}
-                  role="radio"
-                  aria-checked={practiceSize === size}
-                  onClick={() => setPracticeSize(size)}
-                  className={`min-w-[52px] min-h-[40px] rounded-lg text-sm font-bold border transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                    practiceSize === size
-                      ? 'bg-emerald-600 text-white border-emerald-600'
-                      : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600'
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
+            <div className="flex items-center gap-2 flex-wrap" role="radiogroup" aria-label="Number of questions">
+              {PRACTICE_SIZES.map((size) => {
+                const unavailable = selectedSubjects.length > 0 && size > selectedSupply;
+                return (
+                  <button
+                    key={size}
+                    role="radio"
+                    aria-checked={practiceSize === size}
+                    disabled={unavailable}
+                    onClick={() => setPracticeSize(size)}
+                    className={`min-w-[52px] min-h-[40px] rounded-lg text-sm font-bold border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                      unavailable
+                        ? 'bg-slate-50 dark:bg-slate-800/60 text-slate-300 dark:text-slate-600 border-dashed border-slate-200 dark:border-slate-700 cursor-not-allowed'
+                        : practiceSize === size
+                          ? 'bg-emerald-600 text-white border-emerald-600 cursor-pointer'
+                          : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600 cursor-pointer'
+                    }`}
+                  >
+                    {size}
+                  </button>
+                );
+              })}
+              <button
+                role="radio"
+                aria-checked={practiceSize === 'all'}
+                onClick={() => setPracticeSize('all')}
+                className={`min-h-[40px] px-3.5 rounded-lg text-sm font-bold border transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                  practiceSize === 'all'
+                    ? 'bg-emerald-600 text-white border-emerald-600'
+                    : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600'
+                }`}
+              >
+                All{selectedSubjects.length > 0 ? ` (${selectedSupply})` : ''}
+              </button>
             </div>
           </fieldset>
 
@@ -148,14 +183,6 @@ export const PracticePage: React.FC = () => {
             </button>
           </div>
         </div>
-
-        {selectedSubjects.length > 0 && effectiveSize < practiceSize && (
-          <p className="text-xs text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-500/30 rounded-lg px-3 py-2">
-            Only {selectedSupply} unique questions are available in the selected subject
-            {selectedSubjects.length > 1 ? 's' : ''} right now, so this session will have{' '}
-            {effectiveSize} questions.
-          </p>
-        )}
 
         <button
           onClick={start}

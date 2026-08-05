@@ -60,8 +60,11 @@ export const EXAM_BLUEPRINT: Record<ExamLevel, ExamBlueprint> = {
  */
 export const SIMULATION_TIERS = [20, 50, 100] as const;
 
-/** Question-count choices for subject practice drills. */
-export const PRACTICE_SIZES = [10, 20, 30] as const;
+/**
+ * Question-count choices for subject practice drills. The UI also offers
+ * "All", which uses the entire available supply for the chosen subjects.
+ */
+export const PRACTICE_SIZES = [10, 20, 30, 50, 100] as const;
 
 /** Optional practice timer allots this many seconds per question. */
 export const PRACTICE_SECONDS_PER_QUESTION = 60;
