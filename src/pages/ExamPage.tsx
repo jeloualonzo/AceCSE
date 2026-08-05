@@ -390,6 +390,7 @@ export const ExamPage: React.FC = () => {
   return (
     <>
       <ExamFocusLayout
+        examLevel={activeSession.config.examLevel}
         timeRemainingFormatted={
           secondsRemaining !== null ? formatHMS(secondsRemaining) : 'Untimed'
         }

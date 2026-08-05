@@ -8,8 +8,16 @@ import {
   RotateCcw,
   XCircle,
 } from 'lucide-react';
+import type { ExamLevel } from '@/types';
 
 interface ExamFocusLayoutProps {
+  /**
+   * The SESSION's examination level (never the current preference) — a
+   * resumed session keeps its own level. Indicated quietly: the grid icon
+   * is emerald for Professional, neutral for Subprofessional, and the
+   * navigation drawer carries a small muted PRO/SUBPRO label.
+   */
+  examLevel: ExamLevel;
   /** Formatted time remaining, or a label like "Untimed" for practice. */
   timeRemainingFormatted: string;
   onExitExam: () => void;
@@ -36,6 +44,7 @@ interface ExamFocusLayoutProps {
  * navigation stays in a thumb-friendly footer.
  */
 export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
+  examLevel,
   timeRemainingFormatted,
   onExitExam,
   onSubmitExam,
@@ -97,14 +106,22 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
    * the "hidden" instance renders anyway — which is how this button previously
    * appeared twice on mobile.
    */
+  // The grid icon doubles as the session-level indicator: emerald accent for
+  // Professional, neutral for Subprofessional. Quiet enough to ignore,
+  // instant for anyone who knows the mapping.
+  const isProfessional = examLevel === 'Professional';
+  const gridIconColor = isProfessional
+    ? 'text-emerald-600 dark:text-emerald-400'
+    : 'text-slate-500 dark:text-slate-400';
+
   const paletteButton = (displayClasses: string) => (
     <button
       onClick={(e) => togglePalette(e.currentTarget)}
       className={`${displayClasses} items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
       aria-expanded={isPaletteOpen}
-      aria-label={`Open question navigation, question ${currentQuestionNumber} of ${totalQuestions}`}
+      aria-label={`Open question navigation, question ${currentQuestionNumber} of ${totalQuestions}, ${examLevel} level session`}
     >
-      <Grid className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" />
+      <Grid className={`w-4 h-4 shrink-0 ${gridIconColor}`} aria-hidden="true" />
       <span>
         Q {currentQuestionNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {totalQuestions}</span>
       </span>
@@ -197,8 +214,19 @@ export const ExamFocusLayout: React.FC<ExamFocusLayoutProps> = ({
             className="absolute inset-y-0 left-0 z-30 w-full sm:w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-xl flex flex-col p-4 overflow-y-auto"
           >
             <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <span className="flex items-baseline gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Question Navigation
+                <span
+                  className={`text-[10px] font-bold tracking-widest ${
+                    isProfessional
+                      ? 'text-emerald-600 dark:text-emerald-400'
+                      : 'text-slate-400 dark:text-slate-500'
+                  }`}
+                  title={`${examLevel} level session`}
+                  aria-label={`${examLevel} level session`}
+                >
+                  {isProfessional ? 'PRO' : 'SUBPRO'}
+                </span>
               </span>
               <button
                 onClick={closePalette}
