@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BrandMark } from '@/components/BrandMark';
 import { useAuth } from '@/context/AuthContext';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 function errorMessage(error: unknown): string | null {
   const code = (error as { code?: string })?.code ?? '';
@@ -43,18 +44,15 @@ const GoogleMark: React.FC = () => (
 );
 
 export const AuthPage: React.FC = () => {
-  const { user, initializing, signInWithGoogle } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const destination = (location.state as { from?: string } | null)?.from ?? '/app/dashboard';
+  useDocumentTitle('Sign in');
+  const { signInWithGoogle } = useAuth();
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!initializing && user) navigate(destination, { replace: true });
-  }, [initializing, user, navigate, destination]);
-
+  // On success, the auth state updates and the RedirectWhenAuthed guard
+  // forwards to the destination (preserving any `from` deep link) — no
+  // manual navigation needed here.
   const handleGoogle = async () => {
     setError(null);
     setBusy(true);

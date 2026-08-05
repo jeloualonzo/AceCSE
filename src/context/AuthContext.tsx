@@ -13,6 +13,12 @@ interface AuthContextValue {
   user: User | null;
   /** True until the first auth state resolves — gate routing on this. */
   initializing: boolean;
+  /**
+   * True from the moment sign-out is requested until the auth state clears.
+   * Guest-only routes use this to render immediately during the transition
+   * instead of bouncing the user back into the app for a few frames.
+   */
+  signingOut: boolean;
   signInWithGoogle: () => Promise<void>;
   signOutUser: () => Promise<void>;
 }
@@ -25,6 +31,7 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [initializing, setInitializing] = useState(true);
+  const [signingOut, setSigningOut] = useState(false);
 
   useEffect(() => {
     return onAuthStateChanged(auth, (nextUser) => {
@@ -33,6 +40,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (nextUser) {
         // Fire-and-forget; profile creation must never block the UI.
         void ensureProfile(nextUser).catch(() => undefined);
+      } else {
+        setSigningOut(false);
       }
     });
   }, []);
@@ -42,12 +51,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const signOutUser = useCallback(async () => {
-    await signOut(auth);
+    setSigningOut(true);
+    try {
+      await signOut(auth);
+    } catch (error) {
+      setSigningOut(false);
+      throw error;
+    }
   }, []);
 
   const value = useMemo(
-    () => ({ user, initializing, signInWithGoogle, signOutUser }),
-    [user, initializing, signInWithGoogle, signOutUser]
+    () => ({ user, initializing, signingOut, signInWithGoogle, signOutUser }),
+    [user, initializing, signingOut, signInWithGoogle, signOutUser]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -3,6 +3,7 @@ import { LogOut, Monitor, Moon, Sun } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { useTheme, type ThemeMode } from '@/context/ThemeContext';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 const THEME_OPTIONS: { mode: ThemeMode; label: string; icon: typeof Sun }[] = [
   { mode: 'light', label: 'Light', icon: Sun },
@@ -11,14 +12,17 @@ const THEME_OPTIONS: { mode: ThemeMode; label: string; icon: typeof Sun }[] = [
 ];
 
 export const SettingsPage: React.FC = () => {
+  useDocumentTitle('Settings');
   const { user, signOutUser } = useAuth();
   const { mode, setMode } = useTheme();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
-    // Leave the protected area first so the auth guard never flashes /auth.
+    // signOutUser flips the `signingOut` flag synchronously, so the guest-only
+    // landing page renders immediately instead of bouncing back into the app.
+    const signedOut = signOutUser();
     navigate('/', { replace: true });
-    await signOutUser();
+    await signedOut.catch(() => undefined);
   };
 
   return (

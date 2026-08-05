@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
+import { FullScreenLoader } from '@/components/FullScreenLoader';
 
 /** Route guard: unauthenticated visitors are sent to the auth flow. */
 export const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -8,15 +9,7 @@ export const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children 
   const location = useLocation();
 
   if (initializing) {
-    return (
-      <div
-        className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center"
-        role="status"
-        aria-label="Loading"
-      >
-        <div className="w-8 h-8 rounded-full border-2 border-slate-300 dark:border-slate-700 border-t-emerald-600 animate-spin" />
-      </div>
-    );
+    return <FullScreenLoader />;
   }
 
   if (!user) {

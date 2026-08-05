@@ -40,9 +40,11 @@ export const AppHeader: React.FC = () => {
 
   const handleSignOut = async () => {
     setIsProfileOpen(false);
-    // Leave the protected area first so the auth guard never flashes /auth.
+    // signOutUser flips the `signingOut` flag synchronously, so the guest-only
+    // landing page renders immediately instead of bouncing back into the app.
+    const signedOut = signOutUser();
     navigate('/', { replace: true });
-    await signOutUser();
+    await signedOut.catch(() => undefined);
   };
 
   const avatar = user?.photoURL ? (

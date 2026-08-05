@@ -9,14 +9,12 @@ import { CoreFeaturesSection } from '@/components/landing/CoreFeaturesSection';
 import { FAQSection } from '@/components/landing/FAQSection';
 import { FinalCTASection } from '@/components/landing/FinalCTASection';
 import { Footer } from '@/components/landing/Footer';
-import { useAuth } from '@/context/AuthContext';
-
 export const LandingPage: React.FC = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
 
-  // Signed-in visitors go straight to the app; everyone else to the auth flow.
-  const enterApp = () => navigate(user ? '/app/dashboard' : '/auth');
+  // Signed-in visitors never see this page (RedirectWhenAuthed), so both
+  // CTAs lead to the Google auth flow.
+  const enterApp = () => navigate('/auth');
 
   const scrollToSampleQuestion = () => {
     document.getElementById('try-question')?.scrollIntoView({ behavior: 'smooth' });
