@@ -13,7 +13,12 @@ export async function ensureProfile(user: User): Promise<void> {
   await (await impl()).ensureProfile(user);
 }
 
-/** Roadmap: used once the Professional level ships as a user preference. */
+/** The account's saved examination level, or null when unset/invalid. */
+export async function fetchPreferredExamLevel(uid: string): Promise<ExamLevel | null> {
+  return (await impl()).fetchPreferredExamLevel(uid);
+}
+
+/** Persist the examination level to the account profile. */
 export async function savePreferredExamLevel(uid: string, level: ExamLevel): Promise<void> {
   await (await impl()).savePreferredExamLevel(uid, level);
 }

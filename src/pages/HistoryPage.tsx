@@ -62,6 +62,7 @@ export const HistoryPage: React.FC = () => {
                         {attempt.mode === 'simulation' ? 'Exam Simulation' : 'Practice'}
                       </p>
                       <div className="flex items-center gap-x-3 flex-wrap text-xs text-slate-500 dark:text-slate-400">
+                        <span>{attempt.examLevel}</span>
                         <span>{formatDateTime(attempt.completedAt)}</span>
                         <span>{attempt.questionCount} questions</span>
                         <span>{formatDuration(attempt.durationSeconds)}</span>

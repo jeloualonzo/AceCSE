@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, PlayCircle, Timer } from 'lucide-react';
 import type { Subject } from '@/types';
@@ -27,7 +27,13 @@ export const PracticePage: React.FC = () => {
 
   const availability = useMemo(() => subjectAvailability(examLevel), [examLevel]);
 
-  const selectedSupply = selectedSubjects.reduce((sum, s) => sum + availability[s], 0);
+  // Switching examination level drops any selected subject the new level
+  // does not test (e.g. Clerical Ability disappears under Professional).
+  useEffect(() => {
+    setSelectedSubjects((prev) => prev.filter((s) => SUBJECTS_BY_LEVEL[examLevel].includes(s)));
+  }, [examLevel]);
+
+  const selectedSupply = selectedSubjects.reduce((sum, s) => sum + (availability[s] ?? 0), 0);
 
   const toggleSubject = (subject: Subject) => {
     setSelectedSubjects((prev) => {
@@ -63,7 +69,12 @@ export const PracticePage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
-      <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Practice</h1>
+      <div className="flex items-center gap-3 flex-wrap">
+        <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Practice</h1>
+        <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300">
+          {examLevel} Level
+        </span>
+      </div>
 
       {/* What practice means — the opposite of the simulation contract */}
       <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 rounded-2xl p-5 sm:p-6">

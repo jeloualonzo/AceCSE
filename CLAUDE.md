@@ -15,8 +15,10 @@ lie to the user**. No fake data, no inflated question counts, no fabricated prog
 - Firebase: Google sign-in ONLY (product decision — no email/password, no anonymous yet),
   Firestore profiles + attempt history with offline persistence, least-privilege rules in
   `firestore.rules`.
-- Product focus: Subprofessional level first. Professional stays fully supported in the
-  engine/data model but is hidden from the UI (`ACTIVE_EXAM_LEVEL` in AppLayout).
+- Both examination levels are live. The active level is a first-class user setting
+  (`useExamLevel`: localStorage for instant load + `preferredExamLevel` on the Firestore
+  profile for cross-device sync), selected in Settings and provided to every page via the
+  AppLayout outlet context. Dashboard/analytics filter attempts to the active level.
 
 ## Architecture
 

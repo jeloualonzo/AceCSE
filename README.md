@@ -137,7 +137,7 @@ per-subject supply and answer-letter balance.
 - [ ] Bookmarks and per-question notes
 - [ ] Improvement-over-time charts
 - [ ] Question versioning and moderation workflow (admin)
-- [ ] Professional-level launch (engine already supports it)
+- [x] Professional-level launch — selectable in Settings, full 170-item simulation unlocked
 - [ ] PWA install + full offline exams
 - [ ] Community question review pipeline
 

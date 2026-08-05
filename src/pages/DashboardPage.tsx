@@ -42,7 +42,13 @@ export const DashboardPage: React.FC = () => {
   useDocumentTitle('Dashboard');
   const navigate = useNavigate();
   const { examLevel } = useAppContext();
-  const { attempts, loading } = useAttempts();
+  const { attempts: allAttempts, loading } = useAttempts();
+  // Every dashboard number reflects the ACTIVE examination level only —
+  // Professional users must not see Clerical statistics and vice versa.
+  const attempts = useMemo(
+    () => allAttempts.filter((a) => a.examLevel === examLevel),
+    [allAttempts, examLevel]
+  );
   const stats = useMemo(() => computeStats(attempts), [attempts]);
   const activeSession = useMemo(() => {
     const saved = loadActiveSession();
@@ -69,7 +75,12 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
-      <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Dashboard</h1>
+      <div className="flex items-center gap-3 flex-wrap">
+        <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Dashboard</h1>
+        <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300">
+          {examLevel} Level
+        </span>
+      </div>
 
       {activeSession && (
         <Link
@@ -263,7 +274,7 @@ export const DashboardPage: React.FC = () => {
       ) : (
         <div className="bg-white dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 p-8 sm:p-12 text-center">
           <Target className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-4" aria-hidden="true" />
-          <h2 className="text-base font-bold text-slate-900 dark:text-white mb-1">No exam history yet</h2>
+          <h2 className="text-base font-bold text-slate-900 dark:text-white mb-1">No {examLevel} exam history yet</h2>
           <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
             Your scores, subject mastery, and readiness estimate appear here after your first
             simulation or practice session.

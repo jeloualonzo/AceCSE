@@ -40,6 +40,13 @@ export async function ensureProfile(user: User): Promise<void> {
   });
 }
 
+/** The account's saved examination level, or null when unset/invalid. */
+export async function fetchPreferredExamLevel(uid: string): Promise<ExamLevel | null> {
+  const snapshot = await getDoc(profileRef(uid));
+  const value = snapshot.exists() ? snapshot.get('preferredExamLevel') : null;
+  return value === 'Professional' || value === 'Subprofessional' ? value : null;
+}
+
 export async function updateProfileFields(
   uid: string,
   fields: Partial<Pick<UserProfile, 'displayName' | 'preferredExamLevel'>>

@@ -378,7 +378,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     category: 'Exam Basics',
     question: 'What is the difference between Professional and Subprofessional levels?',
-    answer: 'The Professional level consists of 170 items (3 hours, 10 minutes) and includes Analytical Ability (logical reasoning, analogies, syllogisms). The Subprofessional level consists of 165 items (2 hours, 30 minutes) and replaces Analytical Ability with Clerical Ability (filing rules, spelling, clerical operations).',
+    answer: 'The Professional level consists of 170 items (3 hours, 10 minutes) and includes Analytical Ability (logical reasoning, analogies, syllogisms). The Subprofessional level consists of 165 items (2 hours, 40 minutes) and replaces Analytical Ability with Clerical Ability (filing rules, spelling, clerical operations).',
   },
   {
     category: 'Product & Features',
