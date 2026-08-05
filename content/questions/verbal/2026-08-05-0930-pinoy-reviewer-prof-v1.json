@@ -1,0 +1,774 @@
+[
+  {
+    "id": "verb-0101",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Antonyms",
+    "difficulty": "Hard",
+    "question": "Choose the word most nearly OPPOSITE in meaning to TACITURN as used to describe a person's disposition.",
+    "choices": [
+      { "id": "A", "text": "Reserved" },
+      { "id": "B", "text": "Withdrawn" },
+      { "id": "C", "text": "Blunt" },
+      { "id": "D", "text": "Garrulous" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Taciturn describes a person who is habitually silent, saying little and volunteering nothing. Its true opposite is not merely someone who talks, but someone who talks a great deal: garrulous means excessively or ramblingly talkative. The structure of this item is a warning about antonym traps. Reserved and withdrawn are near-synonyms of taciturn — both describe holding back — so they reinforce the target word rather than reversing it. Blunt is the subtle decoy: a blunt person speaks directly, but bluntness is about manner, not quantity, and a taciturn person can still be blunt in the few words they use. Only garrulous reverses the exact dimension taciturn measures, which is how much a person speaks.",
+    "distractorExplanations": {
+      "A": "'Reserved' means restrained and undemonstrative — a near-synonym of taciturn, not its opposite. Choosing it means selecting a word that points the same direction.",
+      "B": "'Withdrawn' describes someone who pulls back from social contact, which overlaps heavily with taciturn silence rather than opposing it.",
+      "C": "'Blunt' names directness of manner, not volume of speech. A taciturn person can be blunt in a single sentence, so bluntness does not reverse the quality of saying little."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "On antonym items, first name the exact dimension the word measures. TACITURN measures QUANTITY of speech, so its opposite must be about talking a lot (garrulous), not about manner (blunt) or mood (withdrawn)."
+    },
+    "tags": ["vocabulary", "antonyms", "formal-register"]
+  },
+  {
+    "id": "verb-0102",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Synonyms",
+    "difficulty": "Medium",
+    "question": "The inspection team faced an ARDUOUS climb to reach the remote mountain barangay. ARDUOUS most nearly means:",
+    "choices": [
+      { "id": "A", "text": "Scenic and pleasant" },
+      { "id": "B", "text": "Sudden and unexpected" },
+      { "id": "C", "text": "Brief and uneventful" },
+      { "id": "D", "text": "Demanding and strenuous" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Arduous describes a task that requires great and sustained effort — hard, laborious, and tiring to complete. It comes from the Latin 'arduus,' meaning steep or high, which is why it fits a mountain climb so naturally: a steep ascent demands exertion. In the sentence, the climb is to a 'remote mountain barangay,' reinforcing the idea of difficulty and distance. 'Demanding and strenuous' captures both the effort and the physical toll. Scenic describes the view, not the difficulty; sudden describes timing; and brief and uneventful is the direct opposite of a long, effortful climb.",
+    "distractorExplanations": {
+      "A": "'Scenic and pleasant' describes how enjoyable a route looks, not how much effort it costs. An arduous climb can pass through beautiful terrain and still be exhausting.",
+      "B": "'Sudden and unexpected' describes timing or surprise, but arduous says nothing about when something happens — only about how demanding it is.",
+      "C": "'Brief and uneventful' is the opposite of arduous. A short, easy task requires little effort, whereas arduous means laborious and taxing."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "ARDUOUS comes from Latin 'arduus' (steep). Picture a steep uphill road — hard going all the way. Arduous = uphill effort: demanding, laborious, strenuous."
+    },
+    "tags": ["vocabulary", "synonyms", "latin-roots"]
+  },
+  {
+    "id": "verb-0103",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Sentence Completion",
+    "subtopic": "Vocabulary in Context",
+    "difficulty": "Medium",
+    "question": "The commissioner delivered an _____ address that inspired the new appointees to serve with dedication.",
+    "choices": [
+      { "id": "A", "text": "incoherent" },
+      { "id": "B", "text": "tedious" },
+      { "id": "C", "text": "eloquent" },
+      { "id": "D", "text": "abrasive" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The blank must agree in direction with the result the sentence reports: the address 'inspired the new appointees to serve with dedication.' Only a positively charged word describing skilled, moving speech can produce inspiration. 'Eloquent' means fluent, expressive, and persuasive in speech — exactly the quality that stirs an audience. The other three options all carry negative or neutral-negative force and would contradict the outcome. When a sentence names a positive effect, the cause in the blank must share that charge; read the effect first, then match the polarity of the missing word to it.",
+    "distractorExplanations": {
+      "A": "'Incoherent' means disjointed and impossible to follow. A speech no one can understand cannot inspire an audience to dedicated service.",
+      "B": "'Tedious' means tiresomely long or dull. A boring address would dampen enthusiasm rather than kindle the dedication the sentence describes.",
+      "D": "'Abrasive' describes a harsh, grating manner that irritates listeners. It works against inspiration rather than creating it."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Match the charge. When a sentence names a positive result (inspired, encouraged, uplifted), the blank needs a positive word. Cross out every negative option before comparing the survivors."
+    },
+    "tags": ["sentence-completion", "vocabulary-in-context", "context-clues"]
+  },
+  {
+    "id": "verb-0104",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Synonyms",
+    "difficulty": "Easy",
+    "question": "The division chief received a citation for her EXEMPLARY conduct throughout her career. EXEMPLARY most nearly means:",
+    "choices": [
+      { "id": "A", "text": "Ordinary and routine" },
+      { "id": "B", "text": "Commendable and worthy of imitation" },
+      { "id": "C", "text": "Questionable and doubtful" },
+      { "id": "D", "text": "Strict and demanding" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Exemplary shares its root with 'example': something exemplary is so good that it serves as a model for others to follow. The word carries strong positive praise — it does not merely mean acceptable, it means outstanding enough to be held up as a standard. The sentence confirms this: conduct that earns a citation is being recognized as praiseworthy. 'Commendable and worthy of imitation' captures both halves of the meaning: it deserves praise, and it sets an example. Ordinary (A) is the opposite of a standard-setting model; questionable (C) is negative; and strict (D) confuses exemplary with severity, a different quality altogether.",
+    "distractorExplanations": {
+      "A": "'Ordinary and routine' describes the average and unremarkable — the opposite of exemplary, which singles out conduct as a model above the norm.",
+      "C": "'Questionable and doubtful' carries negative suspicion. Exemplary conduct is beyond reproach, so this reverses the word's praise.",
+      "D": "'Strict and demanding' describes a disciplinary temperament, not moral excellence. One can be exemplary without being strict, and strict without being exemplary."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "See EXAMPLE inside EXEMPLARY. Exemplary conduct is conduct fit to be an example for everyone else — a model, not just acceptable behaviour."
+    },
+    "tags": ["vocabulary", "synonyms", "civic-context"]
+  },
+  {
+    "id": "verb-0105",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Antonyms",
+    "difficulty": "Medium",
+    "question": "Choose the word most nearly OPPOSITE in meaning to HASTY as used to describe a decision.",
+    "choices": [
+      { "id": "A", "text": "Deliberate" },
+      { "id": "B", "text": "Rash" },
+      { "id": "C", "text": "Immediate" },
+      { "id": "D", "text": "Reckless" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "A hasty decision is one made too quickly, without enough thought — the emphasis is on the absence of careful consideration, not merely on speed. Its true opposite must therefore restore that missing care. 'Deliberate' means done with careful thought and full intention, weighing the options before acting. That is exactly the quality a hasty decision lacks. The trap here is that three of the four options cluster near hasty rather than against it: rash and reckless are near-synonyms (both mean acting without due care), and immediate names speed alone, which is only part of what hasty implies. Only deliberate reverses the core defect of a hasty choice.",
+    "distractorExplanations": {
+      "B": "'Rash' means acting without thinking of the consequences — a near-synonym of hasty, not its opposite.",
+      "C": "'Immediate' names speed, which is one feature of hastiness. But a decision can be immediate and still well-considered, so it is not the true opposite.",
+      "D": "'Reckless' means heedless of danger or consequences, which reinforces hastiness rather than opposing it."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Pin down what a word truly emphasises. HASTY stresses lack of thought, not just speed, so its opposite must restore thought (deliberate) rather than merely slow things down."
+    },
+    "tags": ["vocabulary", "antonyms"]
+  },
+  {
+    "id": "verb-0106",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Idioms",
+    "difficulty": "Medium",
+    "question": "Read the sentence and choose the meaning of the underlined idiom: \"After a long dispute, the two agencies finally saw EYE TO EYE on the shared budget.\"",
+    "choices": [
+      { "id": "A", "text": "Watched each other closely" },
+      { "id": "B", "text": "Came into full agreement" },
+      { "id": "C", "text": "Competed for the same funds" },
+      { "id": "D", "text": "Met in person for talks" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "An idiom means something different from the literal sum of its words, so it must be read for its fixed, conventional sense rather than translated piece by piece. 'To see eye to eye' with someone means to be in full agreement with them. The sentence supplies a strong context clue: 'after a long dispute' and 'finally' signal that a disagreement has ended, which points to agreement being reached. The most common error with idioms is literal reading — treating 'eye to eye' as physical looking (option A) or a face-to-face meeting (option D). The idiom is about matching views, not matching gazes.",
+    "distractorExplanations": {
+      "A": "'Watched each other closely' reads the idiom literally, as if it described physical looking. Idioms carry a fixed figurative meaning, and this one is about agreement, not eyesight.",
+      "C": "'Competed for the same funds' contradicts the sentence, which says the dispute was resolved. Seeing eye to eye ends rivalry rather than continuing it.",
+      "D": "'Met in person for talks' confuses seeing eye to eye with a face-to-face meeting. The idiom describes the outcome of agreement, not the format of a discussion."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Never translate an idiom word by word. Read the whole phrase, then check the surrounding clues. 'A long dispute... finally' signals a resolution, so the idiom must mean agreement."
+    },
+    "reference": "Idiomatic Expressions: 'to see eye to eye' means to agree fully",
+    "tags": ["grammar", "idioms", "context-clues"]
+  },
+  {
+    "id": "verb-0107",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Vocabulary in Context",
+    "difficulty": "Medium",
+    "question": "The word EPHEMERAL, as in \"the ephemeral popularity of the new program,\" most nearly means:",
+    "choices": [
+      { "id": "A", "text": "Widespread and universal" },
+      { "id": "B", "text": "Lasting only a very short time" },
+      { "id": "C", "text": "Growing steadily over the years" },
+      { "id": "D", "text": "Difficult to measure accurately" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Ephemeral means lasting only a very short time — fleeting, transient, quickly passing. It comes from the Greek 'ephemeros,' meaning 'lasting only a day,' originally used for insects and blooms that live a single day. Applied to popularity, it describes enthusiasm that flares up and fades fast rather than enduring. The word is purely about duration, which is why the wrong options each substitute a different dimension: 'widespread' (A) is about extent, 'growing steadily' (C) is about a long upward trend that is the opposite of short-lived, and 'difficult to measure' (D) is about assessment. Only option B names the brief lifespan the word denotes.",
+    "distractorExplanations": {
+      "A": "'Widespread and universal' describes how far something spreads, not how long it lasts. Something ephemeral can be widely felt yet still vanish quickly.",
+      "C": "'Growing steadily over the years' describes a durable, lengthening trend — the exact opposite of the short lifespan ephemeral names.",
+      "D": "'Difficult to measure accurately' concerns assessment, not duration. Ephemeral popularity may be easy to observe; it simply does not last."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "EPHEMERAL → Greek 'ephemeros' (lasting a day). Think of a mayfly that lives one day. Ephemeral = here today, gone tomorrow — purely about short duration."
+    },
+    "tags": ["vocabulary", "vocabulary-in-context"]
+  },
+  {
+    "id": "verb-0108",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Subjunctive Mood",
+    "difficulty": "Medium",
+    "question": "Which sentence uses the subjunctive mood correctly to express a wish?",
+    "choices": [
+      { "id": "A", "text": "I wish I was the head of the records division." },
+      { "id": "B", "text": "I wish I am the head of the records division." },
+      { "id": "C", "text": "I wish I were the head of the records division." },
+      { "id": "D", "text": "I wish I will be the head of the records division." }
+    ],
+    "correctOptionId": "C",
+    "explanation": "This is the 'were-subjunctive,' used to express a wish or a situation that is contrary to fact. When you wish for something that is not true right now, English replaces the ordinary past 'was' with 'were' for every subject, including 'I' and 'he/she/it': 'I wish I were,' 'if she were here.' The speaker is not the head of the division, so the statement is counterfactual and the subjunctive 'were' is required. Choice A uses the indicative 'was,' which is common in casual speech but not the form tested on formal examinations. Choice B ('am') states a present fact rather than a wish, and choice D ('will be') expresses a future plan, not a contrary-to-fact wish.",
+    "distractorExplanations": {
+      "A": "'I wish I was' uses the indicative past, which is widespread in casual speech but is not the formal standard. A wish contrary to fact requires the subjunctive 'were.'",
+      "B": "'I wish I am' pairs a wish with a present-tense fact. Wishing implies the situation is not currently true, so the present indicative 'am' contradicts the very idea of a wish.",
+      "D": "'I wish I will be' expresses a future expectation, not a present contrary-to-fact wish. For future desire English uses 'I hope I will be,' not 'I wish.'"
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "After 'wish' or 'if' for something untrue now, use WERE for every subject: 'I wish I were,' 'if he were.' 'Was' is casual; the exam tests the subjunctive 'were.'"
+    },
+    "reference": "Were-Subjunctive: contrary-to-fact wishes take 'were' for all subjects",
+    "tags": ["grammar", "subjunctive-mood", "were-subjunctive"]
+  },
+  {
+    "id": "verb-0109",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Antonyms",
+    "difficulty": "Easy",
+    "question": "Choose the word most nearly OPPOSITE in meaning to CORDIAL.",
+    "choices": [
+      { "id": "A", "text": "Hostile" },
+      { "id": "B", "text": "Friendly" },
+      { "id": "C", "text": "Warm" },
+      { "id": "D", "text": "Gracious" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Cordial means warm, friendly, and sincerely pleasant in manner — the tone of a gracious host or a welcoming office. Its opposite must describe an unfriendly, antagonistic manner, and 'hostile' fits exactly: openly unfriendly and antagonistic. The three wrong options are all synonyms of cordial rather than antonyms: friendly, warm, and gracious each describe the same welcoming quality. This is the classic antonym trap in which the distractors cluster around the target word's meaning, leaving the single true opposite standing alone. When three of four options mean roughly the same thing, the odd one out is almost always the answer.",
+    "distractorExplanations": {
+      "B": "'Friendly' is a direct synonym of cordial, not its opposite. Choosing it means picking a word with the same meaning as the target.",
+      "C": "'Warm' describes the same welcoming affection cordial conveys. It reinforces the target word rather than reversing it.",
+      "D": "'Gracious' means courteous and kind — another near-synonym of cordial. None of these three oppose the word; only 'hostile' does."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Sort the four options into meaning groups first. When three cluster together (friendly, warm, gracious), the lone outsider is the antonym — a valid item holds only one true opposite."
+    },
+    "tags": ["vocabulary", "antonyms"]
+  },
+  {
+    "id": "verb-0110",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "subtopic": "Main Idea",
+    "difficulty": "Hard",
+    "passage": "Many local governments now publish their annual budgets on official websites, and this practice is often praised as a milestone for open governance. Yet posting figures online is only a first step. Transparency shows citizens what was spent, but it does not by itself guarantee that officials will answer for how the money was used. Accountability requires more: mechanisms through which the public can question decisions, demand corrections, and impose consequences. A budget that is visible but never explained is transparent without being accountable. True open governance is achieved only when disclosure is paired with a genuine duty to respond.",
+    "question": "What is the main idea of the passage?",
+    "choices": [
+      { "id": "A", "text": "Transparency and accountability are the same thing in practice." },
+      { "id": "B", "text": "Publishing budgets online has no value for open governance." },
+      { "id": "C", "text": "Disclosure is a starting point, but real accountability also requires a duty to answer for decisions." },
+      { "id": "D", "text": "Local governments should stop posting their budgets on official websites." }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The main idea must cover the whole passage, not one line of it. The passage makes a two-part argument: publishing budgets is genuinely valuable ('a first step,' 'a milestone'), but by itself it is not enough, because transparency reveals figures while accountability demands that officials answer for them. Option C holds both parts together — disclosure is a real starting point, and true accountability adds a duty to respond. The wrong options each break the balance. Option A collapses the very distinction the passage builds; option B and option D deny the value the passage explicitly grants to disclosure. Watch for absolutes such as 'no value' and 'should stop' — the passage praises disclosure even as it argues it is insufficient.",
+    "distractorExplanations": {
+      "A": "The passage exists precisely to separate the two ideas, stating that a budget can be 'transparent without being accountable.' Treating them as identical erases its central point.",
+      "B": "The passage calls online publishing 'a milestone' and 'a first step,' granting it real value. Saying it has no value contradicts the text.",
+      "D": "Nothing in the passage recommends ending disclosure. It argues for adding accountability to disclosure, not for removing what already works."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "A main idea must fit every sentence. When a passage says X is good but not sufficient, the answer keeps both halves. Reject options that harden the text with 'no value,' 'the same,' or 'should stop.'"
+    },
+    "tags": ["reading-comprehension", "main-idea", "civic-context"]
+  },
+  {
+    "id": "verb-0111",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Latin-Derived Plurals",
+    "difficulty": "Medium",
+    "question": "Choose the sentence that uses the plural of \"criterion\" correctly.",
+    "choices": [
+      { "id": "A", "text": "The panel applied three criterias in ranking the applicants." },
+      { "id": "B", "text": "The panel applied three criteria in ranking the applicants." },
+      { "id": "C", "text": "The panel applied three criterion in ranking the applicants." },
+      { "id": "D", "text": "The panel applied three criterias' in ranking the applicants." }
+    ],
+    "correctOptionId": "B",
+    "explanation": "'Criterion' is a Greek-derived noun that forms its plural the Greek way, not by adding -s. One standard is a criterion; two or more are criteria. Because the sentence names 'three' standards, the plural 'criteria' is required, making choice B correct. Choice C leaves the singular 'criterion' after the plural number 'three,' a mismatch. Choice A ('criterias') double-pluralises by adding an English -s to a form that is already plural — the same error as writing 'datas' or 'phenomenas.' Choice D compounds that error with a stray apostrophe. The family to memorise: criterion/criteria, phenomenon/phenomena, datum/data, all follow the -on/-um → -a pattern.",
+    "distractorExplanations": {
+      "A": "'Criterias' adds an English plural -s to 'criteria,' which is already plural. The word is pluralised once, the Greek way; adding -s pluralises it twice.",
+      "C": "'Criterion' is singular, but the sentence specifies 'three.' A plural number needs the plural noun 'criteria,' so the singular form disagrees.",
+      "D": "Besides the double-plural 'criterias,' the apostrophe wrongly marks a possessive where only a plural is needed. Nothing in the sentence is being possessed."
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "Greek/Latin plurals swap -on/-um for -a: one criterion → many criteria, one phenomenon → many phenomena, one datum → many data. Never add -s to the -a form."
+    },
+    "reference": "Latin-derived plurals: criterion/criteria, phenomenon/phenomena, datum/data",
+    "tags": ["grammar", "plurals", "commonly-confused-words"]
+  },
+  {
+    "id": "verb-0112",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Synonyms",
+    "difficulty": "Medium",
+    "question": "The senior auditor advised the staff to remain WARY of unusually large last-minute disbursements. WARY most nearly means:",
+    "choices": [
+      { "id": "A", "text": "Cautious and watchful" },
+      { "id": "B", "text": "Excited and eager" },
+      { "id": "C", "text": "Confused and uncertain" },
+      { "id": "D", "text": "Indifferent and detached" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Wary means feeling or showing caution about possible dangers or problems — being on guard. A wary person watches carefully because they suspect something may be wrong. The context makes this precise: an auditor warning staff about 'unusually large last-minute disbursements' is telling them to be alert to a possible irregularity. 'Cautious and watchful' captures both the caution and the active attentiveness the word carries. Excited (B) is an emotional state unrelated to guardedness; confused (C) implies not understanding, whereas a wary person understands the risk clearly; and indifferent (D) is the opposite of the vigilance wary demands.",
+    "distractorExplanations": {
+      "B": "'Excited and eager' describes enthusiasm, the opposite of the guarded suspicion wary conveys. An auditor urging caution is not urging enthusiasm.",
+      "C": "'Confused and uncertain' implies a failure to understand. A wary person understands the danger well; that clear awareness is exactly what makes them cautious.",
+      "D": "'Indifferent and detached' means not caring — the reverse of wary alertness. Being wary requires paying close, concerned attention."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "WARY is built into 'beWARE' and 'WARIness.' If you must beware of something, you are wary of it — cautious and on guard."
+    },
+    "tags": ["vocabulary", "synonyms", "civic-context"]
+  },
+  {
+    "id": "verb-0113",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Antonyms",
+    "difficulty": "Medium",
+    "question": "Choose the word most nearly OPPOSITE in meaning to MUNDANE.",
+    "choices": [
+      { "id": "A", "text": "Ordinary" },
+      { "id": "B", "text": "Routine" },
+      { "id": "C", "text": "Commonplace" },
+      { "id": "D", "text": "Extraordinary" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Mundane means ordinary, everyday, and lacking interest or excitement — the dull routine of the commonplace. Its opposite must describe what rises above the ordinary, and 'extraordinary' does so exactly: unusual, remarkable, beyond the common. The other three options are all synonyms of mundane. Ordinary, routine, and commonplace each restate the very quality mundane names, so they cluster together and cannot be its antonym. This is the standard antonym-trap design: surround the true opposite with several synonyms of the target so that an examinee who does not read carefully picks a word that means the same thing rather than the reverse.",
+    "distractorExplanations": {
+      "A": "'Ordinary' is a plain synonym of mundane — both mean usual and unremarkable. It restates the word rather than opposing it.",
+      "B": "'Routine' describes regular, repeated, everyday activity, which is exactly what mundane means. It reinforces the target, not its reverse.",
+      "C": "'Commonplace' means ordinary and frequently seen, another synonym of mundane. Only 'extraordinary' reverses the meaning."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When three antonym options are near-synonyms of the target (ordinary, routine, commonplace), the fourth word is the answer. A well-made item can offer only one genuine opposite."
+    },
+    "tags": ["vocabulary", "antonyms"]
+  },
+  {
+    "id": "verb-0114",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Possessive Apostrophes",
+    "difficulty": "Medium",
+    "question": "Choose the correctly punctuated sentence.",
+    "choices": [
+      { "id": "A", "text": "The childrens' playroom was relocated to the ground floor." },
+      { "id": "B", "text": "The childrens playroom was relocated to the ground floor." },
+      { "id": "C", "text": "The children's playroom was relocated to the ground floor." },
+      { "id": "D", "text": "The childrens's playroom was relocated to the ground floor." }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Form a possessive in two steps: write the owner exactly as its plural is spelled, then add the marker. The key is that 'children' is an irregular plural — it already means more than one child without ending in -s. Because it does not end in -s, it takes the full possessive marker, apostrophe plus s: children's. That gives 'children's playroom,' the playroom belonging to the children, which is choice C. Choice A ('childrens'') wrongly treats 'children' as though it ended in -s and adds only an apostrophe after an invented -s. Choice B drops the apostrophe entirely, and choice D piles an extra -s onto the already-invented 'childrens.' The rule: regular plurals ending in -s take an apostrophe only; irregular plurals (children, men, women, people) take apostrophe + s.",
+    "distractorExplanations": {
+      "A": "'Childrens'' treats the word as a regular -s plural and puts the apostrophe after a nonexistent -s. 'Children' has no -s, so this spelling invents one and then mispunctuates it.",
+      "B": "Dropping the apostrophe leaves a bare noun with no possessive marker at all, so nothing signals that the playroom belongs to the children.",
+      "D": "'Childrens's' stacks an extra -s onto the wrong base. The correct base is 'children,' and an irregular plural needs only apostrophe + s: children's."
+    },
+    "tip": {
+      "label": "Spelling Pattern",
+      "text": "Spell the plural first. Ends in -s (employees, teachers) → apostrophe only. Irregular plural with no -s (children, men, women, people) → apostrophe + s: children's, women's."
+    },
+    "reference": "Possessive Apostrophes: an irregular plural not ending in -s takes apostrophe + s",
+    "tags": ["grammar", "possessives", "apostrophes"]
+  },
+  {
+    "id": "verb-0115",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Synonyms",
+    "difficulty": "Easy",
+    "question": "The applicant was ELATED upon learning that she had passed the eligibility examination. ELATED most nearly means:",
+    "choices": [
+      { "id": "A", "text": "Relieved" },
+      { "id": "B", "text": "Surprised" },
+      { "id": "C", "text": "Anxious" },
+      { "id": "D", "text": "Overjoyed" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Elated means filled with great joy and high spirits — a happiness that lifts a person up, stronger than ordinary pleasure. The root sense is of being raised or elevated in mood. In the sentence, passing an eligibility examination after preparation is naturally a peak-happiness moment, which the word captures. 'Overjoyed' matches the intensity precisely: extremely happy. The distractors are all weaker or off-target emotions. 'Relieved' is the easing of worry, a milder and different feeling; 'surprised' names unexpectedness, not joy; and 'anxious' is the opposite emotional direction entirely.",
+    "distractorExplanations": {
+      "A": "'Relieved' means freed from worry — a calmer, milder feeling than elation. One can be relieved without the soaring joy that elated describes.",
+      "B": "'Surprised' names an unexpected outcome, not an emotion of joy. A result can be elating whether or not it was a surprise.",
+      "C": "'Anxious' is worried unease, the opposite emotional direction from elation. Passing the exam removes anxiety rather than causing it."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "ELATED shares a root meaning 'lifted up.' Picture your spirits soaring — elated is joy at its highest, well beyond merely pleased or relieved."
+    },
+    "tags": ["vocabulary", "synonyms"]
+  },
+  {
+    "id": "verb-0116",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Antonyms",
+    "difficulty": "Medium",
+    "question": "Choose the word most nearly OPPOSITE in meaning to OBSTINATE as used to describe an employee's attitude.",
+    "choices": [
+      { "id": "A", "text": "Stubborn" },
+      { "id": "B", "text": "Compliant" },
+      { "id": "C", "text": "Headstrong" },
+      { "id": "D", "text": "Inflexible" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Obstinate describes someone who stubbornly refuses to change their opinion or course of action, even in the face of good reasons to do so. Its opposite must describe a person who readily goes along with instructions or requests, and 'compliant' fits: willing to agree, obey, or yield. The three wrong options are all near-synonyms of obstinate — stubborn, headstrong, and inflexible each name the same unyielding refusal to bend. The design is the familiar antonym trap: the true opposite sits among three restatements of the target word, so an examinee who matches on 'feels similar' rather than 'means the reverse' is caught.",
+    "distractorExplanations": {
+      "A": "'Stubborn' is a direct synonym of obstinate — both describe a refusal to yield. It restates the word instead of reversing it.",
+      "C": "'Headstrong' means determined to have one's own way, another synonym of obstinate. It reinforces the target rather than opposing it.",
+      "D": "'Inflexible' means unwilling to change or compromise, which is precisely what obstinate means. Only 'compliant' names the opposite disposition."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Group the options by meaning. Stubborn, headstrong, and inflexible are one family; the outsider (compliant) is the antonym. A sound item never offers two valid opposites."
+    },
+    "tags": ["vocabulary", "antonyms", "formal-register"]
+  },
+  {
+    "id": "verb-0117",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "subtopic": "Inference",
+    "difficulty": "Hard",
+    "passage": "Public trust is the foundation on which effective government stands. When citizens believe that officials act fairly and honestly, they cooperate more readily with rules and programs. Corruption, even in small and seemingly harmless forms, chips away at this trust. What is easy to lose is hard to recover: rebuilding public confidence after a scandal is slow, costly, and uncertain, often taking far longer than the misconduct that damaged it. For this reason, ethical conduct in public service is not merely a matter of personal virtue. It is a practical requirement for a state that intends to function at all.",
+    "question": "Which of the following can be most reasonably inferred from the passage?",
+    "choices": [
+      { "id": "A", "text": "Preventing corruption is easier than restoring trust once it has been lost." },
+      { "id": "B", "text": "Small acts of corruption have no real effect on public trust." },
+      { "id": "C", "text": "Citizens cooperate with government regardless of how officials behave." },
+      { "id": "D", "text": "Ethical conduct matters only as a private personal virtue." }
+    ],
+    "correctOptionId": "A",
+    "explanation": "An inference is a conclusion the passage supports without stating in those exact words. The text says that trust is 'easy to lose' but 'hard to recover,' and that rebuilding confidence is 'slow, costly, and uncertain, often taking far longer than the misconduct that damaged it.' Put those two facts side by side and the reasonable conclusion follows: stopping corruption before it happens is easier than repairing the damage afterward — option A. The other three options are not weak inferences but direct contradictions of the passage: it says small corruption does chip away at trust (against B), that belief in fair officials increases cooperation (against C), and that ethics is 'not merely' a personal virtue but a practical requirement (against D).",
+    "distractorExplanations": {
+      "B": "The passage states that corruption 'even in small and seemingly harmless forms chips away at this trust,' so claiming small acts have no effect contradicts the text outright.",
+      "C": "The passage ties cooperation to belief in fair, honest officials. Saying citizens cooperate regardless of official behaviour denies the very link the passage draws.",
+      "D": "The passage says ethical conduct is 'not merely a matter of personal virtue' but a 'practical requirement.' Option D reduces it to exactly what the passage says it is more than."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "Sort options into restates, supports, and contradicts. The inference answer lives in 'supports' — new wording, same logic. Any option that fights a stated fact is out on sight."
+    },
+    "tags": ["reading-comprehension", "inference", "civic-context"]
+  },
+  {
+    "id": "verb-0118",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "subtopic": "Tone",
+    "difficulty": "Medium",
+    "passage": "Public trust is the foundation on which effective government stands. When citizens believe that officials act fairly and honestly, they cooperate more readily with rules and programs. Corruption, even in small and seemingly harmless forms, chips away at this trust. What is easy to lose is hard to recover: rebuilding public confidence after a scandal is slow, costly, and uncertain, often taking far longer than the misconduct that damaged it. For this reason, ethical conduct in public service is not merely a matter of personal virtue. It is a practical requirement for a state that intends to function at all.",
+    "question": "Which word best describes the overall tone of the passage?",
+    "choices": [
+      { "id": "A", "text": "Sarcastic and mocking" },
+      { "id": "B", "text": "Earnest and principled" },
+      { "id": "C", "text": "Playful and lighthearted" },
+      { "id": "D", "text": "Bitter and resentful" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Tone is the author's attitude toward the subject, revealed by word choice and emphasis. This passage treats public trust and ethical conduct as serious, weighty matters, arguing sincerely that ethics is a 'practical requirement for a state that intends to function at all.' There is no irony, no humour, and no personal grievance — only a considered, sincere case built on principle. 'Earnest and principled' names exactly that: serious sincerity grounded in a moral standard. The other options fail because the passage shows none of their markers: no mockery (A), no jokes or light touches (C), and no note of personal bitterness or blame directed at a target (D).",
+    "distractorExplanations": {
+      "A": "'Sarcastic and mocking' requires irony or ridicule, of which there is none. The passage argues its point straight, without any hint of scorn.",
+      "C": "'Playful and lighthearted' would show humour or a casual touch. The subject is treated with consistent gravity, so this tone is absent.",
+      "D": "'Bitter and resentful' implies personal grievance or anger at someone. The passage reasons calmly about a principle rather than venting resentment."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "For tone, ask how the author feels, then look for markers. Jokes → playful; irony → sarcastic; grievance → bitter. A serious, sincere argument with no irony is earnest."
+    },
+    "tags": ["reading-comprehension", "tone", "civic-context"]
+  },
+  {
+    "id": "verb-0119",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "subtopic": "Vocabulary in Context",
+    "difficulty": "Medium",
+    "passage": "Public trust is the foundation on which effective government stands. When citizens believe that officials act fairly and honestly, they cooperate more readily with rules and programs. Corruption, even in small and seemingly harmless forms, chips away at this trust. What is easy to lose is hard to recover: rebuilding public confidence after a scandal is slow, costly, and uncertain, often taking far longer than the misconduct that damaged it. For this reason, ethical conduct in public service is not merely a matter of personal virtue. It is a practical requirement for a state that intends to function at all.",
+    "question": "As used in the passage, the phrase \"chips away at\" most nearly means:",
+    "choices": [
+      { "id": "A", "text": "Suddenly destroys" },
+      { "id": "B", "text": "Firmly strengthens" },
+      { "id": "C", "text": "Gradually weakens" },
+      { "id": "D", "text": "Carefully measures" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Vocabulary-in-context questions are answered by the surrounding sentences, not by a dictionary alone. To 'chip away at' something is to wear it down little by little, removing small pieces over time — the image is of a chisel taking off flakes. The passage supports this reading directly: it says corruption occurs 'even in small and seemingly harmless forms,' and that trust is lost in a way that is only hard and slow to reverse. That picture of small, cumulative erosion matches 'gradually weakens.' 'Suddenly destroys' contradicts the gradual sense; 'firmly strengthens' reverses the direction entirely; and 'carefully measures' imports an idea of assessment the phrase never carries.",
+    "distractorExplanations": {
+      "A": "'Suddenly destroys' clashes with the gradual, piece-by-piece image of chipping away and with the passage's stress on small, accumulating harm rather than a single blow.",
+      "B": "'Firmly strengthens' reverses the meaning. Chipping away removes material and weakens; it never builds up or reinforces.",
+      "D": "'Carefully measures' introduces assessment, which the phrase does not mean. To chip away is to erode, not to gauge."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Read a phrase through its image and its neighbours. A chisel chipping away removes bits slowly, and 'small forms' nearby confirms gradual erosion, not a sudden event."
+    },
+    "tags": ["reading-comprehension", "vocabulary-in-context"]
+  },
+  {
+    "id": "verb-0120",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Error Identification",
+    "subtopic": "Transitive Verbs and Redundant Prepositions",
+    "difficulty": "Medium",
+    "question": "Which part of the sentence contains an error?\n\n'The committee (A) discussed about the proposed (B) charter amendment (C) during the regular (D) session.'",
+    "choices": [
+      { "id": "A", "text": "discussed about the proposed" },
+      { "id": "B", "text": "charter amendment" },
+      { "id": "C", "text": "during the regular" },
+      { "id": "D", "text": "session" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The verb 'discuss' is transitive, meaning it takes a direct object with no preposition in between: you discuss something, not discuss about something. Inserting 'about' is a very common error, probably by analogy with 'talk about,' but 'discuss' already contains the sense of 'talk about,' so adding the preposition is redundant and non-standard. The correct phrasing is 'discussed the proposed charter amendment.' The error is therefore in part A. The remaining parts are all correct: 'charter amendment' is a sound noun phrase, and 'during the regular session' is an ordinary, well-formed time phrase. Other verbs that take a direct object with no preposition include 'enter,' 'answer,' 'approach,' 'attend,' and 'emphasize' — say 'enter the room,' never 'enter into the room' in this sense.",
+    "distractorExplanations": {
+      "B": "'Charter amendment' is a correctly formed noun phrase naming what was discussed; there is no grammatical error in this part.",
+      "C": "'During the regular' correctly begins a prepositional time phrase. 'During' properly introduces the period in which the discussion took place.",
+      "D": "'Session' completes the time phrase 'during the regular session' and is used correctly; the error lies only in the redundant 'about' after 'discussed.'"
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Some verbs take a direct object with NO preposition: discuss, enter, answer, attend, approach, emphasize. Write 'discuss the plan,' 'answer the question' — never 'discuss about' or 'answer to' in this sense."
+    },
+    "reference": "Transitive Verbs: 'discuss' takes a direct object without 'about'",
+    "tags": ["error-identification", "transitive-verbs", "redundancy"]
+  },
+  {
+    "id": "verb-0121",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Grammar & Usage",
+    "subtopic": "Serial Comma",
+    "difficulty": "Easy",
+    "question": "Choose the sentence that correctly punctuates the list of actions.",
+    "choices": [
+      { "id": "A", "text": "Before leaving, the clerk locked the doors, turned off the lights, and set the alarm." },
+      { "id": "B", "text": "Before leaving, the clerk locked the doors turned off the lights and set the alarm." },
+      { "id": "C", "text": "Before leaving, the clerk locked the doors, turned off the lights and, set the alarm." },
+      { "id": "D", "text": "Before leaving the clerk, locked the doors, turned off the lights, and set the alarm." }
+    ],
+    "correctOptionId": "A",
+    "explanation": "When three or more items appear in a series, each item is separated by a comma, and house style for formal writing places a comma before the final 'and' as well — the serial or Oxford comma. The three actions here are 'locked the doors,' 'turned off the lights,' and 'set the alarm,' so commas fall after the first two items and before 'and' introducing the third. Choice A does this cleanly. Choice B omits the separating commas entirely, running the actions together. Choice C misplaces the last comma after 'and' instead of before it, which breaks the phrase. Choice D moves the introductory comma so that it wrongly attaches 'the clerk' to 'leaving,' changing the meaning to leaving the clerk behind.",
+    "distractorExplanations": {
+      "B": "With no commas between the items, the three actions fuse into one unreadable string. A series of three or more needs a comma after each item.",
+      "C": "The comma lands after 'and' rather than before it, splitting the conjunction from the item it introduces. The serial comma belongs before 'and,' not after.",
+      "D": "Dropping the comma after the introductory phrase and inserting one after 'clerk' makes 'leaving the clerk' the action, reversing the intended meaning of the sentence."
+    },
+    "tip": {
+      "label": "Grammar Rule",
+      "text": "In a list of three or more, put a comma after every item, including one before the final 'and' (the serial comma): 'locked the doors, turned off the lights, and set the alarm.'"
+    },
+    "reference": "Serial (Oxford) Comma in lists of three or more items",
+    "tags": ["grammar", "punctuation", "serial-comma"]
+  },
+  {
+    "id": "verb-0122",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Vocabulary in Context",
+    "difficulty": "Medium",
+    "question": "The word DISARRAY, as in \"the filing room was left in complete disarray,\" most nearly means:",
+    "choices": [
+      { "id": "A", "text": "A condition of perfect neatness" },
+      { "id": "B", "text": "A period of quiet inactivity" },
+      { "id": "C", "text": "A method of careful arrangement" },
+      { "id": "D", "text": "A state of confusion and disorder" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Disarray means a state of disorganization, confusion, or untidiness — things scattered out of their proper order. The word is built transparently: the prefix dis- reverses 'array,' which means an orderly arrangement, so disarray is the absence of that order. In the sentence, 'complete disarray' describes a filing room where records have been left in a mess. 'A state of confusion and disorder' matches precisely. The subtlest trap is 'careful arrangement,' which defines 'array' itself — the very meaning the dis- prefix cancels. 'Perfect neatness' is the direct opposite, and 'quiet inactivity' substitutes an unrelated idea of stillness for the idea of disorder.",
+    "distractorExplanations": {
+      "A": "'Perfect neatness' is the opposite of disarray. The prefix dis- cancels order, so disarray names mess, not tidiness.",
+      "B": "'Quiet inactivity' describes stillness, not disorder. A room can be busy or empty and still be in disarray; the word is about arrangement, not activity.",
+      "C": "'Careful arrangement' defines 'array,' the root word. The dis- prefix reverses it, so this option gives the exact meaning the full word negates."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Split the affix: DIS- (reverse) + ARRAY (orderly arrangement) = the loss of order. Words on dis-/un-/in- usually flip a meaning you already know."
+    },
+    "tags": ["vocabulary", "vocabulary-in-context", "civic-context"]
+  },
+  {
+    "id": "verb-0123",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Synonyms",
+    "difficulty": "Hard",
+    "question": "Additional officers were deployed to QUELL the disturbance before it spread beyond the plaza. QUELL most nearly means:",
+    "choices": [
+      { "id": "A", "text": "Suppress or put an end to" },
+      { "id": "B", "text": "Investigate thoroughly" },
+      { "id": "C", "text": "Publicly announce" },
+      { "id": "D", "text": "Deliberately provoke" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Quell means to put an end to something, especially unrest or a strong feeling, by force or firm action — to suppress or subdue it. The context points straight at this sense: officers are deployed 'to quell the disturbance before it spread,' so the verb must name the act of stopping the disturbance. 'Suppress or put an end to' fits exactly. The distractors each name a different action entirely. 'Investigate' (B) is to look into a matter, which comes after or apart from stopping it; 'publicly announce' (C) is to make known, unrelated to subduing; and 'deliberately provoke' (D) is the direct opposite — provoking would spread the disturbance, not end it.",
+    "distractorExplanations": {
+      "B": "'Investigate thoroughly' means to examine and gather facts. That is a separate task from stopping a disturbance, which is what quell denotes.",
+      "C": "'Publicly announce' means to make information known. Quell is about subduing unrest, not communicating; the two ideas do not overlap.",
+      "D": "'Deliberately provoke' is the opposite of quell. Provoking inflames a disturbance, while quelling brings it under control and ends it."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "QUELL almost always pairs with unrest words: quell a riot, quell rebellion, quell fears. If the object is a disturbance or a strong feeling, quell means to subdue and end it."
+    },
+    "tags": ["vocabulary", "synonyms", "civic-context"]
+  },
+  {
+    "id": "verb-0124",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Antonyms",
+    "difficulty": "Hard",
+    "question": "Choose the word most nearly OPPOSITE in meaning to INCESSANT as used to describe noise or activity.",
+    "choices": [
+      { "id": "A", "text": "Constant" },
+      { "id": "B", "text": "Intermittent" },
+      { "id": "C", "text": "Relentless" },
+      { "id": "D", "text": "Persistent" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Incessant means continuing without pause or interruption — never stopping. Its opposite must describe something that starts and stops, occurring at intervals rather than continuously. 'Intermittent' names exactly that: happening at irregular intervals, with breaks in between. The three wrong options are all near-synonyms of incessant. Constant, relentless, and persistent each describe continuous, unbroken continuation, so they cluster with the target word rather than opposing it. The precise contrast to hold in mind is continuity versus interruption: incessant has no gaps, intermittent is defined by its gaps. Any option that also means unbroken cannot be the antonym.",
+    "distractorExplanations": {
+      "A": "'Constant' means happening all the time without change — a synonym of incessant, not its opposite. Both describe continuous action.",
+      "C": "'Relentless' means never letting up, which reinforces the unbroken quality of incessant rather than reversing it.",
+      "D": "'Persistent' means continuing steadily, especially despite difficulty. It shares the unbroken sense of incessant; only 'intermittent,' with its gaps, is the true opposite."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Name the axis, then find the reversal. INCESSANT sits on the continuity axis (no gaps), so its opposite must introduce gaps: intermittent. Constant, relentless, and persistent stay on the same side."
+    },
+    "tags": ["vocabulary", "antonyms", "formal-register"]
+  },
+  {
+    "id": "verb-0125",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Sentence Completion",
+    "subtopic": "Vocabulary in Context",
+    "difficulty": "Medium",
+    "question": "The evidence gathered by the panel was so _____ that it left no room for reasonable doubt.",
+    "choices": [
+      { "id": "A", "text": "flimsy" },
+      { "id": "B", "text": "equivocal" },
+      { "id": "C", "text": "circumstantial" },
+      { "id": "D", "text": "compelling" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The frame 'so _____ that it left no room for reasonable doubt' is a result construction: the word in the blank must be strong enough to cause the certainty that follows. Only evidence that is powerfully convincing can eliminate reasonable doubt, and 'compelling' means exactly that — so forceful and persuasive that it demands acceptance. The other three options describe weak or uncertain evidence, which could never produce certainty. 'Flimsy' means insubstantial and easily challenged; 'equivocal' means ambiguous and open to more than one reading; and 'circumstantial' means indirect, the kind of evidence that specifically leaves room for doubt rather than removing it.",
+    "distractorExplanations": {
+      "A": "'Flimsy' means weak and easily refuted. Weak evidence invites doubt rather than banishing it, which contradicts the result the sentence states.",
+      "B": "'Equivocal' means open to two or more interpretations. Ambiguous evidence increases doubt, so it cannot be what leaves no room for it.",
+      "C": "'Circumstantial' evidence is indirect and inference-based, the type that famously leaves room for reasonable doubt. It is the opposite of what the sentence requires."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Treat 'so ___ that...' as an arrow. Read the result first — here, no room for doubt — then choose the word strong enough to cause it. Weak-meaning options fail the causal test."
+    },
+    "tags": ["sentence-completion", "vocabulary-in-context", "context-clues"]
+  },
+  {
+    "id": "verb-0126",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Paragraph Organization",
+    "subtopic": "Cause and Effect",
+    "difficulty": "Medium",
+    "question": "Arrange the following sentences into a coherent paragraph.\n\nP. The agency then implemented an automated filing system.\nQ. As a result, public trust in the office steadily increased.\nR. Slow processing had long been a concern among applicants.\nS. Processing times were soon cut roughly in half.",
+    "choices": [
+      { "id": "A", "text": "R, P, S, Q" },
+      { "id": "B", "text": "P, R, S, Q" },
+      { "id": "C", "text": "R, S, P, Q" },
+      { "id": "D", "text": "Q, R, P, S" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This paragraph moves from a standing problem to the solution, its measurable effect, and the final outcome. R states the pre-existing problem ('slow processing had long been a concern') and carries no backward reference, so it opens. P gives the response to that problem — the agency 'then implemented' an automated system, and the word 'then' shows it follows the problem. S reports the concrete effect of the new system (processing times cut in half), which can only follow the system's introduction. Q begins with 'As a result,' a consequence marker that must come after the improvement it results from, so it closes the paragraph with the ultimate outcome of rising public trust. The chain problem → action → measurable effect → outcome fixes the order R, P, S, Q.",
+    "steps": [
+      "Step 1 — Find the opener. R names a long-standing problem with no backward reference, making it the natural starting point of the paragraph.",
+      "Step 2 — Place the response. P uses 'then' to introduce the agency's action, which answers the problem in R and therefore follows it.",
+      "Step 3 — Place the effect. S reports that processing times were cut in half — a direct result of the new system in P, so S follows P.",
+      "Step 4 — Close with the outcome. Q opens with 'As a result,' a consequence signal that must follow its cause; rising public trust is the final effect, so Q ends the paragraph, giving R, P, S, Q."
+    ],
+    "distractorExplanations": {
+      "B": "Starting with P means the agency implements a solution before any problem has been stated. 'Then' in P also presupposes an earlier event, which only R can supply.",
+      "C": "Placing S before P has processing times drop before the automated system that caused the drop is even introduced, breaking the cause-and-effect order.",
+      "D": "Beginning with Q puts 'As a result' first, stating a consequence before any cause has appeared. A result cannot open the paragraph."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Order cause-effect paragraphs as Problem → Action → Effect → Outcome. Consequence markers ('as a result,' 'consequently') always follow their cause, so a sentence starting with one cannot come first."
+    },
+    "tags": ["paragraph-organization", "cause-effect", "logical-sequence"]
+  },
+  {
+    "id": "verb-0127",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Antonyms",
+    "difficulty": "Medium",
+    "question": "Choose the word most nearly OPPOSITE in meaning to AUDACIOUS.",
+    "choices": [
+      { "id": "A", "text": "Bold" },
+      { "id": "B", "text": "Daring" },
+      { "id": "C", "text": "Timid" },
+      { "id": "D", "text": "Fearless" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Audacious means showing a willingness to take bold risks — daring, sometimes to the point of being reckless or impudent. Its opposite must describe a lack of that boldness, and 'timid' fits exactly: shy, hesitant, and lacking in courage. The three wrong options are all synonyms of audacious. Bold, daring, and fearless each name the same readiness to face risk, so they reinforce the target word instead of reversing it. This is the standard antonym-trap structure: three near-synonyms surround the single true opposite. Once you notice that bold, daring, and fearless all mean the same thing, the odd word out — timid — must be the answer.",
+    "distractorExplanations": {
+      "A": "'Bold' is a direct synonym of audacious — both describe confident risk-taking. Choosing it means picking a word that matches rather than opposes the target.",
+      "B": "'Daring' means willing to take risks, which is precisely what audacious means. It restates the word rather than reversing it.",
+      "D": "'Fearless' means without fear, another synonym of audacious. Only 'timid,' which names the absence of boldness, is the true opposite."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Cluster the options. Bold, daring, and fearless form one synonym group; the lone outsider (timid) is the antonym. A well-built item can hold only one genuine opposite."
+    },
+    "tags": ["vocabulary", "antonyms"]
+  },
+  {
+    "id": "verb-0128",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "subtopic": "Antonyms",
+    "difficulty": "Medium",
+    "question": "Choose the word most nearly OPPOSITE in meaning to APATHY as used to describe a citizen's attitude toward public affairs.",
+    "choices": [
+      { "id": "A", "text": "Enthusiasm" },
+      { "id": "B", "text": "Indifference" },
+      { "id": "C", "text": "Detachment" },
+      { "id": "D", "text": "Unconcern" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Apathy is a lack of interest, enthusiasm, or concern — an absence of feeling or engagement. Its opposite must supply the interest and energy that apathy lacks, and 'enthusiasm' does so directly: eager interest and active involvement. The other three options are all synonyms of apathy. Indifference, detachment, and unconcern each describe the same failure to care, so they cluster with the target rather than opposing it. Note the pattern of the item: it tests whether you can distinguish a word from its own near-synonyms. In civic terms the contrast matters — an apathetic public disengages from public affairs, while an enthusiastic one participates in them.",
+    "distractorExplanations": {
+      "B": "'Indifference' is a synonym of apathy — both name a lack of interest. It restates the target word rather than reversing it.",
+      "C": "'Detachment' means emotional distance and disengagement, the same withdrawal apathy describes. It reinforces the target instead of opposing it.",
+      "D": "'Unconcern' means a lack of worry or interest, another synonym of apathy. Only 'enthusiasm' provides the eager engagement that is its opposite."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Watch for three synonyms plus one opposite. Indifference, detachment, and unconcern all mean 'not caring'; the outsider (enthusiasm) is the antonym you want."
+    },
+    "tags": ["vocabulary", "antonyms", "civic-context"]
+  }
+]

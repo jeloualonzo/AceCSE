@@ -4,8 +4,9 @@
 **Schema authority order:** `src/types/index.ts` → `scripts/validate-questions.mjs` → existing datasets → app behaviour.
 `CLAUDE.md` is **not** schema authority (known stale on question count, content paths, and the field list).
 
-All figures marked *(observed)* were computed from the live corpus of **424 items** across the five
-`content/questions/<subject>/core.json` files as of 2026-08-05.
+All figures marked *(observed)* were computed from the **424-item** corpus of 2026-08-05 (the five
+`core.json` files, before the Pinoy Reviewer batch). The live bank is now **501 items**; recompute
+observed figures before relying on them for a new batch.
 
 ---
 
@@ -13,11 +14,12 @@ All figures marked *(observed)* were computed from the live corpus of **424 item
 
 ```
 AceCSE/content/questions/
-  analytical/core.json            81 items
-  clerical/core.json              53 items
-  general-information/core.json   92 items
-  numerical/core.json             93 items
-  verbal/core.json               105 items
+  analytical/    core.json (81) + 2026-08-05-0930-pinoy-reviewer-prof-v1.json (21)
+  clerical/      core.json (53)
+  general-information/ core.json (92) + 2026-08-05-0930-pinoy-reviewer-prof-v1.json (15)
+  numerical/     core.json (93) + 2026-08-05-0930-pinoy-reviewer-prof-v1.json (13)
+  verbal/        core.json (105) + 2026-08-05-0930-pinoy-reviewer-prof-v1.json (28)
+                 = 501 items total
 ```
 
 Each file is a **JSON array of question objects** at the root. UTF-8, 2-space indent, no trailing
@@ -121,11 +123,11 @@ Legend: **R** = required by the validator · **C** = conditionally required · *
 
 | Directory | Subject | Prefix | Padding | Current max | **Next free id** |
 |---|---|---|---|---|---|
-| `analytical/` | Analytical Reasoning | `ana` | 4 | `ana-0078` | **`ana-0079`** |
+| `analytical/` | Analytical Reasoning | `ana` | 4 | `ana-0099` | **`ana-0100`** |
 | `clerical/` | Clerical Ability | `cler` | 4 | `cler-0050` | **`cler-0051`** |
-| `general-information/` | General Information | `gen` | 4 | `gen-0089` | **`gen-0090`** |
-| `numerical/` | Numerical Reasoning | `num` | 4 | `num-0088` | **`num-0089`** |
-| `verbal/` | Verbal Ability | `verb` | 4 | `verb-0100` | **`verb-0101`** |
+| `general-information/` | General Information | `gen` | 4 | `gen-0104` | **`gen-0105`** |
+| `numerical/` | Numerical Reasoning | `num` | 4 | `num-0101` | **`num-0102`** |
+| `verbal/` | Verbal Ability | `verb` | 4 | `verb-0128` | **`verb-0129`** |
 
 Rules:
 

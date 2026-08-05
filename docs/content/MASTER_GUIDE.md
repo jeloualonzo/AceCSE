@@ -38,13 +38,17 @@ labels must be truthful (§10) and why answers must be verified rather than trus
 ### Where content lives (as of 2026-08-05)
 
 ```
-content/questions/analytical/core.json           81 items
-content/questions/clerical/core.json             53 items
-content/questions/general-information/core.json  92 items
-content/questions/numerical/core.json            93 items
-content/questions/verbal/core.json              105 items
-                                                ----
-                                                424 items
+content/questions/analytical/core.json                                    81 items
+content/questions/analytical/2026-08-05-0930-pinoy-reviewer-prof-v1.json  21 items
+content/questions/clerical/core.json                                      53 items
+content/questions/general-information/core.json                           92 items
+content/questions/general-information/2026-08-05-0930-pinoy-reviewer-prof-v1.json  15 items
+content/questions/numerical/core.json                                     93 items
+content/questions/numerical/2026-08-05-0930-pinoy-reviewer-prof-v1.json   13 items
+content/questions/verbal/core.json                                       105 items
+content/questions/verbal/2026-08-05-0930-pinoy-reviewer-prof-v1.json      28 items
+                                                                         ----
+                                                                          501 items
 ```
 
 There is **no `seed.json`**. The 19 legacy `seed-*` items live inside the five subject files.
@@ -427,13 +431,13 @@ Format: `<prefix>-NNNN`, where `NNNN` is **zero-padded to exactly four digits**.
 
 | Subject | Prefix | Highest used | **Next free id** |
 | --- | --- | --- | --- |
-| Analytical Reasoning | `ana-` | `ana-0078` | **`ana-0079`** |
+| Analytical Reasoning | `ana-` | `ana-0099` | **`ana-0100`** |
 | Clerical Ability | `cler-` | `cler-0050` | **`cler-0051`** |
-| General Information | `gen-` | `gen-0089` | **`gen-0090`** |
-| Numerical Reasoning | `num-` | `num-0088` | **`num-0089`** |
-| Verbal Ability | `verb-` | `verb-0100` | **`verb-0101`** |
+| General Information | `gen-` | `gen-0104` | **`gen-0105`** |
+| Numerical Reasoning | `num-` | `num-0101` | **`num-0102`** |
+| Verbal Ability | `verb-` | `verb-0128` | **`verb-0129`** |
 
-*(Next-free values are as of 2026-08-05. Always recompute from the live files before assigning —
+*(Next-free values are as of 2026-08-05, after the Pinoy Reviewer professional V1 batch. Always recompute from the live files before assigning —
 another batch may have landed.)*
 
 Rules:
@@ -460,13 +464,13 @@ Rules:
 
 | | Easy | Medium | Hard | Total |
 | --- | --- | --- | --- | --- |
-| Bank | 130 (30.7%) | 214 (50.5%) | 80 (18.9%) | 424 |
+| Bank | 152 (30.3%) | 258 (51.5%) | 91 (18.2%) | 501 |
 | Target | ~25% | ~50% | ~25% | — |
-| Analytical | 26 | 37 | 18 | 81 |
+| Analytical | 28 | 50 | 24 | 102 |
 | Clerical | 17 | 25 | 11 | 53 |
-| General Information | 29 | 53 | 10 | 92 |
-| Numerical | 32 | 42 | 19 | 93 |
-| Verbal | 26 | 57 | 22 | 105 |
+| General Information | 39 | 58 | 10 | 107 |
+| Numerical | 38 | 49 | 19 | 106 |
+| Verbal | 30 | 76 | 27 | 133 |
 
 The bank is short on Hard items overall, and General Information is the most skewed
 (10 Hard out of 92). **Future sourcing should favour Hard**, especially in General Information.

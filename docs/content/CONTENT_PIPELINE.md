@@ -17,14 +17,14 @@ from that.
 
 | Metric | Value |
 |---|---|
-| Bank size | 424 items across 5 subjects |
-| Supply | Verbal 105 · Numerical 93 · General Information 92 · Analytical 81 · Clerical 53 |
-| Answer letters | A=105 B=112 C=107 D=100 |
-| Difficulty | Easy 130 (31%) · Medium 214 (50%) · Hard 80 (19%); target 25/50/25 |
+| Bank size | 501 items across 5 subjects |
+| Supply | Verbal 133 · General Information 107 · Numerical 106 · Analytical 102 · Clerical 53 |
+| Answer letters | A=129 B=125 C=124 D=123 |
+| Difficulty | Easy 152 (30%) · Medium 258 (52%) · Hard 91 (18%); target 25/50/25 |
 | Median explanation | 494–610 chars depending on subject |
 | Average item on disk | ~2.1 KB JSON ≈ ~550 tokens |
 | Whole corpus | ~900 KB ≈ ~250k tokens |
-| Last batch yield | 150 received → 93 imported (62%) |
+| Last batch yield | 170 sourced → 157 usable after OCR screening → 77 imported (49% of usable; dedup dominates as the bank densifies) |
 
 That last row is the number to plan against. **Assume a 55–65% yield.** Sourcing 150 items to ship
 93 is normal and healthy; the 57 rejections were 45 concept-level duplicates against the existing

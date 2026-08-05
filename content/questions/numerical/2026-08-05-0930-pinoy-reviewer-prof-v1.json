@@ -1,0 +1,479 @@
+[
+  {
+    "id": "num-0089",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "subtopic": "Total Round-Trip Travel Time",
+    "difficulty": "Medium",
+    "question": "A field officer travels 360 km from the regional office to a provincial site at 60 km/h, then returns along the same route at 90 km/h. What is the total travel time for the round trip?",
+    "choices": [
+      { "id": "A", "text": "6 hours" },
+      { "id": "B", "text": "8 hours" },
+      { "id": "C", "text": "9 hours" },
+      { "id": "D", "text": "10 hours" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Round-trip travel time is found by computing each leg's time separately and then adding them — not by using the average speed. Going time = Distance ÷ Speed = 360 ÷ 60 = 6 hours. Return time = 360 ÷ 90 = 4 hours. Total time = 6 + 4 = 10 hours. This item is a close cousin of the average-speed round-trip problem, but it asks for total time rather than average speed — so the harmonic-mean formula is irrelevant here. The total distance is 720 km and the total time is 10 hours; the average speed would be 720 ÷ 10 = 72 km/h, which is the harmonic mean of 60 and 90 and confirms both answers are consistent.",
+    "steps": [
+      "Compute the outbound time: 360 km ÷ 60 km/h = 6 hours.",
+      "Compute the return time: 360 km ÷ 90 km/h = 4 hours.",
+      "Add the two legs: 6 + 4 = 10 hours total."
+    ],
+    "distractorExplanations": {
+      "A": "6 hours is only the outbound leg (360 ÷ 60 = 6). The return trip takes a different amount of time — 4 more hours — because the speed changed. Stopping at one leg gives half the answer.",
+      "B": "8 hours would require the return leg to take only 2 hours (360 ÷ 180), which would need a speed of 180 km/h. This likely comes from doubling the outbound speed and then computing 360/180, ignoring the stated return speed of 90 km/h.",
+      "C": "9 hours results from averaging the two leg times arithmetically: (6 + 4) ÷ 2 = 5 hours per leg × ... or from computing 360 ÷ 75 (the arithmetic mean of the two speeds) × 2 ≈ 9.6. Total time is a simple sum, not an average of leg times."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Total travel time = sum of each leg's time. Compute each leg separately: Time₁ = D ÷ V₁; Time₂ = D ÷ V₂; Total = Time₁ + Time₂. Do NOT average the speeds first — that gives average speed, not total time."
+    },
+    "tags": [
+      "distance-speed-time",
+      "round-trip",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0090",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Profit Percentage on Cost",
+    "difficulty": "Easy",
+    "question": "A barangay cooperative buys supplies for ₱1,600 and sells them for ₱2,000. What is the percentage profit based on the cost?",
+    "choices": [
+      { "id": "A", "text": "25%" },
+      { "id": "B", "text": "20%" },
+      { "id": "C", "text": "15%" },
+      { "id": "D", "text": "30%" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Percentage profit on cost uses the cost price — not the selling price — as the base. Profit = Selling Price – Cost = ₱2,000 – ₱1,600 = ₱400. Percentage profit = (Profit ÷ Cost) × 100 = (400 ÷ 1,600) × 100 = 0.25 × 100 = 25%. The critical rule is that 'percentage profit on cost' always divides by the cost, while 'percentage profit on selling price' (less common in CSE items) divides by the selling price. Using the selling price as the denominator gives (400 ÷ 2,000) × 100 = 20%, which is the most common wrong answer here.",
+    "steps": [
+      "Compute profit: ₱2,000 – ₱1,600 = ₱400.",
+      "Divide by COST: ₱400 ÷ ₱1,600 = 0.25.",
+      "Convert to percentage: 0.25 × 100 = 25%."
+    ],
+    "distractorExplanations": {
+      "B": "20% results from dividing the profit by the SELLING PRICE instead of the cost: ₱400 ÷ ₱2,000 = 0.20 = 20%. Percentage profit on cost always uses the cost as the denominator.",
+      "C": "15% has no direct derivation from these figures. It may arise from computing ₱400 ÷ ₱2,600 (sum of cost and selling price) or from an arithmetic slip in the division step.",
+      "D": "30% would require a profit of ₱480 on a cost of ₱1,600. There is no step that produces ₱480 from these values — it likely comes from misreading the selling price as ₱2,080 or rounding the profit upward."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "% Profit on Cost = (Profit ÷ Cost) × 100. Profit = SP – Cost. Always divide by COST, not SP. If the question says 'on selling price,' divide by SP instead."
+    },
+    "tags": [
+      "percentages",
+      "profit",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0091",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Geometry",
+    "subtopic": "Rectangle Area from Perimeter and Dimension Condition",
+    "difficulty": "Medium",
+    "question": "A rectangular storage room has a perimeter of 52 meters. Its length is 6 meters more than its width. What is the area of the room in square meters?",
+    "choices": [
+      { "id": "A", "text": "126 m²" },
+      { "id": "B", "text": "140 m²" },
+      { "id": "C", "text": "150 m²" },
+      { "id": "D", "text": "160 m²" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "This problem chains two formulas: the perimeter equation gives a system you solve for the dimensions, then the dimensions give the area. Let w = width in meters. Then length = w + 6. The perimeter formula for a rectangle: P = 2(l + w), so 2(w + 6 + w) = 52 → 2(2w + 6) = 52 → 4w + 12 = 52 → 4w = 40 → w = 10 m. Length = 10 + 6 = 16 m. Area = length × width = 16 × 10 = 160 m². Verify: perimeter = 2(16 + 10) = 2 × 26 = 52 m. ✓ The common trap is stopping at the dimensions without computing the area, or misidentifying which dimension is l and which is w.",
+    "steps": [
+      "Let w = width. Then length = w + 6.",
+      "Perimeter equation: 2(w + 6 + w) = 52 → 4w + 12 = 52 → 4w = 40 → w = 10 m.",
+      "Length = 10 + 6 = 16 m.",
+      "Area = 16 × 10 = 160 m².",
+      "Verify: perimeter = 2(16 + 10) = 52 m. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "126 m² = 9 × 14. This comes from solving w correctly as 10 but then using an error in the difference, treating length as w + 5 = 15 and width as 9 — perhaps from misreading the dimension condition.",
+      "B": "140 m² = 10 × 14. This arises from using a length–width difference of 4 instead of 6: 2(2w + 4) = 52 → 4w = 44 → w = 11... actually that gives w = 11, l = 15, area = 165. More likely, 140 = 10 × 14 comes from the solver using l = w + 4 by confusing the stated difference of 6 with a similar problem using 4.",
+      "C": "150 m² = 10 × 15. Results from correct width (w = 10) but incorrect length (w + 5 = 15), which would fit a dimension difference of 5 rather than 6. This is a close near-miss from using the wrong constant in the setup."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Rectangle Perimeter = 2(l + w). When l = w + k, substitute into the perimeter equation: 2(w + k + w) = P → 4w + 2k = P → solve for w, then find l = w + k, then Area = l × w."
+    },
+    "tags": [
+      "geometry",
+      "rectangle",
+      "area",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0092",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Finding a Value from a Given Percentage, Then Applying Another",
+    "difficulty": "Medium",
+    "question": "25% of a number N is 30. What is 60% of N?",
+    "choices": [
+      { "id": "A", "text": "72" },
+      { "id": "B", "text": "18" },
+      { "id": "C", "text": "48" },
+      { "id": "D", "text": "96" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "This two-step percentage problem requires first recovering the unknown number, then applying a different percentage to it. Step 1: if 25% of N = 30, then N = 30 ÷ 0.25 = 30 × 4 = 120. Step 2: 60% of 120 = 0.60 × 120 = 72. The answer is 72. An efficient shortcut: 60% of N ÷ 25% of N = 60/25 = 12/5. So 60% of N = (12/5) × 30 = 72 — you can scale directly from the known percentage value without first solving for N.",
+    "steps": [
+      "Find N: 25% of N = 30 → N = 30 ÷ 0.25 = 120.",
+      "Compute 60% of N: 0.60 × 120 = 72."
+    ],
+    "distractorExplanations": {
+      "B": "18 results from applying the second percentage directly to the given value instead of to N: 60% of 30 = 18. This skips the step of recovering N from the first condition.",
+      "C": "48 results from applying the wrong percentage to N: 40% of 120 = 48. This comes from confusing which percentage the question asks for — perhaps reading '60%' as '40%' or computing the complement (100% – 60% = 40%).",
+      "D": "96 results from applying 80% of 120 = 96. This likely comes from computing N = 120 correctly but then using 80% instead of 60% — perhaps from misreading the second percentage condition."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "When you know p% of N and need q% of N, you can scale without finding N: q% of N = (q ÷ p) × (p% of N). Here: 60% of N = (60 ÷ 25) × 30 = 2.4 × 30 = 72."
+    },
+    "tags": [
+      "percentages",
+      "two-step",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0093",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Work Rate",
+    "subtopic": "Conflicting Pipe Rates — Fill and Drain",
+    "difficulty": "Medium",
+    "question": "Pipe A can fill a water tank in 6 hours. Pipe B (a drain) can empty the same full tank in 10 hours. If both are open simultaneously when the tank is empty, how many hours will it take to fill the tank?",
+    "choices": [
+      { "id": "A", "text": "4 hours" },
+      { "id": "B", "text": "3 hours 45 minutes" },
+      { "id": "C", "text": "6 hours" },
+      { "id": "D", "text": "15 hours" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "When one pipe fills and another drains simultaneously, the net filling rate is the fill rate minus the drain rate. Pipe A fills at 1/6 tank per hour. Pipe B drains at 1/10 tank per hour. Net rate = 1/6 – 1/10. Convert to a common denominator of 30: 5/30 – 3/30 = 2/30 = 1/15 tank per hour. Time to fill the whole tank = 1 ÷ (1/15) = 15 hours. Notice that the drain pipe is working against the fill pipe, so the combined time must be longer than the fill-only time of 6 hours — a useful sanity check. Whenever you see a fill-and-drain scenario, the net rate is always fill rate minus drain rate (never plus).",
+    "steps": [
+      "Fill rate (Pipe A): 1/6 tank per hour.",
+      "Drain rate (Pipe B): 1/10 tank per hour.",
+      "Net rate: 1/6 – 1/10 = 5/30 – 3/30 = 2/30 = 1/15 tank per hour.",
+      "Time to fill: 1 ÷ (1/15) = 15 hours."
+    ],
+    "distractorExplanations": {
+      "A": "4 hours = 10 – 6, which is the difference of the individual times. Subtracting times is not a valid operation for rate problems — you subtract rates (as fractions of the tank per hour), not the time values themselves.",
+      "B": "3 hours 45 minutes = 15/4 hours, which is the result of adding the two rates (1/6 + 1/10 = 4/15) and taking the reciprocal: 15/4 = 3.75 hours. Adding rates is correct when both pipes fill — but here Pipe B drains, so its rate must be subtracted, not added.",
+      "C": "6 hours is the time Pipe A takes to fill the tank on its own. When Pipe B is also open and draining, the effective fill rate is reduced, so the actual time must be longer than 6 hours, not equal to it."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Fill + Drain scenario: Net rate = (Fill rate) – (Drain rate) = 1/F – 1/D. Time to fill = 1 ÷ net rate. If the net rate is negative, the drain wins — the tank never fills. Always subtract when one pipe opposes the other."
+    },
+    "tags": [
+      "work-rate",
+      "pipes",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0094",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Basic Algebra",
+    "subtopic": "Consecutive Even Integers",
+    "difficulty": "Easy",
+    "question": "Three consecutive even integers have a sum of 90. What is the largest of the three integers?",
+    "choices": [
+      { "id": "A", "text": "30" },
+      { "id": "B", "text": "32" },
+      { "id": "C", "text": "34" },
+      { "id": "D", "text": "28" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Consecutive even integers differ by 2, not by 1. Let the smallest even integer be n. Then the three integers are n, n + 2, and n + 4. Their sum: n + (n + 2) + (n + 4) = 3n + 6 = 90. Solving: 3n = 84 → n = 28. The three integers are 28, 30, and 32. The largest is 32. Verify: 28 + 30 + 32 = 90. ✓ The key difference from consecutive odd or plain consecutive integers is that the common difference is 2, giving a total offset of 6 for three terms.",
+    "steps": [
+      "Let the three consecutive even integers be n, n+2, and n+4.",
+      "Sum equation: n + (n+2) + (n+4) = 90 → 3n + 6 = 90.",
+      "Solve: 3n = 84 → n = 28.",
+      "The three integers: 28, 30, 32. Largest = 32.",
+      "Verify: 28 + 30 + 32 = 90. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "30 is the MIDDLE integer, not the largest. The three integers are 28, 30, and 32 — 30 is the second one. A quick check: 30 as the largest would make the integers 26, 28, 30, whose sum is 84, not 90.",
+      "C": "34 would be the largest if the three integers were 30, 32, 34 — but 30 + 32 + 34 = 96 ≠ 90. Choosing 34 comes from rounding the correct value of 32 upward by one step in the even sequence.",
+      "D": "28 is the SMALLEST of the three integers, not the largest. The question asks for the largest, which is 28 + 4 = 32. Picking the smallest may mean the solver forgot to add the step offset of +4."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Consecutive even integers: n, n+2, n+4. Consecutive odd integers: same form. Consecutive integers: n, n+1, n+2. Set up the sum equation with the smallest as n, solve, then read off the required value."
+    },
+    "tags": [
+      "algebra",
+      "consecutive-integers",
+      "basic-algebra"
+    ]
+  },
+  {
+    "id": "num-0095",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Ratio and Proportion",
+    "subtopic": "Ratio with Unit Conversion",
+    "difficulty": "Easy",
+    "question": "Express the ratio of 40 minutes to 3 hours in its simplest form.",
+    "choices": [
+      { "id": "A", "text": "2:9" },
+      { "id": "B", "text": "1:3" },
+      { "id": "C", "text": "40:3" },
+      { "id": "D", "text": "1:4" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "A ratio is only meaningful when both quantities are in the same unit. Convert 3 hours to minutes: 3 × 60 = 180 minutes. The ratio is now 40 minutes : 180 minutes = 40 : 180. Simplify by dividing both sides by the GCD of 40 and 180. GCD(40, 180) = 20. So 40 ÷ 20 : 180 ÷ 20 = 2 : 9. The simplest form is 2:9. Ratios comparing mixed units — minutes to hours, grams to kilograms, centimeters to meters — always require unit conversion before simplification.",
+    "steps": [
+      "Convert 3 hours to minutes: 3 × 60 = 180 minutes.",
+      "Write the ratio: 40 : 180.",
+      "Find GCD(40, 180) = 20.",
+      "Simplify: 40 ÷ 20 : 180 ÷ 20 = 2 : 9."
+    ],
+    "distractorExplanations": {
+      "B": "1:3 results from converting 3 hours to 120 minutes (using 40 minutes per hour instead of 60): 40 : 120 = 1 : 3. One hour is 60 minutes, not 40, so 3 hours = 180 minutes, not 120.",
+      "C": "40:3 skips the unit conversion entirely and writes the ratio with mixed units — 40 minutes to 3 hours — without converting hours to minutes. Ratios require the same unit on both sides before simplification.",
+      "D": "1:4 would mean 40:160, or 3 hours = 160 minutes, which corresponds to roughly 2 hours 40 minutes — an incorrect conversion. This may arise from using 40 × 4 = 160 as the number of minutes from misapplying the conversion factor."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Before writing a ratio, always convert both quantities to the SAME unit. Minutes-to-hours or grams-to-kilograms ratios must be converted first. 1 hour = 60 min; 1 kg = 1,000 g; 1 m = 100 cm."
+    },
+    "tags": [
+      "ratio",
+      "proportion",
+      "unit-conversion"
+    ]
+  },
+  {
+    "id": "num-0096",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Geometry",
+    "subtopic": "Area Scaling with Radius",
+    "difficulty": "Medium",
+    "question": "If the radius of a circle is multiplied by 5, by what factor does its area increase?",
+    "choices": [
+      { "id": "A", "text": "25" },
+      { "id": "B", "text": "5" },
+      { "id": "C", "text": "10" },
+      { "id": "D", "text": "50" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The area of a circle is A = πr². When the radius is multiplied by 5, the new radius is 5r, so the new area is π(5r)² = π × 25r² = 25πr². The new area is 25 times the original area. This is because area scales with the square of the linear dimension — doubling the radius quadruples the area; tripling it multiplies the area by 9; multiplying by 5 multiplies the area by 25 (= 5²). This principle applies to all similar 2-D shapes: scale the linear dimensions by a factor k, and the area scales by k². Only circumference (a 1-D measure) scales by the same factor k.",
+    "steps": [
+      "Original area: A = πr².",
+      "New radius = 5r; new area = π(5r)² = 25πr².",
+      "Ratio of new to old area: 25πr² ÷ πr² = 25.",
+      "The area increases by a factor of 25."
+    ],
+    "distractorExplanations": {
+      "B": "5 is the factor by which the RADIUS increases — not the area. Area scales with the square of the linear dimension. When the radius is multiplied by 5, the area is multiplied by 5² = 25, not 5.",
+      "C": "10 = 2 × 5, which applies no correct geometric rule. It may arise from doubling the linear factor, perhaps from a mistaken belief that area scales as 2k when the radius scales by k.",
+      "D": "50 = 2 × 25, which would apply if area were proportional to the diameter squared and the formula used 2πr² instead of πr². The correct area formula is πr² — there is no factor of 2 in the area formula (unlike the circumference formula 2πr)."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "For similar 2-D shapes, if linear dimensions scale by factor k, area scales by k². Radius ×5 → area ×25. Radius ×3 → area ×9. Only perimeter/circumference (1-D) scales by k itself."
+    },
+    "tags": [
+      "geometry",
+      "circle",
+      "area",
+      "scaling"
+    ]
+  },
+  {
+    "id": "num-0097",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Probability",
+    "subtopic": "Inclusion-Exclusion — Sets and Venn Diagram",
+    "difficulty": "Medium",
+    "question": "In a government office, 60 employees were surveyed. 35 attended Training A, 28 attended Training B, and 15 attended both. How many employees attended neither training?",
+    "choices": [
+      { "id": "A", "text": "3" },
+      { "id": "B", "text": "17" },
+      { "id": "C", "text": "12" },
+      { "id": "D", "text": "7" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The inclusion-exclusion principle finds the size of the union of two sets without double-counting those in both. Number who attended at least one training = |A ∪ B| = |A| + |B| – |A ∩ B| = 35 + 28 – 15 = 48. The 15 employees in both groups were counted once in the 35 and once in the 28, so subtracting 15 corrects the double-count. Employees in neither training = Total – |A ∪ B| = 60 – 48 = 12. The subtraction of the overlap is the step most often missed — without it, 35 + 28 = 63 already exceeds the total of 60, which is a signal that double-counting has occurred.",
+    "steps": [
+      "Apply inclusion-exclusion: |A ∪ B| = |A| + |B| – |A ∩ B| = 35 + 28 – 15 = 48.",
+      "Employees in neither = Total – |A ∪ B| = 60 – 48 = 12."
+    ],
+    "distractorExplanations": {
+      "A": "3 results from computing |A| + |B| – Total = 35 + 28 – 60 = 3, treating the overlap as the answer. This misinterprets the 63 – 60 = 3 excess as 'neither' instead of as the overlap correction signal.",
+      "B": "17 arises from computing Total – |B| – |A ∩ B| = 60 – 28 – 15 = 17, subtracting only one set and the overlap. This ignores the employees who attended Training A exclusively.",
+      "D": "7 has no clean derivation but might come from computing |A| – |B| = 35 – 28 = 7, mistaking the difference of set sizes for the 'neither' count — a confusion between set subtraction and the inclusion-exclusion formula."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Inclusion-Exclusion: |A ∪ B| = |A| + |B| – |A ∩ B|. Employees in NEITHER = Total – |A ∪ B|. The subtraction of the overlap corrects the double-count of those in both groups."
+    },
+    "tags": [
+      "set-theory",
+      "inclusion-exclusion",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0098",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "subtopic": "Overtime Pay Computation",
+    "difficulty": "Medium",
+    "question": "A government worker earns ₱720 for an 8-hour regular workday. In a given week, she works 40 regular hours and 6 overtime hours at 1.5 times her regular hourly rate. What is her total pay for the week?",
+    "choices": [
+      { "id": "A", "text": "₱3,960" },
+      { "id": "B", "text": "₱4,140" },
+      { "id": "C", "text": "₱4,680" },
+      { "id": "D", "text": "₱4,410" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The hourly rate is the daily rate divided by the number of regular hours per day: ₱720 ÷ 8 = ₱90 per hour. Regular pay for 40 hours: 40 × ₱90 = ₱3,600. Overtime hourly rate = ₱90 × 1.5 = ₱135 per hour. Overtime pay for 6 hours: 6 × ₱135 = ₱810. Total pay = ₱3,600 + ₱810 = ₱4,410. The 1.5 multiplier means each overtime hour earns 50% more than a regular hour — a rule that applies to most government and private-sector overtime arrangements under Philippine labor law.",
+    "steps": [
+      "Regular hourly rate: ₱720 ÷ 8 = ₱90 per hour.",
+      "Regular pay: 40 × ₱90 = ₱3,600.",
+      "OT hourly rate: ₱90 × 1.5 = ₱135 per hour.",
+      "OT pay: 6 × ₱135 = ₱810.",
+      "Total: ₱3,600 + ₱810 = ₱4,410."
+    ],
+    "distractorExplanations": {
+      "A": "₱3,960 = 44 × ₱90, which pays all 46 hours at the regular rate and ignores the overtime premium entirely. The 1.5× multiplier adds ₱45 per overtime hour — forgetting it understates the total pay.",
+      "B": "₱4,140 results from counting only 4 overtime hours instead of 6: 40 × ₱90 + 4 × ₱135 = ₱3,600 + ₱540 = ₱4,140. This is the correct formula applied to the wrong number of OT hours — likely a misread of '6 OT hours' as '4.'",
+      "C": "₱4,680 results from using a 2.0× OT rate instead of 1.5×: OT rate = ₱90 × 2 = ₱180; OT pay = 6 × ₱180 = ₱1,080; total = ₱3,600 + ₱1,080 = ₱4,680. The 1.5× multiplier is the standard CSE and labor-law overtime rate."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "OT pay = OT hours × (Regular hourly rate × 1.5). Regular hourly rate = Daily rate ÷ Regular hours per day. Total pay = Regular hours × Hourly rate + OT hours × (Hourly rate × 1.5)."
+    },
+    "tags": [
+      "money",
+      "overtime-pay",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0099",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Geometry",
+    "subtopic": "Volume of a Rectangular Prism",
+    "difficulty": "Easy",
+    "question": "A rectangular storage box measures 15 cm long, 4 cm wide, and 6 cm tall. What is its volume in cubic centimeters?",
+    "choices": [
+      { "id": "A", "text": "90 cu cm" },
+      { "id": "B", "text": "240 cu cm" },
+      { "id": "C", "text": "360 cu cm" },
+      { "id": "D", "text": "450 cu cm" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The volume of a rectangular prism (a box shape) is found by multiplying all three dimensions together: V = length × width × height. Here: V = 15 × 4 × 6 = 360 cubic centimeters. You can multiply in any order; 15 × 4 = 60, then 60 × 6 = 360. Volume is always expressed in cubic units — cu cm, m³, L, etc. — because it measures three-dimensional space. The most common error is computing only two of the three dimensions, giving an area rather than a volume.",
+    "steps": [
+      "Apply the volume formula: V = l × w × h.",
+      "Substitute: V = 15 × 4 × 6.",
+      "Compute: 15 × 4 = 60; then 60 × 6 = 360 cu cm."
+    ],
+    "distractorExplanations": {
+      "A": "90 cu cm = 15 × 6 = the product of only the length and height, omitting the width of 4. This is the area of one face, not the volume of the box.",
+      "B": "240 cu cm = 15 × 4 × 4 — using the width (4) in place of the height as well. This results from applying the width twice instead of the height (6 cm), a substitution error when identifying which dimension is which.",
+      "D": "450 cu cm = 15 × 6 × 5, using 5 instead of 4 for the width. This is an off-by-one reading error, picking the wrong value for one of the three dimensions."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Volume of rectangular prism = l × w × h (all three dimensions multiplied). Result is in cubic units. Area uses only 2 dimensions; volume needs all 3. Never confuse cu cm (volume) with cm² (area)."
+    },
+    "tags": [
+      "geometry",
+      "volume",
+      "rectangular-prism"
+    ]
+  },
+  {
+    "id": "num-0100",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Geometry",
+    "subtopic": "Interior Angles of Polygons",
+    "difficulty": "Easy",
+    "question": "What is the sum of the interior angles of a regular octagon?",
+    "choices": [
+      { "id": "A", "text": "1,440°" },
+      { "id": "B", "text": "1,260°" },
+      { "id": "C", "text": "1,080°" },
+      { "id": "D", "text": "540°" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The sum of interior angles of any polygon with n sides is given by the formula (n – 2) × 180°. An octagon has n = 8 sides. Sum = (8 – 2) × 180° = 6 × 180° = 1,080°. This formula comes from the fact that any polygon can be divided into (n – 2) non-overlapping triangles from a single interior vertex, and each triangle contributes 180°. For reference: triangle (n=3): 180°; quadrilateral (n=4): 360°; pentagon (n=5): 540°; hexagon (n=6): 720°; heptagon (n=7): 900°; octagon (n=8): 1,080°.",
+    "steps": [
+      "Recall the formula: Sum of interior angles = (n – 2) × 180°.",
+      "An octagon has n = 8 sides.",
+      "Compute: (8 – 2) × 180° = 6 × 180° = 1,080°."
+    ],
+    "distractorExplanations": {
+      "A": "1,440° = 8 × 180°, which applies the formula n × 180° instead of (n – 2) × 180°. The factor (n – 2) accounts for the triangles formed inside the polygon — forgetting to subtract 2 overcounts by two full triangles (360°).",
+      "B": "1,260° = 7 × 180°, which results from using (n – 1) × 180° instead of (n – 2) × 180°. Subtracting 1 instead of 2 from n overcounts by one triangle (180°).",
+      "D": "540° = (5 – 2) × 180°, which is the correct answer for a PENTAGON (5 sides), not an octagon. The formula gives the right result but was applied to the wrong polygon — perhaps from miscounting the sides of an octagon."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Interior angle sum of n-sided polygon = (n – 2) × 180°. Key values: triangle 180°, quadrilateral 360°, pentagon 540°, hexagon 720°, octagon 1,080°. Each additional side adds 180° to the sum."
+    },
+    "tags": [
+      "geometry",
+      "angles",
+      "polygon"
+    ]
+  },
+  {
+    "id": "num-0101",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Geometry",
+    "subtopic": "Pythagorean Theorem",
+    "difficulty": "Easy",
+    "question": "A right triangle has legs measuring 5 cm and 12 cm. What is the length of the hypotenuse?",
+    "choices": [
+      { "id": "A", "text": "17 cm" },
+      { "id": "B", "text": "15 cm" },
+      { "id": "C", "text": "13 cm" },
+      { "id": "D", "text": "11 cm" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The Pythagorean theorem states that in a right triangle, the square of the hypotenuse equals the sum of the squares of the two legs: c² = a² + b². With legs a = 5 cm and b = 12 cm: c² = 5² + 12² = 25 + 144 = 169. Taking the square root: c = √169 = 13 cm. The 5-12-13 triple is one of the classic Pythagorean triples — along with 3-4-5 and 8-15-17 — worth memorising for the CSE because recognising one spares the arithmetic. These triples also scale: 10-24-26, 15-36-39, etc.",
+    "steps": [
+      "Apply the Pythagorean theorem: c² = a² + b².",
+      "Substitute: c² = 5² + 12² = 25 + 144 = 169.",
+      "Take the square root: c = √169 = 13 cm."
+    ],
+    "distractorExplanations": {
+      "A": "17 cm = 5 + 12, which simply adds the two leg lengths instead of applying the Pythagorean theorem. Adding legs gives the perimeter's partial sum, not the hypotenuse. The theorem requires squaring, summing, then taking the square root.",
+      "B": "15 cm is the hypotenuse of the 9-12-15 Pythagorean triple (which is 3-4-5 scaled by 3). Confusing 5-12-13 with 9-12-15 is a common recall error — both share the leg of 12, but the other legs (5 vs 9) and hypotenuses (13 vs 15) differ.",
+      "D": "11 cm is below both legs, making it impossible as a hypotenuse — the hypotenuse is always the longest side of a right triangle. This value might arise from an arithmetic error when computing √169, perhaps misremembering √121 = 11."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Pythagorean theorem: c² = a² + b², where c is the hypotenuse (longest side). Memorise common triples: 3-4-5, 5-12-13, 8-15-17. Their multiples (6-8-10, 10-24-26, etc.) also work."
+    },
+    "tags": [
+      "geometry",
+      "pythagorean-theorem",
+      "right-triangle"
+    ]
+  }
+]
