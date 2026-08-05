@@ -6,6 +6,7 @@ import { simulationOptions } from '@/lib/examEngine';
 import { formatDuration } from '@/lib/time';
 import { useAppContext } from '@/components/shell/AppLayout';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 /**
  * Exam Simulation — the real thing. Timed, official proportions, no feedback
@@ -13,6 +14,7 @@ import type { ExamLaunchRequest } from '@/pages/ExamPage';
  * user ever starts.
  */
 export const SimulationPage: React.FC = () => {
+  useDocumentTitle('Exam Simulation');
   const navigate = useNavigate();
   const { examLevel } = useAppContext();
   const options = useMemo(() => {

@@ -3,8 +3,10 @@ import { CheckCircle2, ChevronDown, ChevronUp, Download, History, XCircle } from
 import { useAttempts } from '@/hooks/useAttempts';
 import { attemptsToCsv, downloadCsv } from '@/lib/csv';
 import { formatDateTime, formatDuration } from '@/lib/time';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 export const HistoryPage: React.FC = () => {
+  useDocumentTitle('History');
   const { attempts, loading, error } = useAttempts();
   const [expandedId, setExpandedId] = useState<string | null>(null);
 

@@ -18,6 +18,7 @@ import { loadActiveSession } from '@/lib/sessionStorage';
 import { formatDate, formatDuration } from '@/lib/time';
 import { useAppContext } from '@/components/shell/AppLayout';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 const StatCard: React.FC<{
   icon: React.ReactNode;
@@ -38,6 +39,7 @@ const StatCard: React.FC<{
 );
 
 export const DashboardPage: React.FC = () => {
+  useDocumentTitle('Dashboard');
   const navigate = useNavigate();
   const { examLevel } = useAppContext();
   const { attempts, loading } = useAttempts();
