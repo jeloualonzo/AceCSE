@@ -7,9 +7,11 @@ lie to the user**. No fake data, no inflated question counts, no fabricated prog
 ## Current State (2026-08)
 
 - Full rewrite from the original scaffold: real routing, real auth, real persistence.
-- Question bank: ~239 validated original questions across all five subjects
-  (`content/questions/*.json`). Full 170-item Professional simulation is unlocked; the
-  Subprofessional full exam stays locked until Clerical Ability supply reaches 35.
+- Question bank: 424 validated original questions across all five subjects
+  (`content/questions/<subject>/*.json` — one file per authored batch; see
+  `docs/content/JSON_SPEC.md`, which is the schema authority, not this file). Both the
+  full 170-item Professional and full 165-item Subprofessional simulations are unlocked
+  (every subject meets its blueprint supply).
 - Firebase: Google sign-in ONLY (product decision — no email/password, no anonymous yet),
   Firestore profiles + attempt history with offline persistence, least-privilege rules in
   `firestore.rules`.
@@ -22,13 +24,27 @@ lie to the user**. No fake data, no inflated question counts, no fabricated prog
 Landing (/) → Auth (/auth) → App shell (/app/*) → Exam focus mode (/app/exam)
 ```
 
+- **Route guards:** `RequireAuth` protects `/app/*` (guests → `/auth` with a `from` deep link);
+  `RedirectWhenAuthed` makes `/` and `/auth` guest-only (signed-in users → dashboard). Sign-out
+  uses the `signingOut` flag in AuthContext so the landing page renders during the transition
+  without bouncing back into the app.
+- **Code splitting:** every page is a `React.lazy` route chunk. Firestore is only reached through
+  dynamic imports in `src/services/*` (facade + `*Impl.ts`) and lives in its own chunk — never
+  import `src/lib/firestore.ts` statically.
+- **Lazy question bank:** `src/data/questionBank.ts` glob-imports content lazily; each dataset
+  file is its own content-hashed chunk fetched when a session needs that subject. Availability
+  counts come from `virtual:question-manifest`, computed at build time by
+  `scripts/vite-plugin-question-manifest.ts`. Adding a batch file requires no code change.
+
 - **`src/config/exam.ts`** — single source of truth for the CSC blueprint: subject
   distributions (Pro 40/40/50/40 = 170 over 190 min; Sub 40/35/50/40 = 165 over 160 min),
   80% passing mark, simulation tiers (20/50/100/full), practice sizes.
 - **`src/lib/examEngine.ts`** — honest session generation. Samples WITHOUT replacement,
   never relabels subjects, throws `InsufficientBankError` instead of repeating questions.
   Simulation tiers are offered only when every subject has enough unique supply
-  (`simulationOptions`). Largest-remainder method scales distributions.
+  (`simulationOptions`, synchronous via the build-time manifest). Session builders are
+  async — they lazy-load only the subjects the session needs. Largest-remainder method
+  scales distributions.
 - **`src/lib/grading.ts`** — pure `gradeSession(session, index) → Attempt`.
 - **`src/lib/analytics.ts`** — all dashboard stats derive from real attempts; fields are
   `null` (rendered as honest empty states) when no data exists.
@@ -50,17 +66,24 @@ users/{uid}/attempts/{id}      immutable Attempt records (mode, level, counts, p
 ```
 
 Rules: default-deny, owner-only access, attempts immutable after create, field validation on
-writes. Questions ship as static JSON (no Firestore reads); when the bank grows large or needs
-moderation, migrate to a `questions` collection with public read + admin-only write.
+writes, `createdAt` immutable on profile updates. Questions ship as static JSON (no Firestore
+reads) as lazy per-file chunks, so bank growth no longer affects the initial payload; migrate to
+a `questions` collection only if moderation/hotfix speed or non-engineer authorship demands it
+(see docs/content/CONTENT_PIPELINE.md, "Firestore migration path").
 
 ## Question Bank
 
-- Files: `content/questions/{numerical,analytical,verbal,clerical,general,seed}.json`.
+- Files: `content/questions/<subject>/*.json` where `<subject>` ∈ numerical, analytical,
+  verbal, clerical, general-information. `core.json` is each subject's baseline; every new
+  batch is its own dated file (see `docs/content/JSON_SPEC.md` §1). The directory convention
+  is load-bearing — the runtime fetches by subject directory and the validator enforces the
+  subject/directory match.
 - Schema: canonical `Question` in `src/types/index.ts` — id, examLevel, subject, topic,
   difficulty, question, passage?, choices (A–D, in order), correctOptionId, explanation,
   reference?, tags.
-- **`npm run validate:questions`** enforces structure, unique ids, unique stem+choices, and
-  reports per-subject supply and answer-letter balance. Run it after any content change.
+- **`npm run validate:questions`** enforces structure, unique ids, unique stem+choices,
+  teaching-quality gates, and the subject/directory convention, and reports per-subject
+  supply and answer-letter balance. Run it after any content change.
 - Content rules: original wording only; verify facts against primary sources (Constitution,
   Republic Acts on lawphil.net, csc.gov.ph); cite `reference` for fact-based items; verify
   all math/logic computationally before committing; keep answer letters balanced.
@@ -76,7 +99,7 @@ moderation, migrate to a `questions` collection with public read + admin-only wr
 
 ## Known Limitations / Next Steps
 
-- Subprofessional full exam locked (needs ≥ 35 clerical items; currently 33).
+- (resolved 2026-08) Subprofessional full exam unlocked — Clerical Ability supply is 53 ≥ 35.
 - No tests yet — the engine (`examEngine`, `grading`, `analytics`) is pure and highly testable;
   add Vitest when test infra lands.
 - Attempt review stores question ids; if a question is removed from the bank, grading skips it

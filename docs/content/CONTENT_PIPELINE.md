@@ -310,7 +310,8 @@ cross-file duplicate stems only surface once the batch file is in place — foll
 `npm run typecheck` and `npm run build`.
 
 **Critical repo hazard:** `src/data/questionBank.ts` glob-imports `../../content/questions/**/*.json`
-eagerly. **Any** `.json` file anywhere under `content/questions/` ships to production. Staging files,
+(lazily — each file becomes its own downloadable chunk). **Any** `.json` file anywhere under
+`content/questions/` ships to production and is counted in the supply manifest. Staging files,
 rejected batches, and backups must live outside that tree. Never write `out_verbal.json` into it.
 This hazard is exactly why the batch filename is a standard rather than a preference: a
 convention-conforming name is the signal that a file has passed QA and is meant to ship.
@@ -362,7 +363,9 @@ it is just noisier to browse. Never consolidate to "tidy up" mid-import.
 **In:** merged repo. **Out:** the running app.
 **Actor:** build and deploy.
 
-`src/data/questionBank.ts` loads the glob at build time and re-validates defensively at runtime. Its
+`src/data/questionBank.ts` discovers files at build time (lazy glob + build-time supply manifest;
+each dataset file is fetched on demand as its own cached chunk) and re-validates defensively when a
+chunk loads. Its
 runtime filter is **looser** than the build validator: it requires only `id`, `question`,
 `explanation`, `subject`, `topic`, valid `examLevel` and `difficulty`, 4 choices with ids in the A–D
 set (order not checked), a valid `correctOptionId`, and an array `tags`. Items failing that are
@@ -500,8 +503,10 @@ what keeps a stray staging file from shipping through the eager glob.
 # Firestore migration path
 
 **Current state, stated honestly:** questions ship as static JSON. There are **no Firestore reads for
-questions**. `src/data/questionBank.ts` eagerly glob-imports every `.json` file under
-`content/questions/`, so the entire bank is bundled into the JavaScript payload at build time.
+questions**. `src/data/questionBank.ts` lazily glob-imports every `.json` file under
+`content/questions/`; each file is its own content-hashed chunk, downloaded only when a session needs
+that subject and then cached by the browser and the CDN edge. A build-time manifest (a few hundred
+bytes) supplies availability counts, so **nothing about the initial payload grows as the bank grows**.
 Firestore currently holds only `users/{uid}` profiles and `users/{uid}/attempts/{id}` records, under
 default-deny, owner-only rules with attempts immutable after create.
 
@@ -513,10 +518,12 @@ open question is when.
 
 Migrate when **any one** of these becomes true:
 
-1. **Bundle size.** At ~2.1 KB per item, the bank is ~900 KB of JSON today and every byte is in the
-   initial bundle. 1,500 items ≈ 3.2 MB, 3,000 items ≈ 6.3 MB. Past roughly **1,000–1,200 items
-   (~2.5 MB)** the first-load cost stops being defensible on Philippine mobile connections, which is
-   the primary audience. This is the trigger most likely to fire first.
+1. **Per-session download size.** Bundle size is no longer the trigger it once was: the lazy
+   per-file chunking keeps the initial payload constant regardless of bank size, and a session only
+   downloads its own subjects, once, into long-lived caches. The residual trigger is *per-subject*
+   weight — at ~2.1 KB per item, a 4,000-item subject is ~8 MB on a cold cache for the first
+   session that touches it. Past roughly **2,000–3,000 items per subject**, consider splitting hot
+   subsets or moving to a fetch-on-demand index. This trigger now fires far later than the others.
 2. **Moderation need.** The moment a wrong answer must be corrected faster than a redeploy, or a bad
    item must be pulled without shipping code, content has outgrown the repo.
 3. **Non-engineer authorship.** If anyone who cannot open a pull request needs to add or edit
@@ -535,10 +542,9 @@ with zero read cost.
   `allow write: if <admin claim>`. Admin identity needs a mechanism that does not exist yet — a
   custom claim or an `admins/{uid}` document — because the app is currently Google-sign-in-only with
   no role model.
-- **Loader.** `questionBank.ts` becomes async. Every consumer of the currently-synchronous
-  `QUESTION_BANK` and `QUESTION_INDEX` exports has to handle a loading state:
-  `src/lib/examEngine.ts`, `src/lib/grading.ts`, `src/lib/analytics.ts`, `ExamPage`, and the landing
-  page's sample question.
+- **Loader.** `questionBank.ts` is already async (`loadQuestions` / `loadQuestionIndex` behind
+  lazy chunks), and every consumer already handles a loading state — a Firestore-backed loader
+  would slot in behind the same API without touching the engine or the pages.
 - **Caching.** Enable Firestore offline persistence for questions (profiles and attempts already use
   it) and read a version document so the client can skip a full re-fetch when nothing changed. Full
   re-download on every cold start would be worse than the bundle it replaced.
@@ -558,9 +564,11 @@ with zero read cost.
   per session per user is 3,000 document reads; with an offline cache plus a version check it is
   approximately zero on repeat visits. Do not ship the migration without the version document.
 
-**Recommended sequencing:** stay static through ~1,000 items. Between 1,000 and 1,500, implement the
-CI-publish replica with an `active` flag, a version document, and offline persistence, keeping the
-repo authoritative. Only build an admin authoring UI when a non-engineer actually needs one.
+**Recommended sequencing:** with lazy per-subject loading in place, stay static well past the old
+~1,000-item ceiling — the migration is now motivated by moderation/hotfix speed or non-engineer
+authorship, not payload size. When one of those arrives, implement the CI-publish replica with an
+`active` flag, a version document, and offline persistence, keeping the repo authoritative. Only
+build an admin authoring UI when a non-engineer actually needs one.
 
 ---
 

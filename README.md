@@ -35,6 +35,9 @@ from your actual results.
   devices.
 - **Offline-friendly.** Firestore offline persistence keeps history readable and queues writes
   until connectivity returns.
+- **Fast by architecture.** Route-level code splitting, a lazily loaded question bank (each
+  content batch is its own cached chunk, downloaded only when a session needs that subject),
+  and a deferred Firestore SDK keep the first load small no matter how large the bank grows.
 - **Verified question bank.** Original items authored against primary sources (1987
   Constitution, RA 6713, RA 9003, RA 8749, and standard quantitative/verbal conventions),
   with per-item explanations, difficulty, topics, tags, and references. Structural validation
@@ -101,7 +104,7 @@ npm run preview        # preview the production build
 ## Project Structure
 
 ```
-content/questions/     Question bank (JSON, validated)
+content/questions/     Question bank (JSON, one directory per subject, validated)
 scripts/               Build & validation scripts
 src/
   components/          UI components (auth, exam, landing, shell)

@@ -23,10 +23,17 @@ AceCSE/content/questions/
 Each file is a **JSON array of question objects** at the root. UTF-8, 2-space indent, no trailing
 commas, no comments.
 
-The runtime bank (`src/data/questionBank.ts`) discovers files with
-`import.meta.glob('../../content/questions/**/*.json')`, so **any** `.json` file anywhere under
-`content/questions/` (including new subdirectories) is picked up with no code change. The build-time
-validator walks the same tree recursively.
+The runtime bank (`src/data/questionBank.ts`) discovers files with a lazy
+`import.meta.glob('../../content/questions/**/*.json')` — each file becomes its own on-demand,
+content-hashed chunk — plus a build-time supply manifest
+(`scripts/vite-plugin-question-manifest.ts`), so **any** `.json` file placed in one of the five
+subject directories above is picked up with no code change. The build-time validator walks the same
+tree recursively.
+
+**The directory is load-bearing:** questions are fetched by subject directory at runtime, so every
+question in a file must carry the subject its directory maps to (`numerical/` ⇒ "Numerical
+Reasoning", etc.). The validator fails a batch whose subject and directory disagree, and rejects
+files outside the five subject directories.
 
 `core.json` is each subject's **baseline** file — the historical accumulation. It is **not** where new
 work goes. Every new batch is committed as its own file in the subject directory, named

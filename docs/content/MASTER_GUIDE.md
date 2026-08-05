@@ -385,20 +385,32 @@ Non-conforming — do not do this: `Batch_2.json`, `verbal-new.json`, `2026_08_0
 - **Keeps `core.json` stable.** A file that rarely changes is a file whose diffs are meaningful, and
   it stops being a perpetual source of churn and conflict.
 
-**Mechanics — no code change is required.** `src/data/questionBank.ts` discovers content with
-`import.meta.glob('../../content/questions/**/*.json', { eager: true })`, and
-`scripts/validate-questions.mjs` walks the same tree recursively, so a correctly placed batch file is
-loaded and validated automatically the moment it exists.
+**Mechanics — no code change is required.** `src/data/questionBank.ts` discovers content with a
+**lazy** `import.meta.glob('../../content/questions/**/*.json')` (each dataset file becomes its own
+content-hashed chunk, downloaded only when a session needs that subject), a build-time Vite plugin
+(`scripts/vite-plugin-question-manifest.ts`) computes the supply manifest that drives all
+availability UI, and `scripts/validate-questions.mjs` walks the same tree recursively — so a
+correctly placed batch file is loaded, counted, and validated automatically the moment it exists.
+
+One consequence of the lazy architecture is worth internalizing: **adding a batch never bloats the
+app.** A new file is a new chunk; existing chunks keep their hashes and stay cached on users'
+devices. This is what makes "thousands of questions" viable with GitHub as the source of truth.
 
 Two loader behaviours are worth knowing:
 
-1. Files are loaded in path order (`localeCompare`), and a date-prefixed filename sorts **before**
-   `core.json` because digits precede letters. Ordering has no effect on exam generation, which
-   samples the whole bank, but it does decide which copy of a duplicated id survives: the loader
-   keeps the **first** id it sees and drops later ones with a dev-only warning.
+1. Within a subject directory, files are loaded in path order, and a date-prefixed filename sorts
+   **before** `core.json` because digits precede letters. Ordering has no effect on exam
+   generation, which samples the whole bank, but it does decide which copy of a duplicated id
+   survives: the loader keeps the **first** id it sees and drops later ones with a dev-only warning.
 2. That silent drop is backstopped by the build validator, which treats a duplicate id as a **fatal**
    error. So if a merge maintenance pass copies items into `core.json` and forgets to delete the
    batch file, `npm run validate:questions` fails loudly rather than shipping a half-shadowed bank.
+
+**Directory convention is load-bearing.** The runtime fetches questions *by subject directory*
+(`numerical/`, `analytical/`, `verbal/`, `clerical/`, `general-information/`), so every question in
+a file must carry the subject its directory maps to. The validator enforces this
+(`subject does not match its directory` is fatal). Never place a batch file at the tree root or in
+a directory outside that set.
 
 **Hazard.** The glob ships *anything* under `content/questions/`. Only validated, accepted batches
 belong there. Staging output, rejected items, and backups must live outside that tree — see the
