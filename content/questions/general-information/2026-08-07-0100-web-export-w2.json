@@ -1,0 +1,921 @@
+[
+  {
+    "id": "gen-0125",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine History",
+    "subtopic": "Tejeros Convention — Transfer of Revolutionary Leadership",
+    "difficulty": "Hard",
+    "question": "At the Tejeros Convention on March 22, 1897, which office was Andrés Bonifacio elected to — and what did he do immediately after Daniel Tirona challenged his fitness for that position?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "President; he accepted the result and took the oath of office"
+      },
+      {
+        "id": "B",
+        "text": "Captain-General; he withdrew his candidacy in favor of Artemio Ricarte"
+      },
+      {
+        "id": "C",
+        "text": "Vice-President; he demanded a recount before eventually conceding"
+      },
+      {
+        "id": "D",
+        "text": "Director of the Interior; he declared the entire assembly null and void and left"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "At the Tejeros Convention, Andrés Bonifacio — who presided over the election — was elected Director of the Interior. Magdalo delegate Daniel Tirona then rose and publicly argued that the position required a lawyer, directly insulting Bonifacio. Feeling humiliated, Bonifacio declared the proceedings null and void and led his supporters out of the estate. The following day, he and his followers formalized their rejection by signing the Acta de Tejeros. The convention is regarded by historians as the first presidential election in Philippine history (limited to Katipuneros), and it effectively ended Bonifacio's supremacy in the revolution — Emilio Aguinaldo was elected President with 146 of 256 votes.",
+    "distractorExplanations": {
+      "A": "Bonifacio did not run for President, nor did he accept any outcome. He was elected to the Interior post, not the presidency; Aguinaldo won the presidency with 57% of the votes cast that day.",
+      "B": "Artemio Ricarte was elected Captain-General on his own merits. Bonifacio did not withdraw a candidacy for that office; the two men ran for different positions, and Bonifacio's anger centered on the challenge to his Interior directorship.",
+      "C": "Bonifacio was not a candidate for Vice-President; Mariano Trias won that post. Calling for a recount was not Bonifacio's response — his reaction was to declare the entire convention invalid, not to contest a specific count."
+    },
+    "tip": {
+      "label": "Historical Note",
+      "text": "Tejeros Convention (March 22, 1897): Aguinaldo = President, Trias = VP, Ricarte = Captain-General, Bonifacio = Director of Interior. Tirona's challenge to Bonifacio triggered the Acta de Tejeros and the Naic Pact — the split that isolated Bonifacio and led to his arrest and execution in May 1897."
+    },
+    "reference": "National Historical Commission of the Philippines; Tejeros Convention records, March 22–23, 1897",
+    "tags": [
+      "Philippine history",
+      "Tejeros Convention",
+      "Bonifacio",
+      "Aguinaldo",
+      "Philippine Revolution"
+    ]
+  },
+  {
+    "id": "gen-0126",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine History",
+    "subtopic": "Katipunan Founding — Date and Location",
+    "difficulty": "Medium",
+    "question": "On what date was the Kataastaasan, Kagalanggalangang Katipunan ng mga Anak ng Bayan (KKK) founded, and in whose house was the founding meeting held?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "July 7, 1892, in the house of Deodato Arellano"
+      },
+      {
+        "id": "B",
+        "text": "August 23, 1896, in the house of Andrés Bonifacio"
+      },
+      {
+        "id": "C",
+        "text": "June 12, 1898, in the house of Emilio Aguinaldo"
+      },
+      {
+        "id": "D",
+        "text": "July 4, 1892, in the house of Ladislao Diwa"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The Katipunan was founded on July 7, 1892 — just three days after José Rizal was deported to Dapitan — in the house of Deodato Arellano at 734 Calle El Cano (corner Azcarraga), Tondo, Manila. The founding members included Andrés Bonifacio, Teodoro Plata, Ladislao Diwa, and a handful of others. Deodato Arellano served as the first Supremo; he was later succeeded by Román Basa and then Andrés Bonifacio, under whose leadership the Katipunan grew into the mass organization that ignited the 1896 revolution. August 23, 1896 is the date of the Cry of Pugad Lawin — the actual outbreak of the revolution — not the founding.",
+    "distractorExplanations": {
+      "B": "August 23, 1896 is the date of the Cry of Pugad Lawin, when Katipuneros tore their cedulas and committed to armed uprising. It is a major revolutionary date but not the Katipunan's founding date, which was four years earlier.",
+      "C": "June 12, 1898 is Philippine Independence Day — the date Aguinaldo proclaimed independence in Kawit, Cavite. Aguinaldo's house was the site of that proclamation, not of the Katipunan's founding.",
+      "D": "Ladislao Diwa was indeed one of the Katipunan's founding members, but the founding meeting was held in Deodato Arellano's house. The date of July 4 is also wrong — it is the date of American independence, not the Katipunan's."
+    },
+    "tip": {
+      "label": "Historical Note",
+      "text": "Katipunan founded July 7, 1892 (Arellano's house). Cry of Pugad Lawin = August 23, 1896 (revolution begins). Independence proclaimed = June 12, 1898 (Kawit, Cavite). Three dates, three different events — confusion among them is a common CSE trap."
+    },
+    "reference": "National Historical Commission of the Philippines; nhcp.gov.ph — Andrés Bonifacio and the Katipunan",
+    "tags": [
+      "Philippine history",
+      "Katipunan",
+      "Bonifacio",
+      "1892",
+      "founding"
+    ]
+  },
+  {
+    "id": "gen-0127",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Culture and National Symbols",
+    "subtopic": "National Flower and Tree — Proclamation No. 652",
+    "difficulty": "Medium",
+    "question": "The sampaguita and the narra were officially proclaimed the national flower and national tree of the Philippines, respectively, through which proclamation and by whom?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Proclamation No. 615 by President Fidel V. Ramos in 1995"
+      },
+      {
+        "id": "B",
+        "text": "Republic Act No. 8491, the Flag and Heraldic Code, enacted in 1998"
+      },
+      {
+        "id": "C",
+        "text": "Proclamation No. 652 by Governor-General Frank Murphy in 1934"
+      },
+      {
+        "id": "D",
+        "text": "Executive Order No. 239 by President Manuel L. Quezon in 1937"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "During the Commonwealth era, Governor-General Frank Murphy issued Proclamation No. 652 in 1934, simultaneously declaring the sampaguita (Jasminum sambac) the national flower and the narra (Pterocarpus indicus) the national tree of the Philippines. Both designations originated from executive proclamations — not from statutes — making them official symbols without a legislative basis. The National Commission for Culture and the Arts (NCCA) records this proclamation as the source. Proclamation No. 615 (1995) by Ramos declared the Philippine eagle the national bird; RA 8491 governs the flag, anthem, and heraldic devices — it is not the source of the flower and tree designations.",
+    "distractorExplanations": {
+      "A": "Proclamation No. 615 was issued by President Fidel V. Ramos in 1995 and declared the Philippine eagle the national bird — not the sampaguita or narra. Conflating these two proclamations is a common CSE error.",
+      "B": "RA 8491, the Flag and Heraldic Code of the Philippines, enacted in 1998, governs the national flag, anthem, coat-of-arms, motto, and other heraldic devices. It does not establish the national flower or national tree.",
+      "D": "No such Executive Order by Quezon is the source of the national flower or national tree designations. The NCCA's authoritative account credits Proclamation No. 652 (1934) by Governor-General Murphy during the Commonwealth period."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "National symbols by proclamation: sampaguita + narra = Proc. 652 (Gov.-Gen. Murphy, 1934); Philippine Eagle = Proc. 615 (Ramos, 1995); Philippine Pearl = Proc. 905 (Ramos, 1996). RA 8491 = flag, anthem, heraldic code — NOT flora or fauna symbols."
+    },
+    "reference": "NCCA, In Focus: Official National Symbols of the Philippines; Proclamation No. 652, s. 1934",
+    "tags": [
+      "Philippine culture",
+      "national symbols",
+      "sampaguita",
+      "narra",
+      "Proclamation 652"
+    ]
+  },
+  {
+    "id": "gen-0128",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Culture and National Symbols",
+    "subtopic": "National Motto — RA 8491 Section 40",
+    "difficulty": "Easy",
+    "question": "Under Section 40 of Republic Act No. 8491 (Flag and Heraldic Code of the Philippines), what is the official national motto of the Philippines?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Maka-Diyos, Maka-Tao, Makakalikasan at Makabansa"
+      },
+      {
+        "id": "B",
+        "text": "Bansa, Katarungan, Kalayaan"
+      },
+      {
+        "id": "C",
+        "text": "Isang Bansa, Isang Diwa"
+      },
+      {
+        "id": "D",
+        "text": "Pagkamaka-Diyos, Pagkamaka-Tao, Pagkamakabansa"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Section 40 of RA 8491 declares: 'The National Motto shall be \"MAKA-DIYOS, MAKA-TAO, MAKAKALIKASAN AT MAKABANSA.\"' This four-part motto — love of God, love of people, love of nature, love of country — is embedded in the national flag's sun and stars symbolism and printed in the 1987 Constitution's Preamble. The motto was given statutory force through RA 8491, which consolidated Philippine heraldic standards when enacted on February 12, 1998. Examinees frequently encounter variations of this motto with different word orders or phrasings; only the exact statutory text is correct.",
+    "distractorExplanations": {
+      "B": "Bansa, Katarungan, Kalayaan (Nation, Justice, Freedom) is not the national motto. These words appear in various civic contexts but are not the statutory motto enacted under RA 8491.",
+      "C": "Isang Bansa, Isang Diwa (One Nation, One Spirit) was a slogan used during the Marcos-era nationalism campaigns but was never legislated as the official national motto. It has no basis in RA 8491.",
+      "D": "Pagkamaka-Diyos, Pagkamaka-Tao, Pagkamakabansa is a close paraphrase that omits the 'Makakalikasan' (love of nature) element. The statutory motto expressly includes four — not three — elements, and the word forms used in RA 8491 differ slightly from this option."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "RA 8491, Sec. 40: National Motto = 'MAKA-DIYOS, MAKA-TAO, MAKAKALIKASAN AT MAKABANSA.' Four elements in order: God → People → Nature → Country. MAKABANSA (not MAKABAYAN) is the statutory word. Memorise all four — the CSE has tested both the motto text and its statutory basis."
+    },
+    "reference": "RA 8491 (Flag and Heraldic Code of the Philippines), Sec. 40",
+    "tags": [
+      "Philippine culture",
+      "national symbols",
+      "national motto",
+      "RA 8491"
+    ]
+  },
+  {
+    "id": "gen-0129",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Geography",
+    "subtopic": "Island Groups and Major Cities",
+    "difficulty": "Easy",
+    "question": "The Philippines is divided into three major island groups. Which of the following correctly identifies the largest city in each island group based on population?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Luzon — Manila; Visayas — Iloilo City; Mindanao — General Santos City"
+      },
+      {
+        "id": "B",
+        "text": "Luzon — Quezon City; Visayas — Cebu City; Mindanao — Davao City"
+      },
+      {
+        "id": "C",
+        "text": "Luzon — Caloocan; Visayas — Bacolod City; Mindanao — Cagayan de Oro City"
+      },
+      {
+        "id": "D",
+        "text": "Luzon — Manila; Visayas — Cebu City; Mindanao — Zamboanga City"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Based on the 2020 census, Quezon City (approximately 2.96 million) is the most populated city in Luzon, Cebu City (approximately 964,000) is the most populated in the Visayas, and Davao City (approximately 1.78 million) is the most populated in Mindanao. While Manila is the national capital and historically more prominent in popular imagination, Quezon City has surpassed it in population. Cebu City is the primary urban center of the Visayas and the country's second-largest metropolitan area. Davao City, in the Davao Region (Region XI), is Mindanao's dominant city.",
+    "distractorExplanations": {
+      "A": "Manila (not Quezon City) is incorrectly listed as Luzon's largest city by population — Quezon City has surpassed Manila. Iloilo City and General Santos City are important regional centers but are not the most populous in the Visayas and Mindanao respectively.",
+      "C": "Caloocan is part of Metro Manila and is indeed large, but Quezon City is more populous. Bacolod is the capital of Negros Occidental, and Cagayan de Oro is Region X's center — neither tops their respective island group's population charts.",
+      "D": "Manila is the national capital but is not the most populous city in the Philippines; Quezon City outranks it. Zamboanga City, while the largest city in the Zamboanga Peninsula, trails Davao City in Mindanao's overall population ranking."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Largest cities by island group (2020 Census): Luzon = Quezon City (≈2.96 M); Mindanao = Davao City (≈1.78 M); Visayas = Cebu City (≈964 K). Quezon City is the Philippines' most populous city — not Manila, which is the capital but not the largest."
+    },
+    "reference": "Philippine Statistics Authority, 2020 Census of Population and Housing; philatlas.com island groups data",
+    "tags": [
+      "Philippine geography",
+      "island groups",
+      "major cities",
+      "Luzon Visayas Mindanao"
+    ]
+  },
+  {
+    "id": "gen-0130",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Geography",
+    "subtopic": "Extreme Points — Northernmost and Southernmost",
+    "difficulty": "Hard",
+    "question": "Which of the following correctly identifies the northernmost and southernmost municipalities of the Philippines?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Northernmost — Aparri, Cagayan; Southernmost — Jolo, Sulu"
+      },
+      {
+        "id": "B",
+        "text": "Northernmost — Batanes; Southernmost — Tawi-Tawi"
+      },
+      {
+        "id": "C",
+        "text": "Northernmost — Cagayan de Oro; Southernmost — General Santos City"
+      },
+      {
+        "id": "D",
+        "text": "Northernmost — Itbayat, Batanes; Southernmost — Sitangkai, Tawi-Tawi"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The northernmost municipality of the Philippines is Itbayat in Batanes province, and the southernmost is Sitangkai in Tawi-Tawi. Both of these are precise town-level designations verified by geographic coordinates. A widespread misconception taught in many schools holds that the northernmost point is Aparri (Cagayan) and the southernmost is Jolo (Sulu) — but these are incorrect. Aparri is only the northernmost point of the main Luzon island, while Itbayat in the Batanes island group lies farther north. Similarly, Sitangkai is located in the Turtle Islands area of Tawi-Tawi, which lies farther south than the island of Jolo.",
+    "distractorExplanations": {
+      "A": "Aparri (Cagayan) and Jolo (Sulu) are among the most commonly taught extreme points in Philippine textbooks, but both are geographically incorrect at the national level. Aparri is the northernmost town of Luzon's main island, not of the whole Philippine archipelago. Jolo is not the southernmost municipality.",
+      "B": "Batanes and Tawi-Tawi are the correct provinces, but naming only the province without specifying the municipality is imprecise. The question asks for the specific municipalities — Itbayat and Sitangkai — which are the exact extreme-point towns.",
+      "C": "Cagayan de Oro is in northern Mindanao (Region X) and General Santos City is in Region XII — neither is an extreme point of the Philippine archipelago. These are major cities, not the northernmost or southernmost municipalities."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Extreme points of the Philippines: Northernmost = Itbayat, Batanes (not Aparri). Southernmost = Sitangkai, Tawi-Tawi (not Jolo). This correction has appeared in government geography materials and is a known CSE trap based on outdated textbook teachings."
+    },
+    "reference": "Philippine Statistics Authority; PhilAtlas.com Island Groups Data — Extreme Points by Town Center (verified geographic coordinates)",
+    "tags": [
+      "Philippine geography",
+      "extreme points",
+      "Batanes",
+      "Tawi-Tawi",
+      "Itbayat"
+    ]
+  },
+  {
+    "id": "gen-0131",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Local Government Code RA 7160",
+    "subtopic": "General Welfare Clause — Section 16",
+    "difficulty": "Medium",
+    "question": "Under Section 16 of the Local Government Code of 1991 (RA 7160), commonly referred to as the General Welfare Clause, which of the following most accurately describes the scope of powers that a local government unit may exercise?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Only powers expressly enumerated in the Local Government Code, strictly interpreted"
+      },
+      {
+        "id": "B",
+        "text": "Powers expressly granted, those necessarily implied, and powers necessary, appropriate, or incidental to efficient and effective governance and the promotion of the general welfare"
+      },
+      {
+        "id": "C",
+        "text": "All powers of the national government, as delegated to LGUs by the President through executive order"
+      },
+      {
+        "id": "D",
+        "text": "Powers limited to the collection of local taxes and the delivery of basic health services"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Section 16 of RA 7160 is the broadest enabling provision in local government law. It provides: 'Every local government unit shall exercise the powers expressly granted, those necessarily implied therefrom, as well as powers necessary, appropriate, or incidental for its efficient and effective governance, and those which are essential to the promotion of the general welfare.' The section goes on to list specific welfare goals — preservation of culture, health and safety, balanced ecology, scientific development, public morals, economic prosperity, social justice, full employment, peace and order, and the comfort and convenience of inhabitants. This clause is the constitutional and statutory basis for LGU police power, and courts interpret it liberally in favor of LGUs under Section 5(a) of the same Code.",
+    "distractorExplanations": {
+      "A": "Strict enumeration of powers is the opposite of what Section 5(a) and Section 16 of RA 7160 prescribe. The Code explicitly requires any doubt about an LGU's power to be resolved in favor of devolution — a liberal, not strict, interpretive rule.",
+      "C": "LGUs do not receive a blanket delegation of all national-government powers. The Constitution and RA 7160 give LGUs their own sphere of autonomy and the powers necessary for local welfare — but that is not the same as exercising national powers by executive delegation.",
+      "D": "Tax collection and health service delivery are just two of many functions assigned to LGUs. Limiting the answer to these two enormously understates the breadth of the General Welfare Clause, which covers culture, ecology, morals, economic development, peace and order, and more."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "RA 7160, Sec. 16 (General Welfare Clause): LGUs may exercise (1) expressly granted powers, (2) implied powers, (3) powers incidental to efficient governance, and (4) powers essential to general welfare. Sec. 5(a): any doubt about an LGU's power is resolved in its favor — liberal interpretation rule."
+    },
+    "reference": "RA 7160 (Local Government Code of 1991), Sec. 16",
+    "tags": [
+      "RA 7160",
+      "local government",
+      "general welfare clause",
+      "LGU powers",
+      "section 16"
+    ]
+  },
+  {
+    "id": "gen-0132",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Local Government Code RA 7160",
+    "subtopic": "Term of Office of Local Elective Officials",
+    "difficulty": "Easy",
+    "question": "Under Section 43 of RA 7160, what is the term of office of elective local officials such as governors, mayors, and sanggunian members — and what is the consecutive-term limit for the same position?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Four years; not more than two consecutive terms"
+      },
+      {
+        "id": "B",
+        "text": "Six years; not more than two consecutive terms"
+      },
+      {
+        "id": "C",
+        "text": "Three years; not more than three consecutive terms"
+      },
+      {
+        "id": "D",
+        "text": "Three years; not more than two consecutive terms"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Section 43 of RA 7160 provides that the term of office of all elective local officials — governors, vice-governors, mayors, vice-mayors, and sanggunian members — is three years. Subsection (b) caps consecutive service at three terms in the same position: 'No local elective official shall serve for more than three (3) consecutive terms in the same position.' After three consecutive terms (nine years), the official must sit out at least one full term before running for the same position again. This mirrors the term structure for members of the House of Representatives under the 1987 Constitution (Art. VI, Sec. 7), but contrasts with senators (six-year terms, two consecutive terms).",
+    "distractorExplanations": {
+      "A": "Four-year terms are not used for any local elective position under RA 7160. The consistent term length for all local electives is three years, not four. Two consecutive terms is also incorrect — the limit is three.",
+      "B": "Six-year terms apply to senators and the President under the 1987 Constitution, not to local government officials. Local officials serve three-year terms under RA 7160, not six.",
+      "D": "Three years is correct, but two consecutive terms is wrong. Local officials may serve up to three consecutive terms — not two — before they must vacate and wait out at least one full term."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "Local elective officials (RA 7160, Sec. 43): 3-year terms, max 3 consecutive terms (9 years total). Same rule applies to House Representatives (Constitution, Art. VI, Sec. 7). Senators: 6-year terms, max 2 consecutive terms. President: 6-year term, NO re-election."
+    },
+    "reference": "RA 7160 (Local Government Code of 1991), Sec. 43",
+    "tags": [
+      "RA 7160",
+      "local government",
+      "term of office",
+      "section 43",
+      "elective officials"
+    ]
+  },
+  {
+    "id": "gen-0133",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Local Government Code RA 7160",
+    "subtopic": "Plebiscite Requirement for LGU Creation",
+    "difficulty": "Medium",
+    "question": "Under Section 10 of RA 7160, no creation, division, merger, abolition, or substantial alteration of the boundaries of local government units shall take effect unless approved by which of the following?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "A majority of the votes cast in a plebiscite conducted by the COMELEC within 120 days"
+      },
+      {
+        "id": "B",
+        "text": "An executive order of the President upon recommendation of the NEDA"
+      },
+      {
+        "id": "C",
+        "text": "A resolution of the sanggunian of the affected LGU, approved by the DILG Secretary"
+      },
+      {
+        "id": "D",
+        "text": "A three-fourths vote of both houses of Congress in joint session"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Section 10 of RA 7160 is unambiguous: 'No creation, division, merger, abolition, or substantial alteration of boundaries of local government units shall take effect unless approved by a majority of the votes cast in a plebiscite called for the purpose in the political unit or units directly affected. Said plebiscite shall be conducted by the Commission on Elections (COMELEC) within one hundred twenty (120) days from the date of effectivity of the law or ordinance effecting such action, unless said law or ordinance fixes another date.' This plebiscite requirement reflects the constitutional mandate for local autonomy — the people of the affected area must consent to any territorial change in their local government.",
+    "distractorExplanations": {
+      "B": "Presidential executive orders may address LGU matters in some contexts, but the Code specifically requires a plebiscite for all creation, division, merger, abolition, or boundary alteration. NEDA's recommendation relates to income and development planning criteria, not to final approval of territorial changes.",
+      "C": "The DILG does not have the power to approve LGU boundary changes. While a sanggunian ordinance may create or alter a barangay within the LGU's jurisdiction, the change still requires a plebiscite — the sanggunian resolution alone is not sufficient.",
+      "D": "Congress passes the law creating or altering an LGU, but that act of Congress is not self-executing. The change takes effect only after a successful plebiscite in the affected area — a two-step process: Congress acts, then the people ratify through the plebiscite."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "RA 7160, Sec. 10: Any LGU creation, merger, division, abolition, or boundary change = plebiscite required. COMELEC conducts the plebiscite within 120 days. Majority approval of votes cast in the affected area is needed. This reflects Art. X, Sec. 10 of the 1987 Constitution."
+    },
+    "reference": "RA 7160 (Local Government Code of 1991), Sec. 10",
+    "tags": [
+      "RA 7160",
+      "local government",
+      "plebiscite",
+      "section 10",
+      "COMELEC"
+    ]
+  },
+  {
+    "id": "gen-0134",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Local Government Code RA 7160",
+    "subtopic": "Local Legislative Power — Sanggunian",
+    "difficulty": "Easy",
+    "question": "Under Section 48 of RA 7160, which body exercises local legislative power at the provincial level?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Sangguniang Bayan"
+      },
+      {
+        "id": "B",
+        "text": "Sangguniang Barangay"
+      },
+      {
+        "id": "C",
+        "text": "Sangguniang Panlungsod"
+      },
+      {
+        "id": "D",
+        "text": "Sangguniang Panlalawigan"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Section 48 of RA 7160 states: 'Local legislative power shall be exercised by the sangguniang panlalawigan for the province; the sangguniang panlungsod for the city; the sangguniang bayan for the municipality; and the sangguniang barangay for the barangay.' The sangguniang panlalawigan is the provincial legislature, composed of the vice-governor as presiding officer (Section 49), elected provincial board members, and sectoral and ex officio representatives. Each level of local government has its own corresponding legislative body — knowing the correct pairing is a standard CSE item type.",
+    "distractorExplanations": {
+      "A": "The sangguniang bayan is the legislative body of a municipality — not a province. 'Bayan' translates roughly to town or municipality, while 'panlalawigan' refers to the provincial level.",
+      "B": "The sangguniang barangay is the legislative body of the barangay — the smallest local government unit. The punong barangay (barangay captain) serves as the presiding officer of the sangguniang barangay.",
+      "C": "The sangguniang panlungsod is the city council — the legislative body of a city. 'Panlungsod' derives from 'lungsod,' meaning city. A province is governed by the sangguniang panlalawigan."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "RA 7160, Sec. 48 — Sanggunian by level: Province = Panlalawigan (VP presides). City = Panlungsod (City VM presides). Municipality = Bayan (Municipal VM presides). Barangay = Barangay (Punong Barangay presides). Presiding officers vote only to break ties (Sec. 49)."
+    },
+    "reference": "RA 7160 (Local Government Code of 1991), Sec. 48",
+    "tags": [
+      "RA 7160",
+      "local government",
+      "sanggunian",
+      "legislative power",
+      "section 48"
+    ]
+  },
+  {
+    "id": "gen-0135",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Economics and Taxation",
+    "subtopic": "Internal Revenue Allotment — Automatic Release",
+    "difficulty": "Hard",
+    "question": "Under Section 18 of RA 7160, local government units shall have a 'just share in national taxes which shall be automatically and directly released to them.' This share is commonly referred to by what name, and does its release require any further action from the national government?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The National Tax Allocation (NTA); yes, the LGU must file an annual claim with the Bureau of Internal Revenue"
+      },
+      {
+        "id": "B",
+        "text": "The Internal Revenue Allotment (IRA), now called National Tax Allotment; no, it is released automatically without further action"
+      },
+      {
+        "id": "C",
+        "text": "The Local Development Fund; yes, it requires certification from the NEDA before release"
+      },
+      {
+        "id": "D",
+        "text": "The Special Shares in National Wealth; no, but the amount is determined by the DILG each year"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Section 18 of RA 7160 provides that LGUs shall 'have a just share in national taxes which shall be automatically and directly released to them without need of any further action.' This share was historically called the Internal Revenue Allotment (IRA), computed as a percentage of internal revenue collections two years prior. In Mandanas v. Executive Secretary (G.R. No. 199802, April 10, 2019), the Supreme Court expanded the base to include collections of all national taxes — not just internal revenue — and the resulting expanded allotment is now sometimes called the National Tax Allotment (NTA). The automatic-and-direct-release rule means the Department of Budget and Management must release the funds without requiring LGUs to file applications, comply with conditions, or obtain clearances.",
+    "distractorExplanations": {
+      "A": "LGUs do not file BIR claims for their tax share. The whole point of the automatic release is that no further action is required — the Code vests the right in the LGU and compels release without application.",
+      "C": "The Local Development Fund is a separate budget category under the LGU's own appropriations (typically 20% of the IRA/NTA must be set aside for development purposes). It is not the name of the national tax share, and NEDA certification is not required for the basic allotment.",
+      "D": "The DILG does not determine the amount of the IRA/NTA each year; that computation is performed by the Bureau of Local Government Finance (BLGF) under the Department of Finance, using statutory percentages and the national tax collection base prescribed by the Code and Mandanas ruling."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "RA 7160, Sec. 18: LGUs get an automatic, direct share of national taxes — no further action needed. Historically called IRA (Internal Revenue Allotment); expanded to NTA (National Tax Allotment) after Mandanas v. Executive Secretary (2019), which broadened the base from BIR collections to ALL national taxes."
+    },
+    "reference": "RA 7160 (Local Government Code of 1991), Sec. 18; Mandanas v. Executive Secretary, G.R. No. 199802 (2019)",
+    "tags": [
+      "RA 7160",
+      "local government",
+      "IRA",
+      "internal revenue allotment",
+      "taxation",
+      "Mandanas ruling"
+    ]
+  },
+  {
+    "id": "gen-0136",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine History",
+    "subtopic": "Proclamation of Philippine Independence — June 12 1898",
+    "difficulty": "Easy",
+    "question": "Philippine independence was proclaimed on June 12, 1898 by Emilio Aguinaldo in which municipality, and in what province does it lie?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Malolos, Bulacan"
+      },
+      {
+        "id": "B",
+        "text": "San Fernando, Pampanga"
+      },
+      {
+        "id": "C",
+        "text": "Kawit, Cavite"
+      },
+      {
+        "id": "D",
+        "text": "Bacoor, Cavite"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "On June 12, 1898, General Emilio Aguinaldo proclaimed Philippine independence from the window of his ancestral home in Kawit, Cavite. The declaration was read aloud by Ambrosio Rianzares Bautista, and the Philippine flag — designed by Aguinaldo and sewn by Marcela Agoncillo and her daughter in Hong Kong — was unfurled for the first time while the Marcha Nacional Filipina (now Lupang Hinirang) was played by San Francisco de Malabon's band. June 12 is now celebrated as Philippine Independence Day. Malolos, Bulacan was the site of the Malolos Congress, which convened later and established the Malolos Republic under the first Philippine Constitution.",
+    "distractorExplanations": {
+      "A": "Malolos, Bulacan was the seat of the Malolos Congress (1898–1899), which drafted and adopted the Malolos Constitution. It was the capital of the First Philippine Republic, not the site of the independence proclamation on June 12, 1898.",
+      "B": "San Fernando, Pampanga is known as the Christmas Capital of the Philippines because of its Giant Lantern Festival, not as a site of the independence proclamation. It has no direct connection to the June 12, 1898 event.",
+      "D": "Bacoor is another municipality in Cavite with revolutionary-era significance, but the independence proclamation took place in Kawit — where Aguinaldo's ancestral house (now the Aguinaldo Shrine) still stands as a national historical landmark."
+    },
+    "tip": {
+      "label": "Historical Note",
+      "text": "June 12, 1898 = independence proclaimed at Aguinaldo's house in Kawit, Cavite. Malolos = capital of the First Philippine Republic (Malolos Constitution adopted Jan 21, 1899). Both are in the Cavite/Bulacan revolutionary heartland — do not confuse the two events or their locations."
+    },
+    "reference": "National Historical Commission of the Philippines; Act of the Proclamation of Independence of the Filipino People, 12 June 1898, Kawit, Cavite",
+    "tags": [
+      "Philippine history",
+      "independence",
+      "June 12 1898",
+      "Kawit Cavite",
+      "Aguinaldo"
+    ]
+  },
+  {
+    "id": "gen-0137",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine History",
+    "subtopic": "Malolos Congress and First Philippine Constitution",
+    "difficulty": "Medium",
+    "question": "The Malolos Congress convened in Bulacan in 1898 and produced the first Philippine Constitution. On what date was the Malolos Constitution adopted, and what document did it establish?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "January 21, 1899 — it established the First Philippine Republic under President Emilio Aguinaldo"
+      },
+      {
+        "id": "B",
+        "text": "June 12, 1898 — it established the Katipunan as the governing body"
+      },
+      {
+        "id": "C",
+        "text": "August 23, 1896 — it established a provisional revolutionary government"
+      },
+      {
+        "id": "D",
+        "text": "November 1, 1897 — it established the Biak-na-Bato Republic"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The Malolos Constitution — formally titled the Constitution of the Philippines — was adopted on January 21, 1899, by the Malolos Congress, which had convened on September 15, 1898 at the Barasoain Church in Malolos, Bulacan. It established the First Philippine Republic (also called the Malolos Republic), with Emilio Aguinaldo as President. The Constitution was a democratic document that established a unicameral legislature (the Revolutionary Congress), an independent judiciary, and a secular state — separating Church from State. It was short-lived: the Philippine-American War began on February 4, 1899, and the republic eventually fell to American forces.",
+    "distractorExplanations": {
+      "B": "June 12, 1898 is the date of the independence proclamation in Kawit, Cavite — not the adoption of the Malolos Constitution. The Katipunan was not the governing body established by the Malolos Constitution; it was the revolutionary congress and a republican government.",
+      "C": "August 23, 1896 is the date of the Cry of Pugad Lawin, the opening act of the revolution. It was not the date of any constitution; the Malolos Constitution was not drafted until over two years later.",
+      "D": "November 1, 1897 marks the establishment of the Biak-na-Bato Republic, which preceded the Malolos Republic. The Biak-na-Bato Constitution (drafted by Isabelo Artacho and Félix Ferrer) was a different, earlier document adopted in the mountains of Bulacan — not the same as the Malolos Constitution."
+    },
+    "tip": {
+      "label": "Historical Note",
+      "text": "Malolos sequence: Congress convenes Sept. 15, 1898 → Constitution adopted Jan. 21, 1899 → First Philippine Republic established. Key facts: Barasoain Church, Malolos, Bulacan; unicameral legislature; Aguinaldo as first President. Philippine-American War began Feb. 4, 1899 — 14 days after the Constitution took effect."
+    },
+    "reference": "National Historical Commission of the Philippines; Malolos Constitution, January 21, 1899",
+    "tags": [
+      "Philippine history",
+      "Malolos Constitution",
+      "First Philippine Republic",
+      "Aguinaldo",
+      "1899"
+    ]
+  },
+  {
+    "id": "gen-0138",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Human Rights and Peace",
+    "subtopic": "Commission on Human Rights — Constitutional Mandate",
+    "difficulty": "Medium",
+    "question": "Under Article XIII, Section 18 of the 1987 Philippine Constitution, the Commission on Human Rights (CHR) is mandated to investigate all forms of human rights violations involving civil and political rights. Which of the following acts falls OUTSIDE the CHR's investigatory mandate as defined in that provision?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Extrajudicial killings by state security forces"
+      },
+      {
+        "id": "B",
+        "text": "Enforced disappearances attributed to military personnel"
+      },
+      {
+        "id": "C",
+        "text": "Arbitrary detention of political activists without charges"
+      },
+      {
+        "id": "D",
+        "text": "Civil disputes between private citizens over property ownership"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Article XIII, Section 18 of the 1987 Constitution empowers the CHR to investigate 'all forms of human rights violations involving civil and political rights.' The Supreme Court, in Simon v. Commission on Human Rights (G.R. No. 100150, 1994), clarified that the CHR's investigatory mandate covers violations committed by — or attributable to — the State or state actors, not purely private disputes between individuals. A civil property dispute between two private citizens is outside the CHR's jurisdiction because no state action is involved. Extrajudicial killings by security forces, enforced disappearances, and unlawful detention of political activists all implicate state action and fall squarely within civil and political rights protected under the Bill of Rights.",
+    "distractorExplanations": {
+      "A": "Extrajudicial killings committed by state security forces constitute the most acute form of human rights violation — the taking of life without due process — and are precisely the type of state-perpetrated abuse the CHR was created to investigate under Art. XIII, Sec. 18.",
+      "B": "Enforced disappearances by military personnel fall within civil and political rights violations (the right to life, liberty, and security of person) and involve state actors, making them a core CHR concern recognized both by the Constitution and international human rights standards (RA 10353, the Anti-Enforced Disappearance Act).",
+      "C": "Arbitrary detention of political activists without charges violates the constitutional right to liberty (Art. III, Sec. 1) and is a civil and political rights violation involving state coercion. It is squarely within the CHR's mandate to investigate."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "CHR mandate (Art. XIII, Sec. 18): investigates civil and political rights violations — typically involving STATE action. The Supreme Court (Simon v. CHR, 1994) held that purely private disputes are outside its jurisdiction. CHR = monitor and investigate; it does NOT prosecute — prosecution remains with the Ombudsman or DOJ."
+    },
+    "reference": "1987 Constitution, Art. XIII, Sec. 18; Simon v. Commission on Human Rights, G.R. No. 100150 (1994)",
+    "tags": [
+      "constitution",
+      "human rights",
+      "CHR",
+      "Commission on Human Rights",
+      "Art. XIII"
+    ]
+  },
+  {
+    "id": "gen-0139",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "RA 6713 Code of Conduct",
+    "subtopic": "Divestment Requirement — Section 9",
+    "difficulty": "Hard",
+    "question": "Under Section 9 of RA 6713, a public official or employee who acquires a financial or material interest in any transaction or activity within the scope of their office must divest the interest. Within how many days from assumption of office or acquisition must divestment be completed?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Within 15 working days"
+      },
+      {
+        "id": "B",
+        "text": "Within 60 days"
+      },
+      {
+        "id": "C",
+        "text": "Within 30 calendar days"
+      },
+      {
+        "id": "D",
+        "text": "Within 90 days"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Section 9 of RA 6713 requires divestment 'within sixty (60) days from their assumption of office and, in the case of subsequent acquisitions, within sixty (60) days from such acquisition.' Divestment means complete separation from the interest — selling, transferring, or otherwise disposing of the ownership stake — so that no financial conflict between the public role and private interest remains. The 60-day window applies both upon first taking office (if the official already holds a conflicting interest) and whenever a new conflicting interest is acquired during the term. Failure to divest within this window constitutes a violation of Section 9 and subjects the official to the criminal and administrative penalties under Section 11.",
+    "distractorExplanations": {
+      "A": "Fifteen working days is the deadline under Section 5(a) for responding to public communications — a different obligation under a different section. The divestment requirement has its own 60-day statutory window.",
+      "C": "Thirty calendar days is associated with several SALN obligations (filing upon assumption, filing after separation), not with the divestment requirement. Confusing SALN deadlines with the divestment deadline is a common exam error on Section 9 questions.",
+      "D": "Ninety days does not appear as a statutory deadline in RA 6713. The Code specifies 60 days for divestment. A 90-day deadline applies in other administrative contexts but not to the divestment provision."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "RA 6713 key deadlines: Sec. 5(a) = respond to public communications within 15 working days. Sec. 8 = SALN within 30 days of assuming office or separating, and April 30 annually. Sec. 9 = divest conflicting financial interests within 60 days. Keep these three numbers distinct."
+    },
+    "reference": "RA 6713, Sec. 9",
+    "tags": [
+      "RA 6713",
+      "divestment",
+      "section 9",
+      "conflict of interest",
+      "60 days"
+    ]
+  },
+  {
+    "id": "gen-0140",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Government Structure",
+    "subtopic": "Inherent Powers of the State — Police Power",
+    "difficulty": "Medium",
+    "question": "Which inherent power of the State authorizes the government to enact laws and regulations that limit or restrict the exercise of private rights — such as zoning laws, anti-smoking ordinances, and food safety regulations — for the promotion of public health, safety, morals, and general welfare, without paying compensation to those affected?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Power of eminent domain"
+      },
+      {
+        "id": "B",
+        "text": "Power of judicial review"
+      },
+      {
+        "id": "C",
+        "text": "Power of taxation"
+      },
+      {
+        "id": "D",
+        "text": "Power of police power"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Police power is the most pervasive of the three inherent powers of the State. It is the authority to enact laws that promote public health, safety, morals, and general welfare by limiting or regulating private rights — without compensating those whose rights are thereby restricted. Unlike eminent domain, which takes private property for public use and requires just compensation, police power regulates how property may be used without a taking. A zoning ordinance restricting a property to residential use, a ban on smoking in enclosed spaces, or a requirement to wear helmets on motorcycles — all are exercises of police power. The constitutional limitation is that the regulation must bear a reasonable relation to a legitimate governmental purpose and must not be oppressive.",
+    "distractorExplanations": {
+      "A": "Eminent domain is the power to compulsorily acquire private property for public use — it involves an actual taking of ownership — and always requires just compensation (Art. III, Sec. 9). The power described in the stem involves regulation, not acquisition, so it is police power, not eminent domain.",
+      "B": "Judicial review is the power of courts — particularly the Supreme Court — to review the constitutionality of laws and government acts. It is a judicial check on the political branches and has nothing to do with the government's power to regulate private conduct.",
+      "C": "The power of taxation compels citizens to contribute money to fund government services. It is distinct from police power in that it specifically involves the levy of a monetary charge. Zoning laws and anti-smoking rules are not taxes; they are regulatory measures that flow from police power."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Police power = regulate liberty and property for public welfare WITHOUT compensation. Eminent domain = take property for public use WITH just compensation. Taxation = compel monetary contribution. Police power is the broadest and most pervasive — and the only one that requires no payment to those affected."
+    },
+    "reference": "1987 Constitution, Art. II, Sec. 5; RA 7160, Sec. 16 (General Welfare Clause)",
+    "tags": [
+      "government structure",
+      "police power",
+      "inherent powers",
+      "general welfare",
+      "state powers"
+    ]
+  },
+  {
+    "id": "gen-0141",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Environment Management and Protection",
+    "subtopic": "Philippine Eagle — National Bird and Conservation Status",
+    "difficulty": "Medium",
+    "question": "The Philippine Eagle was proclaimed the national bird of the Philippines through Proclamation No. 615 in 1995. Under which Philippine law is the killing of a Philippine Eagle also explicitly penalized, and what is the statutory penalty?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "RA 9147 (Wildlife Resources Conservation and Protection Act of 2001); imprisonment of up to 12 years and a fine up to ₱1,000,000"
+      },
+      {
+        "id": "B",
+        "text": "RA 8749 (Clean Air Act); fine up to ₱100,000"
+      },
+      {
+        "id": "C",
+        "text": "RA 8485 (Animal Welfare Act); imprisonment up to 2 years"
+      },
+      {
+        "id": "D",
+        "text": "RA 7586 (NIPAS Act); disqualification from protected-area access for 10 years"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Republic Act No. 9147, the Wildlife Resources Conservation and Protection Act of 2001, classifies the Philippine Eagle (Pithecophaga jefferyi) as a critically endangered species and imposes the most severe penalties in the statute for its killing, wounding, or destruction: imprisonment of 12 years and one day to 20 years and/or a fine of ₱100,000 to ₱1,000,000. The Philippine Eagle is among the rarest and most powerful birds of prey in the world, with a population estimated at fewer than 800 individuals in the wild. RA 9147 is the primary law governing wildlife trade and protection; it expanded the regulatory framework beyond RA 7586 (NIPAS Act), which focuses on protected areas rather than on specific species.",
+    "distractorExplanations": {
+      "B": "RA 8749 is the Philippine Clean Air Act of 1999, which regulates air pollution from mobile and stationary sources. It has no provisions related to wildlife or the Philippine Eagle. Its penalties relate to air quality violations, not harm to protected species.",
+      "C": "RA 8485 (Animal Welfare Act) prohibits animal cruelty and carries imprisonment of up to two years for violations. However, the more serious and species-specific protection for critically endangered wildlife — including the Philippine Eagle — is found in RA 9147, which prescribes much heavier penalties.",
+      "D": "RA 7586 (National Integrated Protected Areas System Act of 1992) governs the management of protected areas such as national parks. While the Philippine Eagle's habitat is within protected areas, the specific criminal penalties for killing a Philippine Eagle derive from RA 9147, not RA 7586."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "Philippine Eagle protection: Proclaimed national bird via Proc. 615 (Ramos, 1995). Criminal protection: RA 9147 (Wildlife Resources Conservation and Protection Act, 2001) = up to 20 years imprisonment + up to ₱1,000,000 fine for killing critically endangered wildlife. RA 9147 superseded older wildlife provisions in RA 7586 for species-specific crimes."
+    },
+    "reference": "RA 9147 (Wildlife Resources Conservation and Protection Act of 2001); Proclamation No. 615, s. 1995",
+    "tags": [
+      "RA 9147",
+      "Philippine eagle",
+      "wildlife conservation",
+      "environmental law",
+      "national bird"
+    ]
+  },
+  {
+    "id": "gen-0142",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Ombudsman — Constitutional Mandate",
+    "difficulty": "Hard",
+    "question": "Under Article XI, Section 13 of the 1987 Philippine Constitution, the Ombudsman is granted which of the following powers or functions?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The power to convict and sentence public officials for graft and corruption"
+      },
+      {
+        "id": "B",
+        "text": "The power to review and reverse decisions of the Sandiganbayan within 30 days of promulgation"
+      },
+      {
+        "id": "C",
+        "text": "The power to investigate on its own or on complaint any act or omission of any public official that appears to be illegal, unjust, improper, or inefficient"
+      },
+      {
+        "id": "D",
+        "text": "The exclusive power to file impeachment complaints against constitutional officers"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Article XI, Section 13(1) of the 1987 Constitution grants the Ombudsman the power to 'investigate on its own or on complaint by any person, any act or omission of any public official, employee, office or agency, when such act or omission appears to be illegal, unjust, improper, or inefficient.' The four-part trigger — illegal, unjust, improper, or inefficient — is broader than mere criminality: the Ombudsman may investigate administrative inefficiency and improper conduct even when no crime is charged. The Ombudsman does not convict; it investigates, then recommends administrative sanctions or files criminal cases before the Sandiganbayan or regular courts. Conviction is reserved to the courts.",
+    "distractorExplanations": {
+      "A": "The power to convict and sentence belongs exclusively to the courts — the Sandiganbayan for graft cases, and the regular courts for others. The Ombudsman investigates and prosecutes; it does not adjudicate or impose criminal penalties.",
+      "B": "The Ombudsman has no appellate jurisdiction over the Sandiganbayan. The Sandiganbayan is a court; its decisions are appealed to the Supreme Court via a Rule 45 petition for review on certiorari, not to the Ombudsman.",
+      "D": "The exclusive power to initiate impeachment belongs to the House of Representatives (Art. XI, Sec. 3(1)), not the Ombudsman. The Ombudsman is itself an impeachable official under Art. XI, Sec. 2 — it would be a conflict of interest to also initiate such proceedings."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Ombudsman (Art. XI, Sec. 13): INVESTIGATES any act that is illegal, unjust, improper, OR inefficient — then files charges in court or recommends sanctions. Does NOT convict. Contrast: Sandiganbayan = TRIES and DECIDES graft cases. House = INITIATES impeachment. Senate = TRIES impeachment."
+    },
+    "reference": "1987 Constitution, Art. XI, Sec. 13(1)",
+    "tags": [
+      "constitution",
+      "Ombudsman",
+      "accountability",
+      "Art. XI",
+      "investigate"
+    ]
+  },
+  {
+    "id": "gen-0143",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine History",
+    "subtopic": "Propaganda Movement — Key Figures and Goals",
+    "difficulty": "Medium",
+    "question": "The Propaganda Movement (approximately 1880–1896) sought reforms through peaceful means rather than revolution. Which of the following was NOT among the movement's principal demands?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Representation of the Philippines in the Spanish Cortes"
+      },
+      {
+        "id": "B",
+        "text": "Immediate and armed independence from Spain"
+      },
+      {
+        "id": "C",
+        "text": "Secularization of Philippine parishes"
+      },
+      {
+        "id": "D",
+        "text": "Equal treatment of Filipinos and Spaniards before the law"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The Propaganda Movement, led by intellectuals such as José Rizal, Marcelo H. del Pilar, and Graciano López Jaena through publications like La Solidaridad, sought peaceful reforms — not violent revolution or outright independence. Its principal demands were: (1) the inclusion of Philippine representatives in the Spanish Cortes (Parliament); (2) secularization of Philippine parishes (transferring control from Spanish religious orders to Filipino secular clergy); (3) equal legal rights for Filipinos and Spaniards; (4) freedom of speech and the press; and (5) abolition of the polo y servicios (forced labor). When the movement failed to produce results, younger members — notably Andrés Bonifacio — concluded that only armed revolution could achieve independence, leading to the Katipunan's founding in 1892.",
+    "distractorExplanations": {
+      "A": "Representation in the Spanish Cortes was a central demand of the Propaganda Movement. The reformists believed that Filipino voices in the Spanish parliament would lead to genuine legislative reforms affecting the colony.",
+      "C": "Secularization of parishes was one of the most urgent demands, as Spanish religious orders (Augustinians, Dominicans, Franciscans, and Recollects) controlled most parishes and land, often treating Filipino secular priests unequally. Rizal's father was a leaseholder of Hacienda de Calamba under the Dominicans.",
+      "D": "Equal treatment of Filipinos and Spaniards before the law — ending the racial discrimination institutionalized in colonial governance — was a foundational goal. The ilustrados sought to be treated as full Spanish subjects rather than as colonial subjects with inferior rights."
+    },
+    "tip": {
+      "label": "Historical Note",
+      "text": "Propaganda Movement goals (peaceful reform, not revolution): (1) Cortes representation, (2) parish secularization, (3) equal legal rights, (4) press freedom, (5) abolition of forced labor. When reform failed, Bonifacio founded the Katipunan (1892) and shifted to armed revolution. La Solidaridad was the reform movement's main newspaper, published in Spain."
+    },
+    "reference": "National Historical Commission of the Philippines; Ambeth R. Ocampo, Rizal Without the Overcoat; La Solidaridad, 1889–1895",
+    "tags": [
+      "Philippine history",
+      "Propaganda Movement",
+      "Rizal",
+      "del Pilar",
+      "La Solidaridad"
+    ]
+  },
+  {
+    "id": "gen-0144",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Culture and National Symbols",
+    "subtopic": "National Bird — Philippine Eagle Proclamation",
+    "difficulty": "Easy",
+    "question": "Which of the following is the official national bird of the Philippines, and through which presidential proclamation was it designated?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Philippine Eagle; Proclamation No. 615 by President Fidel V. Ramos"
+      },
+      {
+        "id": "B",
+        "text": "Maya (Eurasian tree sparrow); Proclamation No. 79 by President Marcos"
+      },
+      {
+        "id": "C",
+        "text": "Kalaw (Philippine Cockatoo); Proclamation No. 905 by President Ramos"
+      },
+      {
+        "id": "D",
+        "text": "Pithecophaga jefferyi; Republic Act No. 8491 enacted in 1998"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The Philippine Eagle (Pithecophaga jefferyi) was officially proclaimed the national bird of the Philippines through Proclamation No. 615 issued by President Fidel V. Ramos in 1995. The eagle is the largest and most powerful bird of prey in Asia, endemic to the Philippines — primarily found in the forests of Mindanao, with smaller populations in Leyte, Samar, and Luzon. Proclamation No. 905 by Ramos (1996) is a different proclamation — it designated the Philippine Pearl as the national gem. The Maya (Eurasian tree sparrow) was once taught in schools as the national bird but has never held that designation by proclamation or law; it was a popular misconception. RA 8491 governs the flag, anthem, and heraldic devices — not wildlife designations.",
+    "distractorExplanations": {
+      "B": "The maya (Eurasian tree sparrow) is one of the most widespread birds in Philippine urban and rural areas, but it has never been officially proclaimed the national bird. This is a persistent misconception propagated by older textbooks. No law or proclamation makes the maya the national bird.",
+      "C": "Proclamation No. 905 (also issued by Ramos, in 1996) designated the South Sea Pearl as the national gem — not a bird. The Philippine Cockatoo (Cacatua haematuropygia, locally called Kalangay or Katala) is protected under RA 9147 but is not the national bird.",
+      "D": "RA 8491 (Flag and Heraldic Code) does not designate national animals or birds. The Philippine Eagle's scientific name is indeed Pithecophaga jefferyi, but the source of its national-bird status is Proclamation No. 615 — an executive proclamation — not a statute."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "National bird = Philippine Eagle, via Proc. 615 (Ramos, 1995). Scientific name: Pithecophaga jefferyi. The maya is NOT the national bird — that is a textbook myth. National gem = Philippine Pearl, via Proc. 905 (Ramos, 1996). Sampaguita + narra = Proc. 652 (Murphy, 1934)."
+    },
+    "reference": "NCCA, In Focus: Official National Symbols of the Philippines; Proclamation No. 615, s. 1995",
+    "tags": [
+      "Philippine culture",
+      "national symbols",
+      "Philippine eagle",
+      "national bird",
+      "Proclamation 615"
+    ]
+  }
+]

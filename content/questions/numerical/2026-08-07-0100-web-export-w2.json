@@ -1,0 +1,429 @@
+[
+  {
+    "id": "num-0142",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Age Problems",
+    "subtopic": "Three-Person Age System with Future Constraint",
+    "difficulty": "Hard",
+    "question": "A supervisor is 5 times as old as his assistant, and the assistant is twice as old as the office intern. In two years, the sum of all three of their ages will be 58. How old is the assistant now?",
+    "choices": [
+      { "id": "A", "text": "6 years old" },
+      { "id": "B", "text": "8 years old" },
+      { "id": "C", "text": "10 years old" },
+      { "id": "D", "text": "12 years old" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Let a = the assistant's current age. Then the supervisor's age = 5a and the intern's age = a ÷ 2. In two years each person will be two years older, so the future sum is (5a + 2) + (a + 2) + (a/2 + 2) = 58. Combine like terms: 5a + a + a/2 + 6 = 58, which gives 6.5a = 52, so a = 8. The assistant is 8 years old. Verify: supervisor = 40, assistant = 8, intern = 4; in two years: 42 + 10 + 6 = 58. ✓ The trap is treating the three-way relationship as a two-variable problem and missing the intern's fractional age — always label all three variables before setting up the equation.",
+    "steps": [
+      "Let a = assistant's current age; then supervisor = 5a and intern = a/2.",
+      "Future-sum equation: (5a + 2) + (a + 2) + (a/2 + 2) = 58.",
+      "Simplify: 5a + a + a/2 + 6 = 58 → 6.5a = 52.",
+      "Solve: a = 52 ÷ 6.5 = 8.",
+      "Verify: 40 + 8 + 4 = 52 now; 42 + 10 + 6 = 58 in two years. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "6 years gives a future sum of (32) + (8) + (5) = 45, not 58. Choosing 6 likely comes from setting up only a two-person equation (supervisor + assistant) and ignoring the intern entirely, or from misreading '5 times older' as the multiplier being 5 − 1 = 4.",
+      "C": "10 years gives a future sum of (52) + (12) + (7) = 71, well above 58. This overshoots because 10 is too large — the constraint from the intern's smaller age already limits how large the assistant can be. Setting up 6.5a = 52 gives a = 8, not 10.",
+      "D": "12 years gives a future sum of (62) + (14) + (8) = 84, which is far above 58. Choosing 12 often results from solving a simpler two-person equation without the intern and then selecting the next round number, or from using the supervisor's multiplier (5) directly as the assistant's age."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Three-person age problems: define one variable, express the other two in terms of it, then add all three (plus the time shift) and equate to the given sum. Label all three before writing the equation — missing one person shifts the entire equation."
+    },
+    "tags": [
+      "age-problems",
+      "three-person",
+      "systems-of-equations",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0143",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Geometry",
+    "subtopic": "Acute Angle Between Diagonals of a Rectangle",
+    "difficulty": "Hard",
+    "question": "The shorter side of a rectangular lot measures 2 meters and each diagonal measures 4 meters. What is the acute angle between the two diagonals?",
+    "choices": [
+      { "id": "A", "text": "45°" },
+      { "id": "B", "text": "30°" },
+      { "id": "C", "text": "60°" },
+      { "id": "D", "text": "90°" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The diagonals of a rectangle are equal and bisect each other, so at the centre each half-diagonal has length 4 ÷ 2 = 2 meters. The triangle formed at the centre has two sides equal to 2 m (the half-diagonals) and one side equal to 2 m (the shorter side of the rectangle). Since all three sides are 2 m, this is an equilateral triangle, and every interior angle is 60°. Therefore the acute angle between the diagonals is 60°. First confirm the longer side: by the Pythagorean theorem, longer side = √(4² − 2²) = √12 = 2√3 m ≈ 3.46 m. The triangle formed by the two half-diagonals and the longer side would give the obtuse angle; the triangle with the shorter side gives the acute angle, confirmed at 60° by the equilateral test.",
+    "steps": [
+      "Half-diagonal = 4 ÷ 2 = 2 m.",
+      "Longer side (Pythagorean): √(4² − 2²) = √12 = 2√3 m.",
+      "Triangle formed by two half-diagonals (each 2 m) and the shorter side (2 m): all three sides equal 2 m.",
+      "An equilateral triangle has all angles = 60°, so the acute angle between the diagonals is 60°."
+    ],
+    "distractorExplanations": {
+      "A": "45° would arise from assuming the rectangle is a square (where diagonals always meet at 90°, and half that = 45°). This rectangle is not a square: its shorter side is 2 m and its longer side is 2√3 ≈ 3.46 m. The actual angle depends on the ratio of the sides, not just the diagonal length.",
+      "B": "30° is the half-angle of 60°. A common error is to find the angle at one vertex of the equilateral triangle (60°) and then halve it — but 60° is already the angle at the centre, not an angle that needs halving.",
+      "D": "90° is the angle between the diagonals of a square, where the diagonals are perpendicular bisectors of each other. In this rectangle the diagonals are not perpendicular — they cross at 60° (acute) and 120° (obtuse). Checking: the longer side 2√3 ≠ shorter side 2, confirming it is not a square."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Diagonal angle in a rectangle: the diagonals bisect each other into half-diagonals of length d/2. Use the Law of Cosines on the triangle formed by two half-diagonals and one side. If that triangle is equilateral (all sides equal), the angle at the centre is 60°."
+    },
+    "tags": [
+      "geometry",
+      "rectangle",
+      "diagonals",
+      "angles",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0144",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Theory",
+    "subtopic": "Exponential Growth Reversal — Doubling Time Fallacy",
+    "difficulty": "Hard",
+    "question": "A storage tank is being filled with oil. The volume of oil in the tank doubles every minute, and the tank becomes completely full after exactly 10 minutes. After how many minutes was the tank exactly half full?",
+    "choices": [
+      { "id": "A", "text": "2 minutes" },
+      { "id": "B", "text": "9 minutes" },
+      { "id": "C", "text": "5 minutes" },
+      { "id": "D", "text": "7 minutes" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Reason backward from the end. At exactly 10 minutes the tank is full. Since the volume doubles every minute, at 9 minutes the tank held exactly half of its capacity — one doubling later (at minute 10) it became completely full. There is no need to know the starting volume or the absolute quantity of oil; the doubling property alone fixes the answer. The intuitive — but wrong — answer is 5, based on the mistaken idea that 'half the time equals half the volume.' That logic applies to linear growth, not exponential growth. In exponential doubling, the volume at minute 9 is 50% of full, at minute 8 it is 25%, at minute 7 it is 12.5%, and so on, halving with each step back in time.",
+    "steps": [
+      "At minute 10: tank is 100% full.",
+      "Volume doubles each minute, so going backward, each minute the volume is halved.",
+      "At minute 9: 100% ÷ 2 = 50% — the tank is exactly half full.",
+      "The answer is 9 minutes."
+    ],
+    "distractorExplanations": {
+      "A": "2 minutes gives a volume of only 100% ÷ 2⁸ = 0.39% of capacity — nearly empty. Choosing 2 comes from thinking about the very start of the process, not from reasoning about when the tank is half full.",
+      "C": "5 minutes is the most common wrong answer. It applies linear reasoning — halfway through 10 minutes must mean half full — to an exponential process. At minute 5 the tank is only (1/2)⁵ = 1/32 ≈ 3.1% full. Exponential growth concentrates almost all its growth in the final steps.",
+      "D": "7 minutes gives 100% ÷ 2³ = 12.5% of capacity. Choosing 7 suggests partial doubling-backward reasoning that stops one or two steps too early. Continue halving: from 10 back to 9 gives 50%, which is exactly half — not 7."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Doubling problems: always reason backward from the endpoint. If full at step N, half-full at step N−1. Do NOT halve the time — that is only valid for linear growth. Exponential growth loads almost all its increase into the last few steps."
+    },
+    "tags": [
+      "number-theory",
+      "exponential-growth",
+      "doubling",
+      "backward-reasoning",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0145",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Averages",
+    "subtopic": "Variable in the Set Being Averaged",
+    "difficulty": "Medium",
+    "question": "For what value of x does x equal the average of the set {2, 4x, 6, 8, 10}?",
+    "choices": [
+      { "id": "A", "text": "4" },
+      { "id": "B", "text": "12" },
+      { "id": "C", "text": "26" },
+      { "id": "D", "text": "39" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The average of a set of n numbers equals the sum divided by n. Here the set has 5 elements, so the average = (2 + 4x + 6 + 8 + 10) ÷ 5 = (26 + 4x) ÷ 5. The problem requires x to equal this average: x = (26 + 4x) ÷ 5. Multiply both sides by 5: 5x = 26 + 4x. Subtract 4x: x = 26. Verify: the set becomes {2, 104, 6, 8, 10}; sum = 130; average = 130 ÷ 5 = 26 = x. ✓ The key difficulty is recognising that x appears on both sides of the equation — both as the required average and as an element of the set — so standard 'find the average' computation is replaced by an algebraic equation.",
+    "steps": [
+      "Write the average as an expression: average = (2 + 4x + 6 + 8 + 10) ÷ 5 = (26 + 4x) ÷ 5.",
+      "Set average equal to x: x = (26 + 4x) ÷ 5.",
+      "Multiply both sides by 5: 5x = 26 + 4x.",
+      "Subtract 4x: x = 26.",
+      "Verify: {2, 104, 6, 8, 10}, sum = 130, average = 26 = x. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "Choosing x = 4 likely comes from treating 4x as a fixed element equal to 4, then computing the average of {2, 4, 6, 8, 10} = 30 ÷ 5 = 6, which is not 4. The element 4x depends on x, so the set itself changes as x changes.",
+      "B": "x = 12 would give the set {2, 48, 6, 8, 10}; sum = 74; average = 74 ÷ 5 = 14.8 ≠ 12. Choosing 12 may come from adding the fixed elements (2 + 6 + 8 + 10 = 26) and then dividing by something other than 5, or from confusing the coefficient 4 in 4x with the count of elements.",
+      "D": "x = 39 would give the set {2, 156, 6, 8, 10}; sum = 182; average = 182 ÷ 5 = 36.4 ≠ 39. This may come from solving 5x = 26 + 4x as 5x − 4 = 26, arriving at x = 30, and then applying an additional arithmetic error, or from solving a related equation with an incorrect number of terms."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When the unknown appears both in the set and as the required average, set up the equation: x = (fixed sum + coefficient × x) ÷ n. Multiply through by n, collect x terms, and solve. Always verify by substituting x back into the set and recomputing the average."
+    },
+    "tags": [
+      "averages",
+      "variable-in-set",
+      "algebraic-mean",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0146",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Averages",
+    "subtopic": "Back-Calculation from Shifting Average",
+    "difficulty": "Medium",
+    "question": "A clerk's average score on her first eight performance assessments was 85. After the ninth assessment, her average dropped to 81. What score did she receive on her ninth assessment?",
+    "choices": [
+      { "id": "A", "text": "45" },
+      { "id": "B", "text": "49" },
+      { "id": "C", "text": "53" },
+      { "id": "D", "text": "55" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Use the relationship between average and total. Total score for 8 assessments = 85 × 8 = 680. After the 9th assessment the new average is 81 over 9 assessments, so the new total = 81 × 9 = 729. The ninth assessment score = new total − old total = 729 − 680 = 49. Notice that the average dropped — the ninth score must be below the original average of 85. Verify: (680 + 49) ÷ 9 = 729 ÷ 9 = 81. ✓ The essential insight is that 'average' encodes total information: reconstruct each total separately, then find the difference.",
+    "steps": [
+      "Total for first 8 assessments: 85 × 8 = 680.",
+      "Total for all 9 assessments: 81 × 9 = 729.",
+      "Ninth assessment score: 729 − 680 = 49.",
+      "Verify: 729 ÷ 9 = 81. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "45 results from computing 81 × 8 = 648 and then subtracting 680 − 648 = 32, then misidentifying a related calculation, or from (85 − 81) × 8 = 32 and subtracting from the new average: 81 − 32 = 49 but slipping to 45 through arithmetic error. The correct path is total₉ − total₈ = 729 − 680 = 49.",
+      "C": "53 would require total₉ = 680 + 53 = 733, giving 733 ÷ 9 ≈ 81.4 ≠ 81. Choosing 53 may come from computing 85 − (85 − 81) = 81 and confusing this with the ninth score, or from computing (85 + 81) ÷ 2 = 83 and then making an arithmetic slip.",
+      "D": "55 would give total₉ = 735, and 735 ÷ 9 ≈ 81.7, not 81. Choosing 55 likely comes from computing the average drop (85 − 81 = 4) and multiplying by the wrong count (4 × 4 = 16? …) rather than using total = average × count directly."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "To find a new data point when the average shifts: new value = new total − old total = (new average × new count) − (old average × old count). If the average drops, the new score must be below the old average; if it rises, the new score must be above it — use this as a quick sanity check."
+    },
+    "tags": [
+      "averages",
+      "back-calculation",
+      "shifting-average",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0147",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Signed Fibonacci Variant — Subtraction Recurrence",
+    "difficulty": "Medium",
+    "question": "What is the next term in the series: 13, −21, 34, −55, 89, ___?",
+    "choices": [
+      { "id": "A", "text": "−95" },
+      { "id": "B", "text": "104" },
+      { "id": "C", "text": "−144" },
+      { "id": "D", "text": "−130" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The series follows the recurrence f(n) = f(n − 2) − f(n − 1). Verify: f(3) = 13 − (−21) = 34 ✓; f(4) = (−21) − 34 = −55 ✓; f(5) = 34 − (−55) = 89 ✓. Applying the rule to find f(6): f(6) = f(4) − f(5) = (−55) − 89 = −144. The pattern is related to the Fibonacci sequence but with alternating signs and a subtraction recurrence rather than addition. Note that the absolute values 13, 21, 34, 55, 89, 144 are consecutive Fibonacci numbers — the sign alternates because of the subtraction.",
+    "steps": [
+      "Identify the recurrence: f(n) = f(n−2) − f(n−1).",
+      "Verify: 13 − (−21) = 34 ✓; (−21) − 34 = −55 ✓; 34 − (−55) = 89 ✓.",
+      "Apply to find f(6): (−55) − 89 = −144.",
+      "The next term is −144."
+    ],
+    "distractorExplanations": {
+      "A": "−95 is not derivable from the recurrence. It may come from computing −89 − 6 = −95, treating the differences as an arithmetic progression (which they are not — the absolute values follow Fibonacci spacing). The correct rule uses the two preceding terms via subtraction, giving −55 − 89 = −144.",
+      "B": "104 would be positive and smaller in absolute value than 89, but the absolute values in this series grow following the Fibonacci pattern (…55, 89, 144…). Choosing 104 likely comes from noticing that consecutive terms have absolute values that differ by roughly 55 and adding 55 to 89, but then misapplying the sign rule.",
+      "D": "−130 has no derivation from the recurrence. It may arise from misidentifying the pattern as an arithmetic sequence with a common difference of −35 between alternate terms (13, 34, 89… differences are 21, 55 — not constant). Always test a rule on multiple terms before applying it."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Series with alternating signs often hide a Fibonacci-type recurrence. Check whether f(n) = f(n−1) + f(n−2), f(n) = f(n−2) − f(n−1), or f(n) = −f(n−1) + f(n−2). Test your rule on at least three consecutive terms before using it to generate the next one."
+    },
+    "tags": [
+      "number-series",
+      "fibonacci",
+      "alternating-signs",
+      "recurrence"
+    ]
+  },
+  {
+    "id": "num-0148",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "subtopic": "Train Passing Two Pedestrians — Relative Speed Analysis",
+    "difficulty": "Hard",
+    "question": "Allan and Bill walk in the same direction along a railway track. Allan is behind Bill, walks faster, and both walk at constant speeds. A long train travelling in the same direction takes 10 seconds to pass Allan completely and 9 seconds to pass Bill completely. The front of the train takes 20 minutes to travel from Allan's position to Bill's position. How many minutes will it take for Allan to catch up to Bill?",
+    "choices": [
+      { "id": "A", "text": "200 minutes" },
+      { "id": "B", "text": "180 minutes" },
+      { "id": "C", "text": "220 minutes" },
+      { "id": "D", "text": "160 minutes" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Let v = train speed, a = Allan's speed, b = Bill's speed, L = train length, D = initial gap (Allan to Bill). Passing Allan: L = (v − a) × 10. Passing Bill: L = (v − b) × 9. Setting equal: 10(v − a) = 9(v − b) → v = 10a − 9b. The relative speed of the train's front over Bill is (v − b). Time for train front to reach Bill from Allan = D ÷ (v − b) = 20 minutes, so D = 20(v − b). From the passing equations: v − a = L/10 and v − b = L/9, so a − b = (v − b) − (v − a) = L/9 − L/10 = L/90. Also D = 20(v − b) = 20(L/9) = 20L/9. Time for Allan to catch Bill = D ÷ (a − b) = (20L/9) ÷ (L/90) = (20/9) × 90 = 200 minutes.",
+    "steps": [
+      "Define: L = train length, v = train speed, a = Allan speed, b = Bill speed, D = gap.",
+      "From passing times: L = 10(v − a) and L = 9(v − b).",
+      "Find relative closing speeds: (v − a) = L/10 and (v − b) = L/9; so a − b = L/9 − L/10 = L/90.",
+      "Gap from train-front travel time: D = 20(v − b) = 20(L/9) = 20L/9.",
+      "Time for Allan to catch Bill: D ÷ (a − b) = (20L/9) ÷ (L/90) = 200 minutes."
+    ],
+    "distractorExplanations": {
+      "B": "180 minutes would follow if you assumed D = 20(v − a) = 20(L/10) = 2L instead of D = 20(v − b) = 20L/9. The 20-minute travel time is for the train front going from Allan's position to Bill's position, so the relevant relative speed is train vs. Bill (v − b), not train vs. Allan.",
+      "C": "220 minutes has no clean derivation from the given values. It may come from mistaking the formula for the gap (using a sum rather than the product of the 20-minute figure and the relative speed) or from an arithmetic error in the final division step.",
+      "D": "160 minutes would arise from using 18 instead of 20 in the gap formula — perhaps from confusing the 10 and 9 second passing times and computing some average, or from a sign error in the relative-speed subtraction (L/9 − L/10 computed as L/10 instead of L/90)."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Train passing a moving object: effective train length = relative speed × time. For two walkers in the same direction: L = (v−a)×t₁ = (v−b)×t₂. The walker speed difference (a−b) = L/t₁ − L/t₂ = L(t₂−t₁)/(t₁t₂). Express the gap D using the train-front travel time, then compute D/(a−b)."
+    },
+    "tags": [
+      "distance-speed-time",
+      "relative-speed",
+      "train-problems",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0149",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "subtopic": "Messenger Between Two Converging Parties",
+    "difficulty": "Hard",
+    "question": "Two civil defence teams start 10 km apart and march toward each other, each at 1 km/h. A courier leaves the first team and runs toward the second team at 9 km/h. Upon reaching the second team, the courier immediately turns around and runs back to the first team at the same speed. How many kilometres apart are the two teams when the courier returns to the first team?",
+    "choices": [
+      { "id": "A", "text": "5.6 km" },
+      { "id": "B", "text": "6.0 km" },
+      { "id": "C", "text": "6.2 km" },
+      { "id": "D", "text": "6.4 km" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The key is to track total time, not the courier's distance. The two teams close at a combined rate of 1 + 1 = 2 km/h, so whatever total time elapses, the gap shrinks by 2 × time. First leg: courier at 9 km/h and second team at 1 km/h approach each other at 10 km/h. Time to meet: 10 ÷ 10 = 1 hour. Second leg: courier (now heading back at 9 km/h) and first team (at 1 km/h) approach each other. When the courier turns, the gap between courier and first team = 10 − 1 (first team moved) − 9 (courier's distance) = 0, but the gap between the two teams is 10 − 2 × 1 = 8 km. The courier is now at the second team's position, which is 8 km from the first team. They close at 9 + 1 = 10 km/h, so time = 8 ÷ 10 = 0.8 hour. Total time = 1 + 0.8 = 1.8 hours. Gap shrinkage = 2 × 1.8 = 3.6 km. Remaining gap = 10 − 3.6 = 6.4 km.",
+    "steps": [
+      "Combined closing speed of teams: 1 + 1 = 2 km/h.",
+      "First leg — courier meets second team: closing speed 9 + 1 = 10 km/h; time = 10 ÷ 10 = 1 hour.",
+      "After 1 hour, teams are 10 − 2(1) = 8 km apart; courier is at second team's position.",
+      "Second leg — courier returns to first team: closing speed 9 + 1 = 10 km/h; time = 8 ÷ 10 = 0.8 hour.",
+      "Total time = 1.8 hours. Gap remaining = 10 − 2(1.8) = 10 − 3.6 = 6.4 km."
+    ],
+    "distractorExplanations": {
+      "A": "5.6 km would require total time = (10 − 5.6) ÷ 2 = 2.2 hours. A second leg of 1.2 hours would mean the gap at the turnaround was 12 km — larger than the starting gap. The turnaround gap is 8 km, making the second leg 0.8 hours, for a total of 1.8 hours and a remaining gap of 6.4 km.",
+      "B": "6.0 km would require total time = 2.0 hours. That would mean 1.0 + 1.0 hours, implying the second leg took 1 hour and the turnaround gap was 10 km — equal to the starting gap, which is impossible after both teams have been moving for 1 hour. The turnaround gap is only 8 km.",
+      "C": "6.2 km would require 1.9 hours total and a second-leg time of 0.9 hours, which would mean the turnaround gap was 9 km. But the gap after 1 hour is exactly 8 km — not 9. The combination closing rate on the second leg is still 10 km/h, so time = 8 ÷ 10 = 0.8, not 0.9."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Courier relay problems: track total elapsed time, not the courier's path. Gap reduction = combined team speed × total time. Break the problem into two legs: (1) courier meets the far party — compute that leg's time; (2) courier returns — compute the remaining gap at the turnaround, then that leg's time. Sum the times and multiply by 2 km/h."
+    },
+    "tags": [
+      "distance-speed-time",
+      "relative-speed",
+      "convergence",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0150",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Basic Algebra",
+    "subtopic": "Two-Variable Spot-Count and Quantity System",
+    "difficulty": "Medium",
+    "question": "Two park rangers collect beetles: Ranger A collects only beetles with 2 spots, and Ranger B collects only beetles with 7 spots. Ranger A has 5 more beetles than Ranger B. The total number of spots on all beetles in their combined collection is 100. How many beetles are in their combined collection?",
+    "choices": [
+      { "id": "A", "text": "17" },
+      { "id": "B", "text": "21" },
+      { "id": "C", "text": "25" },
+      { "id": "D", "text": "23" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Set up two equations. Let b = Ranger B's beetle count. Then Ranger A has (b + 5) beetles. Total spots: 2(b + 5) + 7b = 100. Expand: 2b + 10 + 7b = 100 → 9b = 90 → b = 10. Ranger A has 15, Ranger B has 10, for a combined total of 25. Verify: 2 × 15 + 7 × 10 = 30 + 70 = 100 spots. ✓ Ranger A − Ranger B = 15 − 10 = 5. ✓ The trap is solving for b and then reporting b (10) or b + 5 (15) instead of the combined total b + (b + 5) = 2b + 5.",
+    "steps": [
+      "Let b = Ranger B's count; Ranger A's count = b + 5.",
+      "Total spots equation: 2(b + 5) + 7b = 100 → 9b + 10 = 100 → 9b = 90.",
+      "Solve: b = 10. Ranger A = 15.",
+      "Combined total = 10 + 15 = 25.",
+      "Verify: 2×15 + 7×10 = 30 + 70 = 100 spots. ✓"
+    ],
+    "distractorExplanations": {
+      "A": "17 beetles would give 2(11) + 7(6) = 22 + 42 = 64 spots — far below 100. Choosing 17 likely comes from incorrectly combining the two equations or from computing (100 − 10) ÷ (2 + 7) = 10 and then adding 7 (some confusion with the spot counts rather than the beetle counts).",
+      "B": "21 beetles would require 2(13) + 7(8) = 26 + 56 = 82 spots. Not 100. Choosing 21 may come from using b = 8 as if 9b = 72 rather than 90, or from confusing the 5-beetle difference with the 5 extra spots that Ranger A's side contributes per extra beetle.",
+      "D": "23 beetles would require 2(14) + 7(9) = 28 + 63 = 91 spots. Not 100. Choosing 23 likely comes from computing b = 9 (perhaps solving 9b = 81 by rounding 90 down) and then adding 9 + 14 = 23. Always solve 9b = 90 exactly: b = 10."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When two groups differ by a fixed count and contribute to a total through different rates (spots per beetle), define one variable for the smaller group, express the larger in terms of it, then write one equation using the total. Remember: the question may ask for the COMBINED total, not just one group's count."
+    },
+    "tags": [
+      "basic-algebra",
+      "systems-of-equations",
+      "word-problems",
+      "unit-rate"
+    ]
+  },
+  {
+    "id": "num-0151",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Distance, Speed, Time",
+    "subtopic": "Mixed-Number Speed Multiplication for Distance",
+    "difficulty": "Medium",
+    "question": "A delivery van travelled for 2½ hours at an average speed of 132 5/8 kilometres per hour. What is the total distance covered, in kilometres?",
+    "choices": [
+      { "id": "A", "text": "264 5/16 km" },
+      { "id": "B", "text": "331 9/16 km" },
+      { "id": "C", "text": "330 5/16 km" },
+      { "id": "D", "text": "135 1/8 km" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Use d = speed × time, keeping both values in fraction form throughout. Time: 2½ = 5/2. Speed: 132 5/8 = (132 × 8 + 5)/8 = 1,061/8. Distance = (5/2) × (1,061/8) = 5,305/16. Convert to a mixed number: 5,305 ÷ 16 = 331 remainder 9, giving 331 9/16 km. Verify: 331 × 16 = 5,296; 5,296 + 9 = 5,305 = 5 × 1,061. ✓ The most common error is multiplying the whole-number parts and the fractional parts separately — 2 × 132 = 264 and ½ × 5/8 = 5/16 — and then adding to get 264 5/16, which ignores the cross-terms (2 × 5/8 and ½ × 132).",
+    "steps": [
+      "Convert time to improper fraction: 2½ = 5/2.",
+      "Convert speed to improper fraction: 132 5/8 = (132 × 8 + 5)/8 = 1,061/8.",
+      "Multiply: (5/2) × (1,061/8) = 5,305/16.",
+      "Convert to mixed number: 5,305 ÷ 16 = 331 remainder 9 → 331 9/16 km."
+    ],
+    "distractorExplanations": {
+      "A": "264 5/16 km comes from a classic mixed-number multiplication error: multiplying only the whole parts (2 × 132 = 264) and only the fractional parts (½ × 5/8 = 5/16) and ignoring the cross terms. The correct approach converts both to improper fractions first: (5/2) × (1,061/8) = 5,305/16 = 331 9/16.",
+      "C": "330 5/16 km is one unit below the correct answer of 331 9/16. This off-by-one error arises from computing the integer part of the quotient as 330 instead of 331 — perhaps from performing the division 5,305 ÷ 16 as 5,280 ÷ 16 = 330 (using 16 × 330 = 5,280 and missing the remaining 25, which gives another full 16 and a remainder of 9).",
+      "D": "135 1/8 km results from dividing instead of multiplying: 1,061/8 ÷ (5/2) = 1,061/8 × 2/5 = 2,122/40 = 53.05 — which is not 135 1/8 either. The option 135 1/8 = 1,081/8 may come from computing 132 + 5/8 + 2½ = 135 1/8 — adding instead of multiplying."
+    },
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "Mixed-number multiplication: always convert both factors to improper fractions before multiplying. Never multiply whole parts and fractional parts separately — the cross terms (whole × fraction + fraction × whole) are significant. Convert back to a mixed number at the end by dividing the numerator by the denominator."
+    },
+    "tags": [
+      "distance-speed-time",
+      "fractions",
+      "mixed-numbers",
+      "word-problems"
+    ]
+  },
+  {
+    "id": "num-0152",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Statistics",
+    "subtopic": "Venn Diagram — Conditional Proportions with an Unknown Overlap",
+    "difficulty": "Hard",
+    "question": "In a government agency, 25% of all employees who are considered 'high performers' are also considered 'mentors', and half of all 'mentors' are considered 'high performers'. If 25% of all employees are neither high performers nor mentors, what percentage of all employees are both high performers and mentors?",
+    "choices": [
+      { "id": "A", "text": "15%" },
+      { "id": "B", "text": "10%" },
+      { "id": "C", "text": "20%" },
+      { "id": "D", "text": "25%" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Define the proportions as fractions of total employees: let H = high performers, M = mentors, and B = both (the overlap). The conditions are: B/H = 0.25, so B = 0.25H; B/M = 0.50, so B = 0.50M. From these: 0.25H = 0.50M, giving H = 2M. The inclusion–exclusion principle states H ∪ M = H + M − B. Since 25% are neither, H ∪ M = 75% of all employees. Substituting H = 2M: 2M + M − B = 0.75. Also B = 0.50M, so 3M − 0.50M = 0.75 → 2.5M = 0.75 → M = 0.30, or 30%. Then H = 0.60 and B = 0.15 = 15%. Verify: P(neither) = 1 − (0.60 + 0.30 − 0.15) = 1 − 0.75 = 0.25 = 25%. ✓",
+    "steps": [
+      "Let H = fraction of high performers, M = mentors, B = both. Given: B = 0.25H and B = 0.50M.",
+      "Derive: 0.25H = 0.50M → H = 2M.",
+      "P(H ∪ M) = 1 − 0.25 = 0.75. By inclusion–exclusion: H + M − B = 0.75.",
+      "Substitute H = 2M and B = 0.5M: 2M + M − 0.5M = 0.75 → 2.5M = 0.75 → M = 0.30.",
+      "B = 0.5 × 0.30 = 0.15 = 15%. Verify: H ∪ M = 0.60 + 0.30 − 0.15 = 0.75. ✓"
+    ],
+    "distractorExplanations": {
+      "B": "10% would require B = 0.10. Then from B = 0.25H: H = 0.40, and from B = 0.50M: M = 0.20. P(neither) = 1 − (0.40 + 0.20 − 0.10) = 1 − 0.50 = 0.50, not 25%. The 25%-neither constraint is not satisfied by B = 10%.",
+      "C": "20% would require B = 0.20. Then H = 0.80 and M = 0.40. P(neither) = 1 − (0.80 + 0.40 − 0.20) = 1 − 1.00 = 0%, not 25%. Choosing 20% comes from misreading one of the conditional percentages as an absolute percentage of all employees.",
+      "D": "25% would require B = 0.25. Then H = 1.00 — all employees are high performers — which contradicts the premise that only 75% are in H ∪ M. Choosing 25% likely comes from misreading '25% of high performers are also mentors' as '25% of all employees are both', confusing conditional and marginal proportions."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Venn with conditional proportions: write B = (given %) × H and B = (given %) × M. Equate to get H in terms of M. Use P(H∪M) = 1 − P(neither) and the inclusion–exclusion formula H + M − B = P(H∪M). Substitute and solve for M, then find B."
+    },
+    "tags": [
+      "statistics",
+      "Venn-diagram",
+      "conditional-probability",
+      "inclusion-exclusion",
+      "word-problems"
+    ]
+  }
+]
