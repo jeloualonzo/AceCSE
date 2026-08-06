@@ -27,7 +27,9 @@ function errorMessage(error: unknown): string | null {
     case 'auth/too-many-requests':
       return 'Too many attempts. Wait a moment, then try again.';
     case 'auth/email-already-in-use':
-      return 'An account with this email already exists. Sign in instead — if you normally use Google, sign in with Google and add a password from Settings.';
+      return 'An account with this email already exists. Sign in with the method you originally used — if that was Google, you can add a password afterward from Settings.';
+    case 'auth/account-exists-with-different-credential':
+      return 'An account already exists with this email using a different sign-in method. Sign in with your original method first; you can link the other one from Settings.';
     case 'auth/weak-password':
       return 'Password is too weak — use at least 6 characters.';
     default:
@@ -83,7 +85,8 @@ const MODE_COPY: Record<AuthMode, { title: string; subtitle: string; docTitle: s
 export const AuthPage: React.FC = () => {
   const [mode, setMode] = useState<AuthMode>('signin');
   useDocumentTitle(MODE_COPY[mode].docTitle);
-  const { signInWithGoogle, signInWithEmail, signUpWithEmail, resetPassword } = useAuth();
+  const { signInWithGoogle, signInWithEmail, signUpWithEmail, resetPassword, getSignInMethods } =
+    useAuth();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -92,6 +95,33 @@ export const AuthPage: React.FC = () => {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+
+  /**
+   * Firebase email-collision UX: instead of a raw error, look up which
+   * provider owns the email and guide the user to it. With email-enumeration
+   * protection the lookup returns [] — fall back to method-neutral guidance.
+   * Never creates a duplicate account: linking happens from Settings while
+   * signed in with the original provider.
+   */
+  const collisionMessage = async (
+    attempted: 'signup' | 'signin'
+  ): Promise<string> => {
+    const methods = await getSignInMethods(email.trim());
+    const hasGoogle = methods.includes('google.com');
+    const hasPassword = methods.includes('password');
+    if (hasGoogle && !hasPassword) {
+      return 'This email is already associated with a Google account. Sign in with Google first, then you can add an email and password from Settings.';
+    }
+    if (hasPassword) {
+      return attempted === 'signup'
+        ? 'An account with this email and a password already exists. Sign in instead — or use Forgot password if you cannot remember it.'
+        : 'Incorrect password for this account. Try again, or use Forgot password to reset it.';
+    }
+    // Undetermined (enumeration protection) — method-neutral guidance.
+    return attempted === 'signup'
+      ? 'An account with this email already exists. Sign in with the method you originally used — if that was Google, use Continue with Google, then add a password from Settings.'
+      : 'Incorrect email or password. If you originally signed up with Google, use Continue with Google instead.';
+  };
 
   const switchMode = (next: AuthMode) => {
     setMode(next);
@@ -152,7 +182,19 @@ export const AuthPage: React.FC = () => {
         return;
       }
     } catch (err) {
-      setError(errorMessage(err));
+      const code = (err as { code?: string })?.code ?? '';
+      if (mode === 'signup' && code === 'auth/email-already-in-use') {
+        setError(await collisionMessage('signup'));
+      } else if (
+        mode === 'signin' &&
+        (code === 'auth/invalid-credential' ||
+          code === 'auth/wrong-password' ||
+          code === 'auth/user-not-found')
+      ) {
+        setError(await collisionMessage('signin'));
+      } else {
+        setError(errorMessage(err));
+      }
       setBusy(false);
     }
   };

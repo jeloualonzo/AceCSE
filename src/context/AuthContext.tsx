@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useS
 import {
   createUserWithEmailAndPassword,
   EmailAuthProvider,
+  fetchSignInMethodsForEmail,
   GoogleAuthProvider,
   linkWithCredential,
   onAuthStateChanged,
@@ -31,6 +32,13 @@ interface AuthContextValue {
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signUpWithEmail: (name: string, email: string, password: string) => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
+  /**
+   * Which sign-in methods exist for an email (e.g. ['google.com'],
+   * ['password']). Returns [] when unknown — including on projects with
+   * email-enumeration protection enabled, where Firebase intentionally
+   * hides this. Callers must treat [] as "undetermined", never "no account".
+   */
+  getSignInMethods: (email: string) => Promise<string[]>;
   /**
    * Provider linking: attach an email/password credential to the CURRENT
    * Firebase account (e.g. an existing Google user adding a password login).
@@ -92,6 +100,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     await sendPasswordResetEmail(auth, email);
   }, []);
 
+  const getSignInMethods = useCallback(async (email: string): Promise<string[]> => {
+    try {
+      return await fetchSignInMethodsForEmail(auth, email);
+    } catch {
+      return [];
+    }
+  }, []);
+
   const linkEmailPassword = useCallback(async (email: string, password: string) => {
     if (!auth.currentUser) throw new Error('No signed-in user to link.');
     const credential = EmailAuthProvider.credential(email, password);
@@ -119,6 +135,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       signInWithEmail,
       signUpWithEmail,
       resetPassword,
+      getSignInMethods,
       linkEmailPassword,
       signOutUser,
     }),
@@ -131,6 +148,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       signInWithEmail,
       signUpWithEmail,
       resetPassword,
+      getSignInMethods,
       linkEmailPassword,
       signOutUser,
     ]
