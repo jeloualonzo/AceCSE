@@ -1,0 +1,235 @@
+[
+  {
+    "id": "ana-0101",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Multi-Premise Conclusion — Identifying the Relevant Chain",
+    "difficulty": "Medium",
+    "passage": "A budget committee is reviewing agency expenditures. The following statements are all true:\n  P. A government subscription to a satellite imagery service is classified as a luxury.\n  Q. All luxuries are needless expenditures.\n  R. A mobile phone issued for field work is not a luxury.\n  S. Catering for the agency's anniversary dinner is a needless expenditure.",
+    "question": "Which conclusion MUST be true based on the statements above?",
+    "choices": [
+      { "id": "A", "text": "The satellite imagery subscription is a needless expenditure." },
+      { "id": "B", "text": "The mobile phone is not a needless expenditure." },
+      { "id": "C", "text": "The anniversary catering is a luxury." },
+      { "id": "D", "text": "No needless expenditure is a luxury." }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The only valid deductive chain runs through P and Q: the satellite subscription is a luxury (P), and all luxuries are needless expenditures (Q), so the satellite subscription is a needless expenditure — this follows by universal affirmative syllogism (Barbara form) and must be true. The other premises either fail to support the remaining options or actively refute them. Statement R tells us only that the mobile phone is not a luxury; it says nothing about whether the mobile phone is a needless expenditure (something can be needless without being a luxury, as statement S shows). Statement S establishes that the anniversary catering is needless, but it does not say the catering is a luxury — being needless is not the same as being classified as a luxury. Option D inverts Q, which said all luxuries are needless — not that all needless items are luxuries, and certainly not that no needless item is a luxury. The critical skill here is recognising which premises actually chain together to produce a forced conclusion, while treating the other premises as noise.",
+    "steps": [
+      "Step 1: List all premises — P: satellite subscription = luxury; Q: all luxuries = needless expenditures; R: mobile phone ≠ luxury; S: anniversary catering = needless expenditure.",
+      "Step 2: Test whether P and Q chain: satellite subscription (a luxury) falls under the set 'all luxuries'; Q says every member of that set is a needless expenditure. By substitution, the satellite subscription is a needless expenditure.",
+      "Step 3: Test the remaining options against the other premises. R says the mobile phone is not a luxury; this does not imply it is not needless — premise S proves something can be needless without being a luxury.",
+      "Step 4: Confirm option A is the only conclusion that must be true. Options B, C, and D cannot be deduced from the premises given."
+    ],
+    "distractorExplanations": {
+      "B": "Being classified as not-a-luxury (statement R) does not guarantee the mobile phone is not a needless expenditure — statement S shows an item can be needless while also being a non-luxury. The two categories overlap only partially.",
+      "C": "Statement S establishes that anniversary catering is needless, but 'needless' and 'luxury' are not interchangeable. Statement Q says luxuries are needless; it does not say every needless item is a luxury, so catering's needlessness does not make it a luxury.",
+      "D": "This reverses statement Q. Q says all luxuries are needless expenditures, meaning the luxury set is contained within the needless-expenditure set. It does not follow that the two sets are disjoint, which is what 'no needless expenditure is a luxury' would assert."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "In multi-premise items, locate the one pair of premises that actually chains (All A are B + X is A → X is B), then test the remaining premises against the answer options. Extra premises are noise and often bait false conclusions."
+    },
+    "tags": [
+      "logical-reasoning",
+      "syllogism",
+      "multi-premise",
+      "noise-premises",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0102",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Multiplicative-Additive Sequence (×3 + 1)",
+    "difficulty": "Hard",
+    "question": "What is the next number in the series: 1, 4, 13, 40, 121, 364, ___?",
+    "choices": [
+      { "id": "A", "text": "1093" },
+      { "id": "B", "text": "997" },
+      { "id": "C", "text": "865" },
+      { "id": "D", "text": "719" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The key to this series is checking not the differences but the ratio-plus-offset between consecutive terms: each term equals three times the previous term plus 1. Verify: 1×3+1 = 4, 4×3+1 = 13, 13×3+1 = 40, 40×3+1 = 121, 121×3+1 = 364. The rule is confirmed for every step. Applying it once more: 364×3+1 = 1092+1 = 1093. The difficulty lies in looking past the absolute gaps (3, 9, 27, 81, 243 — which are powers of 3 and confirm the ×3 factor) and recognising the +1 offset that each step carries. A solver who only multiplies by 3 gets 1092; the missing +1 drops them to a wrong answer that is close but not among the options — the options instead represent the errors of using a smaller multiplier.",
+    "steps": [
+      "Step 1: Check ratios: 4÷1 = 4, 13÷4 = 3.25, 40÷13 ≈ 3.077 — the ratio is not constant, so it is not a pure geometric sequence.",
+      "Step 2: Look for a linear recurrence. Subtract each ratio's contribution: 4 − 3×1 = 1, 13 − 3×4 = 1, 40 − 3×13 = 1, 121 − 3×40 = 1, 364 − 3×121 = 1. The offset is always 1.",
+      "Step 3: Confirm the rule: each term = 3 × (previous term) + 1.",
+      "Step 4: Apply the rule to 364: 364 × 3 + 1 = 1092 + 1 = 1093. The next number is 1093."
+    ],
+    "distractorExplanations": {
+      "B": "997 does not arise from the established rule; it is a nearby round-ish number without a valid derivation from 364 using ×3 + 1 or any other consistent recurrence the series supports.",
+      "C": "865 is also not derivable from the rule. These values are included as plausible-looking alternatives for solvers who abandon the computation and guess from the order of magnitude.",
+      "D": "719 is less than the correct answer and similarly has no derivation from 364 under the ×3 + 1 rule. It likely attracts solvers who mistakenly use a smaller multiplier such as ×2 (364 × 2 − 9 ≠ 719)."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When ratios between terms are not constant, try the form: term = k × (previous) + c. Subtract the suspected multiple of each previous term; if the remainder is the same constant every time, you have the rule. Here k = 3 and c = 1."
+    },
+    "tags": [
+      "number-series",
+      "multiplicative-additive",
+      "linear-recurrence",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0103",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Dual-Track Interleaved Arithmetic Series",
+    "difficulty": "Medium",
+    "question": "What is the next number in the series: 795, 2611, 684, 2722, 573, 2833, ___?",
+    "choices": [
+      { "id": "A", "text": "543" },
+      { "id": "B", "text": "462" },
+      { "id": "C", "text": "484" },
+      { "id": "D", "text": "446" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "This series hides two separate arithmetic progressions woven together by alternating position. The odd-position terms form one track: 795, 684, 573 — each decreasing by 111. The even-position terms form a second track: 2611, 2722, 2833 — each increasing by 111. The seventh term (the next one) belongs to the odd-position track. Continuing the −111 pattern: 573 − 111 = 462. A common error is treating the whole sequence as a single progression, which produces no consistent difference because the two tracks intersperse values of very different magnitudes. Once separated, each track is a simple arithmetic sequence that yields the answer immediately.",
+    "steps": [
+      "Step 1: Note that the terms alternate between values near 500–800 and values near 2600–2900 — the large jump between consecutive terms signals two independent tracks.",
+      "Step 2: Extract odd-position terms: 795 (1st), 684 (3rd), 573 (5th). Differences: 684 − 795 = −111; 573 − 684 = −111. Arithmetic, common difference −111.",
+      "Step 3: Extract even-position terms: 2611 (2nd), 2722 (4th), 2833 (6th). Differences: 2722 − 2611 = 111; 2833 − 2722 = 111. Arithmetic, common difference +111.",
+      "Step 4: The seventh term is the next odd-position term: 573 − 111 = 462. The next number is 462."
+    ],
+    "distractorExplanations": {
+      "A": "543 comes from subtracting only 30 from 573, a value with no derivation from the established −111 pattern. It may tempt solvers who look only at the last two terms without isolating the track.",
+      "C": "484 is not derivable from either track's arithmetic rule and has no consistent derivation from any step in the sequence.",
+      "D": "446 subtracts 127 from 573, which is not the common difference of the odd-position track. It is close to the correct answer, making it effective as a trap for solvers who miscount the common difference."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When consecutive terms have enormous or irregular gaps, split the series by odd and even positions before doing anything else. Two interleaved arithmetic tracks are a common CSE pattern — separate them, find each common difference, then continue the correct track."
+    },
+    "tags": [
+      "number-series",
+      "interleaved",
+      "dual-track",
+      "arithmetic",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0104",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Geometric Sequence with Negative Ratio",
+    "difficulty": "Medium",
+    "question": "What is the next number in the series: −6, 30, −150, 750, ___?",
+    "choices": [
+      { "id": "A", "text": "−3750" },
+      { "id": "B", "text": "2250" },
+      { "id": "C", "text": "−2250" },
+      { "id": "D", "text": "3750" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Each term is obtained by multiplying the previous term by −5. Check: −6 × (−5) = 30, 30 × (−5) = −150, −150 × (−5) = 750. The multiplier is consistently −5 across all three steps. Applying it once more: 750 × (−5) = −3750. The negative ratio is the feature that makes this item challenging: the sign alternates with every step (negative, positive, negative, positive), so the next term must be negative. Solvers who apply +5 instead of −5 arrive at the wrong sign; solvers who apply −3 or another magnitude arrive at the wrong size.",
+    "steps": [
+      "Step 1: Compute ratios: 30 ÷ (−6) = −5; (−150) ÷ 30 = −5; 750 ÷ (−150) = −5.",
+      "Step 2: The common ratio is −5 — a geometric sequence with a negative multiplier.",
+      "Step 3: Identify the sign pattern: −, +, −, + — the next term must be negative.",
+      "Step 4: Multiply: 750 × (−5) = −3750. The next number is −3750."
+    ],
+    "distractorExplanations": {
+      "B": "2250 uses a positive multiplier of 3 (750 × 3 = 2250) — this neither matches the established ratio of −5 nor preserves the alternating sign pattern. The ratio must be −5, not +3.",
+      "C": "−2250 applies the correct negative sign but uses the wrong magnitude (750 × 3 = 2250). The geometric ratio is −5 throughout, giving a magnitude of 3750, not 2250.",
+      "D": "3750 has the correct magnitude (750 × 5 = 3750) but the wrong sign. Because the ratio is −5, the term after a positive must be negative. The next term must be −3750, not +3750."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "In a geometric sequence, always compute the ratio term ÷ previous term for every step — both the magnitude AND the sign. A negative ratio produces an alternating-sign sequence; the sign of each new term is predictable and must be checked before writing the answer."
+    },
+    "tags": [
+      "number-series",
+      "geometric",
+      "negative-ratio",
+      "alternating-sign",
+      "medium"
+    ]
+  },
+  {
+    "id": "ana-0105",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Equivalent Fraction Series with Constant Ratio",
+    "difficulty": "Easy",
+    "question": "What is the next number in the series: 1/3, 3/9, 5/15, 7/21, 9/27, ___?",
+    "choices": [
+      { "id": "A", "text": "9/29" },
+      { "id": "B", "text": "11/33" },
+      { "id": "C", "text": "11/35" },
+      { "id": "D", "text": "8/25" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Two separate rules govern this series, one for the numerator and one for the denominator. Numerators: 1, 3, 5, 7, 9 — consecutive odd numbers, increasing by 2 each step. Denominators: 3, 9, 15, 21, 27 — increasing by 6 each step. The next numerator is 9 + 2 = 11 and the next denominator is 27 + 6 = 33, giving 11/33. An observant solver also notices that every fraction in the series equals 1/3 when simplified — 1/3, 3/9 = 1/3, 5/15 = 1/3, 7/21 = 1/3, 9/27 = 1/3 — and 11/33 = 1/3 as well. The series is a family of equivalent fractions dressed up with growing surface values. Any fraction other than a multiple of 1/3 is immediately eliminable.",
+    "steps": [
+      "Step 1: Extract numerators — 1, 3, 5, 7, 9 — and denominators — 3, 9, 15, 21, 27 — separately.",
+      "Step 2: Numerator differences: all +2 (consecutive odd numbers). Next numerator: 9 + 2 = 11.",
+      "Step 3: Denominator differences: all +6. Next denominator: 27 + 6 = 33.",
+      "Step 4: The next term is 11/33. Verify: 11 ÷ 33 = 1/3, consistent with every preceding term. The next number is 11/33."
+    ],
+    "distractorExplanations": {
+      "A": "9/29 reuses the previous numerator (9) instead of advancing it to 11, and uses a denominator of 29, which has no derivation from the +6 denominator rule. Both components are wrong.",
+      "C": "11/35 has the correct numerator but a denominator of 35 — the correct next denominator is 27 + 6 = 33, not 27 + 8. It is a plausible near-miss that does not simplify to 1/3, which immediately disqualifies it.",
+      "D": "8/25 fits no rule in the series for either numerators or denominators and does not equal 1/3. It is a distractor without a derivable path from the series."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When a fraction series has both changing numerators and changing denominators, track each part separately. Also simplify every term — if they all reduce to the same fraction, any answer that does not simplify to that same value is immediately wrong."
+    },
+    "tags": [
+      "number-series",
+      "fraction-series",
+      "equivalent-fractions",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0106",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Numerical Analogy — Proportional Scaling",
+    "difficulty": "Medium",
+    "question": "30% is to 3/5 as 60% is to ___.",
+    "choices": [
+      { "id": "A", "text": "1 1/5" },
+      { "id": "B", "text": "1 1/4" },
+      { "id": "C", "text": "2 1/3" },
+      { "id": "D", "text": "3 1/2" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The key is finding the relationship between the first pair of values and applying the same relationship to the second. 30% written as a decimal is 0.30; 3/5 written as a decimal is 0.60. The ratio of the second value to the first is 0.60 ÷ 0.30 = 2 — the fraction is exactly twice the percentage expressed as a decimal. Apply the same relationship to 60%: 60% as a decimal is 0.60, and twice that is 1.20 = 6/5 = 1 1/5. Equivalently, doubling 3/5 gives 6/5 = 1 1/5 — so the pattern doubles the first member to produce the second, and doubling again from 60% (or from 3/5) gives the answer. Every other option applies a different multiplier (neither 2 nor consistent with the given pair) and therefore breaks the analogy.",
+    "steps": [
+      "Step 1: Convert both given values to decimals: 30% = 0.30; 3/5 = 0.60.",
+      "Step 2: Find the ratio: 0.60 ÷ 0.30 = 2. The second number is exactly twice the first.",
+      "Step 3: Apply the same ratio to 60%: 60% = 0.60; 0.60 × 2 = 1.20.",
+      "Step 4: Convert 1.20 to a mixed number: 1.20 = 6/5 = 1 1/5. The answer is 1 1/5."
+    ],
+    "distractorExplanations": {
+      "B": "1 1/4 = 1.25. If the factor were 1.25 ÷ 0.60 ≈ 2.08, it would not match the ratio of 2 established by the given pair. No consistent relationship links 30%, 3/5, and 1 1/4.",
+      "C": "2 1/3 = 7/3 ≈ 2.33. This would imply a ratio of approximately 3.89 between 60% and the answer, which bears no relation to the factor of 2 from the first pair.",
+      "D": "3 1/2 = 3.5. A ratio of 3.5 ÷ 0.60 ≈ 5.83 from the second pair would not match the factor of 2 that governs the analogy. This option is far outside the correct range."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "In numerical analogies, convert all values to the same format (decimals work well) before computing the ratio. The same multiplicative or additive relationship must hold across both pairs — check the first pair to get the rule, then apply it to the second."
+    },
+    "tags": [
+      "number-series",
+      "numerical-analogy",
+      "proportion",
+      "fractions",
+      "medium"
+    ]
+  }
+]

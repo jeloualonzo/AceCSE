@@ -1,0 +1,218 @@
+[
+  {
+    "id": "ana-0107",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Privative Adjective to Its Negated Process",
+    "difficulty": "Hard",
+    "question": "IRREFUTABLE is to DISPROVED as IRREPARABLE is to ___.",
+    "choices": [
+      { "id": "A", "text": "restored" },
+      { "id": "B", "text": "irremediable" },
+      { "id": "C", "text": "inevitable" },
+      { "id": "D", "text": "possible" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The relation in each pair is: a privative adjective (formed with ir-) names the quality of resisting a specific action, and the second term names that very action. IRREFUTABLE means 'cannot be refuted or disproved'; DISPROVED is the action it permanently withstands. By the same pattern, IRREPARABLE means 'cannot be repaired or restored'; the action it resists is RESTORED. The key is reading each ir- word as 'immune to [action]' and identifying that action. Irremediable is a near-synonym of irreparable, not the action it resists, which is the most tempting wrong path.",
+    "distractorExplanations": {
+      "B": "Irremediable means the same thing as irreparable — both describe something that cannot be fixed. Choosing it conflates a synonym with the specific action the adjective negates; the analogy asks for the resisted action, not a restatement of the adjective.",
+      "C": "Inevitable means unavoidable and carries no logical connection to the repair process. It is tempting only because irreparable situations often feel inevitable, but that is a real-world association, not the grammatical relation the analogy tests.",
+      "D": "Possible is the broadest antonym of impossible, but irreparable does not simply mean 'impossible' — it means 'unable to be restored or repaired.' The specific action being negated is restoration, not possibility in the abstract."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "For ir-/un-/in- prefix analogies, strip the prefix: IRREFUTABLE → 'refutable' → 'can be refuted/disproved'; IRREPARABLE → 'reparable' → 'can be repaired/restored.' The second term of each pair is always the action the prefix cancels."
+    },
+    "tags": ["word-analogy", "privative-adjective", "prefix-ir", "hard"]
+  },
+  {
+    "id": "ana-0108",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Discourse Type to Its Defining Tone",
+    "difficulty": "Hard",
+    "question": "TIRADE is to ABUSIVE as EULOGY is to ___.",
+    "choices": [
+      { "id": "A", "text": "flowery" },
+      { "id": "B", "text": "necrology" },
+      { "id": "C", "text": "belittling" },
+      { "id": "D", "text": "laudatory" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The relation is: a type of speech or written address is paired with the adjective that names its defining emotional register. A TIRADE is a long, denunciatory outburst — its defining tone is ABUSIVE. A EULOGY is a formal speech of tribute delivered at a funeral or ceremony of honour — its defining tone is LAUDATORY (full of praise). Flowery describes ornate or excessively elaborate language, which may appear in a eulogy but is not its defining purpose. Necrology is a list of persons who have recently died — a different word category entirely, not a tonal quality. Belittling is the tonal opposite of a eulogy's purpose.",
+    "distractorExplanations": {
+      "A": "Flowery describes language that is elaborate and adorned with imagery. A eulogy can be flowery in style, but flowery is a comment on ornamental expression, not on the speech's fundamental purpose or emotional stance, so it does not parallel how ABUSIVE names the essential character of a tirade.",
+      "B": "A necrology is a register of the recently deceased — a noun naming a document type, not an adjective naming a tone. The analogy pairs a speech type with a descriptive tone word (TIRADE:ABUSIVE), so the second blank must be a tonal adjective, not another genre noun.",
+      "C": "Belittling is the direct opposite of a eulogy's intent. A eulogy honours; belittling diminishes. Choosing it mistakes directional opposition for the defining quality, confusing an antonym of the purpose with the purpose itself."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Key speech-type vocabulary: TIRADE = abusive harangue; EULOGY = laudatory tribute; ELEGY = mournful poem; DIATRIBE = bitter criticism; PANEGYRIC = elaborate formal praise. Each has a fixed emotional register — memorising the pair (type : tone) saves time on both analogy and vocabulary items."
+    },
+    "tags": ["word-analogy", "discourse-type", "tone", "vocabulary", "hard"]
+  },
+  {
+    "id": "ana-0109",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Crime to Its Constitutive Act",
+    "difficulty": "Medium",
+    "question": "PERJURY is to LIE as LARCENY is to ___.",
+    "choices": [
+      { "id": "A", "text": "steal" },
+      { "id": "B", "text": "conspire" },
+      { "id": "C", "text": "kill" },
+      { "id": "D", "text": "trespass" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The relation is: a formal legal crime name is paired with the plain-language verb naming the act that constitutes that crime. PERJURY is the crime of deliberately lying under oath — the constitutive act is to LIE. LARCENY is the crime of taking another's property without consent — the constitutive act is to STEAL. Each distractor names an act that constitutes a different specific crime: conspire (conspiracy), kill (homicide), trespass (trespass/criminal trespass). The analogy tests whether an examinee can identify the act embedded in each legal term.",
+    "distractorExplanations": {
+      "B": "Conspire is the act constituting conspiracy, not larceny. It is an effective distractor because conspiracy and larceny are both criminal offences, but the analogy pairs each crime with its own specific constitutive act, not any other crime's act.",
+      "C": "Kill constitutes homicide or murder. It is the most obvious wrong option on first read because killing is a serious crime, but larceny involves property — not persons. Choosing it shows a confusion between the severity of an offence and its legal definition.",
+      "D": "Trespass is itself a crime (criminal trespass), and the act that constitutes it is also called trespassing. It is a plausible trap because trespass sometimes accompanies theft, but the crime of larceny is specifically about the act of stealing, not about unlawfully entering a place."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Common crime-to-act pairs for analogy items: PERJURY:lie (under oath) · LARCENY:steal · ARSON:burn · ASSAULT:threaten or strike · FRAUD:deceive · FORGERY:falsify. Knowing the plain-English act inside each legal term covers both analogy and legal-vocabulary questions."
+    },
+    "tags": ["word-analogy", "crime", "legal-terms", "medium"]
+  },
+  {
+    "id": "ana-0110",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Branch of Study to Its Parent Discipline",
+    "difficulty": "Hard",
+    "question": "OPTICS is to PHYSICS as DIALECTICS is to ___.",
+    "choices": [
+      { "id": "A", "text": "dialogue" },
+      { "id": "B", "text": "grammar" },
+      { "id": "C", "text": "mathematics" },
+      { "id": "D", "text": "logic" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The relation is: a branch of study is paired with the broader academic discipline that contains it. OPTICS — the study of light, lenses, and vision — is a recognised branch of PHYSICS. DIALECTICS — the method of examining and refuting opposing arguments through reasoned discourse — is a central branch of LOGIC (and of philosophy more broadly). Dialogue is a method associated with dialectics but is not an academic discipline. Grammar and mathematics are disciplines, but neither contains dialectics as a subdivision.",
+    "distractorExplanations": {
+      "A": "Dialogue is the mode of exchange that dialectics employs, not the academic field it belongs to. The analogy asks for the parent discipline, not the technique. Choosing dialogue confuses the method of a subject with the subject's taxonomic home.",
+      "B": "Grammar is the study of language structure and is itself a branch of linguistics, not the parent field of dialectics. The surface similarity between 'dialectics' and 'dialect' (a regional variety of a language) makes grammar tempting, but the two words share only their Greek root 'dialectos,' not their subject matter.",
+      "C": "Mathematics is a rigorous discipline, and there is a field called 'mathematical logic,' but dialectics itself — the philosophical method of argumentation — sits within logic and philosophy, not within mathematics. Choosing mathematics conflates formal logic-as-mathematics with the broader discipline of logic."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "For branch-to-parent analogies, verify both directions: the branch must belong inside the parent, and the parent must be the narrowest discipline that contains it. OPTICS⊂PHYSICS; DIALECTICS⊂LOGIC. Watch for the surface-word trap: 'dialectics' sounds like 'dialect,' but it names a method of argument, not a variety of speech."
+    },
+    "tags": ["word-analogy", "branch-of-study", "academic-disciplines", "hard"]
+  },
+  {
+    "id": "ana-0111",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Craft Process to Its Resulting Product",
+    "difficulty": "Easy",
+    "question": "BREWING is to BEER as TANNING is to ___.",
+    "choices": [
+      { "id": "A", "text": "tea" },
+      { "id": "B", "text": "rubber" },
+      { "id": "C", "text": "cotton" },
+      { "id": "D", "text": "leather" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The relation is: a craft or industrial process is paired with the material it produces. BREWING is the process of fermenting grain with water and hops to produce BEER. TANNING is the process of chemically treating raw animal hides to convert them into durable LEATHER. The remaining options name processed materials, but each requires a different named process: rubber is vulcanised, cotton is spun and woven, and tea is — temptingly — also brewed, but tanning does not produce tea.",
+    "distractorExplanations": {
+      "A": "Tea is brewed, and that surface parallel — both brewing and tea involve hot water — makes this the most tempting wrong option. The error is matching the process word (brewing) to something also associated with brewing, rather than following the analogy: TANNING produces what BREWING produces BEER, and tanning never produces tea.",
+      "B": "Rubber undergoes a process called vulcanisation, not tanning. Both are industrial treatments of a raw material, but the correct pairing for tanning is specifically the conversion of animal hides into leather.",
+      "C": "Cotton is processed by ginning, spinning, and weaving — none of which is called tanning. Choosing it confuses the general idea of 'a raw material turned into a product' with the specific process-to-product pair the analogy requires."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Process-to-product pairs tested in analogies: BREWING:beer · TANNING:leather · SMELTING:metal · MILLING:flour · WEAVING:cloth · DISTILLING:spirits. For each, name the process, then ask what finished good it yields — not what raw material it starts with."
+    },
+    "tags": ["word-analogy", "craft-process", "product", "easy"]
+  },
+  {
+    "id": "ana-0112",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Plain-English Meaning to Greek-Origin Equivalent",
+    "difficulty": "Hard",
+    "question": "What pair of words correctly completes the analogy?\n___ is to METAMORPHOSIS as CATHARSIS is to ___.",
+    "choices": [
+      { "id": "A", "text": "condition — chapter" },
+      { "id": "B", "text": "comparison — effect" },
+      { "id": "C", "text": "process — stage" },
+      { "id": "D", "text": "change — purification" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The relation in each pair is: a plain English word is the first term, and a Greek-derived word with the same core meaning is the second. METAMORPHOSIS (Greek meta = change, morphe = form) means transformation or change; therefore CHANGE is the plain-English equivalent that fills the first blank. CATHARSIS (Greek katharsis = cleansing) means emotional purification or release; therefore PURIFICATION fills the second blank. The completed analogy reads: CHANGE:METAMORPHOSIS :: CATHARSIS:PURIFICATION — each Greek term is the formal equivalent of the plain English word paired with it.",
+    "distractorExplanations": {
+      "A": "Condition and chapter have no consistent relationship to metamorphosis or catharsis. This option is a plausible-sounding non-sequitur that tests whether the examinee actually knows the Greek word meanings rather than guessing from word length or familiarity.",
+      "B": "Comparison and effect each bear vague logical associations — metamorphosis can be compared, and catharsis produces an emotional effect — but neither is the core meaning of the Greek term it is paired with. The analogy requires the direct semantic equivalent, not a related concept.",
+      "C": "Process and stage tempt because metamorphosis is a biological process and catharsis is a stage in dramatic theory. However, the first blank must be the plain-English translation of metamorphosis (change, not process), and the second must translate catharsis (purification, not stage). Choosing this option substitutes a broader category for the precise semantic match."
+    },
+    "tip": {
+      "label": "Vocabulary Trick",
+      "text": "Greek-root vocabulary shortlist: METAMORPHOSIS = change/transformation (meta=beyond/change, morphe=form) · CATHARSIS = purification/cleansing · SYNTHESIS = combination · ANALYSIS = breaking apart · GENESIS = origin/beginning. Knowing the root meanings converts unfamiliar compound words into transparent equivalents."
+    },
+    "tags": ["word-analogy", "greek-roots", "etymology", "double-blank", "hard"]
+  },
+  {
+    "id": "ana-0113",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Weapon Sheath to Its Weapon",
+    "difficulty": "Medium",
+    "question": "What pair of words correctly completes the analogy?\n___ is to SWORD as HOLSTER is to ___.",
+    "choices": [
+      { "id": "A", "text": "scabbard — pistol" },
+      { "id": "B", "text": "sheath — shot" },
+      { "id": "C", "text": "hilt — rifle" },
+      { "id": "D", "text": "blade — spin" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The relation is: a weapon's carrying case or sheath is paired with the weapon it is designed to hold. A SCABBARD is the rigid, protective case made to house a SWORD; a HOLSTER is the carrying case designed to hold a PISTOL. The first blank must be the sheath for a sword (scabbard), and the second blank must be the weapon a holster holds (pistol). Sheath is a near-synonym of scabbard but fails on the second blank — a holster holds a pistol, not a 'shot.' Hilt is the handle of a sword, not its case. Blade is the cutting part of a sword.",
+    "distractorExplanations": {
+      "B": "Sheath is indeed a valid synonym for scabbard, so the first blank is defensible — but the second blank exposes the error. A holster holds a pistol, not a shot. Shot is a projectile or the act of firing, not a weapon that can be holstered. Both blanks must work simultaneously.",
+      "C": "A hilt is the handle of a sword — a component of the weapon, not its carrying case. The analogy requires the external container or sheath for each weapon, not a part of the weapon itself.",
+      "D": "Blade is the cutting edge of a sword, again a part of the weapon rather than its sheath. Spin has no standard relationship to a holster. This option fails on both blanks and is the least plausible of the four."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Weapon-to-sheath pairs: SWORD → scabbard (also: sheath) · PISTOL/HANDGUN → holster · ARROW → quiver (for the set) · BAYONET → scabbard or frog. When both blanks involve a sheath-type container, verify the second blank is the correct weapon for that specific container — the containers are not interchangeable."
+    },
+    "tags": ["word-analogy", "weapon-sheath", "double-blank", "medium"]
+  },
+  {
+    "id": "ana-0114",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Individual to Its Collective Noun Group",
+    "difficulty": "Medium",
+    "question": "What pair of words correctly completes the analogy?\n___ is to SCHOOL as STAR is to ___.",
+    "choices": [
+      { "id": "A", "text": "student — rock" },
+      { "id": "B", "text": "fish — constellation" },
+      { "id": "C", "text": "principal — dancer" },
+      { "id": "D", "text": "bird — tree" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The relation is: an individual member is paired with the collective noun that names a group of that member. A group of FISH is called a SCHOOL — hence FISH fills the first blank. A group of STARS is called a CONSTELLATION — hence CONSTELLATION fills the second blank. The difficulty is that 'school' has the far more common meaning of an educational institution, which is exactly the trap the distractors exploit. A STUDENT goes to school (a building, not a collective noun), and a PRINCIPAL leads one — both readings use the wrong sense of the word.",
+    "distractorExplanations": {
+      "A": "Student and rock use the familiar meaning of school (an educational building) and then pair star with rock, which shares no standard collective noun or other consistent relation. The error is reading 'school' as an institution rather than as a collective noun for fish.",
+      "C": "Principal is the head of a school (educational institution), again exploiting the wrong sense of the word. Dancer has no standard relationship to star as a collective-noun group — a group of dancers is a troupe or corps, not a star.",
+      "D": "Bird — tree associates birds with trees (where birds perch or nest) and treats the analogy as a habitat relationship rather than a collective-noun relationship. A group of birds is a flock, not a school, so this fails on both blanks."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Common collective nouns tested in analogies: FISH→school · STARS→constellation · WOLVES→pack · GEESE→gaggle (in flight) or skein · CATTLE→herd · BEES→swarm · LIONS→pride · CROWS→murder · FISH (in a river)→shoal. Always check whether the analogy is using a familiar word in its collective-noun sense rather than its everyday sense."
+    },
+    "tags": ["word-analogy", "collective-nouns", "double-blank", "medium"]
+  }
+]

@@ -1,0 +1,227 @@
+[
+  {
+    "id": "num-0109",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "subtopic": "Sales Commission Calculation",
+    "difficulty": "Easy",
+    "question": "A real estate broker closes a sale of a condominium unit priced at ₱2,400,000 and earns a 3.5% commission. How much does the broker receive?",
+    "choices": [
+      { "id": "A", "text": "₱72,000" },
+      { "id": "B", "text": "₱84,000" },
+      { "id": "C", "text": "₱96,000" },
+      { "id": "D", "text": "₱132,000" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Commission is a percentage of the selling price paid to the agent who closes the transaction. Multiply the sale price by the commission rate expressed as a decimal: ₱2,400,000 × 0.035 = ₱84,000. The key step is converting the rate correctly — 3.5% becomes 0.035, not 0.35 or 3.5. A broker's commission is always computed on the full selling price, not on profit or on any subtracted amount. Verify: ₱84,000 ÷ ₱2,400,000 = 0.035 = 3.5% ✓",
+    "steps": [
+      "Convert the commission rate to decimal form: 3.5% ÷ 100 = 0.035.",
+      "Multiply the selling price by the rate: ₱2,400,000 × 0.035 = ₱84,000.",
+      "The broker receives ₱84,000."
+    ],
+    "distractorExplanations": {
+      "A": "₱72,000 is the result of applying 3% instead of 3.5% — dropping the half-point by treating 3.5% as simply 3%. Always read the rate exactly: 3.5% = 0.035, not 0.03.",
+      "C": "₱96,000 comes from rounding the rate up to 4% (₱2,400,000 × 0.04 = ₱96,000). The stated rate is 3.5%, which must be used as given — rounding a commission rate benefits the wrong party.",
+      "D": "₱132,000 results from using 5.5% instead of 3.5% — a common slip when the decimal point is misread (₱2,400,000 × 0.055 = ₱132,000). Re-read the rate in the stem before computing."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Commission = Selling Price × (Rate ÷ 100). Always convert the percent to a decimal first. A 3.5% rate is 0.035, not 0.35; misplacing the decimal shifts the answer by a factor of 10."
+    },
+    "tags": [
+      "word-problems",
+      "commission",
+      "percentage-application",
+      "money-and-finance"
+    ]
+  },
+  {
+    "id": "num-0110",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "subtopic": "Savings-Based Payback Period",
+    "difficulty": "Easy",
+    "question": "A government office purchased an electric water dispenser for ₱3,600. Before the purchase, the office spent ₱300 per month on bottled water; after the purchase, the monthly cost dropped to ₱180. In how many months will the dispenser pay for itself from the monthly savings?",
+    "choices": [
+      { "id": "A", "text": "12 months" },
+      { "id": "B", "text": "20 months" },
+      { "id": "C", "text": "24 months" },
+      { "id": "D", "text": "30 months" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "A payback period divides the one-time cost by the recurring saving it generates. First compute the monthly saving: ₱300 – ₱180 = ₱120 per month. Then divide the cost by that saving: ₱3,600 ÷ ₱120 = 30 months. The critical step most examinees miss is computing the saving before dividing — dividing the cost by the new cost alone (₱3,600 ÷ ₱180 = 20) or the old cost alone (₱3,600 ÷ ₱300 = 12) are the two most common errors, and both appear as distractors.",
+    "steps": [
+      "Compute the monthly saving: ₱300 – ₱180 = ₱120 saved per month.",
+      "Divide the equipment cost by the monthly saving: ₱3,600 ÷ ₱120 = 30.",
+      "The dispenser pays for itself in 30 months."
+    ],
+    "distractorExplanations": {
+      "A": "12 months comes from dividing the cost by the old monthly expense (₱3,600 ÷ ₱300 = 12), ignoring the fact that water costs continue after the purchase — only the difference between old and new costs is truly saved each month.",
+      "B": "20 months results from dividing the cost by the new monthly expense (₱3,600 ÷ ₱180 = 20), which treats the entire new cost as savings. The saving is only the reduction in cost (₱300 – ₱180 = ₱120), not the new cost itself.",
+      "C": "24 months could arise from misreading the new cost as ₱150 (₱3,600 ÷ ₱150 = 24) or from an arithmetic slip when computing the saving. Recheck: the new cost is ₱180, so the saving is ₱300 – ₱180 = ₱120."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Payback period = One-time cost ÷ Recurring saving per period. Always compute the saving first (old cost – new cost), then divide. Dividing by the new cost or the old cost alone produces a different — and wrong — result."
+    },
+    "tags": [
+      "word-problems",
+      "payback-period",
+      "savings",
+      "money-and-finance"
+    ]
+  },
+  {
+    "id": "num-0111",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Percentages",
+    "subtopic": "Comparing Percentage Calculations",
+    "difficulty": "Medium",
+    "question": "Which of the following has the GREATEST value?\n\nA. 5% of 200\nB. 12% of 125\nC. 20% of 65\nD. 24% of 50",
+    "choices": [
+      { "id": "A", "text": "5% of 200" },
+      { "id": "B", "text": "12% of 125" },
+      { "id": "C", "text": "20% of 65" },
+      { "id": "D", "text": "24% of 50" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Each option must be evaluated before they can be compared. Compute each product: 5% of 200 = 0.05 × 200 = 10; 12% of 125 = 0.12 × 125 = 15; 20% of 65 = 0.20 × 65 = 13; 24% of 50 = 0.24 × 50 = 12. Ranking them: 15 > 13 > 12 > 10. Option B (12% of 125 = 15) is the greatest. A common trap is to assume that a higher percentage always yields a higher value — option D has the highest rate (24%) but the smallest base (50), giving only 12, which is the second-smallest result.",
+    "steps": [
+      "Evaluate A: 5% × 200 = 0.05 × 200 = 10.",
+      "Evaluate B: 12% × 125 = 0.12 × 125 = 15.",
+      "Evaluate C: 20% × 65 = 0.20 × 65 = 13.",
+      "Evaluate D: 24% × 50 = 0.24 × 50 = 12.",
+      "Compare: 15 > 13 > 12 > 10 — the greatest value is 15, which is option B."
+    ],
+    "distractorExplanations": {
+      "A": "5% of 200 equals 10, the smallest of the four results. Choosing it suggests comparing the base numbers (200 is largest) rather than the actual products. A large base does not guarantee a large result when paired with a small percentage.",
+      "C": "20% of 65 equals 13, which is the second-largest result but still less than 15. The relatively high rate of 20% is offset by a smaller base of 65, yielding a product that falls short of B.",
+      "D": "24% of 50 equals 12, not the largest. This option has the highest percentage rate of all four, making it tempting — but rate and result are not the same thing. The base of 50 is small enough that even a 24% rate produces only 12."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "A higher percentage rate does not mean a higher result. Always compute the actual product (rate × base) for each option before comparing. A small rate applied to a large base can easily exceed a large rate applied to a small base."
+    },
+    "tags": [
+      "word-problems",
+      "percentage-comparison",
+      "percentage-application"
+    ]
+  },
+  {
+    "id": "num-0112",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "subtopic": "Multi-Item Budget Accumulation",
+    "difficulty": "Easy",
+    "question": "A municipal clerk budgets for the following office attire needed for a regional conference:\n\n2 blazers at ₱850 each\n4 blouses at ₱395 each\n1 pair of slacks at ₱1,250\n1 pair of shoes at ₱1,895\n\nHow much does she need in total?",
+    "choices": [
+      { "id": "A", "text": "₱5,575" },
+      { "id": "B", "text": "₱5,240" },
+      { "id": "C", "text": "₱6,425" },
+      { "id": "D", "text": "₱4,390" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Each line item must be multiplied by its quantity before the totals are summed. 2 blazers: 2 × ₱850 = ₱1,700. 4 blouses: 4 × ₱395 = ₱1,580. Slacks: 1 × ₱1,250 = ₱1,250. Shoes: 1 × ₱1,895 = ₱1,895. Grand total: ₱1,700 + ₱1,580 + ₱1,250 + ₱1,895 = ₱6,425. The most common error in multi-item budgets is forgetting to apply the quantity multiplier to one or more items — the distractors are built from exactly those omissions.",
+    "steps": [
+      "Multiply each item by its quantity: blazers = 2 × ₱850 = ₱1,700; blouses = 4 × ₱395 = ₱1,580.",
+      "Items bought in single units: slacks = ₱1,250; shoes = ₱1,895.",
+      "Sum all line totals: ₱1,700 + ₱1,580 + ₱1,250 + ₱1,895 = ₱6,425."
+    ],
+    "distractorExplanations": {
+      "A": "₱5,575 is the total when only one blazer is counted (₱850 + ₱1,580 + ₱1,250 + ₱1,895 = ₱5,575). The quantity of 2 blazers was ignored, using the unit price ₱850 directly in the sum instead of 2 × ₱850.",
+      "B": "₱5,240 results from counting only one blouse (₱1,700 + ₱395 + ₱1,250 + ₱1,895 = ₱5,240) — the multiplier of 4 was applied to neither, leaving three blouses unpaid for.",
+      "D": "₱4,390 is the total when both the quantity of blazers and blouses are ignored (₱850 + ₱395 + ₱1,250 + ₱1,895 = ₱4,390). Always check every line: if an item lists a quantity greater than one, multiply before adding."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "In multi-item budget problems, circle or underline the quantity beside each item before computing. Multiply each unit price by its quantity first, then add the sub-totals. Forgetting a multiplier is the single most frequent error in this item type."
+    },
+    "tags": [
+      "word-problems",
+      "budget-computation",
+      "multi-item-addition",
+      "money-and-finance"
+    ]
+  },
+  {
+    "id": "num-0113",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Ratio and Proportion",
+    "subtopic": "Finding One Part Given the Other from a Ratio",
+    "difficulty": "Easy",
+    "question": "In a training class, the ratio of male to female participants is 3:4. If there are 48 male participants, how many female participants are there?",
+    "choices": [
+      { "id": "A", "text": "32" },
+      { "id": "B", "text": "36" },
+      { "id": "C", "text": "80" },
+      { "id": "D", "text": "64" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "A ratio of 3:4 means that for every 3 male participants there are 4 female participants — the ratio describes how the two groups relate to each other. To find the female count, scale the female part of the ratio by the same factor used to reach the male count. The male count is 48 and the male ratio part is 3, so the scale factor is 48 ÷ 3 = 16. Apply that factor to the female ratio part: 4 × 16 = 64 female participants. Alternatively, set up the proportion: 3/4 = 48/f, so f = 48 × 4/3 = 64.",
+    "steps": [
+      "Identify the ratio parts: males → 3, females → 4.",
+      "Find the scale factor: 48 males ÷ 3 (male ratio part) = 16.",
+      "Multiply the female ratio part by the scale factor: 4 × 16 = 64.",
+      "There are 64 female participants."
+    ],
+    "distractorExplanations": {
+      "A": "32 results from applying the inverse ratio to the male count: 48 × 2/3 = 32, as if the ratio were 3:2 instead of 3:4. Check the direction: males are the smaller group (ratio part 3), so females — the larger group (ratio part 4) — must be more than 48, not fewer.",
+      "B": "36 comes from multiplying by the male ratio part instead of the female ratio part: 48 × 3/4 = 36. This inverts the operation — the female count is 48 × (4/3), not 48 × (3/4).",
+      "C": "80 would follow from treating 48 as the total and distributing it in the 3:4 ratio (total parts = 7, females = 4/7 × 48 ≈ 27, which is not 80 either). 80 may arise from multiplying 48 by 5/3, a ratio that does not appear in the problem. The male group alone is 48; the female group is a separate count scaled from the ratio."
+    },
+    "tip": {
+      "label": "Formula",
+      "text": "Given one group's count and a ratio, find the scale factor first: scale = known count ÷ its ratio part. Then multiply that scale by the other ratio part to get the unknown count. Never divide the known count by the other ratio part directly."
+    },
+    "tags": [
+      "word-problems",
+      "ratio",
+      "proportion",
+      "scale-factor"
+    ]
+  },
+  {
+    "id": "num-0114",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Money and Finance",
+    "subtopic": "Down Payment and Monthly Installment",
+    "difficulty": "Easy",
+    "question": "A civil service employee purchases a laptop priced at ₱12,000 on installment. She pays 25% as a down payment and will settle the balance in 10 equal monthly payments. How much is each monthly payment?",
+    "choices": [
+      { "id": "A", "text": "₱750" },
+      { "id": "B", "text": "₱900" },
+      { "id": "C", "text": "₱960" },
+      { "id": "D", "text": "₱1,200" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "An installment purchase has two components: the down payment reduces the amount owed, and only the remaining balance is divided into monthly payments. Down payment: 25% of ₱12,000 = 0.25 × ₱12,000 = ₱3,000. Balance after down payment: ₱12,000 – ₱3,000 = ₱9,000. Monthly payment: ₱9,000 ÷ 10 months = ₱900. A frequent error is dividing the full price by the number of months, which ignores that the down payment has already reduced the balance.",
+    "steps": [
+      "Compute the down payment: 25% × ₱12,000 = 0.25 × ₱12,000 = ₱3,000.",
+      "Subtract to find the balance: ₱12,000 – ₱3,000 = ₱9,000.",
+      "Divide the balance by the number of months: ₱9,000 ÷ 10 = ₱900.",
+      "Each monthly payment is ₱900."
+    ],
+    "distractorExplanations": {
+      "A": "₱750 comes from dividing the balance (₱9,000) by 12 months instead of 10 — the wrong number of installment periods. The problem specifies 10 monthly payments, so the divisor is 10.",
+      "C": "₱960 results from computing a 20% down payment (₱12,000 × 0.20 = ₱2,400, balance = ₱9,600, then ₱9,600 ÷ 10 = ₱960). The stated down payment rate is 25%, not 20%.",
+      "D": "₱1,200 is the result of dividing the full price by the number of months (₱12,000 ÷ 10 = ₱1,200) without first subtracting the down payment. The down payment is paid upfront and reduces the financed amount — it must be deducted before the division."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "In installment problems, always subtract the down payment before dividing. Monthly payment = (Price – Down Payment) ÷ Number of Months. Dividing the full price yields an overpayment by the down-payment amount spread across the months."
+    },
+    "tags": [
+      "word-problems",
+      "installment",
+      "down-payment",
+      "money-and-finance"
+    ]
+  }
+]
