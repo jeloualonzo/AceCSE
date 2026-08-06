@@ -1,0 +1,290 @@
+[
+  {
+    "id": "cler-0051",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Clerical Operations",
+    "subtopic": "Line-Item Total Verification",
+    "difficulty": "Medium",
+    "question": "An administrative aide verifies requisition slip totals against invoice items. The four line amounts are: Item A — ₱1,450.00; Item B — ₱2,875.00; Item C — ₱625.00; Item D — ₱3,150.00. The summary report lists the total as ₱8,070.00. Which statement correctly identifies the discrepancy?",
+    "choices": [
+      { "id": "A", "text": "The summary total is overstated by ₱30.00 because the actual sum is ₱8,040.00." },
+      { "id": "B", "text": "The summary total is correct because the four items equal ₱8,070.00." },
+      { "id": "C", "text": "The summary total is understated by ₱30.00 because the actual sum is ₱8,100.00." },
+      { "id": "D", "text": "The sum cannot be verified without a tax percentage." }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Add the four line amounts step by step: ₱1,450 + ₱2,875 = ₱4,325; ₱4,325 + ₱625 = ₱4,950; ₱4,950 + ₱3,150 = ₱8,100. The summary reports ₱8,070, which is ₱30 short of the correct total — the summary is understated, not overstated. A common error is reversing the direction of the discrepancy: the actual sum exceeds the reported total, so the reported total is understated. Tax percentages are irrelevant to verifying the arithmetic sum of the listed line items.",
+    "steps": [
+      "Step 1 — Add Items A and B: ₱1,450 + ₱2,875 = ₱4,325.",
+      "Step 2 — Add Item C: ₱4,325 + ₱625 = ₱4,950.",
+      "Step 3 — Add Item D: ₱4,950 + ₱3,150 = ₱8,100.",
+      "Step 4 — Compare to reported total: ₱8,100 − ₱8,070 = ₱30. The reported total is ₱30 understated.",
+      "Step 5 — The correct statement is Option C: understated by ₱30, actual sum ₱8,100."
+    ],
+    "distractorExplanations": {
+      "A": "This reverses the direction of error. The actual sum (₱8,100) is higher than the reported total (₱8,070), so the report is understated — not overstated. ₱8,040 is also arithmetically wrong.",
+      "B": "₱1,450 + ₱2,875 + ₱625 + ₱3,150 equals ₱8,100, not ₱8,070. The summary total is incorrect by ₱30.",
+      "D": "Line items are summed directly at face value; no tax rate is needed to verify the arithmetic total of the amounts already listed."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "In line-item verification questions, compute the actual total first, then subtract it from the reported total. A negative result means the report is overstated; a positive result means the report is understated."
+    },
+    "tags": [
+      "clerical-operations",
+      "arithmetic-checking",
+      "invoice-verification",
+      "discrepancy-detection"
+    ]
+  },
+  {
+    "id": "cler-0052",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Office Procedures & Correspondence",
+    "subtopic": "Permanent Retention of Vital Government Records",
+    "difficulty": "Medium",
+    "question": "Which type of official government record must be retained PERMANENTLY in archives because it documents the legal establishment, policy foundations, or historical actions of an agency?",
+    "choices": [
+      { "id": "A", "text": "Routine general inquiry slips and visitor logbooks" },
+      { "id": "B", "text": "Non-current accounting vouchers older than five years" },
+      { "id": "C", "text": "Daily employee time records (Form 48) from previous years" },
+      { "id": "D", "text": "Vital and historical records such as founding charters and executive orders" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Under Republic Act No. 9470 (National Archives of the Philippines Act of 2007), vital and historical records — including founding charters, executive orders, basic laws, and constitutional mandates — possess enduring legal, administrative, and historical value and must be permanently preserved. Disposal of any public record requires prior written authority from the NAP Executive Director; vital records are excluded from disposal entirely. Routine inquiry slips and visitor logs are transient records subject to early disposal. Accounting vouchers are disposable after the prescribed audit retention period. Daily time records (Form 48) carry a temporary retention period determined by the applicable records disposition schedule.",
+    "distractorExplanations": {
+      "A": "Routine inquiry slips and visitor logbooks are transient records with minimal long-term value. They are among the first categories eligible for disposal under a General Records Disposition Schedule.",
+      "B": "Non-current accounting vouchers are disposable after COA post-audit and the prescribed retention period — typically ten years — not permanently retained.",
+      "C": "Daily time records (Form 48) are administrative records with a defined temporary retention period. They do not document the legal establishment or historical actions of the agency."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Vital records (founding charters, executive orders, basic laws) = permanent retention. Transient records (inquiry slips, visitor logs) = early disposal. Financial records = dispose only after COA audit clearance."
+    },
+    "reference": "Republic Act No. 9470 (National Archives of the Philippines Act of 2007), Sec. 18.",
+    "tags": [
+      "office-procedures",
+      "records-management",
+      "permanent-retention",
+      "vital-records",
+      "RA-9470"
+    ]
+  },
+  {
+    "id": "cler-0053",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Detecting Out-of-Order Entries — First-Name Tie-Breaking",
+    "difficulty": "Medium",
+    "question": "Examine the following list of personnel folders as currently arranged:\n\n  1. Abad, Fernando C.\n  2. Abad, Fernando M.\n  3. Abad, Bernardo S.\n  4. Abadilla, Teresa G.\n\nWhich numbered folder is OUT OF ORDER?",
+    "choices": [
+      { "id": "A", "text": "Folder 1 (Abad, Fernando C.)" },
+      { "id": "B", "text": "Folder 2 (Abad, Fernando M.)" },
+      { "id": "C", "text": "Folder 3 (Abad, Bernardo S.)" },
+      { "id": "D", "text": "Folder 4 (Abadilla, Teresa G.)" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Standard alphabetical filing sorts by surname first, then by given name when surnames match, then by middle initial. All three Abad folders share the same surname, so given names determine their order: 'Bernardo' (B) must precede 'Fernando' (F) because 'B' comes before 'F'. The correct sequence for the Abad group is Bernardo S. → Fernando C. → Fernando M. (middle initial 'C' < 'M' when given names also match). Abadilla sorts last because 'Abad' ends before 'Abadilla' continues — nothing-before-something places the shorter string first. Folder 3 (Abad, Bernardo S.) is currently third but should be first — it is the only folder out of order.",
+    "steps": [
+      "Step 1 — Identify the surname groups: Abad (Folders 1–3) and Abadilla (Folder 4).",
+      "Step 2 — Apply nothing-before-something: 'Abad' ends before 'Abadilla' continues, so all Abad folders precede Abadilla. Folder 4 is correctly last.",
+      "Step 3 — Within the Abad group, compare given names: Bernardo ('B'), Fernando ('F'). 'B'(2) < 'F'(6). Bernardo must come first.",
+      "Step 4 — Between the two Fernando entries, compare middle initials: 'C'(3) < 'M'(13). Fernando C. before Fernando M.",
+      "Step 5 — Correct order: Abad, Bernardo S. → Abad, Fernando C. → Abad, Fernando M. → Abadilla, Teresa G. Folder 3 is out of order."
+    ],
+    "distractorExplanations": {
+      "A": "Folder 1 (Abad, Fernando C.) is correctly placed second among the Abad folders. Fernando C. sorts after Bernardo and before Fernando M.",
+      "B": "Folder 2 (Abad, Fernando M.) is correctly placed third. Middle initial 'M'(13) follows 'C'(3) for the same given name Fernando.",
+      "D": "Folder 4 (Abadilla, Teresa G.) is correctly last. 'Abad' is a prefix of 'Abadilla', so by the nothing-before-something rule all Abad folders precede Abadilla."
+    },
+    "tip": {
+      "label": "Filing Rule",
+      "text": "When checking a list for errors, verify each unit in sequence: surname first, then given name, then middle initial. The first position where the list breaks alphabetical order identifies the out-of-order entry."
+    },
+    "reference": "ARMA International Filing Rules, Rule 2 (Same Surnames); Rule 4 (Nothing Before Something).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "tie-breaking",
+      "first-name",
+      "nothing-before-something",
+      "error-detection"
+    ]
+  },
+  {
+    "id": "cler-0054",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Article 'The' in Business Name Indexing",
+    "difficulty": "Medium",
+    "question": "In standard alphabetical filing of business names, how should 'The San Juan Development Corporation' be indexed?",
+    "choices": [
+      { "id": "A", "text": "The San Juan Development Corporation" },
+      { "id": "B", "text": "Development Corporation, San Juan (The)" },
+      { "id": "C", "text": "Juan Development Corporation, San" },
+      { "id": "D", "text": "San Juan Development Corporation (The)" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Under standard alphabetical filing rules for business names, an article that begins the name — 'The', 'A', or 'An' — is transposed to the end of the name and placed in parentheses. It is then disregarded during alphabetization. 'The San Juan Development Corporation' is therefore indexed as 'San Juan Development Corporation (The)', and the file is placed under 'S' for San. The 'San' prefix is treated as part of the business name and not dropped or inverted. Option A files the name under 'T', clustering it with all other 'The' names — a practice that standard filing rules specifically prohibit. Option B incorrectly inverts the key subject words. Option C erroneously splits 'San Juan', treating 'San' as a separate word.",
+    "distractorExplanations": {
+      "A": "Filing under 'The' would place hundreds of unrelated businesses together under the letter 'T', making retrieval impractical. Standard filing rules require that leading articles be moved to the end.",
+      "B": "Inverting the name to 'Development Corporation, San Juan' alters the identity of the business and is not a recognized filing convention for business names.",
+      "C": "Splitting 'San Juan' into separate units misapplies personal-name prefix rules to a place name used as part of a company name. 'San Juan' is filed as one compound unit."
+    },
+    "tip": {
+      "label": "Filing Rule",
+      "text": "Leading articles (The, A, An) in business names are moved to the end in parentheses and ignored in sorting: 'The ABC Company' → 'ABC Company (The)', filed under 'A'. The body of the name — not the article — determines the filing position."
+    },
+    "reference": "ARMA International Filing Rules, Rule 1 (Letter-by-Letter); ARMA Rule 5 (Articles in Business Names).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "business-names",
+      "article-The",
+      "ARMA-rules"
+    ]
+  },
+  {
+    "id": "cler-0055",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "subtopic": "Government Personnel Vocabulary — personnel vs personal",
+    "difficulty": "Easy",
+    "question": "Which of the following words, commonly used in personnel management and government offices, is spelled CORRECTLY?",
+    "choices": [
+      { "id": "A", "text": "Personel" },
+      { "id": "B", "text": "Personell" },
+      { "id": "C", "text": "Personnel" },
+      { "id": "D", "text": "Pursonnel" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "'Personnel' — meaning the body of employees in an organization — is spelled with a double 'n' and a single 'l': p-e-r-s-o-n-n-e-l. The double 'n' distinguishes it from 'personal' (individual, private), which has only one 'n'. Option A ('Personel') omits the second 'n'. Option B ('Personell') correctly doubles the 'n' but incorrectly doubles the 'l' at the end — the word ends in '-el', not '-ell'. Option D ('Pursonnel') replaces the first 'e' with 'u', producing a phonetically distorted form. 'Personnel' and 'personal' are among the most frequently confused pairs in government correspondence.",
+    "distractorExplanations": {
+      "A": "'Personel' omits the second 'n'. Personnel requires double 'n': per-son-nel. Think of it as 'person' plus 'nel', where the 'n' is doubled at the junction.",
+      "B": "'Personell' doubles the 'l' at the end, but the correct ending is '-el', not '-ell'. Personnel ends in a single 'l': per-son-n-e-l.",
+      "D": "'Pursonnel' replaces the first vowel 'e' with 'u', producing a non-word. The correct first vowel is 'e': per-son-nel."
+    },
+    "tip": {
+      "label": "Spelling Pattern",
+      "text": "Personnel (staff/employees): double 'n', ends in '-el'. Personal (individual/private): single 'n', ends in '-al'. The extra 'n' in personnel is the key distinguishing feature."
+    },
+    "tags": [
+      "spelling",
+      "double-consonant",
+      "personnel",
+      "commonly-misspelled",
+      "government-vocabulary"
+    ]
+  },
+  {
+    "id": "cler-0056",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Office Procedures & Correspondence",
+    "subtopic": "Records Disposal Authority — NAP and COA",
+    "difficulty": "Hard",
+    "question": "Before a government agency may legally destroy or dispose of non-current public records, prior written authority MUST be obtained from which body or bodies?",
+    "choices": [
+      { "id": "A", "text": "Department of Budget and Management (DBM)" },
+      { "id": "B", "text": "Civil Service Commission (CSC) Regional Office" },
+      { "id": "C", "text": "Office of the Ombudsman" },
+      { "id": "D", "text": "National Archives of the Philippines (NAP) and Commission on Audit (COA) for financial records" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Section 18 of Republic Act No. 9470 (National Archives of the Philippines Act of 2007) prohibits any government agency from disposing of or destroying public records without prior written authority from the NAP Executive Director. For financial and accounting records subject to audit, the COA must also clear the records before disposal, and an authorized COA representative must witness the actual destruction to confirm the records destroyed match those authorized. Neither the DBM, the CSC, nor the Ombudsman has authority over routine records disposal; these offices manage fiscal allocation, human resources, and anti-graft functions respectively.",
+    "distractorExplanations": {
+      "A": "The DBM manages appropriations and budget allocation. It has no authority to approve or witness the destruction of agency records under records management law.",
+      "B": "The CSC Regional Office administers civil service examinations and personnel policies. Records disposal clearance is not within its mandate.",
+      "C": "The Ombudsman investigates complaints of graft and misconduct. It does not issue routine records disposal authority to government agencies."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "To legally dispose of public records: (1) obtain prior written authority from the NAP Executive Director; (2) for financial records, also secure COA clearance and have a COA representative witness the disposal. No agency may unilaterally destroy records."
+    },
+    "reference": "Republic Act No. 9470 (National Archives of the Philippines Act of 2007), Sec. 18.",
+    "tags": [
+      "office-procedures",
+      "records-management",
+      "records-disposal",
+      "NAP",
+      "COA",
+      "RA-9470"
+    ]
+  },
+  {
+    "id": "cler-0057",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Clerical Operations",
+    "subtopic": "Transposition Error in Ledger Comparison",
+    "difficulty": "Medium",
+    "question": "A clerical officer compares two ledger entries for the same account:\n\n  Entry 1: Account #8492015 — Amount ₱14,582.00\n  Entry 2: Account #8492015 — Amount ₱14,852.00\n\nWhat type of clerical error occurred in Entry 2?",
+    "choices": [
+      { "id": "A", "text": "An omission error in the account number" },
+      { "id": "B", "text": "A transposition error — the digits '5' and '8' were swapped in the amount" },
+      { "id": "C", "text": "An addition error in the column total" },
+      { "id": "D", "text": "No error — both entries match exactly" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Entry 1 shows ₱14,582.00 and Entry 2 shows ₱14,852.00. The account number (#8492015) is identical in both entries. Comparing the amounts digit by digit: 1-4-5-8-2 versus 1-4-8-5-2. The third and fourth digits differ — '5' and '8' have been swapped. This is a classic transposition error: the same digits are present, but in the wrong order. A useful check: the difference between a transposed and original amount is always divisible by 9 (₱14,852 − ₱14,582 = ₱270; 270 ÷ 9 = 30). This divisibility test quickly flags transposition errors in numerical checking tasks.",
+    "steps": [
+      "Step 1 — Compare account numbers: #8492015 = #8492015. No error here.",
+      "Step 2 — Compare amounts digit by digit: 1-4-[5]-[8]-2 vs 1-4-[8]-[5]-2. Digits at positions 3 and 4 differ.",
+      "Step 3 — Identify the error type: the digits '5' and '8' are swapped. This is a transposition error.",
+      "Step 4 — Verify with the divisibility test: ₱14,852 − ₱14,582 = ₱270; 270 ÷ 9 = 30. The result is a whole number, confirming a transposition."
+    ],
+    "distractorExplanations": {
+      "A": "The account numbers are identical in both entries (#8492015). No omission or error exists in the account number field.",
+      "C": "This item compares two individual line amounts, not a column total. There is no addition operation being evaluated here.",
+      "D": "The amounts differ: ₱14,582 ≠ ₱14,852. The digits '5' and '8' are reversed in Entry 2, making the entries non-matching."
+    },
+    "tip": {
+      "label": "Common Mistake",
+      "text": "Transposition errors are easy to miss because the same digits are present — just in the wrong order. Always compare amounts digit by digit, left to right. Quick check: if the difference between two amounts is divisible by 9, a transposition error is likely."
+    },
+    "tags": [
+      "clerical-operations",
+      "transposition-error",
+      "ledger-checking",
+      "number-verification",
+      "attention-to-detail"
+    ]
+  },
+  {
+    "id": "cler-0058",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Subject Filing Method vs Other Filing Systems",
+    "difficulty": "Easy",
+    "question": "A government office groups its records by operational function — for example, 'PERSONNEL — Leave Applications', 'PERSONNEL — Appointments', 'SUPPLIES — Procurement'. Which filing method is being used?",
+    "choices": [
+      { "id": "A", "text": "Geographic filing" },
+      { "id": "B", "text": "Chronological filing" },
+      { "id": "C", "text": "Subject filing" },
+      { "id": "D", "text": "Straight numerical filing" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Subject filing organizes records by their main topic or operational function, with related sub-topics nested underneath. In the example, 'PERSONNEL' is the main subject heading and 'Leave Applications' and 'Appointments' are sub-headings under it. This method allows all records related to the same function to be retrieved together regardless of their date or originating office. Geographic filing would group records by location (region, province, or city). Chronological filing would arrange records strictly by date. Straight numerical filing assigns sequential numbers without regard to subject.",
+    "distractorExplanations": {
+      "A": "Geographic filing organizes records by physical location — for example, Region I files, Region II files, Province of Laguna files. The example groups by function (PERSONNEL), not by place.",
+      "B": "Chronological filing arranges documents strictly by date, with the most recent on top. The example has no date-based ordering — it groups by subject heading.",
+      "D": "Straight numerical filing assigns each folder a sequential number (File 001, File 002, …) with no regard to subject or content. The example uses named subject headings, not numbers."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Four common filing systems: Subject (by topic/function) — Geographic (by location) — Chronological (by date) — Numerical (by assigned number). Subject filing is the most common in Philippine government offices for grouping functional records."
+    },
+    "tags": [
+      "filing",
+      "filing-systems",
+      "subject-filing",
+      "records-management"
+    ]
+  }
+]

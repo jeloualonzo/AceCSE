@@ -1,0 +1,40 @@
+[
+  {
+    "id": "ana-0100",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "subtopic": "Set Intersection Upper Bound",
+    "difficulty": "Medium",
+    "question": "In a regional civil service qualifying exam, exactly 300 candidates passed Part 1 (General Ability) and exactly 500 candidates passed Part 2 (Specialized Ability). What is the MAXIMUM possible number of candidates who passed BOTH parts?",
+    "choices": [
+      { "id": "A", "text": "800" },
+      { "id": "B", "text": "500" },
+      { "id": "C", "text": "300" },
+      { "id": "D", "text": "200" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The number of candidates who passed both parts is the intersection of the two groups: |Part 1 ∩ Part 2|. A fundamental set-theory rule states that an intersection can never be larger than either of the individual sets it draws from — you cannot have more people in the overlap than exist in the smaller group. Since only 300 candidates passed Part 1, the maximum overlap is 300. That maximum is actually achievable: if every one of the 300 Part 1 passers also happened to pass Part 2, the intersection would equal 300. Any answer above 300 would require the intersection to exceed Part 1's entire count, which is impossible.",
+    "steps": [
+      "Step 1: Identify the two groups — Part 1 passers: 300 candidates; Part 2 passers: 500 candidates.",
+      "Step 2: Recall the bounding rule: the intersection of two sets cannot exceed the size of the smaller set, because the smaller set caps how many people can belong to both.",
+      "Step 3: Compare the two group sizes: min(300, 500) = 300. The maximum overlap is therefore 300.",
+      "Step 4: Confirm the maximum is reachable — if all 300 Part 1 passers also passed Part 2, the intersection equals 300 exactly. The maximum possible number of dual passers is 300."
+    ],
+    "distractorExplanations": {
+      "A": "800 is the total if the two groups had zero overlap (300 + 500 = 800 unique candidates). That figure is the union, not the intersection — adding the two counts conflates 'how many passed at least one part' with 'how many passed both.'",
+      "B": "500 is the size of the larger Part 2 group. If 500 candidates passed both parts, at least 500 would have to have passed Part 1 — but only 300 did. The intersection cannot exceed the smaller set, which is 300.",
+      "D": "200 comes from subtracting the smaller count from the larger (500 − 300 = 200), a calculation that finds the minimum number of Part 2 passers who did not pass Part 1, not the maximum overlap. Subtracting produces a complement, not the intersection ceiling."
+    },
+    "tip": {
+      "label": "Logic Rule",
+      "text": "The intersection of two sets is bounded above by the smaller set and below by zero: max overlap = min(|A|, |B|); min overlap = max(0, |A| + |B| − |Total|). On the CSE, the 'maximum both' question always resolves to the smaller group's size."
+    },
+    "tags": [
+      "logical-reasoning",
+      "set-theory",
+      "intersection-bounds",
+      "medium"
+    ]
+  }
+]
