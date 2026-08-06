@@ -69,12 +69,12 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         </div>
 
         {question.passage && (
-          <div className="border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300 whitespace-pre-line">
+          <div className="border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-black dark:text-slate-300 whitespace-pre-line">
             {question.passage}
           </div>
         )}
 
-        <div className="text-lg sm:text-xl font-medium text-slate-900 dark:text-slate-100 leading-relaxed whitespace-pre-line">
+        <div className="text-lg sm:text-xl font-medium text-black dark:text-slate-100 leading-relaxed whitespace-pre-line">
           {question.question}
         </div>
 
@@ -96,8 +96,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                 aria-checked={isSelected}
                 className={`w-full text-left p-4 min-h-[56px] rounded-lg border transition-colors flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-500 focus-visible:outline-offset-2 ${
                   isSelected
-                    ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 dark:border-emerald-500 text-slate-900 dark:text-white ring-1 ring-emerald-500/40'
-                    : 'bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700/70 text-slate-700 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 dark:border-emerald-500 text-black dark:text-white ring-1 ring-emerald-500/40'
+                    : 'bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700/70 text-black dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
                 <div className="flex items-start sm:items-center gap-3.5 flex-1 min-w-0">

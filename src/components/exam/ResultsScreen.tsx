@@ -309,14 +309,14 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                       </button>
                     </div>
 
-                    <div className="text-sm sm:text-base font-medium text-slate-900 dark:text-slate-100 mb-4 whitespace-pre-line leading-relaxed">
+                    <div className="text-sm sm:text-base font-medium text-black dark:text-slate-100 mb-4 whitespace-pre-line leading-relaxed">
                       {question.question}
                     </div>
 
                     {isExpanded && (
                       <>
                         {question.passage && (
-                          <div className="mb-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 text-xs sm:text-sm text-slate-700 dark:text-slate-300 whitespace-pre-line">
+                          <div className="mb-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 text-xs sm:text-sm text-black dark:text-slate-300 whitespace-pre-line">
                             {question.passage}
                           </div>
                         )}
@@ -324,7 +324,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                           {question.choices.map((option) => {
                             const isUserPick = item.selected === option.id;
                             const isCorrectOption = question.correctOptionId === option.id;
-                            let optionStyle = 'bg-slate-50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300';
+                            let optionStyle = 'bg-slate-50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 text-black dark:text-slate-300';
                             if (isCorrectOption) {
                               optionStyle =
                                 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-300 dark:border-emerald-500/80 text-emerald-800 dark:text-emerald-100 font-semibold';
