@@ -1,0 +1,510 @@
+[
+  {
+    "id": "gen-0110",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "RA 6713 Code of Conduct",
+    "subtopic": "Scope — Who Is Covered",
+    "difficulty": "Hard",
+    "question": "Republic Act No. 6713 establishes norms of conduct and ethical standards for public officials and employees. Which of the following parties is EXCLUDED from the definition of 'public officials and employees' under Section 3(b) of the Act?",
+    "choices": [
+      { "id": "A", "text": "Temporary employees in government agencies" },
+      { "id": "B", "text": "Private contractors rendering services to the government" },
+      { "id": "C", "text": "Military and police personnel" },
+      { "id": "D", "text": "Non-career appointive officials" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Section 3(b) of RA 6713 defines 'Public Officials' to include 'elective and appointive officials and employees, permanent or temporary, whether in the career or non-career service, including military and police personnel, whether or not they receive compensation, regardless of amount.' Private contractors are not employees or officials of the government — they are external parties bound by their contract, not by the Code of Conduct. The scope of RA 6713 is deliberately broad within the public sector, sweeping in casual laborers, uniformed personnel, and uncompensated honorary officials — but it stops at the boundary of the government payroll. A private construction firm building a government building, for instance, is governed by the contract and procurement law, not RA 6713's norms of conduct.",
+    "distractorExplanations": {
+      "A": "Temporary employees are expressly included in Sec. 3(b) — the definition covers 'permanent or temporary' employees. Only those serving in an honorary capacity, laborers, and casual or temporary workers are exempted from the SALN requirement (Sec. 8), not from the law's coverage altogether.",
+      "C": "Military and police personnel are explicitly named in Sec. 3(b) as covered officials. In the aftermath of the Marcos era, the framers of RA 6713 deliberately included uniformed service members within the ethical standards framework.",
+      "D": "Non-career appointive officials — those appointed without passing competitive examinations, such as presidential appointees to cabinet-level positions — are squarely within the 'appointive officials' language of Sec. 3(b) and are fully covered."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "RA 6713 Sec. 3(b): 'public officials and employees' = elective + appointive (permanent or temporary) + career or non-career + military and police. Private contractors are NOT public officials — they do not hold office or employment in the government."
+    },
+    "reference": "RA 6713, Sec. 3(b)",
+    "tags": [
+      "RA 6713",
+      "scope",
+      "public officials",
+      "private contractors",
+      "definitions"
+    ]
+  },
+  {
+    "id": "gen-0111",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "RA 6713 Code of Conduct",
+    "subtopic": "Criminal Penalties for Sections 7, 8, and 9 Violations",
+    "difficulty": "Hard",
+    "question": "Under Section 11 of Republic Act No. 6713, violations of Sections 7 (prohibited acts), 8 (SALN), or 9 (divestment) carry a criminal penalty of imprisonment not exceeding how many years?",
+    "choices": [
+      { "id": "A", "text": "Two (2) years" },
+      { "id": "B", "text": "Three (3) years" },
+      { "id": "C", "text": "Four (4) years" },
+      { "id": "D", "text": "Five (5) years" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Section 11(a) of RA 6713 distinguishes two layers of sanctions. The general administrative penalty for any violation is a fine not exceeding the equivalent of six months' salary, or suspension not exceeding one year, or removal. However, the same section carves out a heavier criminal track specifically for violations of Sections 7, 8, or 9: 'Violations of Sections 7, 8 or 9 of this Act shall be punishable with imprisonment not exceeding five (5) years, or a fine not exceeding five thousand pesos (P5,000), or both, and, in the discretion of the court of competent jurisdiction, disqualification to hold public office.' This criminal track runs through the regular courts, not just administrative bodies. The distinction between the administrative track (six months' salary fine) and the criminal track (five years' imprisonment for Sec. 7/8/9 violations) is the most frequently missed nuance on this provision.",
+    "distractorExplanations": {
+      "A": "Two years is the maximum imprisonment under RA 8485 (Animal Welfare Act of 1998), not RA 6713. Mixing up imprisonment terms across different Republic Acts is a common distractor on multi-RA CSE questions.",
+      "B": "Three years is the minimum imprisonment in some graft statutes under RA 3019 (Anti-Graft and Corrupt Practices Act), not the ceiling for RA 6713 violations. The RA 6713 criminal penalty ceiling is five years.",
+      "C": "Four years does not appear as a ceiling in RA 6713. The statute jumps from the administrative track's salary-equivalent fines directly to a five-year criminal maximum for the most serious categories."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "RA 6713 Sec. 11 — two tracks: (1) Administrative: fine up to 6 months' salary equivalent, suspension, or removal. (2) Criminal (Sec. 7, 8, or 9 violations): imprisonment up to 5 years, or fine up to P5,000, or both. Track (2) is the heavier one."
+    },
+    "reference": "RA 6713, Sec. 11(a)",
+    "tags": [
+      "RA 6713",
+      "penalties",
+      "imprisonment",
+      "section 7",
+      "section 8",
+      "section 9"
+    ]
+  },
+  {
+    "id": "gen-0112",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "RA 6713 Code of Conduct",
+    "subtopic": "Prohibited Acts — Confidential Information",
+    "difficulty": "Medium",
+    "question": "A government auditor who has access to an ongoing investigation's classified records discloses those records to a journalist covering the case for personal gain. Which provision of RA 6713 does this conduct violate?",
+    "choices": [
+      { "id": "A", "text": "Section 7(a) — directly or indirectly having financial and material interest in any transaction requiring approval of the office" },
+      { "id": "B", "text": "Section 7(c) — using or divulging confidential or classified information officially known to the employee, for personal gain or benefit" },
+      { "id": "C", "text": "Section 7(d) — soliciting or accepting gifts in relation to official duties" },
+      { "id": "D", "text": "Section 7(b) — owning, controlling, or having an interest in a business regulated by the office" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Section 7(c) of RA 6713 prohibits public officials and employees from 'using or divulging confidential or classified information officially known to them by reason of their office and not made available to the public, either: (i) to further their private interests, or give undue advantage to anyone; or (ii) to prejudice the public interest.' The auditor in this scenario fits squarely within clause (i): the confidential investigation files are known by reason of official duties, and their disclosure to a journalist serves the auditor's private interest. This prohibition targets a specific, recurring mode of corruption — selling insider information to media, competitors, or parties to litigation — and its inclusion in Sec. 7 makes it a criminal offense under Sec. 11(a) as well.",
+    "distractorExplanations": {
+      "A": "Section 7(a) covers financial interest in a pending transaction — the conflict-of-interest scenario where an official personally profits from approving a contract or application. The auditor here is not approving any transaction; the misconduct is information leakage, not financial conflict.",
+      "C": "Section 7(d) covers the soliciting or accepting of gifts, loans, or entertainment in connection with official duties. Disclosing classified information does not involve receiving gifts — the prohibited act is communication, not receipt of a benefit.",
+      "D": "Section 7(b) covers owning or controlling a business regulated by or transacting with the official's office. The auditor's conduct involves information disclosure, not business ownership or control."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "RA 6713 Sec. 7 checklist: (a) financial interest in pending transaction; (b) owning a business regulated by your office; (c) divulging confidential information for private gain; (d) soliciting gifts. 'Leaking classified files' = Sec. 7(c)."
+    },
+    "reference": "RA 6713, Sec. 7(c)",
+    "tags": [
+      "RA 6713",
+      "prohibited acts",
+      "confidential information",
+      "section 7"
+    ]
+  },
+  {
+    "id": "gen-0113",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "National Territory — Components",
+    "difficulty": "Medium",
+    "question": "Article I of the 1987 Philippine Constitution defines the national territory as including all of the following EXCEPT:",
+    "choices": [
+      { "id": "A", "text": "The territorial sea and internal waters" },
+      { "id": "B", "text": "The seabed and the subsoil" },
+      { "id": "C", "text": "The insular shelves and other submarine areas" },
+      { "id": "D", "text": "Overseas territories of Filipino nationals" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Article I of the 1987 Constitution defines the national territory as comprising 'the Philippine archipelago, with all the islands and waters embraced therein, and all other territories over which the Philippines has sovereignty or jurisdiction, consisting of its terrestrial, fluvial and aerial domains, including its territorial sea, the seabed, the subsoil, the insular shelves, and other submarine areas.' The provision specifies six maritime-domain elements: territorial sea, seabed, subsoil, insular shelves, and other submarine areas — plus the aerial domain above all of these. Overseas territories of Filipino nationals — meaning private property or businesses owned abroad by Filipinos — are not part of the state's national territory. Territory is a concept of state sovereignty, not of private ownership.",
+    "distractorExplanations": {
+      "A": "The territorial sea and the internal waters (the waters around, between, and connecting the islands of the archipelago) are expressly included in Article I. The Philippines' archipelagic character means vast stretches of internal water are constitutionally recognized as national territory.",
+      "B": "The seabed and the subsoil beneath Philippine waters are part of national territory under Article I. This is significant for natural-resource development — oil, gas, and mineral deposits on the seabed belong to the State.",
+      "C": "The insular shelves and other submarine areas are explicitly enumerated in Article I. The continental shelf and extended maritime zones allow the Philippines to claim resources beyond the immediate shoreline."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Art. I territory = (1) terrestrial, (2) fluvial, (3) aerial domains, (4) territorial sea, (5) seabed, (6) subsoil, (7) insular shelves, (8) other submarine areas. Private property of Filipinos abroad is NOT national territory — territory requires state sovereignty."
+    },
+    "reference": "1987 Constitution, Art. I",
+    "tags": [
+      "constitution",
+      "national territory",
+      "Art. I",
+      "territorial sea",
+      "archipelago"
+    ]
+  },
+  {
+    "id": "gen-0114",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Official Languages",
+    "difficulty": "Easy",
+    "question": "Under Article XIV, Section 7 of the 1987 Philippine Constitution, what are the official languages of the Philippines?",
+    "choices": [
+      { "id": "A", "text": "Tagalog and English" },
+      { "id": "B", "text": "Filipino and regional languages" },
+      { "id": "C", "text": "Filipino and English" },
+      { "id": "D", "text": "English and Spanish" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Article XIV, Section 7 of the 1987 Constitution states: 'For purposes of communication and instruction, the official languages of the Philippines are Filipino and, until otherwise provided by law, English.' The distinction between 'Filipino' and 'Tagalog' is important: Filipino is the national language — a standardized and continuing evolution of Tagalog enriched by the vocabulary of other Philippine languages — while Tagalog is merely the regional language of Metro Manila and surrounding provinces. The phrase 'until otherwise provided by law' signals that English's official status is provisional, though no law has altered it. Spanish was dropped as an official language when the 1987 Constitution replaced the 1973 Constitution.",
+    "distractorExplanations": {
+      "A": "Tagalog is the linguistic basis of Filipino but is not itself the official national language. The Constitution designates Filipino — a broader national standard — as the official language, not the specific regional variety of Tagalog.",
+      "B": "Regional languages such as Cebuano, Ilocano, and Hiligaynon are recognized in Article XIV as auxiliary official languages for their respective regions, but they are not the national official languages. The national official pairing is Filipino and English.",
+      "D": "Spanish was an official language of the Philippines under the 1973 Constitution but was dropped when the 1987 Constitution was ratified. The current Constitution names Filipino and English — not Spanish."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Art. XIV, Sec. 7: official languages = Filipino + English. Filipino ≠ Tagalog (Filipino is the national standard; Tagalog is its regional base). Spanish was official under the 1973 Constitution but dropped in 1987."
+    },
+    "reference": "1987 Constitution, Art. XIV, Sec. 7",
+    "tags": [
+      "constitution",
+      "official languages",
+      "Filipino",
+      "English",
+      "Art. XIV"
+    ]
+  },
+  {
+    "id": "gen-0115",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Separation of Church and State",
+    "difficulty": "Easy",
+    "question": "Article II, Section 6 of the 1987 Philippine Constitution declares that the separation of what two institutions shall be inviolable?",
+    "choices": [
+      { "id": "A", "text": "The military and the civilian government" },
+      { "id": "B", "text": "The Senate and the House of Representatives" },
+      { "id": "C", "text": "The national government and local government units" },
+      { "id": "D", "text": "The Church and the State" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Article II, Section 6 reads in full: 'The separation of Church and State shall be inviolable.' The word 'inviolable' — meaning incapable of being violated — signals that this principle admits of no exceptions and no law may bridge the two institutions. In practice, the principle means: the State may not establish an official religion, favor one religion over another, or use public funds primarily for religious purposes; and religious organizations may not exercise governmental authority. The principle operates in both directions. It underpins the constitutional prohibition on using public funds for religious purposes (Art. VI, Sec. 29(2)) and explains why the party-list system excludes the religious sector (Art. VI, Sec. 5(2)).",
+    "distractorExplanations": {
+      "A": "Civilian supremacy over the military is a separate principle found in Article II, Section 3. That section declares that civilian authority is 'at all times supreme over the military' — a distinct constitutional guarantee from the Church-State separation in Section 6.",
+      "B": "The Senate and House of Representatives are both chambers of a single institution — Congress — and there is no constitutional principle requiring their formal separation. They are designed to check each other through the bicameral process, not to be 'separated.'",
+      "C": "Decentralization and the relationship between national and local governments is addressed in Article X, not in Article II, Section 6. That section is exclusively about the Church-State relationship."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Art. II, Sec. 6: Church-State separation is INVIOLABLE. Two consequences: (1) no state religion; (2) no religious organization may govern. It explains why public funds cannot support religious activities and why no religious sect may join the party-list system."
+    },
+    "reference": "1987 Constitution, Art. II, Sec. 6",
+    "tags": [
+      "constitution",
+      "separation of church and state",
+      "state principles",
+      "Art. II"
+    ]
+  },
+  {
+    "id": "gen-0116",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Government Structure",
+    "subtopic": "Inherent Powers of the State — Eminent Domain",
+    "difficulty": "Medium",
+    "question": "Which inherent power of the State allows the government to take private property for public use upon payment of just compensation to the owner?",
+    "choices": [
+      { "id": "A", "text": "Police power" },
+      { "id": "B", "text": "Power of eminent domain" },
+      { "id": "C", "text": "Power of taxation" },
+      { "id": "D", "text": "Power of judicial review" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The power of eminent domain — also called the power of expropriation — is the inherent authority of the State to take private property for public use, subject to the obligation to pay just compensation to the owner. This power is recognized in Article III, Section 9 of the 1987 Constitution: 'Private property shall not be taken for public use without just compensation.' Two conditions must be met: the taking must be for public use, and the owner must receive just compensation (the fair market value of the property). The three inherent powers of the State are: (1) police power — regulating liberty and property for public welfare without compensation; (2) power of taxation — compelling contributions to fund government; and (3) eminent domain — compulsorily acquiring private property for public use with compensation.",
+    "distractorExplanations": {
+      "A": "Police power also restricts private property, but it does so by regulation — setting rules for how property may be used. Police power does not involve physically taking property from the owner, and it does not require compensation. Zoning laws and environmental regulations are exercises of police power.",
+      "C": "The power of taxation compels citizens to contribute money to the government to fund public services. Like police power, it does not involve the State physically taking and using a specific piece of property; it extracts money, and no specific property changes hands permanently.",
+      "D": "Judicial review is the power of the courts — particularly the Supreme Court — to examine whether laws and government acts conform to the Constitution. It is a judicial check on the political branches, not an inherent power of the State over private property."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Three inherent State powers: (1) Police power — regulate liberty/property, no compensation; (2) Taxation — compel monetary contribution; (3) Eminent domain — take private property for public use WITH just compensation. Only eminent domain requires payment."
+    },
+    "reference": "1987 Constitution, Art. III, Sec. 9",
+    "tags": [
+      "constitution",
+      "eminent domain",
+      "inherent powers",
+      "just compensation",
+      "expropriation"
+    ]
+  },
+  {
+    "id": "gen-0117",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Veto Power of the President",
+    "difficulty": "Easy",
+    "question": "Under the 1987 Philippine Constitution, what is the term for the President's power to refuse to sign a bill passed by Congress, thereby preventing it from becoming law?",
+    "choices": [
+      { "id": "A", "text": "Emergency power" },
+      { "id": "B", "text": "Executive power" },
+      { "id": "C", "text": "Legislative power" },
+      { "id": "D", "text": "Veto power" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Article VI, Section 27 of the 1987 Constitution grants the President the power to veto — to disapprove — bills transmitted by Congress. When the President vetoes a bill, Congress may override the veto if two-thirds of all members of both the House and the Senate vote to do so, in which case the bill becomes law as if it had been approved by the President. The veto power is a key tool of the separation of powers: it gives the executive branch a check on the legislative branch's lawmaking authority. The President may also exercise an item veto on appropriation, revenue, and tariff bills, striking specific line items without rejecting the entire measure.",
+    "distractorExplanations": {
+      "A": "Emergency powers are granted to the President by Congress during a state of national emergency, allowing the executive to exercise certain legislative functions temporarily. They are distinct from the veto power, which is an ordinary constitutional check on legislation.",
+      "B": "Executive power is the broad authority of the President to enforce and implement laws, manage government operations, and direct the executive branch. Veto power is a specific sub-component of presidential authority that operates against the legislature, not a synonym for executive power generally.",
+      "C": "Legislative power — the power to make laws — belongs to Congress under Article VI, Section 1. The President participates in the legislative process through the power to sign or veto bills, but does not hold legislative power in the constitutional sense."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Art. VI, Sec. 27: Veto = President's disapproval of a bill. Override = 2/3 of ALL members of both chambers. Item veto: allowed for appropriation, revenue, and tariff bills only — not for ordinary legislation."
+    },
+    "reference": "1987 Constitution, Art. VI, Sec. 27",
+    "tags": [
+      "constitution",
+      "veto power",
+      "executive",
+      "legislative process",
+      "Art. VI"
+    ]
+  },
+  {
+    "id": "gen-0118",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Labor as Primary Social Economic Force",
+    "difficulty": "Easy",
+    "question": "Article II, Section 18 of the 1987 Philippine Constitution characterizes labor as which of the following?",
+    "choices": [
+      { "id": "A", "text": "A secondary economic contributor subject to government regulation" },
+      { "id": "B", "text": "A primary social economic force" },
+      { "id": "C", "text": "A factor of production equal in status to capital" },
+      { "id": "D", "text": "A privilege extended by the State to working citizens" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Article II, Section 18 states: 'The State affirms labor as a primary social economic force. It shall protect the rights of workers and promote their welfare.' By declaring labor a 'primary social economic force,' the Constitution elevates the workforce beyond a mere factor of production — it recognizes workers as the principal engine of national development and imposes on the State an affirmative duty to protect workers' rights and promote their welfare. This provision is the constitutional foundation for pro-labor legislation (the Labor Code, RA 8042 for OFWs, Magna Carta for Workers) and the reason why labor rights are treated as matters of public interest, not mere private contractual arrangements.",
+    "distractorExplanations": {
+      "A": "Calling labor 'secondary' inverts the constitutional text. Section 18 explicitly says 'primary' — the highest rank — and pairs this with a positive State duty to protect workers, not merely regulate them.",
+      "C": "The Constitution does not rank labor equal to capital — it ranks labor higher, as the primary social economic force. Capital is recognized in the economy (Art. XII, Sec. 20) but does not receive the same primacy status that labor is accorded in Art. II, Sec. 18.",
+      "D": "Labor is characterized as a right — and an economic force — not as a State-conferred privilege. Treating it as a privilege would make it revocable by the State, which contradicts the Constitution's protective posture toward workers."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Art. II, Sec. 18: Labor = PRIMARY social economic force. State must protect workers' rights AND promote welfare. 'Primary' means labor is ranked above all other economic forces — this underpins the entire Philippine labor law framework."
+    },
+    "reference": "1987 Constitution, Art. II, Sec. 18",
+    "tags": [
+      "constitution",
+      "labor",
+      "state policies",
+      "workers rights",
+      "Art. II"
+    ]
+  },
+  {
+    "id": "gen-0119",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Family as Basic Autonomous Social Institution",
+    "difficulty": "Easy",
+    "question": "Under Article II, Section 12 of the 1987 Philippine Constitution, which institution does the State recognize as a 'basic autonomous social institution' deserving its protection and strengthening?",
+    "choices": [
+      { "id": "A", "text": "The barangay government" },
+      { "id": "B", "text": "Civil society organizations" },
+      { "id": "C", "text": "The Church" },
+      { "id": "D", "text": "The family" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "Article II, Section 12 reads: 'The State recognizes the sanctity of family life and shall protect and strengthen the family as a basic autonomous social institution.' The designation of the family as 'basic' and 'autonomous' has important legal consequences: the family exists prior to and independently of the State, and the State's role is to protect and strengthen it — not to define or control it. The same provision also protects the life of the mother and the unborn from conception, and recognizes the natural and primary right and duty of parents to rear their children. Philippine family law (Family Code, RA 9262, RA 9995, RA 9208) draws its constitutional mandate from this provision.",
+    "distractorExplanations": {
+      "A": "The barangay is the smallest political unit of government, created by the State under the Local Government Code. It is a governmental institution, not an autonomous social institution existing independently of the State like the family.",
+      "B": "Civil society organizations — NGOs, people's organizations, community-based groups — are recognized and encouraged under Art. II, Sec. 23, but are not described as 'basic autonomous social institutions.' They are voluntary associations, not the foundational unit of society that the family represents.",
+      "C": "While the Church is recognized in Section 6 of the same article as separate from the State, it is not described as a 'basic autonomous social institution' in the constitutional text. The family holds that specific designation in Section 12."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Art. II, Sec. 12: The FAMILY = basic autonomous social institution. The State protects and strengthens it — but cannot define or control it. Same section: protects unborn life from conception; recognizes parents' natural right to rear children."
+    },
+    "reference": "1987 Constitution, Art. II, Sec. 12",
+    "tags": [
+      "constitution",
+      "family",
+      "state policies",
+      "basic institution",
+      "Art. II"
+    ]
+  },
+  {
+    "id": "gen-0120",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Government Structure",
+    "subtopic": "Decentralization and Local Autonomy",
+    "difficulty": "Medium",
+    "question": "What term describes the transfer of power, authority, and responsibilities from the national government to local government units to allow greater citizen participation in governance and community activities?",
+    "choices": [
+      { "id": "A", "text": "Reorganization" },
+      { "id": "B", "text": "Decentralization" },
+      { "id": "C", "text": "Devolution" },
+      { "id": "D", "text": "Privatization" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "Decentralization is the process of transferring political, administrative, and financial authority from the national government to subnational units — provinces, cities, municipalities, and barangays — so that local governments can respond more directly to the needs of their communities. In the Philippines, decentralization was institutionalized through the Local Government Code of 1991 (RA 7160), which transferred many national functions to LGUs, including health services, social welfare, agriculture extension, and public works. Article X, Section 2 of the 1987 Constitution mandates that 'the State shall ensure the autonomy of local governments.' Decentralization and devolution are related but distinct: devolution is the specific form of decentralization that transfers governmental functions to locally elected authorities, while decentralization is the broader umbrella concept.",
+    "distractorExplanations": {
+      "A": "Reorganization refers to restructuring the internal organization of a government agency or the executive branch — changing reporting lines, merging or splitting offices, or reducing bureaucratic layers. It does not inherently involve transferring power to local governments.",
+      "C": "Devolution is a specific type of decentralization where the national government transfers not just administrative functions but also political authority — including the power to make laws and raise revenue — to locally elected governments. In the Philippines, 'devolution' refers specifically to the RA 7160 transfer of functions. The broader principle of which devolution is one form is decentralization, which is what the stem describes.",
+      "D": "Privatization is the transfer of government-owned assets, enterprises, or functions to private entities. It moves authority out of government entirely — to the private sector — rather than redistributing it among levels of government."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Decentralization = national → local government transfer (broad concept). Devolution = specific form: transferring functions to locally elected LGUs under RA 7160. Privatization = government → private sector. Reorganization = internal restructuring only."
+    },
+    "reference": "1987 Constitution, Art. X, Sec. 2; RA 7160 (Local Government Code of 1991)",
+    "tags": [
+      "constitution",
+      "decentralization",
+      "local government",
+      "RA 7160",
+      "autonomy"
+    ]
+  },
+  {
+    "id": "gen-0121",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Party-List Seat Allocation — 20% Ceiling",
+    "difficulty": "Medium",
+    "question": "Under Article VI, Section 5(2) of the 1987 Philippine Constitution, what percentage of the total membership of the House of Representatives shall be allocated to party-list representatives?",
+    "choices": [
+      { "id": "A", "text": "20%" },
+      { "id": "B", "text": "15%" },
+      { "id": "C", "text": "25%" },
+      { "id": "D", "text": "30%" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Article VI, Section 5(2) states: 'The party-list representatives shall constitute twenty per centum of the total number of representatives including those under the party-list.' This 20% ceiling was designed to ensure that marginalized sectors — labor, peasants, women, youth, urban poor, indigenous communities, and similar groups — have a meaningful voice in the House without dominating it. In Banat v. COMELEC (2009), the Supreme Court established a three-round seat allocation formula to implement this ceiling, capping any single party-list at three seats. The 20% ceiling applies to the total House membership — so the number of party-list seats increases as additional district representatives are seated.",
+    "distractorExplanations": {
+      "B": "Fifteen percent has been floated in various reform proposals but is not the constitutional figure. The Constitution specifically sets 20% as the party-list allocation.",
+      "C": "Twenty-five percent would give party-list groups a larger share than the Constitution intended and would exceed the ceiling set in Art. VI, Sec. 5(2). The 20% ceiling was a deliberate balance point.",
+      "D": "Thirty percent would represent nearly a third of the House — a substantially larger bloc than the constitutional 20%. No version of the 1987 Constitution set a 30% party-list allocation."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Art. VI, Sec. 5(2): Party-list = 20% of TOTAL House membership. Each party-list wins at most 3 seats (Supreme Court cap). 20% = the constitutional ceiling — actual party-list representation is often below this, not at it."
+    },
+    "reference": "1987 Constitution, Art. VI, Sec. 5(2)",
+    "tags": [
+      "constitution",
+      "party-list system",
+      "House of Representatives",
+      "Art. VI",
+      "20 percent"
+    ]
+  },
+  {
+    "id": "gen-0122",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Government Structure",
+    "subtopic": "Judicial Department — Scope",
+    "difficulty": "Medium",
+    "question": "Which of the following offices is NOT part of the Judicial Department of the Philippine government?",
+    "choices": [
+      { "id": "A", "text": "Sandiganbayan" },
+      { "id": "B", "text": "Regional Trial Court" },
+      { "id": "C", "text": "Office of the Ombudsman" },
+      { "id": "D", "text": "Municipal Trial Court" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The Office of the Ombudsman is created under Article XI (Accountability of Public Officers) of the 1987 Constitution and is an independent constitutional office — it is neither a court nor part of the Judicial Department. It investigates and prosecutes public officials for criminal acts and administrative offenses, but it does not adjudicate cases; prosecution and adjudication are separate functions. The Sandiganbayan is a specialized anti-graft court (part of the Judicial Department under Art. VIII) that tries and decides cases filed by the Ombudsman. The Regional Trial Courts and Municipal Trial Courts are part of the integrated court system established by BP Blg. 129 and Article VIII.",
+    "distractorExplanations": {
+      "A": "The Sandiganbayan is a collegial court created under Article XI, Section 4 but is part of the judicial branch — it is an anti-graft tribunal that exercises judicial power, hears evidence, and renders judgments. It is not the Ombudsman, which only investigates.",
+      "B": "Regional Trial Courts are the primary trial courts of general jurisdiction in the Philippines, expressly part of the integrated judicial system. They handle cases above the jurisdictional threshold of the lower courts.",
+      "D": "Municipal Trial Courts (and Municipal Circuit Trial Courts) are the lowest level of the court system, handling minor criminal cases, small civil claims, and summary proceedings. They are unambiguously part of the Judicial Department."
+    },
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Ombudsman = Art. XI (Accountability) = INVESTIGATES and PROSECUTES. Sandiganbayan = court within the Judicial Department = TRIES and DECIDES cases filed by the Ombudsman. The Ombudsman is not a court."
+    },
+    "reference": "1987 Constitution, Art. XI, Sec. 5; Art. VIII",
+    "tags": [
+      "constitution",
+      "Ombudsman",
+      "judicial department",
+      "Sandiganbayan",
+      "government structure"
+    ]
+  },
+  {
+    "id": "gen-0123",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "Philippine Government Structure",
+    "subtopic": "Animal Welfare — RA 8485",
+    "difficulty": "Easy",
+    "question": "Which Republic Act promotes and protects the welfare of all animals in the Philippines by supervising and regulating the establishments and operations of facilities used for breeding, maintaining, treating, or training animals?",
+    "choices": [
+      { "id": "A", "text": "RA 8485" },
+      { "id": "B", "text": "RA 8749" },
+      { "id": "C", "text": "RA 7942" },
+      { "id": "D", "text": "RA 9003" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Republic Act No. 8485, enacted on February 11, 1998 and known as the Animal Welfare Act of 1998, is the primary law protecting animals in the Philippines. Section 1 states its purpose: 'to protect and promote the welfare of all animals in the Philippines by supervising and regulating the establishment and operations of all facilities utilized for breeding, maintaining, keeping, treating or training of all animals either as objects of trade or as household pets.' The Bureau of Animal Industry under the Department of Agriculture is the implementing agency responsible for issuing certificates of registration and enforcing the law's provisions against cruelty. Violations carry imprisonment of six months to two years and fines. The other options are different statutes: RA 8749 is the Clean Air Act of 1999; RA 7942 is the Philippine Mining Act of 1995; RA 9003 is the Ecological Solid Waste Management Act of 2000.",
+    "distractorExplanations": {
+      "B": "RA 8749 is the Philippine Clean Air Act of 1999, which establishes a framework for managing air quality and prohibiting incineration of waste. It has no connection to animal welfare.",
+      "C": "RA 7942 is the Philippine Mining Act of 1995, which governs the exploration, development, utilization, and conservation of mineral resources. Mining law and animal welfare law are entirely separate regulatory regimes.",
+      "D": "RA 9003 is the Ecological Solid Waste Management Act of 2000, which mandates solid waste segregation, MRFs, and the phaseout of open dumps. Solid waste management and animal protection are distinct policy areas."
+    },
+    "tip": {
+      "label": "Law Reminder",
+      "text": "RA 8485 (1998) = Animal Welfare Act. Implementing agency = Bureau of Animal Industry (Department of Agriculture). Prohibited: torture, cruelty, dogfights, horsefights. Penalty: 6 months–2 years imprisonment. Distinct from environmental laws (RA 8749, RA 9003)."
+    },
+    "reference": "RA 8485 (Animal Welfare Act of 1998), Sec. 1",
+    "tags": [
+      "RA 8485",
+      "animal welfare",
+      "Bureau of Animal Industry",
+      "republic acts"
+    ]
+  },
+  {
+    "id": "gen-0124",
+    "examLevel": "Both",
+    "subject": "General Information",
+    "topic": "1987 Constitution",
+    "subtopic": "Constitutional Revision — Constituent Assembly Mode",
+    "difficulty": "Hard",
+    "question": "Under Article XVII, Section 1 of the 1987 Philippine Constitution, Congress may propose amendments or revisions to the Constitution, acting as a constituent assembly, upon a vote of how many of all its members?",
+    "choices": [
+      { "id": "A", "text": "A majority (more than half) of all members of Congress" },
+      { "id": "B", "text": "Two-thirds (2/3) of all members of Congress" },
+      { "id": "C", "text": "Three-fourths (3/4) of all members of Congress" },
+      { "id": "D", "text": "Two-thirds (2/3) of all members, voting separately by chamber" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Article XVII, Section 1(1) states: 'Any amendment to, or revision of, this Constitution may be proposed by the Congress, upon a vote of three-fourths of all its Members.' Congress acting in this capacity is called a constituent assembly (con-ass) — it exercises constituent power rather than ordinary legislative power. The 3/4 threshold is deliberately high to prevent hasty constitutional changes. Note the distinction between the two Section 1 modes: subsection (1) is Congress as constituent assembly (3/4 vote); subsection (2) is a constitutional convention (Congress calls one by a 2/3 vote). People's initiative under Section 2 requires 12% of registered voters with 3% per legislative district. Understanding which threshold applies to which mode is the central difficulty of Article XVII questions.",
+    "distractorExplanations": {
+      "A": "A simple majority of Congress can pass ordinary legislation under Article VI. Amending the Constitution through the constituent assembly requires the much higher 3/4 threshold — constitutional changes are intentionally harder to make than ordinary laws.",
+      "B": "A 2/3 vote of all members is the threshold Congress must reach to call a constitutional convention (Art. XVII, Sec. 1(2)) — not to act as a constituent assembly itself. Confusing the two modes is one of the most common errors on Article XVII questions.",
+      "D": "The Constitution does not specify voting separately by chamber for the constituent assembly mode. Article XVII Section 1(1) simply says '3/4 of all its Members' — the chambers may vote jointly unless Congress itself provides otherwise by resolution, but the constitutional text does not mandate separate voting."
+    },
+    "tip": {
+      "label": "Constitution Reminder",
+      "text": "Art. XVII amendment modes: (1) Con-ass = Congress proposes by 3/4 of all members. (2) Con-con = Congress calls by 2/3 of all members, then delegates propose. (3) People's Initiative = 12% total + 3% per district. Only modes 1 and 2 can propose revisions; initiative covers amendments only."
+    },
+    "reference": "1987 Constitution, Art. XVII, Sec. 1(1)",
+    "tags": [
+      "constitution",
+      "constitutional amendment",
+      "constituent assembly",
+      "Art. XVII",
+      "three-fourths vote"
+    ]
+  }
+]

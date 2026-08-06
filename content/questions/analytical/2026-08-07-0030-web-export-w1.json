@@ -1,0 +1,230 @@
+[
+  {
+    "id": "ana-0115",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "subtopic": "Medical Specialist to Body System Treated",
+    "difficulty": "Easy",
+    "question": "OPTOMETRIST : EYES :: DERMATOLOGIST : ___",
+    "choices": [
+      { "id": "A", "text": "Bones" },
+      { "id": "B", "text": "Skin" },
+      { "id": "C", "text": "Teeth" },
+      { "id": "D", "text": "Heart" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The relation is MEDICAL SPECIALIST : THE BODY PART OR SYSTEM THEY SPECIALIZE IN TREATING. An optometrist is a licensed eye-care professional whose entire practice centers on the eyes — examining, diagnosing, and correcting vision problems. A dermatologist is a medical doctor whose entire practice centers on the skin — diagnosing and treating conditions of the skin, hair, and nails. Both pairs follow the same structure: the specialist's professional identity is defined by the specific body system they treat, not by a tool they use or a disease they encounter. Bones belong to an orthopedist, teeth to a dentist, and the heart to a cardiologist — each of those is the right body system for a different specialist.",
+    "distractorExplanations": {
+      "A": "Bones are treated by an orthopedic surgeon or orthopedist, not a dermatologist. The error is pairing a legitimate body part with the wrong specialist — a common trap when the options all name real body systems.",
+      "C": "Teeth are the domain of a dentist or orthodontist, not a dermatologist. Both teeth and skin are outer-body structures, making this a plausible-sounding wrong answer that fails the specialist-matching test.",
+      "D": "The heart is treated by a cardiologist. Choosing it confuses 'major organ' with 'the specific organ this specialist covers' — dermatology has nothing to do with the cardiovascular system."
+    },
+    "tip": {
+      "label": "Remember",
+      "text": "Medical specialist pairs: DERMATOLOGIST→skin · CARDIOLOGIST→heart · ORTHOPEDIST→bones · NEUROLOGIST→nervous system · OPHTHALMOLOGIST→eyes (physician) · OPTOMETRIST→eyes (vision care) · DENTIST→teeth. Match the specialist to the body system that defines their field."
+    },
+    "tags": [
+      "analogy",
+      "specialist-to-body-part",
+      "word-analogy",
+      "easy"
+    ]
+  },
+  {
+    "id": "ana-0116",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Numerical Analogy — Digit Difference Squared",
+    "difficulty": "Hard",
+    "question": "83 is to 25 as 92 is to ___.",
+    "choices": [
+      { "id": "A", "text": "49" },
+      { "id": "B", "text": "44" },
+      { "id": "C", "text": "40" },
+      { "id": "D", "text": "63" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The rule operates on the two digits of each two-digit number: subtract the smaller digit from the larger, then square the result. For 83: the digits are 8 and 3; their difference is 8 − 3 = 5; 5² = 25. The rule is confirmed by the given pair (83 → 25). Apply the same rule to 92: the digits are 9 and 2; their difference is 9 − 2 = 7; 7² = 49. The answer is 49. The difficulty is that the operation is hidden inside the number's own digits — a solver who looks for an arithmetic or ratio relationship between 83 and 25 directly will find none. The key is to treat the two-digit number as a pair of separate digits rather than a single value.",
+    "steps": [
+      "Step 1: Identify the rule from the given pair. 83 → 25: digits are 8 and 3.",
+      "Step 2: Compute the digit difference: 8 − 3 = 5.",
+      "Step 3: Square the difference: 5² = 25. The rule is: |tens digit − units digit|², confirmed.",
+      "Step 4: Apply to 92: digits are 9 and 2; difference = 9 − 2 = 7; 7² = 49.",
+      "Step 5: The answer is 49."
+    ],
+    "distractorExplanations": {
+      "B": "44 has no derivation from the digit-difference-squared rule. It might tempt solvers who try adding or averaging the digits of 92 in some way (9 + 2 = 11, doubled? not quite), but no consistent operation from the first pair produces 44 from 92.",
+      "C": "40 could come from multiplying the digits (9 × 2 = 18, doubled? still not 40) or from misapplying the first pair's rule. The correct rule squares the digit difference, which gives 49, not 40.",
+      "D": "63 might attract a solver who notices 9 × 7 = 63, perhaps mixing the result of the digit difference (7) with the number 9. The rule requires squaring the difference — 7² = 49 — not multiplying the difference by one of the original digits."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When a numerical analogy involves two-digit numbers and the output does not match any simple arithmetic on the whole number, decompose the number into its individual digits. Common hidden rules: sum of digits, product of digits, difference of digits, or those results squared or cubed."
+    },
+    "tags": [
+      "number-pattern",
+      "numerical-analogy",
+      "digit-operations",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0117",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Geometric Differences with Alternating Sign",
+    "difficulty": "Hard",
+    "question": "What is the next number in the series: 563, 647, 479, 815, ___?",
+    "choices": [
+      { "id": "A", "text": "672" },
+      { "id": "B", "text": "386" },
+      { "id": "C", "text": "143" },
+      { "id": "D", "text": "279" }
+    ],
+    "correctOptionId": "C",
+    "explanation": "The key to this series is not the terms themselves but the differences between them, which form their own recognisable pattern. The first-order differences are: 647 − 563 = +84; 479 − 647 = −168; 815 − 479 = +336. These three differences — +84, −168, +336 — are a geometric sequence with a common ratio of −2: each difference is −2 times the previous one. The sign alternates and the magnitude doubles. The next difference must therefore be +336 × (−2) = −672. Adding that to the last term: 815 + (−672) = 143. The difficulty is that the raw terms (563, 647, 479, 815) look random at first glance; the structure only emerges when you examine the differences and recognise a geometric progression among them.",
+    "steps": [
+      "Step 1: Compute first-order differences: 647 − 563 = +84; 479 − 647 = −168; 815 − 479 = +336.",
+      "Step 2: Check the ratio between consecutive differences: −168 ÷ 84 = −2; 336 ÷ (−168) = −2. Constant ratio of −2.",
+      "Step 3: The differences form a geometric sequence with ratio −2: +84, −168, +336, −672, …",
+      "Step 4: The next difference is +336 × (−2) = −672.",
+      "Step 5: Next term = 815 + (−672) = 143."
+    ],
+    "distractorExplanations": {
+      "A": "672 is the absolute value of the next difference (−672), not the next term in the series. Adding 672 instead of subtracting gives 815 + 672 = 1487, which is not among the options; but 672 alone is offered as a trap for solvers who identify the magnitude of the next difference correctly but apply the wrong sign.",
+      "B": "386 has no derivation from the geometric-difference rule. It may attract solvers who attempt to find a pattern in the original terms rather than in their differences, applying some arithmetic to the raw values without success.",
+      "D": "279 similarly cannot be produced by the established rule. These values are placed in the options to catch solvers who abandon systematic analysis and guess from the order of magnitude of the series terms."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When the terms of a series appear irregular, always compute the first-order differences and check whether THOSE differences form a pattern. If consecutive differences have a constant ratio, they are a geometric sequence — find the next difference, then add it to the last term."
+    },
+    "tags": [
+      "number-series",
+      "geometric-differences",
+      "alternating-sign",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0118",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Geometric Second-Order Differences",
+    "difficulty": "Hard",
+    "question": "What is the next number in the series: 126, 64, 34, 20, 14, ___?",
+    "choices": [
+      { "id": "A", "text": "16" },
+      { "id": "B", "text": "18" },
+      { "id": "C", "text": "14" },
+      { "id": "D", "text": "12" }
+    ],
+    "correctOptionId": "D",
+    "explanation": "This series requires two levels of analysis. The first-order differences between consecutive terms are: 64 − 126 = −62; 34 − 64 = −30; 20 − 34 = −14; 14 − 20 = −6. These differences are themselves not arithmetic — they do not decrease by a fixed amount. But examining the second-order differences (the differences of the differences): −30 − (−62) = +32; −14 − (−30) = +16; −6 − (−14) = +8. The second-order differences are 32, 16, 8 — a geometric sequence halving at every step with ratio ½. The next second-order difference must therefore be 8 ÷ 2 = 4. Adding that to the most recent first-order difference: −6 + 4 = −2. Finally, adding the next first-order difference to the last term: 14 + (−2) = 12.",
+    "steps": [
+      "Step 1: Compute first-order differences: 64 − 126 = −62; 34 − 64 = −30; 20 − 34 = −14; 14 − 20 = −6.",
+      "Step 2: Compute second-order differences: −30 − (−62) = +32; −14 − (−30) = +16; −6 − (−14) = +8.",
+      "Step 3: Second-order differences are 32, 16, 8 — a geometric sequence with ratio ½ (halving each step).",
+      "Step 4: Next second-order difference = 8 ÷ 2 = 4.",
+      "Step 5: Next first-order difference = −6 + 4 = −2. Next term = 14 + (−2) = 12."
+    ],
+    "distractorExplanations": {
+      "A": "16 arises from confusing the second-order correction with the final step. A solver who identifies the next second-order difference (+4) but adds it directly to the last term (14 + 4 − 2 = 16, mixing two steps) rather than routing it through the first-order difference gets 16 instead of 12. The correct path is: +4 updates the first-order difference (−6 + 4 = −2), then that updated difference is applied to the last term (14 − 2 = 12).",
+      "B": "18 would require adding +4 to 14 (suggesting an increase), but the series is still decreasing — the differences are negative throughout. This option may appeal to solvers who confuse the second-order difference (which is positive) with the direction of the first-order difference.",
+      "C": "14 repeats the previous term, which would mean a first-order difference of 0. The first-order differences are −62, −30, −14, −6 and remain negative; the next is −2, not 0."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When first-order differences are not constant and are not themselves arithmetic, compute the second-order differences (differences of differences). If those form a geometric sequence (halving, doubling, etc.), find the next second-order value, add it to the last first-order value, then add that to the last term."
+    },
+    "tags": [
+      "number-series",
+      "second-order",
+      "geometric-halving",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0119",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Even-Integer Multiplier Sequence",
+    "difficulty": "Hard",
+    "question": "What is the next number in the series: 10, 11, 13, 21, 69, ___?",
+    "choices": [
+      { "id": "A", "text": "384" },
+      { "id": "B", "text": "453" },
+      { "id": "C", "text": "490" },
+      { "id": "D", "text": "390" }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The terms themselves do not suggest an obvious arithmetic or geometric rule, so the analysis must focus on the differences. The first-order differences are: 11 − 10 = 1; 13 − 11 = 2; 21 − 13 = 8; 69 − 21 = 48. Examining the ratios between consecutive differences: 2 ÷ 1 = 2; 8 ÷ 2 = 4; 48 ÷ 8 = 6. The multipliers are 2, 4, 6 — consecutive even integers. The next multiplier in this sequence is 8, so the next difference is 48 × 8 = 384. Adding that to the last term: 69 + 384 = 453. This pattern is genuinely hard to spot because the differences grow so rapidly that the raw terms seem almost arbitrary until the multiplier sequence is identified.",
+    "steps": [
+      "Step 1: Compute first-order differences: 11 − 10 = 1; 13 − 11 = 2; 21 − 13 = 8; 69 − 21 = 48.",
+      "Step 2: Compute ratios between consecutive differences: 2 ÷ 1 = 2; 8 ÷ 2 = 4; 48 ÷ 8 = 6.",
+      "Step 3: Multipliers form the sequence 2, 4, 6 — consecutive even integers increasing by 2 each step.",
+      "Step 4: The next multiplier is 8, so the next difference = 48 × 8 = 384.",
+      "Step 5: Next term = 69 + 384 = 453."
+    ],
+    "distractorExplanations": {
+      "A": "384 is the next difference, not the next term. Adding 384 to the last term (69) gives 453, not 384 itself. Choosing it means stopping one step short — computing the right difference but failing to add it to the series.",
+      "C": "490 does not arise from the established rule. It is a plausible large number that might attract a solver who loses track of the exact multiplier and picks a nearby value.",
+      "D": "390 is close to the correct answer, making it an effective trap for solvers who identify the multiplier correctly but make an arithmetic slip: 48 × 8 = 384 (not 321), and 69 + 384 = 453 (not 390)."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When differences are not constant and not in a geometric ratio with a fixed multiplier, compute the ratio between consecutive differences and look for an arithmetic pattern among those ratios. Even-integer multipliers (2, 4, 6, 8…) are one family; odd-integer multipliers (3, 5, 7…) are another. Always multiply the last difference by the next multiplier, then add to the last term."
+    },
+    "tags": [
+      "number-series",
+      "multiplier-pattern",
+      "even-integers",
+      "hard"
+    ]
+  },
+  {
+    "id": "ana-0120",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "subtopic": "Dual-Track Interleaved Series — Two Consecutive Blanks",
+    "difficulty": "Medium",
+    "question": "What are the next two numbers in the series: 1, 81, 13, 72, 25, 63, 37, ___, ___?",
+    "choices": [
+      { "id": "A", "text": "49 and 54" },
+      { "id": "B", "text": "49 and 49" },
+      { "id": "C", "text": "45 and 63" },
+      { "id": "D", "text": "45 and 57" }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Two separate arithmetic sequences are woven together by alternating position. The odd-position terms (positions 1, 3, 5, 7) are: 1, 13, 25, 37 — each increasing by 12. The next odd-position term (position 9) is 37 + 12 = 49. The even-position terms (positions 2, 4, 6) are: 81, 72, 63 — each decreasing by 9. The next even-position term (position 8) is 63 − 9 = 54. The two blanks in the stem represent the 8th term (54, from the even track) and the 9th term (49, from the odd track). The answer choices list the pair as (odd-track next, even-track next) — 49 and 54 — which is option A. A solver who treats the series as a single sequence will find no consistent arithmetic or geometric rule; the structure is invisible until the two tracks are separated.",
+    "steps": [
+      "Step 1: Separate odd-position terms: 1 (pos 1), 13 (pos 3), 25 (pos 5), 37 (pos 7). Differences: all +12.",
+      "Step 2: Next odd-position term (position 9) = 37 + 12 = 49.",
+      "Step 3: Separate even-position terms: 81 (pos 2), 72 (pos 4), 63 (pos 6). Differences: all −9.",
+      "Step 4: Next even-position term (position 8) = 63 − 9 = 54.",
+      "Step 5: The two blanks are position 8 (even track → 54) and position 9 (odd track → 49). The answer pair is 49 and 54."
+    ],
+    "distractorExplanations": {
+      "B": "49 and 49 takes the correct next odd-track value (49) but repeats it for the even-position blank as well, ignoring the even-position track entirely. The even-position track is 81, 72, 63 (−9 each step), giving 54, not 49.",
+      "C": "45 and 63 uses 45 as the next odd-position term (37 + 8, using the wrong common difference) and 63, which is the last even-position term already present in the series. Both components are wrong.",
+      "D": "45 and 57 uses the wrong common difference for the odd track (+8 instead of +12) and an incorrect value of 57 for the even track (63 − 6, not 63 − 9). Getting the common difference wrong for either track disqualifies the answer."
+    },
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When a series mixes two different ranges of values (e.g., single or low double digits alternating with high double digits), split it into odd-position and even-position subsequences immediately. Each track is usually a simple arithmetic sequence. When two blanks appear at the end, fill them with the next even-position term and the next odd-position term in sequence order."
+    },
+    "tags": [
+      "number-series",
+      "interleaved",
+      "dual-track",
+      "two-blank",
+      "medium"
+    ]
+  }
+]
