@@ -4,8 +4,13 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import { questionManifestPlugin } from './scripts/vite-plugin-question-manifest';
 
+import { version } from './package.json';
+
 export default defineConfig({
   plugins: [react(), tailwindcss(), questionManifestPlugin()],
+  define: {
+    __APP_VERSION__: JSON.stringify(version),
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
