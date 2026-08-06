@@ -22,7 +22,7 @@ export const LandingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-emerald-100 selection:text-emerald-900">
-      <Navbar onStartPracticing={enterApp} onEnterApp={enterApp} />
+      <Navbar onStartPracticing={enterApp} />
       <main>
         <HeroSection onStartPracticing={enterApp} onTryQuestion={scrollToSampleQuestion} />
         <ProductPreviewSection onStartPracticing={enterApp} />

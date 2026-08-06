@@ -4,10 +4,9 @@ import { BrandMark } from '@/components/BrandMark';
 
 interface NavbarProps {
   onStartPracticing: () => void;
-  onEnterApp?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onStartPracticing, onEnterApp }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onStartPracticing }) => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -52,14 +51,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartPracticing, onEnterApp })
 
           {/* Action Buttons */}
           <div className="flex items-center gap-3">
-            {onEnterApp && (
-              <button
-                onClick={onEnterApp}
-                className="hidden sm:inline-flex items-center gap-1.5 text-slate-700 hover:text-slate-900 text-sm font-semibold px-3.5 py-2 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer border border-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
-              >
-                <span>Sign In</span>
-              </button>
-            )}
             <button
               onClick={onStartPracticing}
               className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors shadow-xs cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
