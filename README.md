@@ -31,8 +31,9 @@ from your actual results.
   estimate — all derived from your attempt history. Honest empty states until data exists.
 - **Full item review** after every session: your answer, the correct answer, the rationale,
   and legal references for fact-based items.
-- **Google sign-in.** One-tap account with your Google profile; history follows you across
-  devices.
+- **Google or email & password sign-in.** One-tap Google, or a classic email account with
+  password reset — and a Google account can add a password later (provider linking, same
+  history). Your progress follows you across devices.
 - **Offline-friendly.** Firestore offline persistence keeps history readable and queues writes
   until connectivity returns.
 - **Fast by architecture.** Route-level code splitting, a lazily loaded question bank (each
@@ -86,7 +87,7 @@ cp .env.example .env.local
 ### Firebase setup
 
 1. Create a Firebase project and a web app.
-2. Enable **Authentication → Sign-in methods**: Google.
+2. Enable **Authentication → Sign-in methods**: Google **and Email/Password**.
 3. Create a **Cloud Firestore** database.
 4. Deploy the security rules: `firebase deploy --only firestore:rules` (rules live in
    [`firestore.rules`](firestore.rules)).

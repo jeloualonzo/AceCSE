@@ -12,9 +12,10 @@ lie to the user**. No fake data, no inflated question counts, no fabricated prog
   `docs/content/JSON_SPEC.md`, which is the schema authority, not this file). Both the
   full 170-item Professional and full 165-item Subprofessional simulations are unlocked
   (every subject meets its blueprint supply).
-- Firebase: Google sign-in ONLY (product decision — no email/password, no anonymous yet),
-  Firestore profiles + attempt history with offline persistence, least-privilege rules in
-  `firestore.rules`.
+- Firebase: Google sign-in AND email/password (sign-up, sign-in, password reset), with
+  provider linking so a Google user can add a password to the same uid (Settings → Account).
+  Firestore profiles + attempt history with offline persistence, plus a create-only
+  `feedback` collection, least-privilege rules in `firestore.rules`.
 - Both examination levels are live. The active level is a first-class user setting
   (`useExamLevel`: localStorage for instant load + `preferredExamLevel` on the Firestore
   profile for cross-device sync), selected in Settings and provided to every page via the
@@ -56,7 +57,8 @@ Landing (/) → Auth (/auth) → App shell (/app/*) → Exam focus mode (/app/ex
   `ExamPage` resumes it after refresh/crash. Expired timed sessions grade as-is at deadline.
 - **`src/pages/ExamPage.tsx`** — owns the session state machine: `pre → active → results`.
   Launches come from router state (`ExamLaunchRequest`); resume comes from localStorage.
-- **`src/context/AuthContext.tsx`** — Google sign-in via popup; nothing else. Unauthenticated
+- **`src/context/AuthContext.tsx`** — Google popup + email/password (sign-in, sign-up with
+  display name, password reset) and `linkEmailPassword` provider linking. Unauthenticated
   visitors never reach the app shell (RequireAuth).
 
 ## Firestore
@@ -65,6 +67,8 @@ Landing (/) → Auth (/auth) → App shell (/app/*) → Exam focus mode (/app/ex
 users/{uid}                    profile (displayName, email, isAnonymous, preferredExamLevel, timestamps)
 users/{uid}/attempts/{id}      immutable Attempt records (mode, level, counts, percentage,
                                passed, durations, subjects[], items[] ≤ 200)
+feedback/{id}                  create-only user feedback (uid, email, category, message,
+                               createdAt, appVersion) — reviewed in the console
 ```
 
 Rules: default-deny, owner-only access, attempts immutable after create, field validation on
@@ -106,7 +110,7 @@ a `questions` collection only if moderation/hotfix speed or non-engineer authors
   add Vitest when test infra lands.
 - Attempt review stores question ids; if a question is removed from the bank, grading skips it
   and ResultsScreen hides it gracefully. Prefer deactivating over deleting bank questions.
-- Bookmarks, notes, admin moderation, Google sign-in linking, PWA — see README roadmap.
+- Bookmarks, notes, admin moderation, PWA — see README roadmap. (Google↔password provider linking shipped.)
 
 ## Product Rules (owner-set — do not "improve" without asking)
 
