@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
     "validate:questions": "node scripts/validate-questions.mjs",
-    "test:content-model": "node scripts/test-content-model.mjs"
+    "test:content-model": "node scripts/test-content-model.mjs",
+    "test:engine": "vitest run src/lib/examEngine.test.ts"
   },
   "dependencies": {
     "firebase": "^12.17.0",
@@ -28,6 +29,7 @@
     "@vitejs/plugin-react": "^5.0.4",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.8.2",
-    "vite": "^6.2.3"
+    "vite": "^6.2.3",
+    "vitest": "^3.2.7"
   }
 }
