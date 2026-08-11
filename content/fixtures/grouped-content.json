@@ -1,0 +1,26 @@
+{
+  "group": {
+    "id": "fixture-reading-set-001",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "title": "Shared passage fixture",
+    "directions": "Read the passage, then answer each question.",
+    "example": "Use only information stated or implied by the passage.",
+    "contentBlocks": [{
+      "kind": "text",
+      "id": "fixture-passage",
+      "title": "Passage",
+      "body": "A small library extended its hours so more residents could study after work."
+    }],
+    "questionIds": ["FIXTURE-Q1", "FIXTURE-Q2", "FIXTURE-Q3"],
+    "selectionPolicy": "atomic",
+    "orderPolicy": "fixed",
+    "tags": ["fixture", "shared-context"]
+  },
+  "questions": [
+    {"id":"FIXTURE-Q1","examLevel":"Both","subject":"Verbal Ability","topic":"Reading Comprehension","difficulty":"Easy","question":"Why did the library extend its hours?","choices":[{"id":"A","text":"To support residents who study after work."},{"id":"B","text":"To reduce its collection."},{"id":"C","text":"To close earlier."},{"id":"D","text":"To move locations."}],"correctOptionId":"A","explanation":"The passage says the extended hours help residents study after work.","tags":["fixture"]},
+    {"id":"FIXTURE-Q2","examLevel":"Both","subject":"Verbal Ability","topic":"Reading Comprehension","difficulty":"Easy","question":"What changed at the library?","choices":[{"id":"A","text":"Its location."},{"id":"B","text":"Its opening hours."},{"id":"C","text":"Its membership fee."},{"id":"D","text":"Its book collection."}],"correctOptionId":"B","explanation":"The library changed its hours by extending them.","tags":["fixture"]},
+    {"id":"FIXTURE-Q3","examLevel":"Both","subject":"Verbal Ability","topic":"Reading Comprehension","difficulty":"Easy","question":"Who could benefit from the change?","choices":[{"id":"A","text":"Residents studying after work."},{"id":"B","text":"Only library employees."},{"id":"C","text":"Visitors leaving before work."},{"id":"D","text":"People who never study."}],"correctOptionId":"A","explanation":"The passage specifically identifies residents who study after work.","tags":["fixture"]}
+  ]
+}

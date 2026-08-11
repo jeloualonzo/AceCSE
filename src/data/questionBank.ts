@@ -1,4 +1,9 @@
-import type { ExamLevel, Question, Subject } from '@/types';
+import type { ExamLevel, Question, QuestionGroup, Subject } from '@/types';
+import {
+  createNormalizedCatalog,
+  mergeNormalizedCatalogs,
+  type NormalizedContentCatalog,
+} from '@/data/contentCatalog';
 import manifest from 'virtual:question-manifest';
 import {
   DIR_BY_SUBJECT,
@@ -36,6 +41,15 @@ import { SUBJECTS_BY_LEVEL } from '@/config/exam';
  */
 
 const modules = import.meta.glob<Question[]>('../../content/questions/**/*.json', {
+  import: 'default',
+});
+
+interface ExplicitGroupDataset {
+  group: QuestionGroup;
+  questions: Question[];
+}
+
+const groupModules = import.meta.glob<ExplicitGroupDataset>('../../content/fixtures/**/*.json', {
   import: 'default',
 });
 
@@ -120,4 +134,34 @@ export async function loadQuestionIndex(
 /** Every subject a session of this level might reference. */
 export function loadQuestionsForLevel(level: ExamLevel): Promise<Question[]> {
   return loadQuestions(SUBJECTS_BY_LEVEL[level]);
+}
+
+/**
+ * Load and normalize only the requested production subjects. Legacy questions
+ * become singleton groups; explicit fixture content is opt-in and separate.
+ */
+export async function loadContentCatalog(
+  subjects: readonly Subject[]
+): Promise<NormalizedContentCatalog> {
+  const questions = await loadQuestions(subjects);
+  return createNormalizedCatalog(questions);
+}
+
+/** Load the opt-in grouped fixture without touching the production bank. */
+export async function loadGroupedFixtureCatalog(): Promise<NormalizedContentCatalog> {
+  const datasets = await Promise.all(Object.values(groupModules).map((load) => load()));
+  const questions = datasets.flatMap((dataset) => dataset.questions);
+  const groups = datasets.map((dataset) => dataset.group);
+  return createNormalizedCatalog(questions, groups);
+}
+
+/** Compose production content with explicitly loaded fixture/test content. */
+export async function loadContentCatalogWithFixtures(
+  subjects: readonly Subject[]
+): Promise<NormalizedContentCatalog> {
+  const [production, fixture] = await Promise.all([
+    loadContentCatalog(subjects),
+    loadGroupedFixtureCatalog(),
+  ]);
+  return mergeNormalizedCatalogs(production, fixture);
 }
