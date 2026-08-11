@@ -192,6 +192,11 @@ export interface ExamSession {
   config: SessionConfig;
   /** Ordered question ids drawn from the bank (no repeats, ever). */
   questionIds: string[];
+  /** Optional structured ordering; legacy sessions use questionIds only. */
+  items?: SessionItem[];
+  blueprintId?: string;
+  blueprintVersion?: number;
+  seed?: string;
   /** Epoch ms. */
   startedAt: number;
   /** Epoch ms wall-clock deadline; null when untimed. */

@@ -1,4 +1,11 @@
-import type { ExamLevel, ExamSession, Question, SessionConfig, Subject } from '@/types';
+import type {
+  ExamLevel,
+  ExamSession,
+  Question,
+  SessionConfig,
+  SessionItem,
+  Subject,
+} from '@/types';
 import {
   EXAM_BLUEPRINT,
   PRACTICE_SECONDS_PER_QUESTION,
@@ -6,7 +13,9 @@ import {
   SUBJECTS_BY_LEVEL,
   simulationDurationSeconds,
 } from '@/config/exam';
-import { loadQuestions, loadQuestionsForLevel, subjectAvailability } from '@/data/questionBank';
+import { loadQuestions, subjectAvailability } from '@/data/questionBank';
+import type { NormalizedContentCatalog } from '@/data/contentCatalog';
+import { loadContentCatalog } from '@/data/questionBank';
 
 /**
  * The exam engine. Guiding rule: never lie.
@@ -82,17 +91,32 @@ export function simulationOptions(level: ExamLevel): SimulationOption[] {
 }
 
 /** Fisher–Yates shuffle (non-mutating). */
-function shuffled<T>(items: readonly T[]): T[] {
+function shuffled<T>(items: readonly T[], random = Math.random): T[] {
   const copy = [...items];
   for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(random() * (i + 1));
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
   return copy;
 }
 
-function sample<T>(items: readonly T[], count: number): T[] {
-  return shuffled(items).slice(0, count);
+function seededRandom(seed: string): () => number {
+  let state = 2166136261;
+  for (let index = 0; index < seed.length; index += 1) {
+    state ^= seed.charCodeAt(index);
+    state = Math.imul(state, 16777619);
+  }
+  return () => {
+    state += 0x6d2b79f5;
+    let value = state;
+    value = Math.imul(value ^ (value >>> 15), value | 1);
+    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function sample<T>(items: readonly T[], count: number, random = Math.random): T[] {
+  return shuffled(items, random).slice(0, count);
 }
 
 function newSessionId(): string {
@@ -113,29 +137,51 @@ export class InsufficientBankError extends Error {
  */
 export async function buildSimulationSession(
   level: ExamLevel,
-  questionCount: number
+  questionCount: number,
+  options: { seed?: string; catalog?: NormalizedContentCatalog } = {}
 ): Promise<ExamSession> {
-  const pool = questionsForLevel(level, await loadQuestionsForLevel(level));
+  const catalog = options.catalog ?? (await loadContentCatalog(SUBJECTS_BY_LEVEL[level]));
+  const random = seededRandom(options.seed ?? `${level}:${questionCount}:${Date.now()}`);
   const needed = scaledDistribution(level, questionCount);
-  const bySubject = new Map<Subject, Question[]>(
-    SUBJECTS_BY_LEVEL[level].map((s) => [s, pool.filter((q) => q.subject === s)])
-  );
-
-  const missing = SUBJECTS_BY_LEVEL[level].filter(
-    (s) => (bySubject.get(s)?.length ?? 0) < needed[s]
-  );
-  if (missing.length > 0) throw new InsufficientBankError(missing);
-
+  const items: SessionItem[] = [];
   const questionIds: string[] = [];
+  const missing: Subject[] = [];
+
   for (const subject of SUBJECTS_BY_LEVEL[level]) {
-    questionIds.push(...sample(bySubject.get(subject) ?? [], needed[subject]).map((q) => q.id));
+    const groups = catalog
+      .getGroupsForSubject(subject, level)
+      .filter((group) => group.status !== 'deprecated')
+      .filter((group) => group.questions.every((question) => question.examLevel === 'Both' || question.examLevel === level));
+    const candidates = shuffled(groups, random);
+    const target = needed[subject];
+    let selected = 0;
+    for (const group of candidates) {
+      const availableQuestions = group.questions.filter((question) => !questionIds.includes(question.id));
+      if (availableQuestions.length === 0) continue;
+      const remaining = target - selected;
+      if (group.selectionPolicy === 'atomic' && availableQuestions.length > remaining) continue;
+      const chosen = group.orderPolicy === 'fixed'
+        ? availableQuestions
+        : shuffled(availableQuestions, random);
+      const questionSelection = group.selectionPolicy === 'atomic'
+        ? chosen
+        : chosen.slice(0, remaining);
+      if (questionSelection.length === 0) continue;
+      items.push({ kind: 'group', groupId: group.id, sectionId: subject, questionIds: questionSelection.map((question) => question.id) });
+      questionIds.push(...questionSelection.map((question) => question.id));
+      selected += questionSelection.length;
+      if (selected >= target) break;
+    }
+    if (selected < target) missing.push(subject);
   }
 
-  const durationSeconds = simulationDurationSeconds(level, questionCount);
+  if (missing.length > 0) throw new InsufficientBankError(missing);
+
+  const durationSeconds = simulationDurationSeconds(level, questionIds.length);
   const config: SessionConfig = {
     mode: 'simulation',
     examLevel: level,
-    questionCount,
+    questionCount: questionIds.length,
     timed: true,
     durationSeconds,
   };
@@ -144,6 +190,10 @@ export async function buildSimulationSession(
     id: newSessionId(),
     config,
     questionIds,
+    items,
+    blueprintId: `${level.toLowerCase()}-default`,
+    blueprintVersion: 1,
+    seed: options.seed,
     startedAt,
     deadlineAt: startedAt + durationSeconds * 1000,
     answers: {},
