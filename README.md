@@ -1,5 +1,9 @@
 # AceCSE
 
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Built with React](https://img.shields.io/badge/built%20with-React%20%2B%20TypeScript-61dafb)
+![Status](https://img.shields.io/badge/status-actively%20developed-brightgreen)
+
 ### Your free Civil Service Examination practice companion.
 
 AceCSE is a free online **Civil Service Examination (CSE) simulator for the Philippines**, built to help examinees prepare through realistic simulations, focused practice, detailed explanations, and performance tracking.
@@ -250,6 +254,36 @@ AceCSE is built with:
 
 ---
 
+## 🧑‍💻 Getting Started (Local Development)
+
+Want to run AceCSE on your own machine? Here's how:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/jeloualonzo/AceCSE.git
+cd AceCSE
+
+# 2. Install dependencies
+npm install
+
+# 3. Set up environment variables
+cp .env.example .env
+# then fill in your Firebase config in .env
+
+# 4. Start the dev server
+npm run dev
+```
+
+The app will be available at `http://localhost:3000`.
+
+Other useful commands:
+
+* `npm run build` — build for production
+* `npm run typecheck` — check TypeScript types
+* `npm run validate:questions` — validate the question bank JSON files
+
+---
+
 ## 🤝 Contributions
 
 The project is open to contributions, particularly improvements that make CSE preparation more useful, accurate, and accessible.
@@ -269,6 +303,12 @@ The question bank, learning features, analytics, and overall preparation experie
 The goal isn't to build another website full of random practice questions.
 
 The goal is to build a **useful, honest, and accessible preparation tool for the Philippine Civil Service Examination.**
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
