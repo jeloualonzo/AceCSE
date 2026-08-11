@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
-    "validate:questions": "node scripts/validate-questions.mjs"
+    "validate:questions": "node scripts/validate-questions.mjs",
+    "test:content-model": "node scripts/test-content-model.mjs"
   },
   "dependencies": {
     "firebase": "^12.17.0",

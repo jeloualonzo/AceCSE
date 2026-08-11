@@ -15,7 +15,7 @@
  *
  * Also prints supply, difficulty, and answer-letter reports.
  */
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -64,6 +64,7 @@ function needsSteps(q) {
 const errors = [];
 const ids = new Set();
 const normalizedQuestions = new Map();
+const questionsById = new Map();
 const subjectCounts = new Map();
 const difficultyCounts = new Map();
 const letterCounts = { A: 0, B: 0, C: 0, D: 0 };
@@ -98,6 +99,7 @@ for (const path of jsonFiles(questionsDir)) {
   for (const q of items) {
     total += 1;
     const where = `${file} → ${q?.id ?? '<missing id>'}`;
+    if (q && typeof q.id === 'string' && q.id) questionsById.set(q.id, q);
 
     // ---- structural gates ------------------------------------------------
     if (typeof q.id !== 'string' || !q.id) errors.push(`${where}: missing id`);
@@ -195,6 +197,62 @@ for (const path of jsonFiles(questionsDir)) {
     }
     if (VALID_DIFFICULTIES.has(q.difficulty)) {
       difficultyCounts.set(q.difficulty, (difficultyCounts.get(q.difficulty) ?? 0) + 1);
+    }
+  }
+}
+
+// ---- optional explicit groups ---------------------------------------------
+// Group metadata is additive: the current bank has none, so this directory is
+// intentionally optional during the migration foundation phase.
+const groupsDir = join(dirname(questionsDir), 'groups');
+const groupIds = new Set();
+if (existsSync(groupsDir)) {
+  for (const path of jsonFiles(groupsDir)) {
+    const file = relative(groupsDir, path);
+    let groups;
+    try {
+      groups = JSON.parse(readFileSync(path, 'utf8'));
+    } catch (error) {
+      errors.push(`groups/${file}: invalid JSON — ${error.message}`);
+      continue;
+    }
+    if (!Array.isArray(groups)) groups = [groups];
+    for (const group of groups) {
+      const where = `groups/${file} → ${group?.id ?? '<missing id>'}`;
+      if (!group || typeof group !== 'object') {
+        errors.push(`${where}: group must be an object`);
+        continue;
+      }
+      if (typeof group.id !== 'string' || !group.id) errors.push(`${where}: missing id`);
+      else if (groupIds.has(group.id)) errors.push(`${where}: duplicate group id`);
+      else groupIds.add(group.id);
+      if (!VALID_LEVELS.has(group.examLevel)) errors.push(`${where}: bad examLevel "${group.examLevel}"`);
+      if (!VALID_SUBJECTS.has(group.subject)) errors.push(`${where}: bad subject "${group.subject}"`);
+      if (typeof group.topic !== 'string' || !group.topic) errors.push(`${where}: missing topic`);
+      if (!Array.isArray(group.questionIds) || group.questionIds.length === 0) {
+        errors.push(`${where}: questionIds must be a non-empty array`);
+      } else {
+        if (new Set(group.questionIds).size !== group.questionIds.length) errors.push(`${where}: duplicate question id`);
+        for (const questionId of group.questionIds) {
+          if (!questionsById.has(questionId)) errors.push(`${where}: missing referenced question "${questionId}"`);
+        }
+      }
+      if (!['atomic', 'splittable'].includes(group.selectionPolicy)) errors.push(`${where}: bad selectionPolicy`);
+      if (!['fixed', 'shuffle-questions'].includes(group.orderPolicy)) errors.push(`${where}: bad orderPolicy`);
+      if (!Array.isArray(group.tags)) errors.push(`${where}: tags must be an array`);
+      if (group.contentBlocks !== undefined && !Array.isArray(group.contentBlocks)) errors.push(`${where}: contentBlocks must be an array`);
+      for (const block of group.contentBlocks ?? []) {
+        if (!block || typeof block !== 'object' || typeof block.id !== 'string' || typeof block.kind !== 'string') {
+          errors.push(`${where}: invalid content block`);
+        }
+      }
+      for (const questionId of group.questionIds ?? []) {
+        const question = questionsById.get(questionId);
+        if (!question) continue;
+        if (question.examLevel !== 'Both' && group.examLevel !== 'Both' && question.examLevel !== group.examLevel) errors.push(`${where}: exam level does not match ${question.id}`);
+        if (question.subject !== group.subject) errors.push(`${where}: subject does not match ${question.id}`);
+        if (question.groupId && question.groupId !== group.id) errors.push(`${where}: question ${question.id} points to group ${question.groupId}`);
+      }
     }
   }
 }

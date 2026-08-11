@@ -36,11 +36,45 @@ export interface QuestionTip {
   text: string;
 }
 
+export type ContentBlock =
+  | {
+      kind: 'text';
+      id: string;
+      title?: string;
+      body: string;
+    }
+  | {
+      kind: 'table';
+      id: string;
+      title?: string;
+      columns: string[];
+      rows: string[][];
+    }
+  | {
+      kind: 'image';
+      id: string;
+      src: string;
+      alt: string;
+      caption?: string;
+    }
+  | {
+      kind: 'dataset';
+      id: string;
+      title?: string;
+      data: Record<string, string | number>[];
+    };
+
+export type GroupSelectionPolicy = 'atomic' | 'splittable';
+export type GroupOrderPolicy = 'fixed' | 'shuffle-questions';
+export type ContentStatus = 'published' | 'deprecated';
+
 export interface Question {
   id: string;
   examLevel: QuestionLevel;
   subject: Subject;
   topic: string;
+  /** Optional semantic classification, such as analogy or reading comprehension. */
+  questionType?: string;
   /** Finer-grained classification within the topic, e.g. "Simple Interest". */
   subtopic?: string;
   difficulty: Difficulty;
@@ -68,6 +102,68 @@ export interface Question {
   /** Where the item was researched/derived from, when distinct from reference. */
   source?: string;
   tags: string[];
+  /** Optional membership in a normalized question group. */
+  groupId?: string;
+  /** One-based authored order inside its group. */
+  groupPosition?: number;
+  contentVersion?: number;
+  status?: ContentStatus;
+}
+
+export interface QuestionGroup {
+  id: string;
+  examLevel: QuestionLevel;
+  subject: Subject;
+  topic: string;
+  questionType?: string;
+  title?: string;
+  directions?: string;
+  example?: string;
+  contentBlocks?: ContentBlock[];
+  questionIds: string[];
+  selectionPolicy: GroupSelectionPolicy;
+  orderPolicy: GroupOrderPolicy;
+  tags: string[];
+  status?: ContentStatus;
+  contentVersion?: number;
+}
+
+export interface NormalizedQuestionGroup extends QuestionGroup {
+  /** Questions are references resolved from the question catalog, never copies. */
+  questions: Question[];
+  /** True for legacy questions represented as deterministic singleton groups. */
+  isImplicitSingleton: boolean;
+}
+
+export type SessionItem =
+  | { kind: 'question'; questionId: string; sectionId?: string; groupId?: string }
+  | { kind: 'group'; groupId: string; sectionId?: string; questionIds: string[] }
+  | { kind: 'administrative'; id: string; sectionId: string; contentBlockIds?: string[] };
+
+export interface ExamSection {
+  id: string;
+  title: string;
+  subject?: Subject;
+  kind: 'administrative' | 'scored';
+  order: number;
+  directions?: string;
+  groupIds: string[];
+  questionCount?: number;
+  timeLimitSeconds?: number;
+}
+
+export interface ExamBlueprint {
+  id: string;
+  examLevel: ExamLevel;
+  version: number;
+  title: string;
+  sections: ExamSection[];
+  totalScoredQuestions: number;
+  totalPresentedQuestions: number;
+  durationSeconds: number;
+  includeAdministrativeSection: boolean;
+  source: 'official' | 'observed' | 'internal';
+  verificationStatus: 'verified' | 'provisional' | 'unverified';
 }
 
 // ---------------------------------------------------------------------------

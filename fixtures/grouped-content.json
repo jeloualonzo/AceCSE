@@ -1,0 +1,28 @@
+{
+  "group": {
+    "id": "fixture-reading-set-001",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "title": "Shared passage fixture",
+    "directions": "Read the passage, then answer each question.",
+    "example": "Use only information stated or implied by the passage.",
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "fixture-passage",
+        "title": "Passage",
+        "body": "A small library extended its hours so more residents could study after work."
+      }
+    ],
+    "questionIds": ["FIXTURE-Q1", "FIXTURE-Q2", "FIXTURE-Q3"],
+    "selectionPolicy": "atomic",
+    "orderPolicy": "fixed",
+    "tags": ["fixture", "shared-context"]
+  },
+  "questions": [
+    {"id":"FIXTURE-Q1","examLevel":"Both","subject":"Verbal Ability","topic":"Reading Comprehension"},
+    {"id":"FIXTURE-Q2","examLevel":"Both","subject":"Verbal Ability","topic":"Reading Comprehension"},
+    {"id":"FIXTURE-Q3","examLevel":"Both","subject":"Verbal Ability","topic":"Reading Comprehension"}
+  ]
+}
