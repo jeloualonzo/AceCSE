@@ -36,12 +36,17 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
       tabIndex={-1}
       className="scroll-mt-28 focus:outline-none"
     >
-      <span
-        id={`question-${question.id}-heading`}
-        className="block text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2"
-      >
-        Question {questionNumber}
-      </span>
+      <div className="flex items-center gap-2.5 flex-wrap mb-2">
+        <span
+          id={`question-${question.id}-heading`}
+          className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500"
+        >
+          Question {questionNumber}
+        </span>
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+          {question.subject}
+        </span>
+      </div>
 
       <p className="text-base sm:text-lg font-medium text-black dark:text-slate-100 leading-relaxed whitespace-pre-line mb-4">
         {question.question}

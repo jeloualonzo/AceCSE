@@ -4,8 +4,12 @@ import {
   bookletQuestionOrder,
   buildBooklet,
   computeAnswerCounts,
+  computeSectionAnswerCounts,
   isLegacyBooklet,
+  navigatorBlocks,
   questionNumberMap,
+  sectionQuestionNumberMap,
+  sectionQuestionOrder,
   sectionTitle,
 } from './examViewModel';
 import type { ExamSession, SessionItem } from '@/types';
@@ -128,5 +132,79 @@ describe('computeAnswerCounts', () => {
   it('handles a fully answered session', () => {
     const s = session({ questionIds: ['Q1', 'Q2'], answers: { Q1: 'A', Q2: 'B' } });
     expect(computeAnswerCounts(s)).toEqual({ total: 2, answered: 2, unanswered: 0 });
+  });
+});
+
+describe('sectionQuestionOrder / sectionQuestionNumberMap — subject-scoped numbering', () => {
+  it('restarts numbering at 1 for every section, independent of other sections', () => {
+    const items: SessionItem[] = [
+      { kind: 'question', questionId: 'N1', sectionId: 'Numerical Reasoning' },
+      { kind: 'question', questionId: 'N2', sectionId: 'Numerical Reasoning' },
+      { kind: 'group', groupId: 'g1', sectionId: 'Verbal Ability', questionIds: ['V1', 'V2', 'V3'] },
+    ];
+    const sections = buildBooklet(session({ items, questionIds: ['N1', 'N2', 'V1', 'V2', 'V3'] }));
+    const [numerical, verbal] = sections;
+
+    expect(sectionQuestionOrder(numerical)).toEqual(['N1', 'N2']);
+    expect(sectionQuestionNumberMap(numerical).get('N2')).toBe(2);
+
+    // Verbal's V1 is booklet-wide question #3, but subject-scoped it's #1.
+    expect(sectionQuestionOrder(verbal)).toEqual(['V1', 'V2', 'V3']);
+    expect(sectionQuestionNumberMap(verbal).get('V1')).toBe(1);
+    expect(sectionQuestionNumberMap(verbal).get('V3')).toBe(3);
+  });
+});
+
+describe('computeSectionAnswerCounts', () => {
+  it('counts only within the given section', () => {
+    const items: SessionItem[] = [
+      { kind: 'question', questionId: 'N1', sectionId: 'Numerical Reasoning' },
+      { kind: 'question', questionId: 'N2', sectionId: 'Numerical Reasoning' },
+      { kind: 'question', questionId: 'V1', sectionId: 'Verbal Ability' },
+    ];
+    const sections = buildBooklet(session({ items, questionIds: ['N1', 'N2', 'V1'] }));
+    const answers = { N1: 'A' }; // V1 unanswered, N2 unanswered
+
+    expect(computeSectionAnswerCounts(sections[0], answers)).toEqual({ total: 2, answered: 1, unanswered: 1 });
+    expect(computeSectionAnswerCounts(sections[1], answers)).toEqual({ total: 1, answered: 0, unanswered: 1 });
+  });
+});
+
+describe('navigatorBlocks — flat grid, not one row per legacy question', () => {
+  it('merges consecutive plain questions and singleton groups into one shared block', () => {
+    const items: SessionItem[] = [
+      { kind: 'question', questionId: 'Q1', sectionId: 'S' },
+      { kind: 'group', groupId: 'g-singleton', sectionId: 'S', questionIds: ['Q2'] }, // migrated legacy question
+      { kind: 'question', questionId: 'Q3', sectionId: 'S' },
+    ];
+    const sections = buildBooklet(session({ items, questionIds: ['Q1', 'Q2', 'Q3'] }));
+    const blocks = navigatorBlocks(sections[0]);
+
+    expect(blocks).toEqual([{ ids: ['Q1', 'Q2', 'Q3'] }]);
+  });
+
+  it('gives a real multi-question group its own labeled block without breaking surrounding questions into separate rows', () => {
+    const items: SessionItem[] = [
+      { kind: 'question', questionId: 'Q1', sectionId: 'S' },
+      { kind: 'group', groupId: 'g-real', sectionId: 'S', questionIds: ['Q2', 'Q3', 'Q4'] },
+      { kind: 'question', questionId: 'Q5', sectionId: 'S' },
+    ];
+    const sections = buildBooklet(session({ items, questionIds: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5'] }));
+    const blocks = navigatorBlocks(sections[0]);
+
+    expect(blocks).toEqual([
+      { ids: ['Q1'] },
+      { ids: ['Q2', 'Q3', 'Q4'], groupId: 'g-real' },
+      { ids: ['Q5'] },
+    ]);
+  });
+
+  it('excludes administrative nodes from the question grid entirely', () => {
+    const items: SessionItem[] = [
+      { kind: 'administrative', id: 'personal-info', sectionId: 'S' },
+      { kind: 'question', questionId: 'Q1', sectionId: 'S' },
+    ];
+    const sections = buildBooklet(session({ items, questionIds: ['Q1'] }));
+    expect(navigatorBlocks(sections[0])).toEqual([{ ids: ['Q1'] }]);
   });
 });

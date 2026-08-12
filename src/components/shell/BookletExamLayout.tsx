@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, Clock, ListTree, RotateCcw, XCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Grid, RotateCcw, XCircle } from 'lucide-react';
 import type { ExamLevel, ExamSession, NormalizedQuestionGroup, OptionId, Question } from '@/types';
 import {
-  bookletQuestionOrder,
   buildBooklet,
   computeAnswerCounts,
+  computeSectionAnswerCounts,
   isLegacyBooklet,
-  questionNumberMap,
+  navigatorBlocks,
+  sectionQuestionNumberMap,
+  sectionQuestionOrder,
   sectionTitle,
+  type BookletSection,
 } from '@/lib/examViewModel';
 import { SectionRenderer } from '@/components/exam/booklet/SectionRenderer';
 
@@ -25,11 +28,12 @@ export interface BookletExamLayoutProps {
 }
 
 /**
- * Continuous CSE-booklet exam experience: read straight through directions,
- * groups, and questions instead of paging one question at a time. Previous
- * question, Next question, and the navigator all SCROLL/FOCUS an already-
- * rendered question — none of them change what's mounted. Answer state
- * stays entirely in `session.answers`, owned by the caller.
+ * Continuous CSE-booklet exam experience — continuous WITHIN a subject, not
+ * across the whole exam. A subject tab switcher selects one section at a
+ * time; only that section is mounted and scrolled. Previous/Next and the
+ * navigator scroll/focus an already-rendered question within the active
+ * subject; crossing a subject boundary switches sections deliberately
+ * rather than folding everything into one 165-question scroll.
  *
  * Practice mode does not use this component — it keeps the original
  * `ExamFocusLayout` + `QuestionCard` single-question flow unchanged.
@@ -50,15 +54,39 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   const navTriggerRef = useRef<HTMLButtonElement | null>(null);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState<string | null>(null);
-  const hasScrolledToInitial = useRef(false);
 
   // Structural data is stable for the session's lifetime (only `answers`
   // mutates on every keystroke), so this never re-derives on every answer.
   const sections = useMemo(() => buildBooklet(session), [session.id, session.items, session.questionIds]);
-  const showHeadings = !isLegacyBooklet(sections);
-  const order = useMemo(() => bookletQuestionOrder(sections), [sections]);
-  const numbers = useMemo(() => questionNumberMap(sections), [sections]);
-  const counts = computeAnswerCounts(session);
+  const isLegacy = isLegacyBooklet(sections);
+
+  const [activeSectionId, setActiveSectionId] = useState<string>(() => {
+    if (sections.length === 0) return '';
+    const withUnanswered = sections.find((sec) =>
+      sectionQuestionOrder(sec).some((id) => !session.answers[id])
+    );
+    return (withUnanswered ?? sections[0]).sectionId;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
+
+  const activeSection: BookletSection | undefined = useMemo(
+    () => sections.find((s) => s.sectionId === activeSectionId) ?? sections[0],
+    [sections, activeSectionId]
+  );
+
+  const localOrder = useMemo(() => (activeSection ? sectionQuestionOrder(activeSection) : []), [activeSection]);
+  const localNumbers = useMemo(
+    () => (activeSection ? sectionQuestionNumberMap(activeSection) : new Map<string, number>()),
+    [activeSection]
+  );
+  const localCounts = activeSection
+    ? computeSectionAnswerCounts(activeSection, session.answers)
+    : { total: 0, answered: 0, unanswered: 0 };
+  const globalCounts = computeAnswerCounts(session);
+  const blocks = useMemo(() => (activeSection ? navigatorBlocks(activeSection) : []), [activeSection]);
+
+  const lastPositionRef = useRef<Record<string, string>>({});
+  const pendingTargetRef = useRef<string | null>(null);
 
   const scrollToQuestion = useCallback((questionId: string, behavior: ScrollBehavior = 'smooth') => {
     const container = scrollRef.current;
@@ -66,25 +94,36 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     const target = container.querySelector<HTMLElement>(`#question-${CSS.escape(questionId)}`);
     if (!target) return;
     target.scrollIntoView({ behavior, block: 'start' });
-    // scrollIntoView is synchronous w.r.t. layout; give the browser one frame
-    // before moving focus so it doesn't fight the scroll animation.
     requestAnimationFrame(() => target.focus({ preventScroll: true }));
     setCurrentQuestionId(questionId);
   }, []);
 
-  // On first mount, land on the first unanswered question (or the first
-  // question if everything is answered) without an animated scroll.
+  // Lands on the right question every time the active section changes —
+  // covers first mount, tab switches, and Previous/Next crossing a subject
+  // boundary (via pendingTargetRef, which wins over the remembered/first-
+  // unanswered default when a boundary crossing set an explicit target).
   useEffect(() => {
-    if (hasScrolledToInitial.current || order.length === 0) return;
-    hasScrolledToInitial.current = true;
-    const target = order.find((id) => !session.answers[id]) ?? order[0];
+    if (!activeSection) return;
+    const order = sectionQuestionOrder(activeSection);
+    if (order.length === 0) return;
+
+    let target: string;
+    if (pendingTargetRef.current && order.includes(pendingTargetRef.current)) {
+      target = pendingTargetRef.current;
+    } else {
+      const remembered = lastPositionRef.current[activeSectionId];
+      target =
+        remembered && order.includes(remembered)
+          ? remembered
+          : order.find((id) => !session.answers[id]) ?? order[0];
+    }
+    pendingTargetRef.current = null;
     scrollToQuestion(target, 'auto');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [order]);
+  }, [activeSectionId, activeSection]);
 
-  // Scroll-spy: track whichever question is nearest the top of the visible
-  // area so the header/navigator can show "current" without re-rendering
-  // the whole booklet on every scroll frame.
+  // Scroll-spy within the active section only — the DOM never holds more
+  // than one subject's questions at a time.
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -105,30 +144,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     );
     targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
-  }, [sections]);
-
-  const isProfessional = examLevel === 'Professional';
-
-  const currentIndex = currentQuestionId ? order.indexOf(currentQuestionId) : -1;
-  const currentNumber = currentIndex === -1 ? 1 : currentIndex + 1;
-  const currentSectionId = useMemo(() => {
-    if (!currentQuestionId) return null;
-    for (const section of sections) {
-      for (const node of section.nodes) {
-        if (node.kind === 'question' && node.questionId === currentQuestionId) return section.sectionId;
-        if (node.kind === 'group' && node.questionIds.includes(currentQuestionId)) return section.sectionId;
-      }
-    }
-    return null;
-  }, [currentQuestionId, sections]);
-
-  const goPrev = useCallback(() => {
-    if (currentIndex > 0) scrollToQuestion(order[currentIndex - 1]);
-  }, [currentIndex, order, scrollToQuestion]);
-
-  const goNext = useCallback(() => {
-    if (currentIndex !== -1 && currentIndex < order.length - 1) scrollToQuestion(order[currentIndex + 1]);
-  }, [currentIndex, order, scrollToQuestion]);
+  }, [activeSectionId, activeSection]);
 
   const closeNavigator = useCallback(() => {
     setIsNavigatorOpen(false);
@@ -144,6 +160,16 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [isNavigatorOpen, closeNavigator]);
 
+  /** Manual subject switch (tab click / navigator jump to another subject's item). */
+  const switchSection = useCallback(
+    (sectionId: string) => {
+      if (sectionId === activeSectionId) return;
+      if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
+      setActiveSectionId(sectionId);
+    },
+    [activeSectionId, currentQuestionId]
+  );
+
   const jumpTo = useCallback(
     (questionId: string) => {
       scrollToQuestion(questionId);
@@ -151,6 +177,51 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     },
     [scrollToQuestion, closeNavigator]
   );
+
+  const goPrev = useCallback(() => {
+    if (!activeSection) return;
+    const idx = currentQuestionId ? localOrder.indexOf(currentQuestionId) : -1;
+    if (idx > 0) {
+      scrollToQuestion(localOrder[idx - 1]);
+      return;
+    }
+    const sectionIdx = sections.findIndex((s) => s.sectionId === activeSectionId);
+    if (sectionIdx > 0) {
+      const prevSection = sections[sectionIdx - 1];
+      const prevOrder = sectionQuestionOrder(prevSection);
+      if (prevOrder.length === 0) return;
+      if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
+      pendingTargetRef.current = prevOrder[prevOrder.length - 1];
+      setActiveSectionId(prevSection.sectionId);
+    }
+  }, [activeSection, activeSectionId, currentQuestionId, localOrder, scrollToQuestion, sections]);
+
+  const goNext = useCallback(() => {
+    if (!activeSection) return;
+    const idx = currentQuestionId ? localOrder.indexOf(currentQuestionId) : -1;
+    if (idx !== -1 && idx < localOrder.length - 1) {
+      scrollToQuestion(localOrder[idx + 1]);
+      return;
+    }
+    const sectionIdx = sections.findIndex((s) => s.sectionId === activeSectionId);
+    if (sectionIdx !== -1 && sectionIdx < sections.length - 1) {
+      const nextSection = sections[sectionIdx + 1];
+      const nextOrder = sectionQuestionOrder(nextSection);
+      if (nextOrder.length === 0) return;
+      if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
+      pendingTargetRef.current = nextOrder[0];
+      setActiveSectionId(nextSection.sectionId);
+    }
+  }, [activeSection, activeSectionId, currentQuestionId, localOrder, scrollToQuestion, sections]);
+
+  const isFirstSection = sections.findIndex((s) => s.sectionId === activeSectionId) <= 0;
+  const isLastSection = sections.findIndex((s) => s.sectionId === activeSectionId) >= sections.length - 1;
+  const localIdx = currentQuestionId ? localOrder.indexOf(currentQuestionId) : -1;
+  const isPrevDisabled = isFirstSection && localIdx <= 0;
+  const isNextDisabled = isLastSection && (localIdx === -1 || localIdx >= localOrder.length - 1);
+
+  const currentLocalNumber = localIdx === -1 ? 1 : localIdx + 1;
+  const isProfessional = examLevel === 'Professional';
 
   const timerBadge = (
     <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/90 text-emerald-700 dark:text-emerald-400 px-3 py-1.5 min-h-[38px] rounded-lg border border-slate-200 dark:border-slate-700/80 font-mono text-xs sm:text-sm font-bold">
@@ -163,7 +234,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     <button
       onClick={onSubmitExam}
       className={`${className} items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400`}
-      aria-label={`Submit exam. ${counts.answered} of ${counts.total} answered.`}
+      aria-label={`Submit exam. ${globalCounts.answered} of ${globalCounts.total} answered overall.`}
     >
       <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
       <span>Submit</span>
@@ -195,9 +266,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
             )}
           </div>
 
-          <div className="flex flex-col items-center justify-self-center min-w-0">
-            {timerBadge}
-          </div>
+          <div className="flex flex-col items-center justify-self-center min-w-0">{timerBadge}</div>
 
           <div className="flex items-center gap-2 justify-self-end">
             <button
@@ -205,48 +274,72 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               onClick={() => setIsNavigatorOpen((v) => !v)}
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
               aria-expanded={isNavigatorOpen}
-              aria-label={`Open navigator. Question ${currentNumber} of ${order.length}. ${counts.answered} answered, ${counts.unanswered} unanswered.`}
+              aria-label={`Open question navigation, question ${currentLocalNumber} of ${localOrder.length} in ${sectionTitle(activeSectionId)}, ${examLevel} level session`}
             >
-              <ListTree className="w-4 h-4 shrink-0 text-slate-500 dark:text-slate-400" aria-hidden="true" />
+              <Grid className={`w-4 h-4 shrink-0 ${isProfessional ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'}`} aria-hidden="true" />
               <span>
-                {counts.answered}<span className="text-slate-400 dark:text-slate-500 font-normal">/{counts.total}</span>
+                Q {currentLocalNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {localOrder.length}</span>
               </span>
             </button>
             {submitButton('hidden sm:inline-flex')}
           </div>
         </div>
 
-        {currentSectionId && showHeadings && (
-          <div className="px-4 sm:px-6 pb-2 -mt-1 text-[11px] font-semibold text-slate-400 dark:text-slate-500 truncate">
-            {sectionTitle(currentSectionId)} &middot; Question {currentNumber} of {order.length}
+        {/* Subject tabs — the whole point of this iteration: continuous WITHIN a subject, not across the exam. */}
+        {!isLegacy && sections.length > 0 && (
+          <div role="tablist" aria-label="Exam subjects" className="flex gap-1.5 overflow-x-auto px-4 sm:px-6 pb-2 pt-1 scrollbar-hide">
+            {sections.map((section) => {
+              const isActive = section.sectionId === activeSectionId;
+              const counts = computeSectionAnswerCounts(section, session.answers);
+              return (
+                <button
+                  key={section.sectionId}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => switchSection(section.sectionId)}
+                  className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[34px] rounded-full text-xs font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
+                    isActive
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
+                  }`}
+                >
+                  <span>{sectionTitle(section.sectionId)}</span>
+                  <span className={isActive ? 'text-emerald-100' : 'text-slate-400 dark:text-slate-500'}>
+                    {counts.answered}/{counts.total}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         )}
 
         <div className="w-full bg-slate-200 dark:bg-slate-800/80 h-1">
           <div
             className="bg-emerald-500 h-1 transition-all duration-300"
-            style={{ width: `${counts.total === 0 ? 0 : Math.round((counts.answered / counts.total) * 100)}%` }}
+            style={{ width: `${localCounts.total === 0 ? 0 : Math.round((localCounts.answered / localCounts.total) * 100)}%` }}
           />
         </div>
       </header>
 
       <div className="flex-1 flex overflow-hidden relative">
+        {/* Positioning matches the existing Practice navigator exactly: absolute
+            within this body row (flush under the header, no gap), left-anchored,
+            same z-index and overlay treatment on both desktop and mobile. */}
         {isNavigatorOpen && (
           <div
             role="dialog"
             aria-modal="false"
             aria-label="Exam navigator"
-            className="fixed inset-x-0 bottom-0 sm:absolute sm:inset-y-0 sm:right-0 sm:left-auto z-30 w-full sm:w-96 max-h-[80vh] sm:max-h-none sm:h-full rounded-t-2xl sm:rounded-none bg-white dark:bg-slate-900 border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-800 shadow-xl flex flex-col p-4 overflow-y-auto"
+            className="absolute inset-y-0 left-0 z-30 w-full sm:w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-xl flex flex-col p-4 overflow-y-auto"
           >
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4 shrink-0">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
               <span className="flex items-baseline gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Navigator
+                {sectionTitle(activeSectionId)}
                 <span
                   className={`text-[10px] font-bold tracking-widest ${
                     isProfessional ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400 dark:text-slate-500'
                   }`}
                   title={`${examLevel} level session`}
-                  aria-label={`${examLevel} level session`}
                 >
                   {isProfessional ? 'PRO' : 'SUBPRO'}
                 </span>
@@ -259,7 +352,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               </button>
             </div>
 
-            <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pb-3 border-b border-slate-200 dark:border-slate-800 mb-4 shrink-0">
+            <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded bg-emerald-600 border border-emerald-500" />
                 <span>Answered</span>
@@ -274,58 +367,42 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               </div>
             </div>
 
-            <nav aria-label="Sections and questions">
-              {sections.map((section) => (
-                <div key={section.sectionId} className="mb-5">
-                  {showHeadings && (
-                    <h3 className="text-xs font-bold text-slate-700 dark:text-slate-200 mb-2">
-                      {sectionTitle(section.sectionId)}
-                    </h3>
+            {/* One continuous grid for the active subject. A real multi-question
+                group gets a small label above its ids without breaking the grid
+                into a vertical stack — singleton legacy questions never get their
+                own mini-grid. */}
+            <nav aria-label={`${sectionTitle(activeSectionId)} questions`} className="space-y-3">
+              {blocks.map((block, blockIndex) => (
+                <div key={block.groupId ?? `block-${blockIndex}`}>
+                  {block.groupId && (
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
+                      {getGroup(block.groupId)?.questionType ?? 'Item Set'}
+                    </p>
                   )}
-                  {section.nodes.map((node, nodeIndex) => {
-                    if (node.kind === 'administrative') {
+                  <div className="grid grid-cols-5 gap-2">
+                    {block.ids.map((id) => {
+                      const num = localNumbers.get(id) ?? 0;
+                      const isCurrent = id === currentQuestionId;
+                      const isAnswered = Boolean(session.answers[id]);
                       return (
-                        <p key={`admin-${nodeIndex}`} className="text-[11px] italic text-slate-400 dark:text-slate-500 mb-3">
-                          {node.id} (not scored)
-                        </p>
+                        <button
+                          key={id}
+                          onClick={() => jumpTo(id)}
+                          aria-current={isCurrent ? 'true' : undefined}
+                          className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                            isCurrent
+                              ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
+                              : isAnswered
+                                ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
+                                : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
+                          }`}
+                          aria-label={`Go to question ${num}${isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
+                        >
+                          {num}
+                        </button>
                       );
-                    }
-                    const ids = node.kind === 'group' ? node.questionIds : [node.questionId];
-                    const group = node.kind === 'group' ? getGroup(node.groupId) : undefined;
-                    return (
-                      <div key={`nav-${nodeIndex}`} className="mb-3">
-                        {group?.questionType && (
-                          <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
-                            {group.questionType}
-                          </p>
-                        )}
-                        <div className="grid grid-cols-5 gap-2">
-                          {ids.map((id) => {
-                            const num = numbers.get(id) ?? 0;
-                            const isCurrent = id === currentQuestionId;
-                            const isAnswered = Boolean(session.answers[id]);
-                            return (
-                              <button
-                                key={id}
-                                onClick={() => jumpTo(id)}
-                                aria-current={isCurrent ? 'true' : undefined}
-                                className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                                  isCurrent
-                                    ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
-                                    : isAnswered
-                                      ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
-                                      : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
-                                }`}
-                                aria-label={`Go to question ${num}${isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
-                              >
-                                {num}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    );
-                  })}
+                    })}
+                  </div>
                 </div>
               ))}
             </nav>
@@ -334,29 +411,27 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
 
         <main ref={scrollRef} className="flex-1 bg-white dark:bg-slate-950 overflow-y-auto px-4 sm:px-6 py-6 sm:py-8">
           <div className="w-full max-w-2xl mx-auto space-y-14 pb-24">
-            {sections.map((section, index) => (
+            {activeSection && (
               <SectionRenderer
-                key={section.sectionId}
-                section={section}
-                sectionNumber={index + 1}
-                totalSections={sections.length}
+                section={activeSection}
                 getGroup={getGroup}
                 questionIndex={questionIndex}
-                questionNumbers={numbers}
+                questionNumbers={localNumbers}
                 answers={session.answers}
                 onSelectOption={onSelectOption}
-                showHeading={showHeadings}
               />
-            ))}
+            )}
           </div>
         </main>
       </div>
 
-      {/* Mobile action bar — Previous/Next are secondary scroll/focus controls, never what determines the rendered question. Submit stays reachable without scrolling back to the header. */}
+      {/* Mobile action bar — Previous/Next are secondary scroll/focus controls
+          within the active subject; they cross subject boundaries only at the
+          very start/end of one, deliberately, never by scrolling past it. */}
       <footer className="sm:hidden min-h-[64px] bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center justify-between shrink-0">
         <button
           onClick={goPrev}
-          disabled={currentIndex <= 0}
+          disabled={isPrevDisabled}
           className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           aria-label="Previous question"
         >
@@ -366,7 +441,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
         {submitButton('inline-flex')}
         <button
           onClick={goNext}
-          disabled={currentIndex === -1 || currentIndex >= order.length - 1}
+          disabled={isNextDisabled}
           className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           aria-label="Next question"
         >
@@ -379,7 +454,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       <div className="hidden sm:flex fixed bottom-6 right-6 z-20 items-center gap-2">
         <button
           onClick={goPrev}
-          disabled={currentIndex <= 0}
+          disabled={isPrevDisabled}
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed shadow-md transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           aria-label="Previous question"
         >
@@ -388,7 +463,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
         </button>
         <button
           onClick={goNext}
-          disabled={currentIndex === -1 || currentIndex >= order.length - 1}
+          disabled={isNextDisabled}
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed shadow-md transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           aria-label="Next question"
         >

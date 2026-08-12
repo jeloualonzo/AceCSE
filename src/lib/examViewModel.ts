@@ -124,3 +124,89 @@ export function sectionTitle(sectionId: string): string {
   if (sectionId === LEGACY_SECTION_ID || sectionId === UNSECTIONED_ID) return 'Questions';
   return sectionId;
 }
+
+// ---------------------------------------------------------------------------
+// Subject-scoped helpers.
+//
+// The booklet is continuous WITHIN a subject/section, not across the whole
+// exam — each BookletSection is shown as its own view, switched via a
+// subject tab control, so numbering, ordering, and navigator grids below are
+// all deliberately scoped to a single section rather than the whole session.
+// ---------------------------------------------------------------------------
+
+/** Every scored question id within one section, in reading order (groups expanded). */
+export function sectionQuestionOrder(section: BookletSection): string[] {
+  const ids: string[] = [];
+  for (const node of section.nodes) {
+    if (node.kind === 'question') ids.push(node.questionId);
+    else if (node.kind === 'group') ids.push(...node.questionIds);
+  }
+  return ids;
+}
+
+/** 1-based display number for each question, restarting at 1 for every section. */
+export function sectionQuestionNumberMap(section: BookletSection): Map<string, number> {
+  const order = sectionQuestionOrder(section);
+  return new Map(order.map((id, index) => [id, index + 1]));
+}
+
+/** Answered/unanswered counts scoped to one section — powers the subject tab badges. */
+export function computeSectionAnswerCounts(
+  section: BookletSection,
+  answers: Readonly<Record<string, string>>
+): AnswerCounts {
+  const order = sectionQuestionOrder(section);
+  const answered = order.filter((id) => Boolean(answers[id])).length;
+  return { total: order.length, answered, unanswered: order.length - answered };
+}
+
+export interface NavigatorBlock {
+  ids: string[];
+  /** Present only for a real multi-question group — lets the UI show an
+   * optional, subtle label. Absent for plain questions and singleton
+   * groups, which are rendered as one continuous flat grid rather than
+   * one separate mini-grid per legacy question (the bug being fixed here:
+   * with ~688 singleton-group questions, one grid-per-node made the
+   * navigator look like a vertical list of one-button rows). */
+  groupId?: string;
+}
+
+/**
+ * Buckets a section's nodes into navigator grid blocks. Consecutive plain
+ * questions and singleton groups (questionIds.length <= 1) are merged into
+ * one shared block so they render as a single continuous grid. A real
+ * multi-question group gets its own block (optionally labeled by the
+ * caller via its groupId) without breaking the surrounding grid into a
+ * vertical stack. Administrative nodes carry no question ids and are
+ * excluded — they are never scored, so they don't belong in a question grid.
+ */
+export function navigatorBlocks(section: BookletSection): NavigatorBlock[] {
+  const blocks: NavigatorBlock[] = [];
+  let buffer: string[] = [];
+  const flush = () => {
+    if (buffer.length > 0) {
+      blocks.push({ ids: buffer });
+      buffer = [];
+    }
+  };
+
+  for (const node of section.nodes) {
+    if (node.kind === 'administrative') {
+      flush();
+      continue;
+    }
+    if (node.kind === 'question') {
+      buffer.push(node.questionId);
+      continue;
+    }
+    // group
+    if (node.questionIds.length <= 1) {
+      buffer.push(...node.questionIds);
+      continue;
+    }
+    flush();
+    blocks.push({ ids: node.questionIds, groupId: node.groupId });
+  }
+  flush();
+  return blocks;
+}
