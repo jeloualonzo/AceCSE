@@ -12,7 +12,9 @@
     "lint": "tsc --noEmit",
     "validate:questions": "node scripts/validate-questions.mjs",
     "test:content-model": "node scripts/test-content-model.mjs",
-    "test:engine": "vitest run src/lib/examEngine.test.ts"
+    "test:engine": "vitest run src/lib/examEngine.test.ts",
+    "test:booklet": "vitest run src/lib/examViewModel.test.ts src/components/shell/BookletExamLayout.test.tsx",
+    "test": "vitest run"
   },
   "dependencies": {
     "firebase": "^12.17.0",
@@ -23,10 +25,14 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.14",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.3",
     "@types/node": "^22.14.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^5.0.4",
+    "jsdom": "^30.0.1",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.8.2",
     "vite": "^6.2.3",

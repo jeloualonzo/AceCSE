@@ -9,7 +9,8 @@ import {
   subjectsOfSession,
 } from '@/lib/examEngine';
 import { gradeSession } from '@/lib/grading';
-import { loadQuestionIndex } from '@/data/questionBank';
+import { loadContentCatalog } from '@/data/questionBank';
+import type { NormalizedContentCatalog } from '@/data/contentCatalog';
 import {
   clearActiveSession,
   loadActiveSession,
@@ -22,6 +23,7 @@ import { formatHMS } from '@/lib/time';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { FullScreenLoader } from '@/components/FullScreenLoader';
 import { ExamFocusLayout } from '@/components/shell/ExamFocusLayout';
+import { BookletExamLayout } from '@/components/shell/BookletExamLayout';
 import { QuestionCard } from '@/components/exam/QuestionCard';
 import { PreExamScreen } from '@/components/exam/PreExamScreen';
 import { ResultsScreen } from '@/components/exam/ResultsScreen';
@@ -91,6 +93,7 @@ export const ExamPage: React.FC = () => {
 
   const [stage, setStage] = useState<Stage | null>(null);
   const [questionIndex, setQuestionIndex] = useState<QuestionIndex | null>(null);
+  const [catalog, setCatalog] = useState<NormalizedContentCatalog | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [saveError, setSaveError] = useState(false);
@@ -108,11 +111,19 @@ export const ExamPage: React.FC = () => {
     [user]
   );
 
-  /** Load the questions a session needs (lazy chunks), then enter its stage. */
+  /**
+   * Load the questions (and their normalized groups) a session needs, then
+   * enter its stage. Loading via `loadContentCatalog` rather than the old
+   * flat `loadQuestionIndex` is additive, not a behavior change: every
+   * legacy question becomes a singleton group with no directions/content,
+   * and `catalog.questions` is the exact same Map grading already expects.
+   */
   const activateSession = useCallback(async (session: ExamSession, entry: 'pre' | 'active') => {
     setStage(null); // loader while chunks arrive (in-memory + HTTP cached after first load)
     try {
-      const index = await loadQuestionIndex(subjectsOfSession(session));
+      const loadedCatalog = await loadContentCatalog(subjectsOfSession(session));
+      setCatalog(loadedCatalog);
+      const index = loadedCatalog.questions;
       setQuestionIndex(index);
       if (entry === 'active') {
         saveActiveSession(session);
@@ -169,10 +180,11 @@ export const ExamPage: React.FC = () => {
     }
     if (saved.deadlineAt !== null && saved.deadlineAt <= Date.now()) {
       // Timed out while away: grade honestly with the answers that exist.
-      void loadQuestionIndex(subjectsOfSession(saved))
-        .then((index) => {
-          setQuestionIndex(index);
-          finishWith(saved, index, saved.deadlineAt ?? Date.now());
+      void loadContentCatalog(subjectsOfSession(saved))
+        .then((loadedCatalog) => {
+          setCatalog(loadedCatalog);
+          setQuestionIndex(loadedCatalog.questions);
+          finishWith(saved, loadedCatalog.questions, saved.deadlineAt ?? Date.now());
         })
         .catch(() => setStage({ name: 'error' }));
       return;
@@ -255,6 +267,27 @@ export const ExamPage: React.FC = () => {
       }));
     },
     [currentQuestionId, updateSession]
+  );
+
+  /**
+   * Booklet mode: every question is mounted at once, so the answer handler
+   * takes the question id explicitly rather than relying on `currentIndex`.
+   * Still funnels through the same `updateSession` → `saveActiveSession`
+   * path as practice's single-question flow.
+   */
+  const handleSelectOptionFor = useCallback(
+    (questionId: string, optionId: OptionId) => {
+      updateSession((prev) => ({
+        ...prev,
+        answers: { ...prev.answers, [questionId]: optionId },
+      }));
+    },
+    [updateSession]
+  );
+
+  const getGroup = useCallback(
+    (groupId: string) => catalog?.getGroup(groupId),
+    [catalog]
   );
 
   const handleExit = useCallback(() => {
@@ -389,34 +422,52 @@ export const ExamPage: React.FC = () => {
 
   return (
     <>
-      <ExamFocusLayout
-        examLevel={activeSession.config.examLevel}
-        timeRemainingFormatted={
-          secondsRemaining !== null ? formatHMS(secondsRemaining) : 'Untimed'
-        }
-        onExitExam={handleExit}
-        onSubmitExam={() => setIsSubmitModalOpen(true)}
-        currentQuestionNumber={currentIndex + 1}
-        totalQuestions={totalQuestions}
-        userAnswers={answersByNumber}
-        exitLabel={isPractice ? 'Exit Practice' : 'Exit Exam'}
-        onRestart={isPractice ? () => handleRetake(launchFromSession(activeSession)) : undefined}
-        onSelectQuestionNumber={(num) => setCurrentIndex(num - 1)}
-        onPrevQuestion={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
-        onNextQuestion={() => setCurrentIndex((prev) => Math.min(totalQuestions - 1, prev + 1))}
-      >
-        {currentQuestion ? (
-          <QuestionCard
-            question={currentQuestion}
-            questionNumber={currentIndex + 1}
-            selectedOptionId={activeSession.answers[currentQuestion.id] ?? null}
-            onSelectOption={handleSelectOption}
-            instantFeedback={isPractice}
-          />
-        ) : (
-          <div className="text-center text-slate-400 text-sm">Question unavailable.</div>
-        )}
-      </ExamFocusLayout>
+      {isPractice ? (
+        // Practice keeps its original single-question flow, unchanged.
+        <ExamFocusLayout
+          examLevel={activeSession.config.examLevel}
+          timeRemainingFormatted={
+            secondsRemaining !== null ? formatHMS(secondsRemaining) : 'Untimed'
+          }
+          onExitExam={handleExit}
+          onSubmitExam={() => setIsSubmitModalOpen(true)}
+          currentQuestionNumber={currentIndex + 1}
+          totalQuestions={totalQuestions}
+          userAnswers={answersByNumber}
+          exitLabel="Exit Practice"
+          onRestart={() => handleRetake(launchFromSession(activeSession))}
+          onSelectQuestionNumber={(num) => setCurrentIndex(num - 1)}
+          onPrevQuestion={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
+          onNextQuestion={() => setCurrentIndex((prev) => Math.min(totalQuestions - 1, prev + 1))}
+        >
+          {currentQuestion ? (
+            <QuestionCard
+              question={currentQuestion}
+              questionNumber={currentIndex + 1}
+              selectedOptionId={activeSession.answers[currentQuestion.id] ?? null}
+              onSelectOption={handleSelectOption}
+              instantFeedback
+            />
+          ) : (
+            <div className="text-center text-slate-400 text-sm">Question unavailable.</div>
+          )}
+        </ExamFocusLayout>
+      ) : (
+        // Simulation: continuous booklet. Renders every section/group/question
+        // from session.items (or a flat fallback for a legacy saved session).
+        <BookletExamLayout
+          examLevel={activeSession.config.examLevel}
+          timeRemainingFormatted={
+            secondsRemaining !== null ? formatHMS(secondsRemaining) : 'Untimed'
+          }
+          onExitExam={handleExit}
+          onSubmitExam={() => setIsSubmitModalOpen(true)}
+          session={activeSession}
+          getGroup={getGroup}
+          questionIndex={questionIndex ?? new Map()}
+          onSelectOption={handleSelectOptionFor}
+        />
+      )}
 
       {isSubmitModalOpen && (
         <div
