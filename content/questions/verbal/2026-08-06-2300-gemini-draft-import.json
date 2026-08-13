@@ -8,23 +8,44 @@
     "difficulty": "Hard",
     "question": "The regional psychiatrist noted that prolonged solitary confinement had left the detainee in a distinctly LUGUBRIOUS state. LUGUBRIOUS most nearly means:",
     "choices": [
-      { "id": "A", "text": "erratic and unpredictable" },
-      { "id": "B", "text": "withdrawn and hostile" },
-      { "id": "C", "text": "passive and unresponsive" },
-      { "id": "D", "text": "mournful and dismal" }
+      {
+        "id": "A",
+        "text": "erratic and unpredictable"
+      },
+      {
+        "id": "B",
+        "text": "withdrawn and hostile"
+      },
+      {
+        "id": "C",
+        "text": "passive and unresponsive"
+      },
+      {
+        "id": "D",
+        "text": "mournful and dismal"
+      },
+      {
+        "id": "E",
+        "text": "irritable and short-tempered"
+      }
     ],
     "correctOptionId": "D",
     "explanation": "Lugubrious means excessively and often affectedly mournful — sad in a heavy, oppressive way that may even shade into the theatrical. The word comes from the Latin 'lugere,' to mourn, the same root behind 'elegy.' In the sentence, prolonged isolation produces a lugubrious state, which the clinical context confirms as a mood disorder, not a behaviour problem. 'Mournful and dismal' captures both the depth of the sadness and its bleak, cheerless quality. The distractors each substitute a different dimension: 'erratic' (A) is about unpredictability of behaviour, 'withdrawn and hostile' (B) mixes two unrelated traits, and 'passive and unresponsive' (C) describes inactivity rather than grief. Only D names the pervasive, heavy sadness the word denotes.",
     "distractorExplanations": {
       "A": "Erratic describes unpredictable behaviour across time, not a fixed mood of sorrow. A lugubrious person is consistently melancholy, not volatile.",
       "B": "Withdrawn names social retreat and hostile names antagonism — neither captures the sorrowful, grief-stricken quality that lugubrious specifically denotes.",
-      "C": "Passive and unresponsive describe a lack of engagement, but lugubrious adds the active emotional colouring of grief and gloom to that picture — it is not mere blankness."
+      "C": "Passive and unresponsive describe a lack of engagement, but lugubrious adds the active emotional colouring of grief and gloom to that picture — it is not mere blankness.",
+      "E": "Confuses distress with anger — lugubrious describes mournful sadness, not a hostile temper."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "LUGUBRIOUS shares a root with 'elegy' and 'lament' — words of mourning. Picture a lugubrious pallbearer: heavy with sorrow, gloomy, dismal. The -ous ending amplifies it to an almost theatrical degree."
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0130",
@@ -35,23 +56,44 @@
     "difficulty": "Medium",
     "question": "The witness testified that she had signed the document under severe DURESS. DURESS most nearly means:",
     "choices": [
-      { "id": "A", "text": "formal guidance" },
-      { "id": "B", "text": "sworn obligation" },
-      { "id": "C", "text": "coercive pressure" },
-      { "id": "D", "text": "prolonged hesitation" }
+      {
+        "id": "A",
+        "text": "coercive pressure"
+      },
+      {
+        "id": "B",
+        "text": "formal guidance"
+      },
+      {
+        "id": "C",
+        "text": "sworn obligation"
+      },
+      {
+        "id": "D",
+        "text": "prolonged hesitation"
+      },
+      {
+        "id": "E",
+        "text": "Undue influence"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "Duress means compulsion by threat, force, or unlawful pressure — it is what strips an act of its voluntary character. In Philippine civil and criminal law, a contract or confession signed under duress may be voided precisely because the will of the signer was overborne. Among the four options, 'coercive pressure' names both components: the element of force and the element of compulsion. 'Formal guidance' (A) implies helpful direction, which is the opposite of force. 'Sworn obligation' (B) is a vow freely made, not pressure applied from outside. 'Prolonged hesitation' (D) is a delay internal to the signer, whereas duress is an external force acting on the person.",
     "distractorExplanations": {
-      "A": "Guidance is helpful direction given by someone with authority; it is offered, not imposed by threat. Duress is never given for the recipient's benefit.",
-      "B": "A sworn obligation (like an oath of office) is assumed willingly. Duress describes the exact opposite: acting against one's will because of external compulsion.",
-      "D": "Hesitation is an internal state — uncertainty or reluctance. Duress is an external force. A witness can hesitate without being under duress, and can act under duress without hesitating at all."
+      "B": "Guidance is helpful direction given by someone with authority; it is offered, not imposed by threat. Duress is never given for the recipient's benefit.",
+      "C": "A sworn obligation (like an oath of office) is assumed willingly. Duress describes the exact opposite: acting against one's will because of external compulsion.",
+      "D": "Hesitation is an internal state — uncertainty or reluctance. Duress is an external force. A witness can hesitate without being under duress, and can act under duress without hesitating at all.",
+      "E": "'Undue influence' is a legal concept closely related to duress, describing situations where someone is pressured through improper means to act against their will; while related, duress specifically implies threats or force, whereas undue influence covers a broader range of improper persuasion including psychological manipulation without direct coercion."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "DURESS = DURess: think 'endure by force.' A contract or statement obtained under duress lacks free consent and is legally voidable. Connect it to coercion, compulsion, and force."
     },
-    "tags": ["vocabulary", "synonyms", "legal-vocabulary"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "legal-vocabulary"
+    ]
   },
   {
     "id": "verb-0131",
@@ -62,23 +104,44 @@
     "difficulty": "Hard",
     "question": "To the dedicated civil servant, any form of graft in public office is an absolute ANATHEMA. ANATHEMA most nearly means:",
     "choices": [
-      { "id": "A", "text": "legal precedent" },
-      { "id": "B", "text": "long-standing tradition" },
-      { "id": "C", "text": "administrative burden" },
-      { "id": "D", "text": "something vehemently abhorred" }
+      {
+        "id": "A",
+        "text": "something vehemently abhorred"
+      },
+      {
+        "id": "B",
+        "text": "legal precedent"
+      },
+      {
+        "id": "C",
+        "text": "long-standing tradition"
+      },
+      {
+        "id": "D",
+        "text": "administrative burden"
+      },
+      {
+        "id": "E",
+        "text": "A formal declaration of disapproval"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "Anathema has two overlapping senses that CSE-level questions exploit. In its ecclesiastical origin it meant a formal curse or official excommunication. In modern secular English it means a person or thing that is intensely disliked or firmly opposed — something one regards as an abomination. The sentence plants the clue: 'absolute' intensifies the rejection, and graft is already the defining opposite of an honest civil servant's values. 'Something vehemently abhorred' captures the full emotional weight: the loathing is not mild disapproval but a principled, visceral opposition. The other options supply institutional or neutral concepts — legal precedent (A), tradition (B), and administrative burden (C) — none of which carry the intense moral rejection the word requires.",
     "distractorExplanations": {
-      "A": "A legal precedent is a prior ruling that guides future decisions — a neutral technical concept, entirely without the moral loathing anathema conveys.",
-      "B": "A tradition is a custom handed down over time; it carries neither approval nor condemnation. Anathema implies condemnation as its core meaning.",
-      "C": "An administrative burden is a bureaucratic inconvenience. While burdens are unwelcome, they are not objects of deep moral abhorrence the way anathema implies."
+      "B": "A legal precedent is a prior ruling that guides future decisions — a neutral technical concept, entirely without the moral loathing anathema conveys.",
+      "C": "A tradition is a custom handed down over time; it carries neither approval nor condemnation. Anathema implies condemnation as its core meaning.",
+      "D": "An administrative burden is a bureaucratic inconvenience. While burdens are unwelcome, they are not objects of deep moral abhorrence the way anathema implies.",
+      "E": "'A formal declaration of disapproval' sounds official and connected to the ecclesiastical origins of anathema (where it was an official curse), but in modern usage anathema means something intensely loathed, not merely officially disapproved; disapproval is far milder than the visceral abhorrence the word currently denotes."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "ANATHEMA: from Greek 'anathema' (thing accursed). In everyday use, whatever someone calls an anathema they regard as completely unacceptable — an abomination to their values. The intensity is the defining feature."
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0132",
@@ -89,23 +152,43 @@
     "difficulty": "Medium",
     "question": "The historic palace was renowned throughout the region for its lavish decor and grand OPULENCE. OPULENCE most nearly means:",
     "choices": [
-      { "id": "A", "text": "severe austerity" },
-      { "id": "B", "text": "abundant wealth and luxury" },
-      { "id": "C", "text": "political influence" },
-      { "id": "D", "text": "architectural complexity" }
+      {
+        "id": "A",
+        "text": "abundant wealth and luxury"
+      },
+      {
+        "id": "B",
+        "text": "severe austerity"
+      },
+      {
+        "id": "C",
+        "text": "political influence"
+      },
+      {
+        "id": "D",
+        "text": "architectural complexity"
+      },
+      {
+        "id": "E",
+        "text": "Extravagant and wasteful spending"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Opulence means great wealth displayed abundantly and luxuriously — it is not just having riches but showing them in elaborate, lavish form. The sentence's context reinforces the meaning from two sides: 'lavish decor' specifies the visible luxury, and 'grand' amplifies the scale, together painting a picture that only 'abundant wealth and luxury' captures. Severe austerity (A) is the direct antonym, describing a deliberate plainness that strips away all decoration. Political influence (C) is about power, not material display. Architectural complexity (D) is a feature a building may have regardless of wealth — a maze of corridors can be built cheaply, while opulence is always about costly splendour.",
     "distractorExplanations": {
-      "A": "Severe austerity is the opposite of opulence — it names deliberate plainness and the avoidance of luxury rather than its embrace.",
+      "B": "Severe austerity is the opposite of opulence — it names deliberate plainness and the avoidance of luxury rather than its embrace.",
       "C": "Political influence describes the capacity to affect decisions and people. A palace can be opulent without its owner holding any political sway, and a powerful figure can rule from a bare room.",
-      "D": "Architectural complexity refers to the intricacy of a structure's design. Opulence is about costly richness of material and display, not about whether the floor plan is complicated."
+      "D": "Architectural complexity refers to the intricacy of a structure's design. Opulence is about costly richness of material and display, not about whether the floor plan is complicated.",
+      "E": "'Extravagant and wasteful spending' captures the financial excess aspect of opulence but adds a negative moral judgment of waste that opulence itself does not necessarily imply; opulence names displayed abundance and luxury without necessarily condemning it as wasteful."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "OPULENCE shares a root with 'opus' (work) and 'opulent' (lavishly rich). Think of an opulent banquet hall: gleaming chandeliers, gold fixtures, silk drapes. Opulence = wealth put on magnificent display."
     },
-    "tags": ["vocabulary", "synonyms"]
+    "tags": [
+      "vocabulary",
+      "synonyms"
+    ]
   },
   {
     "id": "verb-0133",
@@ -117,23 +200,44 @@
     "passage": "Education suited to a rural community becomes genuinely functional only when the local environment begins to offer real economic opportunities that require skilled labour on a significant scale. As long as economic opportunities remain concentrated exclusively in urban centres, rural education will remain in servitude to that narrow urban sector, producing graduates whose training has no local outlet.",
     "question": "Which statement is best supported by the passage?",
     "choices": [
-      { "id": "A", "text": "Rural schooling should concentrate on urban vocational skills regardless of local conditions." },
-      { "id": "B", "text": "Eliminating urban migration requires building universities in every rural town." },
-      { "id": "C", "text": "The practical value of rural education depends on the presence of local economic opportunities." },
-      { "id": "D", "text": "Educational quality is unaffected by the economic conditions surrounding a school." }
+      {
+        "id": "A",
+        "text": "Rural schooling should concentrate on urban vocational skills regardless of local conditions."
+      },
+      {
+        "id": "B",
+        "text": "Eliminating urban migration requires building universities in every rural town."
+      },
+      {
+        "id": "C",
+        "text": "The practical value of rural education depends on the presence of local economic opportunities."
+      },
+      {
+        "id": "D",
+        "text": "Educational quality is unaffected by the economic conditions surrounding a school."
+      },
+      {
+        "id": "E",
+        "text": "Rural communities should develop local economic opportunities before investing in education."
+      }
     ],
     "correctOptionId": "C",
     "explanation": "A 'best supported' question asks which option the passage directly backs up with its own words, not which option merely sounds reasonable. The passage makes one central claim: rural education becomes functional only 'when the local environment begins to offer real economic opportunities.' That is a direct statement that local economic conditions determine whether rural schooling has practical value — which is exactly what option C says. Option A contradicts the passage by pointing rural training toward urban skills rather than local needs. Option B makes a causal claim (universities eliminate migration) that the passage never makes. Option D directly contradicts the passage, which argues that educational value is profoundly shaped by economic surroundings.",
     "distractorExplanations": {
       "A": "The passage argues the opposite: rural education must align with local economic opportunities, not be redirected toward urban skill sets that have no local outlet.",
       "B": "The passage says nothing about the effect of university construction on migration patterns. This option introduces a causal claim the text does not make.",
-      "D": "The entire argument of the passage is that economic context shapes educational value. Option D reverses the passage's central thesis."
+      "D": "The entire argument of the passage is that economic context shapes educational value. Option D reverses the passage's central thesis.",
+      "E": "This option reverses the causal direction — the passage says local economic opportunities make rural education functional, not that opportunities should precede educational investment; the passage argues that without local economic development, education remains in servitude to urban needs, but it does not argue that economic development must come first chronologically."
     },
     "tip": {
       "label": "Exam Tip",
       "text": "On 'best supported' questions, the answer must be traceable word-for-word to the text. Reject any option that goes beyond what is stated — even if it sounds plausible — and reject options that contradict a passage claim outright."
     },
-    "tags": ["reading-comprehension", "main-idea", "civic-context"]
+    "tags": [
+      "reading-comprehension",
+      "main-idea",
+      "civic-context"
+    ]
   },
   {
     "id": "verb-0134",
@@ -145,23 +249,44 @@
     "passage": "No matter how visionary and dedicated leaders may be, they must draw their strength from the active support of the citizenry. Alone, no leader can rescue a nation: a leader may set the tone, articulate shared goals, and risk personal sacrifice, but national survival ultimately rests in the hands of the people who must live it.",
     "question": "Which statement does the passage most directly support?",
     "choices": [
-      { "id": "A", "text": "A sufficiently powerful leader can single-handedly determine a nation's fate." },
-      { "id": "B", "text": "National leadership becomes unnecessary when a population is highly educated." },
-      { "id": "C", "text": "National survival depends entirely on military strength rather than civic engagement." },
-      { "id": "D", "text": "Leaders guide and inspire, but the citizenry ultimately bears responsibility for a nation's survival." }
+      {
+        "id": "A",
+        "text": "A sufficiently powerful leader can single-handedly determine a nation's fate."
+      },
+      {
+        "id": "B",
+        "text": "National leadership becomes unnecessary when a population is highly educated."
+      },
+      {
+        "id": "C",
+        "text": "National survival depends entirely on military strength rather than civic engagement."
+      },
+      {
+        "id": "D",
+        "text": "Leaders guide and inspire, but the citizenry ultimately bears responsibility for a nation's survival."
+      },
+      {
+        "id": "E",
+        "text": "Effective leadership requires both visionary planning and military capability."
+      }
     ],
     "correctOptionId": "D",
     "explanation": "The passage builds a two-part argument: leaders play a real, valued role — setting tone, articulating goals, risking sacrifice — but they cannot save a nation alone, because 'national survival ultimately rests in the hands of the people.' Option D holds both parts intact: leaders guide and inspire (the first part), and the citizenry carries the ultimate burden (the second part). Options A, B, and C each contradict explicit statements in the text. Option A claims a single leader can determine national fate — the passage denies this in its second sentence. Option B claims leadership is unnecessary if the public is educated — the text affirms leadership's role without that condition. Option C substitutes military force for civic engagement, an idea the passage never raises.",
     "distractorExplanations": {
       "A": "The passage explicitly states that 'alone, no leader can rescue a nation.' Option A directly contradicts this by claiming a powerful enough leader can act unilaterally.",
       "B": "The passage describes what leaders do — set the tone, articulate goals — without suggesting that education level makes them unnecessary. Leadership's value is affirmed unconditionally.",
-      "C": "Military strength appears nowhere in the passage. The text centres on civic support, personal sacrifice, and the collective will of the people — not armed force."
+      "C": "Military strength appears nowhere in the passage. The text centres on civic support, personal sacrifice, and the collective will of the people — not armed force.",
+      "E": "Military capability appears nowhere in the passage; the text focuses on the relationship between leaders and citizens, not on military capacity — importing this concept substitutes an unrelated element for the civic partnership the passage actually discusses."
     },
     "tip": {
       "label": "Exam Tip",
       "text": "When a passage makes a two-part claim (X matters, but Y ultimately decides), the correct answer keeps both halves. Reject any option that drops one half or reverses either claim."
     },
-    "tags": ["reading-comprehension", "main-idea", "civic-context"]
+    "tags": [
+      "reading-comprehension",
+      "main-idea",
+      "civic-context"
+    ]
   },
   {
     "id": "verb-0135",
@@ -172,23 +297,44 @@
     "difficulty": "Easy",
     "question": "Choose the meaning of the capitalised idiom: Despite severe budget cuts and staffing shortfalls, the agency managed to WEATHER THE STORM and deliver its services on schedule.",
     "choices": [
-      { "id": "A", "text": "forecast future difficulties" },
-      { "id": "B", "text": "postpone its obligations" },
-      { "id": "C", "text": "endure and survive the crisis" },
-      { "id": "D", "text": "report problems to higher authorities" }
+      {
+        "id": "A",
+        "text": "forecast future difficulties"
+      },
+      {
+        "id": "B",
+        "text": "postpone its obligations"
+      },
+      {
+        "id": "C",
+        "text": "endure and survive the crisis"
+      },
+      {
+        "id": "D",
+        "text": "report problems to higher authorities"
+      },
+      {
+        "id": "E",
+        "text": "adapt by reducing service commitments"
+      }
     ],
     "correctOptionId": "C",
     "explanation": "An idiom's meaning is conventional and fixed — it cannot be derived by reading each word separately. To 'weather the storm' means to endure a period of severe difficulty and come through it successfully. The civil-service context seals the meaning: the agency faced genuine hardships (budget cuts, staffing shortfalls) yet still delivered on schedule, which is the picture of surviving a crisis intact. The most common error is interpreting 'weather' literally as a meteorological term, which produces option A (forecast difficulties). Option B (postpone obligations) describes avoidance, which is the opposite of enduring. Option D (report to higher authorities) is an entirely unrelated administrative action the idiom never implies.",
     "distractorExplanations": {
       "A": "Reading 'weather' as a meteorological verb produces 'forecast.' Idioms are not translated word by word; the conventional meaning of this phrase is surviving hardship, not predicting it.",
       "B": "Postponing obligations means deferring responsibility, which is the opposite of weathering a storm. The agency in the sentence met its obligations despite difficulty — it did not delay them.",
-      "D": "Reporting problems to higher authorities is an escalation step. The idiom describes self-sustained endurance, not the act of seeking external help from a superior."
+      "D": "Reporting problems to higher authorities is an escalation step. The idiom describes self-sustained endurance, not the act of seeking external help from a superior.",
+      "E": "'Adapt by reducing service commitments' describes a passive retreat from obligations, whereas weathering a storm means continuing to function and delivering on commitments despite severe difficulty; the agency in the sentence delivered its services on schedule, which is the opposite of reducing them."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "Never translate an idiom word by word. For 'weather the storm,' the key is what happens afterwards: the storm passes and you are still standing. Any idiom with 'storm' in a crisis context means surviving adversity, not avoiding or predicting it."
     },
     "reference": "Idiomatic Expressions: 'weather the storm' means to endure and survive a difficult period",
-    "tags": ["grammar", "idioms", "context-clues"]
+    "tags": [
+      "grammar",
+      "idioms",
+      "context-clues"
+    ]
   }
 ]

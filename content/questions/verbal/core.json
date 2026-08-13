@@ -10,11 +10,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "Dishonest"
+        "text": "Hardworking"
       },
       {
         "id": "B",
-        "text": "Hardworking"
+        "text": "Dishonest"
       },
       {
         "id": "C",
@@ -23,14 +23,19 @@
       {
         "id": "D",
         "text": "Careless"
+      },
+      {
+        "id": "E",
+        "text": "Persistent"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Diligent comes from the Latin 'diligere,' meaning to value or love. In modern English it describes a person who applies steady, earnest, and energetic effort to a task. Think of a diligent student who studies every night without being told—that persistence and care is the core of the word. Hardworking captures this meaning precisely. Careless is the antonym of diligent, while dishonest and impatient describe character traits unrelated to work effort.",
     "distractorExplanations": {
-      "A": "'Dishonest' relates to truthfulness, not to work habits or effort. Confusing it with diligent mixes two unrelated character dimensions.",
+      "B": "'Dishonest' relates to truthfulness, not to work habits or effort. Confusing it with diligent mixes two unrelated character dimensions.",
       "C": "'Impatient' describes someone who cannot wait or tolerate delay—a temperament trait, not a measure of how hard or carefully one works.",
-      "D": "'Careless' is the direct antonym of diligent; choosing it means selecting the opposite meaning, a common reversal trap."
+      "D": "'Careless' is the direct antonym of diligent; choosing it means selecting the opposite meaning, a common reversal trap.",
+      "E": "'Persistent' means continuing despite obstacles — related to effort but not its equivalent; a persistent person keeps trying, while a diligent one applies careful, steady work. Persistence is one component of diligence, making this a plausible but incomplete near-match."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -60,19 +65,24 @@
       },
       {
         "id": "C",
-        "text": "Cautious"
+        "text": "Stubborn"
       },
       {
         "id": "D",
-        "text": "Stubborn"
+        "text": "Frugal"
+      },
+      {
+        "id": "E",
+        "text": "Cautious"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "Prudent derives from the Latin 'prudens,' meaning wise or skilled in practical affairs. A prudent decision-maker thinks ahead, weighs risks, and avoids unnecessary danger—much like a cautious driver who checks mirrors before changing lanes. Cautious is the closest synonym because both words stress care and foresight. Reckless is the direct antonym of prudent. Generous and stubborn describe entirely different personal qualities.",
     "distractorExplanations": {
       "A": "'Reckless' means acting without thought for consequences—the exact opposite of prudent. This is a classic antonym trap.",
       "B": "'Generous' describes willingness to give; it has nothing to do with wisdom or caution in decision-making.",
-      "D": "'Stubborn' means refusing to change one's mind; this describes inflexibility, not careful forethought."
+      "C": "'Stubborn' means refusing to change one's mind; this describes inflexibility, not careful forethought.",
+      "D": "'Frugal' describes careful management of resources, which sounds prudent but addresses spending habits rather than wise decision-making and foresight. Examinees confuse financial carefulness with the broader wisdom prudent requires."
     },
     "tip": {
       "label": "Remember",
@@ -107,6 +117,10 @@
       {
         "id": "D",
         "text": "Hostile and dismissive"
+      },
+      {
+        "id": "E",
+        "text": "Candid and direct"
       }
     ],
     "correctOptionId": "B",
@@ -114,7 +128,8 @@
     "distractorExplanations": {
       "A": "'Rambling and unclear' is the opposite of laconic—laconic speech is concise and clear, not long-winded or confused.",
       "C": "'Formal and ceremonious' describes manner or register, not the brevity that laconic specifically denotes.",
-      "D": "'Hostile and dismissive' describes an attitude or emotional tone; a laconic reply may or may not be hostile—brevity and hostility are separate qualities."
+      "D": "'Hostile and dismissive' describes an attitude or emotional tone; a laconic reply may or may not be hostile—brevity and hostility are separate qualities.",
+      "E": "'Candid and direct' suggests honesty and frankness, qualities that may accompany a laconic reply but are not its defining feature; laconic refers specifically to brevity, not to the candor or tone of the response."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -136,11 +151,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "Convenient"
+        "text": "Principled"
       },
       {
         "id": "B",
-        "text": "Principled"
+        "text": "Convenient"
       },
       {
         "id": "C",
@@ -149,14 +164,19 @@
       {
         "id": "D",
         "text": "Adaptable"
+      },
+      {
+        "id": "E",
+        "text": "Impractical"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Expedient, in this context, describes a choice made for practical advantage rather than moral correctness. The key tension in the word is between what is useful and what is right. The opposite of that pragmatic, ethics-neutral approach is acting on principle—doing what is morally correct regardless of practical cost. Principled is therefore the antonym. Convenient and efficient are both near-synonyms of expedient (they also stress practical advantage), while adaptable describes flexibility and has no direct relationship to morality.",
     "distractorExplanations": {
-      "A": "'Convenient' is actually a near-synonym of expedient (practical, easy to do)—choosing it as an antonym would be exactly wrong.",
+      "B": "'Convenient' is actually a near-synonym of expedient (practical, easy to do)—choosing it as an antonym would be exactly wrong.",
       "C": "'Efficient' means achieving results with minimum waste; like expedient, it emphasizes practical outcomes, not moral ones.",
-      "D": "'Adaptable' means able to adjust to new conditions; it does not address the moral-vs.-practical tension central to the question."
+      "D": "'Adaptable' means able to adjust to new conditions; it does not address the moral-vs.-practical tension central to the question.",
+      "E": "'Impractical' might seem opposite to the practical dimension of expedient, but the question tests the moral-vs.-practical tension; impractical merely means unworkable, not morally grounded, so it does not capture the principled ethical alternative the question seeks."
     },
     "tip": {
       "label": "Common Mistake",
@@ -183,23 +203,28 @@
       },
       {
         "id": "B",
-        "text": "Optional"
+        "text": "Rigorous"
       },
       {
         "id": "C",
-        "text": "Rigorous"
+        "text": "Optional"
       },
       {
         "id": "D",
         "text": "Preliminary"
+      },
+      {
+        "id": "E",
+        "text": "Comprehensive"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Stringent means strict, precise, and demanding in application—leaving no room for error or exceptions. It comes from the Latin 'stringere,' to bind tightly. In an audit context, stringent procedures leave no loophole unexamined. Rigorous shares this meaning of thoroughness and exactness, making it the best synonym. Lenient (allowing exceptions) is the antonym. Optional (not required) and preliminary (introductory) do not relate to strictness.",
     "distractorExplanations": {
       "A": "'Lenient' means tolerant and forgiving—the direct antonym of stringent, which leaves no room for leniency.",
-      "B": "'Optional' means not required; stringent procedures are by definition mandatory and non-negotiable.",
-      "D": "'Preliminary' means introductory or initial; it describes timing or sequence, not strictness or exacting standards."
+      "C": "'Optional' means not required; stringent procedures are by definition mandatory and non-negotiable.",
+      "D": "'Preliminary' means introductory or initial; it describes timing or sequence, not strictness or exacting standards.",
+      "E": "'Comprehensive' means covering all aspects thoroughly, which sounds rigorous but emphasizes breadth of coverage rather than the strict, exacting, no-exceptions quality that stringent specifically denotes."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -234,6 +259,10 @@
       {
         "id": "D",
         "text": "Public announcement"
+      },
+      {
+        "id": "E",
+        "text": "Preliminary assessment"
       }
     ],
     "correctOptionId": "A",
@@ -241,7 +270,8 @@
     "distractorExplanations": {
       "B": "'Formal written complaint' (like a grievance or petition) is the opposite of approval; an imprimatur grants legitimacy, not challenges it.",
       "C": "'Lengthy deliberation' describes a process of discussion; an imprimatur is an outcome—a stamp of approval—not the process of reaching it.",
-      "D": "'Public announcement' broadcasts information but does not confer authority or legitimacy; many announcements carry no approval at all."
+      "D": "'Public announcement' broadcasts information but does not confer authority or legitimacy; many announcements carry no approval at all.",
+      "E": "'Preliminary assessment' suggests an early evaluation before a decision, whereas imprimatur is the final stamp of approval itself; examinees may confuse the process of review with the authoritative outcome it produces."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -269,23 +299,28 @@
       },
       {
         "id": "B",
-        "text": "Examine"
+        "text": "Deliberately avoid"
       },
       {
         "id": "C",
-        "text": "Deliberately avoid"
+        "text": "Examine"
       },
       {
         "id": "D",
         "text": "Gradually adopt"
+      },
+      {
+        "id": "E",
+        "text": "Reluctantly tolerate"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Eschew means to deliberately and habitually abstain from or avoid something, especially on moral or practical grounds. It is stronger than simply 'not doing' something—it implies conscious, principled avoidance. In the sentence, civil servants are expected to eschew compromising conduct, meaning they must actively steer clear of it. Encourage and adopt are antonyms since they involve embracing the conduct rather than avoiding it. Examine means to inspect carefully, which would actually draw the person closer to such conduct, not away from it.",
     "distractorExplanations": {
       "A": "'Encourage' means to promote or support—the direct opposite of avoiding; choosing conduct one should eschew means doing the very thing the rule prohibits.",
-      "B": "'Examine' means to inspect or investigate; while one might examine questionable conduct, eschewing it means staying away from it entirely.",
-      "D": "'Gradually adopt' means to accept something over time—completely contrary to the deliberate avoidance that eschew requires."
+      "C": "'Examine' means to inspect or investigate; while one might examine questionable conduct, eschewing it means staying away from it entirely.",
+      "D": "'Gradually adopt' means to accept something over time—completely contrary to the deliberate avoidance that eschew requires.",
+      "E": "'Reluctantly tolerate' implies accepting something with displeasure, but eschew goes further — it means to actively and habitually steer clear of something entirely, not merely to put up with it unwillingly."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -320,6 +355,10 @@
       {
         "id": "D",
         "text": "Lack of preparation"
+      },
+      {
+        "id": "E",
+        "text": "Repetition of key points"
       }
     ],
     "correctOptionId": "A",
@@ -327,7 +366,8 @@
     "distractorExplanations": {
       "B": "'Technical jargon' refers to specialized terminology used in a field; a speech full of jargon could still be brief, whereas prolixity means excessive length.",
       "C": "'Aggressive tone' is about emotional delivery and confrontation—orthogonal to the quantity of words used.",
-      "D": "'Lack of preparation' might produce a rambling speech, but prolixity specifically names the flaw (too many words), not its cause."
+      "D": "'Lack of preparation' might produce a rambling speech, but prolixity specifically names the flaw (too many words), not its cause.",
+      "E": "'Repetition of key points' can make a speech long and is a symptom of prolixity, but prolixity names the overall condition of using far more words than necessary — it is broader than deliberate repetition and includes all forms of verbal excess."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -353,23 +393,28 @@
       },
       {
         "id": "B",
-        "text": "Secretive"
-      },
-      {
-        "id": "C",
         "text": "Responsive"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "Accountable"
+      },
+      {
+        "id": "D",
+        "text": "Translucent"
+      },
+      {
+        "id": "E",
+        "text": "Secretive"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "In governance, transparent means operating in an open manner that allows the public to see actions, decisions, and spending without concealment. The antonym is secretive—operating in a closed or hidden manner. Open and accountable are actually synonyms or near-synonyms of transparent in this context, making them wrong antonym choices. Responsive means reacting promptly to public needs, which is a related but distinct governance value that does not directly oppose transparency.",
     "distractorExplanations": {
       "A": "'Open' is nearly synonymous with transparent in a governance context—both mean accessible and unhidden; choosing it as an antonym reverses the relationship.",
-      "C": "'Responsive' describes an institution that reacts to citizens' needs; it does not address openness or concealment, which is what transparent is about.",
-      "D": "'Accountable' means answerable for one's actions; like transparent, it is a positive governance value—selecting it as an antonym confuses two allied concepts."
+      "B": "'Responsive' describes an institution that reacts to citizens' needs; it does not address openness or concealment, which is what transparent is about.",
+      "C": "'Accountable' means answerable for one's actions; like transparent, it is a positive governance value—selecting it as an antonym confuses two allied concepts.",
+      "D": "Translucent is a lesser degree of the same quality — partially transparent — not the opposite of transparent."
     },
     "tip": {
       "label": "Exam Tip",
@@ -392,27 +437,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "Cooperation"
+        "text": "Bitterness and hostility"
       },
       {
         "id": "B",
-        "text": "Formal correspondence"
+        "text": "Cooperation"
       },
       {
         "id": "C",
-        "text": "Bureaucratic delay"
+        "text": "Formal correspondence"
       },
       {
         "id": "D",
-        "text": "Bitterness and hostility"
+        "text": "Bureaucratic delay"
+      },
+      {
+        "id": "E",
+        "text": "Prolonged negotiation"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "Acrimony comes from the Latin 'acrimonia' (sharpness, pungency), and means bitterness or ill feeling, especially in communication or relations between parties. The word shares a root with 'acrid' (sharp, bitter smell). In the sentence, the key context clue is 'finally brokered a lasting agreement'—the word 'finally' implies a long, difficult period of conflict that preceded the breakthrough. Only bitterness and hostility fits this picture. Cooperation is the antonym; formal correspondence is neutral and administrative; bureaucratic delay is about process, not emotion.",
     "distractorExplanations": {
-      "A": "'Cooperation' is the opposite of acrimony—a relationship of harmony, not bitterness. The agreement ended acrimony and led toward cooperation.",
-      "B": "'Formal correspondence' is neutral written communication; acrimony can be expressed in letters, but the word itself names the hostile feeling, not the medium.",
-      "C": "'Bureaucratic delay' describes slow administrative processes; it is a logistical problem, not an emotional or interpersonal conflict."
+      "B": "'Cooperation' is the opposite of acrimony—a relationship of harmony, not bitterness. The agreement ended acrimony and led toward cooperation.",
+      "C": "'Formal correspondence' is neutral written communication; acrimony can be expressed in letters, but the word itself names the hostile feeling, not the medium.",
+      "D": "'Bureaucratic delay' describes slow administrative processes; it is a logistical problem, not an emotional or interpersonal conflict.",
+      "E": "'Prolonged negotiation' could occur alongside acrimony but names a process rather than the emotional quality of bitter ill will; an examinees might confuse the drawn-out nature of the dispute with the emotional character of the relationship."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -447,6 +497,10 @@
       {
         "id": "D",
         "text": "Neither of the supervisors were present at the briefing."
+      },
+      {
+        "id": "E",
+        "text": "Most of the information were already verified before the meeting."
       }
     ],
     "correctOptionId": "C",
@@ -454,7 +508,8 @@
     "distractorExplanations": {
       "A": "The subject is 'list' (singular), not 'requirements.' The phrase 'of requirements' is a prepositional modifier; the verb must agree with 'list,' so 'was submitted' is correct.",
       "B": "'Each' is always singular regardless of what follows 'of.' The phrase 'of the employees' does not make 'each' plural; 'is required' is the correct form.",
-      "D": "'Neither' (used without 'nor') is singular and takes a singular verb. 'Was present' is the grammatically correct form here."
+      "D": "'Neither' (used without 'nor') is singular and takes a singular verb. 'Was present' is the grammatically correct form here.",
+      "E": "'Most of the information' treats 'information' as if it were a plural count noun needing 'were,' but information is a mass noun that takes a singular verb ('was'); this mirrors the proximity-attraction error tested in the other wrong options."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -490,6 +545,10 @@
       {
         "id": "D",
         "text": "By next Monday, the team had completed the audit."
+      },
+      {
+        "id": "E",
+        "text": "By next Monday, the team should complete the audit."
       }
     ],
     "correctOptionId": "A",
@@ -497,7 +556,8 @@
     "distractorExplanations": {
       "B": "Simple future 'will complete' says the action will happen but does not emphasize that it will be finished before Monday—the deadline emphasis is lost.",
       "C": "Simple present 'completes' is used for habitual or scheduled events, but the phrase 'by next Monday' marks a future deadline that requires a future tense form.",
-      "D": "Past perfect 'had completed' requires a past point of reference (e.g., 'by last Monday'); it cannot be paired with 'by next Monday,' which is a future marker."
+      "D": "Past perfect 'had completed' requires a past point of reference (e.g., 'by last Monday'); it cannot be paired with 'by next Monday,' which is a future marker.",
+      "E": "'Should complete' uses a modal suggesting recommendation or obligation rather than the future perfect construction that 'by next Monday' requires to signal completion before a specified deadline; it sounds plausible but expresses a different grammatical relationship."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -534,6 +594,10 @@
       {
         "id": "D",
         "text": "Him and the deputy signed the memorandum."
+      },
+      {
+        "id": "E",
+        "text": "The director asked she and I to prepare the presentation."
       }
     ],
     "correctOptionId": "C",
@@ -541,7 +605,8 @@
     "distractorExplanations": {
       "A": "'To Maria and I' uses the subject pronoun 'I' as an object of the preposition 'to.' The rule: after a preposition, always use the object case → 'to Maria and me.'",
       "B": "'Between you and I' is a notorious error. 'Between' is a preposition and always takes object case: 'between you and me' is always correct.",
-      "D": "'Him and the deputy signed' uses the object-case pronoun 'him' as the subject of the sentence. Subject position requires 'He and the deputy signed.'"
+      "D": "'Him and the deputy signed' uses the object-case pronoun 'him' as the subject of the sentence. Subject position requires 'He and the deputy signed.'",
+      "E": "Using subject-case pronouns 'she' and 'I' as objects of the verb 'asked' repeats the classic object-position error in a new combination, tempting examinees who recognize that 'me' sounds wrong but overcorrect by using 'I' for both pronouns."
     },
     "tip": {
       "label": "Common Mistake",
@@ -569,23 +634,28 @@
       },
       {
         "id": "B",
-        "text": "The memorandum is different from the original draft."
-      },
-      {
-        "id": "C",
         "text": "The memorandum is different to the original draft."
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "The memorandum is different of the original draft."
+      },
+      {
+        "id": "D",
+        "text": "The memorandum is different from the original draft."
+      },
+      {
+        "id": "E",
+        "text": "The memorandum is different with the original draft."
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "D",
     "explanation": "In standard American English, the adjective 'different' is correctly paired with the preposition 'from,' forming the standard idiom 'different from.' This is the form required on formal examinations and in professional government writing. 'Different than' is used informally in American English (and is acceptable in some style guides when followed by a clause), but it is not the standard preferred form. 'Different to' is found in British English but not in standard American English. 'Different of' does not exist as a recognized construction in any major variety of English.",
     "distractorExplanations": {
       "A": "'Different than' is informal; while sometimes accepted in American English before a clause, it is not the standard formal preposition pairing for 'different.'",
-      "C": "'Different to' is a British English variant not used in standard American English, which is the reference norm for the Civil Service Exam.",
-      "D": "'Different of' is grammatically incorrect in all varieties of English—no such idiomatic expression exists."
+      "B": "'Different to' is a British English variant not used in standard American English, which is the reference norm for the Civil Service Exam.",
+      "C": "'Different of' is grammatically incorrect in all varieties of English—no such idiomatic expression exists.",
+      "E": "'Different with' does not exist as a standard idiomatic expression in any variety of English; it sounds wrong to native speakers, making it less plausible than 'different than' or 'different to,' which are attested variants."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -622,6 +692,10 @@
       {
         "id": "D",
         "text": "The data clearly is supporting the recommendation."
+      },
+      {
+        "id": "E",
+        "text": "The data clearly are supportive of the recommendation."
       }
     ],
     "correctOptionId": "B",
@@ -629,7 +703,8 @@
     "distractorExplanations": {
       "A": "Treating 'data' as singular ('data supports') is widespread in informal speech, but formal grammar requires the plural: 'data support.' The exam tests formal usage.",
       "C": "'Has supported for' combines the present perfect with the preposition 'for' in a way that is unidiomatic and grammatically incorrect in English.",
-      "D": "'Is supporting' uses the progressive (ongoing action) tense; data 'supporting' a recommendation is a static relationship better expressed with a simple present plural verb."
+      "D": "'Is supporting' uses the progressive (ongoing action) tense; data 'supporting' a recommendation is a static relationship better expressed with a simple present plural verb.",
+      "E": "Although 'data are' correctly uses a plural verb, 'are supportive of' is an awkward nominalization of 'support' and makes the sentence less idiomatic than the simple 'data support'; this tests whether examinees can distinguish a grammatically acceptable but stylistically wrong form from the preferred one."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -666,6 +741,10 @@
       {
         "id": "D",
         "text": "To submit the report, the deadline must be noted carefully."
+      },
+      {
+        "id": "E",
+        "text": "The fire alarm, having been heard throughout the hallway, startled the employees near their desks."
       }
     ],
     "correctOptionId": "C",
@@ -673,7 +752,8 @@
     "distractorExplanations": {
       "A": "A fire alarm cannot walk through a hallway. The modifier 'walking through the hallway' has no logical subject in the main clause—classic dangling modifier.",
       "B": "Passive voice ('a decision was reached') makes 'a decision' the grammatical subject, but a decision cannot review documents. The participial phrase dangles.",
-      "D": "The infinitive 'to submit the report' implies an agent who submits, but the subject of the main clause is 'the deadline'—an abstract time marker that cannot perform submission."
+      "D": "The infinitive 'to submit the report' implies an agent who submits, but the subject of the main clause is 'the deadline'—an abstract time marker that cannot perform submission.",
+      "E": "This passive participial construction places the modifier on 'the fire alarm' rather than on 'the employees,' technically avoiding the dangling error but producing a semantically awkward sentence where the alarm itself receives the passive action — a near-miss that tests careful modifier placement."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -710,6 +790,10 @@
       {
         "id": "D",
         "text": "The supervisor recommended that the officer submit his report daily."
+      },
+      {
+        "id": "E",
+        "text": "The supervisor recommended that the officer should submit his report daily."
       }
     ],
     "correctOptionId": "D",
@@ -717,7 +801,8 @@
     "distractorExplanations": {
       "A": "Adding '-s' to get 'submits' follows the indicative rule for third-person singular, but the mandative subjunctive after 'recommended' requires the bare base form 'submit' without -s.",
       "B": "'Will submit' is indicative future tense; the subjunctive requires the bare base form 'submit'—no modal auxiliary is used in the that-clause.",
-      "C": "'Submitted' is simple past indicative; it changes the tense and meaning. The subjunctive 'submit' (base form) is required regardless of when the recommendation was made."
+      "C": "'Submitted' is simple past indicative; it changes the tense and meaning. The subjunctive 'submit' (base form) is required regardless of when the recommendation was made.",
+      "E": "Using 'should submit' with the modal 'should' sounds formal and is a very common near-miss; the mandative subjunctive after 'recommended' requires the bare base form 'submit' without any modal auxiliary, making 'should submit' a plausible but incorrect alternative."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -753,6 +838,10 @@
       {
         "id": "D",
         "text": "Fewer employees reported to the main branch last week."
+      },
+      {
+        "id": "E",
+        "text": "We processed less transactions this month than last quarter."
       }
     ],
     "correctOptionId": "D",
@@ -760,7 +849,8 @@
     "distractorExplanations": {
       "A": "'Less applicants' misapplies 'less' to a count noun. Applicants can be counted (one applicant, two applicants), so 'fewer applicants' is required.",
       "B": "'Less paper' is grammatically correct since paper is a mass noun, but the question asks for the sentence that is unambiguously correct—choice D has no error at all.",
-      "C": "'Fewer information' misapplies 'fewer' to an uncountable noun. Information cannot be counted in discrete units, so 'less information' is required."
+      "C": "'Fewer information' misapplies 'fewer' to an uncountable noun. Information cannot be counted in discrete units, so 'less information' is required.",
+      "E": "Using 'less' with 'transactions' — a countable noun — repeats the core error tested in option A but in a new sentence, making it a genuine second distractor that tests the same fewer/less rule without duplicating the existing wording."
     },
     "tip": {
       "label": "Common Mistake",
@@ -797,6 +887,10 @@
       {
         "id": "D",
         "text": "Everyone on the task force submitted our quarterly report on time."
+      },
+      {
+        "id": "E",
+        "text": "Everyone on the task force submitted one's quarterly report on time."
       }
     ],
     "correctOptionId": "B",
@@ -804,7 +898,8 @@
     "distractorExplanations": {
       "A": "'Their' with 'everyone' is widely used in casual speech but is not the formal standard on government exams, which require 'his or her' for singular indefinite pronouns.",
       "C": "'Its' refers to non-human entities (an organization, an animal); using it for 'everyone' (a group of people) is inappropriate and depersonalizing.",
-      "D": "'Our' is first-person plural and does not logically agree with 'everyone,' which is third-person. This shifts perspective incorrectly."
+      "D": "'Our' is first-person plural and does not logically agree with 'everyone,' which is third-person. This shifts perspective incorrectly.",
+      "E": "Using the impersonal pronoun 'one's' with 'everyone' may sound formally elevated, but 'one's' is appropriate only when the subject is also 'one,' not 'everyone'; this option tests knowledge of which pronoun correctly refers back to the indefinite antecedent."
     },
     "tip": {
       "label": "Exam Tip",
@@ -832,23 +927,28 @@
       },
       {
         "id": "B",
-        "text": "The secretary, together with her two assistants, were responsible for the filing."
+        "text": "The secretary, together with her two assistants, is responsible for the filing."
       },
       {
         "id": "C",
-        "text": "The secretary, together with her two assistants, have been responsible for the filing."
+        "text": "The secretary, together with her two assistants, were responsible for the filing."
       },
       {
         "id": "D",
-        "text": "The secretary, together with her two assistants, is responsible for the filing."
+        "text": "The secretary, together with her two assistants, have been responsible for the filing."
+      },
+      {
+        "id": "E",
+        "text": "The secretary, together with her two assistants, was responsible for the filing."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "B",
     "explanation": "When a singular subject is followed by a parenthetical phrase introduced by 'together with,' 'along with,' 'as well as,' 'in addition to,' or 'accompanied by,' the verb must still agree with the original singular subject—not with the noun in the intervening phrase. The subject here is 'the secretary' (singular), so the verb must be 'is' (singular). The phrases 'together with her two assistants' is set off by commas, signaling that it is a parenthetical addition, not a true compound subject. Choices A, B, and C all use plural verb forms ('are,' 'were,' 'have been'), incorrectly treating 'assistants' as part of the grammatical subject.",
     "distractorExplanations": {
       "A": "'Are responsible' is plural; the subject 'the secretary' is singular. 'Together with' does not create a compound subject—the intervening phrase is parenthetical.",
-      "B": "'Were responsible' is plural past tense; the singular subject 'the secretary' requires 'was,' not 'were,' regardless of the number of assistants mentioned.",
-      "C": "'Have been' is plural perfect; 'the secretary' as a singular subject requires 'has been.' The assistants in the parenthetical phrase do not change this."
+      "C": "'Were responsible' is plural past tense; the singular subject 'the secretary' requires 'was,' not 'were,' regardless of the number of assistants mentioned.",
+      "D": "'Have been' is plural perfect; 'the secretary' as a singular subject requires 'has been.' The assistants in the parenthetical phrase do not change this.",
+      "E": "'Was responsible' correctly uses a singular past-tense verb agreeing with 'the secretary,' but the question asks for the grammatically correct present-tense sentence; 'was' shifts the tense from present to past without cause, making it wrong in context while appearing nearly correct."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -885,6 +985,10 @@
       {
         "id": "D",
         "text": "Neither the department head nor the supervisors were notified of the change."
+      },
+      {
+        "id": "E",
+        "text": "Neither the department head nor the supervisors has been notified of the change."
       }
     ],
     "correctOptionId": "D",
@@ -892,7 +996,8 @@
     "distractorExplanations": {
       "A": "In 'neither the department head nor the supervisors,' the nearer subject is plural 'supervisors,' requiring a plural verb 'were'—not the singular 'was' used here.",
       "B": "In 'neither the supervisors nor the department head,' the nearer subject is singular 'department head,' requiring singular 'was'—not the plural 'were' used here.",
-      "C": "Same word order as B: the nearer subject 'department head' is singular, but 'have been' is a plural perfect form. 'Has been' would be required."
+      "C": "Same word order as B: the nearer subject 'department head' is singular, but 'have been' is a plural perfect form. 'Has been' would be required.",
+      "E": "'Has been' is singular past perfect, but the nearer subject 'supervisors' is plural and requires a plural verb form; using 'has been' instead of 'have been' repeats the singular-verb error while changing the aspect, testing whether examinees notice both the number and aspect of the verb."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -930,6 +1035,10 @@
       {
         "id": "D",
         "text": "To who should I address the memorandum?"
+      },
+      {
+        "id": "E",
+        "text": "Whoever applies for the position must meet all eligibility requirements."
       }
     ],
     "correctOptionId": "A",
@@ -937,7 +1046,8 @@
     "distractorExplanations": {
       "B": "'Whom applied for the position' uses the object-case pronoun 'whom' as a subject. Test: 'Him applied?' No. 'He applied?' Yes. So 'who applied' is correct.",
       "C": "'Whom assigned the task' uses object-case as a subject. Test: 'Him assigned the task?' No. 'He assigned the task?' Yes. So 'who assigned' is required.",
-      "D": "After a preposition ('to'), object case is required. 'To who' is incorrect; 'To whom' is the always-correct form after any preposition."
+      "D": "After a preposition ('to'), object case is required. 'To who' is incorrect; 'To whom' is the always-correct form after any preposition.",
+      "E": "'Whoever' is correct as the subject of 'applies,' but this changes the sentence meaning entirely from identifying one selected applicant to describing all applicants generally; it avoids the who/whom error but cannot be the answer because it does not test the same grammatical point as the original."
     },
     "tip": {
       "label": "Common Mistake",
@@ -974,6 +1084,10 @@
       {
         "id": "D",
         "text": "The decision had been reached by the committee."
+      },
+      {
+        "id": "E",
+        "text": "The memorandum had been prepared by the drafting team before the deadline."
       }
     ],
     "correctOptionId": "C",
@@ -981,7 +1095,8 @@
     "distractorExplanations": {
       "A": "'Was submitted by the clerk' is passive: the subject 'the report' receives the action. The 'by + agent' phrase signals passive construction.",
       "B": "'Was approved by the board' is passive: 'the budget' (subject) is the receiver of approval, not the approver. 'By the board' identifies the agent.",
-      "D": "'Had been reached by the committee' is passive perfect: 'the decision' (subject) was arrived at by others. 'Had been reached' is a past perfect passive construction."
+      "D": "'Had been reached by the committee' is passive perfect: 'the decision' (subject) was arrived at by others. 'Had been reached' is a past perfect passive construction.",
+      "E": "Past perfect passive 'had been prepared' is another passive voice construction, maintaining the 'by + agent' signal; examinees who know to look for active voice must recognize that past perfect passive is still passive even though it uses 'had been' rather than 'was.'"
     },
     "tip": {
       "label": "Grammar Rule",
@@ -1017,6 +1132,10 @@
       {
         "id": "D",
         "text": "The new policy aims at reducing waste, improve efficiency, and to promote transparency."
+      },
+      {
+        "id": "E",
+        "text": "The new policy aims to reduce waste, to improve efficiency, and to promote transparency."
       }
     ],
     "correctOptionId": "B",
@@ -1024,7 +1143,8 @@
     "distractorExplanations": {
       "A": "Mixing 'to reduce' (infinitive), 'improving' (gerund), and 'the promotion of' (noun phrase) breaks parallelism. All three must use the same grammatical structure.",
       "C": "'Reduces' is a finite verb in a list that started with infinitives; the list should be 'to reduce, [to] improve, and [to] promote'—all infinitives.",
-      "D": "Mixing 'at reducing' (prepositional gerund), 'improve' (bare base form), and 'to promote' (full infinitive) creates three different forms—none of them parallel."
+      "D": "Mixing 'at reducing' (prepositional gerund), 'improve' (bare base form), and 'to promote' (full infinitive) creates three different forms—none of them parallel.",
+      "E": "Repeating 'to' before each verb is grammatically acceptable but stylistically non-standard in a coordinated infinitive series; formal usage drops the repeated 'to' after the first, making option B ('reduce, improve, and promote') the cleaner and preferred form."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -1055,19 +1175,24 @@
       },
       {
         "id": "C",
-        "text": "requirements are"
+        "text": "increasing every quarter"
       },
       {
         "id": "D",
-        "text": "increasing every quarter"
+        "text": "requirements are"
+      },
+      {
+        "id": "E",
+        "text": "who have submitted the requirements"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "The true subject of the main clause is 'the number,' which is a singular noun requiring a singular verb. The phrase 'of applicants who have submitted incomplete requirements' is a long modifier that cannot change the subject's grammatical number. The error is in part C, where 'are' should be 'is.' A helpful distinction: 'the number of [plural noun]' = singular subject → singular verb ('The number of applicants is increasing'), while 'a number of [plural noun]' = effectively plural → plural verb ('A number of applicants are applying'). The difference between 'the number' and 'a number' is a classic exam distinction.",
     "distractorExplanations": {
       "A": "'The number of applicants who' is correct; 'the number' establishes the singular subject and 'who' correctly introduces the relative clause modifying 'applicants.'",
       "B": "'Have submitted incomplete' is correct; 'who' refers to 'applicants' (plural), so the plural verb 'have submitted' correctly agrees with its antecedent.",
-      "D": "'Increasing every quarter' is correct as the present participle completing the progressive predicate; no error exists in this part of the sentence."
+      "C": "'Increasing every quarter' is correct as the present participle completing the progressive predicate; no error exists in this part of the sentence.",
+      "E": "The relative clause 'who have submitted' correctly uses a plural verb to agree with 'applicants,' so there is no error in this part; examinees who do not recognize that 'who' refers to 'applicants' (plural) may incorrectly identify this as wrong."
     },
     "tip": {
       "label": "Common Mistake",
@@ -1090,11 +1215,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "the newly hired"
+        "text": "employees are expected"
       },
       {
         "id": "B",
-        "text": "employees are expected"
+        "text": "the newly hired"
       },
       {
         "id": "C",
@@ -1103,14 +1228,19 @@
       {
         "id": "D",
         "text": "to the office dress code"
+      },
+      {
+        "id": "E",
+        "text": "adhere to the office"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "The subject of the sentence is 'each,' an indefinite pronoun that is always grammatically singular—without exception. This is one of the most frequently tested rules on the Civil Service Exam. 'Each of the employees' might look plural because of 'employees,' but 'employees' is inside a prepositional phrase ('of the employees') and cannot serve as the grammatical subject. The verb must agree with 'each' (singular), so 'is expected'—not 'are expected'—is the correct form. The error is in part B, where 'are' must be replaced with 'is.'",
     "distractorExplanations": {
-      "A": "'The newly hired' is a correct adjective phrase modifying 'employees'; there is no error here in modification or word form.",
+      "B": "'The newly hired' is a correct adjective phrase modifying 'employees'; there is no error here in modification or word form.",
       "C": "'To adhere' is the correct infinitive form following 'is expected'; no error exists in the infinitive construction.",
-      "D": "'To the office dress code' is correct idiomatic phrasing; 'adhere to' is the standard collocation, and the noun phrase is grammatically sound."
+      "D": "'To the office dress code' is correct idiomatic phrasing; 'adhere to' is the standard collocation, and the noun phrase is grammatically sound.",
+      "E": "'Adhere to the office' is a correct verb-preposition collocation and the phrase is properly formed; there is no grammatical error in this part, making it an invalid answer to a question asking which part contains an error."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -1134,27 +1264,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "which was formed"
+        "text": "have already"
       },
       {
         "id": "B",
-        "text": "last January"
+        "text": "which was formed"
       },
       {
         "id": "C",
-        "text": "have already"
+        "text": "last January"
       },
       {
         "id": "D",
         "text": "submitted its"
+      },
+      {
+        "id": "E",
+        "text": "submitted its recommendations"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "The subject 'committee' is a collective noun. In American English, collective nouns acting as a single unified body take a singular verb. The committee acts as one entity submitting one set of recommendations, so the verb should be 'has already submitted,' not 'have already submitted.' Note that 'its' in part D is correctly singular and consistent with treating the committee as a unit—'its recommendations' is right. Part A is also correct: the relative clause 'which was formed' uses singular 'was' agreeing with singular 'committee.' The error is exclusively the plural verb 'have' in part C, which should be the singular 'has.'",
     "distractorExplanations": {
-      "A": "'Which was formed' correctly uses the singular verb 'was' to agree with 'committee.' This part contains no error.",
-      "B": "'Last January' is a correct time adverbial phrase indicating when the committee was formed; there is no grammatical error here.",
-      "D": "'Submitted its' is correct: 'its' is the singular possessive pronoun agreeing with the singular collective noun 'committee.' This part is error-free."
+      "B": "'Which was formed' correctly uses the singular verb 'was' to agree with 'committee.' This part contains no error.",
+      "C": "'Last January' is a correct time adverbial phrase indicating when the committee was formed; there is no grammatical error here.",
+      "D": "'Submitted its' is correct: 'its' is the singular possessive pronoun agreeing with the singular collective noun 'committee.' This part is error-free.",
+      "E": "'Submitted its' is correct because 'its' is the singular possessive pronoun agreeing with the singular collective noun 'committee'; examinees who expect plural pronoun agreement with the content of a committee may incorrectly flag this part."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -1182,23 +1317,28 @@
       },
       {
         "id": "B",
-        "text": "the changes was immediately"
-      },
-      {
-        "id": "C",
         "text": "implemented"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "by the regional office"
+      },
+      {
+        "id": "D",
+        "text": "Having been informed of the new guidelines"
+      },
+      {
+        "id": "E",
+        "text": "the changes was immediately"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "The grammatical subject of the main clause is 'the changes,' which is plural. A plural subject requires a plural verb. 'Was' is singular, so 'the changes was immediately implemented' is a subject-verb disagreement error. The correct form is 'the changes were immediately implemented.' Note also that the participial phrase 'having been informed of the new guidelines' technically dangles (the changes cannot be informed), but among the labeled parts, the clear and unambiguous grammatical error is the singular verb 'was' disagreeing with the plural subject 'the changes' in part B.",
     "distractorExplanations": {
       "A": "'Informed of the new guidelines' is a grammatically correct participial phrase, though it dangles logically; the labeled error in part A itself is not the primary target here.",
-      "C": "'Implemented' is the correct past participle completing the passive voice construction 'were implemented'; no error in this word form.",
-      "D": "'By the regional office' is a correct agent phrase in the passive construction, identifying who performed the implementation; no error here."
+      "B": "'Implemented' is the correct past participle completing the passive voice construction 'were implemented'; no error in this word form.",
+      "C": "'By the regional office' is a correct agent phrase in the passive construction, identifying who performed the implementation; no error here.",
+      "D": "Although this participial phrase dangles logically (the changes cannot be informed), the label for part A covers only 'informed of the new guidelines'; the clear and unambiguous grammatical error — singular 'was' disagreeing with plural 'the changes' — appears in part B."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -1226,23 +1366,28 @@
       },
       {
         "id": "B",
-        "text": "who always"
+        "text": "prioritizes the welfare"
       },
       {
         "id": "C",
-        "text": "prioritizes the welfare"
+        "text": "who always"
       },
       {
         "id": "D",
         "text": "of her staff"
+      },
+      {
+        "id": "E",
+        "text": "the welfare of her staff"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "In the construction 'one of those [plural noun] who,' the relative pronoun 'who' refers to the plural noun ('supervisors'), not to 'one.' Because 'who' refers to the plural antecedent 'supervisors,' the verb in the relative clause must also be plural. Therefore 'prioritizes' (third-person singular) is incorrect; 'prioritize' (plural) is required. The logic is: she is one of those supervisors [who prioritize]—the relative clause describes the group of supervisors as a whole. This is a subtle but frequently tested construction.",
     "distractorExplanations": {
       "A": "'One of those supervisors' is correct; this noun phrase correctly sets up the construction 'one of those [plural noun] who.' No error here.",
-      "B": "'Who always' is correctly placed; 'who' refers to plural 'supervisors,' which is why a plural verb is needed in the clause. The placement itself is fine.",
-      "D": "'Of her staff' is a correct prepositional phrase indicating possession; 'her' correctly refers to 'she' in the main clause, and there is no grammatical error."
+      "C": "'Who always' is correctly placed; 'who' refers to plural 'supervisors,' which is why a plural verb is needed in the clause. The placement itself is fine.",
+      "D": "'Of her staff' is a correct prepositional phrase indicating possession; 'her' correctly refers to 'she' in the main clause, and there is no grammatical error.",
+      "E": "'Of her staff' is a correct prepositional phrase indicating whose welfare is being served; 'her' appropriately refers to 'she' in the main clause, and there is no grammatical or idiomatic error in this part of the sentence."
     },
     "tip": {
       "label": "Common Mistake",
@@ -1266,11 +1411,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "the council members"
+        "text": "were present"
       },
       {
         "id": "B",
-        "text": "were present"
+        "text": "the council members"
       },
       {
         "id": "C",
@@ -1279,14 +1424,19 @@
       {
         "id": "D",
         "text": "of the new municipal hall"
+      },
+      {
+        "id": "E",
+        "text": "at the inauguration of the new municipal hall"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "The grammatical subject of this sentence is 'the mayor,' a singular noun. The phrase 'along with the council members' is a parenthetical addition set off by commas and introduced by the preposition 'along with'—not the coordinating conjunction 'and.' Because 'along with' is a preposition, it does not create a compound subject. The verb must therefore agree with the singular subject 'the mayor.' 'Were present' (plural) is incorrect; 'was present' (singular) is required. This is the same rule that governs 'together with,' 'as well as,' 'in addition to,' and similar phrases.",
     "distractorExplanations": {
-      "A": "'The council members' is the object of 'along with' and thus not part of the grammatical subject. Recognizing that it belongs to a prepositional phrase is the key to solving this item.",
+      "B": "'The council members' is the object of 'along with' and thus not part of the grammatical subject. Recognizing that it belongs to a prepositional phrase is the key to solving this item.",
       "C": "'At the inauguration' is a correct prepositional phrase indicating location; there is no grammatical error in this part.",
-      "D": "'Of the new municipal hall' is a correct prepositional phrase modifying 'inauguration'; no error exists here."
+      "D": "'Of the new municipal hall' is a correct prepositional phrase modifying 'inauguration'; no error exists here.",
+      "E": "'At the inauguration of the new municipal hall' is a correct prepositional phrase indicating location and event; 'of the new municipal hall' is a standard genitive phrase modifying 'inauguration,' and no grammatical error exists in this part."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -1310,27 +1460,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "before"
-      },
-      {
-        "id": "B",
         "text": "despite"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "although"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "unless"
+      },
+      {
+        "id": "D",
+        "text": "within"
+      },
+      {
+        "id": "E",
+        "text": "before"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "'Before' is a preposition expressing a time relationship: the bids must arrive prior to the deadline. The sentence requires a word that places the submission event earlier in time than the deadline. 'Before' is the only choice that expresses this temporal priority. 'Despite' introduces a contrast or concession and requires a noun phrase ('despite the rain'). 'Although' is a subordinating conjunction that introduces a clause with a subject and verb—it cannot follow 'submitted' here without restructuring the sentence. 'Unless' introduces a conditional exception, which does not fit the meaning intended.",
     "distractorExplanations": {
-      "B": "'Despite' signals contrast or concession (e.g., 'despite the difficulties'); it does not express a timing relationship and cannot link 'submitted' to a deadline logically.",
-      "C": "'Although' introduces a concessive clause (e.g., 'although it was raining'); it requires a full clause with subject + verb, not a noun phrase like 'the specified deadline.'",
-      "D": "'Unless' introduces a conditional exception ('unless you comply'); it would change the sentence meaning to 'bids won't be accepted except under the condition of the deadline,' which is illogical."
+      "A": "'Despite' signals contrast or concession (e.g., 'despite the difficulties'); it does not express a timing relationship and cannot link 'submitted' to a deadline logically.",
+      "B": "'Although' introduces a concessive clause (e.g., 'although it was raining'); it requires a full clause with subject + verb, not a noun phrase like 'the specified deadline.'",
+      "C": "'Unless' introduces a conditional exception ('unless you comply'); it would change the sentence meaning to 'bids won't be accepted except under the condition of the deadline,' which is illogical.",
+      "D": "'Within the specified deadline' would mean before or by the deadline and could be acceptable in some contexts, but 'within' suggests a range or limit and is less precise than 'before' for expressing temporal priority; in formal procurement language, 'submitted before the deadline' is the standard expression."
     },
     "tip": {
       "label": "Exam Tip",
@@ -1366,6 +1521,10 @@
       {
         "id": "D",
         "text": "have finalized"
+      },
+      {
+        "id": "E",
+        "text": "to be finalizing"
       }
     ],
     "correctOptionId": "A",
@@ -1373,7 +1532,8 @@
     "distractorExplanations": {
       "B": "'To finalized' is ungrammatical; the past tense cannot follow 'to' in an infinitive construction. 'To' precedes the base form only.",
       "C": "'To finalizing' is ungrammatical; a gerund (-ing form) after 'to' creates a prepositional phrase (e.g., 'looking forward to finalizing'), but here 'to' is the infinitive marker, not a preposition.",
-      "D": "'To have finalized' is a perfect infinitive implying the action was supposed to be completed before another past point; the sentence calls for a simple action going forward, not a past-before-past action."
+      "D": "'To have finalized' is a perfect infinitive implying the action was supposed to be completed before another past point; the sentence calls for a simple action going forward, not a past-before-past action.",
+      "E": "'To be finalizing' uses the progressive infinitive, which implies an ongoing action at a future time rather than the completion of the action before the typhoon season; the simple infinitive 'to finalize' is the correct form for the intended meaning."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -1409,6 +1569,10 @@
       {
         "id": "D",
         "text": "accordingly"
+      },
+      {
+        "id": "E",
+        "text": "consequently"
       }
     ],
     "correctOptionId": "C",
@@ -1416,7 +1580,8 @@
     "distractorExplanations": {
       "A": "'Therefore' signals a logical consequence (cause → result); using it here would mean the flaws were found because the proposal seemed reasonable, which is illogical.",
       "B": "'Moreover' adds another idea in the same direction ('and furthermore'); the sentence needs a contrast word, not an addition word.",
-      "D": "'Accordingly' means 'in a manner consistent with'; like 'therefore,' it signals logical consequence or conformity, not contrast or reversal of expectation."
+      "D": "'Accordingly' means 'in a manner consistent with'; like 'therefore,' it signals logical consequence or conformity, not contrast or reversal of expectation.",
+      "E": "'Consequently' signals a result or logical outcome, but the two parts of this sentence contrast rather than support each other; a proposal that seemed reasonable at first but revealed flaws on review needs a contrast connector, not a consequence connector."
     },
     "tip": {
       "label": "Exam Tip",
@@ -1443,23 +1608,28 @@
       },
       {
         "id": "B",
-        "text": "to"
-      },
-      {
-        "id": "C",
         "text": "by"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "on"
+      },
+      {
+        "id": "D",
+        "text": "at"
+      },
+      {
+        "id": "E",
+        "text": "to"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "The verb 'conform' takes the preposition 'to' as its standard idiomatic partner in formal American English: 'to conform to a rule, a standard, a law.' This is a fixed collocation that must be memorized. While 'conform with' appears in some British English contexts, 'conform to' is the standard formal usage in American English and is the form expected on Philippine Civil Service Examinations, which follow American English conventions. 'Conform by' and 'conform on' are not recognized idiomatic pairings in any variety of standard English.",
     "distractorExplanations": {
       "A": "'Conform with' is found in some contexts but is not the standard formal American English form; 'conform to' is the correct fixed collocation in formal register.",
-      "C": "'Conform by' is not a recognized idiomatic expression in English; no standard usage pairs 'conform' with the preposition 'by.'",
-      "D": "'Conform on' is not a recognized preposition pairing with 'conform' in any standard variety of English."
+      "B": "'Conform by' is not a recognized idiomatic expression in English; no standard usage pairs 'conform' with the preposition 'by.'",
+      "C": "'Conform on' is not a recognized preposition pairing with 'conform' in any standard variety of English.",
+      "D": "'Conform at' is not a recognized idiomatic preposition pairing in any standard variety of English; while 'at' marks a location or point in time, it does not combine with 'conform' to express alignment with a standard or rule."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -1491,19 +1661,24 @@
       },
       {
         "id": "C",
-        "text": "had avoided"
+        "text": "would have avoided"
       },
       {
         "id": "D",
-        "text": "would have avoided"
+        "text": "had avoided"
+      },
+      {
+        "id": "E",
+        "text": "would have been avoiding"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "explanation": "This is a third conditional sentence—a counterfactual (unreal) past conditional. The if-clause is 'Had the department complied earlier' (inverted form of 'If the department had complied'—past perfect). The third conditional structure is: [If + past perfect] → [would have + past participle]. This expresses a hypothetical past situation and its imagined past result. 'Would have avoided' is the correct result clause form. 'Will have avoided' uses the future perfect, which does not match a past hypothetical result. 'Would avoid' belongs to the second conditional (present/future unreal). 'Had avoided' is a past perfect verb form without the required conditional modal 'would.'",
     "distractorExplanations": {
       "A": "'Will have avoided' is future perfect, used for actions completed before a future point; it cannot express a counterfactual past result that did not happen.",
       "B": "'Would avoid' is the second conditional result clause (present unreal); since the if-clause is in the past perfect, the result clause must also be past (would have + past participle).",
-      "C": "'Had avoided' is past perfect without a modal; it cannot stand alone as the result clause of a conditional sentence—the modal 'would' is required."
+      "D": "'Had avoided' is past perfect without a modal; it cannot stand alone as the result clause of a conditional sentence—the modal 'would' is required.",
+      "E": "'Would have been avoiding' is a past conditional progressive, which suggests continuous avoidance rather than a completed avoidance event; the third conditional result clause for a single completed hypothetical action uses 'would have + past participle,' not the progressive form."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -1531,23 +1706,28 @@
       },
       {
         "id": "B",
-        "text": "but also"
-      },
-      {
-        "id": "C",
         "text": "but rather"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "or also"
+      },
+      {
+        "id": "D",
+        "text": "but also"
+      },
+      {
+        "id": "E",
+        "text": "and moreover"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "D",
     "explanation": "'Not only...but also' is a fixed correlative conjunction pair in English—the two halves must always appear together. Correlative conjunctions function in pairs to join grammatically equal elements. When 'not only' opens the first element, 'but also' must introduce the second. No other combination is recognized as a standard correlative pair. 'And also' is redundant and does not pair with 'not only.' 'But rather' signals replacement or correction ('not X, but rather Y'), which changes the meaning from addition to substitution. 'Or also' does not exist as a recognized conjunction pair.",
     "distractorExplanations": {
       "A": "'Not only...and also' is not a recognized correlative pair in English. The standard pairing requires 'but also,' not 'and also.'",
-      "C": "'Not only...but rather' signals that the second element replaces or corrects the first, not adds to it. The intended meaning here is addition, not substitution.",
-      "D": "'Or also' does not exist as a standard conjunction pair in English. 'Or' introduces alternatives, while this sentence is about two conditions both of which are required."
+      "B": "'Not only...but rather' signals that the second element replaces or corrects the first, not adds to it. The intended meaning here is addition, not substitution.",
+      "C": "'Or also' does not exist as a standard conjunction pair in English. 'Or' introduces alternatives, while this sentence is about two conditions both of which are required.",
+      "E": "'Not only...and moreover' is not a recognized correlative conjunction pair; 'and moreover' adds emphasis and is sometimes used in lists, but it cannot serve as the second half of the 'not only...but also' fixed correlative pair that the sentence requires."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -1570,22 +1750,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "P, R, S, Q"
-      },
-      {
-        "id": "B",
         "text": "R, P, Q, S"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "Q, S, P, R"
+      },
+      {
+        "id": "C",
+        "text": "P, R, S, Q"
       },
       {
         "id": "D",
         "text": "S, Q, R, P"
+      },
+      {
+        "id": "E",
+        "text": "P, S, R, Q"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "steps": [
       "Step 1 — Find the topic sentence: P makes the broadest claim ('Budget transparency is essential for good governance') and introduces the main idea. It must come first.",
       "Step 2 — Follow with explanation: R elaborates on how transparency works in practice ('when budgets are made public'). The word 'when' introduces a conditional elaboration on P.",
@@ -1593,9 +1777,10 @@
       "Step 4 — Close with impact: Q uses 'thus' (signaling result) and 'hold accountable' (civic outcome), making it the conclusion of the paragraph."
     ],
     "distractorExplanations": {
-      "B": "Starting with R jumps to a specific mechanism before establishing the main claim in P. Good paragraphs move from general to specific, not specific to general.",
-      "C": "Starting with Q (the conclusion) before any context or explanation creates a paragraph that has no logical foundation—the reader doesn't yet know why citizens can hold government accountable.",
-      "D": "Starting with S (a result) before the cause (R) and the main claim (P) breaks the logical cause-and-effect chain."
+      "A": "Starting with R jumps to a specific mechanism before establishing the main claim in P. Good paragraphs move from general to specific, not specific to general.",
+      "B": "Starting with Q (the conclusion) before any context or explanation creates a paragraph that has no logical foundation—the reader doesn't yet know why citizens can hold government accountable.",
+      "D": "Starting with S (a result) before the cause (R) and the main claim (P) breaks the logical cause-and-effect chain.",
+      "E": "Starting with P (the action — implementing the system) before R (the problem — slow processing) introduces the solution before the problem has been stated; the word 'then' in P also signals it follows something, so P cannot open without R preceding it."
     },
     "tip": {
       "label": "Exam Tip",
@@ -1631,6 +1816,10 @@
       {
         "id": "D",
         "text": "Q, P, R, S"
+      },
+      {
+        "id": "E",
+        "text": "P, R, Q, S"
       }
     ],
     "correctOptionId": "D",
@@ -1643,7 +1832,8 @@
     "distractorExplanations": {
       "A": "P begins with 'She,' but no antecedent for 'she' has been established yet. Starting with P before Q means the pronoun 'she' has no referent.",
       "B": "Starting with R ('after further investigation') implies a prior report and investigation already happened—but neither has been introduced yet, creating a confusing mid-story opening.",
-      "C": "The sequence Q, R, P skips over P before R, but 'after further investigation' in R implies the report (P) came first; placing P after R breaks the chronological order."
+      "C": "The sequence Q, R, P skips over P before R, but 'after further investigation' in R implies the report (P) came first; placing P after R breaks the chronological order.",
+      "E": "Starting with P ('She immediately reported') before Q (the clerk noticed the variance) places the response before the triggering event; P opens with 'She,' which requires 'the accounting clerk' in Q as its antecedent — without Q first, the pronoun 'she' has no referent."
     },
     "tip": {
       "label": "Exam Tip",
@@ -1680,6 +1870,10 @@
       {
         "id": "D",
         "text": "Q, P, S, R"
+      },
+      {
+        "id": "E",
+        "text": "R, P, S, Q"
       }
     ],
     "correctOptionId": "A",
@@ -1692,7 +1886,8 @@
     "distractorExplanations": {
       "B": "P opens with 'These requirements,' which requires a prior sentence listing the requirements. Starting with P leaves 'these' without a referent.",
       "C": "S opens with 'They include,' but 'they' has no antecedent yet—'requirements' hasn't been introduced. The pronoun 'they' needs R to precede it.",
-      "D": "Q opens with 'Applicants who fail to meet any single requirement'—but which requirements? None have been identified yet. Q must come after the requirements are introduced."
+      "D": "Q opens with 'Applicants who fail to meet any single requirement'—but which requirements? None have been identified yet. Q must come after the requirements are introduced.",
+      "E": "Placing P before S misorders the enumeration: P uses 'They' to refer to the requirements introduced in R, which works, but S uses 'these requirements' to refer back to the specific items listed — and S must follow the list in P, not come between R and P."
     },
     "tip": {
       "label": "Exam Tip",
@@ -1724,14 +1919,18 @@
       },
       {
         "id": "C",
-        "text": "Q, P, R, S"
+        "text": "R, P, Q, S"
       },
       {
         "id": "D",
-        "text": "R, P, Q, S"
+        "text": "Q, P, R, S"
+      },
+      {
+        "id": "E",
+        "text": "P, Q, R, S"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "steps": [
       "Step 1 — Find the topic sentence: R states the central problem ('agencies struggle to develop the next generation'). No backward references; it is the opener.",
       "Step 2 — Identify the cause: P identifies 'one contributing factor' to the problem—absence of mentorship programs. 'One contributing factor' implies a problem has been stated first. P follows R.",
@@ -1741,7 +1940,8 @@
     "distractorExplanations": {
       "A": "R, Q, P, S places Q ('as a result') immediately after R, but Q's result (lost institutional knowledge) needs its cause (lack of mentorship in P) to come first. This order skips the cause.",
       "B": "Starting with P ('one contributing factor') requires that a problem be stated before it—P is a contributing factor to something, but that something (R) hasn't been introduced yet.",
-      "C": "Starting with Q ('as a result') places a consequence before any cause or context—the reader cannot know what this result follows from."
+      "D": "Starting with Q ('as a result') places a consequence before any cause or context—the reader cannot know what this result follows from.",
+      "E": "P ('the absence of mentorship programs has been cited as one contributing factor') requires a problem statement to precede it — 'one contributing factor' refers to something already identified; without R establishing the problem first, 'one contributing factor' has no antecedent."
     },
     "tip": {
       "label": "Exam Tip",
@@ -1773,14 +1973,18 @@
       },
       {
         "id": "C",
-        "text": "Q, S, P, R"
+        "text": "Q, P, S, R"
       },
       {
         "id": "D",
-        "text": "Q, P, S, R"
+        "text": "Q, S, P, R"
+      },
+      {
+        "id": "E",
+        "text": "Q, R, P, S"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "steps": [
       "Step 1 — Topic sentence: Q introduces the subject ('shift to online submission has several advantages') and sets up an enumeration. It must come first as the framing sentence.",
       "Step 2 — First advantage: P begins with the ordinal 'First'—this is the first item in the list. P follows Q.",
@@ -1790,7 +1994,8 @@
     "distractorExplanations": {
       "A": "Placing P before Q means 'First' appears before the topic has been introduced—the reader doesn't yet know what 'it' refers to or why a list is being made.",
       "B": "Starting with R ('Finally') places the last item first, reversing the logical enumeration order completely.",
-      "C": "Q, S, P, R places 'Second' (S) before 'First' (P), which contradicts the ordinal sequence."
+      "D": "Q, S, P, R places 'Second' (S) before 'First' (P), which contradicts the ordinal sequence.",
+      "E": "This order places 'Finally' (R) before 'Second' (S), reversing the ordinal sequence; the markers First → Second → Finally explicitly dictate the internal order, making any arrangement that puts Finally before Second incorrect."
     },
     "tip": {
       "label": "Exam Tip",
@@ -1814,11 +2019,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "Q, R, P, S"
+        "text": "R, Q, S, P"
       },
       {
         "id": "B",
-        "text": "R, Q, S, P"
+        "text": "Q, R, P, S"
       },
       {
         "id": "C",
@@ -1827,9 +2032,13 @@
       {
         "id": "D",
         "text": "Q, P, R, S"
+      },
+      {
+        "id": "E",
+        "text": "R, P, Q, S"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "B",
     "steps": [
       "Step 1 — Topic sentence: Q makes the broadest claim ('environmental degradation is a pressing national concern') with no backward references. It opens the paragraph.",
       "Step 2 — Specific example: R gives a concrete instance of degradation ('air and water quality have deteriorated'). R illustrates Q with data and follows it.",
@@ -1837,9 +2046,10 @@
       "Step 4 — Concrete action closes: S describes the enforcement action now underway (identifying and prosecuting industries), which is the practical implementation of the enforcement calls in P. S is the logical conclusion."
     ],
     "distractorExplanations": {
-      "B": "Starting with R gives a specific detail before the broader context in Q—like starting an essay with a statistic before stating the thesis.",
+      "A": "Starting with R gives a specific detail before the broader context in Q—like starting an essay with a statistic before stating the thesis.",
       "C": "Starting with P uses 'this decline' but nothing has been identified as declining yet; 'this decline' needs R to establish the referent.",
-      "D": "Q, P, R, S places P ('this decline') immediately after Q, but P's 'this decline' specifically references the air-and-water deterioration in R, which hasn't appeared yet."
+      "D": "Q, P, R, S places P ('this decline') immediately after Q, but P's 'this decline' specifically references the air-and-water deterioration in R, which hasn't appeared yet.",
+      "E": "Placing R first gives a specific statistic (air and water quality deterioration) before the broader claim in Q; while R supports Q, the general-to-specific principle requires the broad topic sentence to open, not the supporting detail."
     },
     "tip": {
       "label": "Exam Tip",
@@ -1877,6 +2087,10 @@
       {
         "id": "D",
         "text": "Regional representation and diversity"
+      },
+      {
+        "id": "E",
+        "text": "Educational attainment and professional experience"
       }
     ],
     "correctOptionId": "C",
@@ -1884,7 +2098,8 @@
     "distractorExplanations": {
       "A": "Seniority and years of service are not mentioned in the passage as a basis for appointments. The passage specifies merit and fitness, not tenure.",
       "B": "The passage explicitly contrasts merit with 'political patronage,' making this the opposite of what the CSC mandate requires.",
-      "D": "Regional representation is not mentioned in the passage at all. This is a fabricated option designed to test whether the reader can distinguish between what the passage says and plausible-sounding alternatives."
+      "D": "Regional representation is not mentioned in the passage at all. This is a fabricated option designed to test whether the reader can distinguish between what the passage says and plausible-sounding alternatives.",
+      "E": "Educational attainment and professional experience are genuine qualifications used in civil service selection, making this plausible; however, the passage specifically states 'merit and fitness' as the basis — credentials are components of merit but the passage names the broader principle, not its specific components."
     },
     "tip": {
       "label": "Exam Tip",
@@ -1921,6 +2136,10 @@
       {
         "id": "D",
         "text": "Hearing administrative cases of government employees"
+      },
+      {
+        "id": "E",
+        "text": "Enforcing ethical conduct standards for public officials"
       }
     ],
     "correctOptionId": "C",
@@ -1928,7 +2147,8 @@
     "distractorExplanations": {
       "A": "Administering career service examinations is explicitly mentioned in the passage: 'The Commission administers career service examinations.' This IS a stated function.",
       "B": "Setting qualification standards is explicitly mentioned: 'sets qualification standards.' This IS a stated function and therefore cannot be the correct answer for a NOT question.",
-      "D": "Hearing administrative cases is explicitly mentioned: 'hears administrative cases involving government employees.' This IS a stated function."
+      "D": "Hearing administrative cases is explicitly mentioned: 'hears administrative cases involving government employees.' This IS a stated function.",
+      "E": "While the CSC upholds merit-based standards and handles administrative cases, 'enforcing ethical conduct standards' is more directly associated with the Office of the Ombudsman than with the CSC's stated functions in the passage; examinees familiar with Philippine governance may incorrectly select this as a stated function."
     },
     "tip": {
       "label": "Exam Tip",
@@ -1956,23 +2176,28 @@
       },
       {
         "id": "B",
-        "text": "Reprimand"
+        "text": "Dismissal"
       },
       {
         "id": "C",
-        "text": "Demotion"
+        "text": "Reprimand"
       },
       {
         "id": "D",
-        "text": "Dismissal"
+        "text": "Demotion"
+      },
+      {
+        "id": "E",
+        "text": "Forfeiture of benefits"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "B",
     "explanation": "The passage states: 'violations may result in administrative sanctions ranging from reprimand to dismissal.' In this range, 'reprimand' is the least severe sanction (a formal warning) and 'dismissal' is the most severe (removal from service). The phrase 'ranging from [least] to [most]' is the key: 'reprimand' is at the low end, 'dismissal' at the high end. Options A (suspension) and C (demotion) are not mentioned anywhere in the passage; they are plausible sanctions that exist in practice, but cannot be the answer to a 'according to the passage' question.",
     "distractorExplanations": {
       "A": "Suspension without pay is a real administrative sanction under Philippine law, but it is not mentioned in the passage. The question asks what the passage states, not what the law allows.",
-      "B": "Reprimand is explicitly mentioned in the passage, but as the least severe sanction ('ranging from reprimand'), not the most serious one.",
-      "C": "Demotion is not mentioned anywhere in the passage. It exists in administrative law but cannot be cited as the answer here."
+      "C": "Reprimand is explicitly mentioned in the passage, but as the least severe sanction ('ranging from reprimand'), not the most serious one.",
+      "D": "Demotion is not mentioned anywhere in the passage. It exists in administrative law but cannot be cited as the answer here.",
+      "E": "Forfeiture of benefits is a real consequence under Philippine administrative law, but it is not mentioned in the passage; the question asks for what the passage states, and 'forfeiture of benefits' falls between the passage's named poles of 'reprimand' and 'dismissal.'"
     },
     "tip": {
       "label": "Exam Tip",
@@ -2009,6 +2234,10 @@
       {
         "id": "D",
         "text": "Compare the administrative and criminal sanctions for government misconduct"
+      },
+      {
+        "id": "E",
+        "text": "Warn public officials against specific violations of Republic Act 6713"
       }
     ],
     "correctOptionId": "B",
@@ -2016,7 +2245,8 @@
     "distractorExplanations": {
       "A": "The author describes existing penalties under RA 6713 but never argues they are insufficient or should be changed. The passage is descriptive and informative, not argumentative.",
       "C": "The passage does not discuss historical patterns of corruption or how practices have changed over time; it focuses on what the law prohibits and why it matters.",
-      "D": "The passage mentions only administrative sanctions (reprimand to dismissal). Criminal sanctions are not discussed or compared anywhere in the text."
+      "D": "The passage mentions only administrative sanctions (reprimand to dismissal). Criminal sanctions are not discussed or compared anywhere in the text.",
+      "E": "The passage informs rather than warns and does not address specific officials directly; it describes what the law prohibits and why misconduct matters, which is informational rather than the targeted cautionary purpose this option implies."
     },
     "tip": {
       "label": "Exam Tip",
@@ -2053,6 +2283,10 @@
       {
         "id": "D",
         "text": "It prompts them to file formal complaints with the Civil Service Commission."
+      },
+      {
+        "id": "E",
+        "text": "It prompts them to form independent unions and advocate for merit-based reform."
       }
     ],
     "correctOptionId": "C",
@@ -2060,7 +2294,8 @@
     "distractorExplanations": {
       "A": "The passage says capable employees are discouraged—not motivated to invest in more training. This option inverts the emotional effect described in the passage.",
       "B": "The passage mentions political connections as an influence on promotions but does not state that capable employees respond by forming such alliances. This is a common misreading.",
-      "D": "Filing complaints with the CSC is not mentioned anywhere in the passage as a response to the promotion gap. The passage only mentions that CSC oversight is part of the solution."
+      "D": "Filing complaints with the CSC is not mentioned anywhere in the passage as a response to the promotion gap. The passage only mentions that CSC oversight is part of the solution.",
+      "E": "Forming unions and advocating for reform is not mentioned in the passage as a response to the promotion gap; the passage names discouragement and talent drain as the effects, and union organizing is an external inference not supported by the text."
     },
     "tip": {
       "label": "Exam Tip",
@@ -2097,6 +2332,10 @@
       {
         "id": "D",
         "text": "Performance ratings, relevant training, and eligibility"
+      },
+      {
+        "id": "E",
+        "text": "Merit, dedication, and length of government service"
       }
     ],
     "correctOptionId": "D",
@@ -2104,7 +2343,8 @@
     "distractorExplanations": {
       "A": "Seniority, loyalty, and political connections are never mentioned as proper bases for appointment in the passage. Political connections are actually cited as an improper influence that critics condemn.",
       "B": "Academic credentials, regional affiliation, and endorsements are not cited in the passage as the three factors for promotion. These are fabricated alternatives.",
-      "C": "Years of service, personality assessment, and interview scores are not mentioned in the passage. These sound plausible but do not appear in the text."
+      "C": "Years of service, personality assessment, and interview scores are not mentioned in the passage. These sound plausible but do not appear in the text.",
+      "E": "'Merit' is mentioned in the passage, but 'dedication' and 'length of government service' are not listed as the three specific factors; examinees familiar with civil service values may select this because it sounds principled, but the passage names three precise criteria."
     },
     "tip": {
       "label": "Exam Tip",
@@ -2141,6 +2381,10 @@
       {
         "id": "D",
         "text": "Programs will be transferred to private sector partners."
+      },
+      {
+        "id": "E",
+        "text": "Programs will require significant additional funding to remain operational."
       }
     ],
     "correctOptionId": "A",
@@ -2148,7 +2392,8 @@
     "distractorExplanations": {
       "B": "Public criticism and media coverage are not mentioned anywhere in the passage. This option imports a real-world assumption not supported by the text.",
       "C": "The passage does not say the Civil Service Commission would suspend understaffed programs. The CSC's role mentioned relates to staffing oversight, not program suspension.",
-      "D": "Transfer to the private sector is not mentioned in the passage at all. The passage's solution is better staffing allocation within the government, not privatization."
+      "D": "Transfer to the private sector is not mentioned in the passage at all. The passage's solution is better staffing allocation within the government, not privatization.",
+      "E": "Seeking additional funding is not mentioned as the primary risk in the passage; the passage specifically says programs 'risk failing at the point of delivery,' which is about implementation failure, not about financial shortfalls."
     },
     "tip": {
       "label": "Exam Tip",
@@ -2185,6 +2430,10 @@
       {
         "id": "D",
         "text": "Strictly and according to rank"
+      },
+      {
+        "id": "E",
+        "text": "Proportionally and based on population size"
       }
     ],
     "correctOptionId": "C",
@@ -2192,7 +2441,8 @@
     "distractorExplanations": {
       "A": "'Rapidly and efficiently' relates to speed and productivity; equitable allocation is about fairness in distribution, not how quickly it is done.",
       "B": "'Randomly and without preference' sounds neutral, but equity is not randomness—it is principled fairness that accounts for need and circumstance.",
-      "D": "'Strictly and according to rank' describes a hierarchical allocation based on seniority or status, which could actually produce inequitable outcomes for lower-ranked localities."
+      "D": "'Strictly and according to rank' describes a hierarchical allocation based on seniority or status, which could actually produce inequitable outcomes for lower-ranked localities.",
+      "E": "'Proportionally' and 'based on population' describe a specific allocation method that may be equitable in some contexts, but equitable means fair and just rather than specifically proportional; this option substitutes one possible method of achieving equity for the word's actual meaning."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -2227,6 +2477,10 @@
       {
         "id": "D",
         "text": "Tentative"
+      },
+      {
+        "id": "E",
+        "text": "Binding"
       }
     ],
     "correctOptionId": "B",
@@ -2234,7 +2488,8 @@
     "distractorExplanations": {
       "A": "'Optional' means available but not required—the direct opposite of mandatory. Compliance would not be 'strict' if the directive were optional.",
       "C": "'Discretionary' means left to personal judgment and choice; a mandatory directive removes discretion entirely, making this an antonym.",
-      "D": "'Tentative' means uncertain or subject to change; mandatory directives are firm and definitive, not tentative."
+      "D": "'Tentative' means uncertain or subject to change; mandatory directives are firm and definitive, not tentative.",
+      "E": "'Binding' means creating a legal or moral obligation, which is closely related to mandatory but describes the force of an agreement rather than the required nature of an action; examinees may confuse a binding commitment with a mandatory directive, though the words apply in different legal contexts."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -2269,6 +2524,10 @@
       {
         "id": "D",
         "text": "Brief"
+      },
+      {
+        "id": "E",
+        "text": "Indefinite"
       }
     ],
     "correctOptionId": "A",
@@ -2276,7 +2535,8 @@
     "distractorExplanations": {
       "B": "'Fleeting' is a synonym of transient—both describe something that passes very quickly. Choosing it as an antonym would be choosing something with the same meaning.",
       "C": "'Temporary' is also a synonym of transient—both mean lasting for a limited time. This is not the opposite.",
-      "D": "'Brief' means short in duration, which is again a synonym of transient. None of B, C, or D are opposites; only A is the antonym."
+      "D": "'Brief' means short in duration, which is again a synonym of transient. None of B, C, or D are opposites; only A is the antonym.",
+      "E": "'Indefinite' means not clearly defined in duration, which is different from permanent; an indefinite assignment has no set end date but is not the same as a permanent one, which is long-lasting by design — examinees may confuse the absence of a defined ending with true permanence."
     },
     "tip": {
       "label": "Common Mistake",
@@ -2311,6 +2571,10 @@
       {
         "id": "D",
         "text": "Neither the department head nor the staff members is present at the conference."
+      },
+      {
+        "id": "E",
+        "text": "Neither the department head nor the staff members had been present at the conference."
       }
     ],
     "correctOptionId": "B",
@@ -2318,7 +2582,8 @@
     "distractorExplanations": {
       "A": "The nearer subject 'staff members' is plural, requiring a plural verb. 'Was' (singular) is incorrect here—the error is subject-verb disagreement with the closer subject.",
       "C": "'Neither' must be paired with 'nor,' not 'or.' 'Neither...or' is not a grammatical correlative pair; this is a conjunction error compounded by a verb error.",
-      "D": "The nearer subject 'staff members' is plural; 'is' (singular) disagrees. The Proximity Rule requires 'were' to match the plural closer subject."
+      "D": "The nearer subject 'staff members' is plural; 'is' (singular) disagrees. The Proximity Rule requires 'were' to match the plural closer subject.",
+      "E": "'Had been' is past perfect and grammatically agrees with the plural nearer subject 'staff members,' but changes the tense without justification; the question asks for present-context agreement, and inserting past perfect shifts the time frame unnecessarily."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -2341,22 +2606,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "2 - 3 - 4 - 1"
-      },
-      {
-        "id": "B",
         "text": "3 - 2 - 1 - 4"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "2 - 1 - 3 - 4"
+      },
+      {
+        "id": "C",
+        "text": "2 - 3 - 4 - 1"
       },
       {
         "id": "D",
         "text": "1 - 2 - 3 - 4"
+      },
+      {
+        "id": "E",
+        "text": "2 - 4 - 3 - 1"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "steps": [
       "Step 1 — Topic sentence: Sentence 2 makes the broadest claim ('digital transformation has revolutionized...') and introduces the topic. No backward references confirm it comes first.",
       "Step 2 — First benefit: Sentence 3 describes a specific mechanism ('online portals permit...anytime'), illustrating how the revolution works. It follows sentence 2.",
@@ -2364,9 +2633,10 @@
       "Step 4 — Consequence closes: Sentence 1 uses 'consequently' (a result transition) to state the citizen-facing outcome ('prompt service, no bureaucratic delays'). 'Consequently' signals that sentences 2-3-4 together cause this result. Sentence 1 closes the paragraph."
     ],
     "distractorExplanations": {
-      "B": "Placing sentence 3 first ('Online portals now permit...') jumps to a specific benefit before the general context (digital transformation) is established in sentence 2.",
-      "C": "Placing sentence 1 ('Consequently...') immediately after sentence 2 misuses 'consequently'—the effect cannot be stated before the causes (sentences 3 and 4) are presented.",
-      "D": "Placing sentence 1 first means the conclusion ('citizens receive prompt service') appears before any explanation of why or how. Conclusions should follow their supporting points."
+      "A": "Placing sentence 3 first ('Online portals now permit...') jumps to a specific benefit before the general context (digital transformation) is established in sentence 2.",
+      "B": "Placing sentence 1 ('Consequently...') immediately after sentence 2 misuses 'consequently'—the effect cannot be stated before the causes (sentences 3 and 4) are presented.",
+      "D": "Placing sentence 1 first means the conclusion ('citizens receive prompt service') appears before any explanation of why or how. Conclusions should follow their supporting points.",
+      "E": "Placing sentence 4 ('furthermore, automated tracking reduces errors') before sentence 3 ('online portals permit submission anytime') reverses the order of the two supporting benefits; 'furthermore' in sentence 4 must add to what came immediately before, and sentence 3 naturally precedes sentence 4 in the enumeration of benefits."
     },
     "tip": {
       "label": "Exam Tip",
@@ -2403,6 +2673,10 @@
       {
         "id": "D",
         "text": "Financial transparency is optional for career service personnel."
+      },
+      {
+        "id": "E",
+        "text": "Public officers derive their authority from the executive branch of government."
       }
     ],
     "correctOptionId": "C",
@@ -2410,7 +2684,8 @@
     "distractorExplanations": {
       "A": "The passage says public officers must be 'accountable to the people'—which is the opposite of immunity from accountability. This option contradicts the text.",
       "B": "The passage frames public office as a 'public trust' (a responsibility), not an 'absolute right.' Rights and trusts are fundamentally different legal and ethical concepts.",
-      "D": "The passage requires integrity, accountability, and responsibility—all of which imply transparency is mandatory, not optional."
+      "D": "The passage requires integrity, accountability, and responsibility—all of which imply transparency is mandatory, not optional.",
+      "E": "The passage grounds public officers' duties in public trust and the people, not in a branch of government; this option imports a constitutional structure concept not mentioned in the excerpt and could appeal to examinees with general civic knowledge."
     },
     "tip": {
       "label": "Exam Tip",
@@ -2447,6 +2722,10 @@
       {
         "id": "D",
         "text": "Vague and disorganized"
+      },
+      {
+        "id": "E",
+        "text": "Assertive and unyielding"
       }
     ],
     "correctOptionId": "A",
@@ -2454,7 +2733,8 @@
     "distractorExplanations": {
       "B": "'Logical and well-reasoned' describes the quality of an argument's content, not its volume or forcefulness. A vociferous objection may or may not be logical.",
       "C": "'Polite but persistent' implies courteous restraint—the opposite of the disruptive, clamoring quality that vociferous conveys.",
-      "D": "'Vague and disorganized' describes the structure of an argument, not its volume or emotional intensity; vociferous implies clarity of feeling, if not of thought."
+      "D": "'Vague and disorganized' describes the structure of an argument, not its volume or emotional intensity; vociferous implies clarity of feeling, if not of thought.",
+      "E": "'Assertive and unyielding' describes someone who stands their ground firmly, which overlaps with the forcefulness of a vociferous objection but misses the defining quality of loudness and clamor that vociferous specifically names."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -2482,23 +2762,28 @@
       },
       {
         "id": "B",
-        "text": "Deliberately treacherous"
+        "text": "Overly ambitious"
       },
       {
         "id": "C",
-        "text": "Overly ambitious"
+        "text": "Deliberately treacherous"
       },
       {
         "id": "D",
         "text": "Excessively cautious"
+      },
+      {
+        "id": "E",
+        "text": "Deceptively charming"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "C",
     "explanation": "Perfidious comes from the Latin 'perfidia,' meaning bad faith—a deliberate betrayal of trust. Someone who is perfidious breaks solemn promises or betrays allegiances intentionally, not accidentally. The sentence reinforces this with 'he had violated the oath he had publicly sworn'—a solemn oath publicly made and then deliberately broken is the definition of perfidy. 'Deliberately treacherous' captures both the intentionality (deliberate) and the nature of the act (treacherous—a betrayal of trust). Negligent (A) implies accident or inattention, not deliberate betrayal. Ambitious (C) and cautious (D) are personality traits with no connection to oath-breaking or betrayal.",
     "distractorExplanations": {
       "A": "'Carelessly negligent' implies failing through inattention or oversight—not through deliberate betrayal. Perfidious requires willful, intentional deceit.",
-      "C": "'Overly ambitious' describes a desire for advancement; while ambition may motivate betrayal, the word itself does not mean treacherous.",
-      "D": "'Excessively cautious' is about risk-avoidance behavior—unrelated to the oath-breaking and betrayal that perfidious denotes."
+      "B": "'Overly ambitious' describes a desire for advancement; while ambition may motivate betrayal, the word itself does not mean treacherous.",
+      "D": "'Excessively cautious' is about risk-avoidance behavior—unrelated to the oath-breaking and betrayal that perfidious denotes.",
+      "E": "'Deceptively charming' involves concealment and false appearances, which relates to the bad faith of perfidy, but perfidious specifically names the betrayal of a trust or oath — deceptive charm is one tool of a perfidious person, not the word's definition."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -2522,27 +2807,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "Willingness and eagerness"
-      },
-      {
-        "id": "B",
         "text": "Careful deliberation"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "Mechanical accuracy"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "Extreme caution"
+      },
+      {
+        "id": "D",
+        "text": "Willingness and eagerness"
+      },
+      {
+        "id": "E",
+        "text": "Swift efficiency"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "D",
     "explanation": "Alacrity means a brisk and cheerful readiness or eagerness to do something—it combines speed with positive willingness. Someone who responds with alacrity does not drag their feet or need to be persuaded; they spring into action promptly and enthusiastically. In the sentence, a director who praises this quality is noting both the speed and the willing spirit with which the clerk acted. 'Willingness and eagerness' captures this dual quality precisely. Careful deliberation (B) implies slowness and caution—the opposite of alacrity. Mechanical accuracy (C) describes precision, not eagerness. Extreme caution (D) is contrary to the prompt, willing action that alacrity describes.",
     "distractorExplanations": {
-      "B": "'Careful deliberation' implies taking time to think slowly and cautiously—the opposite of alacrity's brisk, eager responsiveness.",
-      "C": "'Mechanical accuracy' describes precision in execution; alacrity is about the speed and spirit of engagement, not the accuracy of the outcome.",
-      "D": "'Extreme caution' implies hesitancy and risk-aversion—precisely the opposite of the prompt, enthusiastic willingness that defines alacrity."
+      "A": "'Careful deliberation' implies taking time to think slowly and cautiously—the opposite of alacrity's brisk, eager responsiveness.",
+      "B": "'Mechanical accuracy' describes precision in execution; alacrity is about the speed and spirit of engagement, not the accuracy of the outcome.",
+      "C": "'Extreme caution' implies hesitancy and risk-aversion—precisely the opposite of the prompt, enthusiastic willingness that defines alacrity.",
+      "E": "'Swift efficiency' captures the speed aspect of alacrity but omits the cheerful willingness and eagerness that define the word; one can be efficient without being eager, whereas alacrity always implies a positive, enthusiastic readiness alongside the speed."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -2577,6 +2867,10 @@
       {
         "id": "D",
         "text": "Formal and bureaucratic in tone"
+      },
+      {
+        "id": "E",
+        "text": "Deliberately misleading and factually inaccurate"
       }
     ],
     "correctOptionId": "A",
@@ -2584,7 +2878,8 @@
     "distractorExplanations": {
       "B": "'Exceptionally thorough and detailed' describes comprehensive, exhaustive analysis—the opposite of the selective, one-sided reporting that tendentious denotes.",
       "C": "'Tentative and lacking confidence' means uncertain or provisional; tendentious reporting is actually confident in its predetermined conclusion, just unfairly so.",
-      "D": "'Formal and bureaucratic in tone' describes style and register; tendentious is about bias in substance and perspective, not formality of language."
+      "D": "'Formal and bureaucratic in tone' describes style and register; tendentious is about bias in substance and perspective, not formality of language.",
+      "E": "A tendentious report is slanted but may contain only true facts selectively chosen; tendentious describes bias in selection and emphasis, not necessarily the insertion of false information — making this option plausible but broader and more severe than the word's actual meaning."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -2620,6 +2915,10 @@
       {
         "id": "D",
         "text": "Ambiguous"
+      },
+      {
+        "id": "E",
+        "text": "Rambling"
       }
     ],
     "correctOptionId": "A",
@@ -2627,7 +2926,8 @@
     "distractorExplanations": {
       "B": "'Eloquent' means expressive and persuasive; one can be eloquent while also being verbose. They are not direct opposites—eloquence describes quality, verbosity describes quantity.",
       "C": "'Repetitive' describes saying the same thing multiple times; while repetition contributes to verbosity, 'repetitive' is not the antonym of verbose—concise is.",
-      "D": "'Ambiguous' relates to clarity and multiple possible meanings—a different dimension from wordiness. Verbose writing can be clear or unclear; ambiguity is a separate quality."
+      "D": "'Ambiguous' relates to clarity and multiple possible meanings—a different dimension from wordiness. Verbose writing can be clear or unclear; ambiguity is a separate quality.",
+      "E": "Rambling is a synonym of verbose, not its opposite — it trips examinees who lose track of the question's OPPOSITE direction."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -2663,6 +2963,10 @@
       {
         "id": "D",
         "text": "Enthusiastic"
+      },
+      {
+        "id": "E",
+        "text": "Convivial"
       }
     ],
     "correctOptionId": "A",
@@ -2670,7 +2974,8 @@
     "distractorExplanations": {
       "B": "'Sociable' is a direct synonym of gregarious—both describe people who enjoy being around others. Choosing it as an antonym would be selecting a word with the same meaning.",
       "C": "'Outgoing' is also a synonym of gregarious; an outgoing person seeks social interaction, just as a gregarious person does.",
-      "D": "'Enthusiastic' describes eagerness toward activities; a person can be enthusiastic about solitary hobbies and still be introverted, so it is not the antonym of gregarious."
+      "D": "'Enthusiastic' describes eagerness toward activities; a person can be enthusiastic about solitary hobbies and still be introverted, so it is not the antonym of gregarious.",
+      "E": "Convivial means fond of lively company — a synonym of gregarious, not its opposite; polarity trap."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -2693,11 +2998,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "Aggravate"
+        "text": "Alleviate"
       },
       {
         "id": "B",
-        "text": "Alleviate"
+        "text": "Aggravate"
       },
       {
         "id": "C",
@@ -2706,14 +3011,19 @@
       {
         "id": "D",
         "text": "Provoke"
+      },
+      {
+        "id": "E",
+        "text": "Intensify"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Exacerbate means to make a problem, condition, or bad situation worse or more severe. Its antonym must therefore mean to make better, relieve, or reduce. Alleviate means to make suffering or a problem less severe—to ease, relieve, or improve. Alleviate and exacerbate are direct antonyms. Aggravate (A) and provoke (D) are synonyms of exacerbate—both involve making things worse. Accelerate (C) means to increase speed; while acceleration can worsen some things, the word itself is about rate, not severity, and is not the direct antonym.",
     "distractorExplanations": {
-      "A": "'Aggravate' means to make worse or more serious—a synonym of exacerbate, not an antonym. Both words intensify a negative condition.",
+      "B": "'Aggravate' means to make worse or more serious—a synonym of exacerbate, not an antonym. Both words intensify a negative condition.",
       "C": "'Accelerate' means to increase in speed or rate; exacerbate relates to severity, not speed. These are different dimensions, and accelerate is not the antonym.",
-      "D": "'Provoke' means to stimulate or incite a reaction, often making a situation worse—another synonym of exacerbate, not its antonym."
+      "D": "'Provoke' means to stimulate or incite a reaction, often making a situation worse—another synonym of exacerbate, not its antonym.",
+      "E": "Intensify points the same direction as exacerbate (making things stronger or worse) — a synonym-direction trap, not an opposite."
     },
     "tip": {
       "label": "Common Mistake",
@@ -2739,23 +3049,28 @@
       },
       {
         "id": "B",
-        "text": "Deferential"
+        "text": "Assertive"
       },
       {
         "id": "C",
-        "text": "Assertive"
+        "text": "Deferential"
       },
       {
         "id": "D",
         "text": "Compliant"
+      },
+      {
+        "id": "E",
+        "text": "Insubordinate"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Obsequious describes excessive eagerness to serve or please superiors—a sycophantic, fawning attitude that involves excessive flattery and submission, often to gain favor. It goes beyond normal deference into servility. The antonym must describe someone who does not submit excessively, maintains their own position, and stands up for themselves. Assertive captures this: an assertive employee states opinions and needs confidently without being overly submissive. Fawning (A) and deferential (B) are synonyms or near-synonyms of obsequious—both describe attitudes of submission toward authority. Compliant (D) means willing to follow rules; while it involves submission, it lacks the excessive, sycophantic dimension of obsequious and leans toward synonym rather than antonym.",
     "distractorExplanations": {
       "A": "'Fawning' means showing exaggerated flattery and submission—a direct synonym of obsequious, not its antonym.",
-      "B": "'Deferential' means respectful submission to another's judgment; while milder than obsequious, it describes similar behavior—submission rather than its opposite.",
-      "D": "'Compliant' means willing to follow directions or rules; while it implies some submission, it lacks the excessive, servile quality of obsequious and does not capture the assertive opposite."
+      "C": "'Deferential' means respectful submission to another's judgment; while milder than obsequious, it describes similar behavior—submission rather than its opposite.",
+      "D": "'Compliant' means willing to follow directions or rules; while it implies some submission, it lacks the excessive, servile quality of obsequious and does not capture the assertive opposite.",
+      "E": "'Insubordinate' means refusing to submit to authority and openly defying it, which is more extreme than the confident, self-respecting stance that assertive describes; while both oppose obsequious submission, the question asks for the opposite of excessive servility, and assertive names that quality without implying defiance of legitimate authority."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -2791,6 +3106,10 @@
       {
         "id": "D",
         "text": "The panel of judges have announced its decision."
+      },
+      {
+        "id": "E",
+        "text": "The panel of judges has announced their individual verdicts."
       }
     ],
     "correctOptionId": "C",
@@ -2798,7 +3117,8 @@
     "distractorExplanations": {
       "A": "'Have announced their' uses a plural verb and plural pronoun; both disagree with 'panel,' which functions as a singular collective noun in this sentence.",
       "B": "'Has announced their' correctly uses the singular verb 'has' but then switches to the plural pronoun 'their.' Both the verb and pronoun must be singular for consistency.",
-      "D": "'Have announced its' uses a plural verb 'have' but then correctly uses singular 'its.' Both must be singular—'has announced its' is the only fully correct combination."
+      "D": "'Have announced its' uses a plural verb 'have' but then correctly uses singular 'its.' Both must be singular—'has announced its' is the only fully correct combination.",
+      "E": "Adding 'individual' to justify 'their' attempts to sidestep the rule by treating panel members as acting separately, but in the absence of such a modifier the standard is singular agreement; this option tests whether examinees understand why 'their' is wrong in the original question."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -2836,6 +3156,10 @@
       {
         "id": "D",
         "text": "On account of she was late, her application was disqualified."
+      },
+      {
+        "id": "E",
+        "text": "Since she arrived late, her application was disqualified."
       }
     ],
     "correctOptionId": "C",
@@ -2843,7 +3167,8 @@
     "distractorExplanations": {
       "A": "'Being that' is a non-standard, informal substitute for 'because' or 'since.' It is not accepted in formal or government writing—avoid it entirely.",
       "B": "'Due to the fact that' is a wordy phrase that should always be replaced by 'because.' While not technically wrong, it is stylistically poor and a recognized wordiness error in editing.",
-      "D": "'On account of she was late' incorrectly follows the preposition 'on account of' with a clause. A preposition must be followed by a noun or gerund phrase: 'on account of her late arrival' would be correct."
+      "D": "'On account of she was late' incorrectly follows the preposition 'on account of' with a clause. A preposition must be followed by a noun or gerund phrase: 'on account of her late arrival' would be correct.",
+      "E": "'Since' can express a causal relationship and is grammatically correct here, making it a near-duplicate of option C in meaning; however, 'since' also carries a temporal meaning (from a point in time), creating potential ambiguity — 'because' is preferred in formal writing when causation is the only intended meaning."
     },
     "tip": {
       "label": "Common Mistake",
@@ -2880,6 +3205,10 @@
       {
         "id": "D",
         "text": "The reason is because the signatory was absent that the memorandum was delayed."
+      },
+      {
+        "id": "E",
+        "text": "The reason for the memorandum's delay is because the signatory was absent."
       }
     ],
     "correctOptionId": "B",
@@ -2887,7 +3216,8 @@
     "distractorExplanations": {
       "A": "'The reason...is because' is a recognized grammatical redundancy. 'Because' means 'for the reason that,' so the construction repeats the word 'reason' twice in different forms.",
       "C": "'The reason why...is because' compounds two redundancy errors: 'reason why' is also slightly redundant (reason already implies why), and adding 'because' triples the redundancy.",
-      "D": "This construction reverses the natural sentence order and separates the subject ('the reason') from the main clause in a confusing, ungrammatical way."
+      "D": "This construction reverses the natural sentence order and separates the subject ('the reason') from the main clause in a confusing, ungrammatical way.",
+      "E": "'The reason for... is because' still commits the reason-because redundancy even when 'why' is dropped; inserting 'for' before the noun phrase does not resolve the logical circularity of having 'reason' followed by 'because' (which means 'for the reason that')."
     },
     "tip": {
       "label": "Common Mistake",
@@ -2924,6 +3254,10 @@
       {
         "id": "D",
         "text": "Not only the commission reviewed the budget but also the disbursements was scrutinized."
+      },
+      {
+        "id": "E",
+        "text": "The commission not only reviewed the budget, but scrutinized the disbursements also."
       }
     ],
     "correctOptionId": "B",
@@ -2931,7 +3265,8 @@
     "distractorExplanations": {
       "A": "Inserting 'it' after 'but also' creates an asymmetry: 'not only [reviewed]' (verb) vs. 'but also it scrutinized' (subject + verb). The two elements must be grammatically identical.",
       "C": "Placing 'not only' before 'the budget' makes it bracket only the object, not the verb. The second element 'scrutinized the disbursements' then becomes a verb phrase—mismatched with an object phrase.",
-      "D": "The inverted word order ('not only the commission reviewed') is non-standard and confusing, and 'the disbursements was scrutinized' contains a subject-verb disagreement ('disbursements' is plural, requiring 'were')."
+      "D": "The inverted word order ('not only the commission reviewed') is non-standard and confusing, and 'the disbursements was scrutinized' contains a subject-verb disagreement ('disbursements' is plural, requiring 'were').",
+      "E": "Moving 'also' to the end and dropping it from 'but also' produces an informal construction that disrupts the fixed correlative pair; formal usage requires 'not only...but also' as a unit, with 'also' immediately following 'but,' not placed elsewhere in the clause."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -2956,27 +3291,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "The new officer was anxious for making a good impression."
+        "text": "The new officer was anxious about making a good impression."
       },
       {
         "id": "B",
-        "text": "The new officer was anxious of making a good impression."
+        "text": "The new officer was anxious for making a good impression."
       },
       {
         "id": "C",
-        "text": "The new officer was anxious about making a good impression."
+        "text": "The new officer was anxious of making a good impression."
       },
       {
         "id": "D",
         "text": "The new officer was anxious on making a good impression."
+      },
+      {
+        "id": "E",
+        "text": "The new officer was anxious at making a good impression."
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "When 'anxious' means worried or concerned (the more common meaning), the correct preposition is 'about': anxious about something. This is the standard idiomatic collocation in American English for expressing worry or nervousness. Note: 'anxious for' can be used when 'anxious' means 'eager' (e.g., 'anxious for the results'), but in the context of making an impression—where nervousness is implied—'anxious about' is the correct and standard form. 'Anxious of' and 'anxious on' are not recognized idiomatic constructions in any standard variety of English.",
     "distractorExplanations": {
-      "A": "'Anxious for' is used when anxious means 'eager or desirous' (anxious for a promotion). In the context of making an impression, where nervousness is the meaning, 'anxious about' is the correct form.",
-      "B": "'Anxious of' is not a recognized idiomatic construction in English. This pairing does not exist in standard usage.",
-      "D": "'Anxious on' is also not a recognized English idiom. Prepositions are not interchangeable—only a few fixed prepositions follow 'anxious.'"
+      "B": "'Anxious for' is used when anxious means 'eager or desirous' (anxious for a promotion). In the context of making an impression, where nervousness is the meaning, 'anxious about' is the correct form.",
+      "C": "'Anxious of' is not a recognized idiomatic construction in English. This pairing does not exist in standard usage.",
+      "D": "'Anxious on' is also not a recognized English idiom. Prepositions are not interchangeable—only a few fixed prepositions follow 'anxious.'",
+      "E": "'Anxious at' is not a recognized idiomatic English construction; 'at' marks a point in space or time and does not collocate with 'anxious' in standard usage, making this option clearly non-idiomatic but still plausible enough to test preposition knowledge."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -3008,19 +3348,24 @@
       },
       {
         "id": "C",
-        "text": "The agency must comply with the new procurement regulations."
+        "text": "The agency must comply for the new procurement regulations."
       },
       {
         "id": "D",
-        "text": "The agency must comply for the new procurement regulations."
+        "text": "The agency must comply under the new procurement regulations."
+      },
+      {
+        "id": "E",
+        "text": "The agency must comply with the new procurement regulations."
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "The verb 'comply' is always followed by the preposition 'with' in standard English: to comply with a rule, a regulation, an order, or a standard. This is a fixed collocation—the verb and preposition are inseparable partners. 'Comply to,' 'comply by,' and 'comply for' are not recognized idiomatic expressions in any standard variety of English. On the Civil Service Exam, verb-preposition collocations are frequently tested because they require memorization of fixed pairs rather than grammatical reasoning alone.",
     "distractorExplanations": {
       "A": "'Comply to' is not a recognized English idiom; 'to' follows verbs like 'conform,' 'adhere,' 'agree,' but not 'comply.' The correct pairing is always 'comply with.'",
       "B": "'Comply by' is not an idiomatic pairing; 'by' often indicates agent or deadline, but it does not pair idiomatically with 'comply.'",
-      "D": "'Comply for' is not a standard English collocation; 'for' typically indicates purpose or benefit, and it does not combine with 'comply' in any standard usage."
+      "C": "'Comply for' is not a standard English collocation; 'for' typically indicates purpose or benefit, and it does not combine with 'comply' in any standard usage.",
+      "D": "'Comply under' might sound plausible given that 'under' collocates with 'under the law' or 'under regulations' in other constructions, but 'comply' takes the preposition 'with,' not 'under'; this tests whether examinees confuse the preposition pattern of 'comply' with the 'operate under' construction."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -3052,19 +3397,24 @@
       },
       {
         "id": "C",
-        "text": "The findings are independent of the assumptions of the previous study."
+        "text": "The findings are independent on the assumptions of the previous study."
       },
       {
         "id": "D",
-        "text": "The findings are independent on the assumptions of the previous study."
+        "text": "The findings are independent of the assumptions of the previous study."
+      },
+      {
+        "id": "E",
+        "text": "The findings are independent against the assumptions of the previous study."
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "When 'independent' is used as an adjective describing separation or lack of dependence, the correct preposition is 'of': independent of a condition, independent of an assumption, independent of external influence. This is a fixed idiomatic collocation in standard English. 'Independent of X' means 'not relying on X' or 'not connected to X.' 'Independent from' is sometimes used informally and may appear in some contexts (particularly regarding political independence), but 'independent of' is the standard formal choice for expressing logical or evidential separation. 'Independent to' and 'independent on' are not recognized English idioms.",
     "distractorExplanations": {
       "A": "'Independent from' is sometimes used informally (countries that are independent from colonial rule), but in academic and formal contexts describing logical independence, 'independent of' is the standard form.",
       "B": "'Independent to' is not a recognized idiomatic construction in English. The adjective 'independent' does not take the preposition 'to' in any standard usage.",
-      "D": "'Independent on' is not a recognized idiom in English. 'On' does not pair with 'independent' in standard usage."
+      "C": "'Independent on' is not a recognized idiom in English. 'On' does not pair with 'independent' in standard usage.",
+      "E": "'Independent against' is not a recognized English idiom in any context; 'against' implies opposition or conflict, and while independent findings may counter assumptions, 'independent of' (meaning unconnected to) is the formal idiomatic preposition, not 'against.'"
     },
     "tip": {
       "label": "Grammar Rule",
@@ -3102,6 +3452,10 @@
       {
         "id": "D",
         "text": "essential"
+      },
+      {
+        "id": "E",
+        "text": "Foundational"
       }
     ],
     "correctOptionId": "D",
@@ -3109,7 +3463,8 @@
     "distractorExplanations": {
       "A": "'Excessive' measures quantity — more than needed. Indispensable measures necessity. A file can be indispensable and still be a single page, so the two ideas never overlap.",
       "B": "'Optional' is the straight opposite: it marks something you may skip. Examinees who read past the in- prefix land here, reversing the word instead of defining it.",
-      "C": "'Replaceable' means a substitute exists. Indispensable says no substitute exists. The shared -able ending makes this look like a match, but the meanings point in opposite directions."
+      "C": "'Replaceable' means a substitute exists. Indispensable says no substitute exists. The shared -able ending makes this look like a match, but the meanings point in opposite directions.",
+      "E": "'Foundational' means forming the base or underlying support for something, which sounds essential but is a different concept; a foundational document provides the basis for a system, whereas an indispensable document is one that cannot be omitted from a specific process — the words describe different kinds of necessity."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -3132,27 +3487,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "had completed"
-      },
-      {
-        "id": "B",
         "text": "has completed"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "completed"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "will complete"
+      },
+      {
+        "id": "D",
+        "text": "was completing"
+      },
+      {
+        "id": "E",
+        "text": "had completed"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Two finished actions sit on the same past timeline, and English marks which one happened first. The later action takes the simple past ('arrived'); the earlier action takes the past perfect, formed with had + past participle. 'By the time' is the giveaway phrase — it exists to announce that one event was already over when the other occurred. So the report was finished first: 'had completed.' Reverse the tenses and the sentence still has words, but it loses the sequence the reader needs.",
     "distractorExplanations": {
-      "B": "'Has completed' is present perfect, which links an action to the present moment. The clause anchors everything in the past with 'arrived,' so a present-tense auxiliary clashes with the time frame.",
-      "C": "Simple past 'completed' places both actions on the same level and drops the order. Speech tolerates this; the exam tests whether you can mark the earlier action explicitly.",
-      "D": "'Will complete' points forward into the future, yet 'arrived' has already closed the timeline. A future form cannot follow a past-time marker in the same sentence."
+      "A": "'Has completed' is present perfect, which links an action to the present moment. The clause anchors everything in the past with 'arrived,' so a present-tense auxiliary clashes with the time frame.",
+      "B": "Simple past 'completed' places both actions on the same level and drops the order. Speech tolerates this; the exam tests whether you can mark the earlier action explicitly.",
+      "C": "'Will complete' points forward into the future, yet 'arrived' has already closed the timeline. A future form cannot follow a past-time marker in the same sentence.",
+      "D": "'Was completing' uses the past progressive, suggesting the cashier was in the middle of preparing the report when the auditors arrived — but 'by the time' signals that the action was finished before arrival, requiring the completed past perfect 'had completed,' not an ongoing progressive form."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -3180,23 +3540,28 @@
       },
       {
         "id": "B",
-        "text": "well organized"
-      },
-      {
-        "id": "C",
         "text": "organization was good"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "well organization"
+      },
+      {
+        "id": "D",
+        "text": "neatly arranged"
+      },
+      {
+        "id": "E",
+        "text": "well organized"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "Items joined by 'and' in a series must share one grammatical form. Here the linking verb 'was' introduces a string of predicate adjectives describing the memorandum: concise, accurate, and — to keep the pattern — a third adjective. 'Well organized' is a participial adjective with its adverb, so the series reads cleanly: was concise / was accurate / was well organized. A quick test is to repeat the verb before each item; whichever option still sounds like English is the parallel one. Note the spelling convention too: no hyphen after the verb, but a hyphen before a noun ('a well-organized memorandum').",
     "distractorExplanations": {
       "A": "'Organizing well' is a verb form with an adverb, so it says the memorandum performs the organizing. The series needs a quality of the document, not an action by it.",
-      "C": "'Organization was good' smuggles a whole clause with its own subject and verb into a list of single adjectives. One item cannot outrank the others structurally.",
-      "D": "'Well organization' pairs an adverb with a noun, a combination English does not allow. Adverbs modify verbs, adjectives, or other adverbs — never nouns."
+      "B": "'Organization was good' smuggles a whole clause with its own subject and verb into a list of single adjectives. One item cannot outrank the others structurally.",
+      "C": "'Well organization' pairs an adverb with a noun, a combination English does not allow. Adverbs modify verbs, adjectives, or other adverbs — never nouns.",
+      "D": "'Neatly arranged' is a participial adjective phrase that could work in the predicate position after 'was,' and it is grammatically parallel to 'concise' and 'accurate'; however, 'well organized' is the expected standard form that tests adverb-adjective parallelism, and 'neatly arranged' changes the meaning to physical arrangement rather than organizational clarity."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -3231,15 +3596,20 @@
       },
       {
         "id": "D",
+        "text": "even so"
+      },
+      {
+        "id": "E",
         "text": "although"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Read the two ideas and ask how they relate. Approving a request and a missing receipt pull against each other: the approval happened in spite of a problem that would normally block it. That relationship is concession, and 'although' is the subordinating conjunction that signals it. A reliable paraphrase test settles the item — substitute 'despite the fact that.' 'The manager approved the request, despite the fact that the supporting receipt was missing' preserves the sense perfectly, which none of the other three connectors can do.",
     "distractorExplanations": {
       "A": "'Because' makes the missing receipt the reason for approval, which inverts the logic. Offices withhold approval over missing documents; they do not grant it on that basis.",
       "B": "'Therefore' is a conjunctive adverb signalling result, and it cannot subordinate a clause after a comma. Written this way it also produces a comma splice.",
-      "C": "'Unless' sets a condition meaning 'except if,' pointing to something that has not happened. The receipt is already missing, so a conditional connector misreads a settled fact."
+      "C": "'Unless' sets a condition meaning 'except if,' pointing to something that has not happened. The receipt is already missing, so a conditional connector misreads a settled fact.",
+      "D": "'Even so' is a conjunctive adverb expressing concession, similar in meaning to 'however' or 'nevertheless'; while it signals the right logical relationship, it cannot be used between two clauses in the same sentence as a subordinating conjunction — it belongs at the start of the second clause after a semicolon or period, not after a comma in the middle of one sentence."
     },
     "tip": {
       "label": "Exam Tip",
@@ -3266,23 +3636,28 @@
       },
       {
         "id": "B",
-        "text": "ignore"
+        "text": "remedy"
       },
       {
         "id": "C",
-        "text": "remedy"
+        "text": "ignore"
       },
       {
         "id": "D",
         "text": "conceal"
+      },
+      {
+        "id": "E",
+        "text": "submit"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Two clues in the sentence fix the answer. First, 'deficiency' names a defect — something lacking that must be supplied. Second, 'advised... before Friday' sets a deadline, and deadlines are given for corrective action, not for inaction. 'Remedy' means to put right or cure a defect, which is exactly what a public office asks of an applicant with incomplete papers. Note the family the word belongs to: remedy, remedial, remediation all describe repairing a shortfall, and each shows up in official correspondence.",
     "distractorExplanations": {
       "A": "'Aggravate' means to make worse. No office sets a deadline for worsening a problem, and the word contradicts the corrective purpose of the advice.",
-      "B": "'Ignore' is tempting because a deficiency can indeed be left alone — but then the deadline in the sentence would serve no function at all.",
-      "D": "'Conceal' means to hide. Hiding a deficiency leaves it unfixed and adds misrepresentation; the sentence describes routine compliance advice, not evasion."
+      "C": "'Ignore' is tempting because a deficiency can indeed be left alone — but then the deadline in the sentence would serve no function at all.",
+      "D": "'Conceal' means to hide. Hiding a deficiency leaves it unfixed and adds misrepresentation; the sentence describes routine compliance advice, not evasion.",
+      "E": "'Submit the documentary deficiency' sounds plausible — applicants do submit documents — but a deficiency is the gap itself, and you cannot submit a gap; the correct action is to remedy, cure, or address the deficiency by submitting the missing documents, making 'remedy' the accurate verb."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -3313,19 +3688,24 @@
       },
       {
         "id": "C",
-        "text": "The number of pending application have been decreased."
+        "text": "The number of pending applications has decreased."
       },
       {
         "id": "D",
-        "text": "The number of pending applications has decreased."
+        "text": "The number of pending application have been decreased."
+      },
+      {
+        "id": "E",
+        "text": "The number of pending applications were decreased."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "explanation": "The head of the subject is 'number,' a singular noun, and the phrase 'of pending applications' is only a prepositional modifier. A noun sitting inside a prepositional phrase can never control the verb, so the verb must be the singular 'has.' The article carries the whole distinction: 'the number' names one specific count and behaves as a singular, while 'a number of' means 'several' and behaves as a plural — 'A number of applications HAVE decreased.' Test it by covering everything between the head noun and the verb; what remains, 'The number... has decreased,' is unmistakable.",
     "distractorExplanations": {
       "A": "The plural verb is pulled toward the nearest noun, 'applications.' This proximity trap is the single most common agreement error, and the intervening phrase is exactly what triggers it.",
       "B": "Two faults compound here: 'a number of' requires a plural noun and a plural verb, yet this sentence gives singular 'application' followed by singular 'has.'",
-      "C": "Besides the plural verb after singular 'the number,' the passive 'have been decreased' implies an outside agent reduced the applications, which the sentence never names."
+      "D": "Besides the plural verb after singular 'the number,' the passive 'have been decreased' implies an outside agent reduced the applications, which the sentence never names.",
+      "E": "'Were decreased' uses a plural verb with the singular subject 'the number' and employs a passive construction implying an outside agent reduced the count; this combines the subject-verb disagreement error with an unnecessary passive, testing two rules at once."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -3361,15 +3741,20 @@
       },
       {
         "id": "D",
+        "text": "The employee's lounge is beside the records room."
+      },
+      {
+        "id": "E",
         "text": "The employees' lounge is beside the records room."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Build a possessive in two moves: write the owner exactly as it should appear, then add the marker. The owner here is more than one worker, so the plural 'employees' is written first; because it already ends in -s, only an apostrophe follows. That yields 'employees' lounge' — a lounge belonging to the employees. Compare the singular route: employee + 's = employee's lounge, a lounge for one worker. The apostrophe never goes before the -s of a regular plural, since that -s marks number, not ownership.",
     "distractorExplanations": {
       "A": "Dropping the apostrophe entirely leaves a bare plural noun modifying another noun. Nothing signals ownership, so the possessive relationship the sentence intends is simply unmarked.",
       "B": "'Employees's' double-marks the possessive by adding 's to a plural that already ends in -s. English stops at the apostrophe for regular plurals.",
-      "C": "The apostrophe migrates to the wrong word: 'lounge's' makes the room the owner. The plural verb 'are' then disagrees with the singular 'lounge' as well."
+      "C": "The apostrophe migrates to the wrong word: 'lounge's' makes the room the owner. The plural verb 'are' then disagrees with the singular 'lounge' as well.",
+      "D": "'Employee's' is the singular possessive, suggesting the lounge belongs to one employee rather than to the employees as a group; while grammatically correct for a singular owner, this reading changes the meaning from a shared lounge to a personal one, making it wrong in context."
     },
     "tip": {
       "label": "Spelling Pattern",
@@ -3393,27 +3778,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "fair and unbiased"
-      },
-      {
-        "id": "B",
         "text": "easily persuaded"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "openly hostile"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "personally involved"
+      },
+      {
+        "id": "D",
+        "text": "detached and uninterested"
+      },
+      {
+        "id": "E",
+        "text": "fair and unbiased"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "'Partial' carries two senses in English — incomplete, and favouring one side. The prefix im- cancels the second sense here: to be impartial is to take no part, to lean toward neither party. The sentence reinforces this with 'despite pressure from both parties,' a phrase that only makes sense if the evaluator refused to tilt either way. Impartiality is more than a vocabulary item in Philippine public service; it is the working standard expected of evaluators, bids-and-awards members, and hearing officers, whose decisions must rest on the record rather than on who is pushing hardest.",
     "distractorExplanations": {
-      "B": "'Easily persuaded' describes exactly what the evaluator resisted. Someone who yields to pressure has abandoned impartiality rather than demonstrated it.",
-      "C": "'Openly hostile' is still a form of taking sides — against someone. Impartiality rules out negative bias just as firmly as it rules out favouritism.",
-      "D": "'Personally involved' names a conflict of interest, the very condition that disqualifies an evaluator. Involvement destroys the distance impartiality requires."
+      "A": "'Easily persuaded' describes exactly what the evaluator resisted. Someone who yields to pressure has abandoned impartiality rather than demonstrated it.",
+      "B": "'Openly hostile' is still a form of taking sides — against someone. Impartiality rules out negative bias just as firmly as it rules out favouritism.",
+      "C": "'Personally involved' names a conflict of interest, the very condition that disqualifies an evaluator. Involvement destroys the distance impartiality requires.",
+      "D": "Indifference is about interest, not fairness — an impartial evaluator engages fully while favoring no side."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -3449,6 +3839,10 @@
       {
         "id": "D",
         "text": "The supply was scarcely not enough for the entire team."
+      },
+      {
+        "id": "E",
+        "text": "The supply was not nearly enough for the entire team."
       }
     ],
     "correctOptionId": "C",
@@ -3456,7 +3850,8 @@
     "distractorExplanations": {
       "A": "'Not barely' stacks a negative adverb on top of 'not.' Read literally it claims the supply was not almost-insufficient, which is not what any writer means by the phrase.",
       "B": "'Not hardly' is the classic spoken double negative. 'Hardly' already means 'almost not,' so the added 'not' cancels it and leaves the sentence saying the supply was plentiful.",
-      "D": "Reversing the order to 'scarcely not' does not repair anything. Two negatives remain in one predicate, and the word order makes the intended meaning even harder to recover."
+      "D": "Reversing the order to 'scarcely not' does not repair anything. Two negatives remain in one predicate, and the word order makes the intended meaning even harder to recover.",
+      "E": "'Not nearly enough' is grammatically correct and uses a single negative construction; 'nearly' is not a covert negative like 'barely' or 'hardly,' so 'not nearly enough' does not create a double negative — this option is actually correct grammar but is presented as a distractor to test whether examinees can distinguish the truly negative adverbs from others."
     },
     "tip": {
       "label": "Common Mistake",
@@ -3488,19 +3883,24 @@
       },
       {
         "id": "C",
-        "text": "The deadline was extended however, all requirements remained unchanged."
+        "text": "The deadline was extended; however, all requirements remained unchanged."
       },
       {
         "id": "D",
-        "text": "The deadline was extended; however, all requirements remained unchanged."
+        "text": "The deadline was extended however, all requirements remained unchanged."
+      },
+      {
+        "id": "E",
+        "text": "The deadline was extended. However; all requirements remained unchanged."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "explanation": "Both halves of this sentence can stand alone: 'The deadline was extended' and 'All requirements remained unchanged.' A conjunctive adverb such as however, therefore, moreover, or nevertheless is not strong enough to fuse two independent clauses the way and or but can. The punctuation pattern is fixed — semicolon before the adverb, comma after it: clause ; however , clause. A comma alone in that slot produces a comma splice, the error the other three options illustrate in different disguises. Splitting the sentence into two full sentences, with 'However,' opening the second, is equally correct.",
     "distractorExplanations": {
       "A": "A single comma cannot join two independent clauses; that is a comma splice. 'However' looks like a joiner but functions as an adverb, so it cannot rescue the punctuation.",
       "B": "The semicolon lands after 'however' instead of before it, stranding the adverb at the end of the first clause where it modifies nothing and reads as an afterthought.",
-      "C": "Here the semicolon disappears altogether and the comma does double duty. The clauses are still spliced, and 'however' is left floating between them without punctuation to its left."
+      "D": "Here the semicolon disappears altogether and the comma does double duty. The clauses are still spliced, and 'however' is left floating between them without punctuation to its left.",
+      "E": "Placing a semicolon after 'However' rather than a comma creates a punctuation error: conjunctive adverbs are followed by a comma, not a semicolon; the sentence also separates the clauses with a period, which is correct, but the semicolon after 'However' violates standard punctuation practice."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -3529,23 +3929,28 @@
       },
       {
         "id": "B",
-        "text": "clearness"
+        "text": "clearly"
       },
       {
         "id": "C",
-        "text": "clearest"
+        "text": "clearness"
       },
       {
         "id": "D",
-        "text": "clearly"
+        "text": "clearest"
+      },
+      {
+        "id": "E",
+        "text": "more clearly"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "B",
     "explanation": "Ask what the missing word describes. It is not the officer but the speaking — the manner in which the officer delivered the explanation. Words that describe how an action is performed are adverbs, and the regular adverb of 'clear' is 'clearly.' Adjectives attach to nouns and pronouns ('a clear instruction'); adverbs attach to verbs, adjectives, and other adverbs ('spoke clearly'). Note that 'spoke' is an action verb, not a linking verb; after linking verbs such as seem, feel, or look, an adjective is correct instead ('the instruction seemed clear').",
     "distractorExplanations": {
       "A": "'Clear' is the adjective form. It works before a noun or after a linking verb, but 'spoke' is an action verb and needs an adverb to describe how the speaking was done.",
-      "B": "'Clearness' is a noun naming the quality itself. Dropping a noun after 'spoke' would make it the thing spoken, which is not the meaning the sentence builds.",
-      "C": "'Clearest' is the superlative adjective and implies a comparison among three or more speakers. The sentence compares nobody; it simply reports the manner of delivery."
+      "C": "'Clearness' is a noun naming the quality itself. Dropping a noun after 'spoke' would make it the thing spoken, which is not the meaning the sentence builds.",
+      "D": "'Clearest' is the superlative adjective and implies a comparison among three or more speakers. The sentence compares nobody; it simply reports the manner of delivery.",
+      "E": "'More clearly' is the comparative adverb form, which implies comparison with another standard of clarity; since the sentence makes no comparison, the simple adverb 'clearly' is the appropriate form — adding 'more' introduces an unwarranted comparative that shifts the meaning."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -3569,27 +3974,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "complicate"
+        "text": "facilitate"
       },
       {
         "id": "B",
-        "text": "delay"
+        "text": "complicate"
       },
       {
         "id": "C",
-        "text": "facilitate"
+        "text": "delay"
       },
       {
         "id": "D",
         "text": "obstruct"
+      },
+      {
+        "id": "E",
+        "text": "streamline"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "'Intended to' announces a purpose, and purposes are stated in positive terms — an agency adopts a new system to improve something, never to damage it. 'Facilitate' means to make a process easier or smoother, which is the standard reason for reorganising records. The other three options share one feature: each names a harm. When three choices cluster on the negative side and one stands alone on the positive side, the design of the item is telling you that the sentence needs the positive word.",
     "distractorExplanations": {
-      "A": "'Complicate' means to add difficulty. Reading it into a purpose clause would have the office deliberately adopting a system to make its own work harder.",
-      "B": "'Delay' slows a process down. It is a plausible unintended result of a badly built system, but the sentence states an intention, not an outcome.",
-      "D": "'Obstruct' means to block. Beyond contradicting the purpose, deliberately blocking the processing of requests would describe misconduct rather than administrative reform."
+      "B": "'Complicate' means to add difficulty. Reading it into a purpose clause would have the office deliberately adopting a system to make its own work harder.",
+      "C": "'Delay' slows a process down. It is a plausible unintended result of a badly built system, but the sentence states an intention, not an outcome.",
+      "D": "'Obstruct' means to block. Beyond contradicting the purpose, deliberately blocking the processing of requests would describe misconduct rather than administrative reform.",
+      "E": "'Streamline' is a near-synonym of 'facilitate' in government process contexts, meaning to make more efficient by removing unnecessary steps; while grammatically correct and semantically appropriate, the question has one best answer, and 'facilitate' is the more general and standard term that fits the blank precisely."
     },
     "tip": {
       "label": "Exam Tip",
@@ -3625,6 +4035,10 @@
       {
         "id": "D",
         "text": "The clerk checked the entries and forwarded the file to the supervisor."
+      },
+      {
+        "id": "E",
+        "text": "The clerk will check the entries and will forward the file to the supervisor."
       }
     ],
     "correctOptionId": "D",
@@ -3632,7 +4046,8 @@
     "distractorExplanations": {
       "A": "Present 'checks' followed by past 'forwarded' splits one action sequence across two time frames, implying the forwarding happened before a habit that is still going on.",
       "B": "The same clash appears in reverse order: a completed past action, 'checked,' is joined to a present-tense 'forwards' with no signal that the time frame has moved.",
-      "C": "Past perfect 'had checked' marks an action earlier than some other past event, but the sentence supplies no past event to precede — and 'forwards' then jumps to the present."
+      "C": "Past perfect 'had checked' marks an action earlier than some other past event, but the sentence supplies no past event to precede — and 'forwards' then jumps to the present.",
+      "E": "'Will check and will forward' maintains tense consistency in the future tense but shifts the entire sentence to future time without any context requiring it; consistent tense does not mean any tense — it means both verbs share the same appropriate tense for the context, which here is the simple past."
     },
     "tip": {
       "label": "Common Mistake",
@@ -3656,27 +4071,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "kulang"
-      },
-      {
-        "id": "B",
         "text": "sagana"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "maayos"
+      },
+      {
+        "id": "C",
+        "text": "kulang"
       },
       {
         "id": "D",
         "text": "bago"
+      },
+      {
+        "id": "E",
+        "text": "handa"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "SALAT describes a state of lacking — being short of, or deficient in, something. It appears most often in the frame 'salat sa ___,' where the missing thing follows the preposition: salat sa pagkain, salat sa tubig, salat sa kagamitan. The sentence itself supplies the clue through 'maliit na tanggapan,' a small office, which points to shortage rather than plenty. KULANG carries the same idea of insufficiency and is therefore the closest match. Filipino vocabulary items on the CSE frequently pair a word with its exact antonym among the options, so identify the direction of meaning before you choose.",
     "distractorExplanations": {
-      "B": "SAGANA means abundant or well supplied — the direct antonym of SALAT. It is placed here to catch examinees who recognise the topic of the sentence but not the direction of the word.",
-      "C": "MAAYOS means orderly or in good condition. An office can be neat and still be short of equipment, so the word describes a different quality altogether.",
-      "D": "BAGO means new. It speaks to the age of the equipment rather than to how much of it exists, and the sentence says nothing about when anything was acquired."
+      "A": "SAGANA means abundant or well supplied — the direct antonym of SALAT. It is placed here to catch examinees who recognise the topic of the sentence but not the direction of the word.",
+      "B": "MAAYOS means orderly or in good condition. An office can be neat and still be short of equipment, so the word describes a different quality altogether.",
+      "D": "BAGO means new. It speaks to the age of the equipment rather than to how much of it exists, and the sentence says nothing about when anything was acquired.",
+      "E": "'Handa' means prepared or ready, which could describe the state of an office in terms of readiness; but SALAT specifically refers to lacking or being deficient in something, not to a state of readiness — an office can be handa (prepared) for certain tasks while still being salat sa kagamitan (lacking equipment)."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -3699,27 +4119,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "thorough"
+        "text": "careless"
       },
       {
         "id": "B",
-        "text": "precise"
+        "text": "thorough"
       },
       {
         "id": "C",
-        "text": "methodical"
+        "text": "precise"
       },
       {
         "id": "D",
-        "text": "careless"
+        "text": "methodical"
+      },
+      {
+        "id": "E",
+        "text": "hasty"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "Meticulous describes extreme attention to detail — the auditor who checks every column twice. Its opposite is the absence of that care, which is 'careless.' The structure of this item is worth studying: thorough, precise, and methodical all sit in the same neighbourhood of meaning as meticulous, so they reinforce one another and leave the fourth word standing apart. Whenever three options in an antonym item cluster into a synonym group, the lone outsider is almost always the answer, because a test writer cannot place two valid opposites among four choices.",
     "distractorExplanations": {
-      "A": "'Thorough' means complete and leaving nothing out, which is close to meticulous rather than opposed to it. Choosing it means answering the synonym question the item did not ask.",
-      "B": "'Precise' names exactness. A meticulous worker is precise almost by definition, so the two words travel together and cannot stand as antonyms.",
-      "C": "'Methodical' means working in an orderly, systematic way. That is how meticulous care is usually carried out, making this another near-synonym rather than a contrast."
+      "B": "'Thorough' means complete and leaving nothing out, which is close to meticulous rather than opposed to it. Choosing it means answering the synonym question the item did not ask.",
+      "C": "'Precise' names exactness. A meticulous worker is precise almost by definition, so the two words travel together and cannot stand as antonyms.",
+      "D": "'Methodical' means working in an orderly, systematic way. That is how meticulous care is usually carried out, making this another near-synonym rather than a contrast.",
+      "E": "'Hasty' means done too quickly without sufficient care, which is the opposite of the careful attention to detail that meticulous requires; while both careless and hasty are antonyms of meticulous, careless is the more direct opposite (absence of care), whereas hasty names the reason care was sacrificed (speed), making careless the stronger answer."
     },
     "tip": {
       "label": "Exam Tip",
@@ -3754,6 +4179,10 @@
       {
         "id": "D",
         "text": "The principle reason of the delay was the missing document."
+      },
+      {
+        "id": "E",
+        "text": "The principal reason for the delay had been the missing document."
       }
     ],
     "correctOptionId": "C",
@@ -3761,7 +4190,8 @@
     "distractorExplanations": {
       "A": "'Principle' is a noun and cannot modify 'reason.' The sentence would be claiming the reason is a rule or standard, which is not the meaning intended.",
       "B": "Word choice is right but the verb is not. The subject is the singular 'reason,' so 'were' disagrees; the noun after a linking verb never controls agreement.",
-      "D": "This option repeats the principle-for-principal error and compounds it with the unidiomatic 'reason of.' English fixes the preposition here as 'reason for.'"
+      "D": "This option repeats the principle-for-principal error and compounds it with the unidiomatic 'reason of.' English fixes the preposition here as 'reason for.'",
+      "E": "Using 'had been' (past perfect) is grammatically correct in the appropriate temporal sequence context, but the sentence does not establish a prior reference point that would require past perfect; this tense shift changes the meaning without grammatical justification, making the simple past 'was' in option C the appropriate choice."
     },
     "tip": {
       "label": "Common Mistake",
@@ -3797,15 +4227,20 @@
       },
       {
         "id": "D",
+        "text": "Transparency in financial reporting"
+      },
+      {
+        "id": "E",
         "text": "responsibility for one's actions"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Accountability is the obligation to answer for what one has done — literally, to give an account of it. The word joins two ideas: a person holds a duty, and someone else is entitled to ask how that duty was discharged. Article XI, Section 1 of the 1987 Constitution builds the whole framework of public ethics on it, declaring that public office is a public trust and that officers must at all times be accountable to the people. Note the direction: accountability adds an obligation, while the three wrong options each remove one, which is why they read as its opposites rather than its definition.",
     "distractorExplanations": {
       "A": "'Freedom from all rules' describes the absence of obligation. Accountability works the other way — it binds an official to standards and to the people those standards protect.",
       "B": "'Authority without limits' confuses power with answerability. Accountability is the check placed on authority, not an expansion of it.",
-      "C": "'Avoidance of public scrutiny' names precisely what accountability forbids. Being accountable means submitting to examination, not escaping it."
+      "C": "'Avoidance of public scrutiny' names precisely what accountability forbids. Being accountable means submitting to examination, not escaping it.",
+      "D": "'Transparency' and 'accountability' are related governance values, and examinees frequently confuse them; however, accountability specifically means being answerable for one's actions, while transparency means operating openly so that others can see what is being done — the two concepts complement but do not define each other."
     },
     "tip": {
       "label": "Remember",
@@ -3842,6 +4277,10 @@
       {
         "id": "D",
         "text": "technical"
+      },
+      {
+        "id": "E",
+        "text": "simplified"
       }
     ],
     "correctOptionId": "B",
@@ -3849,7 +4288,8 @@
     "distractorExplanations": {
       "A": "'Obscure' means hard to understand. Inserted here it would have unclear writing causing comprehension, which reverses the cause-and-effect the sentence sets up.",
       "C": "'Ambiguous' means open to more than one reading. Multiple possible meanings hinder first-time applicants rather than helping them follow a procedure.",
-      "D": "'Technical' is the subtlest trap because technical writing can be accurate. Accuracy is not accessibility, though, and technical language is what typically blocks a first-time reader."
+      "D": "'Technical' is the subtlest trap because technical writing can be accurate. Accuracy is not accessibility, though, and technical language is what typically blocks a first-time reader.",
+      "E": "'Simplified' means made less complex, which helps comprehension and is related to clarity, but the word refers to the process of reducing complexity rather than the quality of being transparently clear; an explanation that is lucid may not have been simplified at all — it may simply be well constructed from the start."
     },
     "tip": {
       "label": "Exam Tip",
@@ -3885,6 +4325,10 @@
       {
         "id": "D",
         "text": "The form is something that applicants must submit on or before Friday."
+      },
+      {
+        "id": "E",
+        "text": "Applicants are to submit the form no later than Friday."
       }
     ],
     "correctOptionId": "A",
@@ -3892,7 +4336,8 @@
     "distractorExplanations": {
       "B": "'It is required that' is an expletive opener: the pronoun 'it' points to nothing and pushes the real subject three words back. Pairing it with 'should' also states the obligation twice.",
       "C": "'Make a submission of' is a nominalisation — the verb 'submit' has been turned into a noun and now needs a weak helper verb to function. Restoring the verb removes four words.",
-      "D": "'The form is something that' is an empty relative clause. It fronts a placeholder noun and delays the actual instruction, adding length without adding meaning."
+      "D": "'The form is something that' is an empty relative clause. It fronts a placeholder noun and delays the actual instruction, adding length without adding meaning.",
+      "E": "'Are to' is a slightly formal construction that is grammatically correct and close in meaning to 'must,' but it is slightly longer than necessary and contains the passive linking verb 'are'; while not as wordy as options B, C, or D, it is still less concise than the direct 'must submit' in option A."
     },
     "tip": {
       "label": "Exam Tip",
@@ -3929,6 +4374,10 @@
       {
         "id": "D",
         "text": "The office closed early the employees continued working remotely."
+      },
+      {
+        "id": "E",
+        "text": "The office closed early, the employees continued working remotely."
       }
     ],
     "correctOptionId": "D",
@@ -3936,7 +4385,8 @@
     "distractorExplanations": {
       "A": "A comma plus the coordinating conjunction 'but' is one of the standard joins for two independent clauses. The comma alone would fail, but with 'but' present the sentence is sound.",
       "B": "'Although' subordinates the first clause, so only one independent clause is left and the comma correctly marks the boundary. Subordination is a legitimate run-on repair.",
-      "C": "A semicolon links two closely related independent clauses without a conjunction. This is precisely the punctuation the run-on in option D is missing."
+      "C": "A semicolon links two closely related independent clauses without a conjunction. This is precisely the punctuation the run-on in option D is missing.",
+      "E": "A comma alone between two independent clauses creates a comma splice — two complete sentences joined with only a comma and no coordinating conjunction; while this is a different error from the fused sentence in option D, both are run-on errors, but the question asks for the run-on (fused sentence), and option D is the clearest example."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -3973,6 +4423,10 @@
       {
         "id": "D",
         "text": "Because the application was incomplete, the evaluator returned it."
+      },
+      {
+        "id": "E",
+        "text": "The incomplete application prompted the evaluator to return it."
       }
     ],
     "correctOptionId": "D",
@@ -3980,7 +4434,8 @@
     "distractorExplanations": {
       "A": "The modifier now sits correctly beside 'the application,' but the main clause has been reversed: an application cannot return an evaluator. Fixing the dangler broke the sense.",
       "B": "Moving the phrase into the middle does not change what it modifies. Placed right after 'the evaluator,' it states even more plainly that the evaluator was incomplete.",
-      "C": "'Incomplete' still dangles onto the evaluator, and the trailing 'by it' has no clear antecedent. The passive construction adds obscurity without repairing the modifier."
+      "C": "'Incomplete' still dangles onto the evaluator, and the trailing 'by it' has no clear antecedent. The passive construction adds obscurity without repairing the modifier.",
+      "E": "This revision correctly places the subject 'The incomplete application' in the main clause and makes the evaluator the one who returns it, avoiding the dangling modifier; while grammatically sound, it changes the emphasis and structure of the original sentence in a way that differs from the clean 'because' clause in option D."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -4018,6 +4473,10 @@
       {
         "id": "D",
         "text": "3-2-1-4"
+      },
+      {
+        "id": "E",
+        "text": "2-3-1-4"
       }
     ],
     "correctOptionId": "A",
@@ -4032,7 +4491,8 @@
     "distractorExplanations": {
       "B": "Putting sentence 1 first opens the paragraph with 'Finally,' a word that announces an ending. Archiving records before any of them have been checked also reverses the workflow.",
       "C": "This order releases the result to the applicant (sentence 4) before the evaluator has verified the documents (sentence 3), so approval would precede the evaluation it depends on.",
-      "D": "Beginning with 'then' in sentence 3 leaves the reader with no prior step to connect it to, and archiving in sentence 1 is placed before the release in sentence 4."
+      "D": "Beginning with 'then' in sentence 3 leaves the reader with no prior step to connect it to, and archiving in sentence 1 is placed before the release in sentence 4.",
+      "E": "Placing sentence 1 ('Consequently, citizens receive prompt service') before sentence 4 ('Furthermore, automated tracking reduces error') reverses the order of the two supporting benefits; 'consequently' in sentence 1 must follow all the causes it results from, including the automated tracking benefit in sentence 4."
     },
     "tip": {
       "label": "Exam Tip",
@@ -4068,6 +4528,10 @@
       {
         "id": "D",
         "text": "Finally, residents should review what they learned."
+      },
+      {
+        "id": "E",
+        "text": "Officials at every level should understand the importance of disaster preparation."
       }
     ],
     "correctOptionId": "C",
@@ -4082,7 +4546,8 @@
     "distractorExplanations": {
       "A": "The word 'also' is a linking signal that requires a preceding recommendation. Opening a paragraph with an addition leaves the reader searching for the point being added to.",
       "B": "Evaluating a response 'after every drill' assumes drills have already been established as part of the plan, and it describes a late-stage review rather than a starting point.",
-      "D": "'Finally' explicitly labels the sentence as the last item in a sequence. It also narrows to one closing action, which is the opposite of what a topic sentence must do."
+      "D": "'Finally' explicitly labels the sentence as the last item in a sequence. It also narrows to one closing action, which is the opposite of what a topic sentence must do.",
+      "E": "This statement makes a general claim about understanding importance, which could serve as a broad introduction, but it is more abstract than the actionable topic sentence the paragraph needs; 'Preparation begins with identifying hazards' is more focused and directly introduces the specific content that follows."
     },
     "tip": {
       "label": "Exam Tip",
@@ -4116,10 +4581,14 @@
       },
       {
         "id": "D",
+        "text": "Sentence 5"
+      },
+      {
+        "id": "E",
         "text": "Sentence 4"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Paragraph unity means every sentence advances one controlling idea. State that idea before judging any sentence: here, four of the five describe ways of managing records well — faster retrieval, restricted access, protection against loss, and fewer handling errors. Sentence 4 reports a change in cafeteria food. It is a perfectly good sentence and may even be true of the same office, but sharing a workplace is not the same as sharing a topic. Relevance is judged against the controlling idea, never against whether the statement is accurate or interesting on its own.",
     "steps": [
       "Step 1 — Derive the controlling idea from the sentences that agree. Retrieval speed, access control, backups, and training all concern managing records well.",
@@ -4131,7 +4600,8 @@
     "distractorExplanations": {
       "A": "Retrieval speed is one of the main reasons offices digitise records at all. Sentence 1 supports the controlling idea directly and belongs in the paragraph.",
       "B": "Protecting confidential files through access controls is a core records-management concern. Naming a security measure does not make the sentence off-topic.",
-      "C": "Backups guard against permanent loss of records, which is the same subject the surrounding sentences develop. Sentence 3 sits comfortably within the paragraph."
+      "C": "Backups guard against permanent loss of records, which is the same subject the surrounding sentences develop. Sentence 3 sits comfortably within the paragraph.",
+      "D": "Sentence 5 ('Staff training helps prevent handling errors') directly supports the records management theme by naming a human-factor control that reduces mistakes; it belongs in the paragraph and cannot be the irrelevant sentence."
     },
     "tip": {
       "label": "Exam Tip",
@@ -4168,6 +4638,10 @@
       {
         "id": "D",
         "text": "The assisted desk replaced the appointment system."
+      },
+      {
+        "id": "E",
+        "text": "The city prioritized senior citizens by eliminating the online appointment system."
       }
     ],
     "correctOptionId": "C",
@@ -4175,7 +4649,8 @@
     "distractorExplanations": {
       "A": "Nothing in the passage bans walk-ins. Congestion 'declined,' which means walk-ins continued at a lower volume, and the assisted desk exists precisely to serve people in person.",
       "B": "The text states plainly that walk-in congestion declined, so the system succeeded at its primary purpose. Difficulty for some users is a separate finding, not a failure of the system.",
-      "D": "Both services operate side by side. The desk was 'retained' alongside the appointment system, and retaining something is the opposite of replacing what it supplements."
+      "D": "Both services operate side by side. The desk was 'retained' alongside the appointment system, and retaining something is the opposite of replacing what it supplements.",
+      "E": "The passage never eliminates the online system — it retains the assisted desk alongside the system; this option inverts the relationship by making the human service primary and the digital service removed, contradicting the passage's description of both operating together."
     },
     "tip": {
       "label": "Exam Tip",
@@ -4212,6 +4687,10 @@
       {
         "id": "D",
         "text": "To collect additional fees"
+      },
+      {
+        "id": "E",
+        "text": "To serve applicants who preferred in-person transactions over online booking"
       }
     ],
     "correctOptionId": "A",
@@ -4219,7 +4698,8 @@
     "distractorExplanations": {
       "B": "Reducing congestion was the point of the online system, and the passage records that it fell. No agency would keep a service in order to make its own queues longer.",
       "C": "Cancellation appears nowhere in the text. The desk assists people who cannot use the platform; it does not undo appointments made through it.",
-      "D": "Fees are never mentioned. This option imports a familiar assumption about government transactions rather than anything the passage actually states."
+      "D": "Fees are never mentioned. This option imports a familiar assumption about government transactions rather than anything the passage actually states.",
+      "E": "Preference for in-person service is not stated as the reason; the passage specifically says some senior citizens 'struggled to use the platform,' meaning the desk was kept for those who had difficulty, not for those who merely preferred it — difficulty and preference are different motivations."
     },
     "tip": {
       "label": "Exam Tip",
@@ -4256,6 +4736,10 @@
       {
         "id": "D",
         "text": "Adjusting service hours improved access for workers."
+      },
+      {
+        "id": "E",
+        "text": "Extending office hours is always the best solution for improving participation."
       }
     ],
     "correctOptionId": "D",
@@ -4263,7 +4747,8 @@
     "distractorExplanations": {
       "A": "The workers objected to a schedule that shut them out, not to appointments as such. The blanket word 'all' converts a specific complaint into a sweeping rejection.",
       "B": "This inverts the outcome and universalises it. Participation rose after Saturday slots were added, and one office's result cannot support a claim about what 'always' happens.",
-      "C": "The opening sentence says the original schedule excluded many night-shift workers, so calling it inclusive contradicts the passage rather than condensing it."
+      "C": "The opening sentence says the original schedule excluded many night-shift workers, so calling it inclusive contradicts the passage rather than condensing it.",
+      "E": "The passage reports one instance of adding Saturday slots improving participation; generalizing this to 'always the best solution' overstates the single example with an absolute that a two-sentence passage cannot support."
     },
     "tip": {
       "label": "Common Mistake",
@@ -4290,23 +4775,28 @@
       },
       {
         "id": "B",
-        "text": "predict"
+        "text": "lessen"
       },
       {
         "id": "C",
-        "text": "create"
+        "text": "predict"
       },
       {
         "id": "D",
-        "text": "lessen"
+        "text": "create"
+      },
+      {
+        "id": "E",
+        "text": "absorb"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "B",
     "explanation": "Mitigate comes from the Latin mitis, meaning mild or gentle, and it means to make something less severe. The object it takes is almost always a harm: mitigate damage, mitigate risk, mitigate the effects of a typhoon. In the sentence, urban heat is the problem and trees are the intervention, so the verb must name a reduction. The word is worth knowing beyond vocabulary items — disaster management documents in the Philippines pair mitigation with preparedness, response, and recovery as the four phases of the cycle, and there it carries this same sense of reducing severity in advance.",
     "distractorExplanations": {
       "A": "'Measure' means to quantify. Instruments measure heat; trees act on it. The sentence describes an effect on the temperature, not an assessment of it.",
-      "B": "'Predict' means to forecast in advance. Nothing about planting trees anticipates future heat, and the sentence reports a present benefit rather than a projection.",
-      "C": "'Create' points in the opposite direction. Concrete and vehicles create urban heat; the whole reason trees are planted is to counteract what those sources produce."
+      "C": "'Predict' means to forecast in advance. Nothing about planting trees anticipates future heat, and the sentence reports a present benefit rather than a projection.",
+      "D": "'Create' points in the opposite direction. Concrete and vehicles create urban heat; the whole reason trees are planted is to counteract what those sources produce.",
+      "E": "'Absorb' means to take in or soak up, which trees do literally (they absorb heat through shade and transpiration), but mitigate means to reduce severity in a more general sense; this option trades on a real physical mechanism that gives it surface plausibility while naming a narrower and more literal process than what mitigate actually means."
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -4342,6 +4832,10 @@
       {
         "id": "D",
         "text": "No clients were waiting."
+      },
+      {
+        "id": "E",
+        "text": "The office had fewer counters than usual that day."
       }
     ],
     "correctOptionId": "A",
@@ -4349,7 +4843,8 @@
     "distractorExplanations": {
       "B": "The sentence opens with 'All counters were occupied,' which rules out closures. This option does not go beyond the text; it denies the first clause outright.",
       "C": "An hour per transaction contradicts the stated average of four minutes, and it would also make the steady movement of the queue impossible.",
-      "D": "A queue that 'moved steadily' is by definition a queue with people in it. Claiming nobody waited erases the very thing the sentence is describing."
+      "D": "A queue that 'moved steadily' is by definition a queue with people in it. Claiming nobody waited erases the very thing the sentence is describing.",
+      "E": "The passage says 'all counters were occupied,' meaning the office was running at full counter capacity — having fewer counters than usual is not supported and actually contradicts the 'all counters' statement."
     },
     "tip": {
       "label": "Logic Rule",
@@ -4379,19 +4874,24 @@
       },
       {
         "id": "C",
-        "text": "affect"
+        "text": "effected"
       },
       {
         "id": "D",
-        "text": "effected"
+        "text": "have affected"
+      },
+      {
+        "id": "E",
+        "text": "affect"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "Two questions settle this item. First, form: the modal 'will' is always followed by a bare infinitive, so any inflected verb is out before meaning is even considered. Second, meaning: the policy influences an existing practice, and the verb for influencing is 'affect.' Honesty about the harder half of the rule pays off here — 'effect' genuinely can be a verb, meaning to bring about or accomplish, as in 'effect change' or 'effect a settlement.' But that sense requires the policy to create classification itself rather than to shape how it is done, which is not what the sentence says.",
     "distractorExplanations": {
       "A": "'Effect' as a verb means to bring something into being. Records are already being classified, so the policy shapes an existing practice rather than creating one from nothing.",
       "B": "The meaning is right but the form is not. A modal such as 'will' takes the bare infinitive, so 'will affects' doubles the tense marking and cannot stand.",
-      "D": "'Effected' is a past-tense form placed after the future marker 'will,' which is impossible, and it also carries the 'bring about' sense the sentence does not need."
+      "C": "'Effected' is a past-tense form placed after the future marker 'will,' which is impossible, and it also carries the 'bring about' sense the sentence does not need.",
+      "D": "'Will have affected' or 'have affected' (present perfect) would suggest the effect has already occurred, but the sentence describes a future policy that 'will' change classification — the future modal 'will' requires the base form 'affect,' not the perfect form."
     },
     "tip": {
       "label": "Mnemonic",
@@ -4427,15 +4927,20 @@
       },
       {
         "id": "D",
+        "text": "Ten kilometers are a long distance to walk in extreme heat."
+      },
+      {
+        "id": "E",
         "text": "Ten kilometers is a long distance to walk in extreme heat."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "A plural noun does not always mean a plural subject. When a quantity of distance, money, time, or weight is treated as one amount rather than as separate units, it takes a singular verb: ten kilometers is a long walk, five hundred pesos is a fair price, two hours is enough time. The clue is the singular complement — 'a long distance' names one thing, confirming that the subject is being handled as a single measurement. The plural -s stays on 'kilometers' because that is how the unit is written after any number above one; only the verb reflects the singular idea.",
     "distractorExplanations": {
       "A": "A plural verb splits the ten kilometers into ten separate items. The complement 'a long distance' is singular, which shows the sentence means one continuous stretch.",
       "B": "Trimming the -s from 'kilometer' is the error here. Any number greater than one takes the plural noun form, even though the verb that follows stays singular.",
-      "C": "Two problems combine: the plural 'have' misreads the measurement as separate units, and the present perfect implies an ongoing state where a simple statement of fact is meant."
+      "C": "Two problems combine: the plural 'have' misreads the measurement as separate units, and the present perfect implies an ongoing state where a simple statement of fact is meant.",
+      "D": "Using the plural verb 'are' treats the ten kilometers as separate individual units rather than a single measured distance; the complement 'a long distance' signals that the subject is conceived as one quantity, requiring the singular 'is.'"
     },
     "tip": {
       "label": "Grammar Rule",
@@ -4472,6 +4977,10 @@
       {
         "id": "D",
         "text": "Bad weather kinda made the agency postpone it."
+      },
+      {
+        "id": "E",
+        "text": "The activity was called off due to inclement weather conditions prevailing in the area."
       }
     ],
     "correctOptionId": "B",
@@ -4479,7 +4988,8 @@
     "distractorExplanations": {
       "A": "'Super bad' is a conversational intensifier and 'got moved' is a colloquial passive. Both weaken a sentence that should name the agency and state the cause precisely.",
       "C": "'Like' is a spoken filler with no grammatical role. The passive also hides nothing useful here, since the agency is named anyway and could simply act as the subject.",
-      "D": "'Kinda' hedges a fact that is not in doubt, and 'bad weather' is vaguer than the standard term. Formal writing states causes without softening them."
+      "D": "'Kinda' hedges a fact that is not in doubt, and 'bad weather' is vaguer than the standard term. Formal writing states causes without softening them.",
+      "E": "'Due to inclement weather conditions prevailing in the area' is grammatically correct and formal in register, but it is wordier than necessary; while it avoids informal language, formal writing also values conciseness, and 'because of severe weather' achieves the same meaning more efficiently."
     },
     "tip": {
       "label": "Exam Tip",
@@ -4515,6 +5025,10 @@
       {
         "id": "D",
         "text": "The applicant went to the office to obtain a permit."
+      },
+      {
+        "id": "E",
+        "text": "The examination was postponed, so the applicants were notified by text message."
       }
     ],
     "correctOptionId": "A",
@@ -4522,7 +5036,8 @@
     "distractorExplanations": {
       "B": "'Although' signals concession. It concedes an obstacle and then reports that the outcome happened anyway, which is the reverse of a cause producing an effect.",
       "C": "'If' introduces a condition about something that may or may not occur. No rain has fallen yet, so no cause exists and no effect has been produced.",
-      "D": "The infinitive 'to obtain' expresses purpose — the goal the applicant had in mind. A purpose looks forward to an intended result; a cause looks back at what produced one."
+      "D": "The infinitive 'to obtain' expresses purpose — the goal the applicant had in mind. A purpose looks forward to an intended result; a cause looks back at what produced one.",
+      "E": "'So' signals result, and the second clause would need to follow directly from the postponement; while this could be cause-effect, it describes a consequence of the postponement rather than a cause of it, making it a result rather than a cause-to-effect sequence in the same way option A demonstrates."
     },
     "tip": {
       "label": "Remember",
@@ -4558,6 +5073,10 @@
       {
         "id": "D",
         "text": "Fast service is necessarily inaccurate."
+      },
+      {
+        "id": "E",
+        "text": "Both speed and accuracy should be treated as secondary concerns in public service."
       }
     ],
     "correctOptionId": "B",
@@ -4565,7 +5084,8 @@
     "distractorExplanations": {
       "A": "Ranking speed above accuracy is the position the statement argues against. 'Not enough' downgrades speed's standing on its own; it does not elevate speed over anything.",
       "C": "This reverses the sentence completely. Accuracy is the quality being defended, and the whole clause exists to insist that it must not be sacrificed.",
-      "D": "Claiming fast service must be inaccurate overshoots. The statement warns about a trade-off that can happen, not one that always happens; speed and accuracy can coexist."
+      "D": "Claiming fast service must be inaccurate overshoots. The statement warns about a trade-off that can happen, not one that always happens; speed and accuracy can coexist.",
+      "E": "The statement elevates accuracy and implicitly values speed as well; calling both 'secondary' contradicts the assertion that speed alone is insufficient and accuracy must not be sacrificed — both are being treated as primary considerations, not secondary ones."
     },
     "tip": {
       "label": "Logic Rule",
@@ -4601,6 +5121,10 @@
       {
         "id": "D",
         "text": "In contrast, citizens should avoid official information."
+      },
+      {
+        "id": "E",
+        "text": "In addition, open data requires specialized technical expertise to access."
       }
     ],
     "correctOptionId": "C",
@@ -4615,7 +5139,8 @@
     "distractorExplanations": {
       "A": "'Nevertheless' sets up an objection the paragraph never raised, and secrecy contradicts the benefits just described. The absolute 'always' compounds the mismatch.",
       "B": "'For example' promises an illustration of the preceding point, yet the sentence delivers the opposite claim: inaccurate data undermines accountability rather than improving it.",
-      "D": "'In contrast' signals opposition where the paragraph has been building agreement, and advising citizens to avoid official information reverses the paragraph's first benefit."
+      "D": "'In contrast' signals opposition where the paragraph has been building agreement, and advising citizens to avoid official information reverses the paragraph's first benefit.",
+      "E": "'In addition' signals another supporting point in the same direction as the paragraph, which is consistent; however, claiming data requires specialized expertise to access contradicts the passage's point about it helping citizens and researchers — this is a content error masquerading as an addition."
     },
     "tip": {
       "label": "Exam Tip",

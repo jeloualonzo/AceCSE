@@ -8,23 +8,43 @@
     "difficulty": "Easy",
     "question": "The doctors were pleased that their theory had been FORTIFIED by the new research data. FORTIFIED most nearly means:",
     "choices": [
-      { "id": "A", "text": "Questioned" },
-      { "id": "B", "text": "Revised" },
-      { "id": "C", "text": "Complicated" },
-      { "id": "D", "text": "Reinforced" }
+      {
+        "id": "A",
+        "text": "Questioned"
+      },
+      {
+        "id": "B",
+        "text": "Revised"
+      },
+      {
+        "id": "C",
+        "text": "Complicated"
+      },
+      {
+        "id": "D",
+        "text": "Validated"
+      },
+      {
+        "id": "E",
+        "text": "Reinforced"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Fortify comes from the Latin 'fortis' (strong) and means to strengthen something — to make it more convincing, more secure, or more durable. When a theory is fortified by new research, that research adds weight and substance to it, reinforcing its conclusions. 'Reinforced' captures this exactly: supported and made stronger by additional evidence. Questioned is the opposite of fortified — it undermines rather than strengthens. Revised means changed or updated, which is a different kind of action on a theory: one that alters rather than supports it. Complicated means made harder to understand, which has no connection to the idea of strengthening through evidence.",
     "distractorExplanations": {
       "A": "Questioned means challenged or doubted — the opposite direction from fortified. New research that fortifies a theory confirms it rather than casts doubt on it.",
       "B": "Revised means altered or corrected. Research that fortifies a theory confirms it as-is; revision implies changes, which fortify does not.",
-      "C": "Complicated means made more intricate or difficult. Research can complicate a theory, but that is a separate idea from strengthening or reinforcing it."
+      "C": "Complicated means made more intricate or difficult. Research can complicate a theory, but that is a separate idea from strengthening or reinforcing it.",
+      "D": "'Validated' means confirmed as accurate or legitimate, which is very close to the meaning of fortified in this context — both describe research that supports a theory; however, fortified specifically means strengthened (made more robust and resilient), while validated means confirmed as correct — these are related but distinct outcomes of new research."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "FORTIFY shares the root 'fortis' (strong) with fortitude, fortress, and effort. To fortify is to strengthen — a fortified position is reinforced against attack; a fortified theory is reinforced against doubt."
     },
-    "tags": ["vocabulary", "synonyms"]
+    "tags": [
+      "vocabulary",
+      "synonyms"
+    ]
   },
   {
     "id": "verb-0149",
@@ -35,23 +55,43 @@
     "difficulty": "Easy",
     "question": "The clerk was instructed to EXPEDITE the release of the documents because the applicants had been waiting for several days. EXPEDITE most nearly means:",
     "choices": [
-      { "id": "A", "text": "Evaluate" },
-      { "id": "B", "text": "Speed up" },
-      { "id": "C", "text": "Postpone" },
-      { "id": "D", "text": "Justify" }
+      {
+        "id": "A",
+        "text": "Evaluate"
+      },
+      {
+        "id": "B",
+        "text": "Postpone"
+      },
+      {
+        "id": "C",
+        "text": "Justify"
+      },
+      {
+        "id": "D",
+        "text": "Speed up"
+      },
+      {
+        "id": "E",
+        "text": "Prioritize"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "D",
     "explanation": "Expedite means to cause something to be done more quickly — to hasten or fast-track a process. It comes from the Latin 'expedire' (to free the feet from obstruction), so the core idea is removing delays and moving things forward faster. The sentence provides a strong context clue: applicants have been waiting, so the clerk is told to move the process along more swiftly. 'Speed up' is the precise everyday synonym. Evaluate means to assess and has nothing to do with pace. Postpone is the direct opposite — it delays rather than hastens. Justify means to provide reasons for, which is entirely unrelated to speeding up a process.",
     "distractorExplanations": {
       "A": "Evaluate means to judge the worth or quality of something. An officer might evaluate documents without expediting their release — they are separate actions.",
-      "C": "Postpone means to put off to a later time — the exact opposite of expediting. Expediting brings things forward; postponing pushes them back.",
-      "D": "Justify means to provide a rationale or defense for an action. One may justify why a process is slow without doing anything to speed it up."
+      "B": "Postpone means to put off to a later time — the exact opposite of expediting. Expediting brings things forward; postponing pushes them back.",
+      "C": "Justify means to provide a rationale or defense for an action. One may justify why a process is slow without doing anything to speed it up.",
+      "E": "'Prioritize' means to treat something as more important than other things, which may result in faster processing but is not the same as expediting; expediting specifically means to hasten the process itself, while prioritizing means to place something at the top of an order of importance — one can prioritize a task without actually making it faster to complete."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "EXPEDITE contains 'ped' (foot, from Latin). Imagine clearing obstacles from a path so someone can move faster — that is expediting. Expedite = speed up, fast-track, hasten. Related words: expedition (a fast-moving journey), expedient (a quick, practical choice)."
     },
-    "tags": ["vocabulary", "synonyms"]
+    "tags": [
+      "vocabulary",
+      "synonyms"
+    ]
   },
   {
     "id": "verb-0150",
@@ -62,23 +102,43 @@
     "difficulty": "Medium",
     "question": "That particular melody always EVOKES vivid memories of her childhood in the province. EVOKES most nearly means:",
     "choices": [
-      { "id": "A", "text": "Erases" },
-      { "id": "B", "text": "Organizes" },
-      { "id": "C", "text": "Calls up" },
-      { "id": "D", "text": "Conceals" }
+      {
+        "id": "A",
+        "text": "Erases"
+      },
+      {
+        "id": "B",
+        "text": "Calls up"
+      },
+      {
+        "id": "C",
+        "text": "Organizes"
+      },
+      {
+        "id": "D",
+        "text": "Conceals"
+      },
+      {
+        "id": "E",
+        "text": "Conjures"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Evoke means to bring something to mind or to call up a feeling, image, or memory — to summon it from within the mind. It shares its root with invoke and vocation (Latin 'vocare,' to call). The sentence shows that the melody produces a specific response — vivid childhood memories — which is something brought to the surface of consciousness. 'Calls up' captures this meaning of summoning a mental experience. Erases is the exact opposite: evoked memories are recalled, not deleted. Organizes means to arrange in order, which has no connection to the involuntary emotional recall the word describes. Conceals means to keep something hidden, and evoke does the opposite — it surfaces a memory rather than burying it.",
     "distractorExplanations": {
       "A": "Erases is the direct opposite of evoke. To evoke a memory is to bring it back into consciousness; to erase it is to remove it from memory. The sentence says the melody calls memories up, not that it wipes them away.",
-      "B": "Organizes means to put into a structured order. Evoking a memory is an involuntary act of recall, not a deliberate act of arrangement.",
-      "D": "Conceals means to keep something hidden. Evoke does the opposite — it surfaces a memory or feeling rather than hiding it."
+      "C": "Organizes means to put into a structured order. Evoking a memory is an involuntary act of recall, not a deliberate act of arrangement.",
+      "D": "Conceals means to keep something hidden. Evoke does the opposite — it surfaces a memory or feeling rather than hiding it.",
+      "E": "'Conjures' means to summon or call to mind, which is very nearly identical to 'evokes' in this context — both describe bringing a memory or image to consciousness; while conjures is a valid near-synonym, evokes is the standard answer for this item type, and conjures carries a slightly magical or supernatural connotation that evoke does not always share."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "EVOKE, invoke, and provoke all carry the root 'vocare' (to call). Evoke = call up (memories, feelings, images). Invoke = call upon (a law, an authority). Provoke = call out (a reaction or conflict)."
     },
-    "tags": ["vocabulary", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0151",
@@ -89,23 +149,43 @@
     "difficulty": "Easy",
     "question": "The section chief was EXASPERATED by her subordinate's repeated failure to observe the filing deadline. EXASPERATED most nearly means:",
     "choices": [
-      { "id": "A", "text": "Intensely irritated" },
-      { "id": "B", "text": "Amused" },
-      { "id": "C", "text": "Impressed" },
-      { "id": "D", "text": "Reassured" }
+      {
+        "id": "A",
+        "text": "Amused"
+      },
+      {
+        "id": "B",
+        "text": "Impressed"
+      },
+      {
+        "id": "C",
+        "text": "Reassured"
+      },
+      {
+        "id": "D",
+        "text": "Deeply frustrated"
+      },
+      {
+        "id": "E",
+        "text": "Intensely irritated"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Exasperate comes from the Latin 'exasperare' (to roughen or make harsh), and means to irritate someone to an extreme degree — to provoke them beyond ordinary impatience. It implies buildup: the key word 'repeated' in the sentence signals that the deadline failures have happened more than once, wearing the chief's patience down to the point of deep frustration. 'Intensely irritated' captures both the high degree of irritation and its accumulated quality. Amused describes a pleasant reaction, which is the opposite emotional direction. Impressed names a positive response to ability or performance, which is hardly how a superior feels about repeated failures. Reassured means made to feel less worried, also a positive emotional shift.",
     "distractorExplanations": {
-      "B": "Amused means entertained or diverted with mild pleasure. Exasperated describes intense frustration — a strongly negative emotion, not a pleasant or neutral one.",
-      "C": "Impressed means struck favorably by someone's performance. A subordinate who repeatedly misses deadlines would not impress a supervisor; the word moves in the wrong emotional direction.",
-      "D": "Reassured means made to feel more confident or relieved. Exasperated describes escalating frustration — the opposite of reassurance."
+      "A": "Amused means entertained or diverted with mild pleasure. Exasperated describes intense frustration — a strongly negative emotion, not a pleasant or neutral one.",
+      "B": "Impressed means struck favorably by someone's performance. A subordinate who repeatedly misses deadlines would not impress a supervisor; the word moves in the wrong emotional direction.",
+      "C": "Reassured means made to feel more confident or relieved. Exasperated describes escalating frustration — the opposite of reassurance.",
+      "D": "'Deeply frustrated' is very close to exasperated but softer in degree — frustration describes the feeling of being blocked from achieving a goal, while exasperation specifically names the accumulated irritation that comes from repeated provocations; the 'repeated failure' in the sentence points to the accumulated quality that exasperated captures."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "EXASPERATE = extreme irritation from repeated offense. The prefix 'ex-' intensifies: exasperate goes beyond ordinary annoyance to deep, accumulated frustration. Look for words like 'repeated,' 'again,' or 'constantly' nearby as context clues."
     },
-    "tags": ["vocabulary", "synonyms"]
+    "tags": [
+      "vocabulary",
+      "synonyms"
+    ]
   },
   {
     "id": "verb-0152",
@@ -116,23 +196,44 @@
     "difficulty": "Medium",
     "question": "The human rights commission's report documented the BESTIAL treatment that detainees had endured in the detention facility. BESTIAL most nearly means:",
     "choices": [
-      { "id": "A", "text": "Strictly regulated" },
-      { "id": "B", "text": "Unusual and unexpected" },
-      { "id": "C", "text": "Harsh but lawful" },
-      { "id": "D", "text": "Savage and inhumane" }
+      {
+        "id": "A",
+        "text": "Strictly regulated"
+      },
+      {
+        "id": "B",
+        "text": "Unusual and unexpected"
+      },
+      {
+        "id": "C",
+        "text": "Harsh but lawful"
+      },
+      {
+        "id": "D",
+        "text": "Savage and inhumane"
+      },
+      {
+        "id": "E",
+        "text": "Grossly negligent and irresponsible"
+      }
     ],
     "correctOptionId": "D",
     "explanation": "Bestial is the adjective form of 'beast,' and it means resembling a beast in behavior — brutal, cruel, and devoid of the restraint expected of a human being. It describes conduct so savage that it falls below the minimum standard of human dignity. The sentence makes the severity clear: a human rights body has formally documented the treatment, signaling an extreme violation. 'Savage and inhumane' captures both the brutality (savage) and the crossing of basic moral limits (inhumane). Strictly regulated is almost the opposite — it implies oversight and control, not ungoverned cruelty. Unusual and unexpected describes novelty or surprise, not savagery. Harsh but lawful acknowledges some degree of legitimacy, which bestial treatment lacks entirely.",
     "distractorExplanations": {
       "A": "Strictly regulated implies a structured system with rules and official oversight — the direct opposite of the ungoverned brutality that bestial describes.",
       "B": "Unusual and unexpected describes novelty or surprise. Bestial specifically denotes savage cruelty, which is not defined by how unexpected it is.",
-      "C": "'Harsh but lawful' softens the word by suggesting the treatment falls within some legal framework. Bestial implies a violation of the most basic human standards, not merely conduct that is tough but permissible."
+      "C": "'Harsh but lawful' softens the word by suggesting the treatment falls within some legal framework. Bestial implies a violation of the most basic human standards, not merely conduct that is tough but permissible.",
+      "E": "'Grossly negligent' describes a failure of duty through carelessness, which is a serious fault but differs from bestial treatment; bestial implies active cruelty and savagery — a positive exercise of brutality — whereas negligence is the absence of care without the active infliction of suffering that bestial requires."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "See BEAST inside BESTIAL. Bestial conduct is conduct fit for a beast, not a human being — brutal, savage, stripped of human dignity. The word always describes a moral violation, not merely physical hardship."
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0153",
@@ -143,23 +244,44 @@
     "difficulty": "Hard",
     "question": "There is a need to ADDUCE sound reasons that justify the recent restrictions on imports. ADDUCE most nearly means:",
     "choices": [
-      { "id": "A", "text": "Question" },
-      { "id": "B", "text": "Pursue" },
-      { "id": "C", "text": "Cite as evidence" },
-      { "id": "D", "text": "Uphold" }
+      {
+        "id": "A",
+        "text": "Question"
+      },
+      {
+        "id": "B",
+        "text": "Pursue"
+      },
+      {
+        "id": "C",
+        "text": "Uphold"
+      },
+      {
+        "id": "D",
+        "text": "Establish"
+      },
+      {
+        "id": "E",
+        "text": "Cite as evidence"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "Adduce means to cite or put forward a fact, example, or reason as supporting evidence in an argument. It comes from the Latin 'adducere' (to lead to), and in formal discourse it is used when a speaker or writer brings forward specific supporting material. The sentence makes the meaning concrete: one adduces reasons to justify a policy — the reasons are being produced and presented as justification, which is the act of citing evidence. 'Cite as evidence' names this formal presentation of supporting material precisely. Question opposes adduce, since one adduces to support rather than to challenge. Pursue means to follow after, which is unrelated to presenting evidence. Uphold means to maintain or enforce something in force — it is what one does after adducing reasons, not what adducing itself describes.",
     "distractorExplanations": {
       "A": "Question means to challenge or cast doubt on. Adducing reasons goes in the opposite direction — it builds support for a position rather than attacking it.",
       "B": "Pursue means to follow or go after something. Adducing reasons is an act of formal presentation of evidence, not of chasing or seeking.",
-      "D": "Uphold means to maintain a rule or principle in force. Adducing reasons is what you do in order to justify upholding something — the evidence-gathering that precedes the decision, not the enforcement itself."
+      "C": "Uphold means to maintain a rule or principle in force. Adducing reasons is what you do in order to justify upholding something — the evidence-gathering that precedes the decision, not the enforcement itself.",
+      "D": "'Establish' means to set up or demonstrate something as fact, which is related to adducing evidence but describes the conclusion reached rather than the act of bringing forward supporting material; one adduces evidence in order to establish a conclusion — adduce is the means, establish is the end."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "ADDUCE = 'ad' (toward) + 'ducere' (to lead). You are leading additional material toward your argument — bringing forward evidence or reasons to support a claim. Used in formal contexts: 'adduce examples,' 'adduce reasons,' 'adduce precedents.'"
     },
-    "tags": ["vocabulary", "context-clues", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "context-clues",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0154",
@@ -170,23 +292,44 @@
     "difficulty": "Medium",
     "question": "The senior official's remarks at the forum were described as VAPID, disappointing the audience who had expected a substantive discussion. VAPID most nearly means:",
     "choices": [
-      { "id": "A", "text": "Controversial and divisive" },
-      { "id": "B", "text": "Lacking vitality and substance" },
-      { "id": "C", "text": "Overly detailed and technical" },
-      { "id": "D", "text": "Sincere but poorly delivered" }
+      {
+        "id": "A",
+        "text": "Controversial and divisive"
+      },
+      {
+        "id": "B",
+        "text": "Lacking vitality and substance"
+      },
+      {
+        "id": "C",
+        "text": "Overly detailed and technical"
+      },
+      {
+        "id": "D",
+        "text": "Sincere but poorly delivered"
+      },
+      {
+        "id": "E",
+        "text": "Tediously repetitive and long-winded"
+      }
     ],
     "correctOptionId": "B",
     "explanation": "Vapid comes from the Latin 'vapidus' (flat, stale — like a drink that has lost its fizz) and means offering nothing of interest or substance: dull, flat, and unstimulating. The sentence provides two context clues: the word is a criticism, and the audience expected 'substantive' discussion, meaning they wanted depth and content. Vapid remarks are the opposite of substantive — they lack the intellectual life and solid ideas the audience hoped for. 'Lacking vitality and substance' names both dimensions of the word: the absence of energy (vitality) and the absence of meaningful content (substance). Controversial means causing strong disagreement, which requires the content to be provocative rather than empty. Overly detailed is also a different flaw — too much content, not too little. Sincere but poorly delivered addresses manner, not the emptiness of content that vapid specifically names.",
     "distractorExplanations": {
       "A": "Controversial means stirring strong disagreement. Vapid remarks would not spark controversy because they contain too little substance to provoke strong reactions of any kind.",
       "C": "Overly detailed and technical describes remarks that are dense with content — the opposite of vapid, which describes remarks hollow of content.",
-      "D": "Sincere but poorly delivered addresses the speaker's intention and manner, not the absence of substance that vapid names. One can be sincere and still say nothing of value."
+      "D": "Sincere but poorly delivered addresses the speaker's intention and manner, not the absence of substance that vapid names. One can be sincere and still say nothing of value.",
+      "E": "'Tediously repetitive' describes a speech that is boring through excessive repetition and length, which is a different flaw from vapidity; a vapid speech is empty of ideas, while a repetitive speech may actually be making points — just making them too many times; the two flaws can coexist but are distinct."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "VAPID = flat, like stale soda that has lost its fizz. Vapid conversation has no spark, no substance, no interesting ideas. Contrast: vivid (bright, full of life) vs. vapid (dull, flat, lifeless)."
     },
-    "tags": ["vocabulary", "context-clues", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "context-clues",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0155",
@@ -197,23 +340,44 @@
     "difficulty": "Medium",
     "question": "A good leader must be COGNIZANT of the numerous issues that affect the constituents she serves. COGNIZANT most nearly means:",
     "choices": [
-      { "id": "A", "text": "Dismissive" },
-      { "id": "B", "text": "Fearful" },
-      { "id": "C", "text": "Confused" },
-      { "id": "D", "text": "Aware and informed" }
+      {
+        "id": "A",
+        "text": "Aware and informed"
+      },
+      {
+        "id": "B",
+        "text": "Dismissive"
+      },
+      {
+        "id": "C",
+        "text": "Fearful"
+      },
+      {
+        "id": "D",
+        "text": "Confused"
+      },
+      {
+        "id": "E",
+        "text": "Knowledgeable and expert"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "Cognizant means having knowledge of or being consciously aware of something. It comes from the Latin 'cognoscere' (to know), the same root as 'recognize' and 'cognitive.' The sentence provides a clear functional context: a good leader must have this quality with respect to constituents' issues — matters requiring informed attention. 'Aware and informed' captures both dimensions: aware (consciously noticing) and informed (having actual knowledge about the issues). Dismissive means treating something as unworthy of consideration — the opposite disposition from what a good leader needs. Fearful describes an emotional state of alarm, not a cognitive state of knowing. Confused means lacking clarity or understanding, which is the direct opposite of the clear awareness cognizant requires.",
     "distractorExplanations": {
-      "A": "Dismissive means to treat something as not worth one's attention. A leader who is cognizant of issues is precisely the opposite — deeply attentive and informed about them.",
-      "B": "Fearful describes an emotional state of being afraid. Cognizant is a cognitive state of awareness, not an emotional one; the two are unrelated.",
-      "C": "Confused means lacking clarity or understanding. Cognizant means possessing clear understanding — the two are direct opposites."
+      "B": "Dismissive means to treat something as not worth one's attention. A leader who is cognizant of issues is precisely the opposite — deeply attentive and informed about them.",
+      "C": "Fearful describes an emotional state of being afraid. Cognizant is a cognitive state of awareness, not an emotional one; the two are unrelated.",
+      "D": "Confused means lacking clarity or understanding. Cognizant means possessing clear understanding — the two are direct opposites.",
+      "E": "'Knowledgeable and expert' describes someone with deep expertise in a field, which goes beyond what cognizant requires; cognizant means consciously aware of and informed about something — you can be cognizant of issues without being an expert on them, whereas expertise implies a level of mastery that awareness alone does not."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "COGNIZANT shares the root 'cognos' (to know) with recognize and cognitive — all involve knowing. Cognizant of X = having recognized and knowing about X. Used in formal language: 'cognizant of the risks,' 'cognizant of one's duties.'"
     },
-    "tags": ["vocabulary", "context-clues", "civic-context"]
+    "tags": [
+      "vocabulary",
+      "context-clues",
+      "civic-context"
+    ]
   },
   {
     "id": "verb-0156",
@@ -224,23 +388,43 @@
     "difficulty": "Easy",
     "question": "Diskettes and floppy drives have become OBSOLETE in most government offices, replaced by cloud storage and portable drives. OBSOLETE most nearly means:",
     "choices": [
-      { "id": "A", "text": "Expensive to maintain" },
-      { "id": "B", "text": "Recently upgraded" },
-      { "id": "C", "text": "No longer in use or useful" },
-      { "id": "D", "text": "Difficult to operate" }
+      {
+        "id": "A",
+        "text": "Expensive to maintain"
+      },
+      {
+        "id": "B",
+        "text": "Recently upgraded"
+      },
+      {
+        "id": "C",
+        "text": "No longer in use or useful"
+      },
+      {
+        "id": "D",
+        "text": "Difficult to operate"
+      },
+      {
+        "id": "E",
+        "text": "Broken beyond repair"
+      }
     ],
     "correctOptionId": "C",
     "explanation": "Obsolete means no longer produced, used, or needed — having been replaced by something newer or better. It comes from the Latin 'obsolescere' (to fall out of use). The sentence provides the definition in its own structure: diskettes have been 'replaced by' newer technologies, which is exactly what happens when something becomes obsolete — it gives way to a replacement and falls out of use. 'No longer in use or useful' captures both dimensions: the technology is not currently used (out of use) and has no practical application in current settings (no longer useful). Expensive to maintain describes a financial challenge, not a state of obsolescence — something can be costly and still be current. Recently upgraded is the direct antonym: upgrading makes something current, whereas obsolete means phased out. Difficult to operate describes usability, not currency.",
     "distractorExplanations": {
       "A": "Expensive to maintain describes cost, not currency or relevance. Technology can become obsolete before it becomes expensive, and expensive equipment is not automatically outdated.",
       "B": "Recently upgraded is the antonym — an upgrade makes something more current. Obsolete means the opposite: something that has fallen out of currency and been superseded.",
-      "D": "Difficult to operate describes ease of use. Obsolete technology may have been simple to operate; difficulty of use is not what defines obsolescence."
+      "D": "Difficult to operate describes ease of use. Obsolete technology may have been simple to operate; difficulty of use is not what defines obsolescence.",
+      "E": "Obsolete equipment often still works — obsolescence is about being superseded in usefulness, not physical failure."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "OBSOLETE comes from 'obsolescere' — to grow old and unused. If something is obsolete, it has been overtaken by a replacement and is no longer relevant. Synonym chain: outdated → outmoded → obsolete (strongest, implies full replacement)."
     },
-    "tags": ["vocabulary", "synonyms"]
+    "tags": [
+      "vocabulary",
+      "synonyms"
+    ]
   },
   {
     "id": "verb-0157",
@@ -251,23 +435,43 @@
     "difficulty": "Easy",
     "question": "The veteran clerk was known for being FRUGAL with office supplies, ordering only what was strictly necessary for each quarter. FRUGAL most nearly means:",
     "choices": [
-      { "id": "A", "text": "Economical and careful with resources" },
-      { "id": "B", "text": "Generous in distributing goods" },
-      { "id": "C", "text": "Wealthy and financially secure" },
-      { "id": "D", "text": "Selfish and unwilling to share" }
+      {
+        "id": "A",
+        "text": "Generous in distributing goods"
+      },
+      {
+        "id": "B",
+        "text": "Wealthy and financially secure"
+      },
+      {
+        "id": "C",
+        "text": "Selfish and unwilling to share"
+      },
+      {
+        "id": "D",
+        "text": "Miserly and grudging toward others"
+      },
+      {
+        "id": "E",
+        "text": "Economical and careful with resources"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Frugal means sparing or economical in the use of money or resources — avoiding waste by using only what is genuinely needed. The word carries a positive nuance: it is not miserliness but wise, deliberate economy. The sentence makes this clear: ordering 'only what was strictly necessary' is the behavior of someone who avoids waste without being stingy. 'Economical and careful with resources' names both the prudent use of what is available and the careful, attentive attitude behind it. Generous describes giving freely, the opposite disposition of frugal restraint. Wealthy describes financial status, not spending behavior — a frugal person may be of modest means. Selfish means withholding for one's own benefit, which confuses frugality with selfishness; a frugal person saves to avoid waste, not to deprive others.",
     "distractorExplanations": {
-      "B": "Generous means willing to give or share freely — the opposite disposition from frugal restraint. A frugal person uses just enough; a generous one gives beyond what is asked.",
-      "C": "Wealthy describes an abundance of financial resources. Frugal describes how one manages resources, not how much one possesses. A frugal person may have quite modest means.",
-      "D": "Selfish means prioritizing oneself at others' expense. Frugality is about avoiding waste through careful use, not about refusing to share. The two may sometimes look similar but name different motivations."
+      "A": "Generous means willing to give or share freely — the opposite disposition from frugal restraint. A frugal person uses just enough; a generous one gives beyond what is asked.",
+      "B": "Wealthy describes an abundance of financial resources. Frugal describes how one manages resources, not how much one possesses. A frugal person may have quite modest means.",
+      "C": "Selfish means prioritizing oneself at others' expense. Frugality is about avoiding waste through careful use, not about refusing to share. The two may sometimes look similar but name different motivations.",
+      "D": "Frugality is prudent management of resources; miserliness adds a grudging unwillingness to spend at all — a harsher trait than the sentence supports."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "FRUGAL comes from Latin 'frux' (produce of the earth). A frugal person gets full value from every resource, the way a careful farmer uses all of the harvest. Frugal is not cheap or selfish — it means wisely economical, using only what is needed."
     },
-    "tags": ["vocabulary", "synonyms"]
+    "tags": [
+      "vocabulary",
+      "synonyms"
+    ]
   },
   {
     "id": "verb-0158",
@@ -278,23 +482,44 @@
     "difficulty": "Medium",
     "question": "Global demand for freshwater will surely increase as industrial activity and agricultural production are _______ to serve the needs of the world's growing population.",
     "choices": [
-      { "id": "A", "text": "promoted" },
-      { "id": "B", "text": "intensified" },
-      { "id": "C", "text": "distributed" },
-      { "id": "D", "text": "endorsed" }
+      {
+        "id": "A",
+        "text": "promoted"
+      },
+      {
+        "id": "B",
+        "text": "intensified"
+      },
+      {
+        "id": "C",
+        "text": "distributed"
+      },
+      {
+        "id": "D",
+        "text": "endorsed"
+      },
+      {
+        "id": "E",
+        "text": "expanded"
+      }
     ],
     "correctOptionId": "B",
     "explanation": "The sentence argues from cause to effect: greater industrial and agricultural activity uses more freshwater, so global demand rises. The blank must describe what happens to that activity to drive the increase in demand. 'Intensified' means made more forceful, concentrated, or vigorous — it names the kind of scaling-up that genuinely strains freshwater supply. Promoted means backed or encouraged, which describes an attitude toward activity rather than a description of it becoming larger or more demanding. Distributed means spread out or shared, which says nothing about whether overall scale grows — redistributing the same activity would not necessarily increase freshwater use. Endorsed means given formal approval, similarly expressing advocacy rather than increased magnitude or intensity.",
     "distractorExplanations": {
       "A": "Promoted means advocated for or advanced. Whether industrial activity is promoted or not, the word does not name growth in scale that would cause freshwater demand to increase.",
       "C": "Distributed means spread across locations or people. Distribution of activity does not necessarily increase its total scale, and therefore does not necessarily increase freshwater demand.",
-      "D": "Endorsed means given formal approval or support. Endorsement expresses attitude, not an increase in the intensity or scale of activity that would drive demand upward."
+      "D": "Endorsed means given formal approval or support. Endorsement expresses attitude, not an increase in the intensity or scale of activity that would drive demand upward.",
+      "E": "'Expanded' means grown in scale or scope, which is related to intensified but describes a broadening of operations rather than their becoming more forceful or concentrated; intensified implies the same activities done with greater force or vigor, while expanded implies more of them — both could increase freshwater demand but in different ways."
     },
     "tip": {
       "label": "Exam Tip",
       "text": "In sentence completion, verify the causal logic. The blank must be a cause of the stated effect ('demand will increase'). Only a word that describes greater or more intense activity passes the cause-test. Words of advocacy (promote, endorse) describe attitude — they do not name a scale increase."
     },
-    "tags": ["sentence-completion", "vocabulary-in-context", "context-clues"]
+    "tags": [
+      "sentence-completion",
+      "vocabulary-in-context",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0159",
@@ -305,24 +530,45 @@
     "difficulty": "Medium",
     "question": "Which sentence correctly forms the comparative degree?",
     "choices": [
-      { "id": "A", "text": "Her brother, whom I met at the event, is more richer than you think." },
-      { "id": "B", "text": "Her brother, whom I met at the event, is much richer than you think." },
-      { "id": "C", "text": "Her brother, who I had met at the event, is richer than you think." },
-      { "id": "D", "text": "Her brother, who I met at the event, is more rich than you think." }
+      {
+        "id": "A",
+        "text": "Her brother, whom I met at the event, is more richer than you think."
+      },
+      {
+        "id": "B",
+        "text": "Her brother, whom I met at the event, is much richer than you think."
+      },
+      {
+        "id": "C",
+        "text": "Her brother, who I had met at the event, is richer than you think."
+      },
+      {
+        "id": "D",
+        "text": "Her brother, who I met at the event, is more rich than you think."
+      },
+      {
+        "id": "E",
+        "text": "Her brother, who I met at the event, is far richer than you think."
+      }
     ],
     "correctOptionId": "B",
     "explanation": "English forms the comparative of most one-syllable adjectives by adding -er: 'rich' becomes 'richer.' Using 'more' before an already-inflected comparative creates the double comparative error — 'more richer' is the same fault as 'more taller' or 'more bigger': two comparative markers where only one is permitted. Choice A commits this error. Choice B is correct: 'much richer' uses the intensifier 'much,' which is acceptable before a -er comparative, without doubling the comparison. Choice C is grammatically sound in its comparative ('richer than you think') but uses the subject-case pronoun 'who' where the object case 'whom' is required — the pronoun is the object of 'met' ('I met whom'), so 'whom' is needed. Choice D attempts 'more rich,' treating 'rich' as if it were multi-syllabic and requiring 'more'; one-syllable adjectives take the -er inflection, making 'richer' the correct form.",
     "distractorExplanations": {
       "A": "'More richer' is a double comparative — it applies both the inflectional -er suffix and the analytical 'more' to the same adjective. Only one comparative marker may be used: either 'richer' or 'more rich,' never both together.",
       "C": "'Who I had met' uses the subject-case pronoun 'who' in an object position. The relative pronoun is the object of the verb 'had met' (test: 'I had met him' → object = whom), so 'whom' is required.",
-      "D": "'More rich' treats 'rich' as a multi-syllable adjective requiring 'more.' Since 'rich' is one syllable, the standard form is the -er inflection: 'richer,' not 'more rich.'"
+      "D": "'More rich' treats 'rich' as a multi-syllable adjective requiring 'more.' Since 'rich' is one syllable, the standard form is the -er inflection: 'richer,' not 'more rich.'",
+      "E": "'Far richer' correctly uses the single comparative 'richer' with the intensifier 'far,' avoiding the double comparative error; however, 'who I met' uses subject-case 'who' where object-case 'whom' is required (the panel selected him — object position), so this option contains a pronoun case error that option B avoids."
     },
     "tip": {
       "label": "Grammar Rule",
       "text": "Double comparative = wrong. Use -er OR more, never both: 'richer' not 'more richer,' 'faster' not 'more faster.' One-syllable adjectives take -er; three-syllable adjectives take 'more.' When in doubt, use -er for short adjectives and 'more' for long ones — but never combine them."
     },
     "reference": "Double Comparatives: -er and 'more' cannot be combined on the same adjective",
-    "tags": ["grammar", "comparatives", "commonly-confused-words"]
+    "tags": [
+      "grammar",
+      "comparatives",
+      "commonly-confused-words"
+    ]
   },
   {
     "id": "verb-0160",
@@ -333,24 +579,46 @@
     "difficulty": "Hard",
     "question": "Which revision of the sentence below is the most grammatically correct?\n\nOriginal: \"Finishing reading the book, he felt as if he had traveled around the world.\"",
     "choices": [
-      { "id": "A", "text": "When he had finished reading the book, he felt as if he had traveled around the world." },
-      { "id": "B", "text": "When he finished reading the book, he had felt like he had traveled around the world." },
-      { "id": "C", "text": "After finishing the book, he felt like a person who traveled around the world." },
-      { "id": "D", "text": "Finishing reading the book, he felt as if he has traveled around the world." }
+      {
+        "id": "A",
+        "text": "When he had finished reading the book, he felt as if he had traveled around the world."
+      },
+      {
+        "id": "B",
+        "text": "When he finished reading the book, he had felt like he had traveled around the world."
+      },
+      {
+        "id": "C",
+        "text": "After finishing the book, he felt like a person who traveled around the world."
+      },
+      {
+        "id": "D",
+        "text": "Finishing reading the book, he felt as if he has traveled around the world."
+      },
+      {
+        "id": "E",
+        "text": "Having finished reading the book, he felt as if he had traveled around the world."
+      }
     ],
     "correctOptionId": "A",
     "explanation": "Two issues need correction in the original. First, the dangling participial phrase 'Finishing reading the book' implies the finishing and the feeling occurred simultaneously, but logically the reading must be completed before the feeling arises. A subordinate clause with 'when' and the past perfect ('when he had finished') makes the sequence explicit: the reading was completed before the feeling arose. Second, 'as if' correctly introduces a counterfactual and pairs with the past perfect 'had traveled' — he had not actually traveled, so the hypothetical past form is well suited. Choice A corrects both the sequencing and the counterfactual construction without altering the meaning. Choice B makes 'had felt' the past-perfect event, reversing the logical sequence: the feeling should follow the completion, not precede it. It also uses 'like' before a clause, which is informal in formal writing. Choice C changes 'as if he had traveled' to a simile ('like a person who traveled'), weakening the subjunctive nuance and subtly changing the meaning. Choice D keeps the dangling participial phrase and uses 'has traveled' (present perfect), which is inconsistent with the past-tense narration.",
     "distractorExplanations": {
       "B": "Making the feeling ('had felt') the past-perfect event and the completion ('finished') the simple past reverses the logical sequence. The feeling should follow the finishing, not precede it. 'Like' before a clause is also informal.",
       "C": "Replacing 'as if he had traveled' with 'like a person who traveled' drops the counterfactual ('as if') and reduces the statement to a simile. In formal writing, 'like' should not introduce a clause.",
-      "D": "Keeping 'Finishing reading the book' as a dangling participial phrase does not address the simultaneous-action problem. 'Has traveled' (present perfect) also clashes with the past-tense narration of the sentence."
+      "D": "Keeping 'Finishing reading the book' as a dangling participial phrase does not address the simultaneous-action problem. 'Has traveled' (present perfect) also clashes with the past-tense narration of the sentence.",
+      "E": "'Having finished' correctly establishes the prior completion, and 'as if he had traveled' correctly uses the counterfactual past perfect; while this revision repairs the dangling participial phrase from the original by correctly attaching it to 'he,' the subordinate clause version in option A is preferred in formal writing for its clarity of sequencing."
     },
     "tip": {
       "label": "Grammar Rule",
       "text": "When two past events are in sequence, use the past perfect for the earlier one: 'when he had finished… he felt.' 'As if + past perfect' signals a counterfactual — something that did not actually happen. Both corrections often appear together in error-correction items."
     },
     "reference": "Past Perfect Tense: sequencing past events and counterfactual 'as if' clauses",
-    "tags": ["grammar", "verb-tenses", "past-perfect", "dangling-modifiers"]
+    "tags": [
+      "grammar",
+      "verb-tenses",
+      "past-perfect",
+      "dangling-modifiers"
+    ]
   },
   {
     "id": "verb-0161",
@@ -361,24 +629,45 @@
     "difficulty": "Medium",
     "question": "Which part of the sentence contains an error?\n\n'Ever since he took over (A) as chief minister, the rate (B) of job creation (C) in the region (D) unemployment's has drastically declined.'",
     "choices": [
-      { "id": "A", "text": "as chief minister" },
-      { "id": "B", "text": "of job creation" },
-      { "id": "C", "text": "in the region" },
-      { "id": "D", "text": "unemployment's has drastically declined" }
+      {
+        "id": "A",
+        "text": "as chief minister"
+      },
+      {
+        "id": "B",
+        "text": "of job creation"
+      },
+      {
+        "id": "C",
+        "text": "in the region"
+      },
+      {
+        "id": "D",
+        "text": "unemployment's has drastically declined"
+      },
+      {
+        "id": "E",
+        "text": "in the region unemployment has"
+      }
     ],
     "correctOptionId": "D",
     "explanation": "The error is in part D. 'Unemployment's' uses the possessive apostrophe, but 'unemployment' is an abstract noun that cannot possess the rate or any other thing. When an abstract or inanimate noun describes another noun in English, the correct construction is either a noun modifier placed directly before the head noun (unemployment rate) or a prepositional phrase (rate of unemployment) — never a possessive. The possessive apostrophe is reserved for persons ('the director's report'), organizations ('the committee's decision'), and a small class of time expressions ('a day's work'), but not for abstract nouns like 'unemployment.' The corrected phrase would be 'the unemployment rate' or 'the rate of unemployment.' Parts A, B, and C are grammatically correct: 'as chief minister' is a standard prepositional phrase, 'of job creation' is a correct genitive phrase, and 'in the region' is a well-formed locative phrase.",
     "distractorExplanations": {
       "A": "'As chief minister' is a correct prepositional phrase identifying the role he assumed. No grammatical error exists in this part.",
       "B": "'Of job creation' is a correctly formed genitive prepositional phrase modifying 'rate.' Abstract nouns can appear after 'of' in this construction without error.",
-      "C": "'In the region' is a standard locative prepositional phrase and is grammatically correct in this context."
+      "C": "'In the region' is a standard locative prepositional phrase and is grammatically correct in this context.",
+      "E": "Splitting 'in the region' from 'unemployment rate has' this way does not represent a labeled part in the original sentence; the actual labeled part D is 'unemployment's has drastically declined,' where the possessive apostrophe on the abstract noun is the error."
     },
     "tip": {
       "label": "Common Mistake",
       "text": "Abstract nouns do not take possessives. Write 'unemployment rate' (noun modifier) or 'rate of unemployment' (prepositional phrase) — never 'unemployment's rate.' The possessive apostrophe belongs with people, organizations, and time expressions, not abstract concepts."
     },
     "reference": "Noun Modifier vs. Possessive: abstract nouns use noun modifier construction, not possessive apostrophe",
-    "tags": ["error-identification", "possessives", "noun-modifiers"]
+    "tags": [
+      "error-identification",
+      "possessives",
+      "noun-modifiers"
+    ]
   },
   {
     "id": "verb-0162",
@@ -389,24 +678,45 @@
     "difficulty": "Medium",
     "question": "Which part of the sentence contains an error?\n\n'The office director suggested (A) that all personnel attend (B) the mandatory seminar (C) on records management (D) scheduled next Friday.'",
     "choices": [
-      { "id": "A", "text": "that all personnel attend" },
-      { "id": "B", "text": "the mandatory seminar" },
-      { "id": "C", "text": "on records management" },
-      { "id": "D", "text": "scheduled next Friday" }
+      {
+        "id": "A",
+        "text": "the mandatory seminar"
+      },
+      {
+        "id": "B",
+        "text": "on records management"
+      },
+      {
+        "id": "C",
+        "text": "that all personnel attend"
+      },
+      {
+        "id": "D",
+        "text": "scheduled next Friday"
+      },
+      {
+        "id": "E",
+        "text": "the office director suggested"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "This sentence contains no error — all four labeled parts are grammatically correct. Part A, 'that all personnel attend,' correctly uses the mandative subjunctive: after the verb 'suggested,' English requires the base form of the verb in the that-clause for all subjects, including plural ones, so 'attend' (not 'attends') is correct. Part B, 'the mandatory seminar,' is a correctly formed noun phrase with an appropriate adjective. Part C, 'on records management,' is a standard prepositional phrase functioning as a postmodifier of 'seminar.' Part D, 'scheduled next Friday,' is a correctly formed participial phrase modifying 'seminar.' When no error exists, the answer in this format is part A — the convention for marking 'no error' in the labeled-segment format. A common trap is to misread 'attend' in part A as an error because it lacks -s after a plural subject, when in fact the mandative subjunctive after 'suggested' requires precisely that base form.",
     "distractorExplanations": {
-      "B": "'The mandatory seminar' is a correct noun phrase. 'Mandatory' is the appropriate adjective and 'seminar' the head noun; the article 'the' is correctly used for the specific seminar referred to.",
-      "C": "'On records management' is a correct prepositional phrase postmodifying 'seminar.' It specifies the subject matter of the seminar without introducing any grammatical error.",
-      "D": "'Scheduled next Friday' is a correctly formed participial phrase describing when the seminar is set to occur. It modifies 'seminar' and is grammatically well placed."
+      "A": "'The mandatory seminar' is a correct noun phrase. 'Mandatory' is the appropriate adjective and 'seminar' the head noun; the article 'the' is correctly used for the specific seminar referred to.",
+      "B": "'On records management' is a correct prepositional phrase postmodifying 'seminar.' It specifies the subject matter of the seminar without introducing any grammatical error.",
+      "D": "'Scheduled next Friday' is a correctly formed participial phrase describing when the seminar is set to occur. It modifies 'seminar' and is grammatically well placed.",
+      "E": "The label for part A is 'that all personnel attend,' not 'the office director suggested'; the main clause is grammatically correct, and the mandative subjunctive in the that-clause is also correct — there is no error in the sentence at all, and the answer marks 'that all personnel attend' as error-free."
     },
     "tip": {
       "label": "Exam Tip",
       "text": "Before marking an error, name the rule that would be violated. Part A uses the mandative subjunctive correctly — 'suggested that... attend' is standard formal English. If no part violates a named rule, the answer is 'no error' (part A in this format)."
     },
     "reference": "Mandative Subjunctive: base form required after 'suggest,' 'recommend,' and similar verbs",
-    "tags": ["error-identification", "subjunctive-mood", "no-error"]
+    "tags": [
+      "error-identification",
+      "subjunctive-mood",
+      "no-error"
+    ]
   },
   {
     "id": "verb-0163",
@@ -417,24 +727,45 @@
     "difficulty": "Medium",
     "question": "Which part of the sentence contains an error?\n\n'He is among the (A) few people (B) in the barangay (C) which did not (D) blindly follow the crowd.'",
     "choices": [
-      { "id": "A", "text": "few people" },
-      { "id": "B", "text": "in the barangay" },
-      { "id": "C", "text": "which did not" },
-      { "id": "D", "text": "blindly follow the crowd" }
+      {
+        "id": "A",
+        "text": "few people"
+      },
+      {
+        "id": "B",
+        "text": "which did not"
+      },
+      {
+        "id": "C",
+        "text": "in the barangay"
+      },
+      {
+        "id": "D",
+        "text": "blindly follow the crowd"
+      },
+      {
+        "id": "E",
+        "text": "few people in the barangay"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "The error is in part C. The relative pronoun 'which' introduces a clause that modifies 'people,' but 'people' is a human noun. In English, 'who' (subject case) or 'whom' (object case) is the correct relative pronoun for human referents; 'which' is reserved for things, animals, and non-personal entities. The correct sentence is '…few people in the barangay who did not blindly follow the crowd.' Part A ('few people') is a correct noun phrase. Part B ('in the barangay') is a correct prepositional phrase postmodifying 'people.' Part D ('blindly follow the crowd') is a correctly formed verb phrase, with 'blindly' appropriately modifying 'follow.'",
     "distractorExplanations": {
       "A": "'Few people' is a correct noun phrase using the determiner 'few' with the countable plural noun 'people.' No grammatical error exists here.",
-      "B": "'In the barangay' is a standard prepositional phrase narrowing the reference of 'few people' to those in a specific locality. It is grammatically correct.",
-      "D": "'Blindly follow the crowd' is a correctly structured verb phrase. The adverb 'blindly' modifies 'follow,' and 'follow the crowd' is a standard idiomatic expression used correctly."
+      "C": "'In the barangay' is a standard prepositional phrase narrowing the reference of 'few people' to those in a specific locality. It is grammatically correct.",
+      "D": "'Blindly follow the crowd' is a correctly structured verb phrase. The adverb 'blindly' modifies 'follow,' and 'follow the crowd' is a standard idiomatic expression used correctly.",
+      "E": "'Few people in the barangay' combines parts A and B into a single phrase; part A ('few people') and part B ('in the barangay') are each individually correct, and their combination is a well-formed noun phrase — the error is only in part C where 'which' wrongly refers to the human noun 'people.'"
     },
     "tip": {
       "label": "Grammar Rule",
       "text": "WHO/WHOM = for persons. WHICH = for things, animals, and non-personal entities. THAT = for both in restrictive clauses. Never use 'which' when the antecedent names a human being: 'the employees who filed' not 'the employees which filed.'"
     },
     "reference": "Who vs. Which: relative pronouns for human vs. non-human antecedents",
-    "tags": ["error-identification", "relative-pronouns", "who-which"]
+    "tags": [
+      "error-identification",
+      "relative-pronouns",
+      "who-which"
+    ]
   },
   {
     "id": "verb-0164",
@@ -445,24 +776,45 @@
     "difficulty": "Medium",
     "question": "Which sentence correctly places the sentence adverb to avoid ambiguity?",
     "choices": [
-      { "id": "A", "text": "Before any serious damage was done by the firemen, the fire was put out fortunately." },
-      { "id": "B", "text": "The fire was put out by the firemen, fortunately before any serious damage was done." },
-      { "id": "C", "text": "Fortunately the fire was put out, before any serious damage was done by the firemen." },
-      { "id": "D", "text": "Fortunately, the fire was put out by the firemen before any serious damage was done." }
+      {
+        "id": "A",
+        "text": "Before any serious damage was done by the firemen, the fire was put out fortunately."
+      },
+      {
+        "id": "B",
+        "text": "The fire was put out by the firemen, fortunately before any serious damage was done."
+      },
+      {
+        "id": "C",
+        "text": "Fortunately the fire was put out, before any serious damage was done by the firemen."
+      },
+      {
+        "id": "D",
+        "text": "Fortunately, the fire was put out by the firemen before any serious damage was done."
+      },
+      {
+        "id": "E",
+        "text": "The fire was fortunately put out before any serious damage was done by the firemen."
+      }
     ],
     "correctOptionId": "D",
     "explanation": "A sentence adverb like 'fortunately' expresses the speaker's attitude toward the entire proposition, not toward one part of it. Its standard placement is at the very beginning of the sentence, set off by a comma, where it unambiguously governs everything that follows. Choice D places 'fortunately' first with a comma, then states the full proposition cleanly: the fire was put out by the firemen before any serious damage was done. Choice A buries 'fortunately' at the end of the sentence, attaching the sentiment to the nearest clause rather than to the whole event. Choice B inserts 'fortunately' mid-sentence between the main clause and the time phrase, creating ambiguity about whether it applies to the putting-out or to the absence of damage. Choice C places 'fortunately' without the required follow-up comma, allowing it to merge with the subject rather than standing apart as a sentence-level comment; the comma after 'put out' then wrongly separates the main clause from its time adverbial.",
     "distractorExplanations": {
       "A": "Placing 'fortunately' at the end attaches the sentiment only to the clause immediately before it. The reader cannot clearly tell whether it applies to the extinguishing of the fire, to the timing, or to the whole event.",
       "B": "Mid-sentence placement creates ambiguity about the scope of 'fortunately.' Front placement with a comma removes that ambiguity by signaling that the adverb comments on the entire statement.",
-      "C": "Omitting the comma after 'fortunately' allows it to blend into the sentence instead of signaling a sentence-level comment. The misplaced comma after 'put out' then cuts the clause from its time modifier."
+      "C": "Omitting the comma after 'fortunately' allows it to blend into the sentence instead of signaling a sentence-level comment. The misplaced comma after 'put out' then cuts the clause from its time modifier.",
+      "E": "Placing 'fortunately' between the subject and the passive verb is an acceptable mid-sentence adverb placement in informal writing, but the standard formal practice for sentence adverbs on the CSE is front-position with a comma; option D's front placement makes it unambiguous that the adverb comments on the entire statement."
     },
     "tip": {
       "label": "Grammar Rule",
       "text": "Sentence adverbs (fortunately, unfortunately, clearly, obviously, surprisingly) belong at the front of the sentence, followed by a comma. This position makes it unambiguous that the adverb comments on the whole statement, not just on the nearest word or phrase."
     },
     "reference": "Sentence Adverb Placement: front position with comma for unambiguous scope",
-    "tags": ["grammar", "adverb-placement", "sentence-adverbs"]
+    "tags": [
+      "grammar",
+      "adverb-placement",
+      "sentence-adverbs"
+    ]
   },
   {
     "id": "verb-0165",
@@ -473,23 +825,44 @@
     "difficulty": "Medium",
     "question": "Choose the sentence that uses 'imply' and 'infer' correctly.",
     "choices": [
-      { "id": "A", "text": "The supervisor inferred, by her tone, that more funding would not be approved." },
-      { "id": "B", "text": "Her tone implied that more funding would not be approved, and the team inferred as much from her words." },
-      { "id": "C", "text": "The team implied from her tone that more funding would not be approved." },
-      { "id": "D", "text": "The supervisor inferred by her tone that additional budget was possible." }
+      {
+        "id": "A",
+        "text": "The supervisor inferred, by her tone, that more funding would not be approved."
+      },
+      {
+        "id": "B",
+        "text": "Her tone implied that more funding would not be approved, and the team inferred as much from her words."
+      },
+      {
+        "id": "C",
+        "text": "The team implied from her tone that more funding would not be approved."
+      },
+      {
+        "id": "D",
+        "text": "The supervisor inferred by her tone that additional budget was possible."
+      },
+      {
+        "id": "E",
+        "text": "The team could infer from her tone that more funding would not be approved."
+      }
     ],
     "correctOptionId": "B",
     "explanation": "Imply and infer describe opposite directions of communication. The speaker or sender implies — she embeds a meaning in her words without stating it directly. The listener or receiver infers — she draws a meaning out from what she hears or reads. In choice B, the supervisor's tone is the source of the implicit message, so 'implied' correctly describes what the tone does (tone is the sender of the hidden message). The team are the receivers who draw meaning from what they hear, so 'inferred' correctly describes their act (they draw the conclusion out). Both words are used with the correct agent. Choice A has the supervisor 'inferred by her tone,' making the supervisor simultaneously the sender and receiver of her own message — a speaker cannot infer from herself. Choice C has the team 'implied,' but the team are listeners; listeners infer, they do not imply. Choice D repeats the agent reversal of A and adds an inconsistency in content.",
     "distractorExplanations": {
       "A": "The supervisor's tone implies — the supervisor does not infer from her own tone. Implication is sent by the communicator; inference is made by the listener. A speaker cannot logically infer from herself.",
       "C": "The team are listeners, so they infer. Implication is the act of the communicator who embeds the hidden meaning; the audience receives and infers it. Saying the team 'implied' reverses the roles.",
-      "D": "Again the supervisor is the subject of 'inferred,' reversing the communication direction. Additionally, if the tone implied no new funding, it cannot simultaneously suggest additional budget is possible — the meaning contradicts itself."
+      "D": "Again the supervisor is the subject of 'inferred,' reversing the communication direction. Additionally, if the tone implied no new funding, it cannot simultaneously suggest additional budget is possible — the meaning contradicts itself.",
+      "E": "'Could infer' uses the modal 'could' rather than the simple past 'inferred,' which changes the meaning to potential rather than actual inference; the sentence in option B describes what actually happened — the team did infer — whereas 'could infer' describes what was possible, creating a different factual claim."
     },
     "tip": {
       "label": "Common Mistake",
       "text": "IMPLY = the speaker hides a meaning in words (outbound signal). INFER = the listener draws out that meaning (inbound interpretation). Memory: IMPLY goes out from the speaker; INFER comes in to the listener. You imply; I infer."
     },
     "reference": "Commonly Confused Words: imply (speaker embeds meaning) vs. infer (listener draws meaning)",
-    "tags": ["grammar", "commonly-confused-words", "diction"]
+    "tags": [
+      "grammar",
+      "commonly-confused-words",
+      "diction"
+    ]
   }
 ]

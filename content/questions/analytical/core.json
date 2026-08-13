@@ -14,18 +14,22 @@
       },
       {
         "id": "B",
-        "text": "Score"
-      },
-      {
-        "id": "C",
         "text": "Instrument"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "Melody"
+      },
+      {
+        "id": "D",
+        "text": "Score"
+      },
+      {
+        "id": "E",
+        "text": "Symphony"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "D",
     "explanation": "An architect's defining professional output is the blueprint — a written, structured plan of what will be built. A composer's defining professional output is the score — a written musical notation that specifies every note and rhythm for performers. Both pairs follow the pattern CREATOR : WRITTEN PLAN THEY PRODUCE, not the performance or building itself.",
     "steps": [
       "Step 1: Identify the relationship — ARCHITECT produces a BLUEPRINT as a written plan before the work is executed.",
@@ -34,8 +38,9 @@
     ],
     "distractorExplanations": {
       "A": "A concert is the live performance event, not something the composer produces independently — it is the execution, not the plan.",
-      "C": "An instrument is a tool used to perform music, not something a composer creates as their professional output.",
-      "D": "A melody is one element within a composition; it is not the formal written document that represents the composer's complete work."
+      "B": "An instrument is a tool used to perform music, not something a composer creates as their professional output.",
+      "C": "A melody is one element within a composition; it is not the formal written document that represents the composer's complete work.",
+      "E": "Confuses the creator's written product (score=notation) with a genre/form of music (symphony) — wrong relationship type"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -71,6 +76,10 @@
       {
         "id": "D",
         "text": "Storm"
+      },
+      {
+        "id": "E",
+        "text": "Disease"
       }
     ],
     "correctOptionId": "A",
@@ -83,7 +92,8 @@
     "distractorExplanations": {
       "B": "Rain is what a drought lacks and can precede a flood, but it is a cause or precondition — not a consequence of flooding.",
       "C": "A river may overflow during a flood, but a river is part of the flood mechanism, not the resulting human crisis.",
-      "D": "A storm can accompany or trigger flooding, but it is a parallel weather event, not a consequence that flooding causes."
+      "D": "A storm can accompany or trigger flooding, but it is a parallel weather event, not a consequence that flooding causes.",
+      "E": "Selects a secondary downstream consequence of flooding rather than the primary direct cause-effect (displacement)"
     },
     "tip": {
       "label": "Common Mistake",
@@ -119,6 +129,10 @@
       {
         "id": "D",
         "text": "Bold"
+      },
+      {
+        "id": "E",
+        "text": "Loud"
       }
     ],
     "correctOptionId": "D",
@@ -131,7 +145,8 @@
     "distractorExplanations": {
       "A": "Careful suggests caution and thoughtfulness, which is related to being timid but is not its direct antonym — a careful person can be bold.",
       "B": "Nervous is closer in meaning to timid (both involve anxiety), not an antonym.",
-      "C": "Quiet refers to noise level or speech volume, not to courage or assertiveness — it does not contrast with timid."
+      "C": "Quiet refers to noise level or speech volume, not to courage or assertiveness — it does not contrast with timid.",
+      "E": "Antonym of the distractor 'Quiet' in the set, not the true antonym of 'Timid' — wrong reference word"
     },
     "tip": {
       "label": "Exam Tip",
@@ -154,22 +169,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "Judge"
-      },
-      {
-        "id": "B",
         "text": "Courtroom"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "Verdict"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "Lawyer"
+      },
+      {
+        "id": "D",
+        "text": "Bailiff"
+      },
+      {
+        "id": "E",
+        "text": "Judge"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "A scalpel is the distinctive instrument that identifies and enables a surgeon's professional function — without it, surgery cannot be performed. A gavel is the distinctive instrument that identifies and enables a judge's professional function — the judge strikes it to signal authority, start and end sessions, and maintain order. The pattern is TOOL : PROFESSIONAL WHO USES IT as their defining instrument, not merely someone who works in the same domain.",
     "steps": [
       "Step 1: Determine the relationship — a SCALPEL is the signature tool of a SURGEON.",
@@ -177,9 +196,10 @@
       "Step 3: A JUDGE uses a gavel to exercise authority in court — not a lawyer, who argues cases, or the courtroom itself, which is a place."
     ],
     "distractorExplanations": {
-      "B": "A courtroom is the venue where a gavel is used, not the person who uses it — this confuses place with professional.",
-      "C": "A verdict is the outcome of a trial, not the person associated with the gavel.",
-      "D": "A lawyer works in court but does not use a gavel — only the judge wields this instrument."
+      "A": "A courtroom is the venue where a gavel is used, not the person who uses it — this confuses place with professional.",
+      "B": "A verdict is the outcome of a trial, not the person associated with the gavel.",
+      "C": "A lawyer works in court but does not use a gavel — only the judge wields this instrument.",
+      "D": "Names another courtroom official rather than the specific tool-user of the gavel (the judge)"
     },
     "tip": {
       "label": "Logic Rule",
@@ -202,22 +222,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "Story"
+        "text": "Book"
       },
       {
         "id": "B",
-        "text": "Author"
+        "text": "Story"
       },
       {
         "id": "C",
-        "text": "Book"
+        "text": "Author"
       },
       {
         "id": "D",
         "text": "Paragraph"
+      },
+      {
+        "id": "E",
+        "text": "Library"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "A petal is one structural component that, combined with others, makes up a whole flower. A chapter is one structural component that, combined with others, makes up a whole book. Both pairs follow the part-to-whole relationship. Story is tempting because it suggests narrative, but a chapter belongs to a book (the physical/structural whole) rather than a story (an abstract narrative). Paragraph is the smaller unit inside a chapter, reversing the direction.",
     "steps": [
       "Step 1: PETAL is a PART; FLOWER is the WHOLE that contains it.",
@@ -225,9 +249,10 @@
       "Step 3: A BOOK is made up of chapters, matching the same part-to-whole structure."
     ],
     "distractorExplanations": {
-      "A": "A story is a narrative concept, not the physical structure that contains chapters — a story can be told across multiple books.",
-      "B": "An author creates a book but is not the whole that a chapter belongs to.",
-      "D": "A paragraph is a smaller unit inside a chapter — this reverses the relationship, making chapter the whole and paragraph the part."
+      "B": "A story is a narrative concept, not the physical structure that contains chapters — a story can be told across multiple books.",
+      "C": "An author creates a book but is not the whole that a chapter belongs to.",
+      "D": "A paragraph is a smaller unit inside a chapter — this reverses the relationship, making chapter the whole and paragraph the part.",
+      "E": "Confuses the whole a chapter belongs to (Book) with an institution that stores books (Library)"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -263,6 +288,10 @@
       {
         "id": "D",
         "text": "Satisfied"
+      },
+      {
+        "id": "E",
+        "text": "Joyful"
       }
     ],
     "correctOptionId": "A",
@@ -275,7 +304,8 @@
     "distractorExplanations": {
       "B": "Happy is in the same moderate range as content — it does not represent the extreme intensification the pattern demands.",
       "C": "Calm describes emotional stability or lack of disturbance, not an intensified form of contentment.",
-      "D": "Satisfied overlaps closely with content and represents roughly the same mild level, not the heightened extreme."
+      "D": "Satisfied overlaps closely with content and represents roughly the same mild level, not the heightened extreme.",
+      "E": "Synonymous with the mid-intensity distractor 'Happy' rather than representing the extreme degree required by the analogy"
     },
     "tip": {
       "label": "Degree of Intensity",
@@ -302,18 +332,22 @@
       },
       {
         "id": "B",
-        "text": "Thread"
-      },
-      {
-        "id": "C",
         "text": "Cloth"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "Loom"
+      },
+      {
+        "id": "D",
+        "text": "Textile"
+      },
+      {
+        "id": "E",
+        "text": "Thread"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "A potter's raw material — the primary substance they shape and transform — is clay. A weaver's raw material is thread, which they interlace to create woven fabric. Both pairs express CRAFTSPERSON : RAW MATERIAL THEY TRANSFORM. Cloth is the finished product (not raw material). A loom is the tool the weaver uses (not the material). A needle is a sewing tool, not a weaving raw material.",
     "steps": [
       "Step 1: POTTER works with CLAY as the primary raw substance they transform through their craft.",
@@ -322,8 +356,9 @@
     ],
     "distractorExplanations": {
       "A": "A needle is used in sewing, not weaving — and even if it were, it would be a tool, not a raw material.",
-      "C": "Cloth is the finished product that results from weaving — placing the end product where the raw material should go reverses the relationship.",
-      "D": "A loom is the tool or equipment used for weaving — the pattern asks for the raw material, not the instrument."
+      "B": "Cloth is the finished product that results from weaving — placing the end product where the raw material should go reverses the relationship.",
+      "C": "A loom is the tool or equipment used for weaving — the pattern asks for the raw material, not the instrument.",
+      "D": "Names the finished product category (woven cloth/textile) rather than the raw material a weaver starts with"
     },
     "tip": {
       "label": "Common Mistake",
@@ -354,14 +389,18 @@
       },
       {
         "id": "C",
-        "text": "Sincere"
+        "text": "Critical"
       },
       {
         "id": "D",
-        "text": "Critical"
+        "text": "Independent"
+      },
+      {
+        "id": "E",
+        "text": "Sincere"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "Mendacious means habitually dishonest or lying; its antonym is truthful — marked by honest, accurate expression. Sycophantic means excessively praising others in a calculated, insincere way to gain favor. Its antonym is sincere — expressing genuine, authentic feelings rather than calculated flattery. The common axis is authenticity: mendacious/sycophantic describe inauthentic behavior; truthful/sincere describe authentic behavior. Critical describes one who finds fault and is unrelated to the authenticity axis.",
     "steps": [
       "Step 1: MENDACIOUS = habitually dishonest → TRUTHFUL = honest; antonyms on the axis of authenticity in speech.",
@@ -371,7 +410,8 @@
     "distractorExplanations": {
       "A": "Flattering is essentially what sycophantic behavior does — it is not an antonym but a near-synonym.",
       "B": "Obsequious means servile or fawning, which is a synonym or close relative of sycophantic, not its opposite.",
-      "D": "Critical means finding faults, which is opposite in tone to flattery, but the specific antonym axis here is sincerity versus insincerity — not praise versus criticism."
+      "C": "Critical means finding faults, which is opposite in tone to flattery, but the specific antonym axis here is sincerity versus insincerity — not praise versus criticism.",
+      "D": "Related to self-sufficiency rather than the direct antonym of 'sycophantic' (excessively fawning/flattering)"
     },
     "tip": {
       "label": "Exam Tip",
@@ -403,14 +443,18 @@
       },
       {
         "id": "C",
-        "text": "Vocabulary"
+        "text": "Dictionary"
       },
       {
         "id": "D",
-        "text": "Dictionary"
+        "text": "Vocabulary"
+      },
+      {
+        "id": "E",
+        "text": "Thesaurus"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "explanation": "A cartographer is a specialist who creates maps as their primary professional output — the map is the tangible reference document produced by their expertise. A lexicographer is a specialist who creates dictionaries — compiling, defining, and organizing word entries into a reference volume. Both pairs share the pattern SPECIALIST : THE SPECIFIC REFERENCE DOCUMENT THEY PRODUCE. Grammar, language, and vocabulary are concepts a lexicographer studies or documents, not the product they produce.",
     "steps": [
       "Step 1: CARTOGRAPHER → creates a MAP as their reference output.",
@@ -420,7 +464,8 @@
     "distractorExplanations": {
       "A": "Grammar is a system of linguistic rules — a separate discipline studied by grammarians, not the output of a lexicographer.",
       "B": "Language is the broad subject of study, not the specific product a lexicographer produces.",
-      "C": "Vocabulary is the collection of words in a language — it is the subject matter, not the document produced."
+      "D": "Vocabulary is the collection of words in a language — it is the subject matter, not the document produced.",
+      "E": "A different reference work compiled by a synonymy specialist, not the definitional dictionary a lexicographer produces"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -444,22 +489,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "Torrent"
-      },
-      {
-        "id": "B",
         "text": "Stream"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "Drop"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "Puddle"
+      },
+      {
+        "id": "D",
+        "text": "Flood"
+      },
+      {
+        "id": "E",
+        "text": "Torrent"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "A whisper is an extremely small, low-intensity output of sound; a shout is its extreme, high-intensity counterpart. A trickle is an extremely small, minimal flow of liquid; a torrent is its extreme, high-intensity counterpart — a violent, overwhelming rush of water. Both pairs move from the minimal extreme to the maximum extreme of the same phenomenon. A stream is a moderate flow, not the extreme. A drop is smaller than a trickle, not its intensified opposite. A puddle is a static collection, not a flow.",
     "steps": [
       "Step 1: WHISPER (minimal sound intensity) → SHOUT (maximum sound intensity): the pattern is MINIMUM to MAXIMUM.",
@@ -467,9 +516,10 @@
       "Step 3: TORRENT is a violent, overwhelming rush of water — the extreme maximum of liquid flow, matching the pattern."
     ],
     "distractorExplanations": {
-      "B": "A stream is a moderate flow — significant but not at the extreme maximum the pattern requires.",
-      "C": "A drop is even smaller than a trickle, making it a lesser degree in the same direction rather than the intensified opposite.",
-      "D": "A puddle is a small, static body of water — it is not a flow and does not represent intensity of movement at all."
+      "A": "A stream is a moderate flow — significant but not at the extreme maximum the pattern requires.",
+      "B": "A drop is even smaller than a trickle, making it a lesser degree in the same direction rather than the intensified opposite.",
+      "C": "A puddle is a small, static body of water — it is not a flow and does not represent intensity of movement at all.",
+      "D": "Describes a broad inundation event rather than the high-intensity concentrated flow that mirrors the WHISPER:SHOUT intensity pair"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -492,22 +542,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "Ramon passed the board examination."
-      },
-      {
-        "id": "B",
         "text": "Ramon is the best engineer."
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "All engineers are like Ramon."
+      },
+      {
+        "id": "C",
+        "text": "Ramon passed the board examination."
       },
       {
         "id": "D",
         "text": "Ramon did not need to take the board examination."
+      },
+      {
+        "id": "E",
+        "text": "Ramon was among the first to pass the board examination."
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "This is a classic deductive syllogism in the form: All A are B; Ramon is A; therefore Ramon is B. 'All licensed engineers passed the board examination' establishes a universal rule covering every member of the set. 'Ramon is a licensed engineer' places Ramon inside that set. Therefore, the rule must apply to Ramon — he passed the board exam. This is a necessary (100% certain) conclusion, not merely a probable one.",
     "steps": [
       "Step 1: Major premise — All licensed engineers (set A) passed the board exam (property B).",
@@ -515,9 +569,10 @@
       "Step 3: Apply the universal rule to the individual: Ramon must also have property B → Ramon passed the board examination."
     ],
     "distractorExplanations": {
-      "B": "Being 'the best engineer' is a comparative judgment not supported by any premise — the argument says nothing about rankings.",
-      "C": "A universal claim about 'all engineers' being like Ramon reverses the logical direction and introduces a comparison not in the premises.",
-      "D": "The premises clearly state the board examination is the qualifying requirement — concluding Ramon avoided it directly contradicts the premises."
+      "A": "Being 'the best engineer' is a comparative judgment not supported by any premise — the argument says nothing about rankings.",
+      "B": "A universal claim about 'all engineers' being like Ramon reverses the logical direction and introduces a comparison not in the premises.",
+      "D": "The premises clearly state the board examination is the qualifying requirement — concluding Ramon avoided it directly contradicts the premises.",
+      "E": "Overreaches the universal: premises state he passed, not the order or timing of his passing"
     },
     "tip": {
       "label": "Logic Rule",
@@ -541,22 +596,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "Elena earns exactly the minimum wage."
+        "text": "Elena does not earn less than the minimum wage."
       },
       {
         "id": "B",
-        "text": "Elena is the highest-paid civil servant."
+        "text": "Elena earns exactly the minimum wage."
       },
       {
         "id": "C",
-        "text": "All civil servants earn the same wage."
+        "text": "Elena is the highest-paid civil servant."
       },
       {
         "id": "D",
-        "text": "Elena does not earn less than the minimum wage."
+        "text": "All civil servants earn the same wage."
+      },
+      {
+        "id": "E",
+        "text": "Elena earns more than the minimum wage."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "The universal negative statement 'No civil servant earns less than the minimum wage' means every single civil servant earns at minimum wage or above. Elena is a civil servant, so the rule applies to her: Elena does not earn less than the minimum wage. Notice that this does not tell us her exact wage — she could earn exactly the minimum or more than it. Choices A, B, and C all make additional claims (exact amount, highest paid, uniformity) that go beyond what the premises guarantee.",
     "steps": [
       "Step 1: 'No civil servant earns less than minimum wage' → For ALL civil servants: wage ≥ minimum wage.",
@@ -564,9 +623,10 @@
       "Step 3: Apply the rule to Elena: Elena's wage ≥ minimum wage → Elena does NOT earn less than minimum wage."
     ],
     "distractorExplanations": {
-      "A": "The rule says Elena earns AT LEAST minimum wage — it could be more. 'Exactly the minimum' is too specific and unwarranted.",
-      "B": "Nothing in the premises ranks civil servants' wages against each other — we cannot conclude Elena is the highest paid.",
-      "C": "The premises set a floor (minimum wage), not a ceiling or requirement for uniformity — civil servants can earn different amounts above the minimum."
+      "B": "The rule says Elena earns AT LEAST minimum wage — it could be more. 'Exactly the minimum' is too specific and unwarranted.",
+      "C": "Nothing in the premises ranks civil servants' wages against each other — we cannot conclude Elena is the highest paid.",
+      "D": "The premises set a floor (minimum wage), not a ceiling or requirement for uniformity — civil servants can earn different amounts above the minimum.",
+      "E": "Overreaches: premises only guarantee Elena does not earn LESS than minimum, not that she earns MORE"
     },
     "tip": {
       "label": "Logic Rule",
@@ -603,6 +663,10 @@
       {
         "id": "D",
         "text": "No senator is a professor."
+      },
+      {
+        "id": "E",
+        "text": "Some senators are professors."
       }
     ],
     "correctOptionId": "B",
@@ -615,7 +679,8 @@
     "distractorExplanations": {
       "A": "The senators-professors overlap is not established — 'some lawyers are professors' might be entirely outside the senator subset of lawyers.",
       "C": "This reverses 'some lawyers are professors' into 'all professors are senators,' which is an invalid conversion — the 'some' cannot be universalized or reversed this way.",
-      "D": "We cannot conclude no senator is a professor either — there could be overlap; we simply do not know."
+      "D": "We cannot conclude no senator is a professor either — there could be overlap; we simply do not know.",
+      "E": "Undistributed middle: the professor subset of lawyers need not overlap with the senator subset of lawyers"
     },
     "tip": {
       "label": "Logic Rule",
@@ -652,6 +717,10 @@
       {
         "id": "D",
         "text": "It may or may not have rained."
+      },
+      {
+        "id": "E",
+        "text": "The flood was certainly caused by rain."
       }
     ],
     "correctOptionId": "D",
@@ -664,7 +733,8 @@
     "distractorExplanations": {
       "A": "Concluding 'It rained' commits the fallacy of affirming the consequent — rain is one possible cause, not the only one.",
       "B": "Concluding 'It did not rain' ignores that rain is still a valid cause of the observed flood.",
-      "C": "Future rain predictions are entirely beyond the scope of the given premises."
+      "C": "Future rain predictions are entirely beyond the scope of the given premises.",
+      "E": "Commits affirming-the-consequent fallacy: the flooded street has other possible causes beyond rain"
     },
     "tip": {
       "label": "Logic Rule",
@@ -688,22 +758,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "Rodrigo is not a member of the audit team."
-      },
-      {
-        "id": "B",
         "text": "Rodrigo is dishonest."
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "All gift-takers are not in the audit team."
+      },
+      {
+        "id": "C",
+        "text": "Rodrigo is not a member of the audit team."
       },
       {
         "id": "D",
         "text": "Some audit team members accept gifts."
+      },
+      {
+        "id": "E",
+        "text": "Rodrigo was removed from the audit team."
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "The universal negative 'No audit team members accept gifts' means membership in the audit team and accepting gifts are mutually exclusive. Rodrigo accepts gifts — he belongs to the gift-accepting group. Since no audit team member belongs to that group, Rodrigo cannot be on the audit team. This is a valid modus tollens inference: All audit team members ∉ gift-takers; Rodrigo ∈ gift-takers; therefore Rodrigo ∉ audit team.",
     "steps": [
       "Step 1: 'No audit team members accept gifts' → audit team ∩ gift-acceptors = empty set.",
@@ -711,9 +785,10 @@
       "Step 3: Since the intersection is empty and Rodrigo is in gift-acceptors, Rodrigo cannot be in the audit team."
     ],
     "distractorExplanations": {
-      "B": "Dishonesty is a moral judgment not asserted by the premises — accepting a gift does not logically guarantee dishonesty in the argument's terms.",
-      "C": "This is actually equivalent to the first premise restated — it is redundant, not a new conclusion that must follow from the combination.",
-      "D": "This directly contradicts the first premise, which says NO audit team members accept gifts."
+      "A": "Dishonesty is a moral judgment not asserted by the premises — accepting a gift does not logically guarantee dishonesty in the argument's terms.",
+      "B": "This is actually equivalent to the first premise restated — it is redundant, not a new conclusion that must follow from the combination.",
+      "D": "This directly contradicts the first premise, which says NO audit team members accept gifts.",
+      "E": "Introduces unjustified history: premises only allow concluding he is not a member, not that he was ever on the team"
     },
     "tip": {
       "label": "Logic Rule",
@@ -745,14 +820,18 @@
       },
       {
         "id": "C",
-        "text": "All honest officials are promoted."
+        "text": "Some officials who disclose assets are not promoted."
       },
       {
         "id": "D",
-        "text": "Some officials who disclose assets are not promoted."
+        "text": "All honest officials are promoted."
+      },
+      {
+        "id": "E",
+        "text": "No honest official is promoted."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "explanation": "Premise 2 says some disclosers are investigated. Premise 3 says no investigated official is promoted — therefore those investigated disclosers are not promoted. Combining: some officials who disclose assets (the investigated ones) are not promoted. This is the only conclusion that can be drawn with certainty. We cannot conclude all honest officials are investigated because Premise 2 only guarantees SOME disclosers are investigated, and not all honest officials may be among those. Note: the chain honest→disclose and some disclosers are investigated does not guarantee any honest official is investigated.",
     "steps": [
       "Step 1: All honest officials → disclose assets (honest ⊆ disclosers).",
@@ -763,7 +842,8 @@
     "distractorExplanations": {
       "A": "Only SOME disclosers are investigated — not all. Since honest officials are a subset of disclosers, we cannot guarantee any honest official falls into the investigated group.",
       "B": "This contradicts Premise 1 directly, which states all honest officials DO disclose assets.",
-      "C": "We established some disclosers are not promoted; we cannot claim all honest officials are promoted without knowing they avoid the investigated group."
+      "D": "We established some disclosers are not promoted; we cannot claim all honest officials are promoted without knowing they avoid the investigated group.",
+      "E": "Overreaches: only the investigated subset is barred from promotion; not all honest officials are shown to be investigated"
     },
     "tip": {
       "label": "Exam Tip",
@@ -791,18 +871,22 @@
       },
       {
         "id": "B",
-        "text": "The project will be cancelled."
+        "text": "The timeline was not extended."
       },
       {
         "id": "C",
-        "text": "The timeline was not extended."
+        "text": "The project will be cancelled."
       },
       {
         "id": "D",
         "text": "The budget and timeline are both on track."
+      },
+      {
+        "id": "E",
+        "text": "The timeline will need to be extended in the future."
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "The premise uses an exclusive disjunction (XOR): exactly one of the two conditions is true — over budget OR timeline extended, but not both. Given that 'the project is over budget' is true, the exclusive 'not both' clause means the timeline was NOT extended. This is a direct application of the exclusive-or rule: if P is true in a P XOR Q statement, then Q must be false.",
     "steps": [
       "Step 1: Exclusive disjunction: P XOR Q — exactly one of {over budget, timeline extended} is true.",
@@ -811,8 +895,9 @@
     ],
     "distractorExplanations": {
       "A": "If the timeline were also extended, BOTH would be true — this violates the 'not both' clause of the exclusive disjunction.",
-      "B": "Project cancellation is never mentioned in the premises — it is an invented consequence.",
-      "D": "We know the project IS over budget, so concluding everything is 'on track' directly contradicts a stated premise."
+      "C": "Project cancellation is never mentioned in the premises — it is an invented consequence.",
+      "D": "We know the project IS over budget, so concluding everything is 'on track' directly contradicts a stated premise.",
+      "E": "Confuses the current logical state (timeline not extended) with an unsupported future prediction outside the exclusive disjunction"
     },
     "tip": {
       "label": "Logic Rule",
@@ -836,11 +921,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "Felix is a probationary employee."
+        "text": "Felix is a career employee."
       },
       {
         "id": "B",
-        "text": "Felix is a career employee."
+        "text": "Felix is a probationary employee."
       },
       {
         "id": "C",
@@ -849,9 +934,13 @@
       {
         "id": "D",
         "text": "Felix may be either career or probationary."
+      },
+      {
+        "id": "E",
+        "text": "Felix is eligible to apply for career status but has not yet been formally classified."
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Felix has served exactly five years. Premise 2 states no probationary employee has served five years or more — therefore Felix cannot be probationary. Premise 1 states all career employees have served at least five years — Felix has served exactly five years, which satisfies 'at least five years.' The question is whether serving five years is sufficient to be career. Since probationary is ruled out by Premise 2 and the only other category is career, Felix must be a career employee. The logic eliminates all other possibilities.",
     "steps": [
       "Step 1: Felix served exactly 5 years. Test probationary: 'No probationary employee served ≥5 years' → Felix's 5 years disqualifies him from probationary.",
@@ -859,9 +948,10 @@
       "Step 3: Verify: career employees have served ≥5 years; Felix served exactly 5 → he meets the career criterion. Consistent."
     ],
     "distractorExplanations": {
-      "A": "Probationary employees have served LESS than five years — Felix's five years directly disqualifies him from this category.",
+      "B": "Probationary employees have served LESS than five years — Felix's five years directly disqualifies him from this category.",
       "C": "Felix is explicitly stated to have served exactly five years — this directly contradicts the given fact.",
-      "D": "The disjunction is resolved: probationary is eliminated by Premise 2, so Felix must be career — there is no remaining ambiguity."
+      "D": "The disjunction is resolved: probationary is eliminated by Premise 2, so Felix must be career — there is no remaining ambiguity.",
+      "E": "Invents a reclassification process: the premises directly entail Felix IS a career employee by the stated definitions"
     },
     "tip": {
       "label": "Logic Rule",
@@ -899,6 +989,10 @@
       {
         "id": "D",
         "text": "Ora"
+      },
+      {
+        "id": "E",
+        "text": "Nora or Lani (indeterminate)"
       }
     ],
     "correctOptionId": "C",
@@ -912,7 +1006,8 @@
     "distractorExplanations": {
       "A": "Lani is explicitly stated to finish last (4th), not third.",
       "B": "Mira is 2nd in the chain Ora→Mira→Nora, not 3rd.",
-      "D": "Ora leads the chain, placing her 1st, not 3rd."
+      "D": "Ora leads the chain, placing her 1st, not 3rd.",
+      "E": "Incorrectly treats positions 3 and 4 as unresolvable; the constraints fully determine Nora in 3rd and Lani in 4th"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -949,10 +1044,14 @@
       },
       {
         "id": "D",
+        "text": "Cannot be determined from the given constraints"
+      },
+      {
+        "id": "E",
         "text": "E"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Four of the five positions can be filled directly: D=1st (given), B is immediately before C and C=3rd so B=2nd, C=3rd (given), A=5th (last). The only position remaining is 4th, which must be assigned to the only unplaced applicant: E. The full order is D, B, C, E, A.",
     "steps": [
       "Step 1: D=1st and C=3rd are given directly.",
@@ -963,7 +1062,8 @@
     "distractorExplanations": {
       "A": "A is last (5th), not 4th — the clue 'A is interviewed last' is explicit.",
       "B": "B is immediately before C (3rd), placing B in 2nd position, not 4th.",
-      "C": "D is given as first, not fourth."
+      "C": "D is given as first, not fourth.",
+      "D": "The clues fully fix the order as D-B-C-E-A, uniquely placing E in the fourth interview slot"
     },
     "tip": {
       "label": "Exam Tip",
@@ -1001,6 +1101,10 @@
       {
         "id": "D",
         "text": "A"
+      },
+      {
+        "id": "E",
+        "text": "C"
       }
     ],
     "correctOptionId": "A",
@@ -1015,7 +1119,8 @@
     "distractorExplanations": {
       "B": "B ends up in seat 5 (the rightmost seat), not seat 3, in the only valid arrangement.",
       "C": "D occupies seat 2, not seat 3, in order to create a valid D–E consecutive pair that also keeps B non-adjacent to D.",
-      "D": "A occupies seat 4 as the left member of the A–B pair, not seat 3."
+      "D": "A occupies seat 4 as the left member of the A–B pair, not seat 3.",
+      "E": "Assigns C to seat 3 when C is fixed to seat 1 by the first constraint; seat 3 belongs to E"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -1040,22 +1145,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "P"
-      },
-      {
-        "id": "B",
         "text": "Q"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "S"
+      },
+      {
+        "id": "C",
+        "text": "P"
       },
       {
         "id": "D",
         "text": "T"
+      },
+      {
+        "id": "E",
+        "text": "U"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "Four positions are fixed by direct clues: R=1st, U=2nd, T=3rd, Q=6th. That leaves P and S to fill ranks 4th and 5th. The clue 'S is ranked immediately below P' means S's rank number = P's rank number + 1. In the remaining slots (4 and 5), the only way to satisfy this is P=4th and S=5th. This also confirms that P(4th) ranks higher than Q(6th), satisfying the remaining constraint.",
     "steps": [
       "Step 1: Direct placements: R=1, U=2, T=3, Q=6.",
@@ -1064,9 +1173,10 @@
       "Step 4: Check: P(4th) > Q(6th) in rank order ✓. Full ranking: R, U, T, P, S, Q."
     ],
     "distractorExplanations": {
-      "B": "Q is explicitly stated to be last (6th rank), not 4th.",
-      "C": "S must be immediately below P — if S were 4th, P would have to be 3rd, but T is already 3rd. S is 5th.",
-      "D": "T is explicitly stated to be 3rd, not 4th."
+      "A": "Q is explicitly stated to be last (6th rank), not 4th.",
+      "B": "S must be immediately below P — if S were 4th, P would have to be 3rd, but T is already 3rd. S is 5th.",
+      "D": "T is explicitly stated to be 3rd, not 4th.",
+      "E": "Places U in 4th despite U being explicitly assigned 2nd place by the given ranking constraints"
     },
     "tip": {
       "label": "Exam Tip",
@@ -1090,11 +1200,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "W"
+        "text": "X"
       },
       {
         "id": "B",
-        "text": "X"
+        "text": "W"
       },
       {
         "id": "C",
@@ -1103,9 +1213,13 @@
       {
         "id": "D",
         "text": "Z"
+      },
+      {
+        "id": "E",
+        "text": "W or Z (indeterminate)"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Fix W at any position (say, clockwise position 1 — North). Since X is immediately to the right of W in clockwise order, X is at position 2 (East). Since Z is directly across from W, Z is at position 3 (South). Y fills the remaining position 4 (West). The clockwise sequence is W→X→Z→Y. The seat immediately to the LEFT of Z is the seat you reach by going counter-clockwise from Z — one step counter-clockwise from Z (South) is X (East). Therefore X sits to the immediate left of Z.",
     "steps": [
       "Step 1: Fix W at position 1 (North). X is immediately right of W in clockwise → X=2 (East).",
@@ -1114,9 +1228,10 @@
       "Step 4: 'Immediate left of Z' means counter-clockwise from Z: one step counter-clockwise from position 3 is position 2 = X."
     ],
     "distractorExplanations": {
-      "A": "W is directly across from Z (opposite side of the table), not to Z's immediate left.",
+      "B": "W is directly across from Z (opposite side of the table), not to Z's immediate left.",
       "C": "Y is to the immediate RIGHT of Z in counter-clockwise order (or left in clockwise) — wait, Y is at position 4 (West). One step counter-clockwise from Z(South) goes to X(East), not Y(West). Y is to Z's immediate right (clockwise direction) — not left.",
-      "D": "Z cannot be to their own left — a person occupies a single seat."
+      "D": "Z cannot be to their own left — a person occupies a single seat.",
+      "E": "Confuses the two fixed opposite pairs: W-Z are across from each other and X-Y are across from each other; X is uniquely across from Y"
     },
     "tip": {
       "label": "Common Mistake",
@@ -1141,11 +1256,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "Red"
+        "text": "Yellow"
       },
       {
         "id": "B",
-        "text": "Yellow"
+        "text": "Red"
       },
       {
         "id": "C",
@@ -1154,9 +1269,13 @@
       {
         "id": "D",
         "text": "Green"
+      },
+      {
+        "id": "E",
+        "text": "Blue"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Blue=5 (bottom) and Green=4 (directly above Blue) are anchored. Positions 1–3 contain Red, Yellow, and White. Red cannot be position 1 (not at top) or position 5 (not at bottom — already taken by Blue), so Red is at position 2 or 3. White must be below Yellow (White has a higher position number than Yellow). If Yellow=1 and White=2, Red takes position 3 — Red is neither top nor bottom ✓. This satisfies all constraints. Yellow is at the top.",
     "steps": [
       "Step 1: Blue=5, Green=4 (directly above Blue).",
@@ -1166,9 +1285,10 @@
       "Step 5: Try Yellow=1: White must be at 2 or 3. Place White=2, Red=3 → satisfies all. Yellow is at position 1 (top)."
     ],
     "distractorExplanations": {
-      "A": "Red is explicitly prohibited from the top position — 'Red is neither at the top nor at the bottom' rules out position 1.",
+      "B": "Red is explicitly prohibited from the top position — 'Red is neither at the top nor at the bottom' rules out position 1.",
       "C": "White must be below Yellow (higher position number than Yellow), so White cannot be at position 1 (top) if Yellow is anywhere below it.",
-      "D": "Green is fixed at position 4, directly above Blue at position 5 — Green is near the bottom, not the top."
+      "D": "Green is fixed at position 4, directly above Blue at position 5 — Green is near the bottom, not the top.",
+      "E": "Assigns Blue to the top position when Blue is explicitly placed at the bottom (position 5) by the first constraint"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -1193,11 +1313,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "Anna"
+        "text": "Beth"
       },
       {
         "id": "B",
-        "text": "Beth"
+        "text": "Anna"
       },
       {
         "id": "C",
@@ -1206,9 +1326,13 @@
       {
         "id": "D",
         "text": "Dan"
+      },
+      {
+        "id": "E",
+        "text": "Eve"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Anna is anchored at seat 1. Dan cannot be in seat 2 (adjacent to Anna) and Eve must be immediately right of Dan, so Dan–Eve is a consecutive pair starting at seat 3 or later. If Dan=3, Eve=4, then Chris–Beth pair must fill seats 2 and {5} — but Chris–Beth needs consecutive seats and positions 2 and 5 are not consecutive. If Dan=4 and Eve=5, then seats 2 and 3 remain for Chris and Beth. Chris–Beth requires Chris immediately left of Beth → Chris=2, Beth=3. Check: Dan(4) and Anna(1) — |4−1|=3, not adjacent ✓. Full arrangement: Anna(1), Chris(2), Beth(3), Dan(4), Eve(5).",
     "steps": [
       "Step 1: Anna=1 (anchor). Dan ≠ seat 2 (not adjacent to Anna in seat 1).",
@@ -1218,9 +1342,10 @@
       "Step 5: Verify non-adjacency: |Dan(4)−Anna(1)|=3 > 1 ✓. Seat 3 = Beth."
     ],
     "distractorExplanations": {
-      "A": "Anna is in seat 1, not seat 3.",
+      "B": "Anna is in seat 1, not seat 3.",
       "C": "Chris is in seat 2 (immediately left of Beth in seat 3) — Chris is not in the middle.",
-      "D": "Dan is in seat 4, to the right of the middle, not in seat 3."
+      "D": "Dan is in seat 4, to the right of the middle, not in seat 3.",
+      "E": "Assigns Eve to seat 3 when Eve is fixed in seat 5 by the immediacy constraint (Eve immediately right of Dan)"
     },
     "tip": {
       "label": "Logic Rule",
@@ -1258,6 +1383,10 @@
       {
         "id": "D",
         "text": "Position 5"
+      },
+      {
+        "id": "E",
+        "text": "Position 1"
       }
     ],
     "correctOptionId": "C",
@@ -1272,7 +1401,8 @@
     "distractorExplanations": {
       "A": "Position 2 is occupied by Math — if English were in position 2, there would be no room for Math, which must start the M–S consecutive pair.",
       "B": "Position 3 is occupied by Science (immediately right of Math at position 2) in the valid arrangement.",
-      "D": "Position 5 is fixed as Art — English cannot go there."
+      "D": "Position 5 is fixed as Art — English cannot go there.",
+      "E": "Places English first when History is fixed in position 1; English must occupy position 4 given the math-science adjacency and non-adjacency constraints"
     },
     "tip": {
       "label": "Exam Tip",
@@ -1309,6 +1439,10 @@
       {
         "id": "D",
         "text": "Students who do not study daily always fail."
+      },
+      {
+        "id": "E",
+        "text": "Daily study is the only factor that affects examination performance."
       }
     ],
     "correctOptionId": "C",
@@ -1321,7 +1455,8 @@
     "distractorExplanations": {
       "A": "The statement is about the subset who DO study daily — it makes no claim that all students follow this practice.",
       "B": "The statement uses exams as one benchmark, not as the exclusive measure — this is an over-extension not assumed.",
-      "D": "'Always fail' is an absolute claim about non-daily studiers that goes far beyond what the statement implies — the statement merely says daily studiers perform better, not that others always fail."
+      "D": "'Always fail' is an absolute claim about non-daily studiers that goes far beyond what the statement implies — the statement merely says daily studiers perform better, not that others always fail.",
+      "E": "Overreaches: the statement assumes regular study helps performance, not that it is the exclusive factor"
     },
     "tip": {
       "label": "Logic Rule",
@@ -1346,22 +1481,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "Monday"
+        "text": "Thursday"
       },
       {
         "id": "B",
-        "text": "Tuesday"
+        "text": "Monday"
       },
       {
         "id": "C",
-        "text": "Thursday"
+        "text": "Tuesday"
       },
       {
         "id": "D",
         "text": "Friday"
+      },
+      {
+        "id": "E",
+        "text": "Wednesday"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "P3=Wednesday and P4=Friday are fixed. The remaining days are Monday, Tuesday, and Thursday, which must accommodate P1, P2, and P5. P2 cannot be Monday or Friday; Friday is P4 and Monday is still available but prohibited for P2 — so P2 is on Tuesday or Thursday. P5 and P1 must be consecutive days (P1 immediately after P5). Among Monday, Tuesday, Thursday, the only consecutive day pair is Monday–Tuesday. Therefore P5=Monday and P1=Tuesday. This leaves Thursday for P2. Full schedule: P5(Mon), P1(Tue), P3(Wed), P2(Thu), P4(Fri).",
     "steps": [
       "Step 1: P3=Wednesday, P4=Friday (anchors).",
@@ -1371,9 +1510,10 @@
       "Step 5: Thursday is the only day left → P2=Thursday."
     ],
     "distractorExplanations": {
-      "A": "Monday is explicitly prohibited for P2, and it is also taken by P5 in the only valid schedule.",
-      "B": "Tuesday is taken by P1 (which must immediately follow P5 on Monday) — P2 cannot be Tuesday.",
-      "D": "Friday is explicitly prohibited for P2, and it is taken by P4."
+      "B": "Monday is explicitly prohibited for P2, and it is also taken by P5 in the only valid schedule.",
+      "C": "Tuesday is taken by P1 (which must immediately follow P5 on Monday) — P2 cannot be Tuesday.",
+      "D": "Friday is explicitly prohibited for P2, and it is taken by P4.",
+      "E": "Assigns P2 to Wednesday when P3 is fixed on Wednesday; P2 is excluded from Monday and Friday, leaving Thursday"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -1402,18 +1542,22 @@
       },
       {
         "id": "B",
-        "text": "Ben"
+        "text": "Diana"
       },
       {
         "id": "C",
-        "text": "Carl"
+        "text": "Ben"
       },
       {
         "id": "D",
-        "text": "Diana"
+        "text": "Carl"
+      },
+      {
+        "id": "E",
+        "text": "The finishing order cannot be uniquely determined from the given constraints."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "B",
     "explanation": "Carl=4th (last) is the anchor. The chain 'Diana before Alma, Alma before Ben' means Diana→Alma→Ben must fill positions 1, 2, 3 in that relative order. Ben cannot be 2nd, so Ben is not in position 2 — he must be in position 3. Alma is in position 2, and Diana is in position 1. The full order is Diana(1st), Alma(2nd), Ben(3rd), Carl(4th). Diana finishes first.",
     "steps": [
       "Step 1: Carl=4th (given last). Positions 1–3 for Diana, Alma, Ben.",
@@ -1423,8 +1567,9 @@
     ],
     "distractorExplanations": {
       "A": "Alma is between Diana and Ben — Alma must finish after Diana, so Alma cannot be first.",
-      "B": "Ben finishes after both Diana and Alma — Ben cannot finish first.",
-      "C": "Carl finishes last (4th), not first."
+      "C": "Ben finishes after both Diana and Alma — Ben cannot finish first.",
+      "D": "Carl finishes last (4th), not first.",
+      "E": "Misread as ambiguous when constraints (Diana<Alma<Ben, Carl=last, Ben≠2nd) fully determine Diana in 1st place"
     },
     "tip": {
       "label": "Exam Tip",
@@ -1461,6 +1606,10 @@
       {
         "id": "D",
         "text": "Renewable energy can reduce dependence on imported fuel."
+      },
+      {
+        "id": "E",
+        "text": "The government currently has no existing investment in renewable energy."
       }
     ],
     "correctOptionId": "D",
@@ -1473,7 +1622,8 @@
     "distractorExplanations": {
       "A": "If renewable energy is more expensive, it could still reduce import dependence — cost is irrelevant to the assumed causal mechanism. Also, assuming higher cost would undermine (not support) the recommendation.",
       "B": "'Imported fuel will never run out' is an assumption that would weaken the urgency of the recommendation, not support it.",
-      "C": "Universal citizen support is not assumed — the government can act regardless of unanimous public opinion."
+      "C": "Universal citizen support is not assumed — the government can act regardless of unanimous public opinion.",
+      "E": "Introduces an unstated baseline; the argument only requires that renewable energy can reduce dependence, not the current investment level"
     },
     "tip": {
       "label": "Logic Rule",
@@ -1510,6 +1660,10 @@
       {
         "id": "D",
         "text": "Banning private vehicles during peak hours will reduce congestion in the central business district."
+      },
+      {
+        "id": "E",
+        "text": "The entire increase in congestion is attributable solely to private vehicles."
       }
     ],
     "correctOptionId": "D",
@@ -1522,7 +1676,8 @@
     "distractorExplanations": {
       "A": "Whether all or only some residents own vehicles does not determine whether a ban would reduce congestion — the percentage of vehicle owners is not the key assumption.",
       "B": "If data were fabricated, the argument would collapse entirely — but the argument itself relies on the data being valid, so it assumes the opposite of B.",
-      "C": "The argument does not require public transit to be nonexistent — it only requires that removing private vehicles from the CBD during peak hours reduces congestion."
+      "C": "The argument does not require public transit to be nonexistent — it only requires that removing private vehicles from the CBD during peak hours reduces congestion.",
+      "E": "Overreaches: the argument needs only that the ban will reduce congestion, not that private vehicles are the exclusive cause"
     },
     "tip": {
       "label": "Exam Tip",
@@ -1559,6 +1714,10 @@
       {
         "id": "D",
         "text": "Marisol will be interviewed next time."
+      },
+      {
+        "id": "E",
+        "text": "Marisol was present at the written test but chose to withdraw before completing it."
       }
     ],
     "correctOptionId": "A",
@@ -1571,7 +1730,8 @@
     "distractorExplanations": {
       "B": "The universal rule guarantees that ALL test-passers are interviewed — there is no exception for being 'skipped.' If Marisol passed, she would have been interviewed.",
       "C": "No information challenges the reliability of the test — this conclusion is entirely unsupported.",
-      "D": "Future interviews are beyond the scope of the premises — no conclusion about future events is warranted."
+      "D": "Future interviews are beyond the scope of the premises — no conclusion about future events is warranted.",
+      "E": "Invents a withdrawal scenario not supported by premises; the only valid contrapositive conclusion is she did not pass"
     },
     "tip": {
       "label": "Logic Rule",
@@ -1608,6 +1768,10 @@
       {
         "id": "D",
         "text": "Equal access to justice means all citizens receive the same legal outcome."
+      },
+      {
+        "id": "E",
+        "text": "Free legal aid is the only means by which equal access to justice can be achieved."
       }
     ],
     "correctOptionId": "B",
@@ -1620,7 +1784,8 @@
     "distractorExplanations": {
       "A": "The statement is about access to justice, not about guilt or crime rates — assuming low-income citizens commit more crimes is both unsupported and irrelevant.",
       "C": "Lawyer competence is a quality concern not assumed or addressed in the statement — the statement focuses on access, not service quality.",
-      "D": "'Same legal outcome' is not what 'equal access to justice' means — equal access means equal opportunity to use the legal system, not identical results."
+      "D": "'Same legal outcome' is not what 'equal access to justice' means — equal access means equal opportunity to use the legal system, not identical results.",
+      "E": "Overreaches: the argument assumes legal aid ensures equal access, not that it is the exclusive pathway to achieve it"
     },
     "tip": {
       "label": "Logic Rule",
@@ -1648,18 +1813,22 @@
       },
       {
         "id": "B",
-        "text": "Morale decreased."
-      },
-      {
-        "id": "C",
         "text": "Employee performance will recover."
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "Workload will increase next month."
+      },
+      {
+        "id": "D",
+        "text": "The cause of the performance drop cannot be determined with certainty."
+      },
+      {
+        "id": "E",
+        "text": "Morale decreased."
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "Premise 1: Performance drop → (workload increased OR morale decreased). Premise 3 gives us the antecedent: performance dropped. Applying modus ponens: workload increased OR morale decreased must be true. Premise 2 says workload did NOT increase. With one disjunct false, the other must be true (disjunctive syllogism): morale decreased. This is the only conclusion that follows with logical necessity from the three premises combined.",
     "steps": [
       "Step 1: Premise 3 + Premise 1 (modus ponens): performance dropped → workload increased OR morale decreased.",
@@ -1669,8 +1838,9 @@
     ],
     "distractorExplanations": {
       "A": "Workload did NOT increase (Premise 2 — directly stated) — concluding it did contradicts a given premise.",
-      "C": "Recovery of performance is not addressed in any premise — no future predictions can be derived from these statements.",
-      "D": "Future workload changes are entirely outside the scope of the given premises."
+      "B": "Recovery of performance is not addressed in any premise — no future predictions can be derived from these statements.",
+      "C": "Future workload changes are entirely outside the scope of the given premises.",
+      "D": "Misapplies disjunctive syllogism: eliminating 'workload increased' from the either/or validly and certainly concludes 'morale decreased'"
     },
     "tip": {
       "label": "Logic Rule",
@@ -1707,6 +1877,10 @@
       {
         "id": "D",
         "text": "100"
+      },
+      {
+        "id": "E",
+        "text": "144"
       }
     ],
     "correctOptionId": "C",
@@ -1719,7 +1893,8 @@
     "distractorExplanations": {
       "A": "72 would result from adding 24 to 48 — this applies an arithmetic step, not the geometric ratio of ×2.",
       "B": "84 has no relationship to any pattern in this sequence.",
-      "D": "100 is a round number but has no mathematical connection to the doubling pattern."
+      "D": "100 is a round number but has no mathematical connection to the doubling pattern.",
+      "E": "Misapplied ratio ×3 instead of ×2: 48×3=144 (multiplicative error)"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -1754,6 +1929,10 @@
       },
       {
         "id": "D",
+        "text": "38"
+      },
+      {
+        "id": "E",
         "text": "49"
       }
     ],
@@ -1767,7 +1946,8 @@
     "distractorExplanations": {
       "A": "30 is not a perfect square — the difference from 25 would be 5, but differences in this sequence increase by 2 each time (3,5,7,9,11).",
       "B": "34 is not a perfect square and does not fit the pattern.",
-      "D": "49 = 7² — this skips the 6th term entirely and would be the 7th term, not the next one."
+      "D": "Off-by-one in the difference sequence: added 13 instead of 11 (wrong step in the odd-number gap pattern)",
+      "E": "49 = 7² — this skips the 6th term entirely and would be the 7th term, not the next one."
     },
     "tip": {
       "label": "Remember",
@@ -1790,22 +1970,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "37"
-      },
-      {
-        "id": "B",
         "text": "33"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "35"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "39"
+      },
+      {
+        "id": "D",
+        "text": "38"
+      },
+      {
+        "id": "E",
+        "text": "37"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "The first-order differences between consecutive terms are: 5−2=3, 10−5=5, 17−10=7, 26−17=9 — these are consecutive odd numbers increasing by 2 each time. The next difference is 11, giving 26+11=37. Alternatively, each term equals n²+1 for position n: 1²+1=2, 2²+1=5, 3²+1=10, 4²+1=17, 5²+1=26, 6²+1=37. Both methods confirm the answer is 37.",
     "steps": [
       "Step 1: Find first-order differences: 5−2=3, 10−5=5, 17−10=7, 26−17=9.",
@@ -1815,9 +1999,10 @@
       "Step 5: Verify with formula n²+1: 6²+1 = 36+1 = 37 ✓"
     ],
     "distractorExplanations": {
-      "B": "33 results from adding 7 (the difference before the last) instead of the next difference of 11.",
-      "C": "35 results from adding 9 (the previous difference) instead of extending to 11.",
-      "D": "39 results from adding 13 (skipping one step in the odd-number sequence)."
+      "A": "33 results from adding 7 (the difference before the last) instead of the next difference of 11.",
+      "B": "35 results from adding 9 (the previous difference) instead of extending to 11.",
+      "C": "39 results from adding 13 (skipping one step in the odd-number sequence).",
+      "D": "Incremented the second difference by 3 instead of 2, producing a gap of 12 instead of the correct 11"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -1845,18 +2030,22 @@
       },
       {
         "id": "B",
-        "text": "U"
-      },
-      {
-        "id": "C",
         "text": "T"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "V"
+      },
+      {
+        "id": "D",
+        "text": "U"
+      },
+      {
+        "id": "E",
+        "text": "W"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "D",
     "explanation": "Converting to alphabet positions: A=1, C=3, F=6, J=10, O=15. The gaps between consecutive terms are: 3−1=2, 6−3=3, 10−6=4, 15−10=5 — increasing by 1 each step. The next gap is 6, giving position 15+6=21. The 21st letter of the alphabet is U.",
     "steps": [
       "Step 1: Assign alphabet positions: A=1, C=3, F=6, J=10, O=15.",
@@ -1866,8 +2055,9 @@
     ],
     "distractorExplanations": {
       "A": "S is the 19th letter — this would require a gap of +4 from O, but the pattern requires a gap of +6.",
-      "C": "T is the 20th letter — a gap of +5, but we have already used +5 (from J to O) and the next must be +6.",
-      "D": "V is the 22nd letter — a gap of +7, which is one step too far ahead in the pattern."
+      "B": "T is the 20th letter — a gap of +5, but we have already used +5 (from J to O) and the next must be +6.",
+      "C": "V is the 22nd letter — a gap of +7, which is one step too far ahead in the pattern.",
+      "E": "Used a doubling-gap error: assumed the gap pattern doubles (×2) rather than increases by 1, jumping 8 places from O instead of 6"
     },
     "tip": {
       "label": "Exam Tip",
@@ -1891,22 +2081,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "20"
+        "text": "25"
       },
       {
         "id": "B",
-        "text": "30"
+        "text": "20"
       },
       {
         "id": "C",
-        "text": "35"
+        "text": "30"
       },
       {
         "id": "D",
-        "text": "25"
+        "text": "35"
+      },
+      {
+        "id": "E",
+        "text": "28"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "The first-order differences are: 95−100=−5, 85−95=−10, 70−85=−15, 50−70=−20. These are negative multiples of 5 that increase in magnitude by 5 each step (−5, −10, −15, −20). The next difference is −25. Therefore: 50+(−25)=25.",
     "steps": [
       "Step 1: Compute differences: −5, −10, −15, −20.",
@@ -1915,9 +2109,10 @@
       "Step 4: Next term = 50 − 25 = 25."
     ],
     "distractorExplanations": {
-      "A": "20 would result from subtracting 30 (not 25) — one step too far in the magnitude increase.",
-      "B": "30 results from subtracting 20 again (repeating the last difference instead of increasing it).",
-      "C": "35 would require subtracting only 15 — a smaller magnitude than −20, going in the wrong direction."
+      "B": "20 would result from subtracting 30 (not 25) — one step too far in the magnitude increase.",
+      "C": "30 results from subtracting 20 again (repeating the last difference instead of increasing it).",
+      "D": "35 would require subtracting only 15 — a smaller magnitude than −20, going in the wrong direction.",
+      "E": "Incremented the subtracted gap by 2 instead of 5, using −22 instead of the correct −25"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -1949,14 +2144,18 @@
       },
       {
         "id": "C",
-        "text": "F"
+        "text": "D"
       },
       {
         "id": "D",
-        "text": "D"
+        "text": "H"
+      },
+      {
+        "id": "E",
+        "text": "F"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "Converting to alphabet positions: Z=26, X=24, U=21, Q=17, L=12. The gaps are: 24−26=−2, 21−24=−3, 17−21=−4, 12−17=−5. These are consecutive negative integers decreasing by 1 in magnitude (−2, −3, −4, −5). The next gap is −6: 12+(−6)=6. The 6th letter is F.",
     "steps": [
       "Step 1: Alphabet positions: Z=26, X=24, U=21, Q=17, L=12.",
@@ -1967,7 +2166,8 @@
     "distractorExplanations": {
       "A": "G is the 7th letter — that would require a gap of −5 (repeating the last gap instead of decreasing by 1 more).",
       "B": "E is the 5th letter — this requires a gap of −7, which skips one step in the pattern.",
-      "D": "D is the 4th letter — this requires a gap of −8, skipping two steps in the pattern."
+      "C": "D is the 4th letter — this requires a gap of −8, skipping two steps in the pattern.",
+      "D": "Decremented gap by 3 steps instead of 1, using a gap of −4 rather than the correct next gap of −6"
     },
     "tip": {
       "label": "Exam Tip",
@@ -1999,14 +2199,18 @@
       },
       {
         "id": "C",
-        "text": "191"
+        "text": "190"
       },
       {
         "id": "D",
+        "text": "191"
+      },
+      {
+        "id": "E",
         "text": "201"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "Each term is generated by the rule: multiply by 2, then add 1. Starting from 5: 5×2+1=11, 11×2+1=23, 23×2+1=47, 47×2+1=95, 95×2+1=191. This hybrid pattern combines a geometric factor (×2) with an arithmetic addition (+1), making it trickier than a pure geometric or arithmetic sequence. Recognizing the ×2+1 rule is the key insight.",
     "steps": [
       "Step 1: Compute differences: 11−5=6, 23−11=12, 47−23=24, 95−47=48. Differences double each time.",
@@ -2017,7 +2221,8 @@
     "distractorExplanations": {
       "A": "143 results from adding 48 again (the same last difference) instead of doubling it to 96.",
       "B": "181 does not correspond to any consistent application of the pattern.",
-      "D": "201 results from doubling and adding a slightly different constant — not the correct +1."
+      "C": "Multiplied by 2 correctly (95×2=190) but omitted the mandatory +1 addend in the rule",
+      "E": "201 results from doubling and adding a slightly different constant — not the correct +1."
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -2053,6 +2258,10 @@
       {
         "id": "D",
         "text": "All licensed eligibility holders are certified project managers."
+      },
+      {
+        "id": "E",
+        "text": "All certified project managers are licensed civil service eligibility holders."
       }
     ],
     "correctOptionId": "B",
@@ -2066,7 +2275,8 @@
     "distractorExplanations": {
       "A": "Premise 2 says SOME DC are CPM — it does not say all CPM are DC. The subset could go either way.",
       "C": "Premise 2 directly states some DC ARE CPM — this directly contradicts 'no CPM is a DC.'",
-      "D": "The premises say all DC are EH, not that all EH are CPM. This reversal is an invalid conversion."
+      "D": "The premises say all DC are EH, not that all EH are CPM. This reversal is an invalid conversion.",
+      "E": "Extends the 'some' quantifier to 'all' — only the subset of PMs who are division chiefs is guaranteed to hold the eligibility"
     },
     "tip": {
       "label": "Logic Rule",
@@ -2089,22 +2299,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "Only Assumption I is implicit"
-      },
-      {
-        "id": "B",
         "text": "Only Assumption II is implicit"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "Both Assumption I and II are implicit"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "Neither Assumption I nor II is implicit"
+      },
+      {
+        "id": "D",
+        "text": "Only Assumption II is implicit, and Assumption I is already stated in the argument's conclusion."
+      },
+      {
+        "id": "E",
+        "text": "Only Assumption I is implicit"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Assumption I is implicit because the statement proposes flexible hours to both alleviate burnout AND increase output. The link between these two goals requires the unstated belief that burnout is currently suppressing output — otherwise, curing burnout would have nothing to do with increasing output. Assumption II claims all government offices nationwide will adopt the policy, but the statement only concerns this specific agency. A policy decision by one agency does not assume or require national adoption, making Assumption II an over-extension and not an implicit assumption of this statement.",
     "steps": [
       "Step 1: Test Assumption I — does the statement require 'burnout reduces output' to be valid? Yes: the solution (flexible hours) targets both burnout AND output; connecting them requires assuming burnout hurts output.",
@@ -2112,9 +2326,10 @@
       "Step 3: Only Assumption I is implicitly needed for the statement to be coherent."
     ],
     "distractorExplanations": {
-      "B": "Assumption II is not implicit — nationwide adoption is not required by a single agency's policy decision.",
-      "C": "Including Assumption II is an over-extension — it reads more into the scope of the statement than is present.",
-      "D": "Assumption I is clearly implicit — without it, the connection between reducing burnout and increasing output is unexplained."
+      "A": "Assumption II is not implicit — nationwide adoption is not required by a single agency's policy decision.",
+      "B": "Including Assumption II is an over-extension — it reads more into the scope of the statement than is present.",
+      "C": "Assumption I is clearly implicit — without it, the connection between reducing burnout and increasing output is unexplained.",
+      "D": "Assumption I (burnout hurts output) is implicit and required; Assumption II (nationwide adoption) far exceeds what the argument assumes"
     },
     "tip": {
       "label": "Logic Rule",
@@ -2137,11 +2352,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "26-9-16"
+        "text": "26-10-16"
       },
       {
         "id": "B",
-        "text": "26-10-16"
+        "text": "26-9-16"
       },
       {
         "id": "C",
@@ -2150,9 +2365,13 @@
       {
         "id": "D",
         "text": "26-9-17"
+      },
+      {
+        "id": "E",
+        "text": "26-9-15"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "B",
     "explanation": "This cipher assigns each letter its position number in the alphabet: A=1, B=2, C=3, ..., Z=26. Verification: ACE → A=1, C=3, E=5 → 1-3-5 ✓. BED → B=2, E=5, D=4 → 2-5-4 ✓. Applying the same rule: ZIP → Z=26, I=9, P=16 → 26-9-16. This is the A1Z26 cipher — the most fundamental letter-to-number encoding system.",
     "steps": [
       "Step 1: Decode the pattern from ACE=1-3-5: A is the 1st letter, C is the 3rd, E is the 5th. Each letter maps to its alphabetical position number.",
@@ -2161,9 +2380,10 @@
       "Step 4: ZIP = 26-9-16."
     ],
     "distractorExplanations": {
-      "B": "Using I=10 confuses I (9th letter) with J (10th letter) — I and J are commonly swapped.",
+      "A": "Using I=10 confuses I (9th letter) with J (10th letter) — I and J are commonly swapped.",
       "C": "Using Z=25 confuses Z (26th) with Y (25th) — both are near the end of the alphabet.",
-      "D": "Using P=17 confuses P (16th letter) with Q (17th letter)."
+      "D": "Using P=17 confuses P (16th letter) with Q (17th letter).",
+      "E": "Off-by-one count on P: treated P as the 15th letter instead of the 16th in the A1Z26 scheme"
     },
     "tip": {
       "label": "Remember",
@@ -2195,10 +2415,14 @@
       },
       {
         "id": "C",
-        "text": "25"
+        "text": "23"
       },
       {
         "id": "D",
+        "text": "25"
+      },
+      {
+        "id": "E",
         "text": "27"
       }
     ],
@@ -2212,8 +2436,9 @@
     ],
     "distractorExplanations": {
       "A": "20 results from using A=1, P=15 (confusing P with O), E=4 — a 1-position shift error on each letter.",
-      "C": "25 results from using A=1, P=17 (confusing P with Q), E=7 — position errors stacking.",
-      "D": "27 results from miscounting P as 17 (Q's position) and E as 5: 1+17+5+4=... various errors compound."
+      "C": "Miscounted A as position 2 instead of 1, producing a letter-sum of 23 (2+16+5) instead of 22",
+      "D": "25 results from using A=1, P=17 (confusing P with Q), E=7 — position errors stacking.",
+      "E": "27 results from miscounting P as 17 (Q's position) and E as 5: 1+17+5+4=... various errors compound."
     },
     "tip": {
       "label": "Exam Tip",
@@ -2237,22 +2462,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "VXQ"
-      },
-      {
-        "id": "B",
         "text": "TXQ"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "VXP"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "UXQ"
+      },
+      {
+        "id": "D",
+        "text": "UWP"
+      },
+      {
+        "id": "E",
+        "text": "VXQ"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "This is a Caesar shift cipher with a shift of +3: each letter advances 3 positions in the alphabet. Verify: C(3)+3=F(6), A(1)+3=D(4), T(20)+3=W(23) → FDW ✓. Apply to SUN: S(19)+3=V(22), U(21)+3=X(24), N(14)+3=Q(17) → VXQ.",
     "steps": [
       "Step 1: Confirm the shift — CAT→FDW means C→F (+3), A→D (+3), T→W (+3). Shift = +3.",
@@ -2262,9 +2491,10 @@
       "Step 5: SUN → VXQ."
     ],
     "distractorExplanations": {
-      "B": "TXQ uses T for S, which applies a shift of +1 instead of +3 to the first letter.",
-      "C": "VXP uses P for N, which would be a shift of +2 on the last letter instead of +3.",
-      "D": "UXQ uses U for S, which applies a shift of +2 instead of +3 to the first letter."
+      "A": "TXQ uses T for S, which applies a shift of +1 instead of +3 to the first letter.",
+      "B": "VXP uses P for N, which would be a shift of +2 on the last letter instead of +3.",
+      "C": "UXQ uses U for S, which applies a shift of +2 instead of +3 to the first letter.",
+      "D": "Applied a shift of +2 instead of +3, one less than the cipher's defined shift value"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -2288,22 +2518,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "NZK"
-      },
-      {
-        "id": "B",
         "text": "NZL"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "MZK"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "NZJ"
+      },
+      {
+        "id": "D",
+        "text": "MZJ"
+      },
+      {
+        "id": "E",
+        "text": "NZK"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "This is the Atbash cipher: each letter maps to its 'mirror' partner across the alphabet midpoint (A↔Z, B↔Y, C↔X, D↔W, E↔V, F↔U, G↔T, H↔S, I↔R, J↔Q, K↔P, L↔O, M↔N). The formula is: code position = 27 − original position. Verify: A(1)→Z(26) ✓, C(3)→X(24) ✓, E(5)→V(22) ✓ → ZXV ✓. Apply to MAP: M(13)→N(14)=N, A(1)→Z(26)=Z, P(16)→K(11)=K → NZK.",
     "steps": [
       "Step 1: Identify the cipher rule — Atbash: position → 27 − position. A(1)→26(Z), B(2)→25(Y), etc.",
@@ -2313,9 +2547,10 @@
       "Step 5: Apply to P: P=16 → 27−16=11=K. MAP → NZK."
     ],
     "distractorExplanations": {
-      "B": "NZL uses L (12th letter) for P, but 27−16=11=K, not L.",
-      "C": "MZK uses M for M — the cipher requires M to map to N (its mirror), not remain as M.",
-      "D": "NZJ uses J (10th letter) for P; the correct mirror of P(16) is K(11), not J(10)."
+      "A": "NZL uses L (12th letter) for P, but 27−16=11=K, not L.",
+      "B": "MZK uses M for M — the cipher requires M to map to N (its mirror), not remain as M.",
+      "C": "NZJ uses J (10th letter) for P; the correct mirror of P(16) is K(11), not J(10).",
+      "D": "Double error: used formula 26−pos for M (giving M instead of N) and 26−pos for P (giving J instead of K)"
     },
     "tip": {
       "label": "Remember",
@@ -2339,22 +2574,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "54"
+        "text": "30"
       },
       {
         "id": "B",
-        "text": "58"
+        "text": "54"
       },
       {
         "id": "C",
-        "text": "60"
+        "text": "58"
       },
       {
         "id": "D",
+        "text": "60"
+      },
+      {
+        "id": "E",
         "text": "62"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "The rule is: add up each letter's A1Z26 position value, then multiply by 2. Verify: CAT → C(3)+A(1)+T(20)=24; 24×2=48 ✓. DOG → D(4)+O(15)+G(7)=26; 26×2=52 ✓. Apply to MAP: M(13)+A(1)+P(16)=30; 30×2=60.",
     "steps": [
       "Step 1: Decode the rule. CAT=48: if letter sum were 24, then 24×2=48 ✓. So rule is: sum positions, then ×2.",
@@ -2364,9 +2603,10 @@
       "Step 5: Apply ×2: 30×2=60."
     ],
     "distractorExplanations": {
-      "A": "54 would result from MAP sum=27 (using M=12, A=1, P=14 — incorrect positions), then ×2=54.",
-      "B": "58 would result from MAP sum=29 (off by 1 on one letter position), then ×2=58.",
-      "D": "62 results from MAP sum=31 (using P=17, which is Q's position), then ×2=62."
+      "A": "Computed the correct letter sum (30) but forgot to apply the final doubling step (×2)",
+      "B": "54 would result from MAP sum=27 (using M=12, A=1, P=14 — incorrect positions), then ×2=54.",
+      "C": "58 would result from MAP sum=29 (off by 1 on one letter position), then ×2=58.",
+      "E": "62 results from MAP sum=31 (using P=17, which is Q's position), then ×2=62."
     },
     "tip": {
       "label": "Common Mistake",
@@ -2402,6 +2642,10 @@
       },
       {
         "id": "D",
+        "text": "22"
+      },
+      {
+        "id": "E",
         "text": "26"
       }
     ],
@@ -2416,7 +2660,8 @@
     "distractorExplanations": {
       "A": "18 results from adding only 5+13=18, skipping the correct pairing — you must add the two MOST RECENT terms.",
       "B": "20 results from adding 7+13, but 7 is not in the sequence — this suggests guessing a midpoint.",
-      "D": "26 results from doubling 13 (applying a ×2 rule instead of the addition rule)."
+      "D": "Added the previous first-order difference (9=13−4? No—misread gap as 9) to 13 instead of adding the preceding Fibonacci term 8",
+      "E": "26 results from doubling 13 (applying a ×2 rule instead of the addition rule)."
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -2453,6 +2698,10 @@
       {
         "id": "D",
         "text": "9"
+      },
+      {
+        "id": "E",
+        "text": "10"
       }
     ],
     "correctOptionId": "B",
@@ -2466,7 +2715,8 @@
     "distractorExplanations": {
       "A": "6 results from applying −1 again (not the next step in the +2/−1 alternation).",
       "C": "8 results from applying +2 twice in a row, misreading the alternating pattern.",
-      "D": "9 results from adding +4, which does not correspond to any part of the alternating rule."
+      "D": "9 results from adding +4, which does not correspond to any part of the alternating rule.",
+      "E": "Misread both interleaved tracks as adding +2 each step, adding 4 to 6 instead of continuing the correct track's +1 pattern"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -2502,6 +2752,10 @@
       {
         "id": "D",
         "text": "64"
+      },
+      {
+        "id": "E",
+        "text": "68"
       }
     ],
     "correctOptionId": "D",
@@ -2515,7 +2769,8 @@
     "distractorExplanations": {
       "A": "48 results from adding 16 to 32 (applying an arithmetic step equal to the previous-to-last difference) — the rule is multiply, not add.",
       "B": "56 has no relation to the doubling pattern.",
-      "C": "60 is also unrelated to the powers-of-2 sequence."
+      "C": "60 is also unrelated to the powers-of-2 sequence.",
+      "E": "Confused geometric doubling with an additive step: added 36 (wrong arithmetic estimate) instead of multiplying 32 by 2"
     },
     "tip": {
       "label": "Remember",
@@ -2551,6 +2806,10 @@
       },
       {
         "id": "D",
+        "text": "22"
+      },
+      {
+        "id": "E",
         "text": "25"
       }
     ],
@@ -2565,7 +2824,8 @@
     "distractorExplanations": {
       "A": "18 results from adding 3 (same as the very first difference), not the continuing next difference of 6.",
       "B": "20 results from adding 5 again (repeating the last difference instead of increasing it to 6).",
-      "D": "25 = 5², which might seem appealing if you confuse this with perfect squares, but the triangular sequence is not the same as perfect squares."
+      "D": "Incremented the gap by 2 steps instead of 1, using +7 instead of the correct next gap of +6",
+      "E": "25 = 5², which might seem appealing if you confuse this with perfect squares, but the triangular sequence is not the same as perfect squares."
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -2597,14 +2857,18 @@
       },
       {
         "id": "C",
-        "text": "Maria is entitled to early retirement benefits."
+        "text": "Maria will retire within the next year."
       },
       {
         "id": "D",
-        "text": "Maria will retire within the next year."
+        "text": "Maria is entitled to early retirement benefits."
+      },
+      {
+        "id": "E",
+        "text": "Maria is entitled to full retirement benefits."
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "This is a straightforward universal affirmative syllogism. Major premise: All employees with 15+ years of service are entitled to early retirement benefits. Minor premise: Maria has completed 18 years, which exceeds the 15-year threshold. Conclusion: Maria falls within the set of employees entitled to early retirement benefits, so she must be entitled to them. The other choices introduce assumptions about seniority, current status, or future plans that are not stated in the premises.",
     "steps": [
       "Step 1: Major premise — All government employees with ≥15 years → entitled to early retirement.",
@@ -2614,7 +2878,8 @@
     "distractorExplanations": {
       "A": "Seniority ranking among employees is not mentioned in the premises — having 18 years does not make her the most senior.",
       "B": "Being entitled to early retirement does not mean she has already retired — entitlement and action are different.",
-      "D": "Future retirement plans are not addressed by the premises — nothing about timeline is given."
+      "C": "Future retirement plans are not addressed by the premises — nothing about timeline is given.",
+      "E": "Conflates early retirement benefits (explicitly stated) with full retirement benefits — an unwarranted upgrade of the entitlement"
     },
     "tip": {
       "label": "Logic Rule",
@@ -2639,22 +2904,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "Office 102"
-      },
-      {
-        "id": "B",
         "text": "Office 103"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "Office 104"
+      },
+      {
+        "id": "C",
+        "text": "Office 102"
       },
       {
         "id": "D",
         "text": "Office 105"
+      },
+      {
+        "id": "E",
+        "text": "Ana's office cannot be determined without additional information."
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "Clues 1, 3, and 5 fix three employees: Dina=101, Carlo=103, Ben=105. The remaining offices are 102 and 104, to be assigned to Ana and Emil. Clue 4 says Emil is NOT in office 102, so Emil must be in office 104 and Ana in office 102. Verification: Ana(102) < Ben(105) ✓ (satisfies Clue 2). Full assignment: Dina=101, Ana=102, Carlo=103, Emil=104, Ben=105.",
     "steps": [
       "Step 1: Apply direct clues — Dina=101, Carlo=103, Ben=105.",
@@ -2663,9 +2932,10 @@
       "Step 4: Verify Clue 2: Ana(102) < Ben(105) ✓. All clues satisfied."
     ],
     "distractorExplanations": {
-      "B": "Office 103 is assigned to Carlo (Clue 1) — Ana cannot be in 103.",
-      "C": "Office 104 goes to Emil (since Emil cannot be in 102) — Ana must take 102.",
-      "D": "Office 105 is assigned to Ben (Clue 5) — Ana cannot be in 105."
+      "A": "Office 103 is assigned to Carlo (Clue 1) — Ana cannot be in 103.",
+      "B": "Office 104 goes to Emil (since Emil cannot be in 102) — Ana must take 102.",
+      "D": "Office 105 is assigned to Ben (Clue 5) — Ana cannot be in 105.",
+      "E": "The five constraints uniquely fix Ana to Office 102; no additional information is needed to identify her office"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -2693,18 +2963,22 @@
       },
       {
         "id": "B",
-        "text": "The project did not begin and the team was not assembled."
+        "text": "No conclusion can be drawn about the project or the team."
       },
       {
         "id": "C",
-        "text": "The project began even though the budget was not approved."
+        "text": "The project did not begin and the team was not assembled."
       },
       {
         "id": "D",
-        "text": "No conclusion can be drawn about the project or the team."
+        "text": "The project began even though the budget was not approved."
+      },
+      {
+        "id": "E",
+        "text": "The team was definitely not assembled."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "B",
     "explanation": "The two conditional rules form a chain: budget approved (P) → project begins (Q) → team assembled (R). Statement 3 gives NOT P (budget was not approved). Denying the antecedent (P) does NOT allow us to conclude NOT Q or NOT R — this is the fallacy of denying the antecedent. The project might have begun for a different reason (a special authorization, a donor, etc.), and the team might have been assembled regardless. We cannot validly conclude anything about Q or R from NOT P alone.",
     "steps": [
       "Step 1: Chain: P→Q→R (budget→project→team).",
@@ -2715,8 +2989,9 @@
     ],
     "distractorExplanations": {
       "A": "We cannot guarantee the team was assembled — the conditionals only run forward from P, and P is false.",
-      "B": "Concluding 'project did not begin AND team not assembled' commits the fallacy of denying the antecedent — a classic CSE trap.",
-      "C": "While logically possible, we cannot assert this as a valid deductive conclusion from the premises alone — it requires an additional premise."
+      "C": "Concluding 'project did not begin AND team not assembled' commits the fallacy of denying the antecedent — a classic CSE trap.",
+      "D": "While logically possible, we cannot assert this as a valid deductive conclusion from the premises alone — it requires an additional premise.",
+      "E": "Commits denying-the-antecedent fallacy: failing the sufficient condition does not preclude other paths to assembling the team"
     },
     "tip": {
       "label": "Common Mistake",
@@ -2741,11 +3016,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "A"
+        "text": "B"
       },
       {
         "id": "B",
-        "text": "B"
+        "text": "A"
       },
       {
         "id": "C",
@@ -2754,9 +3029,13 @@
       {
         "id": "D",
         "text": "D"
+      },
+      {
+        "id": "E",
+        "text": "E"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "A=1 and E=5 are anchors. The B–C pair (C immediately right of B) must occupy two of the remaining seats: 2, 3, and 4. D must also be in that group, with |D's seat − E's seat(5)| > 1, meaning D is in seat 3 or lower (not seats 4 or 5). The only way to arrange B, C, D in seats 2, 3, 4 with C immediately right of B and D not adjacent to E: place D=2, B=3, C=4 — but then |D(2)−E(5)|=3 > 1 ✓ AND B–C pair (3,4) is consecutive ✓. Wait — let me re-check all placements. B–C options in seats 2–4: (B=2,C=3) or (B=3,C=4). If B=2,C=3: D=4. |D(4)−E(5)|=1 — D is adjacent to E ✗. If B=3,C=4: D=2. |D(2)−E(5)|=3 > 1 ✓. Valid arrangement: A(1), D(2), B(3), C(4), E(5). Seat 3 = B.",
     "steps": [
       "Step 1: Anchor A=1 and E=5. Remaining seats 2,3,4 for B, C, D.",
@@ -2766,9 +3045,10 @@
       "Step 5: Valid arrangement: A(1), D(2), B(3), C(4), E(5). Seat 3 = B."
     ],
     "distractorExplanations": {
-      "A": "A is in seat 1 (the anchor), not seat 3.",
+      "B": "A is in seat 1 (the anchor), not seat 3.",
       "C": "C sits immediately right of B. In the valid arrangement B=3, so C=4, not seat 3.",
-      "D": "D must be far from E (seat 5) — placing D in seat 4 would make D adjacent to E, violating the constraint. D ends up in seat 2."
+      "D": "D must be far from E (seat 5) — placing D in seat 4 would make D adjacent to E, violating the constraint. D ends up in seat 2.",
+      "E": "Assigns E to seat 3 when E is fixed in seat 5; the 'more than one seat from E' constraint on D forces B into seat 3"
     },
     "tip": {
       "label": "Exam Tip",
@@ -2801,14 +3081,18 @@
       },
       {
         "id": "C",
-        "text": "Thursday"
+        "text": "Friday"
       },
       {
         "id": "D",
-        "text": "Friday"
+        "text": "Wednesday"
+      },
+      {
+        "id": "E",
+        "text": "Thursday"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "Clues 1 and 2 fix C=Wednesday and F=Saturday. Remaining days Monday, Tuesday, Thursday, Friday are for A, B, D, E. The [A,B] consecutive pair and [D,E] consecutive pair must fit in Monday–Friday (excluding Wednesday). F=Saturday is adjacent to Friday only, so E ≠ Friday (Clue 5: F not adjacent to E means E ≠ Friday). Among Mon/Tue/Thu/Fri: consecutive day pairs are Mon–Tue and Thu–Fri. Since E ≠ Friday, the [D,E] pair cannot be Thu–Fri. So [D,E] = Mon–Tue (D=Mon, E=Tue) and [A,B] = Thu–Fri (A=Thu, B=Fri). Check: F(Sat) adjacent to B(Fri) not E — F not adjacent to E(Tue) ✓. Full schedule: D(Mon), E(Tue), C(Wed), A(Thu), B(Fri), F(Sat).",
     "steps": [
       "Step 1: Fix C=Wednesday and F=Saturday. Remaining days: Mon, Tue, Thu, Fri for A, B, D, E.",
@@ -2820,7 +3104,8 @@
     "distractorExplanations": {
       "A": "Monday is taken by D in the only valid schedule — the [D,E] consecutive pair must start Monday.",
       "B": "Tuesday is taken by E — placing A on Tuesday would displace E without a valid alternative for the [D,E] pair.",
-      "D": "Friday is taken by B — placing A on Friday would require B on Saturday, but Saturday is F's fixed day."
+      "C": "Friday is taken by B — placing A on Friday would require B on Saturday, but Saturday is F's fixed day.",
+      "D": "Assigns task A to Wednesday when C is fixed on Wednesday; the constraint chain forces A to Thursday"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -2845,22 +3130,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "P"
-      },
-      {
-        "id": "B",
         "text": "Q"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "S"
+      },
+      {
+        "id": "C",
+        "text": "P"
       },
       {
         "id": "D",
         "text": "T"
+      },
+      {
+        "id": "E",
+        "text": "R"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "R=3rd and Q=5th are anchored. Positions 1, 2, and 4 remain for P, S, and T. T is immediately after P (P then T in consecutive places), and T is before S. Possible consecutive pairs for [P,T] in positions 1,2,4: (1,2) — valid since they are consecutive. (2,4) is not consecutive (positions 3 is already R). So P=1st and T=2nd. S fills the remaining position 4th. Check T(2nd) before S(4th) ✓. Full ranking: P(1st), T(2nd), R(3rd), S(4th), Q(5th).",
     "steps": [
       "Step 1: Anchor R=3rd and Q=5th. Remaining positions 1, 2, 4 for P, S, T.",
@@ -2870,9 +3159,10 @@
       "Step 5: Full ranking: P(1), T(2), R(3), S(4), Q(5). P finishes 1st."
     ],
     "distractorExplanations": {
-      "B": "Q finishes last (5th) as stated in Clue 3 — Q cannot finish 1st.",
-      "C": "S finishes 4th in the only valid arrangement — S is not 1st.",
-      "D": "T finishes 2nd, immediately after P who is 1st — T cannot be 1st as P must precede T."
+      "A": "Q finishes last (5th) as stated in Clue 3 — Q cannot finish 1st.",
+      "B": "S finishes 4th in the only valid arrangement — S is not 1st.",
+      "D": "T finishes 2nd, immediately after P who is 1st — T cannot be 1st as P must precede T.",
+      "E": "Assigns 1st place to R whose position (3rd) is the only one explicitly stated, overlooking the P-T adjacency constraint that forces P to 1st"
     },
     "tip": {
       "label": "Logic Rule",
@@ -2909,6 +3199,10 @@
       {
         "id": "D",
         "text": "Some lawyers are auditors."
+      },
+      {
+        "id": "E",
+        "text": "Some employees are auditors."
       }
     ],
     "correctOptionId": "A",
@@ -2922,7 +3216,8 @@
     "distractorExplanations": {
       "B": "Assumes the lawyer-employees must be drawn partly from the auditors. Nothing forces that meeting — this is the classic undistributed-middle error, where a shared category is mistaken for a shared membership.",
       "C": "Two errors at once: it upgrades a partial overlap ('some employees are lawyers') into a universal, and it reverses the direction so that lawyers become a subset of auditors.",
-      "D": "Simply B stated back to front. Converting an invalid inference does not repair it — if no auditor need be a lawyer, then no lawyer need be an auditor either."
+      "D": "Simply B stated back to front. Converting an invalid inference does not repair it — if no auditor need be a lawyer, then no lawyer need be an auditor either.",
+      "E": "Incorrectly converts 'All auditors are employees' by simple conversion — a universal affirmative does not convert simply"
     },
     "tip": {
       "label": "Logic Rule",
@@ -2958,10 +3253,14 @@
       },
       {
         "id": "D",
+        "text": "No digital record is a confidential file."
+      },
+      {
+        "id": "E",
         "text": "Some digital records are not confidential files."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Premise 1 seals off the confidential set: nothing inside it is publicly accessible. Premise 2 hands us at least one digital record that IS publicly accessible. That record therefore cannot be sitting inside the confidential set — so at least some digital records are not confidential files. The conclusion inherits both features of its premises: the 'some' from the particular premise and the negative from the universal negative. Widening it to 'no digital record is confidential' is the trap, because the digital records that are not publicly accessible were never described at all.",
     "steps": [
       "Step 1: Translate premise 1: the confidential set and the publicly accessible set are completely separate — zero overlap.",
@@ -2972,7 +3271,8 @@
     "distractorExplanations": {
       "A": "The inference runs the opposite way — the publicly accessible digital records are pushed OUT of the confidential set, so calling them all confidential contradicts the premises rather than following from them.",
       "B": "An illegitimate widening of 'some' into 'none'. Only the publicly accessible digital records were cleared; the restricted ones are unexamined and may be confidential.",
-      "C": "This flatly denies premise 1. An option that contradicts a given statement can never be a valid conclusion, however plausible the wording sounds."
+      "C": "This flatly denies premise 1. An option that contradicts a given statement can never be a valid conclusion, however plausible the wording sounds.",
+      "D": "Overreaches from 'some' to 'none': only the publicly accessible subset is proven non-confidential"
     },
     "tip": {
       "label": "Logic Rule",
@@ -3004,14 +3304,18 @@
       },
       {
         "id": "C",
-        "text": "Some applicants passed the technical test."
+        "text": "All passers are applicants."
       },
       {
         "id": "D",
-        "text": "All passers are applicants."
+        "text": "All engineers who are applicants have passed, and some applicants are engineers."
+      },
+      {
+        "id": "E",
+        "text": "Some applicants passed the technical test."
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "Premise 1 guarantees that at least one person is both an applicant and an engineer. Premise 2 is universal, so it reaches every engineer without exception — including that applicant-engineer. Follow the chain: applicant → engineer → passer. What comes out the far end is a 'some' claim, because only part of the applicant pool entered the chain in the first place. This is the governing rule of mixed syllogisms: a conclusion can never be stronger than the weakest premise supporting it, so a particular premise caps the conclusion at 'some'.",
     "steps": [
       "Step 1: From 'Some applicants are engineers', pick one such person; call her Ana. Ana is both an applicant and an engineer.",
@@ -3021,7 +3325,8 @@
     "distractorExplanations": {
       "A": "Illegitimately upgrades 'some' to 'all'. Only the applicants who are engineers were carried through the chain; the non-engineer applicants were never covered and may have failed.",
       "B": "Contradicts premise 1 outright. 'Some applicants are engineers' asserts that the two groups DO overlap, so denying any overlap is not available as a conclusion.",
-      "D": "Reverses the direction of the relationship. The passers include every engineer, applicants or not, so the passer group cannot be folded back inside the applicants."
+      "C": "Reverses the direction of the relationship. The passers include every engineer, applicants or not, so the passer group cannot be folded back inside the applicants.",
+      "D": "Restates the premises rather than drawing a new conclusion; this is not a distinct logical derivation"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -3057,10 +3362,14 @@
       },
       {
         "id": "D",
+        "text": "The online system will be equally accessible to all clients regardless of technical ability."
+      },
+      {
+        "id": "E",
         "text": "Some clients will use the online option instead of the counter."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Congestion at a counter falls only if bodies stop arriving at that counter. The proposal therefore rests on a behavioural premise that is never stated: at least some clients will substitute the online channel for the physical queue. A required assumption is the WEAKEST claim the argument cannot survive without, which is why the modest 'some clients will use it instead' is correct while the sweeping alternatives are not. Test it by negation — if nobody switches, the online option simply runs alongside an unchanged queue and the stated benefit never materialises.",
     "steps": [
       "Step 1: Separate the argument: the proposal is 'offer an online option'; the promised outcome is 'reduce counter congestion'.",
@@ -3071,7 +3380,8 @@
     "distractorExplanations": {
       "A": "Overshoots on two counts — 'all' clients and 'expensive' equipment. A shared phone or a barangay computer would serve, so this is far stronger than the argument needs.",
       "B": "Flawless uptime is a bonus, not a premise. The proposal only needs the online channel to divert part of the traffic; occasional outages would slow that effect, not negate it.",
-      "C": "The goal is to REDUCE congestion at the counter, which presumes the counter still operates. Abolition is a different policy altogether, not a hidden premise of this one."
+      "C": "The goal is to REDUCE congestion at the counter, which presumes the counter still operates. Abolition is a different policy altogether, not a hidden premise of this one.",
+      "D": "A desirable condition but not the minimum required assumption; only 'some clients will shift online' is strictly needed"
     },
     "tip": {
       "label": "Exam Tip",
@@ -3104,14 +3414,18 @@
       },
       {
         "id": "C",
-        "text": "Most surveyed volunteers preferred Saturday training."
+        "text": "The survey represents every government worker."
       },
       {
         "id": "D",
-        "text": "The survey represents every government worker."
+        "text": "The majority of all government employees prefer Saturday training."
+      },
+      {
+        "id": "E",
+        "text": "Most surveyed volunteers preferred Saturday training."
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "35 out of 40 is 87.5% — comfortably 'most' — and the safe conclusion keeps every word of the finding inside the group actually surveyed. Any sample carries two hard limits. The first is SCOPE: the respondents were volunteers, a self-selected group whose availability on Saturdays is probably why they volunteered, so they cannot stand in for a whole workforce. The second is SUBJECT: the survey measured what people PREFER, and preference is not effectiveness. The credited option respects both limits, which is exactly why it reads as unexciting.",
     "steps": [
       "Step 1: Quantify the finding: 35 ÷ 40 = 0.875, so 87.5% of respondents chose Saturday — fairly described as 'most'.",
@@ -3122,7 +3436,8 @@
     "distractorExplanations": {
       "A": "Generalises from 40 self-selected volunteers to every employee. Volunteers are the people already willing to give up a Saturday, so they are the least representative subgroup available.",
       "B": "Swaps preference for effectiveness, and then adds 'always'. The survey asked what people like, and it measured nothing about learning outcomes at all.",
-      "D": "Asserts representativeness rather than establishing it. A voluntary sample of 40 has no claim to mirror an entire national workforce, and the item offers no sampling method to support it."
+      "C": "Asserts representativeness rather than establishing it. A voluntary sample of 40 has no claim to mirror an entire national workforce, and the item offers no sampling method to support it.",
+      "D": "Unsupported extrapolation from 40 volunteers to all government workers — exceeds the survey's documented scope"
     },
     "tip": {
       "label": "Common Mistake",
@@ -3154,14 +3469,18 @@
       },
       {
         "id": "C",
-        "text": "All payments are online."
+        "text": "The server is not offline."
       },
       {
         "id": "D",
-        "text": "The server is not offline."
+        "text": "All payments are online."
+      },
+      {
+        "id": "E",
+        "text": "The server was recently repaired and brought back online."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "explanation": "Write the rule as P → Q: if the server is offline (P), then payments cannot be processed (Q). The observation is that payments ARE processing, which is ¬Q. Denying the consequent forces you back up the arrow to deny the antecedent: ¬Q → ¬P, so the server is not offline. This is modus tollens, the valid mirror image of the fallacy of denying the antecedent (“the server is not offline, therefore payments must be processing”), which does not follow. Note how narrow the valid conclusion is — it fixes the server's online status and nothing else about maintenance, speed, or other payment channels.",
     "steps": [
       "Step 1: Formalise the conditional: server offline (P) → payments cannot be processed (Q).",
@@ -3172,7 +3491,8 @@
     "distractorExplanations": {
       "A": "Maintenance history never appears in the conditional. Being online today says nothing about whether the server has ever been serviced — this imports an outside premise.",
       "B": "Cash is outside the argument entirely. The rule connects the server's status to online payment processing and takes no position on other channels.",
-      "C": "Confuses 'online payments are being processed' with 'only online payments exist'. Observing one channel at work does not make it the sole channel."
+      "D": "Confuses 'online payments are being processed' with 'only online payments exist'. Observing one channel at work does not make it the sole channel.",
+      "E": "Introduces a causal history not entailed by the premises; the valid conclusion is only that the server is currently not offline"
     },
     "tip": {
       "label": "Logic Rule",
@@ -3196,22 +3516,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "S-P-Q-R-T"
-      },
-      {
-        "id": "B",
         "text": "P-S-Q-T-R"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "S-Q-P-R-T"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "S-P-R-Q-T"
+      },
+      {
+        "id": "D",
+        "text": "S-P-Q-R-T"
+      },
+      {
+        "id": "E",
+        "text": "S-P-Q-T-R"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "D",
     "explanation": "Do not test the options first — chain the constraints. S is before P, P is before Q, R is after Q, and T is after R, and every clue shares an endpoint with the next: S < P < Q < R < T. Because all five reports appear in one unbroken chain, the arrangement is not merely constrained but fully determined, and S-P-Q-R-T is the only sequence of the 120 possible orders that survives. Each wrong option breaks exactly one link, which makes the elimination fast once the chain is written down: check the four adjacencies of the chain against each option in turn.",
     "steps": [
       "Step 1: List the constraints as inequalities: S < P, P < Q, Q < R, R < T.",
@@ -3220,9 +3544,10 @@
       "Step 4: Verify the eliminations: B places S after P, C places Q before P, and D places R before Q. Only S-P-Q-R-T obeys all four links."
     ],
     "distractorExplanations": {
-      "B": "Breaks the very first link by filing P ahead of S, and it also puts T before R. Reading the clues one at a time instead of chaining them is what lets this option slip through.",
-      "C": "Violates 'P is before Q' — Q sits second and P third. The option looks right because it opens with S and closes with T, which are indeed the true endpoints.",
-      "D": "Violates 'R is after Q' by filing R third and Q fourth. This is the trap for anyone who chains S < P and R < T correctly but never joins the two halves through Q."
+      "A": "Breaks the very first link by filing P ahead of S, and it also puts T before R. Reading the clues one at a time instead of chaining them is what lets this option slip through.",
+      "B": "Violates 'P is before Q' — Q sits second and P third. The option looks right because it opens with S and closes with T, which are indeed the true endpoints.",
+      "C": "Violates 'R is after Q' by filing R third and Q fourth. This is the trap for anyone who chains S < P and R < T correctly but never joins the two halves through Q.",
+      "E": "Places T before R, violating the constraint T>R (T must be filed after R in the defined order)"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -3258,10 +3583,14 @@
       },
       {
         "id": "D",
+        "text": "Finance and Legal share floor 2."
+      },
+      {
+        "id": "E",
         "text": "Finance"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Draw the building as an actual stack, bottom-up, and 'above' and 'below' stop inverting on you. Finance has Legal above it and HR below it, so Finance sits in the middle of that trio; Records then sits above Legal, extending the stack upward. The three clues weld into one chain, HR < Finance < Legal < Records, and because four offices fill four floors the chain assigns every floor uniquely: HR on 1, Finance on 2, Legal on 3, Records on 4. Whenever n items form a single unbroken chain across n slots, there is exactly one arrangement — no case-testing required.",
     "steps": [
       "Step 1: Convert each clue into a height inequality: Legal > Finance, HR < Finance, Records > Legal.",
@@ -3272,7 +3601,8 @@
     "distractorExplanations": {
       "A": "HR is the only office with nothing below it in the chain, which pins it to floor 1. Learners who read 'HR is below Finance' as merely 'not the top' end up here.",
       "B": "Legal is above Finance and below Records, so it lands on floor 3. Picking Legal usually means the stack was built top-down while the floors were numbered bottom-up.",
-      "C": "Records sits above Legal, which is already above Finance and HR — that forces Records to the top, floor 4, the furthest possible slot from the second floor."
+      "C": "Records sits above Legal, which is already above Finance and HR — that forces Records to the top, floor 4, the furthest possible slot from the second floor.",
+      "D": "Misreads the stacking order: Finance occupies floor 2 alone; Legal is above Finance at floor 3"
     },
     "tip": {
       "label": "Exam Tip",
@@ -3296,22 +3626,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "A-B-C-E-D"
+        "text": "C-A-B-E-D"
       },
       {
         "id": "B",
-        "text": "C-B-A-E-D"
+        "text": "A-B-C-E-D"
       },
       {
         "id": "C",
-        "text": "C-A-B-E-D"
+        "text": "C-B-A-E-D"
       },
       {
         "id": "D",
         "text": "E-A-C-B-D"
+      },
+      {
+        "id": "E",
+        "text": "C-A-E-B-D"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "“Immediately after” is stronger than “after”: treat [AB] as a single welded block that can never be split or reversed. Fix D in slot 5, leaving slots 1–4 for the block plus C and E, and require C to fall before the block. The block can occupy slots 2–3 (giving C-A-B-E-D) or slots 3–4 (giving C-E-A-B-D or E-C-A-B-D), so more than one arrangement is logically possible — but only C-A-B-E-D appears among the options, and the other three each break a named constraint. Checking the block first turns an intimidating item into a ten-second scan.",
     "steps": [
       "Step 1: Weld the immediacy constraint into a block: [AB], one unit, order fixed, never separated.",
@@ -3321,9 +3655,10 @@
       "Step 5: The possible sequence is C-A-B-E-D."
     ],
     "distractorExplanations": {
-      "A": "Keeps [AB] intact but places C third, after A. That violates 'C presents before A' — the sequence satisfies two constraints out of three, which is precisely what makes it tempting.",
-      "B": "Splits and reverses the welded block: B lands in slot 2 and A in slot 3, so B presents immediately BEFORE A. 'Immediately after' fixes direction as well as adjacency.",
-      "D": "Places C third while A is second, breaking 'C presents before A', and it also drives A and B apart with C wedged between them, destroying the block."
+      "B": "Keeps [AB] intact but places C third, after A. That violates 'C presents before A' — the sequence satisfies two constraints out of three, which is precisely what makes it tempting.",
+      "C": "Splits and reverses the welded block: B lands in slot 2 and A in slot 3, so B presents immediately BEFORE A. 'Immediately after' fixes direction as well as adjacency.",
+      "D": "Places C third while A is second, breaking 'C presents before A', and it also drives A and B apart with C wedged between them, destroying the block.",
+      "E": "B is not immediately after A (E intervenes between positions 2 and 4); B must directly follow A with no gap"
     },
     "tip": {
       "label": "Logic Rule",
@@ -3351,23 +3686,28 @@
       },
       {
         "id": "B",
-        "text": "LISTEN"
+        "text": "DRAW"
       },
       {
         "id": "C",
-        "text": "DRAW"
+        "text": "LISTEN"
       },
       {
         "id": "D",
         "text": "COUNT"
+      },
+      {
+        "id": "E",
+        "text": "SING"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "C",
     "explanation": "State the relationship as a full sentence before looking at the options: reading is the action by which a person RECEIVES the content of a book. A song is received by listening, so LISTEN completes the pair. WRITE is the designed trap — songs certainly are written, but so are books, which means WRITE describes the creation side of the pair rather than the reception side the original pair establishes. Analogy items are graded on the direction of the relationship, not on whether a word is merely associated with the topic, and here the direction is audience-facing.",
     "distractorExplanations": {
       "A": "Songs are indeed written — but books are written too, so WRITE sits on the creation side of the pair. The given relationship is reception (READ), and swapping sides is the error being tested.",
-      "C": "Drawing produces a picture and has nothing to do with taking in a song. It is an artistic action, which feels adjacent to music without matching the reception relationship.",
-      "D": "One can count beats in a song, but counting measures quantity rather than taking in the work. The pair BOOK : READ is about experiencing the content, not analysing it."
+      "B": "Drawing produces a picture and has nothing to do with taking in a song. It is an artistic action, which feels adjacent to music without matching the reception relationship.",
+      "D": "One can count beats in a song, but counting measures quantity rather than taking in the work. The pair BOOK : READ is about experiencing the content, not analysing it.",
+      "E": "Confuses the act of producing a song with the consumer's typical action of listening to it"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -3404,6 +3744,10 @@
       {
         "id": "D",
         "text": "AIR PRESSURE"
+      },
+      {
+        "id": "E",
+        "text": "ALTITUDE"
       }
     ],
     "correctOptionId": "D",
@@ -3411,7 +3755,8 @@
     "distractorExplanations": {
       "A": "Humidity is measured by a hygrometer. The confusion arises because both readings appear on the same weather report, not because a barometer senses moisture.",
       "B": "Wind speed is measured by an anemometer — the spinning-cup instrument. Pressure differences do drive wind, but a barometer reads the pressure, never the resulting speed.",
-      "C": "Rainfall is measured by a rain gauge, in millimetres collected. A falling barometer helps PREDICT rain, and mistaking a prediction for a measurement is exactly the trap here."
+      "C": "Rainfall is measured by a rain gauge, in millimetres collected. A falling barometer helps PREDICT rain, and mistaking a prediction for a measurement is exactly the trap here.",
+      "E": "Barometers can derive altitude as a secondary application but their primary measured quantity is air pressure"
     },
     "tip": {
       "label": "Remember",
@@ -3435,11 +3780,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "225"
+        "text": "180"
       },
       {
         "id": "B",
-        "text": "180"
+        "text": "225"
       },
       {
         "id": "C",
@@ -3448,9 +3793,13 @@
       {
         "id": "D",
         "text": "250"
+      },
+      {
+        "id": "E",
+        "text": "240"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "B",
     "explanation": "A numerical analogy is solved by finding the single rule that turns the first number into the second exactly, then applying that same rule to the third. Here 12 × 12 = 144, so the rule is 'square it'. Applying it: 15 × 15 = 225. Run the standard checklist in order — squaring, doubling, then adding a constant — and squaring succeeds on the first try. Notice that 12 + 132 = 144 also 'works' arithmetically, but a rule that needs an arbitrary constant is always the weaker explanation; prefer the operation that needs no invented number.",
     "steps": [
       "Test the relationship in the first pair: 12 × 12 = 144, so 144 = 12².",
@@ -3459,9 +3808,10 @@
       "The missing term is 225."
     ],
     "distractorExplanations": {
-      "B": "180 is 12 × 15, the cross-multiplication trap — it multiplies the two given numbers from opposite pairs instead of applying the first pair's rule to the second.",
+      "A": "180 is 12 × 15, the cross-multiplication trap — it multiplies the two given numbers from opposite pairs instead of applying the first pair's rule to the second.",
       "C": "210 comes from 15 × 14, squaring one step short. It is also 144 + 66, a near-miss produced by estimating rather than computing 15 × 15.",
-      "D": "250 is a rounded guess from 'a bit more than 200'. 15² is exactly 225, and 250 is not a perfect square at all."
+      "D": "250 is a rounded guess from 'a bit more than 200'. 15² is exactly 225, and 250 is not a perfect square at all.",
+      "E": "Applied pronic formula n×(n+1)=15×16=240 instead of squaring: confused n² with n(n+1)"
     },
     "tip": {
       "label": "Remember",
@@ -3493,14 +3843,18 @@
       },
       {
         "id": "C",
-        "text": "5"
+        "text": "625"
       },
       {
         "id": "D",
-        "text": "625"
+        "text": "11"
+      },
+      {
+        "id": "E",
+        "text": "5"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "The second term is smaller than the first, so the rule must reduce rather than build. Ask which root takes 8 to 2: the square root of 8 is about 2.83, but 2³ = 8 exactly, so the rule is 'take the cube root'. Applying it to 125: 5 × 5 × 5 = 125, so ∛125 = 5. The direction check comes first on every numerical analogy — if the output shrinks, restrict yourself to division, roots, and subtraction, which immediately rules out the multiplication-based options. The small cubes 8, 27, 64, 125, and 216 should be recognisable on sight.",
     "steps": [
       "Note the direction: 8 → 2 shrinks, so the rule divides or takes a root.",
@@ -3512,7 +3866,8 @@
     "distractorExplanations": {
       "A": "15 has no root relationship to 125 — it comes from splitting 125 loosely into 'about 15 squared'. 15² is 225, so this option fails the very check it is built on.",
       "B": "25 is the square-root confusion: it treats 125 as a perfect square and takes 125 ÷ 5. But 125 is not a perfect square, and the first pair was governed by cubes.",
-      "D": "625 is 125 × 5, which multiplies when the pair clearly shrinks. Any option larger than the given term contradicts the direction established by 8 → 2."
+      "C": "625 is 125 × 5, which multiplies when the pair clearly shrinks. Any option larger than the given term contradicts the direction established by 8 → 2.",
+      "D": "Applied square root instead of cube root: √125≈11.18, rounded to 11 (wrong root order)"
     },
     "tip": {
       "label": "Math Shortcut",
@@ -3548,6 +3903,10 @@
       },
       {
         "id": "D",
+        "text": "36"
+      },
+      {
+        "id": "E",
         "text": "42"
       }
     ],
@@ -3562,7 +3921,8 @@
     "distractorExplanations": {
       "A": "18 is 6 × 3 with the '+ 4' never carried out — the answer is abandoned halfway. Stopping after the higher-precedence operation is the most frequent slip on these items.",
       "C": "28 is the left-to-right error: 6 × (3 + 4) = 6 × 7. Working strictly left to right invents a bracket that the expression does not contain.",
-      "D": "42 mixes up the symbols, reading the expression as (6 + 3) × 4 − ... or as 6 × (3 + 4) with a further slip. It signals that the translation stage itself went wrong."
+      "D": "Reversed operator priority: added first (6★3=9) then multiplied (9●4=36) instead of applying PEMDAS (multiplication before addition)",
+      "E": "42 mixes up the symbols, reading the expression as (6 + 3) × 4 − ... or as 6 × (3 + 4) with a further slip. It signals that the translation stage itself went wrong."
     },
     "tip": {
       "label": "Formula",
@@ -3598,10 +3958,14 @@
       },
       {
         "id": "D",
+        "text": "321"
+      },
+      {
+        "id": "E",
         "text": "123"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Two coding systems dominate the exam, and the first job is to identify which one is in play. An alphabet code would give M = 13, O = 15, N = 14 — two digits each, which cannot produce a six-digit code for a six-letter word. A POSITIONAL code numbers the letters by their place in the given word: M = 1, O = 2, N = 3, D = 4, A = 5, Y = 6. The second clue confirms it, since DAY → 4-5-6 matches those positions exactly. MON therefore takes the first three positions: 123. Always validate a hypothesis against the supplied example before applying it.",
     "steps": [
       "Step 1: Consider the alphabet code (A = 1 … Z = 26): M = 13, O = 15, N = 14 would give MONDAY a 12-digit code, not 123456. Reject it.",
@@ -3612,7 +3976,8 @@
     "distractorExplanations": {
       "A": "126 keeps M = 1 and O = 2 but assigns N = 6, which is Y's position. It comes from reading the digits off the end of the word instead of tracking each letter.",
       "B": "345 shifts the whole mapping one letter to the right, coding N-D-A rather than M-O-N. Misaligning the letters against their positions by one place is the classic slip here.",
-      "C": "156 takes M = 1 correctly and then borrows 5 and 6 from the DAY clue, treating that code as a pool of digits rather than as position-specific labels."
+      "C": "156 takes M = 1 correctly and then borrows 5 and 6 from the DAY clue, treating that code as a pool of digits rather than as position-specific labels.",
+      "D": "Read the positional mapping in reverse order (NOM instead of MON), reversing digits to get 321"
     },
     "tip": {
       "label": "Common Mistake",
@@ -3637,22 +4002,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "21"
-      },
-      {
-        "id": "B",
         "text": "20"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "23"
+      },
+      {
+        "id": "C",
+        "text": "21"
       },
       {
         "id": "D",
         "text": "25"
+      },
+      {
+        "id": "E",
+        "text": "22"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "The stated rule settles it immediately: each row steps up by 2, so the missing cell is 19 + 2 = 21. What makes this item worth studying is the built-in second check. Read the grid as one continuous list — 5, 7, 9, 11, 13, 15, 17, 19, 21 — and it is simply the consecutive odd numbers starting at 5, which excludes any even answer outright. Read it by column instead and each column climbs by 6: 5, 11, 17 and 7, 13, 19 and 9, 15, 21. Row and column agree on 21, so the answer is confirmed twice from independent directions.",
     "steps": [
       "Apply the stated row rule to the last row: 17 → 19 → ?, each step +2, so ? = 19 + 2 = 21.",
@@ -3661,9 +4030,10 @@
       "Both the row and the column confirm the missing number is 21."
     ],
     "distractorExplanations": {
-      "B": "20 breaks the parity of the grid — every entry is odd, because odd + 2 is always odd. It comes from adding 1 rather than the stated step of 2.",
-      "C": "23 adds 4 instead of 2, effectively skipping the cell after 19. It would also break the column rule, since 9, 15, 23 is not a constant +6 climb.",
-      "D": "25 jumps three steps ahead to the 12th odd number in the run. It is the answer you get by continuing the sequence past the cell the question actually asks for."
+      "A": "20 breaks the parity of the grid — every entry is odd, because odd + 2 is always odd. It comes from adding 1 rather than the stated step of 2.",
+      "B": "23 adds 4 instead of 2, effectively skipping the cell after 19. It would also break the column rule, since 9, 15, 23 is not a constant +6 climb.",
+      "D": "25 jumps three steps ahead to the 12th odd number in the run. It is the answer you get by continuing the sequence past the cell the question actually asks for.",
+      "E": "Added 3 instead of 2 across the row, confusing the row step with the column-to-column span"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -3687,22 +4057,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "All permits are urgent."
+        "text": "Some permits are not ignored."
       },
       {
         "id": "B",
-        "text": "No permit is ignored."
+        "text": "All permits are urgent."
       },
       {
         "id": "C",
-        "text": "All documents are permits."
+        "text": "No permit is ignored."
       },
       {
         "id": "D",
-        "text": "Some permits are not ignored."
+        "text": "All documents are permits."
+      },
+      {
+        "id": "E",
+        "text": "All permits are not ignored."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "Split the permits into two piles: the urgent ones, whose existence premise 1 guarantees, and the rest, about which the premises are silent. The universal negative covers only the first pile — nothing urgent is ignored — so those permits are certainly not ignored. That yields exactly one safe claim: some permits are not ignored. The seductive answer is B, which quietly extends the protection to the second pile as well. Non-urgent permits were never mentioned, and they may sit ignored for weeks; a premise that begins with 'some' can never license a conclusion about all or none.",
     "steps": [
       "Step 1: Premise 1 guarantees at least one permit is urgent; call that subgroup the urgent permits.",
@@ -3711,9 +4085,10 @@
       "Step 4: Check the remaining permits: the non-urgent ones fall outside both premises, so no claim about all permits is available. The answer stops at 'some'."
     ],
     "distractorExplanations": {
-      "A": "Upgrades 'some permits are urgent' into 'all'. If every permit were urgent, the word 'some' in the premise would be pointless — in exam logic, 'some' explicitly leaves room for permits that are not urgent.",
-      "B": "The key trap. The protection covers urgent documents only, and the non-urgent permits are entirely unaccounted for — they may well be ignored, so 'no permit' overreaches.",
-      "C": "Reverses and universalises a relationship never stated. Permits are one kind of document; nothing suggests documents in general are permits."
+      "B": "Upgrades 'some permits are urgent' into 'all'. If every permit were urgent, the word 'some' in the premise would be pointless — in exam logic, 'some' explicitly leaves room for permits that are not urgent.",
+      "C": "The key trap. The protection covers urgent documents only, and the non-urgent permits are entirely unaccounted for — they may well be ignored, so 'no permit' overreaches.",
+      "D": "Reverses and universalises a relationship never stated. Permits are one kind of document; nothing suggests documents in general are permits.",
+      "E": "Overreaches the 'some' quantifier: only the urgent subset is guaranteed non-ignored; non-urgent permits may be ignored"
     },
     "tip": {
       "label": "Logic Rule",
@@ -3742,18 +4117,22 @@
       },
       {
         "id": "B",
-        "text": "A free transportation program began on the same day as the new schedule."
-      },
-      {
-        "id": "C",
         "text": "The schedule was announced in advance."
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "The old schedule had fewer hours."
+      },
+      {
+        "id": "D",
+        "text": "The new schedule was poorly received in an internal staff survey before implementation."
+      },
+      {
+        "id": "E",
+        "text": "A free transportation program began on the same day as the new schedule."
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "The standard way to attack a causal claim is not to deny the effect but to supply a rival cause for it. A free transportation programme launched on the very same day is a textbook confounding variable: attendance may have risen because travel became free, because the hours changed, or because of both, and the data as given cannot separate the two. That does not prove the schedule was irrelevant — it removes the ground for crediting the schedule alone, which is exactly what weakening means. Note that co-occurrence is what does the damage here; a programme launched a year earlier would explain far less.",
     "steps": [
       "Step 1: Identify the causal claim: new schedule (cause) → rise in attendance (effect).",
@@ -3763,8 +4142,9 @@
     ],
     "distractorExplanations": {
       "A": "This strengthens rather than weakens — it supplies the temporal sequence the claim depends on. It is still not proof, because sequence alone is not causation, but it works for the argument, not against it.",
-      "C": "Advance notice is neutral background about how the change was communicated. If anything, it made the new schedule easier to use, which supports the claim mildly.",
-      "D": "Describing the old schedule as having fewer hours explains the mechanism by which more hours could raise attendance — supporting detail, not a rival cause."
+      "B": "Advance notice is neutral background about how the change was communicated. If anything, it made the new schedule easier to use, which supports the claim mildly.",
+      "C": "Describing the old schedule as having fewer hours explains the mechanism by which more hours could raise attendance — supporting detail, not a rival cause.",
+      "D": "Addresses attitudes toward the schedule but does not introduce a rival causal explanation for the rise in attendance"
     },
     "tip": {
       "label": "Exam Tip",
@@ -3801,6 +4181,10 @@
       {
         "id": "D",
         "text": "A client survey shows that many weekday workers cannot visit during current hours."
+      },
+      {
+        "id": "E",
+        "text": "The office processed fewer total transactions last year than the previous year."
       }
     ],
     "correctOptionId": "D",
@@ -3814,7 +4198,8 @@
     "distractorExplanations": {
       "A": "Fresh paint concerns the appearance of the office and has no bearing on whether Saturday service is needed or would be used. Pleasant facts are not the same as supporting evidence.",
       "B": "The trap shape: irrelevant but reassuring. Unchanged electricity rates mean the plan is no more expensive than expected, which removes one objection without giving any positive reason to open on Saturday.",
-      "C": "A preference for online meetings concerns employees, not clients at a service counter — and if anything it points toward a different solution rather than supporting this one."
+      "C": "A preference for online meetings concerns employees, not clients at a service counter — and if anything it points toward a different solution rather than supporting this one.",
+      "E": "Indicates declining volume but does not connect inaccessibility during current hours to the need for Saturday availability"
     },
     "tip": {
       "label": "Exam Tip",
@@ -3851,6 +4236,10 @@
       {
         "id": "D",
         "text": "Anyone who enters the archive must have clearance."
+      },
+      {
+        "id": "E",
+        "text": "All employees with clearance are required to enter the archive."
       }
     ],
     "correctOptionId": "D",
@@ -3864,7 +4253,8 @@
     "distractorExplanations": {
       "A": "Converts permission into obligation. 'May enter' grants a right that cleared employees are free never to exercise; reading 'may' as 'must' is the most common misreading of access rules.",
       "B": "Reverses and narrows the rule into a claim about who needs clearance in general, when the rule only governs who may enter the archive. It also invents a category, 'archive employees', that the rule never mentions.",
-      "C": "Contradicts the rule outright. If clearance is necessary for every entrant, visitors are covered too — an exception would have to be stated, and none is."
+      "C": "Contradicts the rule outright. If clearance is necessary for every entrant, visitors are covered too — an exception would have to be stated, and none is.",
+      "E": "Reverses the conditional: 'only X may enter' means entry requires X, not that having X obligates entry"
     },
     "tip": {
       "label": "Logic Rule",
@@ -3890,22 +4280,26 @@
     "choices": [
       {
         "id": "A",
-        "text": "The score improvement cannot be attributed to the training alone."
-      },
-      {
-        "id": "B",
         "text": "The training definitely caused the entire improvement."
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "Quiet study areas had no effect."
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "Training programs never improve performance."
+      },
+      {
+        "id": "D",
+        "text": "The score improvement cannot be attributed to the training alone."
+      },
+      {
+        "id": "E",
+        "text": "The training program had no effect and all improvement came from the quiet study areas."
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "D",
     "explanation": "Two changes were introduced together in both offices, so their effects are perfectly entangled and no measurement here can apportion credit between them. The safest conclusion is therefore the modest one: the improvement cannot be attributed to the training alone. Read what that does and does not say — it never denies that the training helped, it only denies that the training can be credited by itself. Learn to hear the vocabulary of overreach in the wrong options: 'definitely' and 'entire', 'no effect', and 'never' all assert more than two co-occurring changes could ever establish.",
     "steps": [
       "Step 1: Note the design flaw: the training and the quiet study areas were introduced in the same offices during the same period.",
@@ -3914,9 +4308,10 @@
       "Step 4: The safest conclusion is the modest one: the improvement cannot be attributed to the training alone."
     ],
     "distractorExplanations": {
-      "B": "'Definitely' and 'entire' claim both certainty and completeness while a rival cause sat in the same room the whole time. Confounded data can never support sole credit.",
-      "C": "Overcorrects in the opposite direction. The quiet areas are just as unmeasured as the training, so declaring them ineffective is as unsupported as declaring the training solely responsible.",
-      "D": "A sweeping universal drawn from one ambiguous study — and it contradicts the observed improvement. One inconclusive case cannot establish 'never'."
+      "A": "'Definitely' and 'entire' claim both certainty and completeness while a rival cause sat in the same room the whole time. Confounded data can never support sole credit.",
+      "B": "Overcorrects in the opposite direction. The quiet areas are just as unmeasured as the training, so declaring them ineffective is as unsupported as declaring the training solely responsible.",
+      "C": "A sweeping universal drawn from one ambiguous study — and it contradicts the observed improvement. One inconclusive case cannot establish 'never'.",
+      "E": "Commits the opposite error: attributes all improvement to one confound instead of acknowledging both as possible causes"
     },
     "tip": {
       "label": "Common Mistake",
@@ -3944,18 +4339,22 @@
       },
       {
         "id": "B",
-        "text": "Longer instructions are always more accurate."
+        "text": "Some applications are returned because applicants misunderstand the instructions."
       },
       {
         "id": "C",
-        "text": "Some applications are returned because applicants misunderstand the instructions."
+        "text": "Longer instructions are always more accurate."
       },
       {
         "id": "D",
         "text": "Returned applications require no staff time."
+      },
+      {
+        "id": "E",
+        "text": "All returned applications are due to applicants misunderstanding the instructions."
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Simplifying instructions can only cut returns if confusion over the instructions is causing at least part of the problem. That causal link is never stated, which makes it the assumption — and note how modest the correct version is. The hedged 'Some applications are returned because applicants misunderstand' is enough to keep the recommendation alive, whereas A's absolute 'All applicants intentionally' is both stronger than needed and self-defeating: deliberate incompleteness would not be cured by clearer wording. Required assumptions are the minimum the argument needs, never the maximum it could tolerate.",
     "steps": [
       "Step 1: Separate the recommendation ('publish simpler instructions') from the predicted result ('fewer applications will be returned').",
@@ -3965,8 +4364,9 @@
     ],
     "distractorExplanations": {
       "A": "Two flaws: 'all' is far stronger than the argument needs, and 'intentionally' undercuts the proposal, since applicants who submit incomplete forms on purpose would not be helped by simpler wording.",
-      "B": "Irrelevant to the proposal, which is about simplicity rather than length — and it argues against the recommendation instead of supporting it. Required assumptions never contradict the conclusion.",
-      "D": "Reverses the motive. If returned applications cost no staff time, there would be no reason to reduce them; the argument quietly assumes the opposite of this."
+      "C": "Irrelevant to the proposal, which is about simplicity rather than length — and it argues against the recommendation instead of supporting it. Required assumptions never contradict the conclusion.",
+      "D": "Reverses the motive. If returned applications cost no staff time, there would be no reason to reduce them; the argument quietly assumes the opposite of this.",
+      "E": "Overreaches from 'some' to 'all': the argument only requires that SOME applications are returned due to misunderstanding"
     },
     "tip": {
       "label": "Exam Tip",
@@ -4003,6 +4403,10 @@
       {
         "id": "D",
         "text": "ESSAY"
+      },
+      {
+        "id": "E",
+        "text": "REPORT"
       }
     ],
     "correctOptionId": "D",
@@ -4010,7 +4414,8 @@
     "distractorExplanations": {
       "A": "A pencil is the instrument an outline may be written with, not the finished work the outline becomes. Instrument-for-product is the most frequent substitution error in analogy items.",
       "B": "A reader is the audience who receives the finished writing. The pair asks for the product built from the plan, and the audience stands outside that plan-to-product relationship entirely.",
-      "C": "A dictionary is a reference work, not something an outline is drafted for. It belongs to the world of writing without occupying the finished-product slot the analogy requires."
+      "C": "A dictionary is a reference work, not something an outline is drafted for. It belongs to the world of writing without occupying the finished-product slot the analogy requires.",
+      "E": "Confuses the outline's canonical academic product (essay) with a similar but structurally distinct document type (report)"
     },
     "tip": {
       "label": "Pattern Recognition",

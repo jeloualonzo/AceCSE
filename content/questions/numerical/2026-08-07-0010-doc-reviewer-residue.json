@@ -8,12 +8,28 @@
     "difficulty": "Medium",
     "question": "The following four fractions are arranged from least to greatest. Which fraction has the SECOND GREATEST value?\n\n3/8, 5/9, 7/12, 11/18",
     "choices": [
-      { "id": "A", "text": "3/8" },
-      { "id": "B", "text": "5/9" },
-      { "id": "C", "text": "11/18" },
-      { "id": "D", "text": "7/12" }
+      {
+        "id": "A",
+        "text": "7/12"
+      },
+      {
+        "id": "B",
+        "text": "3/8"
+      },
+      {
+        "id": "C",
+        "text": "5/9"
+      },
+      {
+        "id": "D",
+        "text": "11/18"
+      },
+      {
+        "id": "E",
+        "text": "4/7"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "To order fractions reliably, convert each to a common denominator or to decimals. The LCD of 8, 9, 12, and 18 is 72: 3/8 = 27/72 ≈ 0.375; 5/9 = 40/72 ≈ 0.556; 7/12 = 42/72 ≈ 0.583; 11/18 = 44/72 ≈ 0.611. Ranked from least to greatest: 3/8 < 5/9 < 7/12 < 11/18. The greatest value is 11/18 and the second greatest is 7/12. A common trap is to rank fractions by numerator or denominator alone — a larger numerator does not guarantee a larger fraction if the denominators differ. Always convert to a common denominator (or decimal) before placing fractions in order.",
     "steps": [
       "Convert each fraction to 72nds: 3/8 = 27/72, 5/9 = 40/72, 7/12 = 42/72, 11/18 = 44/72.",
@@ -22,9 +38,10 @@
       "Greatest is 11/18; second greatest is 7/12."
     ],
     "distractorExplanations": {
-      "A": "3/8 is the LEAST of the four fractions, not the second greatest. It equals 27/72, the smallest numerator among the 72nds. Choosing it suggests comparing raw numerators (3 < 5 < 7 < 11) without converting, which ranks them correctly here only by coincidence — a method that fails as soon as denominators differ.",
-      "B": "5/9 is the second smallest (40/72), not the second greatest. Confusing 'second from the bottom' with 'second from the top' is a direction error — the question asks for the second greatest, which is the one just below the maximum.",
-      "C": "11/18 is the GREATEST value (44/72), not the second greatest. Picking the outright winner when the question asks for the runner-up is a reading error; always check whether the question asks for the largest or the one just below it."
+      "B": "3/8 is the LEAST of the four fractions, not the second greatest. It equals 27/72, the smallest numerator among the 72nds. Choosing it suggests comparing raw numerators (3 < 5 < 7 < 11) without converting, which ranks them correctly here only by coincidence — a method that fails as soon as denominators differ.",
+      "C": "5/9 is the second smallest (40/72), not the second greatest. Confusing 'second from the bottom' with 'second from the top' is a direction error — the question asks for the second greatest, which is the one just below the maximum.",
+      "D": "11/18 is the GREATEST value (44/72), not the second greatest. Picking the outright winner when the question asks for the runner-up is a reading error; always check whether the question asks for the largest or the one just below it.",
+      "E": "Estimates 7/12≈0.583 then substitutes the superficially similar fraction 4/7≈0.571 — a close but distinct value arising from incorrect fraction equivalence reasoning."
     },
     "tip": {
       "label": "Math Shortcut",
@@ -46,12 +63,28 @@
     "difficulty": "Easy",
     "question": "A civil service employee's shift begins at 10:45 AM. A reporting deadline is set exactly 15 hours after the shift starts. At what time is the deadline?",
     "choices": [
-      { "id": "A", "text": "1:45 AM" },
-      { "id": "B", "text": "11:45 PM" },
-      { "id": "C", "text": "12:45 AM" },
-      { "id": "D", "text": "2:45 AM" }
+      {
+        "id": "A",
+        "text": "11:45 PM"
+      },
+      {
+        "id": "B",
+        "text": "12:45 AM"
+      },
+      {
+        "id": "C",
+        "text": "2:45 AM"
+      },
+      {
+        "id": "D",
+        "text": "10:45 PM"
+      },
+      {
+        "id": "E",
+        "text": "1:45 AM"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Clock time is modular: once the hour hand passes midnight (12:00 AM), it resets and the cycle begins again. Add 15 hours to 10:45 AM step by step: 10:45 AM + 12 hours = 10:45 PM; 10:45 PM + 3 more hours = 1:45 AM. Alternatively, compute in 24-hour format: 10:45 is hour 10.75; adding 15 gives 25.75, which is 25.75 − 24 = 1.75 in the next day, or 1:45 AM. The minutes never change since only whole hours are added. The key insight is that any sum of hours beyond 24:00 wraps back by subtracting 24.",
     "steps": [
       "Express the start time: 10:45 AM = hour 10, minute 45.",
@@ -60,9 +93,10 @@
       "The deadline is at 1:45 AM."
     ],
     "distractorExplanations": {
-      "B": "11:45 PM results from adding only 13 hours instead of 15 (or from stopping at the PM-to-midnight boundary without continuing the count). 10:45 AM + 13 h = 11:45 PM, not the answer. Two more hours carry past midnight.",
-      "C": "12:45 AM comes from adding 14 hours: 10:45 AM + 14 h = 12:45 AM. Off by 1 — verify by counting: 10:45 + 12 = 10:45 PM, + 1 = 11:45 PM, + 1 = 12:45 AM, + 1 = 1:45 AM. Three more hours are needed after 10:45 PM, not two.",
-      "D": "2:45 AM results from adding 16 hours instead of 15: 10 + 16 = 26, and 26 − 24 = 2, giving 2:45 AM. The problem specifies 15 hours — adding an extra hour overshoots the deadline by one hour."
+      "A": "11:45 PM results from adding only 13 hours instead of 15 (or from stopping at the PM-to-midnight boundary without continuing the count). 10:45 AM + 13 h = 11:45 PM, not the answer. Two more hours carry past midnight.",
+      "B": "12:45 AM comes from adding 14 hours: 10:45 AM + 14 h = 12:45 AM. Off by 1 — verify by counting: 10:45 + 12 = 10:45 PM, + 1 = 11:45 PM, + 1 = 12:45 AM, + 1 = 1:45 AM. Three more hours are needed after 10:45 PM, not two.",
+      "C": "2:45 AM results from adding 16 hours instead of 15: 10 + 16 = 26, and 26 − 24 = 2, giving 2:45 AM. The problem specifies 15 hours — adding an extra hour overshoots the deadline by one hour.",
+      "D": "Adds only 12 hours instead of 15 hours to 10:45 AM, arriving at 10:45 PM — confuses a half-day (12 h) addition with the required 15 h."
     },
     "tip": {
       "label": "Math Shortcut",
@@ -84,12 +118,28 @@
     "difficulty": "Medium",
     "question": "A number is increased by 4/5 of itself and the result is 90. What is the original number?",
     "choices": [
-      { "id": "A", "text": "45" },
-      { "id": "B", "text": "72" },
-      { "id": "C", "text": "50" },
-      { "id": "D", "text": "54" }
+      {
+        "id": "A",
+        "text": "50"
+      },
+      {
+        "id": "B",
+        "text": "45"
+      },
+      {
+        "id": "C",
+        "text": "72"
+      },
+      {
+        "id": "D",
+        "text": "54"
+      },
+      {
+        "id": "E",
+        "text": "75"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "Translating 'increased by 4/5 of itself' into algebra is the critical step: the new value equals the original plus 4/5 of the original, so new = x + (4/5)x = (1 + 4/5)x = (9/5)x. Setting this equal to 90: (9/5)x = 90, so x = 90 × (5/9) = 450/9 = 50. Verify: 50 + (4/5)(50) = 50 + 40 = 90. ✓ This differs from a plain reverse percentage ('90 is 4/5 of what number?') because the 4/5 is added to the original — the multiplier on x is (1 + 4/5), not just 4/5. Forgetting the '1 +' part is the most common error.",
     "steps": [
       "Translate: 'increased by 4/5 of itself' means new value = x + (4/5)x = (9/5)x.",
@@ -98,9 +148,10 @@
       "Verify: 50 + (4/5)(50) = 50 + 40 = 90. ✓"
     ],
     "distractorExplanations": {
-      "A": "45 is half of 90 — the result of dividing the given total by 2 as if the number and its 4/5 portion are equal halves. They are not equal halves; one part is x and the other is (4/5)x, so the ratio is 5:4, not 1:1.",
-      "B": "72 comes from computing (4/5) × 90 = 72 — treating the problem as '4/5 of 90' rather than solving for x when x + (4/5)x = 90. The 72 is the amount added to the original x = 50 to reach 90, not the original number itself.",
-      "D": "54 would require (9/5)(54) = 97.2 ≠ 90, so it does not satisfy the equation. It may arise from computing 90 − (4/5)(45) = 90 − 36 = 54, mixing two separate mis-steps in the same calculation."
+      "B": "45 is half of 90 — the result of dividing the given total by 2 as if the number and its 4/5 portion are equal halves. They are not equal halves; one part is x and the other is (4/5)x, so the ratio is 5:4, not 1:1.",
+      "C": "72 comes from computing (4/5) × 90 = 72 — treating the problem as '4/5 of 90' rather than solving for x when x + (4/5)x = 90. The 72 is the amount added to the original x = 50 to reach 90, not the original number itself.",
+      "D": "54 would require (9/5)(54) = 97.2 ≠ 90, so it does not satisfy the equation. It may arise from computing 90 − (4/5)(45) = 90 − 36 = 54, mixing two separate mis-steps in the same calculation.",
+      "E": "Interprets 'increased by 4/5 of itself' as 'increased by 1/5 of itself' (using the complement 1-4/5=1/5): x+x/5=6x/5=90→x=75."
     },
     "tip": {
       "label": "Common Mistake",
@@ -122,10 +173,26 @@
     "difficulty": "Easy",
     "question": "What is the standard numerical form of 4.07 × 10⁴?",
     "choices": [
-      { "id": "A", "text": "407" },
-      { "id": "B", "text": "4,070" },
-      { "id": "C", "text": "407,000" },
-      { "id": "D", "text": "40,700" }
+      {
+        "id": "A",
+        "text": "407"
+      },
+      {
+        "id": "B",
+        "text": "4,070"
+      },
+      {
+        "id": "C",
+        "text": "407,000"
+      },
+      {
+        "id": "D",
+        "text": "40,700"
+      },
+      {
+        "id": "E",
+        "text": "4,000"
+      }
     ],
     "correctOptionId": "D",
     "explanation": "Scientific notation of the form a × 10ⁿ means 'move the decimal point in a exactly n places to the right.' For 4.07 × 10⁴, move the decimal 4 places right: 4.07 → 40.7 → 407 → 4,070 → 40,700. Adding placeholder zeros as needed gives 40,700. The rule is simple: a positive exponent n means the number is large — move the decimal right by n. A negative exponent means the number is a small decimal — move the decimal left by |n|. The trap here is counting the decimal shift incorrectly — moving only 2 or 3 places instead of 4.",
@@ -137,7 +204,8 @@
     "distractorExplanations": {
       "A": "407 results from moving the decimal only 2 places right (4.07 → 407), stopping after the second shift. The exponent is 4, which requires 4 moves, not 2. Two more placeholder zeros are needed: 40,700.",
       "B": "4,070 comes from moving the decimal 3 places instead of 4 (4.07 → 4,070). One final shift to the right is missing. Count carefully: each × 10 shifts the decimal one place; × 10⁴ shifts it four places.",
-      "C": "407,000 results from moving the decimal 5 places right — one extra shift. The exponent is 4, so exactly 4 moves are required. Moving to 407,000 gives 4.07 × 10⁵, not 10⁴."
+      "C": "407,000 results from moving the decimal 5 places right — one extra shift. The exponent is 4, so exactly 4 moves are required. Moving to 407,000 gives 4.07 × 10⁵, not 10⁴.",
+      "E": "Rounds 4.07 to 4 before scaling and moves only 3 decimal places: 4×10³=4,000, conflating rounding with the exponent."
     },
     "tip": {
       "label": "Remember",
@@ -156,14 +224,30 @@
     "topic": "Fractions",
     "subtopic": "Equivalent Representations — Fraction, Decimal, Percent",
     "difficulty": "Medium",
-    "question": "Three of the following four values are equivalent to one another. Which value is NOT equal to the others?\n\n3/5, 0.6, 60%, 12/25",
+    "question": "Four of the following five values are equivalent to one another. Which value is NOT equal to the others?  3/5, 0.6, 60%, 9/15, 12/25",
     "choices": [
-      { "id": "A", "text": "12/25" },
-      { "id": "B", "text": "3/5" },
-      { "id": "C", "text": "60%" },
-      { "id": "D", "text": "0.6" }
+      {
+        "id": "A",
+        "text": "3/5"
+      },
+      {
+        "id": "B",
+        "text": "60%"
+      },
+      {
+        "id": "C",
+        "text": "0.6"
+      },
+      {
+        "id": "D",
+        "text": "9/15"
+      },
+      {
+        "id": "E",
+        "text": "12/25"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Convert every value to the same form to compare — decimals are the fastest. 3/5 = 0.6; 0.6 = 0.6; 60% = 60/100 = 0.6; 12/25 = 0.48. The first three all equal 0.6, but 12/25 = 0.48, which is different. To convert a fraction to a decimal, divide the numerator by the denominator: 12 ÷ 25 = 0.48. The confusion arises because 12/25 looks superficially similar to 12/20 = 0.6 — the denominator 25 is close to 20 but the values differ by 0.12. Whenever you see a set of mixed representations, convert them all to the same form before deciding.",
     "steps": [
       "Convert each value to a decimal: 3/5 = 0.6; 0.6 = 0.6; 60% = 0.60; 12/25 = 0.48.",
@@ -171,9 +255,10 @@
       "The outlier is 12/25 = 0.48."
     ],
     "distractorExplanations": {
-      "B": "3/5 = 6/10 = 0.6 = 60%. Choosing 3/5 as the outlier suggests confusing 3/5 with 3/8 (= 0.375) or 3/4 (= 0.75). Divide 3 by 5 directly: 3 ÷ 5 = 0.6, which matches the others.",
-      "C": "60% = 60/100 = 3/5 = 0.6. Choosing it as the outlier confuses 60% with 6% (= 0.06) or with percent-to-decimal conversion errors. Per cent means 'per hundred,' so 60% = 0.60, not 0.006 or 6.",
-      "D": "0.6 is 0.6 — the same decimal that 3/5 and 60% both reduce to. Choosing it as the outlier may stem from writing 0.6 as 6/10 and then incorrectly simplifying 6/10 to get something other than 3/5."
+      "A": "3/5 = 6/10 = 0.6 = 60%. Choosing 3/5 as the outlier suggests confusing 3/5 with 3/8 (= 0.375) or 3/4 (= 0.75). Divide 3 by 5 directly: 3 ÷ 5 = 0.6, which matches the others.",
+      "B": "60% = 60/100 = 3/5 = 0.6. Choosing it as the outlier confuses 60% with 6% (= 0.06) or with percent-to-decimal conversion errors. Per cent means 'per hundred,' so 60% = 0.60, not 0.006 or 6.",
+      "C": "0.6 is 0.6 — the same decimal that 3/5 and 60% both reduce to. Choosing it as the outlier may stem from writing 0.6 as 6/10 and then incorrectly simplifying 6/10 to get something other than 3/5.",
+      "D": "9/15 reduces to 3/5 = 0.6, so it belongs with the equivalent group — verify by dividing 9 by 15 rather than judging by unfamiliar digits."
     },
     "tip": {
       "label": "Exam Tip",
@@ -195,12 +280,28 @@
     "difficulty": "Hard",
     "question": "What is the smallest integer greater than 20 that leaves a remainder of 7 when divided by 8, 10, or 20?",
     "choices": [
-      { "id": "A", "text": "7" },
-      { "id": "B", "text": "47" },
-      { "id": "C", "text": "40" },
-      { "id": "D", "text": "87" }
+      {
+        "id": "A",
+        "text": "7"
+      },
+      {
+        "id": "B",
+        "text": "40"
+      },
+      {
+        "id": "C",
+        "text": "87"
+      },
+      {
+        "id": "D",
+        "text": "47"
+      },
+      {
+        "id": "E",
+        "text": "27"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "D",
     "explanation": "When a number leaves the same remainder r for each of several divisors, the number minus r is divisible by every one of those divisors — making (number − 7) a common multiple of 8, 10, and 20. Find the LCM of 8, 10, and 20: LCM(8, 10) = 40; LCM(40, 20) = 40. The smallest positive multiple of 40 that exceeds 20 is 40 itself, so the smallest qualifying integer is 40 + 7 = 47. Verify: 47 ÷ 8 = 5 remainder 7; 47 ÷ 10 = 4 remainder 7; 47 ÷ 20 = 2 remainder 7. ✓ The next integer with the same property is 40 + 40 + 7 = 87. The LCM step is where most examinees err — using the sum (8 + 10 + 20 = 38) or the largest divisor (20) instead of the true LCM (40).",
     "steps": [
       "Recognise the structure: if n leaves remainder 7 for each of 8, 10, and 20, then n − 7 is a common multiple of all three divisors.",
@@ -210,8 +311,9 @@
     ],
     "distractorExplanations": {
       "A": "7 is the remainder itself. Any number less than 8 (the smallest divisor) leaves a remainder equal to itself, so 7 ÷ 8 = 0 r 7 — but the question asks for integers greater than 20 that have a non-trivial quotient with each divisor. The intended answer is the LCM-based solution: 47.",
-      "C": "40 is the LCM of 8, 10, and 20 — the value that (n − 7) must equal, not n itself. Dividing 40 by each divisor gives remainder 0, not 7. The LCM is an intermediate result; the final step adds the target remainder: 40 + 7 = 47.",
-      "D": "87 = 40 + 40 + 7 = 80 + 7 is the next integer satisfying the condition. Verify: 87 ÷ 8 = 10 r 7, 87 ÷ 10 = 8 r 7, 87 ÷ 20 = 4 r 7 — all correct, but 47 appears earlier and is the smallest integer greater than 20 with this property."
+      "B": "40 is the LCM of 8, 10, and 20 — the value that (n − 7) must equal, not n itself. Dividing 40 by each divisor gives remainder 0, not 7. The LCM is an intermediate result; the final step adds the target remainder: 40 + 7 = 47.",
+      "C": "87 = 40 + 40 + 7 = 80 + 7 is the next integer satisfying the condition. Verify: 87 ÷ 8 = 10 r 7, 87 ÷ 10 = 8 r 7, 87 ÷ 20 = 4 r 7 — all correct, but 47 appears earlier and is the smallest integer greater than 20 with this property.",
+      "E": "Uses LCM of only two divisors (10 and 20=20) and adds 7: 20+7=27, ignoring divisor 8."
     },
     "tip": {
       "label": "Formula",
@@ -233,10 +335,26 @@
     "difficulty": "Medium",
     "question": "How many degrees are in the angle formed by the hands of a clock at exactly 7:00?",
     "choices": [
-      { "id": "A", "text": "30°" },
-      { "id": "B", "text": "120°" },
-      { "id": "C", "text": "150°" },
-      { "id": "D", "text": "210°" }
+      {
+        "id": "A",
+        "text": "30°"
+      },
+      {
+        "id": "B",
+        "text": "120°"
+      },
+      {
+        "id": "C",
+        "text": "150°"
+      },
+      {
+        "id": "D",
+        "text": "175°"
+      },
+      {
+        "id": "E",
+        "text": "210°"
+      }
     ],
     "correctOptionId": "C",
     "explanation": "A clock face is a full circle of 360°, divided into 12 hours, so each hour mark is 360° ÷ 12 = 30° from the next. At 7:00, the minute hand points straight up at the 12, which is 0°. The hour hand points at the 7, which is 7 × 30° = 210° measured clockwise from the 12. The angle between the two hands measured as the smaller (minor) arc is min(210°, 360° − 210°) = min(210°, 150°) = 150°. Unless the problem says 'reflex angle,' always report the minor angle between the hands. Verify: from 12 to 7 going clockwise covers 7 out of 12 sectors = 7/12 × 360° = 210°; the short way around is 360° − 210° = 150°.",
@@ -249,7 +367,8 @@
     "distractorExplanations": {
       "A": "30° is the angle spanning just one hour sector (the gap between any two adjacent numbers). At 7:00 the hands are 7 sectors apart, not 1. Choosing 30° mistakes the unit sector angle for the answer.",
       "B": "120° is the angle at 4:00, when the hour hand is at the 4 (4 × 30° = 120° from the 12). At 7:00 the hour hand is 3 more hour-marks further around: 7 × 30° = 210°, and the minor arc is 150°, not 120°.",
-      "D": "210° is the reflex (major) angle — the longer arc going the long way around from the 12 to the 7. Clock-angle questions ask for the angle between the hands, which is conventionally the smaller of the two arcs formed. The minor angle is 360° − 210° = 150°."
+      "D": "Uses 25° per hour-position instead of the correct 30°: 7×25°=175°.",
+      "E": "210° is the reflex (major) angle — the longer arc going the long way around from the 12 to the 7. Clock-angle questions ask for the angle between the hands, which is conventionally the smaller of the two arcs formed. The minor angle is 360° − 210° = 150°."
     },
     "tip": {
       "label": "Formula",
@@ -271,12 +390,28 @@
     "difficulty": "Medium",
     "question": "Admission to a heritage park costs ₱60 per adult and ₱35 per child. A family pays a total of ₱285. If the family has an equal number of adults and children, how many people are in the family altogether?",
     "choices": [
-      { "id": "A", "text": "6" },
-      { "id": "B", "text": "3" },
-      { "id": "C", "text": "9" },
-      { "id": "D", "text": "12" }
+      {
+        "id": "A",
+        "text": "3"
+      },
+      {
+        "id": "B",
+        "text": "9"
+      },
+      {
+        "id": "C",
+        "text": "12"
+      },
+      {
+        "id": "D",
+        "text": "13"
+      },
+      {
+        "id": "E",
+        "text": "6"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Let n = the number of adults = the number of children (they are equal). Each adult pays ₱60 and each child pays ₱35, so the total is 60n + 35n = 95n. Setting this equal to ₱285: 95n = 285, so n = 285 ÷ 95 = 3. There are 3 adults and 3 children, giving a total family size of 3 + 3 = 6. Verify: 3 × ₱60 + 3 × ₱35 = ₱180 + ₱105 = ₱285. ✓ The key is reading 'equal number of adults and children' as letting n stand for each group, then combining the rates before dividing — not dividing ₱285 by one rate alone.",
     "steps": [
       "Let n = adults = children (equal groups).",
@@ -286,9 +421,10 @@
       "Verify: 3 × ₱60 + 3 × ₱35 = ₱180 + ₱105 = ₱285. ✓"
     ],
     "distractorExplanations": {
-      "B": "3 is the count of adults (or children) — the value of n — not the total family size. The question asks how many people are in the family altogether: n adults + n children = 2n = 6. Stopping at n = 3 reports one group, not the whole family.",
-      "C": "9 = 3n, which would be three equal groups, not two. This might arise from dividing ₱285 by ₱95 to get 3, then multiplying by 3 instead of 2 to find the total. The family has two groups (adults and children), so total = 2 × 3 = 6.",
-      "D": "12 = 4n, which would require four equal groups at an unequal rate split — nothing in the problem supports four groups. This value may come from guessing that the total is doubled again (6 × 2 = 12) without any algebraic basis."
+      "A": "3 is the count of adults (or children) — the value of n — not the total family size. The question asks how many people are in the family altogether: n adults + n children = 2n = 6. Stopping at n = 3 reports one group, not the whole family.",
+      "B": "9 = 3n, which would be three equal groups, not two. This might arise from dividing ₱285 by ₱95 to get 3, then multiplying by 3 instead of 2 to find the total. The family has two groups (adults and children), so total = 2 × 3 = 6.",
+      "C": "12 = 4n, which would require four equal groups at an unequal rate split — nothing in the problem supports four groups. This value may come from guessing that the total is doubled again (6 × 2 = 12) without any algebraic basis.",
+      "D": "Separately divides total cost by each admission price (285÷60≈5 adults, 285÷35≈8 children) and sums without the equal-number constraint: 5+8=13."
     },
     "tip": {
       "label": "Formula",
@@ -310,12 +446,28 @@
     "difficulty": "Hard",
     "question": "The area of a rectangular government lot is 2,304 square meters. The ratio of the width to the length is 4:9. What is the length of the lot in meters?",
     "choices": [
-      { "id": "A", "text": "32 m" },
-      { "id": "B", "text": "48 m" },
-      { "id": "C", "text": "64 m" },
-      { "id": "D", "text": "72 m" }
+      {
+        "id": "A",
+        "text": "8 m"
+      },
+      {
+        "id": "B",
+        "text": "32 m"
+      },
+      {
+        "id": "C",
+        "text": "48 m"
+      },
+      {
+        "id": "D",
+        "text": "64 m"
+      },
+      {
+        "id": "E",
+        "text": "72 m"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Express the dimensions in terms of a scale factor k: if width:length = 4:9, write width = 4k and length = 9k. Use the area formula: width × length = 2,304, so (4k)(9k) = 36k² = 2,304. Solving: k² = 2,304 ÷ 36 = 64, so k = √64 = 8. Length = 9k = 9 × 8 = 72 meters. Width = 4 × 8 = 32 meters. Verify: 32 × 72 = 2,304 m². ✓ The key technique is introducing the common factor k so that one equation in one unknown replaces what might otherwise seem like two unknowns. After finding k, read off the dimension asked for — the question asks for the length, not the width.",
     "steps": [
       "Let width = 4k and length = 9k (expressing both in terms of a scale factor k).",
@@ -325,9 +477,10 @@
       "Verify: width = 32 m; 32 × 72 = 2,304 m². ✓"
     ],
     "distractorExplanations": {
-      "A": "32 m is the WIDTH, not the length. The width = 4k = 4 × 8 = 32. The question asks for the length (9k = 72). Reporting the wrong dimension after a correct calculation is a classic last-step error — always re-read which dimension is requested.",
-      "B": "48 m = 6 × 8, which would require k = 6, giving area = 36 × 36 = 1,296 m² ≠ 2,304. This value has no correct derivation from the given numbers and likely comes from estimating k from 36k² = 2,304 as k ≈ 8 and then using ratio part 6 instead of 9.",
-      "C": "64 m² = k², the intermediate value solved when finding the scale factor. The value 64 is k² = 64, which gives k = 8 — but k itself is not the length. The length requires one more step: 9 × k = 9 × 8 = 72. Stopping at k² and reporting it as the answer skips the final multiplication."
+      "A": "Finds scale factor k=8 (from 36k²=2304, k=8) but reports k itself as the length instead of computing 9k=72 m.",
+      "B": "32 m is the WIDTH, not the length. The width = 4k = 4 × 8 = 32. The question asks for the length (9k = 72). Reporting the wrong dimension after a correct calculation is a classic last-step error — always re-read which dimension is requested.",
+      "C": "48 m = 6 × 8, which would require k = 6, giving area = 36 × 36 = 1,296 m² ≠ 2,304. This value has no correct derivation from the given numbers and likely comes from estimating k from 36k² = 2,304 as k ≈ 8 and then using ratio part 6 instead of 9.",
+      "D": "64 m² = k², the intermediate value solved when finding the scale factor. The value 64 is k² = 64, which gives k = 8 — but k itself is not the length. The length requires one more step: 9 × k = 9 × 8 = 72. Stopping at k² and reporting it as the answer skips the final multiplication."
     },
     "tip": {
       "label": "Formula",

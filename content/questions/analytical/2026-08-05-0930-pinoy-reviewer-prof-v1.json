@@ -8,17 +8,34 @@
     "difficulty": "Easy",
     "question": "LAWYER : COURTROOM :: DOCTOR : ___",
     "choices": [
-      { "id": "A", "text": "Patient" },
-      { "id": "B", "text": "Stethoscope" },
-      { "id": "C", "text": "Diagnosis" },
-      { "id": "D", "text": "Hospital" }
+      {
+        "id": "A",
+        "text": "Hospital"
+      },
+      {
+        "id": "B",
+        "text": "Patient"
+      },
+      {
+        "id": "C",
+        "text": "Stethoscope"
+      },
+      {
+        "id": "D",
+        "text": "Diagnosis"
+      },
+      {
+        "id": "E",
+        "text": "Clinic"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "The relationship is PROFESSIONAL : THE PLACE WHERE THAT PROFESSIONAL CHARACTERISTICALLY WORKS. A lawyer's defining workplace is the courtroom — the setting where the professional role is exercised. A doctor's defining workplace is the hospital, the corresponding institution where the doctor's work is carried out. The correct answer must name a place, not a tool the professional uses, a person they serve, or an outcome they produce. Only 'hospital' is a workplace parallel to 'courtroom'; the other options shift the relationship to instrument, client, or result.",
     "distractorExplanations": {
-      "A": "A patient is the person a doctor serves, not the place where the doctor works. The first pair maps a professional to a location, so the answer must also be a location — a courtroom is a room, not the accused or the client.",
-      "B": "A stethoscope is the doctor's characteristic instrument, matching a relation like SCALPEL : SURGEON, not the workplace relation the first pair sets up. Substituting a tool for a place is the most common trap in profession analogies.",
-      "C": "A diagnosis is the doctor's professional output or conclusion, not a workplace. This confuses what the professional produces with where the professional produces it."
+      "B": "A patient is the person a doctor serves, not the place where the doctor works. The first pair maps a professional to a location, so the answer must also be a location — a courtroom is a room, not the accused or the client.",
+      "C": "A stethoscope is the doctor's characteristic instrument, matching a relation like SCALPEL : SURGEON, not the workplace relation the first pair sets up. Substituting a tool for a place is the most common trap in profession analogies.",
+      "D": "A diagnosis is the doctor's professional output or conclusion, not a workplace. This confuses what the professional produces with where the professional produces it.",
+      "E": "A secondary workplace for doctors; the analogy's primary characteristic workplace for the professional pair is a hospital"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -41,17 +58,34 @@
     "difficulty": "Easy",
     "question": "BROOM : SWEEP :: SCISSORS : ___",
     "choices": [
-      { "id": "A", "text": "Cut" },
-      { "id": "B", "text": "Blade" },
-      { "id": "C", "text": "Paper" },
-      { "id": "D", "text": "Tailor" }
+      {
+        "id": "A",
+        "text": "Blade"
+      },
+      {
+        "id": "B",
+        "text": "Paper"
+      },
+      {
+        "id": "C",
+        "text": "Tailor"
+      },
+      {
+        "id": "D",
+        "text": "Cut"
+      },
+      {
+        "id": "E",
+        "text": "Trim"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "D",
     "explanation": "The relationship is TOOL : THE ACTION IT IS DESIGNED TO PERFORM. A broom exists to sweep, so the pair links an implement to its defining function expressed as a verb. Scissors exist to cut, so the completing word must be the verb naming their purpose. This differs from a tool-to-user analogy (which would ask for the person who wields the tool): here the second term is the action itself. 'Cut' is the only verb of function; the remaining options name a part of the tool, the material acted upon, or the user.",
     "distractorExplanations": {
-      "B": "A blade is a component of the scissors, not the action they perform. The first pair links a tool to a verb (broom → sweep), so a noun naming a part breaks the relation.",
-      "C": "Paper is a material scissors may act on, not their function. The analogy asks what scissors DO, not what they do it to — substituting the object of the action for the action is a frequent error.",
-      "D": "A tailor is a person who might use scissors, which fits a tool-to-user relation, not the tool-to-function relation the first pair establishes."
+      "A": "A blade is a component of the scissors, not the action they perform. The first pair links a tool to a verb (broom → sweep), so a noun naming a part breaks the relation.",
+      "B": "Paper is a material scissors may act on, not their function. The analogy asks what scissors DO, not what they do it to — substituting the object of the action for the action is a frequent error.",
+      "C": "A tailor is a person who might use scissors, which fits a tool-to-user relation, not the tool-to-function relation the first pair establishes.",
+      "E": "Overlaps with cutting but is a narrower specific action; scissors' defining analogical function is to cut"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -73,17 +107,34 @@
     "difficulty": "Medium",
     "question": "INSOMNIA : SLEEP :: AMNESIA : ___",
     "choices": [
-      { "id": "A", "text": "Brain" },
-      { "id": "B", "text": "Forget" },
-      { "id": "C", "text": "Trauma" },
-      { "id": "D", "text": "Memory" }
+      {
+        "id": "A",
+        "text": "Memory"
+      },
+      {
+        "id": "B",
+        "text": "Brain"
+      },
+      {
+        "id": "C",
+        "text": "Forget"
+      },
+      {
+        "id": "D",
+        "text": "Trauma"
+      },
+      {
+        "id": "E",
+        "text": "Recall"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "The relationship is DISORDER : THE NORMAL FACULTY IT DISRUPTS OR REMOVES. Insomnia is the condition of being unable to sleep, so the second term names the very capacity the disorder attacks — sleep. Amnesia is the loss of the ability to recall the past, so the completing term must name the faculty amnesia strips away: memory. The trap options each shift the relation — to the organ involved, to a symptom verb, or to a possible cause — rather than naming the disrupted faculty itself. Only 'memory' stands to amnesia as 'sleep' stands to insomnia.",
     "distractorExplanations": {
-      "A": "The brain is the organ where memory is processed, not the faculty amnesia disrupts. The first pair points to a capacity (sleep), so an anatomical organ breaks the parallel.",
-      "B": "'Forget' is a verb describing what an amnesiac does; the first pair supplies a noun for the affected faculty (sleep), so the answer must be the faculty 'memory,' not the action of losing it.",
-      "C": "Trauma is a possible cause of amnesia, not the faculty it removes. Mapping a cause where the affected capacity belongs reverses the direction of the relation."
+      "B": "The brain is the organ where memory is processed, not the faculty amnesia disrupts. The first pair points to a capacity (sleep), so an anatomical organ breaks the parallel.",
+      "C": "'Forget' is a verb describing what an amnesiac does; the first pair supplies a noun for the affected faculty (sleep), so the answer must be the faculty 'memory,' not the action of losing it.",
+      "D": "Trauma is a possible cause of amnesia, not the faculty it removes. Mapping a cause where the affected capacity belongs reverses the direction of the relation.",
+      "E": "Confuses the cognitive process (recall) with the affected faculty (memory) — wrong level of abstraction"
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -105,17 +156,34 @@
     "difficulty": "Medium",
     "question": "ZENITH : PEAK :: NADIR : ___",
     "choices": [
-      { "id": "A", "text": "Lowest point" },
-      { "id": "B", "text": "Star" },
-      { "id": "C", "text": "Middle" },
-      { "id": "D", "text": "Summit" }
+      {
+        "id": "A",
+        "text": "Star"
+      },
+      {
+        "id": "B",
+        "text": "Lowest point"
+      },
+      {
+        "id": "C",
+        "text": "Middle"
+      },
+      {
+        "id": "D",
+        "text": "Summit"
+      },
+      {
+        "id": "E",
+        "text": "Depth"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "B",
     "explanation": "The relationship is WORD : ITS SYNONYM. Zenith means the highest point reached — its everyday synonym is peak. Nadir is the astronomical and figurative opposite of zenith: the lowest point, the moment of greatest depression or decline. Its synonym is therefore 'lowest point.' The key discipline in synonym analogies is to match meaning, not merely the same subject area: 'summit' is a synonym of zenith, not of nadir, and is planted precisely to catch a solver who groups all the astronomy and elevation words together instead of tracking direction.",
     "distractorExplanations": {
-      "B": "A star is associated with the night sky where 'zenith' and 'nadir' originate as astronomical terms, but it is not a synonym for nadir. Sharing a topic is not the same as sharing a meaning.",
+      "A": "A star is associated with the night sky where 'zenith' and 'nadir' originate as astronomical terms, but it is not a synonym for nadir. Sharing a topic is not the same as sharing a meaning.",
       "C": "The middle is neither the top nor the bottom; nadir specifically denotes the extreme low point, so a mid-range word cannot be its synonym.",
-      "D": "Summit is a synonym of zenith (the high point), the opposite of what nadir means. It is offered to trap solvers who pick a word from the right family but the wrong direction."
+      "D": "Summit is a synonym of zenith (the high point), the opposite of what nadir means. It is offered to trap solvers who pick a word from the right family but the wrong direction.",
+      "E": "Related to downward distance but 'depth' measures distance below a surface, while 'nadir' means the absolute lowest point"
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -138,17 +206,34 @@
     "difficulty": "Medium",
     "question": "OASIS : DESERT :: ISLAND : ___",
     "choices": [
-      { "id": "A", "text": "Beach" },
-      { "id": "B", "text": "Volcano" },
-      { "id": "C", "text": "Tropical" },
-      { "id": "D", "text": "Ocean" }
+      {
+        "id": "A",
+        "text": "Ocean"
+      },
+      {
+        "id": "B",
+        "text": "Beach"
+      },
+      {
+        "id": "C",
+        "text": "Volcano"
+      },
+      {
+        "id": "D",
+        "text": "Tropical"
+      },
+      {
+        "id": "E",
+        "text": "Sea"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "The relationship is ISOLATED FEATURE : THE CONTRASTING EXPANSE THAT SURROUNDS AND DEFINES IT. An oasis is a small patch of water and greenery entirely encircled by desert; the desert is the surrounding medium that makes the oasis exceptional. An island is a body of land entirely encircled by water; the ocean is the surrounding medium that defines it as an island. The answer must be the large environment that wraps around the feature, standing in contrast to it. A beach is part of the island's own edge, a volcano may sit on an island, and 'tropical' is a descriptor — none is the surrounding expanse.",
     "distractorExplanations": {
-      "A": "A beach is the shoreline belonging to the island itself, not the expanse that surrounds it. The relation calls for the enveloping medium, the way desert envelops an oasis.",
-      "B": "A volcano is a landform that may exist on an island, not the environment encircling it. Placing a feature that sits within the island where its surroundings belong reverses the relation.",
-      "C": "'Tropical' describes a climate an island might have; it is an adjective, not the surrounding body. The first pair pairs two nouns (oasis, desert), so a descriptor cannot complete it."
+      "B": "A beach is the shoreline belonging to the island itself, not the expanse that surrounds it. The relation calls for the enveloping medium, the way desert envelops an oasis.",
+      "C": "A volcano is a landform that may exist on an island, not the environment encircling it. Placing a feature that sits within the island where its surroundings belong reverses the relation.",
+      "D": "'Tropical' describes a climate an island might have; it is an adjective, not the surrounding body. The first pair pairs two nouns (oasis, desert), so a descriptor cannot complete it.",
+      "E": "Near-synonym of Ocean but technically a smaller body of water; Ocean is the canonical surrounding environment for an island"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -170,17 +255,34 @@
     "difficulty": "Medium",
     "question": "PROLOGUE : NOVEL :: PREAMBLE : ___",
     "choices": [
-      { "id": "A", "text": "Speech" },
-      { "id": "B", "text": "Constitution" },
-      { "id": "C", "text": "Paragraph" },
-      { "id": "D", "text": "Law" }
+      {
+        "id": "A",
+        "text": "Speech"
+      },
+      {
+        "id": "B",
+        "text": "Paragraph"
+      },
+      {
+        "id": "C",
+        "text": "Constitution"
+      },
+      {
+        "id": "D",
+        "text": "Law"
+      },
+      {
+        "id": "E",
+        "text": "Statute"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "C",
     "explanation": "The relationship is OPENING SECTION : THE LARGER DOCUMENT IT INTRODUCES. A prologue is the introductory passage that opens a novel and states its setting or purpose before the main text begins. A preamble is the introductory statement that opens a constitution, declaring its aims and the authority behind it — the 1987 Constitution begins 'We, the sovereign Filipino people...' precisely as its preamble. The completing term must be the whole document that a preamble introduces. 'Constitution' is that document; the other options are either too general, a smaller internal unit, or a related-but-wrong whole.",
     "distractorExplanations": {
       "A": "A speech may have an introduction, but the fixed term of art 'preamble' names the opening of a written charter or constitution, not the opening of a spoken address. The pairing prologue-novel points to a formal document, matching constitution.",
-      "C": "A paragraph is a smaller unit that could sit inside a preamble, not the whole document the preamble introduces. This reverses the part-to-whole direction the first pair sets.",
-      "D": "A single law or statute has an enacting clause rather than a preamble in the constitutional sense; the preamble is specifically the majestic opening of a constitution, so the precise whole is 'constitution,' not the broader 'law.'"
+      "B": "A paragraph is a smaller unit that could sit inside a preamble, not the whole document the preamble introduces. This reverses the part-to-whole direction the first pair sets.",
+      "D": "A single law or statute has an enacting clause rather than a preamble in the constitutional sense; the preamble is specifically the majestic opening of a constitution, so the precise whole is 'constitution,' not the broader 'law.'",
+      "E": "A statute is an enacted law rather than the founding document (Constitution) that characteristically contains a preamble"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -203,17 +305,34 @@
     "difficulty": "Medium",
     "question": "MICROSCOPE : CELLS :: TELESCOPE : ___",
     "choices": [
-      { "id": "A", "text": "Lens" },
-      { "id": "B", "text": "Astronomer" },
-      { "id": "C", "text": "Distance" },
-      { "id": "D", "text": "Stars" }
+      {
+        "id": "A",
+        "text": "Lens"
+      },
+      {
+        "id": "B",
+        "text": "Astronomer"
+      },
+      {
+        "id": "C",
+        "text": "Distance"
+      },
+      {
+        "id": "D",
+        "text": "Planets"
+      },
+      {
+        "id": "E",
+        "text": "Stars"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "The relationship is VIEWING INSTRUMENT : THE OBJECTS IT IS DESIGNED TO OBSERVE. A microscope makes the very small visible, so it is paired with cells — the objects it reveals. A telescope makes the very distant visible, so it must be paired with the objects it reveals: stars. Note that this is not the instrument-to-quantity relation (as in barometer : pressure, where the second term is a measured magnitude); here the second term is a concrete class of objects brought into view. The distractors substitute a part of the instrument, its user, or a measured magnitude instead of the observed objects.",
     "distractorExplanations": {
       "A": "A lens is a component inside a telescope, not the objects it observes. The first pair links the instrument to what it reveals (cells), so naming an internal part breaks the relation.",
       "B": "An astronomer is the person who uses a telescope, which fits an instrument-to-user relation, not the instrument-to-observed-object relation established by microscope : cells.",
-      "C": "Distance is a magnitude, not a class of observed objects. This confuses this relation with the instrument-to-quantity type (like thermometer : temperature); here the answer must be the things seen, which are stars."
+      "C": "Distance is a magnitude, not a class of observed objects. This confuses this relation with the instrument-to-quantity type (like thermometer : temperature); here the answer must be the things seen, which are stars.",
+      "D": "Telescopes observe planets too, but 'stars' is the defining iconic object matching MICROSCOPE's primary observed subject (cells)"
     },
     "tip": {
       "label": "Common Mistake",
@@ -235,17 +354,34 @@
     "difficulty": "Hard",
     "question": "BUOYANT : CORK :: MALLEABLE : ___",
     "choices": [
-      { "id": "A", "text": "Gold" },
-      { "id": "B", "text": "Granite" },
-      { "id": "C", "text": "Glass" },
-      { "id": "D", "text": "Rubber" }
+      {
+        "id": "A",
+        "text": "Granite"
+      },
+      {
+        "id": "B",
+        "text": "Glass"
+      },
+      {
+        "id": "C",
+        "text": "Rubber"
+      },
+      {
+        "id": "D",
+        "text": "Lead"
+      },
+      {
+        "id": "E",
+        "text": "Gold"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "The relationship is PHYSICAL PROPERTY : A MATERIAL THAT CLASSICALLY EXEMPLIFIES IT. Cork is the textbook example of buoyancy — it floats readily because its density is far below water's. Malleability is the property of being able to be hammered or rolled into thin sheets without breaking, and gold is its textbook exemplar: it can be beaten into leaf just a few atoms thick. The answer must be the material famous for possessing the named property. Granite is hard and brittle, glass is brittle and shatters rather than deforming, and rubber is elastic (it stretches and rebounds) — none is the exemplar of malleability, which is gold.",
     "distractorExplanations": {
-      "B": "Granite is prized for hardness and durability, not malleability; struck hard it fractures rather than flattening. Choosing it maps the wrong property to the material.",
-      "C": "Glass is brittle — it shatters under a hammer instead of spreading into a sheet, which is the opposite of malleable behavior. It is a tempting 'material' answer that fails the property test.",
-      "D": "Rubber is elastic, meaning it deforms under stress and springs back to its original shape. Elasticity is not malleability, which is permanent deformation into sheets, so rubber exemplifies a different property."
+      "A": "Granite is prized for hardness and durability, not malleability; struck hard it fractures rather than flattening. Choosing it maps the wrong property to the material.",
+      "B": "Glass is brittle — it shatters under a hammer instead of spreading into a sheet, which is the opposite of malleable behavior. It is a tempting 'material' answer that fails the property test.",
+      "C": "Rubber is elastic, meaning it deforms under stress and springs back to its original shape. Elasticity is not malleability, which is permanent deformation into sheets, so rubber exemplifies a different property.",
+      "D": "Lead is malleable but is not the canonical exemplar of malleability that gold represents in standard materials-science examples"
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -268,17 +404,34 @@
     "difficulty": "Hard",
     "question": "DEHYDRATED : WATER :: ANEMIC : ___",
     "choices": [
-      { "id": "A", "text": "Blood" },
-      { "id": "B", "text": "Weakness" },
-      { "id": "C", "text": "Hemoglobin" },
-      { "id": "D", "text": "Iron" }
+      {
+        "id": "A",
+        "text": "Hemoglobin"
+      },
+      {
+        "id": "B",
+        "text": "Blood"
+      },
+      {
+        "id": "C",
+        "text": "Weakness"
+      },
+      {
+        "id": "D",
+        "text": "Iron"
+      },
+      {
+        "id": "E",
+        "text": "Oxygen"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "The relationship is CONDITION : THE SUBSTANCE THE CONDITION MEANS ONE LACKS. To be dehydrated is precisely to be deficient in water; the second term names what the state is a shortage of. To be anemic is to be deficient in hemoglobin, the oxygen-carrying protein of red blood cells — anemia is defined as an abnormally low hemoglobin level. So the completing term must be the specific substance that is deficient: hemoglobin. The distractors are related to anemia but wrong in kind: blood is the tissue that contains hemoglobin (not what is lacking), weakness is a symptom, and iron is a nutrient whose shortage can cause one common type of anemia but is not what 'anemic' itself denotes.",
     "distractorExplanations": {
-      "A": "An anemic person still has blood — the blood is simply low in hemoglobin. The relation asks for the specific substance in deficit, and 'dehydrated : water' points to the missing substance itself, not the container that holds it.",
-      "B": "Weakness is a symptom that results from anemia, not the substance the condition means one lacks. Dehydrated maps to the missing water, so the answer must be the deficient substance, not its effect.",
-      "D": "Iron deficiency is a frequent cause of anemia, but 'anemic' is defined by low hemoglobin, not by iron directly. Iron is the upstream cause; hemoglobin is what is actually deficient, matching the tight 'condition : substance lacked' relation."
+      "B": "An anemic person still has blood — the blood is simply low in hemoglobin. The relation asks for the specific substance in deficit, and 'dehydrated : water' points to the missing substance itself, not the container that holds it.",
+      "C": "Weakness is a symptom that results from anemia, not the substance the condition means one lacks. Dehydrated maps to the missing water, so the answer must be the deficient substance, not its effect.",
+      "D": "Iron deficiency is a frequent cause of anemia, but 'anemic' is defined by low hemoglobin, not by iron directly. Iron is the upstream cause; hemoglobin is what is actually deficient, matching the tight 'condition : substance lacked' relation.",
+      "E": "Anemia reduces oxygen-carrying capacity, but oxygen is a downstream effect; the substance directly deficient is hemoglobin"
     },
     "tip": {
       "label": "Vocabulary Trick",
@@ -301,17 +454,34 @@
     "difficulty": "Hard",
     "question": "HEARSAY : EVIDENCE :: PSEUDONYM : ___",
     "choices": [
-      { "id": "A", "text": "Author" },
-      { "id": "B", "text": "Signature" },
-      { "id": "C", "text": "Disguise" },
-      { "id": "D", "text": "Name" }
+      {
+        "id": "A",
+        "text": "Author"
+      },
+      {
+        "id": "B",
+        "text": "Signature"
+      },
+      {
+        "id": "C",
+        "text": "Disguise"
+      },
+      {
+        "id": "D",
+        "text": "Name"
+      },
+      {
+        "id": "E",
+        "text": "Identity"
+      }
     ],
     "correctOptionId": "D",
     "explanation": "The relationship is INAUTHENTIC IMITATION : THE GENUINE THING IT STANDS IN FOR. Hearsay resembles evidence — it is offered as if it proved something — but it is not genuine, admissible evidence, because it is second-hand and untested. A pseudonym resembles a name and functions in a name's place, but it is not the person's genuine, true name. So the completing term is the authentic counterpart that the imitation substitutes for: name. The distractors either name the person who adopts a pseudonym, a specific instance of a name in use, or a synonym for the false thing itself rather than the genuine thing it replaces.",
     "distractorExplanations": {
       "A": "An author is a person who might adopt a pseudonym, not the genuine thing a pseudonym imitates. The first pair maps a false version to the real category (hearsay → evidence), so the answer is the real category 'name.'",
       "B": "A signature is one form in which a name appears, not the category a pseudonym stands in for. It is narrower than the genuine counterpart the relation requires.",
-      "C": "'Disguise' is essentially a synonym for what a pseudonym is — another false cover — so it restates the imitation rather than naming the authentic thing it replaces. The relation needs the genuine counterpart, which is 'name.'"
+      "C": "'Disguise' is essentially a synonym for what a pseudonym is — another false cover — so it restates the imitation rather than naming the authentic thing it replaces. The relation needs the genuine counterpart, which is 'name.'",
+      "E": "Over-broadens the relationship: a pseudonym is a false NAME specifically, not a false identity in its entirety"
     },
     "tip": {
       "label": "Logic Rule",
@@ -334,12 +504,28 @@
     "difficulty": "Medium",
     "question": "What is the next number in the series: 6, 12, 20, 30, 42, ___?",
     "choices": [
-      { "id": "A", "text": "54" },
-      { "id": "B", "text": "56" },
-      { "id": "C", "text": "50" },
-      { "id": "D", "text": "58" }
+      {
+        "id": "A",
+        "text": "54"
+      },
+      {
+        "id": "B",
+        "text": "50"
+      },
+      {
+        "id": "C",
+        "text": "58"
+      },
+      {
+        "id": "D",
+        "text": "48"
+      },
+      {
+        "id": "E",
+        "text": "56"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "These are pronic (rectangular) numbers — each term is a product of two consecutive integers, n × (n + 1). Reading them out: 6 = 2×3, 12 = 3×4, 20 = 4×5, 30 = 5×6, 42 = 6×7. The pattern is clear once you factor each term rather than staring at the raw values. The next term uses the next consecutive pair, 7×8 = 56. An equivalent view is the gap method: the differences are 6, 8, 10, 12 (rising by 2 each step), so the next gap is 14 and 42 + 14 = 56. Both routes give 56.",
     "steps": [
       "Step 1: Factor each term into consecutive integers: 6 = 2×3, 12 = 3×4, 20 = 4×5, 30 = 5×6, 42 = 6×7.",
@@ -349,8 +535,9 @@
     ],
     "distractorExplanations": {
       "A": "54 comes from adding a gap of 12 again (42 + 12) instead of noticing the gaps themselves grow by 2 each step. The differences run 6, 8, 10, 12, so the next gap must be 14, not another 12.",
-      "C": "50 rounds off the growth incorrectly, likely from adding only 8. The gaps are strictly increasing by 2, so a step smaller than the previous 12 is impossible.",
-      "D": "58 overshoots by treating the next gap as 16 (42 + 16). The gaps increase by exactly 2 each time, so after 12 the next gap is 14, giving 56, not 58."
+      "B": "50 rounds off the growth incorrectly, likely from adding only 8. The gaps are strictly increasing by 2, so a step smaller than the previous 12 is impossible.",
+      "C": "58 overshoots by treating the next gap as 16 (42 + 16). The gaps increase by exactly 2 each time, so after 12 the next gap is 14, giving 56, not 58.",
+      "D": "Reused the first-term gap (+6) instead of continuing the linearly increasing difference sequence (correct next gap is +14)"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -372,12 +559,28 @@
     "difficulty": "Hard",
     "question": "What is the next number in the series: 2, 6, 24, 120, 720, ___?",
     "choices": [
-      { "id": "A", "text": "1440" },
-      { "id": "B", "text": "4320" },
-      { "id": "C", "text": "2520" },
-      { "id": "D", "text": "5040" }
+      {
+        "id": "A",
+        "text": "5040"
+      },
+      {
+        "id": "B",
+        "text": "1440"
+      },
+      {
+        "id": "C",
+        "text": "4320"
+      },
+      {
+        "id": "D",
+        "text": "2520"
+      },
+      {
+        "id": "E",
+        "text": "3600"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "This is a factorial sequence, but the multiplier changes at every step, which is what makes it hard to spot. Each term is the previous term multiplied by the next integer: 2×3 = 6, 6×4 = 24, 24×5 = 120, 120×6 = 720. The multipliers are 3, 4, 5, 6 — rising by 1 each time — so the next multiplier is 7. Equivalently, the terms are the factorials 2!, 3!, 4!, 5!, 6!, so the next is 7! = 5040. The single most common mistake is assuming a fixed multiplier; here the ratio grows, so you must multiply 720 by 7, not by 6.",
     "steps": [
       "Step 1: Find each ratio: 6÷2 = 3, 24÷6 = 4, 120÷24 = 5, 720÷120 = 6.",
@@ -386,9 +589,10 @@
       "Step 4: Confirm with factorials: the terms are 2!, 3!, 4!, 5!, 6!, so the next is 7! = 5040. The next number is 5040."
     ],
     "distractorExplanations": {
-      "A": "1440 comes from multiplying 720 by 2, treating the ratio as if it stayed constant near the end. The multipliers actually climb 3, 4, 5, 6, so the next is 7, not 2.",
-      "B": "4320 multiplies 720 by 6, reusing the previous multiplier instead of advancing it to 7. Each step's multiplier is one larger than the last.",
-      "C": "2520 does not arise from continuing the factorial rule at all; it is a plausible large number with no valid derivation from 720. Only 720 × 7 = 5040 fits the increasing-multiplier pattern."
+      "B": "1440 comes from multiplying 720 by 2, treating the ratio as if it stayed constant near the end. The multipliers actually climb 3, 4, 5, 6, so the next is 7, not 2.",
+      "C": "4320 multiplies 720 by 6, reusing the previous multiplier instead of advancing it to 7. Each step's multiplier is one larger than the last.",
+      "D": "2520 does not arise from continuing the factorial rule at all; it is a plausible large number with no valid derivation from 720. Only 720 × 7 = 5040 fits the increasing-multiplier pattern.",
+      "E": "Multiplied by 5 a second time (repeated the prior step's multiplier) instead of advancing to ×7"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -410,12 +614,28 @@
     "difficulty": "Medium",
     "question": "What is the next number in the series: 7, 11, 13, 17, 19, ___?",
     "choices": [
-      { "id": "A", "text": "23" },
-      { "id": "B", "text": "21" },
-      { "id": "C", "text": "25" },
-      { "id": "D", "text": "22" }
+      {
+        "id": "A",
+        "text": "21"
+      },
+      {
+        "id": "B",
+        "text": "25"
+      },
+      {
+        "id": "C",
+        "text": "22"
+      },
+      {
+        "id": "D",
+        "text": "20"
+      },
+      {
+        "id": "E",
+        "text": "23"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "The trap here is the irregular gaps: the differences are 4, 2, 4, 2, which tempt you to continue an alternating +4, +2 rhythm and answer 19 + 4 = 23 — or, worse, 19 + 2 = 21. The real rule is not arithmetic at all: these are consecutive prime numbers (7, 11, 13, 17, 19), the numbers greater than 1 divisible only by 1 and themselves. The next prime after 19 is 23, because 20, 21, and 22 are all composite (20 and 22 are even; 21 = 3 × 7). The alternating-gap reading happens to give the same value this time, but it is coincidental — the governing rule is primality.",
     "steps": [
       "Step 1: Recognize every term is prime: 7, 11, 13, 17, 19 are each divisible only by 1 and themselves.",
@@ -424,9 +644,10 @@
       "Step 4: 23 has no divisor other than 1 and 23, so it is prime. The next number is 23."
     ],
     "distractorExplanations": {
-      "B": "21 assumes the gaps alternate +4, +2 and takes the +2 step (19 + 2). But 21 = 3 × 7 is not prime, so it cannot belong to a prime sequence regardless of the gap pattern.",
-      "C": "25 skips ahead incorrectly and is 5 × 5, a composite number. The next term must be the very next prime after 19, which is 23, not a later or non-prime value.",
-      "D": "22 is even, hence divisible by 2, so it is composite and cannot be the next prime. It likely comes from simply adding 3 to 19 without checking primality."
+      "A": "21 assumes the gaps alternate +4, +2 and takes the +2 step (19 + 2). But 21 = 3 × 7 is not prime, so it cannot belong to a prime sequence regardless of the gap pattern.",
+      "B": "25 skips ahead incorrectly and is 5 × 5, a composite number. The next term must be the very next prime after 19, which is 23, not a later or non-prime value.",
+      "C": "22 is even, hence divisible by 2, so it is composite and cannot be the next prime. It likely comes from simply adding 3 to 19 without checking primality.",
+      "D": "Added 1 to 19, confusing a prime gap with a consecutive-integer step (19+1=20 is not prime)"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -447,10 +668,26 @@
     "difficulty": "Hard",
     "question": "What is the next number in the series: 90, 89, 85, 76, 60, ___?",
     "choices": [
-      { "id": "A", "text": "40" },
-      { "id": "B", "text": "44" },
-      { "id": "C", "text": "35" },
-      { "id": "D", "text": "39" }
+      {
+        "id": "A",
+        "text": "40"
+      },
+      {
+        "id": "B",
+        "text": "44"
+      },
+      {
+        "id": "C",
+        "text": "35"
+      },
+      {
+        "id": "D",
+        "text": "39"
+      },
+      {
+        "id": "E",
+        "text": "24"
+      }
     ],
     "correctOptionId": "C",
     "explanation": "The series decreases, and the amounts subtracted are the key. The gaps are 90 − 89 = 1, 89 − 85 = 4, 85 − 76 = 9, 76 − 60 = 16 — that is, the consecutive perfect squares 1², 2², 3², 4². The next square to subtract is 5² = 25, so the next term is 60 − 25 = 35. The difficulty lies in noticing that the subtracted amounts are not linear (1, 4, 9, 16 rise by 3, then 5, then 7) but are the squares themselves. Reading them as squares makes the next step unambiguous.",
@@ -463,7 +700,8 @@
     "distractorExplanations": {
       "A": "40 comes from subtracting 20 (treating the gaps as rising by a constant, 16 + 4). The gaps are perfect squares, so after 16 the next is 25, not 20.",
       "B": "44 subtracts only 16 again (60 − 16), repeating the previous gap instead of advancing to the next square. Each gap is strictly larger than the last.",
-      "D": "39 subtracts 21, which is neither a perfect square nor consistent with any simple gap rule. The subtracted amounts must be 1, 4, 9, 16, 25, so the correct subtraction is 25, giving 35."
+      "D": "39 subtracts 21, which is neither a perfect square nor consistent with any simple gap rule. The subtracted amounts must be 1, 4, 9, 16, 25, so the correct subtraction is 25, giving 35.",
+      "E": "Subtracted 6²=36 (skipping the correct 5²=25 step), jumping one square too far in the sequence"
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -485,10 +723,26 @@
     "difficulty": "Medium",
     "question": "All department heads are permanent employees. No permanent employee is a contractual worker. Which conclusion must be true?",
     "choices": [
-      { "id": "A", "text": "No department head is a contractual worker." },
-      { "id": "B", "text": "Some permanent employees are department heads." },
-      { "id": "C", "text": "All permanent employees are department heads." },
-      { "id": "D", "text": "Some contractual workers are department heads." }
+      {
+        "id": "A",
+        "text": "No department head is a contractual worker."
+      },
+      {
+        "id": "B",
+        "text": "Some permanent employees are department heads."
+      },
+      {
+        "id": "C",
+        "text": "All permanent employees are department heads."
+      },
+      {
+        "id": "D",
+        "text": "Some contractual workers are department heads."
+      },
+      {
+        "id": "E",
+        "text": "No contractual worker can ever become a department head."
+      }
     ],
     "correctOptionId": "A",
     "explanation": "Two universal premises combine here. 'All department heads are permanent employees' places the department heads entirely inside the set of permanent employees. 'No permanent employee is a contractual worker' says the permanent-employee set and the contractual-worker set do not overlap at all. Since every department head sits inside the permanent employees, and no permanent employee is contractual, no department head can be contractual either — the department heads inherit the exclusion. This is a valid categorical syllogism (the Camestres form). The correct conclusion is the universal negative linking the two end terms: no department head is a contractual worker.",
@@ -501,7 +755,8 @@
     "distractorExplanations": {
       "B": "'Some permanent employees are department heads' is actually true (since all heads are permanent), but it is not what the two premises together are asked to yield about contractual workers — and it discards the second premise entirely. The question asks for the conclusion that must follow from BOTH premises, which is the exclusion in option A.",
       "C": "This reverses the first premise. 'All department heads are permanent' does not mean 'all permanent employees are department heads' — there can be many permanent employees who are not heads. Reversing a universal affirmative is an invalid conversion.",
-      "D": "This directly contradicts the derived conclusion. Since no department head is contractual, it is impossible for some contractual workers to be department heads; the two sets are proven disjoint."
+      "D": "This directly contradicts the derived conclusion. Since no department head is contractual, it is impossible for some contractual workers to be department heads; the two sets are proven disjoint.",
+      "E": "Injects an unwarranted temporal claim; the premises establish a current categorical exclusion, not a permanent future bar"
     },
     "tip": {
       "label": "Logic Rule",
@@ -523,10 +778,26 @@
     "difficulty": "Medium",
     "question": "No illegal act is permissible under the law. All acts of bribery are illegal acts. Which conclusion must be true?",
     "choices": [
-      { "id": "A", "text": "Some acts of bribery are permissible." },
-      { "id": "B", "text": "All illegal acts are acts of bribery." },
-      { "id": "C", "text": "Some permissible acts are illegal." },
-      { "id": "D", "text": "No act of bribery is permissible under the law." }
+      {
+        "id": "A",
+        "text": "Some acts of bribery are permissible."
+      },
+      {
+        "id": "B",
+        "text": "All illegal acts are acts of bribery."
+      },
+      {
+        "id": "C",
+        "text": "Some permissible acts are illegal."
+      },
+      {
+        "id": "D",
+        "text": "No act of bribery is permissible under the law."
+      },
+      {
+        "id": "E",
+        "text": "Bribery is the only act that is not permissible under the law."
+      }
     ],
     "correctOptionId": "D",
     "explanation": "The first premise is a universal negative: the set of illegal acts and the set of permissible acts have no member in common. The second premise places every act of bribery inside the set of illegal acts. Because bribery is wholly contained in the illegal acts, and no illegal act is permissible, no act of bribery can be permissible — the property of exclusion passes down to the subset. This is the valid Celarent form (No M is P; all S are M; therefore no S is P). The only conclusion that must be true is that no act of bribery is permissible under the law.",
@@ -539,7 +810,8 @@
     "distractorExplanations": {
       "A": "This contradicts the premises. If bribery is illegal and no illegal act is permissible, then no bribery act can be permissible — 'some are permissible' is exactly what the argument rules out.",
       "B": "This reverses the containment. 'All bribery is illegal' does not license 'all illegal acts are bribery'; theft and fraud are illegal without being bribery. Converting a universal affirmative is invalid.",
-      "C": "This contradicts premise 1, which states no illegal act is permissible. Asserting that some permissible acts are illegal breaks the very disjointness the premise establishes."
+      "C": "This contradicts premise 1, which states no illegal act is permissible. Asserting that some permissible acts are illegal breaks the very disjointness the premise establishes.",
+      "E": "Inverts the scope: the premises show all bribery is impermissible, not that bribery is the exclusive impermissible act"
     },
     "tip": {
       "label": "Logic Rule",
@@ -561,10 +833,26 @@
     "difficulty": "Medium",
     "question": "All accredited trainers are certified assessors. All certified assessors are registered professionals. Which conclusion must be true?",
     "choices": [
-      { "id": "A", "text": "Some registered professionals are not assessors." },
-      { "id": "B", "text": "All registered professionals are accredited trainers." },
-      { "id": "C", "text": "All accredited trainers are registered professionals." },
-      { "id": "D", "text": "No accredited trainer is a registered professional." }
+      {
+        "id": "A",
+        "text": "Some registered professionals are not assessors."
+      },
+      {
+        "id": "B",
+        "text": "All registered professionals are accredited trainers."
+      },
+      {
+        "id": "C",
+        "text": "All accredited trainers are registered professionals."
+      },
+      {
+        "id": "D",
+        "text": "No accredited trainer is a registered professional."
+      },
+      {
+        "id": "E",
+        "text": "Some certified assessors are not registered professionals."
+      }
     ],
     "correctOptionId": "C",
     "explanation": "Two universal affirmatives chain through a shared middle term. 'All accredited trainers are certified assessors' nests the trainers inside the assessors. 'All certified assessors are registered professionals' nests the assessors inside the registered professionals. Containment is transitive: if every trainer is an assessor and every assessor is a registered professional, then every trainer is a registered professional. This is the classic Barbara syllogism (All A are B; all B are C; therefore all A are C). The chain runs one direction only, so the sole guaranteed conclusion is that all accredited trainers are registered professionals.",
@@ -577,7 +865,8 @@
     "distractorExplanations": {
       "A": "The premises never guarantee any registered professional falls outside the assessors — the sets could be identical for all we know. 'Some are not' asserts a gap the premises do not establish.",
       "B": "This reverses the whole chain. Nesting runs trainers → assessors → registered professionals in one direction; it does not follow that every registered professional is a trainer. The outermost set is the largest, not the smallest.",
-      "D": "This contradicts the chain outright. Since trainers are nested inside registered professionals, they must be registered professionals, so 'no trainer is a registered professional' is impossible."
+      "D": "This contradicts the chain outright. Since trainers are nested inside registered professionals, they must be registered professionals, so 'no trainer is a registered professional' is impossible.",
+      "E": "Directly contradicts the stated universal major premise ('All certified assessors are registered professionals')"
     },
     "tip": {
       "label": "Logic Rule",
@@ -599,10 +888,26 @@
     "difficulty": "Medium",
     "question": "All regional directors attended the leadership summit. Some regional directors are lawyers. Which conclusion must be true?",
     "choices": [
-      { "id": "A", "text": "All lawyers attended the leadership summit." },
-      { "id": "B", "text": "Some who attended the leadership summit are lawyers." },
-      { "id": "C", "text": "All summit attendees are regional directors." },
-      { "id": "D", "text": "No lawyer is a regional director." }
+      {
+        "id": "A",
+        "text": "All lawyers attended the leadership summit."
+      },
+      {
+        "id": "B",
+        "text": "Some who attended the leadership summit are lawyers."
+      },
+      {
+        "id": "C",
+        "text": "All summit attendees are regional directors."
+      },
+      {
+        "id": "D",
+        "text": "No lawyer is a regional director."
+      },
+      {
+        "id": "E",
+        "text": "All who attended the summit are lawyers."
+      }
     ],
     "correctOptionId": "B",
     "explanation": "The first premise puts every regional director into the set of summit attendees. The second premise says at least some regional directors are lawyers — call them the director-lawyers. Those director-lawyers are lawyers, and since all directors attended the summit, they also attended the summit. So there exists at least one person who is both a summit attendee and a lawyer: some summit attendees are lawyers. This is a valid particular conclusion (the Darii-type inference) — the 'some' from the second premise survives, but it cannot be inflated to 'all,' and the containment cannot be reversed.",
@@ -615,7 +920,8 @@
     "distractorExplanations": {
       "A": "The premises only say some directors are lawyers; they say nothing about lawyers who are not directors. Those outside lawyers need not have attended the summit, so 'all lawyers attended' overreaches from 'some.'",
       "C": "This reverses the first premise. 'All directors attended' does not mean 'all attendees are directors' — the summit may have included many non-directors. Converting a universal affirmative is invalid.",
-      "D": "This flatly contradicts the second premise, which states that some regional directors ARE lawyers. The two sets are known to overlap, so they cannot be disjoint."
+      "D": "This flatly contradicts the second premise, which states that some regional directors ARE lawyers. The two sets are known to overlap, so they cannot be disjoint.",
+      "E": "Reverses the direction of the valid conclusion: 'some attendees are lawyers' does not entail all attendees are lawyers"
     },
     "tip": {
       "label": "Logic Rule",
@@ -637,10 +943,26 @@
     "difficulty": "Medium",
     "question": "The rule states: 'If an applicant submits complete documents, then the application is accepted.' Assuming the rule always holds, which statement must also be true?",
     "choices": [
-      { "id": "A", "text": "If an applicant submits complete documents, the application is rejected." },
-      { "id": "B", "text": "If an application is accepted, the applicant submitted complete documents." },
-      { "id": "C", "text": "If an application is not accepted, the applicant did not submit complete documents." },
-      { "id": "D", "text": "If an applicant did not submit complete documents, the application is not accepted." }
+      {
+        "id": "A",
+        "text": "If an applicant submits complete documents, the application is rejected."
+      },
+      {
+        "id": "B",
+        "text": "If an application is accepted, the applicant submitted complete documents."
+      },
+      {
+        "id": "C",
+        "text": "If an application is not accepted, the applicant did not submit complete documents."
+      },
+      {
+        "id": "D",
+        "text": "If an applicant did not submit complete documents, the application is not accepted."
+      },
+      {
+        "id": "E",
+        "text": "If an application is accepted, the applicant must have submitted documents both completely and on time."
+      }
     ],
     "correctOptionId": "C",
     "explanation": "A conditional 'If P, then Q' is logically equivalent to exactly one rearrangement: its contrapositive, 'If not Q, then not P.' Here P is 'submits complete documents' and Q is 'the application is accepted.' The contrapositive negates and swaps both parts: 'If the application is not accepted (not Q), then the applicant did not submit complete documents (not P).' That is option C, and it must be true whenever the original rule holds. The other options are the converse, the inverse, or a direct contradiction — none of which is guaranteed by the original conditional.",
@@ -653,7 +975,8 @@
     "distractorExplanations": {
       "A": "This contradicts the rule. The rule says complete documents lead to acceptance, so concluding the application is rejected reverses the stated outcome entirely.",
       "B": "This is the converse (Q → P), 'if accepted, then documents were complete.' A conditional does not guarantee its converse — an application might be accepted for another reason while documents were incomplete.",
-      "D": "This is the inverse (¬P → ¬Q), 'if documents are incomplete, then not accepted.' Like the converse, the inverse is not guaranteed — incomplete documents might still be accepted under some other provision."
+      "D": "This is the inverse (¬P → ¬Q), 'if documents are incomplete, then not accepted.' Like the converse, the inverse is not guaranteed — incomplete documents might still be accepted under some other provision.",
+      "E": "Adds an unstated timeliness condition to the converse; the premises only specify completeness, not timeliness"
     },
     "tip": {
       "label": "Logic Rule",
@@ -675,10 +998,26 @@
     "difficulty": "Medium",
     "question": "During a budget hearing, one member says: 'We should not take the auditor's report on the agency's spending seriously, because the auditor was once cited for a late tax filing.' Which flaw best describes this reasoning?",
     "choices": [
-      { "id": "A", "text": "It attacks the auditor's character instead of addressing the report's findings." },
-      { "id": "B", "text": "It assumes what it is trying to prove without offering support." },
-      { "id": "C", "text": "It draws a general rule from a single example." },
-      { "id": "D", "text": "It presents only two options when more exist." }
+      {
+        "id": "A",
+        "text": "It attacks the auditor's character instead of addressing the report's findings."
+      },
+      {
+        "id": "B",
+        "text": "It assumes what it is trying to prove without offering support."
+      },
+      {
+        "id": "C",
+        "text": "It draws a general rule from a single example."
+      },
+      {
+        "id": "D",
+        "text": "It presents only two options when more exist."
+      },
+      {
+        "id": "E",
+        "text": "It appeals to the popularity of a belief rather than to evidence."
+      }
     ],
     "correctOptionId": "A",
     "explanation": "This is the ad hominem fallacy — 'to the person.' Instead of engaging with the content of the auditor's report (the figures, the methodology, the findings on the agency's spending), the speaker attacks the auditor's personal record, an unrelated late tax filing. A person's past lapse in another matter has no bearing on whether this report's numbers are accurate; the report must be judged on its own evidence. Recognizing ad hominem is a matter of asking whether the objection targets the argument or the arguer — here it targets the arguer, so the reasoning is fallacious regardless of whether the tax citation is true.",
@@ -691,7 +1030,8 @@
     "distractorExplanations": {
       "B": "Begging the question means assuming the conclusion within the premises. The speaker does offer a reason (the tax citation); the reason is irrelevant, not circular, so this labels the wrong fallacy.",
       "C": "Hasty generalization draws a broad rule from too few cases. No general rule is being formed here — the speaker is discrediting one report by attacking one person, which is ad hominem, not overgeneralization.",
-      "D": "A false dilemma forces a choice between two options while ignoring others. The argument presents no forced either/or; it simply dismisses a report on personal grounds, so this description does not fit."
+      "D": "A false dilemma forces a choice between two options while ignoring others. The argument presents no forced either/or; it simply dismisses a report on personal grounds, so this description does not fit.",
+      "E": "That describes an appeal to popularity (ad populum); the member's error is attacking the auditor's past conduct instead of the report's substance."
     },
     "tip": {
       "label": "Logic Rule",
@@ -713,10 +1053,26 @@
     "difficulty": "Hard",
     "question": "An office argues: 'Requiring all staff to complete cybersecurity training will prevent data breaches.' Which assumption is NECESSARY for this argument to hold?",
     "choices": [
-      { "id": "A", "text": "The training will be led by an external security consultant." },
-      { "id": "B", "text": "Data breaches occur, in significant part, because of preventable staff behavior." },
-      { "id": "C", "text": "Every staff member currently lacks any cybersecurity knowledge." },
-      { "id": "D", "text": "Cybersecurity training is less expensive than repairing a breach." }
+      {
+        "id": "A",
+        "text": "The training will be led by an external security consultant."
+      },
+      {
+        "id": "B",
+        "text": "Data breaches occur, in significant part, because of preventable staff behavior."
+      },
+      {
+        "id": "C",
+        "text": "Every staff member currently lacks any cybersecurity knowledge."
+      },
+      {
+        "id": "D",
+        "text": "Cybersecurity training is less expensive than repairing a breach."
+      },
+      {
+        "id": "E",
+        "text": "Completing the training will guarantee that no data breaches occur in the future."
+      }
     ],
     "correctOptionId": "B",
     "explanation": "A necessary assumption is a hidden premise the argument cannot survive without — if it were false, the conclusion would collapse. The argument claims that training staff will prevent breaches. For training people to have that effect, breaches must be caused, at least substantially, by staff behavior that training can change. If breaches were driven entirely by external hacking of hardware with no human element, then training staff would do nothing to prevent them and the argument would fail. So the argument depends on the assumption that preventable staff behavior is a significant cause of breaches. Test each option with the negation test: negate option B and the conclusion no longer follows, which marks it as the required assumption. The other options are either helpful-but-not-required, too strong, or beside the point.",
@@ -729,7 +1085,8 @@
     "distractorExplanations": {
       "A": "Who delivers the training — an external consultant or an internal expert — does not affect whether training can prevent breaches at all. It is an implementation detail the argument does not need, so its negation leaves the conclusion standing.",
       "C": "This is far too strong. The argument does not require that every staff member starts with zero knowledge; training can still reduce risky behavior even among those with some awareness. A necessary assumption must be the minimum the argument needs, not an extreme claim.",
-      "D": "Cost-effectiveness compares training against breach repair, which speaks to whether the policy is worthwhile, not to whether training actually prevents breaches. The argument's causal claim can hold regardless of relative cost."
+      "D": "Cost-effectiveness compares training against breach repair, which speaks to whether the policy is worthwhile, not to whether training actually prevents breaches. The argument's causal claim can hold regardless of relative cost.",
+      "E": "Overreaches: the argument needs only that staff behavior is a significant breach cause, not a perfect post-training guarantee"
     },
     "tip": {
       "label": "Logic Rule",

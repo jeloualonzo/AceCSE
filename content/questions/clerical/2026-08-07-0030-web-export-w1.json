@@ -8,10 +8,26 @@
     "difficulty": "Medium",
     "question": "A records officer must file four personnel folders. The names on the folders are:\n\n  A. Gen. Renato Villamor\n  B. Atty. Crisanto Banal\n  C. Dr. Leonora Quizon\n  D. Col. Primo Santos\n\nWhich folder is filed FIRST in standard alphabetical order?",
     "choices": [
-      { "id": "A", "text": "Gen. Renato Villamor" },
-      { "id": "B", "text": "Atty. Crisanto Banal" },
-      { "id": "C", "text": "Dr. Leonora Quizon" },
-      { "id": "D", "text": "Col. Primo Santos" }
+      {
+        "id": "A",
+        "text": "Gen. Renato Villamor"
+      },
+      {
+        "id": "B",
+        "text": "Atty. Crisanto Banal"
+      },
+      {
+        "id": "C",
+        "text": "Dr. Leonora Quizon"
+      },
+      {
+        "id": "D",
+        "text": "Col. Primo Santos"
+      },
+      {
+        "id": "E",
+        "text": "Engr. Rodolfo Zamora"
+      }
     ],
     "correctOptionId": "B",
     "explanation": "Standard filing rules for personal names require that titles — whether professional (Atty., Dr., Prof.), military (Gen., Col., Lt. Col., Capt.), or honorific (Hon., Rev.) — are placed in parentheses and completely disregarded when determining alphabetical position. Filing is based solely on the surname, then given name. Stripping all titles: Villamor Renato, Banal Crisanto, Quizon Leonora, Santos Primo. Comparing the first letters of each surname: B < Q < S < V. Banal files first, followed by Quizon, Santos, and Villamor. The folder labeled 'Atty. Crisanto Banal' — indexed under BANAL — is filed first = Option B.",
@@ -25,7 +41,8 @@
     "distractorExplanations": {
       "A": "Gen. Renato Villamor indexes as VILLAMOR — the surname initial 'V' is the latest of the four, placing this folder last, not first. The title 'Gen.' is ignored entirely in filing.",
       "C": "Dr. Leonora Quizon indexes as QUIZON — 'Q' comes second among the four surnames. This folder is filed second, not first.",
-      "D": "Col. Primo Santos indexes as SANTOS — 'S' ranks third among the four surnames. This folder is filed third, not first."
+      "D": "Col. Primo Santos indexes as SANTOS — 'S' ranks third among the four surnames. This folder is filed third, not first.",
+      "E": "Titles such as Engr. are disregarded in filing; by surname, Zamora files last of all — picking it usually means filing by title or by given name."
     },
     "tip": {
       "label": "Filing Rule",
@@ -49,10 +66,26 @@
     "difficulty": "Medium",
     "question": "A file clerk arranges four folders bearing the following names:\n\n  A. Judge Erlinda Manalastas\n  B. Sec. Arturo Dimaculangan\n  C. Prof. Nicanor Tagalog\n  D. Atty. Melinda Ferrer\n\nWhich folder is filed THIRD in correct alphabetical order?",
     "choices": [
-      { "id": "A", "text": "Judge Erlinda Manalastas" },
-      { "id": "B", "text": "Sec. Arturo Dimaculangan" },
-      { "id": "C", "text": "Prof. Nicanor Tagalog" },
-      { "id": "D", "text": "Atty. Melinda Ferrer" }
+      {
+        "id": "A",
+        "text": "Judge Erlinda Manalastas"
+      },
+      {
+        "id": "B",
+        "text": "Sec. Arturo Dimaculangan"
+      },
+      {
+        "id": "C",
+        "text": "Prof. Nicanor Tagalog"
+      },
+      {
+        "id": "D",
+        "text": "Atty. Melinda Ferrer"
+      },
+      {
+        "id": "E",
+        "text": "Dr. Marisol Urbano"
+      }
     ],
     "correctOptionId": "A",
     "explanation": "Under ARMA filing rules, all personal titles — Judge, Secretary (Sec.), Professor (Prof.), Attorney (Atty.), and any similar honorific — are placed in parentheses and disregarded when determining alphabetical position. Only the surname and given name are used for sorting. Indexing each name: Manalastas Erlinda, Dimaculangan Arturo, Tagalog Nicanor, Ferrer Melinda. Comparing surnames: Dimaculangan (D) < Ferrer (F) < Manalastas (M) < Tagalog (T). The filing sequence is Dimaculangan (1st), Ferrer (2nd), Manalastas (3rd), Tagalog (4th). The folder filed third is Manalastas — 'Judge Erlinda Manalastas' = Option A.",
@@ -66,7 +99,8 @@
     "distractorExplanations": {
       "B": "Sec. Arturo Dimaculangan indexes as DIMACULANGAN — 'D' is the earliest surname initial of the four, placing this folder first, not third.",
       "C": "Prof. Nicanor Tagalog indexes as TAGALOG — 'T' is the latest surname initial, placing this folder last (fourth), not third.",
-      "D": "Atty. Melinda Ferrer indexes as FERRER — 'F' ranks second among the four surnames. This folder is filed second, not third."
+      "D": "Atty. Melinda Ferrer indexes as FERRER — 'F' ranks second among the four surnames. This folder is filed second, not third.",
+      "E": "Disregarding the Dr. title, Urbano (U) files after Tagalog (T) and is last — it tempts examinees who order by title or by given name."
     },
     "tip": {
       "label": "Common Mistake",

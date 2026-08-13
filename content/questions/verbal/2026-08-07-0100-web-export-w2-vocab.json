@@ -8,23 +8,44 @@
     "difficulty": "Medium",
     "question": "The famous environment activists come from ILLUSTRIOUS families. ILLUSTRIOUS most nearly means:",
     "choices": [
-      { "id": "A", "text": "wealthy" },
-      { "id": "B", "text": "distinguished" },
-      { "id": "C", "text": "notorious" },
-      { "id": "D", "text": "dedicated" }
+      {
+        "id": "A",
+        "text": "distinguished"
+      },
+      {
+        "id": "B",
+        "text": "wealthy"
+      },
+      {
+        "id": "C",
+        "text": "notorious"
+      },
+      {
+        "id": "D",
+        "text": "dedicated"
+      },
+      {
+        "id": "E",
+        "text": "influential"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Illustrious comes from the Latin 'illustris,' meaning bright or famous, and describes someone or something of great distinction — celebrated for outstanding achievements or character. An illustrious family is one whose name commands respect and admiration based on a record of excellence. 'Distinguished' matches this sense precisely: honored, respected, and set apart by merit. 'Wealthy' confuses financial status with social reputation — an illustrious family may or may not be rich, but the word says nothing about money. 'Notorious' means famous for something bad or scandalous, the opposite moral valence from illustrious. 'Dedicated' names a commitment to a cause rather than a reputation built on achievement.",
     "distractorExplanations": {
-      "A": "'Wealthy' describes financial resources, not the prestige earned through outstanding service or accomplishment. A family can be illustrious without being rich, and rich without being illustrious.",
+      "B": "'Wealthy' describes financial resources, not the prestige earned through outstanding service or accomplishment. A family can be illustrious without being rich, and rich without being illustrious.",
       "C": "'Notorious' means widely known for something negative or scandalous — the opposite moral direction from illustrious, which names positive, admirable renown.",
-      "D": "'Dedicated' describes commitment to a purpose, not the recognition and distinction that illustrious specifically names. A dedicated person works hard; an illustrious one has earned an outstanding reputation."
+      "D": "'Dedicated' describes commitment to a purpose, not the recognition and distinction that illustrious specifically names. A dedicated person works hard; an illustrious one has earned an outstanding reputation.",
+      "E": "Influential families hold power or sway; illustrious specifically means distinguished by fame and honor — socially adjacent, but not the word's meaning."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "ILLUSTRIOUS shares a root with 'illustrate' and 'luster' — all carry the idea of brightness and making something shine. An illustrious career shines with outstanding achievement and public recognition."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0167",
@@ -35,23 +56,44 @@
     "difficulty": "Hard",
     "question": "My friends and I find the critically acclaimed movie quite JEJUNE because of its predictable plot. JEJUNE most nearly means:",
     "choices": [
-      { "id": "A", "text": "suspenseful" },
-      { "id": "B", "text": "dull" },
-      { "id": "C", "text": "morbid" },
-      { "id": "D", "text": "moving" }
+      {
+        "id": "A",
+        "text": "dull"
+      },
+      {
+        "id": "B",
+        "text": "suspenseful"
+      },
+      {
+        "id": "C",
+        "text": "morbid"
+      },
+      {
+        "id": "D",
+        "text": "moving"
+      },
+      {
+        "id": "E",
+        "text": "uninspired"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Jejune means lacking substance, interest, or nutritive value — intellectually thin and therefore boring or unsatisfying. It comes from the Latin 'jejunus,' meaning fasting or empty, and the idea of mental emptiness transferred into English as a word for ideas or art that leave the mind unexercised and unstimulated. The context provides the key clue: a 'predictable plot' is the kind of storyline that offers no surprises, no complexity, and no challenge — exactly what a jejune film delivers. 'Dull' captures both the flatness and the absence of stimulation the word carries. 'Suspenseful' and 'moving' are the opposite of what the speaker feels, and 'morbid' describes something grimly focused on death, a different quality entirely.",
     "distractorExplanations": {
-      "A": "'Suspenseful' names an exciting quality that keeps the audience on edge. A jejune film has the opposite problem — it is too predictable and flat to generate any tension.",
+      "B": "'Suspenseful' names an exciting quality that keeps the audience on edge. A jejune film has the opposite problem — it is too predictable and flat to generate any tension.",
       "C": "'Morbid' describes an excessive focus on death, disease, or the disturbing. Jejune names emptiness of content, not darkness of content — the two flaws are different.",
-      "D": "'Moving' describes something emotionally stirring or affecting. A jejune work leaves the audience unmoved precisely because it lacks the substance to provoke any real emotional response."
+      "D": "'Moving' describes something emotionally stirring or affecting. A jejune work leaves the audience unmoved precisely because it lacks the substance to provoke any real emotional response.",
+      "E": "'Uninspired' means lacking creativity or imagination, which makes it close to jejune in describing a flat, unstimulating work; however, jejune specifically names the emptiness of substance and intellectual nutrition (from its Latin root meaning fasting), while uninspired focuses on the creative process rather than the absence of meaningful content."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "JEJUNE comes from the Latin for 'fasting' — empty, without nourishment. A jejune argument offers no intellectual food; a jejune film gives the mind nothing to chew on. When you see it, think 'mental starvation.'"
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0168",
@@ -62,23 +104,44 @@
     "difficulty": "Medium",
     "question": "The senator's IMPRUDENT remark was widely reported in leading newspapers. IMPRUDENT most nearly means:",
     "choices": [
-      { "id": "A", "text": "discourteous" },
-      { "id": "B", "text": "insulting" },
-      { "id": "C", "text": "controversial" },
-      { "id": "D", "text": "unwise" }
+      {
+        "id": "A",
+        "text": "discourteous"
+      },
+      {
+        "id": "B",
+        "text": "insulting"
+      },
+      {
+        "id": "C",
+        "text": "controversial"
+      },
+      {
+        "id": "D",
+        "text": "unwise"
+      },
+      {
+        "id": "E",
+        "text": "impolite"
+      }
     ],
     "correctOptionId": "D",
     "explanation": "Imprudent is the antonym of prudent and means lacking wise forethought — reckless in judgment, heedless of consequences. The prefix im- (not) directly cancels prudent's meaning of careful and wise decision-making. A senator's imprudent remark is one that should not have been said because it was poorly judged, likely to cause problems, or made without thinking through the fallout. 'Unwise' names that failure of judgment precisely. 'Discourteous' and 'insulting' address tone and manners rather than the quality of judgment the word names — an imprudent comment may be politely phrased yet still unwise. 'Controversial' means causing disagreement, which is a possible result of imprudence but not the meaning of the word itself.",
     "distractorExplanations": {
       "A": "'Discourteous' describes a failure of courtesy or respect. An imprudent remark may be perfectly polite in tone while still being reckless in content — the two flaws are independent.",
       "B": "'Insulting' describes intent to offend. An imprudent remark may offend without intending to; the word focuses on poor judgment, not on deliberate disrespect.",
-      "C": "'Controversial' means provoking public disagreement. A remark can be imprudent without being controversial, and controversial without being unwise — they measure different qualities."
+      "C": "'Controversial' means provoking public disagreement. A remark can be imprudent without being controversial, and controversial without being unwise — they measure different qualities.",
+      "E": "Confuses imprudent with rude — the senator's remark was unwise (lacking judgment), which is about consequences, not manners."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "IM- cancels the base word. IMPRUDENT = not prudent = unwise. Other examples: impartial (not partial), impractical (not practical), immoral (not moral). Once you know prudent, imprudent is automatic."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0169",
@@ -89,23 +152,44 @@
     "difficulty": "Medium",
     "question": "If you meet your NEMESIS, you meet:",
     "choices": [
-      { "id": "A", "text": "your guardian angel." },
-      { "id": "B", "text": "the person who decides your fate." },
-      { "id": "C", "text": "the cause of your downfall." },
-      { "id": "D", "text": "the leader of your country." }
+      {
+        "id": "A",
+        "text": "your guardian angel."
+      },
+      {
+        "id": "B",
+        "text": "the cause of your downfall."
+      },
+      {
+        "id": "C",
+        "text": "the person who decides your fate."
+      },
+      {
+        "id": "D",
+        "text": "the leader of your country."
+      },
+      {
+        "id": "E",
+        "text": "a formidable rival you cannot surpass."
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Nemesis comes from the ancient Greek goddess of retribution and just vengeance. In modern English it means either an opponent who is impossible to defeat or, more precisely, the agent or force that brings about a person's inevitable downfall — the fatal flaw or the enemy that finally undoes you. The word carries a sense of inevitability: one's nemesis is not a random obstacle but the very thing you cannot escape or overcome. 'The cause of your downfall' captures both the adversarial nature and the finality. 'Your guardian angel' is the direct opposite — a protecting force, not a destructive one. 'The person who decides your fate' is vague and omits the crucial adversarial element. 'The leader of your country' imports an entirely unrelated idea of authority.",
     "distractorExplanations": {
       "A": "'Your guardian angel' is a protector — the direct opposite of a nemesis, which is the force that brings about your ruin rather than shielding you from it.",
-      "B": "'The person who decides your fate' is too broad. A nemesis is specifically an adversarial force that causes downfall, not a neutral authority with power over outcomes.",
-      "D": "'The leader of your country' describes a position of political authority. A nemesis is defined by its adversarial and destructive relationship to you, not by any official role."
+      "C": "'The person who decides your fate' is too broad. A nemesis is specifically an adversarial force that causes downfall, not a neutral authority with power over outcomes.",
+      "D": "'The leader of your country' describes a position of political authority. A nemesis is defined by its adversarial and destructive relationship to you, not by any official role.",
+      "E": "'A formidable rival you cannot surpass' captures the adversarial and seemingly insurmountable aspect of a nemesis but emphasizes competition over downfall; a nemesis is specifically the agent or force that brings about one's ruin, not merely a competitor who consistently outperforms — one can have a formidable rival without being destroyed by them."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "NEMESIS = Greek goddess of retribution who punished excessive pride (hubris). In daily use, your nemesis is the one thing or person you cannot overcome — the source of your eventual downfall. Heroes in myths almost always meet their nemesis in the end."
     },
-    "tags": ["vocabulary", "vocabulary-in-context", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "vocabulary-in-context",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0170",
@@ -116,23 +200,44 @@
     "difficulty": "Hard",
     "question": "People with INVETERATE beliefs most likely:",
     "choices": [
-      { "id": "A", "text": "hold their beliefs deeply and with long-established conviction." },
-      { "id": "B", "text": "change their beliefs frequently." },
-      { "id": "C", "text": "have adopted their beliefs from another person." },
-      { "id": "D", "text": "can be easily persuaded to abandon them." }
+      {
+        "id": "A",
+        "text": "hold their beliefs deeply and with long-established conviction."
+      },
+      {
+        "id": "B",
+        "text": "change their beliefs frequently."
+      },
+      {
+        "id": "C",
+        "text": "have adopted their beliefs from another person."
+      },
+      {
+        "id": "D",
+        "text": "can be easily persuaded to abandon them."
+      },
+      {
+        "id": "E",
+        "text": "are deeply committed to beliefs they have personally examined and verified."
+      }
     ],
     "correctOptionId": "A",
     "explanation": "Inveterate comes from the Latin 'inveteratus,' meaning long-established or of long standing, from 'vetus' (old). It describes a habit, belief, or tendency that has been held or practiced for so long that it has become deeply entrenched and nearly impossible to change. An inveterate belief is not simply strong — it is old, entrenched, and resistant to revision because it has been part of the person for years or decades. 'Hold their beliefs deeply and with long-established conviction' captures both the intensity and the duration the word requires. 'Change their beliefs frequently' is the direct opposite — inveterate habits are precisely what does not change. 'Adopted from another' says nothing about how deep or entrenched the belief is. 'Easily persuaded to abandon them' contradicts the stubbornness that inveterate implies.",
     "distractorExplanations": {
       "B": "'Change their beliefs frequently' is the exact opposite of inveterate. The word names beliefs that resist change because they have been held for a very long time.",
       "C": "'Adopted from another person' describes the source of a belief, not its depth or duration. Inveterate is about how entrenched and lasting it has become, not about where it originated.",
-      "D": "'Easily persuaded to abandon them' contradicts the core meaning. An inveterate belief is deeply rooted through long habit and resists persuasion — that is precisely what makes it inveterate."
+      "D": "'Easily persuaded to abandon them' contradicts the core meaning. An inveterate belief is deeply rooted through long habit and resists persuasion — that is precisely what makes it inveterate.",
+      "E": "'Deeply committed after examination' emphasizes both the strength of conviction and the rational process behind it, but inveterate beliefs are defined by their long duration and entrenchment, not by the process of verification; one can have inveterate beliefs one has never examined — what makes them inveterate is time and habit, not reasoned commitment."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "INVETERATE shares a root with 'veteran' and 'vetus' (Latin for old). An inveterate habit is a veteran habit — it has been there so long it is part of the person's identity. Inveterate gambler, inveterate liar: both are fixed by years of repetition."
     },
-    "tags": ["vocabulary", "vocabulary-in-context", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "vocabulary-in-context",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0171",
@@ -143,23 +248,44 @@
     "difficulty": "Medium",
     "question": "If you are a BELLICOSE leader, you:",
     "choices": [
-      { "id": "A", "text": "are eager to wage war or engage in conflict." },
-      { "id": "B", "text": "remain neutral during international disputes." },
-      { "id": "C", "text": "treat all citizens equally under the law." },
-      { "id": "D", "text": "do everything in your power to avoid conflict." }
+      {
+        "id": "A",
+        "text": "remain neutral during international disputes."
+      },
+      {
+        "id": "B",
+        "text": "treat all citizens equally under the law."
+      },
+      {
+        "id": "C",
+        "text": "do everything in your power to avoid conflict."
+      },
+      {
+        "id": "D",
+        "text": "use force as a first response to international disagreements."
+      },
+      {
+        "id": "E",
+        "text": "are eager to wage war or engage in conflict."
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Bellicose comes from the Latin 'bellicosus,' meaning warlike, from 'bellum' (war) — the same root as 'belligerent.' A bellicose leader is not merely firm or assertive but actively aggressive in manner and eager to pick fights, whether on the national or international stage. The word does not simply mean willing to defend; it implies an offensive posture, a readiness to start or escalate conflict. 'Eager to wage war or engage in conflict' names both the willingness and the aggressive orientation. 'Remain neutral' is the opposite stance — a bellicose leader is anything but neutral. 'Treat all citizens equally' describes an unrelated principle of fairness. 'Do everything to avoid conflict' describes a pacifist, which is the direct antonym of bellicose.",
     "distractorExplanations": {
-      "B": "'Remain neutral' describes a passive, non-engaged stance. Bellicose is defined by aggressive engagement — the two positions are mutually exclusive.",
-      "C": "'Treat all citizens equally' describes a principle of impartiality and justice, which is unrelated to the aggressive, war-seeking disposition that bellicose names.",
-      "D": "'Do everything to avoid conflict' describes a pacifist attitude — the direct antonym of bellicose. A bellicose leader seeks conflict rather than avoiding it."
+      "A": "'Remain neutral' describes a passive, non-engaged stance. Bellicose is defined by aggressive engagement — the two positions are mutually exclusive.",
+      "B": "'Treat all citizens equally' describes a principle of impartiality and justice, which is unrelated to the aggressive, war-seeking disposition that bellicose names.",
+      "C": "'Do everything to avoid conflict' describes a pacifist attitude — the direct antonym of bellicose. A bellicose leader seeks conflict rather than avoiding it.",
+      "D": "'Use force as a first response' describes aggressive behavior consistent with bellicosity but specifies a particular tactical choice rather than defining the underlying disposition; bellicose names the overall warlike character and inclination toward conflict, which includes but is not limited to using force first in international disagreements."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "BELLICOSE and BELLIGERENT share the Latin root 'bellum' (war). Belligerent means actively hostile; bellicose means inclined toward war. Remember: bell- = war. Bellicose nations are warlike nations — they pick fights."
     },
-    "tags": ["vocabulary", "vocabulary-in-context", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "vocabulary-in-context",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0172",
@@ -170,23 +296,43 @@
     "difficulty": "Easy",
     "question": "The president of the company gave a SUMPTUOUS banquet for the newlyweds. SUMPTUOUS most nearly means:",
     "choices": [
-      { "id": "A", "text": "lavish" },
-      { "id": "B", "text": "simple" },
-      { "id": "C", "text": "formal" },
-      { "id": "D", "text": "surprising" }
+      {
+        "id": "A",
+        "text": "lavish"
+      },
+      {
+        "id": "B",
+        "text": "simple"
+      },
+      {
+        "id": "C",
+        "text": "formal"
+      },
+      {
+        "id": "D",
+        "text": "surprising"
+      },
+      {
+        "id": "E",
+        "text": "festive"
+      }
     ],
     "correctOptionId": "A",
     "explanation": "Sumptuous comes from the Latin 'sumptuosus,' meaning costly or expensive, from 'sumptus' (expense or cost). It describes something that is impressive in its richness, abundance, and elegance — typically applied to feasts, furnishings, or settings that reflect a generous outpouring of resources. A sumptuous banquet is not just any dinner: it is a grand, abundant, richly appointed meal. 'Lavish' shares this meaning precisely — both words name an abundance and richness that goes beyond the ordinary. 'Simple' is the direct antonym, describing plainness. 'Formal' describes manner and protocol rather than richness and extravagance. 'Surprising' says nothing about quality or abundance.",
     "distractorExplanations": {
       "B": "'Simple' names plainness and modesty — the direct opposite of sumptuous. A sumptuous banquet is the opposite of spare.",
       "C": "'Formal' describes the manner or protocol of an occasion, not its richness or abundance. A formal dinner can be modest; a sumptuous one is lavish regardless of formality.",
-      "D": "'Surprising' describes an unexpected quality. Sumptuous says nothing about how unexpected the banquet was — only about how rich and generous it was."
+      "D": "'Surprising' describes an unexpected quality. Sumptuous says nothing about how unexpected the banquet was — only about how rich and generous it was.",
+      "E": "Festive describes a celebratory mood; sumptuous describes costly splendor — a banquet can be festive without being lavish."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "SUMPTUOUS shares a root with 'sumptuous expenditure' — the idea of spending greatly. A sumptuous feast costs a great deal and shows it in every dish. Think: SUMP-tuous = full to the brim, overflowing with richness."
     },
-    "tags": ["vocabulary", "synonyms"]
+    "tags": [
+      "vocabulary",
+      "synonyms"
+    ]
   },
   {
     "id": "verb-0173",
@@ -197,23 +343,43 @@
     "difficulty": "Medium",
     "question": "If an APOCALYPSE is near, you can expect:",
     "choices": [
-      { "id": "A", "text": "a period of extended peace and stability." },
-      { "id": "B", "text": "a minor setback requiring adjustment." },
-      { "id": "C", "text": "total devastation and widespread destruction." },
-      { "id": "D", "text": "a swift military invasion." }
+      {
+        "id": "A",
+        "text": "a period of extended peace and stability."
+      },
+      {
+        "id": "B",
+        "text": "a minor setback requiring adjustment."
+      },
+      {
+        "id": "C",
+        "text": "a swift military invasion."
+      },
+      {
+        "id": "D",
+        "text": "total devastation and widespread destruction."
+      },
+      {
+        "id": "E",
+        "text": "a complete breakdown of social and governmental institutions."
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "Apocalypse comes from the Greek 'apokalypsis,' meaning a revelation or uncovering. In its original biblical sense it referred to a prophetic disclosure of hidden things, but in modern usage — especially in the phrase 'an apocalypse is near' — it names an event of catastrophic, civilization-ending scale. The word now commonly describes total devastation: the collapse of existing order on a massive scale. 'Total devastation and widespread destruction' captures the scale and finality the word conveys in this usage. 'Extended peace' is the opposite of apocalyptic conditions. 'A minor setback' is too mild by several orders of magnitude — an apocalypse is by definition beyond ordinary disruption. 'A swift military invasion' describes one specific kind of event that could be catastrophic, but apocalypse names the scale of destruction, not its particular cause.",
     "distractorExplanations": {
       "A": "'A period of extended peace' is the opposite of apocalyptic conditions. An apocalypse implies the end of the existing order, not its stabilization.",
       "B": "'A minor setback requiring adjustment' drastically understates the word's meaning. An apocalypse is not a disruption to be managed — it is an event of world-altering, civilization-ending magnitude.",
-      "D": "'A swift military invasion' describes one possible scenario but does not capture the full scope of apocalypse, which names the resulting total destruction rather than its particular trigger."
+      "C": "'A swift military invasion' describes one possible scenario but does not capture the full scope of apocalypse, which names the resulting total destruction rather than its particular trigger.",
+      "E": "'A complete breakdown of social and governmental institutions' accurately describes one dimension of an apocalypse but is narrower than the full meaning; apocalypse encompasses total physical devastation, massive destruction of life, and civilizational collapse — institutional breakdown is one component, but the word names a much broader and more catastrophic event."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "APOCALYPSE originally meant a revelation in Greek, but modern English uses it for world-ending catastrophe. Key marker: the prefix apo- (away from) + kalupsis (covering) = uncovering everything at once, on the largest possible scale. Apocalyptic = catastrophic, not merely difficult."
     },
-    "tags": ["vocabulary", "vocabulary-in-context"]
+    "tags": [
+      "vocabulary",
+      "vocabulary-in-context"
+    ]
   },
   {
     "id": "verb-0174",
@@ -224,23 +390,43 @@
     "difficulty": "Easy",
     "question": "The word BRIEF most nearly means:",
     "choices": [
-      { "id": "A", "text": "Short" },
-      { "id": "B", "text": "Weak" },
-      { "id": "C", "text": "Fast" },
-      { "id": "D", "text": "Few" }
+      {
+        "id": "A",
+        "text": "Weak"
+      },
+      {
+        "id": "B",
+        "text": "Fast"
+      },
+      {
+        "id": "C",
+        "text": "Few"
+      },
+      {
+        "id": "D",
+        "text": "Concise"
+      },
+      {
+        "id": "E",
+        "text": "Short"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Brief means lasting for only a short time or expressed in few words — a concise, limited duration or length. It comes from the Latin 'brevis,' meaning short, which also gives us abbreviate and brevity. 'Short' captures the central meaning directly: both words describe something of small extent in time or expression. The distractors each miss the mark in a specific way. 'Weak' describes strength or intensity, not length. 'Fast' describes speed — something can be fast but long, or brief but slow. 'Few' describes number or quantity (few people, few items), whereas brief describes duration or length. None of the distractors can substitute for brief in a sentence without changing the meaning.",
     "distractorExplanations": {
-      "B": "'Weak' describes lack of strength or force, not of duration. A brief argument can still be powerful; a weak one can still be lengthy.",
-      "C": "'Fast' describes speed, not duration. A brief pause is short in time; a fast pause would mean it happened quickly — a brief action can be slow-moving but still short.",
-      "D": "'Few' is a quantity word for countable items. Brief describes duration or length — 'a brief visit' means a short visit in time, not one involving few things."
+      "A": "'Weak' describes lack of strength or force, not of duration. A brief argument can still be powerful; a weak one can still be lengthy.",
+      "B": "'Fast' describes speed, not duration. A brief pause is short in time; a fast pause would mean it happened quickly — a brief action can be slow-moving but still short.",
+      "C": "'Few' is a quantity word for countable items. Brief describes duration or length — 'a brief visit' means a short visit in time, not one involving few things.",
+      "D": "'Concise' means using few words to express much, which is the adjective form of the concept brief embodies in language; however, brief describes duration or length in a more general sense, while concise specifically applies to expression; a brief speech is short in duration, a concise speech is short in word count — they overlap but are not identical."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "BRIEF shares a root with 'brevity' and 'abbreviate' — all from Latin 'brevis' (short). If something has brevity, it is brief. In Filipino government offices, a 'briefing' is originally named for being short, not for being fast or few."
     },
-    "tags": ["vocabulary", "synonyms"]
+    "tags": [
+      "vocabulary",
+      "synonyms"
+    ]
   },
   {
     "id": "verb-0175",
@@ -251,23 +437,43 @@
     "difficulty": "Easy",
     "question": "The word VITAL most nearly means:",
     "choices": [
-      { "id": "A", "text": "Essential" },
-      { "id": "B", "text": "Optional" },
-      { "id": "C", "text": "Casual" },
-      { "id": "D", "text": "Trivial" }
+      {
+        "id": "A",
+        "text": "Optional"
+      },
+      {
+        "id": "B",
+        "text": "Casual"
+      },
+      {
+        "id": "C",
+        "text": "Trivial"
+      },
+      {
+        "id": "D",
+        "text": "Vigorous"
+      },
+      {
+        "id": "E",
+        "text": "Essential"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Vital comes from the Latin 'vitalis,' meaning of or belonging to life, from 'vita' (life). In modern English it means absolutely necessary or of critical importance — indispensable to a functioning whole, the way vital organs are indispensable to a living body. 'Essential' matches this sense: both words name something that cannot be removed without the whole breaking down. 'Optional' is the direct antonym — something optional can be left out without serious consequence. 'Casual' describes an easy, relaxed attitude, unrelated to necessity. 'Trivial' means of little importance or consequence, the opposite of what vital conveys.",
     "distractorExplanations": {
-      "B": "'Optional' means that something may or may not be included without affecting the outcome. Vital means the opposite — its absence causes failure, not mere incompleteness.",
-      "C": "'Casual' describes a relaxed or informal manner. Vital is about necessity and importance — a vital function can be performed formally or casually, but the word says nothing about manner.",
-      "D": "'Trivial' means of negligible importance or significance — precisely the opposite of vital. Something vital is critical; something trivial barely matters."
+      "A": "'Optional' means that something may or may not be included without affecting the outcome. Vital means the opposite — its absence causes failure, not mere incompleteness.",
+      "B": "'Casual' describes a relaxed or informal manner. Vital is about necessity and importance — a vital function can be performed formally or casually, but the word says nothing about manner.",
+      "C": "'Trivial' means of negligible importance or significance — precisely the opposite of vital. Something vital is critical; something trivial barely matters.",
+      "D": "Vigorous plays on vital's other sense (full of life and energy); in this usage vital means essential, not energetic."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "VITAL shares a root with 'vita,' 'vitality,' and 'vitamin' — all connected to life. Vital = necessary for life, hence necessary for any functioning system. A vital document in an application cannot be skipped any more than a vital organ can be removed."
     },
-    "tags": ["vocabulary", "synonyms"]
+    "tags": [
+      "vocabulary",
+      "synonyms"
+    ]
   },
   {
     "id": "verb-0176",
@@ -278,23 +484,44 @@
     "difficulty": "Medium",
     "question": "One tends to be CHURLISH before breakfast. CHURLISH most nearly means:",
     "choices": [
-      { "id": "A", "text": "untidy" },
-      { "id": "B", "text": "ill-tempered" },
-      { "id": "C", "text": "dizzy" },
-      { "id": "D", "text": "forgetful" }
+      {
+        "id": "A",
+        "text": "untidy"
+      },
+      {
+        "id": "B",
+        "text": "ill-tempered"
+      },
+      {
+        "id": "C",
+        "text": "dizzy"
+      },
+      {
+        "id": "D",
+        "text": "forgetful"
+      },
+      {
+        "id": "E",
+        "text": "clumsy"
+      }
     ],
     "correctOptionId": "B",
     "explanation": "Churlish comes from Old English 'ceorl,' meaning a peasant or low-born man, and it evolved into an adjective describing rude, surly, and bad-tempered behavior — the manner of someone who is boorish and unkind. In the sentence, the phrase 'before breakfast' is a context clue: hunger and low blood sugar are well-known triggers of irritability, and the humor of the sentence rests on a universal experience of crankiness before a morning meal. 'Ill-tempered' captures the surly, easily annoyed quality churlish names. 'Untidy' describes appearance rather than disposition. 'Dizzy' describes a physical sensation of spinning or disorientation. 'Forgetful' describes a failure of memory, an entirely different trait.",
     "distractorExplanations": {
       "A": "'Untidy' describes a messy or disheveled appearance. Churlish is about manner and temperament — one can be churlish while neatly dressed, or untidy while perfectly pleasant.",
       "C": "'Dizzy' is a physical sensation of imbalance or disorientation. Churlish is a behavioral and social trait, not a physical state.",
-      "D": "'Forgetful' names a failure of memory. Being churlish is about being rude and bad-tempered, which is a question of attitude, not of recall."
+      "D": "'Forgetful' names a failure of memory. Being churlish is about being rude and bad-tempered, which is a question of attitude, not of recall.",
+      "E": "Confuses boorish manners with physical awkwardness — churlish is about rudeness of temper, not coordination."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "CHURLISH traces to the medieval 'churl,' a rude peasant. A churlish manner is boorish, surly, and unwilling to be gracious — think of someone who snaps at every small inconvenience. Context clue: the before-breakfast setting points straight to irritability."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0177",
@@ -305,23 +532,44 @@
     "difficulty": "Medium",
     "question": "A COMMISERATE gesture from management will lessen the possibility of a strike. COMMISERATE most nearly means:",
     "choices": [
-      { "id": "A", "text": "timely" },
-      { "id": "B", "text": "resolute" },
-      { "id": "C", "text": "polite" },
-      { "id": "D", "text": "sympathetic" }
+      {
+        "id": "A",
+        "text": "timely"
+      },
+      {
+        "id": "B",
+        "text": "resolute"
+      },
+      {
+        "id": "C",
+        "text": "sympathetic"
+      },
+      {
+        "id": "D",
+        "text": "polite"
+      },
+      {
+        "id": "E",
+        "text": "conciliatory"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "explanation": "Commiserate comes from the Latin 'commiserari,' meaning to pity together, from 'misereri' (to feel pity) — the same root as 'misery' and 'miserable.' To commiserate with someone is to share their feelings of grief or distress, expressing sympathy and solidarity. As an adjective, a commiserate gesture is one that acknowledges the workers' suffering and shows genuine empathy. 'Sympathetic' matches this sense: a gesture that demonstrates understanding of the workers' feelings and difficulties. The sentence's logic confirms this: it is specifically a gesture that communicates emotional understanding that could defuse a labor dispute. 'Timely' describes when something occurs, not its emotional quality. 'Resolute' means firm and determined, which describes the opposite of a sympathetic approach. 'Polite' means courteous but says nothing about empathy or shared feeling.",
     "distractorExplanations": {
       "A": "'Timely' describes when something occurs — the right moment for action. The word says nothing about the emotional quality or purpose of the gesture, which is what commiserate specifically names.",
       "B": "'Resolute' means firm and unwavering, which describes strength of purpose rather than compassion. A resolute management gesture might even harden the labor dispute rather than soften it.",
-      "C": "'Polite' means well-mannered and courteous. A polite gesture observes social norms; a commiserate one goes further by demonstrating understanding of another's suffering."
+      "D": "'Polite' means well-mannered and courteous. A polite gesture observes social norms; a commiserate one goes further by demonstrating understanding of another's suffering.",
+      "E": "'Conciliatory' means intended to make peace and reduce hostility, which is related to but different from sympathetic; a conciliatory gesture shows willingness to end a conflict, while a commiserate gesture shows shared feeling for someone's suffering — the first addresses the dispute itself, the second addresses the emotional experience of those affected by it."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "COMMISERATE shares a root with 'misery' — both come from Latin 'miser' (wretched). To commiserate is to share in another's wretchedness, expressing genuine fellow-feeling. A commiserate response acknowledges the pain of the other side."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0178",
@@ -332,23 +580,44 @@
     "difficulty": "Hard",
     "question": "Mr. Samson was INURED to hardships in his younger years. INURED most nearly means:",
     "choices": [
-      { "id": "A", "text": "forced" },
-      { "id": "B", "text": "indifferent" },
-      { "id": "C", "text": "exposed" },
-      { "id": "D", "text": "accustomed" }
+      {
+        "id": "A",
+        "text": "forced"
+      },
+      {
+        "id": "B",
+        "text": "indifferent"
+      },
+      {
+        "id": "C",
+        "text": "exposed"
+      },
+      {
+        "id": "D",
+        "text": "accustomed"
+      },
+      {
+        "id": "E",
+        "text": "desensitized"
+      }
     ],
     "correctOptionId": "D",
     "explanation": "Inured comes from the Latin 'in ure' (in use, in practice) and means to have become hardened or accustomed to something unpleasant through long exposure — to have adapted so thoroughly that the difficulty no longer registers as distressing. The phrase 'in his younger years' tells us the habituation occurred over a period of time; repeated hardship gradually conditioned him so that it lost its power to cause distress. 'Accustomed' captures this meaning: through habit and repetition, something once difficult becomes normal. 'Forced' describes compulsion without the sense of adaptation or conditioning that inured requires. 'Indifferent' describes an emotional detachment that may result from being inured, but it names only the outcome, not the process of gradual conditioning. 'Exposed' describes mere contact without the crucial element of having adapted through that exposure.",
     "distractorExplanations": {
       "A": "'Forced' describes compulsion — someone made to endure hardship. Inured means having adapted to it, not merely having been subjected to it against one's will.",
       "B": "'Indifferent' names the emotional result of being inured — one may become indifferent once inured — but the word itself means adapted through habituation, not the detachment that can follow.",
-      "C": "'Exposed' means brought into contact with something. Inured goes further: it means that repeated exposure has produced actual adaptation and conditioning, so that the hardship no longer has the same effect."
+      "C": "'Exposed' means brought into contact with something. Inured goes further: it means that repeated exposure has produced actual adaptation and conditioning, so that the hardship no longer has the same effect.",
+      "E": "'Desensitized' means made less sensitive to something through repeated exposure, which is very close to inured; the distinction is that inured emphasizes the positive adaptation (becoming hardened and resilient), while desensitized can carry a negative connotation of losing appropriate sensitivity — a person inured to hardship has adapted, while a desensitized person may have lost the capacity to feel."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "INURED = hardened by habit. Think of a soldier inured to danger: the first time is terrifying; after repeated exposure, the alarm fades. Inured always pairs with something unpleasant — you are inured to hardship, cold, or criticism — and it always means adapted, not merely exposed."
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0179",
@@ -359,23 +628,44 @@
     "difficulty": "Medium",
     "question": "The committee still pursued its investigation with DAUNTLESS determination despite repeated disappointments. DAUNTLESS most nearly means:",
     "choices": [
-      { "id": "A", "text": "courageous" },
-      { "id": "B", "text": "candid" },
-      { "id": "C", "text": "admirable" },
-      { "id": "D", "text": "relentless" }
+      {
+        "id": "A",
+        "text": "candid"
+      },
+      {
+        "id": "B",
+        "text": "admirable"
+      },
+      {
+        "id": "C",
+        "text": "courageous"
+      },
+      {
+        "id": "D",
+        "text": "relentless"
+      },
+      {
+        "id": "E",
+        "text": "reckless"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "Dauntless comes from the verb 'daunt,' meaning to make afraid or discourage, plus the suffix -less (without). Dauntless therefore means fearless — undeterred by difficulty, danger, or discouragement. The sentence supplies a perfect context clue: 'despite repeated disappointments' signals that ordinary people might have given up, but this committee pressed on without losing heart. 'Courageous' names the precise quality: facing difficulty without being deterred. 'Candid' describes openness and honesty, which is unrelated to fearlessness. 'Admirable' is a general term of praise that does not specify the nature of the quality being praised — something can be admirable for many reasons other than courage. 'Relentless' describes persistence without stopping, which overlaps with dauntless but emphasizes the unyielding drive rather than the absence of fear.",
     "distractorExplanations": {
-      "B": "'Candid' means frank and truthful in expression — a completely different quality from fearlessness. The committee's candor, or lack of it, is not what the sentence measures.",
-      "C": "'Admirable' means worthy of respect, but it is too vague. Dauntless names the specific quality of fearlessness that is admirable, and the examiner wants the precise synonym, not a general compliment.",
-      "D": "'Relentless' emphasizes never stopping, regardless of difficulty. Dauntless specifically names the absence of fear or discouragement, not simply the refusal to quit. The distinction matters: one can be relentless but terrified; dauntless means undaunted — without fear."
+      "A": "'Candid' means frank and truthful in expression — a completely different quality from fearlessness. The committee's candor, or lack of it, is not what the sentence measures.",
+      "B": "'Admirable' means worthy of respect, but it is too vague. Dauntless names the specific quality of fearlessness that is admirable, and the examiner wants the precise synonym, not a general compliment.",
+      "D": "'Relentless' emphasizes never stopping, regardless of difficulty. Dauntless specifically names the absence of fear or discouragement, not simply the refusal to quit. The distinction matters: one can be relentless but terrified; dauntless means undaunted — without fear.",
+      "E": "Reckless adds heedlessness that dauntless never implies — dauntless determination is fearless yet still careful."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "DAUNT means to frighten or discourage. DAUNT-LESS = without being daunted = fearless. The -less suffix does the work: lifeless (without life), hopeless (without hope), dauntless (without being made afraid)."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0180",
@@ -386,23 +676,44 @@
     "difficulty": "Hard",
     "question": "By adroit cross-examination, the defense lawyer was able to REFUTE the testimony of the prosecution witness. REFUTE most nearly means:",
     "choices": [
-      { "id": "A", "text": "validate" },
-      { "id": "B", "text": "dissect" },
-      { "id": "C", "text": "disprove" },
-      { "id": "D", "text": "sustain" }
+      {
+        "id": "A",
+        "text": "disprove"
+      },
+      {
+        "id": "B",
+        "text": "validate"
+      },
+      {
+        "id": "C",
+        "text": "dissect"
+      },
+      {
+        "id": "D",
+        "text": "sustain"
+      },
+      {
+        "id": "E",
+        "text": "rebut"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "Refute means to prove something to be wrong or false by presenting evidence or a counter-argument — it goes beyond simply denying or contradicting a claim; it means actually disproving it. The sentence shows the mechanism: through skillful cross-examination, the lawyer found weaknesses in the testimony that defeated its credibility as evidence. 'Disprove' is the closest synonym: both words mean to establish that a claim is false, not merely to disagree with it. 'Validate' is the direct antonym — it means to confirm or prove correct. 'Dissect' means to analyze in detail, which is part of what cross-examination involves, but dissecting a testimony means examining it closely, not necessarily proving it wrong. 'Sustain' means to support or maintain, which is again opposite to refuting.",
     "distractorExplanations": {
-      "A": "'Validate' means to confirm as true or correct — the direct opposite of refute. A lawyer who validates the prosecution's testimony is helping the other side.",
-      "B": "'Dissect' means to examine something in careful detail. Cross-examination does involve dissection, but refute requires the further step of proving the testimony wrong, not merely breaking it down.",
-      "D": "'Sustain' means to uphold or support. Objections are sustained when they are upheld by a judge — the opposite action from what the defense lawyer was doing in this sentence."
+      "B": "'Validate' means to confirm as true or correct — the direct opposite of refute. A lawyer who validates the prosecution's testimony is helping the other side.",
+      "C": "'Dissect' means to examine something in careful detail. Cross-examination does involve dissection, but refute requires the further step of proving the testimony wrong, not merely breaking it down.",
+      "D": "'Sustain' means to uphold or support. Objections are sustained when they are upheld by a judge — the opposite action from what the defense lawyer was doing in this sentence.",
+      "E": "'Rebut' means to argue against a claim by presenting counter-evidence, which is related to refute but falls short of it; refute specifically means to prove something false, whereas rebut means to respond to it with counter-arguments without necessarily proving it wrong — a successful rebuttal weakens a position, while a refutation defeats it entirely."
     },
     "tip": {
       "label": "Common Mistake",
       "text": "REFUTE is often confused with REBUT (to argue against) or DENY (to say it is false). Refute specifically means to prove false with evidence. If you can only say 'that is wrong,' you are denying; if you can show why it is wrong, you are refuting."
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0181",
@@ -413,23 +724,44 @@
     "difficulty": "Hard",
     "question": "Though her friend was IRASCIBLE, Dina saw good qualities in her. IRASCIBLE most nearly means:",
     "choices": [
-      { "id": "A", "text": "unreasonable" },
-      { "id": "B", "text": "irritable" },
-      { "id": "C", "text": "suspicious" },
-      { "id": "D", "text": "nervous" }
+      {
+        "id": "A",
+        "text": "unreasonable"
+      },
+      {
+        "id": "B",
+        "text": "suspicious"
+      },
+      {
+        "id": "C",
+        "text": "irritable"
+      },
+      {
+        "id": "D",
+        "text": "nervous"
+      },
+      {
+        "id": "E",
+        "text": "petulant"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "C",
     "explanation": "Irascible comes from the Latin 'irasci,' meaning to grow angry, from 'ira' (anger) — the same root as 'ire' and 'irate.' It means easily provoked to anger, prone to hot-tempered outbursts, and quick to take offense. The sentence's contrast — 'though' signals an opposition between the friend's flaw and the good qualities Dina perceives — confirms that irascible names a negative trait, specifically one of temperament. 'Irritable' is the closest synonym: both words describe a person who is easily angered and quick to react with displeasure. 'Unreasonable' names a failure of logic or proportion but does not specifically name anger as the mode of that failure. 'Suspicious' describes a disposition of mistrust, a different emotional orientation. 'Nervous' describes anxiety and worry, which are low-arousal states, while irascible describes high-arousal anger.",
     "distractorExplanations": {
       "A": "'Unreasonable' means failing to follow logic or fairness. An irascible person may often seem unreasonable, but the word itself names the hot-tempered anger, not the failure of reasoning.",
-      "C": "'Suspicious' describes a tendency to distrust or doubt. Irascible names the specific emotion of anger and the readiness to flare into it — suspicion is a different disposition.",
-      "D": "'Nervous' describes an anxious, tense, low-confidence state. Irascible describes an explosive anger that fires outward; nervousness is an inward, worried state."
+      "B": "'Suspicious' describes a tendency to distrust or doubt. Irascible names the specific emotion of anger and the readiness to flare into it — suspicion is a different disposition.",
+      "D": "'Nervous' describes an anxious, tense, low-confidence state. Irascible describes an explosive anger that fires outward; nervousness is an inward, worried state.",
+      "E": "'Petulant' means childishly sulky and bad-tempered when thwarted, which is related to irascible but suggests a more whining, sulking quality; irascible describes someone quick to explosive anger, while petulant describes someone who pouts and sulks — irascible people boil over, petulant people withdraw and complain."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "IRASCIBLE shares a root with 'ire' (anger) and 'irate.' Think of IRA- as the anger prefix: irascible = prone to ire = quickly angered. Someone irascible does not simmer — they boil over at small provocations."
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0182",
@@ -440,23 +772,44 @@
     "difficulty": "Medium",
     "question": "After his writing job, he usually \"SAUNTERS\" at the small forest park near his home to refresh his mind. SAUNTERS most nearly means:",
     "choices": [
-      { "id": "A", "text": "takes a nap" },
-      { "id": "B", "text": "outlines his next writing job" },
-      { "id": "C", "text": "walks in a slow, relaxed manner" },
-      { "id": "D", "text": "exercises briskly" }
+      {
+        "id": "A",
+        "text": "takes a nap"
+      },
+      {
+        "id": "B",
+        "text": "outlines his next writing job"
+      },
+      {
+        "id": "C",
+        "text": "walks in a slow, relaxed manner"
+      },
+      {
+        "id": "D",
+        "text": "exercises briskly"
+      },
+      {
+        "id": "E",
+        "text": "strolls leisurely"
+      }
     ],
     "correctOptionId": "C",
     "explanation": "Saunter means to walk in a slow, unhurried, and relaxed way — to stroll without any particular urgency. The word suggests enjoyment of the journey rather than efficiency in reaching the destination. The context provides strong support: after completing focused mental work, the purpose of visiting the park is to 'refresh his mind,' which is best served by a leisurely, contemplative walk rather than brisk exercise or another work-related activity. 'Walks in a slow, relaxed manner' matches the word's meaning on every point. 'Takes a nap' is a different kind of rest — passive and horizontal, not the gentle movement that sauntering implies. 'Outlines his next writing job' is an active, goal-directed task that is the opposite of a refreshing stroll. 'Exercises briskly' introduces speed and exertion, which contradict the unhurried quality that defines sauntering.",
     "distractorExplanations": {
       "A": "'Takes a nap' is a form of passive rest involving sleep. Sauntering is an active, gentle walk — movement through space, not stillness.",
       "B": "'Outlines his next writing job' is a cognitive, work-related task. Sauntering is specifically leisure movement intended to clear the mind, not to continue working.",
-      "D": "'Exercises briskly' introduces speed and athletic effort. Sauntering is the opposite — it is precisely the unhurried pace that defines it. A brisk walk is not a saunter."
+      "D": "'Exercises briskly' introduces speed and athletic effort. Sauntering is the opposite — it is precisely the unhurried pace that defines it. A brisk walk is not a saunter.",
+      "E": "'Strolls leisurely' is essentially a synonym of 'saunters' — both describe an unhurried, relaxed walk without urgency; while this option correctly captures the meaning of saunter, it is too close to the correct answer to serve as an effective distractor without also being a correct answer, making it the most plausible near-correct option."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "SAUNTER = the opposite of a rush. Picture someone strolling with hands in pockets, in no hurry at all. Sauntering is slow, casual, and relaxed — a pace that belongs to parks and Sunday afternoons, not to corridors or commutes."
     },
-    "tags": ["vocabulary", "vocabulary-in-context", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "vocabulary-in-context",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0183",
@@ -467,23 +820,44 @@
     "difficulty": "Easy",
     "question": "Drug addiction is considered a MENACE to society. MENACE most nearly means:",
     "choices": [
-      { "id": "A", "text": "threat" },
-      { "id": "B", "text": "burden" },
-      { "id": "C", "text": "challenge" },
-      { "id": "D", "text": "distraction" }
+      {
+        "id": "A",
+        "text": "burden"
+      },
+      {
+        "id": "B",
+        "text": "challenge"
+      },
+      {
+        "id": "C",
+        "text": "distraction"
+      },
+      {
+        "id": "D",
+        "text": "hindrance"
+      },
+      {
+        "id": "E",
+        "text": "threat"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Menace means a person or thing that is likely to cause harm — a danger or threat. It comes from the Latin 'minaciae,' meaning threatening gestures, and it carries the idea of an active, harmful presence that poses a danger to others. In the sentence, calling drug addiction a menace to society names it as a source of danger and harm to the community at large. 'Threat' matches this meaning precisely: both words name something that presents a danger and could cause injury or damage. 'Burden' means something heavy or difficult to bear, like financial strain, but it implies weight rather than active danger. 'Challenge' implies difficulty but is often used positively — a challenge can be overcome and grown from, whereas a menace is primarily dangerous. 'Distraction' means something that pulls attention away, an entirely different kind of effect.",
     "distractorExplanations": {
-      "B": "'Burden' names something that weighs down or imposes costs. Drug addiction is burdensome in that sense, but menace specifically names the danger and harmful threat it poses — a heavier, more active concept than mere burden.",
-      "C": "'Challenge' names a difficult task or problem that demands effort. The word is often used with positive connotations of growth. Menace is purely negative — it names a source of harm, not of personal development.",
-      "D": "'Distraction' means something that diverts attention from a main focus. Drug addiction may cause distractions, but a menace is a source of active danger, not merely an attention problem."
+      "A": "'Burden' names something that weighs down or imposes costs. Drug addiction is burdensome in that sense, but menace specifically names the danger and harmful threat it poses — a heavier, more active concept than mere burden.",
+      "B": "'Challenge' names a difficult task or problem that demands effort. The word is often used with positive connotations of growth. Menace is purely negative — it names a source of harm, not of personal development.",
+      "C": "'Distraction' means something that diverts attention from a main focus. Drug addiction may cause distractions, but a menace is a source of active danger, not merely an attention problem.",
+      "D": "A hindrance obstructs progress; a menace threatens harm — obstruction and danger are different failure modes."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "MENACE = active danger. A burden is heavy; a challenge is difficult; a menace is dangerous and threatening. In CSE civic contexts, menace often appears in discussions of public safety — drug addiction, crime, and hazards are menaces because they threaten to cause harm."
     },
-    "tags": ["vocabulary", "synonyms", "civic-context"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "civic-context"
+    ]
   },
   {
     "id": "verb-0184",
@@ -494,23 +868,44 @@
     "difficulty": "Medium",
     "question": "The suspect gave a PLAUSIBLE explanation for his presence at the scene, so the police decided to look elsewhere for the perpetrator. PLAUSIBLE most nearly means:",
     "choices": [
-      { "id": "A", "text": "unbelievable" },
-      { "id": "B", "text": "credible" },
-      { "id": "C", "text": "insufficient" },
-      { "id": "D", "text": "apologetic" }
+      {
+        "id": "A",
+        "text": "unbelievable"
+      },
+      {
+        "id": "B",
+        "text": "insufficient"
+      },
+      {
+        "id": "C",
+        "text": "apologetic"
+      },
+      {
+        "id": "D",
+        "text": "credible"
+      },
+      {
+        "id": "E",
+        "text": "convincing"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "D",
     "explanation": "Plausible comes from the Latin 'plausibilis,' meaning worthy of applause or approval, and in modern English means appearing reasonable and likely to be true — convincing enough to deserve belief, even if not proven. The decisive context clue is the logical result in the sentence: because the explanation was plausible, the police accepted it and redirected their investigation. Only an explanation that is convincing and believable produces that outcome. 'Credible' matches precisely: both words describe something worthy of belief, something that makes rational sense given available information. 'Unbelievable' is the direct antonym — the police would not have moved on if the explanation failed to convince them. 'Insufficient' means not enough to satisfy a need, a different kind of inadequacy. 'Apologetic' describes a manner of expressing regret, which is a tone rather than a quality of believability.",
     "distractorExplanations": {
       "A": "'Unbelievable' is the direct antonym of plausible. Had the explanation been unbelievable, the police would have remained suspicious rather than looking elsewhere.",
-      "C": "'Insufficient' means not enough — too little of something. Plausible is about believability, not about quantity or completeness.",
-      "D": "'Apologetic' describes a regretful, sorry manner. Whether the suspect was apologetic says nothing about whether his explanation was believable or logical."
+      "B": "'Insufficient' means not enough — too little of something. Plausible is about believability, not about quantity or completeness.",
+      "C": "'Apologetic' describes a regretful, sorry manner. Whether the suspect was apologetic says nothing about whether his explanation was believable or logical.",
+      "E": "'Convincing' means persuading someone to believe something, which is very close to credible in this context — both describe an explanation that the police accepted; however, 'plausible' specifically means appearing reasonable and likely to be true (believable on its face), while 'convincing' emphasizes the effect on the listener rather than the inherent believability of the explanation."
     },
     "tip": {
       "label": "Exam Tip",
       "text": "PLAUSIBLE does not mean true — it means believable. A plausible story fits the known facts well enough to be accepted provisionally. Use the sentence result to confirm: if the listener is convinced enough to act on the explanation, the word in the blank is plausible (or credible), not doubtful or unbelievable."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0185",
@@ -521,23 +916,44 @@
     "difficulty": "Hard",
     "question": "This is a PROPITIOUS time to reflect on the path the nation has traveled in the last five years. PROPITIOUS most nearly means:",
     "choices": [
-      { "id": "A", "text": "realistic" },
-      { "id": "B", "text": "favorable" },
-      { "id": "C", "text": "crucial" },
-      { "id": "D", "text": "significant" }
+      {
+        "id": "A",
+        "text": "realistic"
+      },
+      {
+        "id": "B",
+        "text": "crucial"
+      },
+      {
+        "id": "C",
+        "text": "significant"
+      },
+      {
+        "id": "D",
+        "text": "momentous"
+      },
+      {
+        "id": "E",
+        "text": "favorable"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "Propitious comes from the Latin 'propitius,' meaning favorable or well-disposed — originally used of the gods being favorably inclined toward a request. In modern English it means giving a good omen or presenting favorable conditions for success. A propitious time is one in which circumstances are well-aligned and supportive of the intended action. 'Favorable' is the precise synonym: both words describe conditions that are advantageous, promising, and conducive to a good outcome. 'Realistic' describes an accurate assessment of conditions, not their quality — a realistic time for reflection is merely an honest one. 'Crucial' means critically important, which describes necessity rather than favorableness. 'Significant' means important or meaningful, again a different dimension from whether conditions are well-disposed or promising.",
     "distractorExplanations": {
       "A": "'Realistic' means grounded in reality and practically accurate. A realistic time to reflect is one when reflection is practical; a propitious one is when conditions are actively welcoming and favorable.",
-      "C": "'Crucial' means of decisive importance — a time when the stakes are high. Propitious does not imply high stakes; it implies favorable conditions, which is a different quality.",
-      "D": "'Significant' means worthy of attention and importance. A time can be significant without being propitious, and propitious without the particular weight significant carries."
+      "B": "'Crucial' means of decisive importance — a time when the stakes are high. Propitious does not imply high stakes; it implies favorable conditions, which is a different quality.",
+      "C": "'Significant' means worthy of attention and importance. A time can be significant without being propitious, and propitious without the particular weight significant carries.",
+      "D": "Momentous means highly significant; propitious means favorable for action — an occasion can be momentous yet thoroughly unfavorable."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "PROPITIOUS shares a root with 'propitiate' (to win the favor of). Propitious conditions are conditions that are on your side — the moment when everything aligns to support you. Think: AUSPICIOUS and PROPITIOUS are near-synonyms; both mean favorable, promising, an omen of good outcomes."
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0186",
@@ -548,23 +964,44 @@
     "difficulty": "Hard",
     "question": "He was left with no other choice but to IMMOLATE his own life. IMMOLATE most nearly means:",
     "choices": [
-      { "id": "A", "text": "protect" },
-      { "id": "B", "text": "sacrifice" },
-      { "id": "C", "text": "perfect" },
-      { "id": "D", "text": "transform" }
+      {
+        "id": "A",
+        "text": "protect"
+      },
+      {
+        "id": "B",
+        "text": "perfect"
+      },
+      {
+        "id": "C",
+        "text": "sacrifice"
+      },
+      {
+        "id": "D",
+        "text": "transform"
+      },
+      {
+        "id": "E",
+        "text": "offer up"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "C",
     "explanation": "Immolate comes from the Latin 'immolare,' meaning to sprinkle with sacrificial meal before killing, and refers to the act of sacrificing something — especially by fire — as an offering. In modern English, to immolate oneself means to sacrifice one's own life, often as a form of protest or for a deeply held cause. The word carries weight: it describes a deliberate, irrevocable sacrifice, not a casual giving up of something. 'Sacrifice' captures the core meaning: to give up something valuable, up to and including one's own life, for a greater cause or out of necessity. 'Protect' is the opposite — one who sacrifices a life cannot simultaneously shield it. 'Perfect' means to refine or bring to flawless completion, an unrelated idea. 'Transform' means to change into a different form, which also does not touch the meaning of sacrificial offering.",
     "distractorExplanations": {
       "A": "'Protect' means to guard from harm. Immolating one's life is the antithesis of protecting it — the act involves deliberately giving up one's life rather than preserving it.",
-      "C": "'Perfect' means to refine to a flawless state. Immolate involves destruction through sacrifice, not improvement. The two words describe opposite actions.",
-      "D": "'Transform' means to change into something different. While sacrifice produces a kind of change, immolate specifically describes the act of offering one's life — not a neutral change but a final, irrevocable giving up."
+      "B": "'Perfect' means to refine to a flawless state. Immolate involves destruction through sacrifice, not improvement. The two words describe opposite actions.",
+      "D": "'Transform' means to change into something different. While sacrifice produces a kind of change, immolate specifically describes the act of offering one's life — not a neutral change but a final, irrevocable giving up.",
+      "E": "'Offer up' means to present something as a sacrifice or gift, which captures the ritualistic aspect of immolation but is vaguer and less intense; immolate specifically means to kill as a sacrifice, often by fire, and 'offer up' could describe any gift or act of giving without the finality and completeness that immolation requires."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "IMMOLATE = IM + MOLA (ritual meal sprinkled before sacrifice). In practice, to immolate is to sacrifice by burning or, more broadly, to give one's life for a cause. Self-immolation as a form of protest has appeared in modern history and literature — the word always implies a drastic, irreversible sacrifice."
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0187",
@@ -575,23 +1012,43 @@
     "difficulty": "Easy",
     "question": "The word GENEROUS is most nearly OPPOSITE in meaning to:",
     "choices": [
-      { "id": "A", "text": "Stingy" },
-      { "id": "B", "text": "Rich" },
-      { "id": "C", "text": "Selfish" },
-      { "id": "D", "text": "Friendly" }
+      {
+        "id": "A",
+        "text": "Stingy"
+      },
+      {
+        "id": "B",
+        "text": "Rich"
+      },
+      {
+        "id": "C",
+        "text": "Selfish"
+      },
+      {
+        "id": "D",
+        "text": "Friendly"
+      },
+      {
+        "id": "E",
+        "text": "Miserly"
+      }
     ],
     "correctOptionId": "A",
     "explanation": "Generous means willing to give freely and abundantly — showing an open-handed readiness to share time, money, or other resources. Its opposite must describe a refusal to give or share, and 'stingy' fits exactly: unwilling to give or spend, meanly restricted with resources. 'Rich' describes wealth or abundance — a state of having, not a disposition toward giving. One can be rich without being generous, and generous without being rich. 'Selfish' means prioritizing one's own interests at others' expense, which overlaps with stinginess but names a broader self-centeredness; stinginess specifically names reluctance to part with material things. 'Friendly' describes warmth and goodwill in social manner, which is a different dimension from generosity.",
     "distractorExplanations": {
       "B": "'Rich' describes a state of having abundant resources, not a disposition toward sharing them. A rich person can be generous or stingy; the word says nothing about giving.",
       "C": "'Selfish' names a broader self-centered orientation — prioritizing oneself over others. Stingy is the more specific antonym: it names the reluctance to give or share material things, which is the precise opposite of generous.",
-      "D": "'Friendly' describes warmth and sociability. One can be friendly without being generous, and generous without being especially friendly. Friendliness is about social manner; generosity is about giving."
+      "D": "'Friendly' describes warmth and sociability. One can be friendly without being generous, and generous without being especially friendly. Friendliness is about social manner; generosity is about giving.",
+      "E": "'Miserly' means extremely unwilling to give or spend, which is a near-synonym of stingy and a direct antonym of generous; while both stingy and miserly oppose generous on the giving dimension, miserly adds a connotation of hoarding and extreme reluctance that stingy does not always carry — on the CSE, stingy is the standard expected antonym."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "GENEROUS and STINGY are direct antonyms on the giving dimension. Rich and poor are antonyms on the having dimension — a separate axis. Do not confuse how much someone has with how much they give: a rich miser is rich but not generous; a poor person can be generous."
     },
-    "tags": ["vocabulary", "antonyms"]
+    "tags": [
+      "vocabulary",
+      "antonyms"
+    ]
   },
   {
     "id": "verb-0188",
@@ -602,23 +1059,44 @@
     "difficulty": "Hard",
     "question": "When used in excessive amounts, insecticide is DELETERIOUS to plants. DELETERIOUS most nearly means:",
     "choices": [
-      { "id": "A", "text": "harmful" },
-      { "id": "B", "text": "powerful" },
-      { "id": "C", "text": "mournful" },
-      { "id": "D", "text": "doubtful" }
+      {
+        "id": "A",
+        "text": "powerful"
+      },
+      {
+        "id": "B",
+        "text": "mournful"
+      },
+      {
+        "id": "C",
+        "text": "harmful"
+      },
+      {
+        "id": "D",
+        "text": "doubtful"
+      },
+      {
+        "id": "E",
+        "text": "noxious"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "Deleterious comes from the Greek 'deleterios,' meaning destructive or hurtful, from 'deleisthai' (to damage). It means causing harm or injury, especially in a gradual or insidious way — often used of substances, habits, or conditions that produce damage over time. The context is precise: insecticide used in excess damages the plants it was meant to protect, making the substance itself the agent of harm. 'Harmful' is the closest everyday synonym: both words name the capacity to cause damage or injury. 'Powerful' describes intensity or strength, not direction of effect — a substance can be powerful without being harmful. 'Mournful' describes a feeling of sorrow, which is a human emotional state unrelated to the effect of a chemical on a plant. 'Doubtful' means uncertain or questionable, an epistemic quality unrelated to causing harm.",
     "distractorExplanations": {
-      "B": "'Powerful' names intensity of effect but does not specify whether the effect is beneficial or harmful. Deleterious specifically names harm. A powerful medicine can be beneficial; a deleterious one cannot.",
-      "C": "'Mournful' describes a feeling of deep sadness. It is a human emotional state and cannot meaningfully describe what a chemical does to a plant. Deleterious is about damage, not about grief.",
-      "D": "'Doubtful' means uncertain or giving reason for doubt. Whether insecticide is deleterious to plants in excess is not a matter of doubt — the word names the type of effect, not the certainty about it."
+      "A": "'Powerful' names intensity of effect but does not specify whether the effect is beneficial or harmful. Deleterious specifically names harm. A powerful medicine can be beneficial; a deleterious one cannot.",
+      "B": "'Mournful' describes a feeling of deep sadness. It is a human emotional state and cannot meaningfully describe what a chemical does to a plant. Deleterious is about damage, not about grief.",
+      "D": "'Doubtful' means uncertain or giving reason for doubt. Whether insecticide is deleterious to plants in excess is not a matter of doubt — the word names the type of effect, not the certainty about it.",
+      "E": "'Noxious' means harmful or poisonous to living things, making it a near-synonym of deleterious in the context of substances affecting plants; however, deleterious is broader and can apply to habits, conditions, and effects beyond toxic substances, while noxious specifically implies a poisonous or toxic quality — the words overlap but deleterious is the more general term."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "DELETERIOUS = delete + -ious. Think of deleting — removing or destroying. Something deleterious works like a destructive process, wearing down or damaging what it touches. It is stronger than 'inconvenient' and more specific than 'bad': it implies real, damaging harm."
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0189",
@@ -629,23 +1107,44 @@
     "difficulty": "Easy",
     "question": "The committee spent many hours STREAMLINING the procedures and rules of the new program. STREAMLINING most nearly means:",
     "choices": [
-      { "id": "A", "text": "interpreting" },
-      { "id": "B", "text": "analyzing" },
-      { "id": "C", "text": "documenting" },
-      { "id": "D", "text": "simplifying" }
+      {
+        "id": "A",
+        "text": "interpreting"
+      },
+      {
+        "id": "B",
+        "text": "analyzing"
+      },
+      {
+        "id": "C",
+        "text": "documenting"
+      },
+      {
+        "id": "D",
+        "text": "simplifying"
+      },
+      {
+        "id": "E",
+        "text": "reforming"
+      }
     ],
     "correctOptionId": "D",
     "explanation": "Streamlining means making a process, system, or design more efficient and effective by removing unnecessary steps, delays, or complications — creating a smooth, unobstructed flow. The metaphor is from hydrodynamics: a streamlined shape moves through water or air with minimum resistance. Applied to procedures and rules, streamlining means cutting the steps that slow things down and keeping only what is necessary. 'Simplifying' captures the essential meaning: making something less complicated so it works more smoothly. 'Interpreting' means explaining or giving meaning to something, which is a different cognitive task. 'Analyzing' means examining something in detail to understand it, which is a preliminary step one might take before streamlining, but is not the same as the streamlining itself. 'Documenting' means recording and writing things down, which is also a separate administrative task.",
     "distractorExplanations": {
       "A": "'Interpreting' means giving meaning to or explaining something. One might interpret rules before streamlining them, but interpretation produces an explanation, not a leaner process.",
       "B": "'Analyzing' means examining in detail. Analysis precedes streamlining — you must understand a process before you simplify it — but the two actions are distinct.",
-      "C": "'Documenting' means creating written records. A committee that documents procedures is recording them; a committee that streamlines them is cutting unnecessary steps. These are opposite directions: one adds records, the other removes steps."
+      "C": "'Documenting' means creating written records. A committee that documents procedures is recording them; a committee that streamlines them is cutting unnecessary steps. These are opposite directions: one adds records, the other removes steps.",
+      "E": "'Reforming' means making changes to improve a system, which is a related concept to streamlining but broader; reforming can involve adding new elements, changing policies, or restructuring — streamlining specifically means removing unnecessary steps and complexity to improve efficiency, making it a more targeted kind of reform."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "STREAMLINE = make it flow like a stream. A streamlined process has no unnecessary bends, barriers, or extra steps — just a clean flow from start to finish. In Philippine government reform discussions, 'streamlining' procedures means removing red tape and cutting the steps that delay service."
     },
-    "tags": ["vocabulary", "synonyms", "civic-context"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "civic-context"
+    ]
   },
   {
     "id": "verb-0190",
@@ -656,23 +1155,44 @@
     "difficulty": "Medium",
     "question": "His TENACITY in the face of continued environmental failure is admirable. TENACITY most nearly means:",
     "choices": [
-      { "id": "A", "text": "patience" },
-      { "id": "B", "text": "foresight" },
-      { "id": "C", "text": "persistence" },
-      { "id": "D", "text": "decisiveness" }
+      {
+        "id": "A",
+        "text": "patience"
+      },
+      {
+        "id": "B",
+        "text": "persistence"
+      },
+      {
+        "id": "C",
+        "text": "foresight"
+      },
+      {
+        "id": "D",
+        "text": "decisiveness"
+      },
+      {
+        "id": "E",
+        "text": "resilience"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Tenacity comes from the Latin 'tenax,' meaning holding fast, from 'tenere' (to hold). It describes the quality of holding firmly to a purpose, belief, or course of action despite difficulties or opposition — a relentless grip on one's goal that does not release under pressure. The sentence places tenacity 'in the face of continued environmental failure,' meaning the person has persisted through repeated setbacks without giving up. 'Persistence' captures this: continuing steadfastly toward a goal despite difficulty or delay. 'Patience' is related but emphasizes calm waiting rather than the active, determined holding-on that tenacity implies — patience can be passive, while tenacity is driven. 'Foresight' means the ability to plan for the future, an entirely different quality. 'Decisiveness' means the ability to make decisions quickly and firmly, a different kind of mental strength.",
     "distractorExplanations": {
       "A": "'Patience' means tolerant waiting without complaint. Tenacity is more active and driven — it involves pushing forward, not merely waiting. A patient person endures; a tenacious one grips and pushes.",
-      "B": "'Foresight' means seeing and preparing for future events. This is a planning ability, not a quality of continuing despite failure. Tenacity is about what you do when things go wrong, not about predicting they will.",
-      "D": "'Decisiveness' means the ability to make up one's mind quickly and firmly. Tenacity is about continuing once a direction has been chosen — sticking to the decision rather than making it in the first place."
+      "C": "'Foresight' means seeing and preparing for future events. This is a planning ability, not a quality of continuing despite failure. Tenacity is about what you do when things go wrong, not about predicting they will.",
+      "D": "'Decisiveness' means the ability to make up one's mind quickly and firmly. Tenacity is about continuing once a direction has been chosen — sticking to the decision rather than making it in the first place.",
+      "E": "'Resilience' means the ability to recover quickly from difficulties, which is related to tenacity but emphasizes bouncing back after setbacks rather than the continuous gripping hold on a goal that tenacity describes; a tenacious person never lets go, while a resilient person may fall and get back up — the two are complementary but distinct qualities."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "TENACITY shares a root with 'tenacious' and 'tendon' — all involve holding tight. A tenacious grip does not let go; tenacity is the inner equivalent: you hold on to your goal through every setback. Contrast: patience waits calmly; tenacity fights on actively."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0191",
@@ -683,23 +1203,44 @@
     "difficulty": "Easy",
     "question": "The chairperson stressed the importance of COORDINATION in planning and implementing any project. COORDINATION most nearly means:",
     "choices": [
-      { "id": "A", "text": "preparedness" },
-      { "id": "B", "text": "representation" },
-      { "id": "C", "text": "harmony" },
-      { "id": "D", "text": "authority" }
+      {
+        "id": "A",
+        "text": "preparedness"
+      },
+      {
+        "id": "B",
+        "text": "harmony"
+      },
+      {
+        "id": "C",
+        "text": "representation"
+      },
+      {
+        "id": "D",
+        "text": "authority"
+      },
+      {
+        "id": "E",
+        "text": "supervision"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Coordination means the organized and efficient combination of different elements so that they function together effectively — each part moving in relation to the others to achieve a shared aim. It comes from the Latin 'coordinare,' meaning to arrange together. In a project context, coordination ensures that planning and implementation are aligned: timelines mesh, responsibilities do not overlap, and every team knows what the others are doing. 'Harmony' captures this sense of parts working smoothly together — a harmonious project is one where all the pieces fit without friction or conflict. 'Preparedness' describes being ready for what is coming, not the act of aligning people and tasks toward a shared goal. 'Representation' means speaking on behalf of a group, an entirely different function. 'Authority' means the power to make decisions and enforce them, which is a hierarchical concept rather than a collaborative alignment.",
     "distractorExplanations": {
       "A": "'Preparedness' means being ready for an event or challenge. Coordination is about aligning the contributions of multiple parties, not about individual readiness.",
-      "B": "'Representation' means acting or speaking on behalf of someone. This is a different role from coordinating, which involves synchronizing the actions of multiple parties who each represent themselves.",
-      "D": "'Authority' means the right or power to give commands and make decisions. Coordination does not require power over others — it requires the synchronized alignment of efforts, which can happen between equals."
+      "C": "'Representation' means acting or speaking on behalf of someone. This is a different role from coordinating, which involves synchronizing the actions of multiple parties who each represent themselves.",
+      "D": "'Authority' means the right or power to give commands and make decisions. Coordination does not require power over others — it requires the synchronized alignment of efforts, which can happen between equals.",
+      "E": "Supervision directs subordinates from above; coordination aligns the efforts of equals — the sentence is about aligning, not directing."
     },
     "tip": {
       "label": "Exam Tip",
       "text": "COORDINATION in public administration means aligning the activities of different offices, agencies, or individuals so their work fits together without conflict. The test word is 'together': coordination is about parts working as one, not about who has power or who is prepared individually."
     },
-    "tags": ["vocabulary", "synonyms", "civic-context"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "civic-context"
+    ]
   },
   {
     "id": "verb-0192",
@@ -710,23 +1251,44 @@
     "difficulty": "Medium",
     "question": "The supervisor's remarks PRECIPITATED the worker's anger. PRECIPITATED most nearly means:",
     "choices": [
-      { "id": "A", "text": "concealed" },
-      { "id": "B", "text": "pacified" },
-      { "id": "C", "text": "triggered" },
-      { "id": "D", "text": "intensified" }
+      {
+        "id": "A",
+        "text": "triggered"
+      },
+      {
+        "id": "B",
+        "text": "concealed"
+      },
+      {
+        "id": "C",
+        "text": "pacified"
+      },
+      {
+        "id": "D",
+        "text": "intensified"
+      },
+      {
+        "id": "E",
+        "text": "provoked"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "Precipitate comes from the Latin 'praecipitare,' meaning to throw headlong or to fall steeply — from 'praeceps' (headlong, steep). In modern English, to precipitate an event means to cause it to happen abruptly or to bring it on suddenly and prematurely. The supervisor's remarks are the cause, and the worker's anger is the effect that was brought on quickly and directly. 'Triggered' captures this causal and sudden quality: the remarks set off the anger the way pulling a trigger fires a gun — the action brings about the effect immediately. 'Concealed' means hidden, which would mean the remarks suppressed or hid the anger rather than causing it. 'Pacified' means calmed or soothed, the direct opposite of sparking anger. 'Intensified' means made stronger or more extreme — this would apply if the anger already existed and was made worse, but precipitated means causing the onset, not amplifying what is already there.",
     "distractorExplanations": {
-      "A": "'Concealed' means hidden or kept from view. If the remarks concealed the anger, they would have suppressed it rather than causing it to emerge — the opposite of precipitating it.",
-      "B": "'Pacified' means calmed and soothed. Remarks that pacify anger reduce or eliminate it; remarks that precipitate anger bring it on. The two are direct antonyms in this context.",
-      "D": "'Intensified' means made greater in degree. To intensify anger, the anger must already exist. Precipitate means to cause the anger to start — to bring about its onset, which is different from making existing anger stronger."
+      "B": "'Concealed' means hidden or kept from view. If the remarks concealed the anger, they would have suppressed it rather than causing it to emerge — the opposite of precipitating it.",
+      "C": "'Pacified' means calmed and soothed. Remarks that pacify anger reduce or eliminate it; remarks that precipitate anger bring it on. The two are direct antonyms in this context.",
+      "D": "'Intensified' means made greater in degree. To intensify anger, the anger must already exist. Precipitate means to cause the anger to start — to bring about its onset, which is different from making existing anger stronger.",
+      "E": "'Provoked' means to stimulate or incite a reaction, which is close in meaning to triggered and precipitated — all three describe causing a response; however, provoked implies a deliberate or antagonistic act that draws out a reaction, while precipitated emphasizes the sudden and abrupt onset; the supervisor's remarks may have provoked the anger, but 'triggered' is the more neutral and precise synonym."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "PRECIPITATE as a verb means to cause something to happen suddenly and sooner than expected — to bring it on headlong. The key idea is abruptness: events are precipitated when they are triggered before the normal or expected time. Related forms: precipitous (very steep), precipitation (rainfall that falls suddenly from clouds)."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0193",
@@ -737,22 +1299,43 @@
     "difficulty": "Easy",
     "question": "Reckless handling of government funds puts the entire program in PERIL. PERIL most nearly means:",
     "choices": [
-      { "id": "A", "text": "review" },
-      { "id": "B", "text": "danger" },
-      { "id": "C", "text": "delay" },
-      { "id": "D", "text": "scrutiny" }
+      {
+        "id": "A",
+        "text": "review"
+      },
+      {
+        "id": "B",
+        "text": "delay"
+      },
+      {
+        "id": "C",
+        "text": "scrutiny"
+      },
+      {
+        "id": "D",
+        "text": "danger"
+      },
+      {
+        "id": "E",
+        "text": "urgency"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "D",
     "explanation": "Peril means serious and immediate danger — a state of exposure to harm, injury, or loss. It comes from the Latin 'periculum' (trial, danger), the same root as 'perilous.' In the sentence, reckless handling of funds jeopardizes the program — puts it at genuine risk of failure, defunding, or sanction. 'Danger' matches the meaning precisely: both words name a state of being at serious risk of harm. 'Review' is a neutral administrative process that might follow mishandling, but it is a response to problems, not the state of risk itself. 'Delay' describes a setback in time, which is a much milder and different kind of problem than being in peril. 'Scrutiny' means close examination or oversight, again a response rather than the endangered state itself.",
     "distractorExplanations": {
       "A": "'Review' is an administrative examination process. A program in peril may face review, but peril names the risk of harm, not the examination that follows.",
-      "C": "'Delay' means a postponement or slowdown. A program in peril faces potential failure or harm, which is far more serious than a mere setback in timing.",
-      "D": "'Scrutiny' means careful, close examination. A program under scrutiny is being watched; a program in peril is at risk of collapse or serious harm. Scrutiny may be a consequence of peril, not its meaning."
+      "B": "'Delay' means a postponement or slowdown. A program in peril faces potential failure or harm, which is far more serious than a mere setback in timing.",
+      "C": "'Scrutiny' means careful, close examination. A program under scrutiny is being watched; a program in peril is at risk of collapse or serious harm. Scrutiny may be a consequence of peril, not its meaning.",
+      "E": "Urgency is time pressure, not danger — a program can be urgent without being at risk, and at risk without being urgent."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "PERIL = serious danger. It shares a root with 'perilous' (full of danger) and 'jeopardy' (a near-synonym). Both words name risk of real harm, not inconvenience. In government contexts: a program in peril faces threats to its survival, not simply administrative complications."
     },
-    "tags": ["vocabulary", "synonyms", "civic-context"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "civic-context"
+    ]
   }
 ]

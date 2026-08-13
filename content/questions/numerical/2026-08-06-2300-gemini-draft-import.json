@@ -8,12 +8,28 @@
     "difficulty": "Medium",
     "question": "Ana earns 20% more than Ben. Together, their combined monthly salary is ₱52,800. What is Ana's monthly salary?",
     "choices": [
-      { "id": "A", "text": "₱24,000" },
-      { "id": "B", "text": "₱31,680" },
-      { "id": "C", "text": "₱28,800" },
-      { "id": "D", "text": "₱26,400" }
+      {
+        "id": "A",
+        "text": "₱24,000"
+      },
+      {
+        "id": "B",
+        "text": "₱31,680"
+      },
+      {
+        "id": "C",
+        "text": "₱26,400"
+      },
+      {
+        "id": "D",
+        "text": "₱28,800"
+      },
+      {
+        "id": "E",
+        "text": "₱8,800"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "Translate the percentage relationship into algebra before solving. If Ben earns B pesos, then Ana earns 1.20B (100% + 20% more). Their combined salary is B + 1.20B = 2.20B = ₱52,800. Solve for B: B = ₱52,800 ÷ 2.2 = ₱24,000. Ana earns 1.20 × ₱24,000 = ₱28,800. The key insight is that '20% more than Ben' translates to multiplying Ben's unknown salary by 1.20, not by 0.20. Verify: ₱28,800 + ₱24,000 = ₱52,800 ✓, and ₱28,800 ÷ ₱24,000 = 1.20 ✓.",
     "steps": [
       "Let Ben's salary = B. Ana earns 20% more, so Ana's salary = 1.20B.",
@@ -25,7 +41,8 @@
     "distractorExplanations": {
       "A": "₱24,000 is Ben's salary, not Ana's. Choosing it means solving for B correctly but then reporting the wrong person's share — the question asks for Ana, who earns 20% more than Ben.",
       "B": "₱31,680 results from taking half the combined salary and then applying the 20% directly to that half: ₱52,800 ÷ 2 = ₱26,400; ₱26,400 × 1.20 = ₱31,680. This treats the 20% difference as a markup on the arithmetic mean, not on Ben's unknown salary.",
-      "D": "₱26,400 is simply half of ₱52,800 — the result of splitting the combined salary equally between the two, ignoring the 20% differential entirely."
+      "C": "₱26,400 is simply half of ₱52,800 — the result of splitting the combined salary equally between the two, ignoring the 20% differential entirely.",
+      "E": "Uses the fraction 20/(100+20)=1/6 for Ana's share instead of 120/220: (1/6)×₱52,800=₱8,800."
     },
     "tip": {
       "label": "Formula",
@@ -47,12 +64,28 @@
     "difficulty": "Medium",
     "question": "A government records officer has 3⅓ boxes of archive folders. Each box holds 2¼ dozen folders. How many individual folders does she have in total?",
     "choices": [
-      { "id": "A", "text": "81" },
-      { "id": "B", "text": "84" },
-      { "id": "C", "text": "108" },
-      { "id": "D", "text": "90" }
+      {
+        "id": "A",
+        "text": "81"
+      },
+      {
+        "id": "B",
+        "text": "90"
+      },
+      {
+        "id": "C",
+        "text": "84"
+      },
+      {
+        "id": "D",
+        "text": "108"
+      },
+      {
+        "id": "E",
+        "text": "75"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "B",
     "explanation": "Two operations chain here: multiply the mixed numbers first, then convert dozens to individual items. Convert to improper fractions: 3⅓ = 10/3 and 2¼ = 9/4. Multiply: (10/3) × (9/4) = 90/12 = 7.5 dozen. Convert to items: 7.5 × 12 = 90 folders. Cross-cancellation speeds this up: the 3 in the denominator of 10/3 and the 9 in the numerator of 9/4 share a factor of 3, giving (10 × 3) / (1 × 4) = 30/4 = 7.5 dozen. The commmon trap is to truncate 3⅓ to 3 before multiplying, which loses one-third of a box.",
     "steps": [
       "Convert to improper fractions: 3⅓ = 10/3; 2¼ = 9/4.",
@@ -61,8 +94,9 @@
     ],
     "distractorExplanations": {
       "A": "81 results from truncating 3⅓ to 3 boxes before multiplying: 3 × (9/4) × 12 = 3 × 27 = 81. Dropping the fractional third of a box loses 9 folders from the total.",
-      "B": "84 comes from computing the total dozens correctly as 7.5 but then rounding down to 7 before converting: 7 × 12 = 84. A fraction of a dozen is still a real quantity — 0.5 × 12 = 6 additional folders must be included.",
-      "C": "108 results from rounding 3⅓ up to 4 boxes before multiplying: 4 × (9/4) × 12 = 4 × 27 = 108. The officer has 3⅓ boxes, not 4 — the partial box counts as exactly one-third of a full box."
+      "C": "84 comes from computing the total dozens correctly as 7.5 but then rounding down to 7 before converting: 7 × 12 = 84. A fraction of a dozen is still a real quantity — 0.5 × 12 = 6 additional folders must be included.",
+      "D": "108 results from rounding 3⅓ up to 4 boxes before multiplying: 4 × (9/4) × 12 = 4 × 27 = 108. The officer has 3⅓ boxes, not 4 — the partial box counts as exactly one-third of a full box.",
+      "E": "Treats a 'dozen' as ten instead of twelve: (10/3)×(9/4)×10=75 individual folders."
     },
     "tip": {
       "label": "Math Shortcut",
@@ -84,12 +118,28 @@
     "difficulty": "Medium",
     "question": "A cooperative vendor bought 20 blouses for a total of ₱2,400. She sold 16 blouses at ₱145 each. At what price must she sell each of the remaining 4 blouses to achieve a total profit of ₱480 on all 20 blouses?",
     "choices": [
-      { "id": "A", "text": "₱143" },
-      { "id": "B", "text": "₱135" },
-      { "id": "C", "text": "₱140" },
-      { "id": "D", "text": "₱138" }
+      {
+        "id": "A",
+        "text": "₱143"
+      },
+      {
+        "id": "B",
+        "text": "₱140"
+      },
+      {
+        "id": "C",
+        "text": "₱135"
+      },
+      {
+        "id": "D",
+        "text": "₱138"
+      },
+      {
+        "id": "E",
+        "text": "₱120"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Work backwards from the target profit to find the required remaining revenue. Total required revenue = Cost + Target Profit = ₱2,400 + ₱480 = ₱2,880. Revenue already earned from the 16 blouses sold: 16 × ₱145 = ₱2,320. Remaining revenue needed from the 4 unsold blouses: ₱2,880 – ₱2,320 = ₱560. Price per remaining blouse: ₱560 ÷ 4 = ₱140. Notice that ₱140 is below the original selling price of ₱145 — the vendor is discounting the last four blouses but still hitting her overall profit target because the first sixteen sold at full price.",
     "steps": [
       "Compute target total revenue: ₱2,400 + ₱480 = ₱2,880.",
@@ -99,8 +149,9 @@
     ],
     "distractorExplanations": {
       "A": "₱143 slightly overshoots the target: 16 × ₱145 + 4 × ₱143 = ₱2,320 + ₱572 = ₱2,892, giving a profit of ₱492 — ₱12 more than needed. This may come from rounding ₱140 upward or from an arithmetic error in the revenue subtraction step.",
-      "B": "₱135 falls short: 16 × ₱145 + 4 × ₱135 = ₱2,320 + ₱540 = ₱2,860, giving a profit of only ₱460 — ₱20 less than the ₱480 target. This results from subtracting an extra ₱20 from ₱2,880 in the revenue-needed step.",
-      "D": "₱138 also falls short: 4 × ₱138 = ₱552, total revenue = ₱2,320 + ₱552 = ₱2,872, profit = ₱472. This comes from dividing a remaining revenue figure of ₱552 rather than ₱560 — likely a ₱8 arithmetic slip in the subtraction step."
+      "C": "₱135 falls short: 16 × ₱145 + 4 × ₱135 = ₱2,320 + ₱540 = ₱2,860, giving a profit of only ₱460 — ₱20 less than the ₱480 target. This results from subtracting an extra ₱20 from ₱2,880 in the revenue-needed step.",
+      "D": "₱138 also falls short: 4 × ₱138 = ₱552, total revenue = ₱2,320 + ₱552 = ₱2,872, profit = ₱472. This comes from dividing a remaining revenue figure of ₱552 rather than ₱560 — likely a ₱8 arithmetic slip in the subtraction step.",
+      "E": "Divides the entire target profit (₱480) by the 4 remaining blouses directly, ignoring revenue already received from the 16 sold: ₱480÷4=₱120."
     },
     "tip": {
       "label": "Formula",
@@ -122,12 +173,28 @@
     "difficulty": "Medium",
     "question": "A maintenance worker climbs a utility pole at 10 feet per minute and descends at 20 feet per minute. If the round trip (up and back down) takes exactly 3 minutes, how tall is the pole?",
     "choices": [
-      { "id": "A", "text": "15 ft" },
-      { "id": "B", "text": "18 ft" },
-      { "id": "C", "text": "10 ft" },
-      { "id": "D", "text": "20 ft" }
+      {
+        "id": "A",
+        "text": "20 ft"
+      },
+      {
+        "id": "B",
+        "text": "15 ft"
+      },
+      {
+        "id": "C",
+        "text": "18 ft"
+      },
+      {
+        "id": "D",
+        "text": "10 ft"
+      },
+      {
+        "id": "E",
+        "text": "22.5 ft"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "Let h be the height in feet. The time to climb equals h ÷ 10 minutes, and the time to descend equals h ÷ 20 minutes. Because the total trip time is 3 minutes, write the equation h/10 + h/20 = 3. Using a common denominator of 20: (2h + h)/20 = 3, so 3h/20 = 3, giving 3h = 60 and h = 20 feet. Verify: climbing 20 ft at 10 ft/min takes 2 min; descending 20 ft at 20 ft/min takes 1 min; 2 + 1 = 3 min. ✓ The trap is to average the two rates (average of 10 and 20 is 15) and divide the total distance 2h by 15 — but the two legs cover the same distance at different speeds, so Time = Distance/Rate must be applied separately to each leg.",
     "steps": [
       "Let h = height of the pole. Time up = h/10; time down = h/20.",
@@ -137,9 +204,10 @@
       "Verify: 20/10 + 20/20 = 2 + 1 = 3 minutes. ✓"
     ],
     "distractorExplanations": {
-      "A": "15 ft yields a total time of 15/10 + 15/20 = 1.5 + 0.75 = 2.25 minutes — less than 3 minutes. Choosing 15 often comes from applying the average speed formula to find the equivalent single rate: (2 × 10 × 20)/(10 + 20) = 13.3 ft/min and then computing some form of d = rt, arriving at a lower height than the correct one.",
-      "B": "18 ft yields 18/10 + 18/20 = 1.8 + 0.9 = 2.7 minutes — still less than 3 minutes. This results from setting up the equation correctly but making an arithmetic error when solving, stopping at h = 18 before completing the algebra.",
-      "C": "10 ft yields only 10/10 + 10/20 = 1 + 0.5 = 1.5 minutes. This is the climbing rate in feet per minute, not the height. Confusing the given rate (10 ft/min) with the unknown height is a classic unit-confusion error."
+      "B": "15 ft yields a total time of 15/10 + 15/20 = 1.5 + 0.75 = 2.25 minutes — less than 3 minutes. Choosing 15 often comes from applying the average speed formula to find the equivalent single rate: (2 × 10 × 20)/(10 + 20) = 13.3 ft/min and then computing some form of d = rt, arriving at a lower height than the correct one.",
+      "C": "18 ft yields 18/10 + 18/20 = 1.8 + 0.9 = 2.7 minutes — still less than 3 minutes. This results from setting up the equation correctly but making an arithmetic error when solving, stopping at h = 18 before completing the algebra.",
+      "D": "10 ft yields only 10/10 + 10/20 = 1 + 0.5 = 1.5 minutes. This is the climbing rate in feet per minute, not the height. Confusing the given rate (10 ft/min) with the unknown height is a classic unit-confusion error.",
+      "E": "Applies the arithmetic mean of the two speeds (10+20)/2=15 ft/min to the full round trip: 15×3÷2=22.5 ft."
     },
     "tip": {
       "label": "Formula",
@@ -160,10 +228,26 @@
     "difficulty": "Medium",
     "question": "A government facility lot measures 40 meters long and 16 meters wide. Fence posts are installed around the entire perimeter at equal intervals of 8 meters, with a post at each corner. How many fence posts are required?",
     "choices": [
-      { "id": "A", "text": "16" },
-      { "id": "B", "text": "14" },
-      { "id": "C", "text": "18" },
-      { "id": "D", "text": "20" }
+      {
+        "id": "A",
+        "text": "16"
+      },
+      {
+        "id": "B",
+        "text": "14"
+      },
+      {
+        "id": "C",
+        "text": "18"
+      },
+      {
+        "id": "D",
+        "text": "20"
+      },
+      {
+        "id": "E",
+        "text": "7"
+      }
     ],
     "correctOptionId": "B",
     "explanation": "For a closed boundary, the number of equally spaced posts equals the total perimeter divided by the interval — no extra post is added, because the last interval closes back to the first post. Perimeter = 2 × (Length + Width) = 2 × (40 + 16) = 2 × 56 = 112 meters. Number of posts = 112 ÷ 8 = 14 posts. A useful check: the four corners land at multiples of 8 meters from a starting corner (40 and 16 are both multiples of 8), so every corner already has a post and no adjustment is needed. The closed-loop rule differs from a straight-line fence: a straight line of 112 m with posts every 8 m would need (112/8) + 1 = 15 posts.",
@@ -175,7 +259,8 @@
     "distractorExplanations": {
       "A": "16 results from computing the perimeter as 128 meters (perhaps using 2 × 64 = 128 by adding 40 + 16 as 56 and then computing incorrectly), then dividing by 8 to get 16.",
       "C": "18 comes from treating the boundary as four straight segments and adding one extra post per corner: computing posts per side (5 + 1 = 6 along each 40 m side, and 2 + 1 = 3 along each 16 m side) and summing 6 + 3 + 6 + 3 = 18. In a closed loop, each corner post is shared by two adjacent sides — summing per-side counts with end-points double-counts every corner.",
-      "D": "20 corresponds to a post spacing of 112 ÷ 20 = 5.6 meters — not the given 8 meters. This is an overcount, possibly from computing along two sides only (40 ÷ 8 = 5 spans per long side, and treating the whole perimeter as if only long sides matter: 4 × 5 = 20)."
+      "D": "20 corresponds to a post spacing of 112 ÷ 20 = 5.6 meters — not the given 8 meters. This is an overcount, possibly from computing along two sides only (40 ÷ 8 = 5 spans per long side, and treating the whole perimeter as if only long sides matter: 4 × 5 = 20).",
+      "E": "Computes only one side-pair (40+16=56 m) instead of the full perimeter 112 m, then divides: 56÷8=7 posts."
     },
     "tip": {
       "label": "Remember",
@@ -197,12 +282,28 @@
     "difficulty": "Hard",
     "question": "A cooperative trust fund of ₱500,000 is divided into two investments: one earning 6% simple annual interest and the other earning 8% simple annual interest. If the total annual interest from both investments is ₱39,000, how much was invested at 6%?",
     "choices": [
-      { "id": "A", "text": "₱100,000" },
-      { "id": "B", "text": "₱75,000" },
-      { "id": "C", "text": "₱80,000" },
-      { "id": "D", "text": "₱50,000" }
+      {
+        "id": "A",
+        "text": "₱100,000"
+      },
+      {
+        "id": "B",
+        "text": "₱75,000"
+      },
+      {
+        "id": "C",
+        "text": "₱80,000"
+      },
+      {
+        "id": "D",
+        "text": "₱450,000"
+      },
+      {
+        "id": "E",
+        "text": "₱50,000"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Let x = the amount invested at 6%. The rest, (₱500,000 – x), is invested at 8%. Write the total-interest equation: 0.06x + 0.08(500,000 – x) = 39,000. Expand: 0.06x + 40,000 – 0.08x = 39,000. Combine like terms: –0.02x = –1,000, so x = ₱50,000. Verify: 6% of ₱50,000 = ₱3,000; 8% of ₱450,000 = ₱36,000; total = ₱39,000. ✓ A sanity check before solving: if the entire ₱500,000 were at 8%, interest = ₱40,000 — ₱1,000 above the target. Shifting ₱50,000 from 8% to 6% reduces interest by 0.02 × ₱50,000 = ₱1,000, landing exactly on ₱39,000.",
     "steps": [
       "Define the variable: let x = amount invested at 6%; then (500,000 – x) is invested at 8%.",
@@ -214,7 +315,8 @@
     "distractorExplanations": {
       "A": "₱100,000 at 6% yields ₱6,000; the remaining ₱400,000 at 8% yields ₱32,000; total = ₱38,000 — ₱1,000 short of the target. This result comes from incorrectly combining –0.02x = –1,000 as x = 100,000 (off by a factor of 2), perhaps by dividing both sides by –0.01 instead of –0.02.",
       "B": "₱75,000 at 6% gives ₱4,500; ₱425,000 at 8% gives ₱34,000; total = ₱38,500 — still ₱500 below the target. This likely comes from guessing a round figure near the answer rather than solving the equation, or from an arithmetic slip when combining the rates.",
-      "C": "₱80,000 at 6% gives ₱4,800; ₱420,000 at 8% gives ₱33,600; total = ₱38,400. This is the result of solving –0.02x = –1,000 as x = 1,000 ÷ 0.0125 = 80,000, which uses the average rate (0.0125) instead of the rate difference (0.02) as the divisor."
+      "C": "₱80,000 at 6% gives ₱4,800; ₱420,000 at 8% gives ₱33,600; total = ₱38,400. This is the result of solving –0.02x = –1,000 as x = 1,000 ÷ 0.0125 = 80,000, which uses the average rate (0.0125) instead of the rate difference (0.02) as the divisor.",
+      "D": "Correctly solves the system but reports the amount invested at 8% (₱450,000) instead of the amount at 6% — answers the wrong unknown."
     },
     "tip": {
       "label": "Formula",
@@ -236,12 +338,28 @@
     "difficulty": "Hard",
     "question": "What is the next number in the series: 5, 6, 10, 19, 35, 60, ___?",
     "choices": [
-      { "id": "A", "text": "86" },
-      { "id": "B", "text": "72" },
-      { "id": "C", "text": "96" },
-      { "id": "D", "text": "98" }
+      {
+        "id": "A",
+        "text": "96"
+      },
+      {
+        "id": "B",
+        "text": "86"
+      },
+      {
+        "id": "C",
+        "text": "72"
+      },
+      {
+        "id": "D",
+        "text": "98"
+      },
+      {
+        "id": "E",
+        "text": "101"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "The pattern is not visible in the terms themselves — it lives one level deeper, in the differences between consecutive terms. Compute each difference: 6 – 5 = 1, 10 – 6 = 4, 19 – 10 = 9, 35 – 19 = 16, 60 – 35 = 25. Those differences are 1, 4, 9, 16, 25, which are the perfect squares 1², 2², 3², 4², 5². The next difference must be 6² = 36. Adding 36 to the last term gives 60 + 36 = 96. This pattern differs from the bank's other second-difference items: here the differences themselves are squares, not an arithmetic or geometric progression of differences.",
     "steps": [
       "Compute consecutive differences: 6–5=1 (1²), 10–6=4 (2²), 19–10=9 (3²), 35–19=16 (4²), 60–35=25 (5²).",
@@ -250,9 +368,10 @@
       "Add to the last term: 60 + 36 = 96."
     ],
     "distractorExplanations": {
-      "A": "86 results from adding 26 instead of 36 — perhaps from mistakenly continuing the sequence of differences as an arithmetic progression with common difference +10 (5, 15, 25 → next step 26 off by one), or from confusing 5² = 25 with a difference of 26.",
-      "B": "72 results from adding only 12 to the last term (60 + 12 = 72), which would mean the differences form the sequence 1, 4, 9, 16, 25, 12 — not a square progression. This likely comes from noticing that differences are increasing but misidentifying the step as +12 rather than jumping to 6² = 36.",
-      "D": "98 comes from adding 38 instead of 36, possibly from computing 6² as 38 through an arithmetic error (6 × 6 = 38 is a common mental-math slip) or from continuing an incorrect pattern of differences."
+      "B": "86 results from adding 26 instead of 36 — perhaps from mistakenly continuing the sequence of differences as an arithmetic progression with common difference +10 (5, 15, 25 → next step 26 off by one), or from confusing 5² = 25 with a difference of 26.",
+      "C": "72 results from adding only 12 to the last term (60 + 12 = 72), which would mean the differences form the sequence 1, 4, 9, 16, 25, 12 — not a square progression. This likely comes from noticing that differences are increasing but misidentifying the step as +12 rather than jumping to 6² = 36.",
+      "D": "98 comes from adding 38 instead of 36, possibly from computing 6² as 38 through an arithmetic error (6 × 6 = 38 is a common mental-math slip) or from continuing an incorrect pattern of differences.",
+      "E": "Extends differences by summing the previous two difference terms (16+25=41) instead of recognising them as consecutive perfect squares: next=6²=36."
     },
     "tip": {
       "label": "Pattern Recognition",

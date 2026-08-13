@@ -278,7 +278,7 @@ console.log('\nDifficulty:');
 for (const level of ['Easy', 'Medium', 'Hard']) {
   console.log(`  ${level.padEnd(8)} ${difficultyCounts.get(level) ?? 0}`);
 }
-console.log(`\nAnswer letters: A=${letterCounts.A} B=${letterCounts.B} C=${letterCounts.C} D=${letterCounts.D}`);
+console.log(`\nAnswer letters: A=${letterCounts.A} B=${letterCounts.B} C=${letterCounts.C} D=${letterCounts.D} E=${letterCounts.E}`);
 
 if (errors.length > 0) {
   console.error(`\n✗ ${errors.length} validation error(s):`);

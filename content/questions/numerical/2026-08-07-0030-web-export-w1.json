@@ -8,12 +8,28 @@
     "difficulty": "Medium",
     "question": "A field officer drove from the regional office to a remote site at 50 km/h for 2 hours. After a brief stop, she continued driving at 65 km/h for another 4 hours to reach her destination. How many kilometers did she travel in total?",
     "choices": [
-      { "id": "A", "text": "230 km" },
-      { "id": "B", "text": "360 km" },
-      { "id": "C", "text": "310 km" },
-      { "id": "D", "text": "260 km" }
+      {
+        "id": "A",
+        "text": "230 km"
+      },
+      {
+        "id": "B",
+        "text": "310 km"
+      },
+      {
+        "id": "C",
+        "text": "360 km"
+      },
+      {
+        "id": "D",
+        "text": "260 km"
+      },
+      {
+        "id": "E",
+        "text": "345 km"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "C",
     "explanation": "Each leg of a segmented journey contributes its own distance, found by d = speed × time. First leg: 50 km/h × 2 h = 100 km. Second leg: 65 km/h × 4 h = 260 km. Total distance = 100 + 260 = 360 km. The stop in the middle does not add distance — distance accumulates only while the vehicle is moving. The key is to apply d = vt separately to each segment and then add, not to average the two speeds and multiply by the combined time.",
     "steps": [
       "First leg: distance₁ = 50 km/h × 2 h = 100 km.",
@@ -22,8 +38,9 @@
     ],
     "distractorExplanations": {
       "A": "230 km = 50 × 2 + 65 × 2 — the second leg uses 2 hours instead of 4. The problem states she drove at 65 km/h for 4 hours on the second leg, not 2.",
-      "C": "310 km = 50 × 2 + 65 × 3.23... One likely error: computing 65 × (6 ÷ 2) = 65 × 3 = 195 then adding 100, or treating the 4-hour second leg as 3 hours. Always apply each stated duration to its own speed.",
-      "D": "260 km is only the second leg's distance (65 × 4). Adding the first leg's 100 km is the step that was skipped."
+      "B": "310 km = 50 × 2 + 65 × 3.23... One likely error: computing 65 × (6 ÷ 2) = 65 × 3 = 195 then adding 100, or treating the 4-hour second leg as 3 hours. Always apply each stated duration to its own speed.",
+      "D": "260 km is only the second leg's distance (65 × 4). Adding the first leg's 100 km is the step that was skipped.",
+      "E": "Averages the two speeds ((50+65)/2=57.5 km/h) and multiplies by total time (6 h): 57.5×6=345 km instead of computing each leg separately."
     },
     "tip": {
       "label": "Formula",
@@ -44,12 +61,28 @@
     "difficulty": "Hard",
     "question": "What is the measure, in degrees, of the acute angle between the hour hand and the minute hand of a clock at exactly 4:18?",
     "choices": [
-      { "id": "A", "text": "12°" },
-      { "id": "B", "text": "15°" },
-      { "id": "C", "text": "18°" },
-      { "id": "D", "text": "21°" }
+      {
+        "id": "A",
+        "text": "9°"
+      },
+      {
+        "id": "B",
+        "text": "12°"
+      },
+      {
+        "id": "C",
+        "text": "15°"
+      },
+      {
+        "id": "D",
+        "text": "18°"
+      },
+      {
+        "id": "E",
+        "text": "21°"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Both hands move continuously, so their positions at 4:18 must be computed with full-minute precision. The minute hand moves 6° per minute, so at 18 minutes it is at 18 × 6° = 108° from the 12. The hour hand moves 0.5° per minute; at 4 hours 18 minutes from midnight it is at (4 × 60 + 18) × 0.5° = 258 × 0.5° = 129° from the 12. The angle between them is |129° − 108°| = 21°. Since 21° < 180°, it is already the acute (minor) angle. The common mistake is placing the hour hand at exactly 4 × 30° = 120° and forgetting that the 18 minutes of elapsed time have moved it 9° further — to 129°.",
     "steps": [
       "Minute hand position: 18 × 6° = 108°.",
@@ -58,9 +91,10 @@
       "Since 21° ≤ 180°, the acute angle between the hands is 21°."
     ],
     "distractorExplanations": {
-      "A": "12° results from placing the hour hand at exactly 120° (ignoring the 18-minute drift) and the minute hand at 108°, then computing 120° − 108° = 12°. The hour hand never stops at whole-hour marks — at 4:18 it has moved 9° past the 4, to 129°.",
-      "B": "15° has no clean derivation from the given time. It may arise from computing the difference between adjacent hour marks (30°) and halving it — a guess rather than a calculation.",
-      "C": "18° results from computing the minute-hand position (108°) and subtracting it from 4 × 30° + 6° = 126° (using 6° per hour instead of 0.5° per minute for the hour-hand drift). The hour hand moves 0.5° per minute, so 18 min × 0.5° = 9°, giving 120° + 9° = 129°, not 126°."
+      "A": "Counts only the hour hand's 18-minute angular drift (18×0.5°=9°), ignoring the full clock-face positions of both hands.",
+      "B": "12° results from placing the hour hand at exactly 120° (ignoring the 18-minute drift) and the minute hand at 108°, then computing 120° − 108° = 12°. The hour hand never stops at whole-hour marks — at 4:18 it has moved 9° past the 4, to 129°.",
+      "C": "15° has no clean derivation from the given time. It may arise from computing the difference between adjacent hour marks (30°) and halving it — a guess rather than a calculation.",
+      "D": "18° results from computing the minute-hand position (108°) and subtracting it from 4 × 30° + 6° = 126° (using 6° per hour instead of 0.5° per minute for the hour-hand drift). The hour hand moves 0.5° per minute, so 18 min × 0.5° = 9°, giving 120° + 9° = 129°, not 126°."
     },
     "tip": {
       "label": "Formula",
@@ -82,12 +116,28 @@
     "difficulty": "Medium",
     "question": "Two sides of a triangle measure 2 meters and 9 meters. Which of the following could be the length of the third side?",
     "choices": [
-      { "id": "A", "text": "4 m" },
-      { "id": "B", "text": "6 m" },
-      { "id": "C", "text": "8 m" },
-      { "id": "D", "text": "12 m" }
+      {
+        "id": "A",
+        "text": "4 m"
+      },
+      {
+        "id": "B",
+        "text": "6 m"
+      },
+      {
+        "id": "C",
+        "text": "7 m"
+      },
+      {
+        "id": "D",
+        "text": "8 m"
+      },
+      {
+        "id": "E",
+        "text": "12 m"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "The Triangle Inequality Theorem states that any side of a triangle must be strictly greater than the difference of the other two sides and strictly less than their sum. For sides 2 and 9: the third side c must satisfy |9 − 2| < c < 9 + 2, which means 7 < c < 11. Among the options, only 8 lies inside the interval (7, 11). Check: 4 ≤ 7 (fails), 6 ≤ 7 (fails), 8 is between 7 and 11 (passes), 12 ≥ 11 (fails). A side of 7 or 11 would make the three points collinear — a degenerate triangle — so the inequality is strict on both ends.",
     "steps": [
       "Apply the theorem: third side c must satisfy |a − b| < c < a + b.",
@@ -98,7 +148,8 @@
     "distractorExplanations": {
       "A": "4 m fails because 4 ≤ |9 − 2| = 7. A side of 4 cannot form a triangle with sides of 2 and 9 because the two shorter sides (2 and 4 = 6) cannot reach across the longest side (9).",
       "B": "6 m also fails: 6 ≤ 7. The sum of the two shorter sides (2 + 6 = 8) is less than 9, so they cannot 'close' the triangle.",
-      "D": "12 m fails because 12 ≥ 9 + 2 = 11. A side longer than the sum of the other two means the triangle cannot close — the two shorter sides together do not reach from one end of the long side to the other."
+      "C": "Uses the exact lower bound of the triangle inequality as valid: c=9-2=7, failing to recognise that c must be strictly greater than 7 for a non-degenerate triangle.",
+      "E": "12 m fails because 12 ≥ 9 + 2 = 11. A side longer than the sum of the other two means the triangle cannot close — the two shorter sides together do not reach from one end of the long side to the other."
     },
     "tip": {
       "label": "Formula",
@@ -120,10 +171,26 @@
     "difficulty": "Medium",
     "question": "Evaluate: 123 × 0.1 + 123 × 0.01 + 123 × 0.001",
     "choices": [
-      { "id": "A", "text": "13.653" },
-      { "id": "B", "text": "135.53" },
-      { "id": "C", "text": "1,356.3" },
-      { "id": "D", "text": "13,563" }
+      {
+        "id": "A",
+        "text": "13.653"
+      },
+      {
+        "id": "B",
+        "text": "36.9"
+      },
+      {
+        "id": "C",
+        "text": "135.53"
+      },
+      {
+        "id": "D",
+        "text": "1,356.3"
+      },
+      {
+        "id": "E",
+        "text": "13,563"
+      }
     ],
     "correctOptionId": "A",
     "explanation": "The distributive property lets you factor out 123 before multiplying: 123 × (0.1 + 0.01 + 0.001) = 123 × 0.111. Now compute each decimal place: 0.1 + 0.01 + 0.001 = 0.111. Multiplying: 123 × 0.111 = 123 × 111 ÷ 1,000 = 13,653 ÷ 1,000 = 13.653. Alternatively, compute each term separately: 123 × 0.1 = 12.3; 123 × 0.01 = 1.23; 123 × 0.001 = 0.123; then add: 12.3 + 1.23 + 0.123 = 13.653. The key insight is that each successive multiplier shifts the decimal one more place to the left, so the three results differ only in decimal position.",
@@ -133,9 +200,10 @@
       "Add with aligned decimal places: 12.300 + 1.230 + 0.123 = 13.653."
     ],
     "distractorExplanations": {
-      "B": "135.53 arises from misaligning the decimal places when adding — for example, adding 12.3 + 1.23 + 0.123 as if they share the tenths column, or from computing 123 × 0.11 = 13.53 and then adding a misplaced 123 × 0.001.",
-      "C": "1,356.3 comes from computing the sum of the three terms (12.3 + 1.23 + 0.123) but then treating the result as 1,356.3 — a decimal-point placement error of three positions, equivalent to multiplying the correct answer by 100.",
-      "D": "13,563 results from ignoring the decimal points entirely and computing 123 × (1 + 1 + 1) = 123 × 3 = 369, then misreading the original as 123 × (100 + 10 + 1) = 123 × 111 = 13,653 — but failing to divide by 1,000 to restore the decimal position."
+      "B": "Treats all three multipliers as 0.1, summing them to 0.3: 123×0.3=36.9, failing to distinguish the three different decimal place values.",
+      "C": "135.53 arises from misaligning the decimal places when adding — for example, adding 12.3 + 1.23 + 0.123 as if they share the tenths column, or from computing 123 × 0.11 = 13.53 and then adding a misplaced 123 × 0.001.",
+      "D": "1,356.3 comes from computing the sum of the three terms (12.3 + 1.23 + 0.123) but then treating the result as 1,356.3 — a decimal-point placement error of three positions, equivalent to multiplying the correct answer by 100.",
+      "E": "13,563 results from ignoring the decimal points entirely and computing 123 × (1 + 1 + 1) = 123 × 3 = 369, then misreading the original as 123 × (100 + 10 + 1) = 123 × 111 = 13,653 — but failing to divide by 1,000 to restore the decimal position."
     },
     "tip": {
       "label": "Math Shortcut",
@@ -156,12 +224,28 @@
     "difficulty": "Easy",
     "question": "A government office runs 10 fluorescent lamps, each rated at 40 watts. If the lamps are switched on for 5 hours each day, how many kilowatt-hours (kWh) of electrical energy do they consume per day?",
     "choices": [
-      { "id": "A", "text": "2 kWh" },
-      { "id": "B", "text": "200 kWh" },
-      { "id": "C", "text": "20 kWh" },
-      { "id": "D", "text": "0.2 kWh" }
+      {
+        "id": "A",
+        "text": "200 kWh"
+      },
+      {
+        "id": "B",
+        "text": "2 kWh"
+      },
+      {
+        "id": "C",
+        "text": "20 kWh"
+      },
+      {
+        "id": "D",
+        "text": "0.2 kWh"
+      },
+      {
+        "id": "E",
+        "text": "3.2 kWh"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "B",
     "explanation": "Electrical energy is computed as Power × Time, where power is expressed in kilowatts and time in hours. First, find the total power: 10 lamps × 40 W each = 400 W = 0.4 kW (since 1 kW = 1,000 W). Then multiply by the daily usage: 0.4 kW × 5 h = 2 kWh. The kilowatt (kW) is the unit of power; the kilowatt-hour (kWh) is the unit of energy and is what appears on electricity bills. The most common error is forgetting to convert watts to kilowatts before multiplying, which inflates the answer by a factor of 1,000.",
     "steps": [
       "Total power: 10 lamps × 40 W = 400 W.",
@@ -169,9 +253,10 @@
       "Energy per day: 0.4 kW × 5 h = 2 kWh."
     ],
     "distractorExplanations": {
-      "B": "200 kWh results from multiplying the total wattage directly by hours without converting to kilowatts: 400 W × 5 = 2,000 — then misreading as 200 kWh, or from computing 40 × 5 = 200 and treating the result as kWh. Always divide watts by 1,000 first.",
+      "A": "200 kWh results from multiplying the total wattage directly by hours without converting to kilowatts: 400 W × 5 = 2,000 — then misreading as 200 kWh, or from computing 40 × 5 = 200 and treating the result as kWh. Always divide watts by 1,000 first.",
       "C": "20 kWh results from multiplying 40 watts (one lamp's power) by 5 hours to get 200 Wh, then dividing by 10 instead of multiplying — or from computing 40 × 5 = 200 Wh for all lamps and misplacing the decimal when converting to kWh.",
-      "D": "0.2 kWh results from dividing instead of multiplying in the last step: 0.4 kW ÷ 5 h = 0.08 kWh, or from computing the energy for just one lamp (40 W × 5 h = 200 Wh = 0.2 kWh) and forgetting to multiply by 10 lamps."
+      "D": "0.2 kWh results from dividing instead of multiplying in the last step: 0.4 kW ÷ 5 h = 0.08 kWh, or from computing the energy for just one lamp (40 W × 5 h = 200 Wh = 0.2 kWh) and forgetting to multiply by 10 lamps.",
+      "E": "Uses 8 hours (a full workday) instead of the stated 5 hours per day: 10×40W×8h÷1,000=3.2 kWh."
     },
     "tip": {
       "label": "Formula",
@@ -193,12 +278,28 @@
     "difficulty": "Medium",
     "question": "Which of the following statements about divisibility is TRUE?",
     "choices": [
-      { "id": "A", "text": "If a number is divisible by 5, then it is divisible by 10." },
-      { "id": "B", "text": "If a number is divisible by 10, then it is divisible by 5." },
-      { "id": "C", "text": "If a number is divisible by 3, then it is divisible by 6." },
-      { "id": "D", "text": "If a number is divisible by 4, then it is divisible by 8." }
+      {
+        "id": "A",
+        "text": "If a number is divisible by 10, then it is divisible by 5."
+      },
+      {
+        "id": "B",
+        "text": "If a number is divisible by 5, then it is divisible by 10."
+      },
+      {
+        "id": "C",
+        "text": "If a number is divisible by 3, then it is divisible by 6."
+      },
+      {
+        "id": "D",
+        "text": "If a number is divisible by 4, then it is divisible by 8."
+      },
+      {
+        "id": "E",
+        "text": "If a number is divisible by 6, then it is divisible by 4."
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "A",
     "explanation": "Statement B is true because 10 = 2 × 5, so every multiple of 10 is automatically a multiple of both 2 and 5 — including 5. Statements A, C, and D are all false and can each be disproved with a single counterexample. A: 15 is divisible by 5 but not by 10 (15 ÷ 10 = 1.5). C: 9 is divisible by 3 but not by 6 (9 ÷ 6 = 1.5). D: 12 is divisible by 4 but not by 8 (12 ÷ 8 = 1.5). The general principle is: if a number is divisible by n, it is divisible by every factor of n, but not necessarily by every multiple of n.",
     "steps": [
       "Test Statement A: counterexample 15 — 15 ÷ 5 = 3 (divisible), but 15 ÷ 10 = 1.5 (not divisible). A is FALSE.",
@@ -207,9 +308,10 @@
       "Test Statement D: counterexample 12 — 12 ÷ 4 = 3 (divisible), but 12 ÷ 8 = 1.5 (not divisible). D is FALSE."
     ],
     "distractorExplanations": {
-      "A": "Divisibility by 5 does not guarantee divisibility by 10. The counterexample 15 shows this: 15 is divisible by 5 but 15 ÷ 10 is not a whole number. Divisibility by 10 requires divisibility by both 2 and 5; a number divisible by 5 alone may be odd.",
+      "B": "Divisibility by 5 does not guarantee divisibility by 10. The counterexample 15 shows this: 15 is divisible by 5 but 15 ÷ 10 is not a whole number. Divisibility by 10 requires divisibility by both 2 and 5; a number divisible by 5 alone may be odd.",
       "C": "Divisibility by 3 does not imply divisibility by 6. The counterexample is 9: divisible by 3, but 9 ÷ 6 = 1.5. Divisibility by 6 requires divisibility by both 2 and 3; an odd multiple of 3 (like 3, 9, 15, 21) is never divisible by 6.",
-      "D": "Divisibility by 4 does not imply divisibility by 8. The counterexample is 12: 12 ÷ 4 = 3 but 12 ÷ 8 = 1.5. Divisibility by 8 is a stricter condition than divisibility by 4 — every multiple of 8 is divisible by 4, but not every multiple of 4 is divisible by 8."
+      "D": "Divisibility by 4 does not imply divisibility by 8. The counterexample is 12: 12 ÷ 4 = 3 but 12 ÷ 8 = 1.5. Divisibility by 8 is a stricter condition than divisibility by 4 — every multiple of 8 is divisible by 4, but not every multiple of 4 is divisible by 8.",
+      "E": "Divisibility by 6 guarantees factors of 2 and 3, not 4; conflates even-ness (factor 2) with divisibility by 4."
     },
     "tip": {
       "label": "Remember",
@@ -231,10 +333,26 @@
     "difficulty": "Medium",
     "question": "What is the sum of all prime numbers between 1 and 15, inclusive of the endpoints?",
     "choices": [
-      { "id": "A", "text": "30" },
-      { "id": "B", "text": "34" },
-      { "id": "C", "text": "41" },
-      { "id": "D", "text": "49" }
+      {
+        "id": "A",
+        "text": "30"
+      },
+      {
+        "id": "B",
+        "text": "34"
+      },
+      {
+        "id": "C",
+        "text": "41"
+      },
+      {
+        "id": "D",
+        "text": "49"
+      },
+      {
+        "id": "E",
+        "text": "50"
+      }
     ],
     "correctOptionId": "C",
     "explanation": "A prime number has exactly two distinct factors: 1 and itself. List all primes from 1 to 15 carefully: 1 is not prime (only one factor). 2, 3, 5, 7, 11, and 13 are prime. 4 = 2², 6 = 2×3, 8 = 2³, 9 = 3², 10 = 2×5, 12 = 2²×3, 14 = 2×7, and 15 = 3×5 are all composite. Sum = 2 + 3 + 5 + 7 + 11 + 13 = 41. The most common errors are either including 1 as prime (adding 1 to give 42) or omitting 11 or 13 (which would give 30 or 28, respectively).",
@@ -245,7 +363,8 @@
     "distractorExplanations": {
       "A": "30 = 2 + 3 + 5 + 7 + 13, which omits 11. Eleven is prime (not divisible by 2, 3, or 5; the next prime 7 satisfies 7² = 49 > 11, so 11 needs no further testing). Forgetting the two-digit primes 11 and 13 is the most common enumeration error.",
       "B": "34 = 2 + 3 + 5 + 7 + 4 + 13 — includes 4 (composite) or omits one prime. Alternatively 34 = 2 + 3 + 5 + 7 + 4 + 13 suggests 4 was included by mistake. Always verify each number: does it have a factor other than 1 and itself?",
-      "D": "49 = 2 + 3 + 5 + 7 + 11 + 13 + 8, which includes 8 (composite) or adds some other non-prime. Alternatively it could arise from including 1 as prime (giving 42) plus another mistake. Only numbers with exactly two factors qualify."
+      "D": "49 = 2 + 3 + 5 + 7 + 11 + 13 + 8, which includes 8 (composite) or adds some other non-prime. Alternatively it could arise from including 1 as prime (giving 42) plus another mistake. Only numbers with exactly two factors qualify.",
+      "E": "Mistakenly includes 9 as a prime: 2+3+5+7+9+11+13=50 instead of the correct 41."
     },
     "tip": {
       "label": "Remember",
@@ -267,12 +386,28 @@
     "difficulty": "Medium",
     "question": "A number is divisible by 8 if its last three digits form a number that is divisible by 8. Which of the following numbers is divisible by 8?",
     "choices": [
-      { "id": "A", "text": "9,208" },
-      { "id": "B", "text": "6,236" },
-      { "id": "C", "text": "88,254" },
-      { "id": "D", "text": "8,886" }
+      {
+        "id": "A",
+        "text": "6,236"
+      },
+      {
+        "id": "B",
+        "text": "88,254"
+      },
+      {
+        "id": "C",
+        "text": "8,886"
+      },
+      {
+        "id": "D",
+        "text": "7,532"
+      },
+      {
+        "id": "E",
+        "text": "9,208"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "Apply the divisibility rule for 8 to the last three digits of each number: 9,208 → last three digits are 208; 208 ÷ 8 = 26 exactly — divisible. 6,236 → last three digits 236; 236 ÷ 8 = 29.5 — not divisible. 88,254 → last three digits 254; 254 ÷ 8 = 31.75 — not divisible. 8,886 → last three digits 886; 886 ÷ 8 = 110.75 — not divisible. Only 9,208 passes the test. Why the rule works: 1,000 is divisible by 8 (1,000 = 8 × 125), so only the last three digits determine divisibility by 8 for any whole number.",
     "steps": [
       "Isolate the last three digits of each: 208, 236, 254, 886.",
@@ -280,9 +415,10 @@
       "Only 9,208 has a last-three-digit block divisible by 8."
     ],
     "distractorExplanations": {
-      "B": "6,236 has last three digits 236. Since 236 = 8 × 29 + 4, dividing gives remainder 4 — not divisible. A common trap is noticing that 6,236 ends in an even digit (6) and assuming that is sufficient; divisibility by 8 requires checking three digits, not just the last one.",
-      "C": "88,254 has last three digits 254. Since 252 = 8 × 31.5, the nearest multiple of 8 below 254 is 248 (8 × 31), leaving remainder 6. Even though 88,254 is even, being divisible by 2 or 4 is not sufficient for divisibility by 8.",
-      "D": "8,886 has last three digits 886. The nearest multiple of 8 below 886 is 880 (8 × 110), so 886 = 880 + 6, giving remainder 6. The presence of the digit 8 at the front of the number is irrelevant — only the last three digits matter."
+      "A": "6,236 has last three digits 236. Since 236 = 8 × 29 + 4, dividing gives remainder 4 — not divisible. A common trap is noticing that 6,236 ends in an even digit (6) and assuming that is sufficient; divisibility by 8 requires checking three digits, not just the last one.",
+      "B": "88,254 has last three digits 254. Since 252 = 8 × 31.5, the nearest multiple of 8 below 254 is 248 (8 × 31), leaving remainder 6. Even though 88,254 is even, being divisible by 2 or 4 is not sufficient for divisibility by 8.",
+      "C": "8,886 has last three digits 886. The nearest multiple of 8 below 886 is 880 (8 × 110), so 886 = 880 + 6, giving remainder 6. The presence of the digit 8 at the front of the number is irrelevant — only the last three digits matter.",
+      "D": "Last three digits 532÷8=66.5 — not a whole number, so 7,532 is not divisible by 8; attractive because it is large and even."
     },
     "tip": {
       "label": "Remember",
@@ -303,12 +439,28 @@
     "difficulty": "Hard",
     "question": "Find the set of all odd integers x satisfying BOTH conditions: 5x − 4 ≤ 0 AND 3x − 7 ≥ 0.",
     "choices": [
-      { "id": "A", "text": "{x | x ≠ 1}" },
-      { "id": "B", "text": "{1}" },
-      { "id": "C", "text": "{x | x ∈ ℝ}" },
-      { "id": "D", "text": "∅ (the empty set)" }
+      {
+        "id": "A",
+        "text": "∅ (the empty set)"
+      },
+      {
+        "id": "B",
+        "text": "{x | x ≠ 1}"
+      },
+      {
+        "id": "C",
+        "text": "{1}"
+      },
+      {
+        "id": "D",
+        "text": "{x | x ∈ ℝ}"
+      },
+      {
+        "id": "E",
+        "text": "{−1}"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "Solve each inequality separately and intersect the results. From 5x − 4 ≤ 0: add 4, then divide by 5 → x ≤ 4/5 = 0.8. From 3x − 7 ≥ 0: add 7, then divide by 3 → x ≥ 7/3 ≈ 2.33. The intersection requires x ≤ 0.8 AND x ≥ 2.33 simultaneously — which is impossible, since no number can be both at most 0.8 and at least 2.33. Even without the odd-integer restriction, the intersection is empty. Since the real-number solution is already empty, there are no odd integers (or any integers) satisfying both conditions. The answer is the empty set ∅.",
     "steps": [
       "Solve 5x − 4 ≤ 0: 5x ≤ 4 → x ≤ 0.8.",
@@ -317,9 +469,10 @@
       "Since no real solutions exist, there are certainly no odd integer solutions. The answer is ∅."
     ],
     "distractorExplanations": {
-      "A": "{x | x ≠ 1} describes all real numbers except 1 — an enormous set, not a restricted one. Choosing it suggests misreading the conditions as an exclusion rather than a conjunction of inequalities. Testing any value confirms neither x = 3 (fails condition 1) nor x = −1 (fails condition 2) satisfies both.",
-      "B": "{1} arises from reasoning that x = 1 is the only odd integer between 0 and 2.33. But x = 1 must satisfy BOTH conditions: 5(1) − 4 = 1 > 0, which violates 5x − 4 ≤ 0. x = 1 fails condition 1.",
-      "C": "{x | x ∈ ℝ} would mean every real number satisfies both inequalities simultaneously, which is clearly false — any x > 0.8, for example, violates condition 1."
+      "B": "{x | x ≠ 1} describes all real numbers except 1 — an enormous set, not a restricted one. Choosing it suggests misreading the conditions as an exclusion rather than a conjunction of inequalities. Testing any value confirms neither x = 3 (fails condition 1) nor x = −1 (fails condition 2) satisfies both.",
+      "C": "{1} arises from reasoning that x = 1 is the only odd integer between 0 and 2.33. But x = 1 must satisfy BOTH conditions: 5(1) − 4 = 1 > 0, which violates 5x − 4 ≤ 0. x = 1 fails condition 1.",
+      "D": "{x | x ∈ ℝ} would mean every real number satisfies both inequalities simultaneously, which is clearly false — any x > 0.8, for example, violates condition 1.",
+      "E": "The value −1 satisfies 5x−4≤0 (giving −9≤0 ✓) but fails 3x−7≥0 (giving −10<0 ✗) — checking only the first inequality."
     },
     "tip": {
       "label": "Exam Tip",
@@ -341,10 +494,26 @@
     "difficulty": "Medium",
     "question": "A municipal engineer can rent a concrete mixer at ₱2,700 per day. A brand-new mixer of the same model can be purchased for ₱18,900. For how many days could she rent the mixer before the total rental cost first exceeds the purchase price?",
     "choices": [
-      { "id": "A", "text": "5 days" },
-      { "id": "B", "text": "6 days" },
-      { "id": "C", "text": "7 days" },
-      { "id": "D", "text": "8 days" }
+      {
+        "id": "A",
+        "text": "5 days"
+      },
+      {
+        "id": "B",
+        "text": "6 days"
+      },
+      {
+        "id": "C",
+        "text": "7 days"
+      },
+      {
+        "id": "D",
+        "text": "8 days"
+      },
+      {
+        "id": "E",
+        "text": "9 days"
+      }
     ],
     "correctOptionId": "D",
     "explanation": "Set up the inequality: rental cost > purchase price. ₱2,700 × d > ₱18,900. Dividing both sides by 2,700: d > 7. This means the rental first exceeds the purchase price on day 8. To verify: after 7 days, rental cost = 7 × ₱2,700 = ₱18,900 — exactly equal to the purchase price, so renting is not yet more expensive. After 8 days, rental cost = 8 × ₱2,700 = ₱21,600 > ₱18,900 — now it has exceeded buying. The question asks when rental first exceeds (not equals) the buying price, so the answer is 8 days.",
@@ -357,7 +526,8 @@
     "distractorExplanations": {
       "A": "5 days gives a rental cost of ₱13,500, which is ₱5,400 below the purchase price — renting is still cheaper at this point. Choosing 5 likely comes from dividing ₱18,900 by ₱2,700 ÷ some incorrect factor, or from estimating ₱2,700 as ₱3,000 and computing 18,900 ÷ 4,500 ≈ 4.",
       "B": "6 days gives ₱16,200, still ₱2,700 less than ₱18,900. Renting has not yet caught up to buying. This may come from computing 18,900 ÷ 2,700 = 7 and then subtracting 1 by mistake.",
-      "C": "7 days gives exactly ₱18,900 — the rental cost equals the purchase price, but does not yet exceed it. The question asks for the first day the rental cost is strictly greater than ₱18,900, which is day 8. Choosing 7 confuses 'equals' with 'exceeds'."
+      "C": "7 days gives exactly ₱18,900 — the rental cost equals the purchase price, but does not yet exceed it. The question asks for the first day the rental cost is strictly greater than ₱18,900, which is day 8. Choosing 7 confuses 'equals' with 'exceeds'.",
+      "E": "Over-rounds the exact break-even quotient (₱18,900÷₱2,700=7.0 exactly, cost not yet exceeded) to 9 instead of 8."
     },
     "tip": {
       "label": "Exam Tip",
@@ -379,12 +549,28 @@
     "difficulty": "Easy",
     "question": "A government agency bought a service vehicle for ₱1,200,000. After 5 years of use, the vehicle's book value is ₱600,000. Using the straight-line method, what is the annual depreciation expense?",
     "choices": [
-      { "id": "A", "text": "₱100,000" },
-      { "id": "B", "text": "₱240,000" },
-      { "id": "C", "text": "₱120,000" },
-      { "id": "D", "text": "₱600,000" }
+      {
+        "id": "A",
+        "text": "₱100,000"
+      },
+      {
+        "id": "B",
+        "text": "₱240,000"
+      },
+      {
+        "id": "C",
+        "text": "₱600,000"
+      },
+      {
+        "id": "D",
+        "text": "₱120,000"
+      },
+      {
+        "id": "E",
+        "text": "₱60,000"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "The straight-line depreciation method spreads the loss in value evenly over the useful life of the asset. Total depreciation = Cost − Salvage Value = ₱1,200,000 − ₱600,000 = ₱600,000. Annual depreciation = Total Depreciation ÷ Useful Life = ₱600,000 ÷ 5 = ₱120,000 per year. After 5 years the asset will have shed ₱120,000 × 5 = ₱600,000 of its value, leaving the ₱600,000 book value. The straight-line method is called so because the book value decreases by the same fixed amount each year — it forms a straight line on a value-vs-time graph.",
     "steps": [
       "Total depreciation = Cost − Salvage Value = ₱1,200,000 − ₱600,000 = ₱600,000.",
@@ -394,7 +580,8 @@
     "distractorExplanations": {
       "A": "₱100,000 results from dividing the salvage value (₱600,000) by the number of years (6) — but 6 years is not given; the useful life is 5 years. Or it may come from dividing the original cost by 12 (₱1,200,000 ÷ 12 = ₱100,000), with no clear basis.",
       "B": "₱240,000 results from dividing the original cost by 5 without subtracting the salvage value first: ₱1,200,000 ÷ 5 = ₱240,000. Straight-line depreciation applies only to the portion of value lost (cost minus salvage), not to the total cost.",
-      "D": "₱600,000 is the total depreciation over 5 years — not the annual amount. Dividing by the number of years is the step that converts total to annual: ₱600,000 ÷ 5 = ₱120,000. Reporting the undivided total is a failure to complete the calculation."
+      "C": "₱600,000 is the total depreciation over 5 years — not the annual amount. Dividing by the number of years is the step that converts total to annual: ₱600,000 ÷ 5 = ₱120,000. Reporting the undivided total is a failure to complete the calculation.",
+      "E": "Doubles the useful life to 10 years instead of 5: (₱1,200,000−₱600,000)÷10=₱60,000."
     },
     "tip": {
       "label": "Formula",
@@ -416,12 +603,28 @@
     "difficulty": "Hard",
     "question": "A city has a population of 300,000, of whom 180,000 are male and 120,000 are female. Exactly 50% of the total population is literate. If 70% of the male population is literate, what percentage of the female population is literate?",
     "choices": [
-      { "id": "A", "text": "10%" },
-      { "id": "B", "text": "15%" },
-      { "id": "C", "text": "20%" },
-      { "id": "D", "text": "30%" }
+      {
+        "id": "A",
+        "text": "8%"
+      },
+      {
+        "id": "B",
+        "text": "10%"
+      },
+      {
+        "id": "C",
+        "text": "15%"
+      },
+      {
+        "id": "D",
+        "text": "20%"
+      },
+      {
+        "id": "E",
+        "text": "30%"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "Work from totals downward. Total literates = 50% of 300,000 = 150,000. Male literates = 70% of 180,000 = 126,000. Female literates = Total literates − Male literates = 150,000 − 126,000 = 24,000. Female literacy rate = 24,000 ÷ 120,000 = 0.20 = 20%. The critical step most examinees miss is recognising that 70% male literacy does not imply 70% female literacy — the two groups have different sizes, so their individual rates must be computed separately and the totals must balance.",
     "steps": [
       "Total literates: 50% × 300,000 = 150,000.",
@@ -430,9 +633,10 @@
       "Female literacy rate: 24,000 ÷ 120,000 = 0.20 = 20%."
     ],
     "distractorExplanations": {
-      "A": "10% would mean only 12,000 female literates (10% × 120,000). Total would then be 126,000 + 12,000 = 138,000, which is only 46% of 300,000 — not the stated 50%. This underestimates female literacy.",
-      "B": "15% would mean 18,000 female literates. Total = 126,000 + 18,000 = 144,000, which is 48% of 300,000 — still short of the 50% target. The total-literate constraint must be satisfied exactly.",
-      "D": "30% would mean 36,000 female literates. Total = 126,000 + 36,000 = 162,000, which is 54% of 300,000 — exceeding the 50% constraint. The total pulls the female rate down, not up, because males are a larger group and are already pulling the total toward 50%."
+      "A": "Divides female literate count (24,000) by total population (300,000) instead of by female population (120,000): 24,000÷300,000=8%.",
+      "B": "10% would mean only 12,000 female literates (10% × 120,000). Total would then be 126,000 + 12,000 = 138,000, which is only 46% of 300,000 — not the stated 50%. This underestimates female literacy.",
+      "C": "15% would mean 18,000 female literates. Total = 126,000 + 18,000 = 144,000, which is 48% of 300,000 — still short of the 50% target. The total-literate constraint must be satisfied exactly.",
+      "E": "30% would mean 36,000 female literates. Total = 126,000 + 36,000 = 162,000, which is 54% of 300,000 — exceeding the 50% constraint. The total pulls the female rate down, not up, because males are a larger group and are already pulling the total toward 50%."
     },
     "tip": {
       "label": "Exam Tip",
@@ -454,12 +658,28 @@
     "difficulty": "Hard",
     "question": "A jeweler has a 20-gram ring that is 60% gold and 40% silver. She wishes to melt the ring and add pure gold until the alloy is 80% gold. How many grams of pure gold must she add?",
     "choices": [
-      { "id": "A", "text": "8 grams" },
-      { "id": "B", "text": "12 grams" },
-      { "id": "C", "text": "16 grams" },
-      { "id": "D", "text": "20 grams" }
+      {
+        "id": "A",
+        "text": "4 grams"
+      },
+      {
+        "id": "B",
+        "text": "8 grams"
+      },
+      {
+        "id": "C",
+        "text": "12 grams"
+      },
+      {
+        "id": "D",
+        "text": "16 grams"
+      },
+      {
+        "id": "E",
+        "text": "20 grams"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Let x = grams of pure gold to add. The ring currently contains 20 × 0.60 = 12 g of gold and 20 × 0.40 = 8 g of silver. Adding x grams of pure gold gives a total alloy mass of (20 + x) grams and a gold mass of (12 + x) grams. Set up the target equation: (12 + x) ÷ (20 + x) = 0.80. Cross-multiply: 12 + x = 0.80(20 + x) = 16 + 0.80x. Isolate x: x − 0.80x = 16 − 12 → 0.20x = 4 → x = 20 grams. Verify: new alloy = 40 g, gold = 32 g, 32 ÷ 40 = 80%. ✓ Adding pure gold increases both the numerator and the denominator, so the concentration rises more slowly than expected — this is why 20 g are needed even though the initial gold mass is only 12 g.",
     "steps": [
       "Current gold: 20 × 0.60 = 12 g. Silver: 20 × 0.40 = 8 g.",
@@ -469,9 +689,10 @@
       "Verify: 32 g gold in 40 g total = 80%. ✓"
     ],
     "distractorExplanations": {
-      "A": "8 grams would bring gold to 20 g in a 28-g alloy: 20 ÷ 28 ≈ 71.4%, which falls far short of 80%. This comes from computing 80% − 60% = 20% and then taking 20% of the original 40-gram estimate, or from some linear approximation that ignores the expanding denominator.",
-      "B": "12 grams would give 24 g gold in 32 g total: 24 ÷ 32 = 75%, still below 80%. Choosing 12 may come from computing 80% of 20 g = 16 g needed gold, then taking the difference 16 − 12 = 4 and misapplying a ratio, or from guessing that adding one ring's worth (12 g) of gold solves it.",
-      "C": "16 grams would give 28 g gold in 36 g total: 28 ÷ 36 ≈ 77.8%, not 80%. This arises from computing 80% of (20 + 16) = 80% of 36 = 28.8 and rounding, or from solving the equation with an arithmetic error: 12 + x = 0.80 × 20 = 16 (forgetting to multiply x on the right side)."
+      "A": "Applies the percentage-point increase (80%−60%=20%) to the original ring weight without accounting for the denominator change: 20%×20g=4g.",
+      "B": "8 grams would bring gold to 20 g in a 28-g alloy: 20 ÷ 28 ≈ 71.4%, which falls far short of 80%. This comes from computing 80% − 60% = 20% and then taking 20% of the original 40-gram estimate, or from some linear approximation that ignores the expanding denominator.",
+      "C": "12 grams would give 24 g gold in 32 g total: 24 ÷ 32 = 75%, still below 80%. Choosing 12 may come from computing 80% of 20 g = 16 g needed gold, then taking the difference 16 − 12 = 4 and misapplying a ratio, or from guessing that adding one ring's worth (12 g) of gold solves it.",
+      "D": "16 grams would give 28 g gold in 36 g total: 28 ÷ 36 ≈ 77.8%, not 80%. This arises from computing 80% of (20 + 16) = 80% of 36 = 28.8 and rounding, or from solving the equation with an arithmetic error: 12 + x = 0.80 × 20 = 16 (forgetting to multiply x on the right side)."
     },
     "tip": {
       "label": "Formula",
@@ -493,10 +714,26 @@
     "difficulty": "Medium",
     "question": "Identify the next term in the series: 2/4, 1/2, 2/6, 1/3, 2/8, 1/4, 2/10, ___",
     "choices": [
-      { "id": "A", "text": "1/5" },
-      { "id": "B", "text": "2/5" },
-      { "id": "C", "text": "3/4" },
-      { "id": "D", "text": "4/5" }
+      {
+        "id": "A",
+        "text": "1/5"
+      },
+      {
+        "id": "B",
+        "text": "1/6"
+      },
+      {
+        "id": "C",
+        "text": "2/5"
+      },
+      {
+        "id": "D",
+        "text": "3/4"
+      },
+      {
+        "id": "E",
+        "text": "4/5"
+      }
     ],
     "correctOptionId": "A",
     "explanation": "The series alternates between two forms: a fraction of the form 2/(2n) and its simplified equivalent 1/n. Reading the series in pairs: (2/4, 1/2), (2/6, 1/3), (2/8, 1/4), (2/10, ___). Within each pair, 2/(2n) simplifies to 1/n. The missing term is the simplified form of 2/10: divide numerator and denominator by 2 to get 1/5. Equivalently, the odd-position terms 2/4, 2/6, 2/8, 2/10 follow the pattern 2/(2n) with n increasing by 1 each time; the even-position terms 1/2, 1/3, 1/4, 1/5 are their simplified versions. The missing term at position 8 is 1/5.",
@@ -506,9 +743,10 @@
       "The missing term is 1/5."
     ],
     "distractorExplanations": {
-      "B": "2/5 would continue the 2/(2n) sub-sequence (2/4, 2/6, 2/8, 2/10, 2/12...) but the next even-position term is the simplified version 1/5, not the next odd-position term 2/12. The position after 2/10 calls for its reduced form.",
-      "C": "3/4 has no relationship to the pattern. It neither fits the 2/(2n) sub-sequence nor the 1/n sub-sequence. Choosing it likely comes from looking at the numerators (2, 1, 2, 1...) and denominators (4, 2, 6, 3, 8, 4, 10, ?) separately and making an arithmetic error.",
-      "D": "4/5 would require both the numerator and denominator to jump inconsistently — no term in the series has a numerator greater than 2 (except after reduction). The pattern produces only fractions of the form 2/(2n) or 1/n."
+      "B": "Continues the 'numerator-2' sub-pattern to 2/12=1/6 instead of recognising the alternating 'numerator-1' sub-pattern: the next term is 1/(n+1)=1/5.",
+      "C": "2/5 would continue the 2/(2n) sub-sequence (2/4, 2/6, 2/8, 2/10, 2/12...) but the next even-position term is the simplified version 1/5, not the next odd-position term 2/12. The position after 2/10 calls for its reduced form.",
+      "D": "3/4 has no relationship to the pattern. It neither fits the 2/(2n) sub-sequence nor the 1/n sub-sequence. Choosing it likely comes from looking at the numerators (2, 1, 2, 1...) and denominators (4, 2, 6, 3, 8, 4, 10, ?) separately and making an arithmetic error.",
+      "E": "4/5 would require both the numerator and denominator to jump inconsistently — no term in the series has a numerator greater than 2 (except after reduction). The pattern produces only fractions of the form 2/(2n) or 1/n."
     },
     "tip": {
       "label": "Pattern Recognition",
@@ -530,12 +768,28 @@
     "difficulty": "Medium",
     "question": "A government grain silo contains 80 sacks of rice when it is exactly 1/5 full. How many sacks will the silo hold when it is 3/4 full?",
     "choices": [
-      { "id": "A", "text": "420 sacks" },
-      { "id": "B", "text": "400 sacks" },
-      { "id": "C", "text": "300 sacks" },
-      { "id": "D", "text": "250 sacks" }
+      {
+        "id": "A",
+        "text": "420 sacks"
+      },
+      {
+        "id": "B",
+        "text": "400 sacks"
+      },
+      {
+        "id": "C",
+        "text": "360 sacks"
+      },
+      {
+        "id": "D",
+        "text": "300 sacks"
+      },
+      {
+        "id": "E",
+        "text": "250 sacks"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "This problem requires two steps: first recover the total capacity from the known fractional fill, then compute the new quantity at the target fill level. If 80 sacks represent 1/5 of capacity, then full capacity = 80 ÷ (1/5) = 80 × 5 = 400 sacks. At 3/4 full: 400 × (3/4) = 300 sacks. The critical distinction from 'fraction of a quantity' problems is that here the whole (capacity) is unknown and must be derived before the second fraction can be applied. Dividing by a fraction — 80 ÷ (1/5) = 400 — is equivalent to multiplying by its reciprocal.",
     "steps": [
       "Find total capacity: 80 sacks = 1/5 of capacity → capacity = 80 ÷ (1/5) = 80 × 5 = 400 sacks.",
@@ -544,7 +798,8 @@
     "distractorExplanations": {
       "A": "420 sacks has no clean derivation from the given numbers. It may arise from computing (3/4 + 1/5) × 400 = (15/20 + 4/20) × 400 = 19/20 × 400 = 380 — still not 420 — or from adding 80 to 400 × (3/4 − 1/5) through some error. Re-derive from capacity first.",
       "B": "400 sacks is the full capacity of the silo, not 3/4 of it. Stopping at the capacity calculation and reporting it as the answer skips the final step: multiply 400 by 3/4 to get 300. Always read which fractional fill the question asks for.",
-      "D": "250 sacks = 400 × (5/8), which does not correspond to any stated fraction. It may come from applying 5/8 (perhaps confusing 1/5 and 3/4 by averaging their denominators) or from computing capacity as 80 × 5 ÷ (4/3) = 100, then 100 × 2.5 — a chain of errors."
+      "C": "Uses 4/5 of the total (400) instead of 3/4: assumes 'nearly full' means 4/5, giving 400×(4/5)=320 — then rounds to 360 via off-by-one-fifth error.",
+      "E": "250 sacks = 400 × (5/8), which does not correspond to any stated fraction. It may come from applying 5/8 (perhaps confusing 1/5 and 3/4 by averaging their denominators) or from computing capacity as 80 × 5 ÷ (4/3) = 100, then 100 × 2.5 — a chain of errors."
     },
     "tip": {
       "label": "Math Shortcut",
@@ -566,21 +821,38 @@
     "difficulty": "Medium",
     "question": "The product of two numbers is 8. One of the numbers is 4/3. What is the sum of the two numbers?",
     "choices": [
-      { "id": "A", "text": "9 1/3" },
-      { "id": "B", "text": "8" },
-      { "id": "C", "text": "7 1/3" },
-      { "id": "D", "text": "6 3/4" }
+      {
+        "id": "A",
+        "text": "7 1/3"
+      },
+      {
+        "id": "B",
+        "text": "9 1/3"
+      },
+      {
+        "id": "C",
+        "text": "8"
+      },
+      {
+        "id": "D",
+        "text": "6 3/4"
+      },
+      {
+        "id": "E",
+        "text": "5 1/3"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "First find the second number by dividing the product by the known number: second number = 8 ÷ (4/3) = 8 × (3/4) = 24/4 = 6. Then compute the sum: 4/3 + 6 = 4/3 + 18/3 = 22/3 = 7 1/3. The key operation is dividing by a fraction — flip the second fraction and multiply: 8 ÷ (4/3) = 8 × (3/4) = 6. A common mistake is computing 8 − (4/3) = 6 2/3 (subtracting instead of dividing), which gives the wrong second number and therefore the wrong sum.",
     "steps": [
       "Find the second number: 8 ÷ (4/3) = 8 × (3/4) = 6.",
       "Compute the sum: 4/3 + 6 = 4/3 + 18/3 = 22/3 = 7 1/3."
     ],
     "distractorExplanations": {
-      "A": "9 1/3 = 28/3 would require the second number to be 28/3 − 4/3 = 24/3 = 8, implying the product is (4/3) × 8 = 32/3 ≠ 8. Choosing 9 1/3 comes from adding 4/3 to 8 directly instead of first finding the second number as the quotient.",
-      "B": "8 results from reporting the product itself as the sum — confusing the given condition (product = 8) with the answer (sum = ?). The sum is a separate calculation that requires finding the second number first.",
-      "D": "6 3/4 = 27/4 would require the second number to be 27/4 − 4/3 = 81/12 − 16/12 = 65/12, and the product (4/3)(65/12) = 260/36 ≠ 8. This may come from computing 8 − (4/3) = 6 2/3 (subtraction error) and then adding 4/3 back: 6 2/3 + 4/3 = 7 — then making an additional arithmetic slip to land on 6 3/4."
+      "B": "9 1/3 = 28/3 would require the second number to be 28/3 − 4/3 = 24/3 = 8, implying the product is (4/3) × 8 = 32/3 ≠ 8. Choosing 9 1/3 comes from adding 4/3 to 8 directly instead of first finding the second number as the quotient.",
+      "C": "8 results from reporting the product itself as the sum — confusing the given condition (product = 8) with the answer (sum = ?). The sum is a separate calculation that requires finding the second number first.",
+      "D": "6 3/4 = 27/4 would require the second number to be 27/4 − 4/3 = 81/12 − 16/12 = 65/12, and the product (4/3)(65/12) = 260/36 ≠ 8. This may come from computing 8 − (4/3) = 6 2/3 (subtraction error) and then adding 4/3 back: 6 2/3 + 4/3 = 7 — then making an additional arithmetic slip to land on 6 3/4.",
+      "E": "Subtracts instead of divides to find the second number: 8−4/3=6⅔, then sums 4/3+6⅔=8 (but student miscalculates 6⅔ as 4, giving 4/3+4=5⅓)."
     },
     "tip": {
       "label": "Remember",
@@ -602,10 +874,26 @@
     "difficulty": "Medium",
     "question": "If 8 less than the product of a number n and −3 is greater than 7, which of the following could be that number?",
     "choices": [
-      { "id": "A", "text": "−6" },
-      { "id": "B", "text": "−5" },
-      { "id": "C", "text": "5" },
-      { "id": "D", "text": "6" }
+      {
+        "id": "A",
+        "text": "−6"
+      },
+      {
+        "id": "B",
+        "text": "−5"
+      },
+      {
+        "id": "C",
+        "text": "5"
+      },
+      {
+        "id": "D",
+        "text": "6"
+      },
+      {
+        "id": "E",
+        "text": "−4"
+      }
     ],
     "correctOptionId": "A",
     "explanation": "Translate the words into algebra: '8 less than the product of n and −3' means (−3n) − 8. The full condition is (−3n) − 8 > 7. Solve step by step: add 8 to both sides → −3n > 15. Divide both sides by −3, and remember: dividing by a negative number reverses the inequality sign → n < −5. Among the options, only n = −6 satisfies n < −5. Verify: (−3)(−6) − 8 = 18 − 8 = 10 > 7. ✓ The inequality reversal when dividing by a negative is the critical step — skipping it leads to n > −5, which would select 5 or 6 instead.",
@@ -619,7 +907,8 @@
     "distractorExplanations": {
       "B": "−5 does not satisfy n < −5 because the inequality is strict (greater than, not greater-than-or-equal). Test: (−3)(−5) − 8 = 15 − 8 = 7. The condition requires the result to be strictly greater than 7; here it equals 7, so −5 fails.",
       "C": "5 satisfies n > −5 but not n < −5. Choosing 5 results from forgetting to flip the inequality when dividing by −3: after dividing both sides of −3n > 15 by −3 without flipping, one incorrectly gets n > −5, which then makes 5 and 6 both appear valid.",
-      "D": "6 has the same flaw as option C — it satisfies n > −5 under the incorrect (un-flipped) inequality. Verify directly: (−3)(6) − 8 = −18 − 8 = −26 < 7. This is far below 7, confirming 6 does not satisfy the original condition."
+      "D": "6 has the same flaw as option C — it satisfies n > −5 under the incorrect (un-flipped) inequality. Verify directly: (−3)(6) − 8 = −18 − 8 = −26 < 7. This is far below 7, confirming 6 does not satisfy the original condition.",
+      "E": "Close to the boundary but −3(−4)−8=4, which is not greater than 7; results from a sign slip that loses the strict bound."
     },
     "tip": {
       "label": "Common Mistake",
@@ -641,12 +930,28 @@
     "difficulty": "Hard",
     "question": "In a training centre, the ratio of male to female participants is 11:7. There are 720 participants in total. How many additional female participants must enrol to make the ratio of males to females exactly 1:1?",
     "choices": [
-      { "id": "A", "text": "160" },
-      { "id": "B", "text": "100" },
-      { "id": "C", "text": "120" },
-      { "id": "D", "text": "180" }
+      {
+        "id": "A",
+        "text": "100"
+      },
+      {
+        "id": "B",
+        "text": "120"
+      },
+      {
+        "id": "C",
+        "text": "180"
+      },
+      {
+        "id": "D",
+        "text": "160"
+      },
+      {
+        "id": "E",
+        "text": "200"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "D",
     "explanation": "First, find the current group counts from the given ratio and total. Total ratio parts = 11 + 7 = 18. Males = (11/18) × 720 = 440. Females = (7/18) × 720 = 280. For a 1:1 ratio, females must equal males. Males stay at 440 (only additional females are enrolled). Additional females needed = 440 − 280 = 160. After enrolment, females = 440 and males = 440, giving a 1:1 ratio. Verify: 280 + 160 = 440 = number of males. ✓ The two-step structure — extracting current counts before solving for the increment — is where most examinees lose the problem.",
     "steps": [
       "Total ratio parts: 11 + 7 = 18. Each part = 720 ÷ 18 = 40 participants.",
@@ -655,9 +960,10 @@
       "Additional females needed = 440 − 280 = 160."
     ],
     "distractorExplanations": {
-      "B": "100 additional females would bring females to 380, against 440 males — a ratio of 380:440 = 19:22, not 1:1. This likely comes from computing the difference between the ratio parts (11 − 7 = 4 parts) and then multiplying by 25 (720/28 ≈ 25) to get ≈ 100, using an incorrect total-parts figure.",
-      "C": "120 additional females would give 400 females vs. 440 males — a ratio of 400:440 = 10:11, not 1:1. This may come from computing 720 × (11 − 7)/24 = 720 × 4/24 = 120, where 24 is an incorrect denominator (perhaps from adding ratio parts as 11 + 7 + some error).",
-      "D": "180 additional females would give 460 females vs. 440 males — overshot, with females now exceeding males. This results from computing 720/(11 − 7) = 720/4 = 180, which treats the difference in ratio parts as a divisor without accounting for the actual group sizes."
+      "A": "100 additional females would bring females to 380, against 440 males — a ratio of 380:440 = 19:22, not 1:1. This likely comes from computing the difference between the ratio parts (11 − 7 = 4 parts) and then multiplying by 25 (720/28 ≈ 25) to get ≈ 100, using an incorrect total-parts figure.",
+      "B": "120 additional females would give 400 females vs. 440 males — a ratio of 400:440 = 10:11, not 1:1. This may come from computing 720 × (11 − 7)/24 = 720 × 4/24 = 120, where 24 is an incorrect denominator (perhaps from adding ratio parts as 11 + 7 + some error).",
+      "C": "180 additional females would give 460 females vs. 440 males — overshot, with females now exceeding males. This results from computing 720/(11 − 7) = 720/4 = 180, which treats the difference in ratio parts as a divisor without accounting for the actual group sizes.",
+      "E": "Computes the male excess (440−280=160) then adds one more full 'female unit' (40): 160+40=200 — off-by-one ratio-unit error."
     },
     "tip": {
       "label": "Exam Tip",

@@ -8,23 +8,44 @@
     "difficulty": "Medium",
     "question": "The investigator suspected that the official was conducting FURTIVE meetings with the contractor away from the office. FURTIVE most nearly means:",
     "choices": [
-      { "id": "A", "text": "Secretive and sly" },
-      { "id": "B", "text": "Lengthy and tiresome" },
-      { "id": "C", "text": "Formal and documented" },
-      { "id": "D", "text": "Frequent and productive" }
+      {
+        "id": "A",
+        "text": "Lengthy and tiresome"
+      },
+      {
+        "id": "B",
+        "text": "Formal and documented"
+      },
+      {
+        "id": "C",
+        "text": "Frequent and productive"
+      },
+      {
+        "id": "D",
+        "text": "Secretive and sly"
+      },
+      {
+        "id": "E",
+        "text": "Unofficial and unrecorded"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "D",
     "explanation": "Furtive comes from the Latin 'furtivus,' related to 'furtum' (theft), carrying the image of something done by stealth — as if stolen from plain sight. A furtive action is done in a guarded, shifty way precisely because the actor does not want to be observed. The context makes the sense unmistakable: meetings held away from the office by an official under investigation are exactly the kind of concealed activity the word names. 'Secretive and sly' captures both the concealment and the calculating quality that furtive implies. 'Lengthy and tiresome' describes duration and difficulty, not concealment. 'Formal and documented' is almost the opposite — official meetings leave a paper trail, the very opposite of a furtive one. 'Frequent and productive' names quantity and outcome, neither of which relates to secrecy.",
     "distractorExplanations": {
-      "B": "'Lengthy and tiresome' says nothing about concealment. A furtive meeting might be brief; what defines it is the secrecy surrounding it, not how long it lasts.",
-      "C": "'Formal and documented' describes official, above-board conduct — the exact opposite of furtive behaviour, which avoids any official record.",
-      "D": "'Frequent and productive' describes how often something occurs and what it achieves. Furtive is about how hidden the action is, not how often or how fruitfully it happens."
+      "A": "'Lengthy and tiresome' says nothing about concealment. A furtive meeting might be brief; what defines it is the secrecy surrounding it, not how long it lasts.",
+      "B": "'Formal and documented' describes official, above-board conduct — the exact opposite of furtive behaviour, which avoids any official record.",
+      "C": "'Frequent and productive' describes how often something occurs and what it achieves. Furtive is about how hidden the action is, not how often or how fruitfully it happens.",
+      "E": "'Unofficial and unrecorded' captures the off-the-books nature of furtive meetings but describes their administrative status rather than the guarded, stealthy manner in which they are conducted; a meeting can be unofficial without being furtive if it is held openly, whereas furtive specifically implies the concealment and shifting watchfulness of someone acting in secret."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "FURTIVE shares a root with 'theft' (Latin furtum). A furtive glance, gesture, or meeting is stolen from plain sight — done when no one is supposed to be watching."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0137",
@@ -35,23 +56,44 @@
     "difficulty": "Hard",
     "question": "The union's legal counsel presented a TRENCHANT argument that left the arbitration panel with little room to dismiss the workers' claims. TRENCHANT most nearly means:",
     "choices": [
-      { "id": "A", "text": "Hesitant and tentative" },
-      { "id": "B", "text": "Incisive and penetrating" },
-      { "id": "C", "text": "Lengthy and detailed" },
-      { "id": "D", "text": "Emotional and impassioned" }
+      {
+        "id": "A",
+        "text": "Hesitant and tentative"
+      },
+      {
+        "id": "B",
+        "text": "Incisive and penetrating"
+      },
+      {
+        "id": "C",
+        "text": "Lengthy and detailed"
+      },
+      {
+        "id": "D",
+        "text": "Emotional and impassioned"
+      },
+      {
+        "id": "E",
+        "text": "Compelling and persuasive"
+      }
     ],
     "correctOptionId": "B",
     "explanation": "Trenchant comes from the Old French 'trenchier,' to cut, and it describes something that cuts to the core of a matter — sharp, vigorous, and to the point. A trenchant argument does not merely assert; it dissects and exposes the issue so clearly that a counterargument is difficult to mount. That is exactly what the sentence describes: the panel had 'little room to dismiss' the claims, signalling that the argument was too precise and penetrating to be brushed aside. 'Incisive and penetrating' matches both the root sense (cutting through) and the effect (hard to counter). 'Hesitant and tentative' is the opposite, describing weak rather than sharp reasoning. 'Lengthy and detailed' confuses depth of argument with the targeted sharpness trenchant specifically names — a trenchant argument can be brief and still devastating. 'Emotional and impassioned' describes a different quality of persuasion, appealing to feeling rather than cutting through logic.",
     "distractorExplanations": {
       "A": "'Hesitant and tentative' describes an argument that lacks conviction — precisely what a trenchant argument is not. Trenchant cuts through ambiguity; hesitant retreats from it.",
       "C": "'Lengthy and detailed' mistakes the quantity of an argument for its quality. A trenchant case can be concise; what makes it trenchant is its sharpness, not its length.",
-      "D": "'Emotional and impassioned' describes an appeal to feelings rather than the razor-edged logic that trenchant implies. An emotional plea may move, but a trenchant one cuts."
+      "D": "'Emotional and impassioned' describes an appeal to feelings rather than the razor-edged logic that trenchant implies. An emotional plea may move, but a trenchant one cuts.",
+      "E": "'Compelling and persuasive' describes an argument that convinces, which is the desired effect of a trenchant argument; however, trenchant names the quality of the argument itself — its sharpness and precision — rather than its effect on the audience, making 'incisive and penetrating' the more accurate description of what the word means."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "TRENCHANT shares its root with 'trench' and a 'trenchant blade' — something that cuts cleanly. A trenchant remark or argument slices through evasion to the heart of the issue."
     },
-    "tags": ["vocabulary", "synonyms", "formal-register"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "formal-register"
+    ]
   },
   {
     "id": "verb-0138",
@@ -62,23 +104,44 @@
     "difficulty": "Medium",
     "question": "Years of broken promises created deep ANIMOSITY between the rank-and-file employees and the new management team. ANIMOSITY most nearly means:",
     "choices": [
-      { "id": "A", "text": "Indifference and apathy" },
-      { "id": "B", "text": "Strong mutual hostility" },
-      { "id": "C", "text": "Quiet disappointment" },
-      { "id": "D", "text": "Reluctant cooperation" }
+      {
+        "id": "A",
+        "text": "Indifference and apathy"
+      },
+      {
+        "id": "B",
+        "text": "Quiet disappointment"
+      },
+      {
+        "id": "C",
+        "text": "Reluctant cooperation"
+      },
+      {
+        "id": "D",
+        "text": "Deep resentment and lingering bitterness"
+      },
+      {
+        "id": "E",
+        "text": "Strong mutual hostility"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "Animosity comes from the Latin 'animus' (spirit, mind) and names a fiercely negative feeling directed at another — stronger than dislike, it is an active ill will that poisons a working relationship and resists reconciliation. The context supplies the cause: 'years of broken promises' confirm that the feeling has accumulated into something intense and mutual. 'Strong mutual hostility' captures both the intensity and the two-sided nature the context implies. 'Indifference and apathy' is the absence of any strong feeling — the opposite of the charged emotion animosity names. 'Quiet disappointment' is too mild, a private feeling rather than an active antagonism. 'Reluctant cooperation' contradicts the word's meaning, since animosity precisely prevents cooperative goodwill.",
     "distractorExplanations": {
       "A": "'Indifference and apathy' describe a lack of engagement — the opposite extreme from animosity, which is sharp, directed ill will. You cannot feel animosity toward someone you are indifferent to.",
-      "C": "'Quiet disappointment' is a mild, inward emotion. Animosity is outward, intense, and active — it breaks working relationships, whereas disappointment may be hidden and manageable.",
-      "D": "'Reluctant cooperation' describes two parties still working together despite tensions. Animosity describes the hostile feeling itself, not a mode of working through it."
+      "B": "'Quiet disappointment' is a mild, inward emotion. Animosity is outward, intense, and active — it breaks working relationships, whereas disappointment may be hidden and manageable.",
+      "C": "'Reluctant cooperation' describes two parties still working together despite tensions. Animosity describes the hostile feeling itself, not a mode of working through it.",
+      "D": "'Deep resentment and lingering bitterness' is very close to animosity in meaning, as animosity also involves ill will that persists over time; the distinction is that animosity is more active and mutual — it names the hostile feeling directed outward at another party — while resentment is often more passive and inward-facing."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "ANIMOSITY shares a root with 'animus' — the driving spirit behind a feeling. Think of animosity as a spirit of active ill will: stronger than dislike, weaker than hatred, but directed and persistent."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0139",
@@ -89,23 +152,44 @@
     "difficulty": "Medium",
     "question": "After a tense negotiation, the regional director finally ACQUIESCED to the employees' request for a flexible work schedule. ACQUIESCED most nearly means:",
     "choices": [
-      { "id": "A", "text": "Agreed without further protest" },
-      { "id": "B", "text": "Strongly objected in writing" },
-      { "id": "C", "text": "Carefully reviewed the merits" },
-      { "id": "D", "text": "Issued a formal announcement" }
+      {
+        "id": "A",
+        "text": "Strongly objected in writing"
+      },
+      {
+        "id": "B",
+        "text": "Carefully reviewed the merits"
+      },
+      {
+        "id": "C",
+        "text": "Agreed without further protest"
+      },
+      {
+        "id": "D",
+        "text": "Issued a formal announcement"
+      },
+      {
+        "id": "E",
+        "text": "Reluctantly conceded to the request in writing"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "Acquiesce comes from the Latin 'acquiescere,' meaning to find rest in or settle into, and in modern English it means to accept or agree to something without actively resisting — often with reluctance. The key nuance is that the person who acquiesces does not necessarily endorse what they agree to; they simply stop opposing it. The sentence makes this tone unmistakable: the negotiation was 'tense' and the director agreed only 'finally,' signalling initial resistance before the yielding. 'Agreed without further protest' captures that quiet acceptance. 'Strongly objected in writing' is the direct opposite: the director who acquiesces stops objecting; the one who strongly objects refuses to yield. 'Carefully reviewed the merits' describes an analytical process before a decision, not the decision itself. 'Issued a formal announcement' concerns public communication, which is separate from whether the director accepted or resisted the request.",
     "distractorExplanations": {
-      "B": "'Strongly objected in writing' is the direct opposite of acquiescing. The director who acquiesces stops opposing; the one who objects continues to resist.",
-      "C": "'Carefully reviewed the merits' describes a process of analysis. Acquiescing is a decision — specifically, a decision to accept — not the evaluation that precedes one.",
-      "D": "'Issued a formal announcement' refers to public communication. A director can announce a decision without acquiescing, and can acquiesce quietly without any formal announcement."
+      "A": "'Strongly objected in writing' is the direct opposite of acquiescing. The director who acquiesces stops opposing; the one who objects continues to resist.",
+      "B": "'Carefully reviewed the merits' describes a process of analysis. Acquiescing is a decision — specifically, a decision to accept — not the evaluation that precedes one.",
+      "D": "'Issued a formal announcement' refers to public communication. A director can announce a decision without acquiescing, and can acquiesce quietly without any formal announcement.",
+      "E": "'Reluctantly conceded in writing' adds two qualifications not in the word's definition — acquiescing may be reluctant but is not necessarily formal or written; this option tempts examinees by including the reluctance aspect of acquiescence while adding the bureaucratic formality of a written concession the word does not require."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "ACQUIESCE sounds like 'a quiet yes.' The acquiescing party does not cheer — they go quiet and stop resisting. Often used when acceptance is reluctant: they gave in, not enthusiastically."
     },
-    "tags": ["vocabulary", "synonyms", "context-clues"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0140",
@@ -116,23 +200,43 @@
     "difficulty": "Easy",
     "question": "Protected forest areas have DWINDLED alarmingly over the past two decades. DWINDLED most nearly means:",
     "choices": [
-      { "id": "A", "text": "Steadily expanded" },
-      { "id": "B", "text": "Gradually diminished" },
-      { "id": "C", "text": "Suddenly disappeared" },
-      { "id": "D", "text": "Remained unchanged" }
+      {
+        "id": "A",
+        "text": "Steadily expanded"
+      },
+      {
+        "id": "B",
+        "text": "Suddenly disappeared"
+      },
+      {
+        "id": "C",
+        "text": "Remained unchanged"
+      },
+      {
+        "id": "D",
+        "text": "Progressively declined"
+      },
+      {
+        "id": "E",
+        "text": "Gradually diminished"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "Dwindle means to become steadily smaller or fewer — a gradual shrinking rather than an abrupt loss. The word suggests a process that continues over time, which fits the sentence's mention of 'the past two decades,' a long span. 'Gradually diminished' captures both the process (gradual) and the direction (getting smaller). The word 'alarmingly' confirms that the scale of reduction is serious enough to cause concern, reinforcing that the area did not merely shift or pause but actually decreased. 'Steadily expanded' is the direct opposite. 'Suddenly disappeared' contradicts the gradual sense of dwindle — something that dwindles shrinks slowly, not in one moment. 'Remained unchanged' describes stability, again the opposite of dwindling.",
     "distractorExplanations": {
       "A": "'Steadily expanded' is the direct antonym of dwindled. Dwindling means growing smaller, not larger.",
-      "C": "'Suddenly disappeared' applies the wrong speed. Dwindle describes a gradual, drawn-out reduction; something that dwindles shrinks bit by bit, not in one moment.",
-      "D": "'Remained unchanged' describes stasis. Dwindle implies movement — specifically, downward movement sustained over time."
+      "B": "'Suddenly disappeared' applies the wrong speed. Dwindle describes a gradual, drawn-out reduction; something that dwindles shrinks bit by bit, not in one moment.",
+      "C": "'Remained unchanged' describes stasis. Dwindle implies movement — specifically, downward movement sustained over time.",
+      "D": "'Progressively declined' is a near-paraphrase of gradually diminished, capturing both the ongoing nature and the downward direction of dwindling; while it is very close in meaning, 'gradually diminished' is the standard answer because it more directly translates the specific combination of gradualness and reduction that 'dwindle' denotes."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "Picture a candle DWINDLING — it gets shorter bit by bit as it burns. Any quantity that dwindles is steadily shrinking: funds dwindle, populations dwindle, opportunities dwindle."
     },
-    "tags": ["vocabulary", "synonyms"]
+    "tags": [
+      "vocabulary",
+      "synonyms"
+    ]
   },
   {
     "id": "verb-0141",
@@ -143,23 +247,44 @@
     "difficulty": "Easy",
     "question": "Reckless handling of government funds puts the entire program in JEOPARDY. JEOPARDY most nearly means:",
     "choices": [
-      { "id": "A", "text": "Serious risk of harm or failure" },
-      { "id": "B", "text": "Careful scrutiny by auditors" },
-      { "id": "C", "text": "Permanent suspension of operations" },
-      { "id": "D", "text": "Formal investigation process" }
+      {
+        "id": "A",
+        "text": "Careful scrutiny by auditors"
+      },
+      {
+        "id": "B",
+        "text": "Permanent suspension of operations"
+      },
+      {
+        "id": "C",
+        "text": "Serious risk of harm or failure"
+      },
+      {
+        "id": "D",
+        "text": "Formal investigation process"
+      },
+      {
+        "id": "E",
+        "text": "Imminent danger of closure"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "Jeopardy means a situation of serious danger or risk — exposure to loss, harm, or failure. The word comes from the Old French 'jeu parti,' a divided or uncertain game, and it captures the precariousness of a situation where a bad outcome is genuinely possible. In the sentence, reckless handling of funds is the cause and jeopardy is the threatened consequence — the program could fail, be defunded, or face sanctions. 'Serious risk of harm or failure' translates that sense precisely. The other options each substitute a specific process for the general condition of risk. 'Careful scrutiny' is a reaction to a problem, not the state of peril itself. 'Permanent suspension' is one possible outcome of being in jeopardy, but jeopardy names the uncertainty before any outcome arrives. 'Formal investigation' is also a response, not the imperilled condition that prompts it.",
     "distractorExplanations": {
-      "B": "'Careful scrutiny by auditors' is a procedural response to mismanagement. Jeopardy is the state of danger that might trigger scrutiny, not the scrutiny itself.",
-      "C": "'Permanent suspension' is one possible bad outcome of being in jeopardy. But jeopardy names the risk — the possibility of that outcome — not the outcome after it has occurred.",
-      "D": "'Formal investigation process' is another response to a problem. A program in jeopardy may later face investigation, but jeopardy describes the endangered state, not what follows from it."
+      "A": "'Careful scrutiny by auditors' is a procedural response to mismanagement. Jeopardy is the state of danger that might trigger scrutiny, not the scrutiny itself.",
+      "B": "'Permanent suspension' is one possible bad outcome of being in jeopardy. But jeopardy names the risk — the possibility of that outcome — not the outcome after it has occurred.",
+      "D": "'Formal investigation process' is another response to a problem. A program in jeopardy may later face investigation, but jeopardy describes the endangered state, not what follows from it.",
+      "E": "'Imminent danger of closure' is a more specific version of jeopardy that adds the idea of organizational shutdown; jeopardy names a general condition of risk without specifying the form of harm, so restricting it to 'closure' makes this option too narrow — a program in jeopardy may face many different forms of harm, not exclusively closure."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "JEOPARDY = danger + uncertainty. A program in jeopardy is at risk — the outcome could go either way, but a bad one is real and near. It describes a threatened state, not a result."
     },
-    "tags": ["vocabulary", "synonyms", "civic-context"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "civic-context"
+    ]
   },
   {
     "id": "verb-0142",
@@ -170,23 +295,44 @@
     "difficulty": "Medium",
     "question": "The proposed salary rollback was REPUGNANT to the civil servants, who viewed it as a violation of their hard-earned rights. REPUGNANT most nearly means:",
     "choices": [
-      { "id": "A", "text": "Mildly inconvenient" },
-      { "id": "B", "text": "Unexpectedly generous" },
-      { "id": "C", "text": "Strongly acceptable" },
-      { "id": "D", "text": "Deeply offensive and objectionable" }
+      {
+        "id": "A",
+        "text": "Mildly inconvenient"
+      },
+      {
+        "id": "B",
+        "text": "Unexpectedly generous"
+      },
+      {
+        "id": "C",
+        "text": "Deeply offensive and objectionable"
+      },
+      {
+        "id": "D",
+        "text": "Strongly acceptable"
+      },
+      {
+        "id": "E",
+        "text": "Fundamentally unjust and inequitable"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "explanation": "Repugnant comes from the Latin 'repugnare,' meaning to fight against, and it describes something so contrary to one's values or sensibilities that it provokes strong opposition or moral disgust. In the sentence, the civil servants do not merely dislike the rollback — they view it as a 'violation of their hard-earned rights,' language that signals deep moral objection, not mere inconvenience. 'Deeply offensive and objectionable' matches both the intensity and the moral register that repugnant requires. 'Mildly inconvenient' is far too weak — repugnant implies a visceral rejection, not a minor annoyance. 'Unexpectedly generous' inverts the meaning entirely — a repugnant proposal is one people want to resist, not welcome. 'Strongly acceptable' is again the direct opposite: something repugnant is actively resisted, not accepted.",
     "distractorExplanations": {
       "A": "'Mildly inconvenient' severely undersells the intensity of repugnant. The word carries moral force — something repugnant fights against a person's deepest convictions, not merely their comfort.",
       "B": "'Unexpectedly generous' reverses the meaning entirely. A repugnant measure is one people push back against precisely because it is harmful or unjust, not because it is beneficial.",
-      "C": "'Strongly acceptable' is the opposite of repugnant. Something repugnant is something people refuse to accept; it repels rather than attracts agreement."
+      "D": "'Strongly acceptable' is the opposite of repugnant. Something repugnant is something people refuse to accept; it repels rather than attracts agreement.",
+      "E": "'Fundamentally unjust and inequitable' describes a violation of fairness principles, which could characterize a salary rollback; however, repugnant names the emotional and moral reaction of strong disgust and offense, not specifically the abstract quality of injustice — something can be repugnant without being formally unjust, and unjust without producing the visceral aversion repugnant implies."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "REPUGNANT comes from 'repugnare' — to fight back. Something repugnant makes you want to resist and push it away. It is more than disliked: it is morally offensive, like a punch that demands a counter."
     },
-    "tags": ["vocabulary", "synonyms", "civic-context"]
+    "tags": [
+      "vocabulary",
+      "synonyms",
+      "civic-context"
+    ]
   },
   {
     "id": "verb-0143",
@@ -197,23 +343,44 @@
     "difficulty": "Medium",
     "question": "When the team leader realized that the deadline could not be met, she _____ to the department head that additional staff might be needed, without making a direct request.",
     "choices": [
-      { "id": "A", "text": "demanded" },
-      { "id": "B", "text": "intimated" },
-      { "id": "C", "text": "proclaimed" },
-      { "id": "D", "text": "dismissed" }
+      {
+        "id": "A",
+        "text": "demanded"
+      },
+      {
+        "id": "B",
+        "text": "proclaimed"
+      },
+      {
+        "id": "C",
+        "text": "dismissed"
+      },
+      {
+        "id": "D",
+        "text": "suggested"
+      },
+      {
+        "id": "E",
+        "text": "intimated"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "The blank must fit both the grammar and the logical situation: the leader did not make a direct request — she communicated the need indirectly. 'Intimated' means to make something known in an indirect or subtle way, hinting at it rather than stating it outright. The phrase 'without making a direct request' is the decisive context clue that rules out every forthright option. 'Demanded' is the opposite of indirect — it is a forceful, explicit claim. 'Proclaimed' is a public, formal announcement, again the opposite of a subtle hint. 'Dismissed' means to reject or send away, which contradicts the idea of communicating a need at all. Only 'intimated' matches the indirectness the sentence specifies.",
     "distractorExplanations": {
       "A": "'Demanded' is forceful and explicit — the direct opposite of the indirect communication the sentence specifies. A demand is not a hint; it is an open claim.",
-      "C": "'Proclaimed' is a formal, public statement. Proclaiming something leaves no room for the subtlety or indirectness that 'without making a direct request' requires.",
-      "D": "'Dismissed' means to reject or disregard something. The sentence says she communicated a need; dismissing is the opposite of raising or signalling a concern."
+      "B": "'Proclaimed' is a formal, public statement. Proclaiming something leaves no room for the subtlety or indirectness that 'without making a direct request' requires.",
+      "C": "'Dismissed' means to reject or disregard something. The sentence says she communicated a need; dismissing is the opposite of raising or signalling a concern.",
+      "D": "'Suggested' also means to put forward an idea indirectly rather than stating it outright, making it a near-synonym of intimated in this context; however, intimated is the more precise answer because it specifically emphasizes the indirect, hinting quality of the communication — 'without making a direct request' is the key phrase that points to intimated rather than the more general 'suggested.'"
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "INTIMATE (verb) = to hint at or suggest indirectly. Distinguish it from 'intimate' (adjective, meaning close or personal). When someone intimates something, they imply it without saying it outright — the full statement is left to the listener."
     },
-    "tags": ["sentence-completion", "vocabulary-in-context", "context-clues"]
+    "tags": [
+      "sentence-completion",
+      "vocabulary-in-context",
+      "context-clues"
+    ]
   },
   {
     "id": "verb-0144",
@@ -224,24 +391,45 @@
     "difficulty": "Medium",
     "question": "Public information officers are expected to keep themselves _____ the latest regulations and policy issuances that affect their agency.",
     "choices": [
-      { "id": "A", "text": "abreast of" },
-      { "id": "B", "text": "aside from" },
-      { "id": "C", "text": "instead of" },
-      { "id": "D", "text": "opposed to" }
+      {
+        "id": "A",
+        "text": "aside from"
+      },
+      {
+        "id": "B",
+        "text": "instead of"
+      },
+      {
+        "id": "C",
+        "text": "opposed to"
+      },
+      {
+        "id": "D",
+        "text": "informed of"
+      },
+      {
+        "id": "E",
+        "text": "abreast of"
+      }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "E",
     "explanation": "The blank is part of an idiomatic prepositional phrase that pairs with 'keep themselves.' To keep oneself 'abreast of' something means to remain fully informed and up to date about it — the idiom comes from the image of staying alongside or level with something so it does not pass you by. In a civil-service context, officers who stay abreast of new regulations can advise and inform the public correctly. No other option forms a grammatically or idiomatically correct completion. 'Aside from' means excluding or apart from, which would say the officers are ignoring regulations rather than tracking them. 'Instead of' marks substitution — one thing in place of another — and does not collocate with 'keep themselves.' 'Opposed to' means against or contrary to, which contradicts the expectation that officers should be current and aligned with policy, not resistant to it.",
     "distractorExplanations": {
-      "B": "'Aside from' means excluding. 'Keep themselves aside from regulations' would mean avoiding regulations, the opposite of the informed awareness the sentence requires.",
-      "C": "'Instead of' marks a substitution. 'Keep themselves instead of regulations' is grammatically incoherent — it cannot form a meaningful unit in this slot.",
-      "D": "'Opposed to' means against. Officers who are 'opposed to' new regulations are actively resisting them, contradicting the expectation of compliance and current knowledge."
+      "A": "'Aside from' means excluding. 'Keep themselves aside from regulations' would mean avoiding regulations, the opposite of the informed awareness the sentence requires.",
+      "B": "'Instead of' marks a substitution. 'Keep themselves instead of regulations' is grammatically incoherent — it cannot form a meaningful unit in this slot.",
+      "C": "'Opposed to' means against. Officers who are 'opposed to' new regulations are actively resisting them, contradicting the expectation of compliance and current knowledge.",
+      "D": "'Keep themselves informed of' is semantically very close to 'keep themselves abreast of' and could almost substitute for it, but the question tests idiomatic expressions specifically; 'abreast of' is the fixed idiom for maintaining current awareness, while 'informed of' simply means made aware — the idiom test requires recognizing the conventional phrase."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "ABREAST OF = keeping pace with. Imagine marching in line: to stay abreast is to stay level with those beside you, not falling behind. To stay abreast of events = to keep up with them as they unfold."
     },
     "reference": "Idiomatic Expressions: 'keep abreast of' means to stay informed or up to date",
-    "tags": ["sentence-completion", "idioms", "idiomatic-usage"]
+    "tags": [
+      "sentence-completion",
+      "idioms",
+      "idiomatic-usage"
+    ]
   },
   {
     "id": "verb-0145",
@@ -252,23 +440,44 @@
     "difficulty": "Hard",
     "question": "After months of setbacks and rejected applications, the examinees found the experience more _____ than they had expected — draining every reserve of patience they had.",
     "choices": [
-      { "id": "A", "text": "invigorating" },
-      { "id": "B", "text": "exhilarating" },
-      { "id": "C", "text": "enervating" },
-      { "id": "D", "text": "motivating" }
+      {
+        "id": "A",
+        "text": "invigorating"
+      },
+      {
+        "id": "B",
+        "text": "exhilarating"
+      },
+      {
+        "id": "C",
+        "text": "enervating"
+      },
+      {
+        "id": "D",
+        "text": "motivating"
+      },
+      {
+        "id": "E",
+        "text": "debilitating"
+      }
     ],
     "correctOptionId": "C",
     "explanation": "The blank requires a word that matches the result described in the appositive that follows: 'draining every reserve of patience they had.' That phrase specifies the effect as total exhaustion — the complete depletion of a resource. 'Enervating' means weakening, draining, or sapping energy and resolve, making it the precise match. The item is Hard because the other three options all describe the opposite emotional direction — energising and stimulating rather than depleting. 'Invigorating' means refreshing and giving energy; 'exhilarating' means producing thrilling excitement; 'motivating' means inspiring action. All three are positive, energising states, and none of them produces the drained, depleted feeling the sentence names. Choosing among four unfamiliar words requires knowing not just the target word but the precise sense that makes each wrong option tempting yet incorrect.",
     "distractorExplanations": {
       "A": "'Invigorating' means energising and refreshing — the opposite of draining. An invigorating experience leaves you ready for more; an enervating one leaves you spent.",
       "B": "'Exhilarating' describes intense excitement and elevation of spirit — again energising rather than depleting. The sentence specifies a draining of patience, not a surge of it.",
-      "D": "'Motivating' means inspiring action or effort. A motivating experience would push the examinees forward, not deplete every reserve they had."
+      "D": "'Motivating' means inspiring action or effort. A motivating experience would push the examinees forward, not deplete every reserve they had.",
+      "E": "'Debilitating' means making someone very weak or unable to function effectively, which is close to enervating but emphasizes physical weakness or incapacitation rather than the gradual draining of energy and resolve; both describe depletion, but enervating is specifically about sapping vitality and motivation, while debilitating can refer to more severe physical impairment."
     },
     "tip": {
       "label": "Vocabulary Trick",
       "text": "ENERVATING does not mean energising, despite the shared letters. ENervating drains energy; ENergising adds it. Picture 'enerv-' as removing the nerve — leaving someone too weak to resist or respond."
     },
-    "tags": ["sentence-completion", "vocabulary-in-context", "commonly-confused-words"]
+    "tags": [
+      "sentence-completion",
+      "vocabulary-in-context",
+      "commonly-confused-words"
+    ]
   },
   {
     "id": "verb-0146",
@@ -279,24 +488,45 @@
     "difficulty": "Hard",
     "question": "Which part of the sentence contains an error?\n\n'The regional director (A) asked the records officer and (B) myself to present (C) the consolidated report (D) to the commission.'",
     "choices": [
-      { "id": "A", "text": "asked the records officer and" },
-      { "id": "B", "text": "myself to present" },
-      { "id": "C", "text": "the consolidated report" },
-      { "id": "D", "text": "to the commission" }
+      {
+        "id": "A",
+        "text": "asked the records officer and"
+      },
+      {
+        "id": "B",
+        "text": "the consolidated report"
+      },
+      {
+        "id": "C",
+        "text": "to the commission"
+      },
+      {
+        "id": "D",
+        "text": "asked the records officer"
+      },
+      {
+        "id": "E",
+        "text": "myself to present"
+      }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "E",
     "explanation": "Reflexive pronouns — myself, yourself, himself, herself, themselves — serve two legitimate functions: they reflect back on the subject of the clause ('She injured herself') or they add emphasis ('I verified it myself'). They do not substitute for the simple object pronouns me, him, and her. In this sentence, 'the records officer and myself' is the object of the verb 'asked.' The speaker is not the subject of the clause (the director asked, not the speaker), and the pronoun is not being used for emphasis, so the standard object pronoun 'me' is required: 'asked the records officer and me to present.' Using 'myself' instead of 'me' is the classic reflexive-substitution error, common in formal settings where speakers mistakenly believe 'myself' sounds more polished. Parts A, C, and D are all grammatically correct: A sets up the compound object phrase properly, C names the report without error, and D is a well-formed prepositional phrase.",
     "distractorExplanations": {
       "A": "Part A correctly begins the compound object phrase 'the records officer and [pronoun].' The verb 'asked' normally takes a direct object, and the structure of A is sound. The error appears in the pronoun that follows.",
-      "C": "'The consolidated report' is a correctly formed noun phrase serving as the object of the infinitive 'to present.' There is no agreement or phrasing error here.",
-      "D": "'To the commission' is a standard prepositional phrase indicating the audience for the presentation. The preposition 'to' is correctly chosen and the phrase is well-formed."
+      "B": "'The consolidated report' is a correctly formed noun phrase serving as the object of the infinitive 'to present.' There is no agreement or phrasing error here.",
+      "C": "'To the commission' is a standard prepositional phrase indicating the audience for the presentation. The preposition 'to' is correctly chosen and the phrase is well-formed.",
+      "D": "'Asked the records officer' in part A correctly begins the compound object phrase; the verb 'asked' appropriately takes a direct object, and the structure of part A is sound — the error lies in the pronoun 'myself' that follows, not in this part of the phrase."
     },
     "tip": {
       "label": "Common Mistake",
       "text": "MYSELF is not a polite form of ME. Test by removing the other person: 'The director asked myself to present' — immediately wrong. Use MYSELF only when the subject is also I ('I verified it myself') or to add emphasis."
     },
     "reference": "Reflexive Pronouns: 'myself' cannot substitute for the object pronoun 'me'",
-    "tags": ["error-identification", "pronoun-case", "reflexive-pronouns"]
+    "tags": [
+      "error-identification",
+      "pronoun-case",
+      "reflexive-pronouns"
+    ]
   },
   {
     "id": "verb-0147",
@@ -308,22 +538,43 @@
     "passage": "A law that exists only on paper changes nothing. For legislation to reshape behaviour, it must be paired with two things: adequate enforcement machinery and a public that understands what the law requires. Enforcement without education leaves citizens unable to comply even when they intend to. Education without enforcement invites those who choose not to comply to do so at no cost. When either element is absent, the gap between the written rule and actual conduct widens — and a law that is routinely ignored can eventually erode respect for the entire legal order, making future compliance harder still.",
     "question": "Which of the following can be most reasonably inferred from the passage?",
     "choices": [
-      { "id": "A", "text": "Citizens who understand a law will always follow it without the need for enforcement." },
-      { "id": "B", "text": "Enforcement alone, without public education, is sufficient to make a law effective." },
-      { "id": "C", "text": "Repeated non-compliance with one law can reduce respect for the legal system overall." },
-      { "id": "D", "text": "Laws that are widely ignored should be removed from the books immediately." }
+      {
+        "id": "A",
+        "text": "Citizens who understand a law will always follow it without the need for enforcement."
+      },
+      {
+        "id": "B",
+        "text": "Enforcement alone, without public education, is sufficient to make a law effective."
+      },
+      {
+        "id": "C",
+        "text": "Repeated non-compliance with one law can reduce respect for the legal system overall."
+      },
+      {
+        "id": "D",
+        "text": "Laws that are widely ignored should be removed from the books immediately."
+      },
+      {
+        "id": "E",
+        "text": "Both enforcement and education must be provided by the same government agency."
+      }
     ],
     "correctOptionId": "C",
     "explanation": "An inference is a conclusion the passage supports without stating in those exact words. The passage's final sentence supplies the key logic: when a law 'is routinely ignored,' it 'can eventually erode respect for the entire legal order, making future compliance harder still.' That is a direct statement that widespread non-compliance with one law weakens respect for the legal system as a whole — exactly what option C says in fresh wording. The other three options are not weak inferences but direct contradictions of the passage. Option A is refuted by the claim that education without enforcement lets non-compliant people act at no cost — knowing the law is not enough. Option B is refuted by the claim that enforcement without education leaves citizens unable to comply even when willing. Option D is not supported anywhere: the passage argues that implementation must improve through both enforcement and education, not that failed laws should be abolished.",
     "distractorExplanations": {
       "A": "The passage explicitly states that education without enforcement lets those who choose not to comply do so freely — meaning understanding alone does not guarantee compliance. This option contradicts the text.",
       "B": "The passage states that enforcement without education 'leaves citizens unable to comply even when they intend to.' A law applied to people who do not understand it fails on its own terms, so enforcement alone is insufficient.",
-      "D": "The passage prescribes better implementation — enforcement paired with education — not the removal of unenforced laws. Abolishing defective laws is never suggested or implied."
+      "D": "The passage prescribes better implementation — enforcement paired with education — not the removal of unenforced laws. Abolishing defective laws is never suggested or implied.",
+      "E": "The passage argues that enforcement and education must work together but does not require them to come from the same agency; this option introduces an organizational requirement not stated or implied in the text, going beyond what the passage supports."
     },
     "tip": {
       "label": "Logic Rule",
       "text": "For inference questions, the answer must follow from the text without adding new information. Eliminate any option the passage directly contradicts, then choose the one the text supports without stating outright."
     },
-    "tags": ["reading-comprehension", "inference", "civic-context"]
+    "tags": [
+      "reading-comprehension",
+      "inference",
+      "civic-context"
+    ]
   }
 ]

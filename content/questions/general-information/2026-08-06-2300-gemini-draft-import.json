@@ -8,17 +8,34 @@
     "difficulty": "Hard",
     "question": "Under Article IX-B, Section 8 of the 1987 Philippine Constitution, a public officer who wishes to accept a present, emolument, office, or title of any kind from a foreign government must first obtain the consent of:",
     "choices": [
-      { "id": "A", "text": "The President of the Philippines" },
-      { "id": "B", "text": "The Civil Service Commission" },
-      { "id": "C", "text": "The Ombudsman" },
-      { "id": "D", "text": "The Congress of the Philippines" }
+      {
+        "id": "A",
+        "text": "The President of the Philippines"
+      },
+      {
+        "id": "B",
+        "text": "The Civil Service Commission"
+      },
+      {
+        "id": "C",
+        "text": "The Congress of the Philippines"
+      },
+      {
+        "id": "D",
+        "text": "The Ombudsman"
+      },
+      {
+        "id": "E",
+        "text": "The Commission on Appointments, acting on behalf of the Senate"
+      }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "explanation": "Article IX-B, Section 8 of the 1987 Constitution reads in part: 'No elective or appointive public officer or employee shall … accept without the consent of the Congress, any present, emolument, office, or title of any kind from any foreign government.' The requirement of congressional consent — not presidential or executive-agency consent — reflects the constitutional principle that the collective legislative branch, representing the sovereign people, is the appropriate body to evaluate whether accepting a foreign gift or honor compromises national interest or public trust. This section also prohibits double compensation unless specifically authorized by law.",
     "distractorExplanations": {
       "A": "While the President manages foreign relations and has broad executive authority, the Constitution assigns the consent power for foreign gifts and titles specifically to Congress — not to the President acting alone. Executive discretion on foreign affairs does not override this textual requirement.",
       "B": "The Civil Service Commission is the central personnel agency under Article IX-B and administers the merit system, but it has no constitutional authority to consent to foreign emoluments. The CSC's mandate is domestic personnel administration.",
-      "C": "The Ombudsman investigates and prosecutes public officials for corruption and administrative offenses under Article XI but holds no constitutional role in approving or withholding consent for foreign gifts. That function belongs to Congress."
+      "D": "The Ombudsman investigates and prosecutes public officials for corruption and administrative offenses under Article XI but holds no constitutional role in approving or withholding consent for foreign gifts. That function belongs to Congress.",
+      "E": "The Commission on Appointments confirms appointments but does not grant consent for acceptance of foreign gifts; under the Constitution, it is the Congress of the Philippines (as a whole) that must give its consent for public officials to accept foreign gifts or emoluments."
     },
     "tip": {
       "label": "Constitution Reminder",
@@ -42,17 +59,34 @@
     "difficulty": "Medium",
     "question": "Under the 1987 Philippine Constitution, the Vice-President may be appointed as a Member of the Cabinet. What confirmation requirement applies to such an appointment?",
     "choices": [
-      { "id": "A", "text": "Confirmation by the Senate alone" },
-      { "id": "B", "text": "Confirmation by the Commission on Appointments" },
-      { "id": "C", "text": "No confirmation is required" },
-      { "id": "D", "text": "Confirmation by a majority of both houses of Congress in joint session" }
+      {
+        "id": "A",
+        "text": "No confirmation is required"
+      },
+      {
+        "id": "B",
+        "text": "Confirmation by the Senate alone"
+      },
+      {
+        "id": "C",
+        "text": "Confirmation by the Commission on Appointments"
+      },
+      {
+        "id": "D",
+        "text": "Confirmation by a majority of both houses of Congress in joint session"
+      },
+      {
+        "id": "E",
+        "text": "Confirmation by the Civil Service Commission is required for VP Cabinet appointments."
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "A",
     "explanation": "Article VII, Section 3 of the 1987 Constitution provides: 'The Vice-President may be appointed as a Member of the Cabinet. Such appointment requires no confirmation.' This exemption from the Commission on Appointments process is the only Cabinet appointment that operates without CA confirmation. The framers created it to allow a smooth integration of the Vice-President into the executive team when the President chooses to include the Vice-President in Cabinet work, without the delay and political friction of a CA hearing. Regular cabinet members such as department secretaries, ambassadors, and military officers of senior rank do ordinarily require CA confirmation when their appointments are included in the constitutional list.",
     "distractorExplanations": {
-      "A": "Senate confirmation alone is not the constitutional mechanism for any Cabinet appointment. The Constitution routes confirmable appointments through the Commission on Appointments, not the Senate sitting alone. For VP Cabinet appointments, even that body is bypassed.",
-      "B": "The Commission on Appointments confirms certain high-level executive appointments under Article VII, Section 16, but Article VII, Section 3 explicitly carves out the Vice-President's Cabinet appointment from this requirement. The CA has no role to play here.",
-      "D": "Congress acting in joint session is used for specific constitutional functions such as canvassing presidential election results. There is no provision requiring joint-session confirmation of Cabinet appointments."
+      "B": "Senate confirmation alone is not the constitutional mechanism for any Cabinet appointment. The Constitution routes confirmable appointments through the Commission on Appointments, not the Senate sitting alone. For VP Cabinet appointments, even that body is bypassed.",
+      "C": "The Commission on Appointments confirms certain high-level executive appointments under Article VII, Section 16, but Article VII, Section 3 explicitly carves out the Vice-President's Cabinet appointment from this requirement. The CA has no role to play here.",
+      "D": "Congress acting in joint session is used for specific constitutional functions such as canvassing presidential election results. There is no provision requiring joint-session confirmation of Cabinet appointments.",
+      "E": "The CSC administers civil service rules but does not confirm Cabinet appointments; Art. VII Sec. 3 explicitly states the Vice-President may be appointed to the Cabinet without need for any confirmation by the Commission on Appointments or any other body."
     },
     "tip": {
       "label": "Constitution Reminder",
@@ -76,17 +110,34 @@
     "difficulty": "Hard",
     "question": "Under Article VI, Section 5(2) of the 1987 Philippine Constitution and Republic Act No. 7941 (Party-List System Act), which of the following sectors is EXPLICITLY prohibited from registration and participation in the party-list system?",
     "choices": [
-      { "id": "A", "text": "Urban poor sector" },
-      { "id": "B", "text": "Youth sector" },
-      { "id": "C", "text": "Religious sector" },
-      { "id": "D", "text": "Indigenous cultural communities" }
+      {
+        "id": "A",
+        "text": "Urban poor sector"
+      },
+      {
+        "id": "B",
+        "text": "Youth sector"
+      },
+      {
+        "id": "C",
+        "text": "Indigenous cultural communities"
+      },
+      {
+        "id": "D",
+        "text": "Religious sector"
+      },
+      {
+        "id": "E",
+        "text": "Women sector"
+      }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "Article VI, Section 5(2) of the Constitution lists the sectors eligible for party-list representation — labor, peasant, women, youth, urban poor, indigenous cultural communities, and others — but expressly provides 'except the religious sector.' Republic Act No. 7941, Section 6 reinforces this by making being 'a religious sect or denomination, organization or association, organized for religious purposes' a ground for refusing or cancelling party-list registration. The exclusion protects the constitutional principle of separation of Church and State under Article II, Section 6: allowing religious organizations direct legislative seats would entangle religious institutions in partisan politics and risk the State sponsoring specific religious viewpoints.",
     "distractorExplanations": {
       "A": "The urban poor sector is among the marginalized groups explicitly mentioned in Article VI, Section 5(2) as eligible for party-list representation, reflecting the Constitution's social justice goals. It is not excluded.",
       "B": "The youth sector is one of the constitutional beneficiaries of the party-list system and may register organizations for that purpose. Youth participation in governance is separately encouraged by the Constitution through the Sangguniang Kabataan.",
-      "D": "Indigenous cultural communities (ICCs) are listed among the sectors the party-list system is designed to represent. Their inclusion recognizes the historical exclusion of indigenous peoples from mainstream political power."
+      "C": "Indigenous cultural communities (ICCs) are listed among the sectors the party-list system is designed to represent. Their inclusion recognizes the historical exclusion of indigenous peoples from mainstream political power.",
+      "E": "The women sector is among the sectors expressly included in the party-list system under Art. VI Sec. 5; only the religious sector is specifically excluded to uphold the constitutional separation of Church and State."
     },
     "tip": {
       "label": "Law Reminder",
@@ -110,17 +161,34 @@
     "difficulty": "Hard",
     "question": "Under Article VII, Section 4 of the 1987 Philippine Constitution, which body is constituted as the sole judge of all contests relating to the election, returns, and qualifications of the President and Vice-President?",
     "choices": [
-      { "id": "A", "text": "The Commission on Elections, acting en banc" },
-      { "id": "B", "text": "The Senate Electoral Tribunal" },
-      { "id": "C", "text": "The Commission on Appointments" },
-      { "id": "D", "text": "The Supreme Court, sitting en banc, as the Presidential Electoral Tribunal" }
+      {
+        "id": "A",
+        "text": "The Commission on Elections, acting en banc"
+      },
+      {
+        "id": "B",
+        "text": "The Senate Electoral Tribunal"
+      },
+      {
+        "id": "C",
+        "text": "The Commission on Appointments"
+      },
+      {
+        "id": "D",
+        "text": "The Supreme Court, sitting en banc, as the Presidential Electoral Tribunal"
+      },
+      {
+        "id": "E",
+        "text": "The House of Representatives Electoral Tribunal, convened as a presidential body"
+      }
     ],
     "correctOptionId": "D",
     "explanation": "Article VII, Section 4 (last paragraph) of the 1987 Constitution provides: 'The Supreme Court, sitting en banc, shall be the sole judge of all contests relating to the election, returns, and qualifications of the President or Vice-President, and may promulgate its rules for the purpose.' When exercising this jurisdiction, the Court acts as the Presidential Electoral Tribunal (PET). The exclusive jurisdiction of the Supreme Court over presidential and vice-presidential contests — rather than COMELEC or any congressional body — reflects the Constitution's intent to have the highest judicial authority, insulated from electoral politics, resolve disputes about the country's top two offices. The House and Senate Electoral Tribunals (Article VI, Section 17) serve analogous roles but only for contests involving their respective members.",
     "distractorExplanations": {
       "A": "COMELEC has broad authority over elections but its jurisdiction covers contests for offices below the President and Vice-President. Presidential and vice-presidential contests are constitutionally withheld from COMELEC and assigned exclusively to the Supreme Court sitting en banc as the PET.",
       "B": "The Senate Electoral Tribunal is the sole judge of contests relating to the election, returns, and qualifications of Senators — not the President or Vice-President. Confusing the PET with the SET is a common error because both are described as 'sole judges' of specific electoral contests.",
-      "C": "The Commission on Appointments is a congressional body that confirms certain executive appointments. It has no role in adjudicating electoral contests of any kind; it is purely a confirmation body under Article VI, Section 18."
+      "C": "The Commission on Appointments is a congressional body that confirms certain executive appointments. It has no role in adjudicating electoral contests of any kind; it is purely a confirmation body under Article VI, Section 18.",
+      "E": "The HRET has jurisdiction over election contests involving members of the House of Representatives — not the President or Vice-President; Art. VII Sec. 4 designates the Supreme Court sitting en banc as the Presidential Electoral Tribunal."
     },
     "tip": {
       "label": "Constitution Reminder",
@@ -144,17 +212,34 @@
     "difficulty": "Hard",
     "question": "Under Article XVII, Section 2 of the 1987 Philippine Constitution, amendments to the Constitution may be proposed directly by the people through initiative upon a petition signed by at least what fraction of the total number of registered voters, with a mandatory minimum from each legislative district?",
     "choices": [
-      { "id": "A", "text": "At least 10% of total registered voters, with at least 5% from each legislative district" },
-      { "id": "B", "text": "At least 12% of total registered voters, with at least 3% from each legislative district" },
-      { "id": "C", "text": "At least 15% of total registered voters, with at least 5% from each legislative district" },
-      { "id": "D", "text": "At least 20% of total registered voters nationwide, with no per-district requirement" }
+      {
+        "id": "A",
+        "text": "At least 10% of total registered voters, with at least 5% from each legislative district"
+      },
+      {
+        "id": "B",
+        "text": "At least 12% of total registered voters, with at least 3% from each legislative district"
+      },
+      {
+        "id": "C",
+        "text": "At least 15% of total registered voters, with at least 5% from each legislative district"
+      },
+      {
+        "id": "D",
+        "text": "At least 20% of total registered voters nationwide, with no per-district requirement"
+      },
+      {
+        "id": "E",
+        "text": "At least 8% of total registered voters, with at least 2% from each legislative district."
+      }
     ],
     "correctOptionId": "B",
     "explanation": "Article XVII, Section 2 of the 1987 Constitution states that amendments may be directly proposed by the people through initiative 'upon a petition of at least twelve per centum of the total number of registered voters, of which every legislative district must be represented by at least three per centum of the registered voters therein.' Two additional constraints apply: no initiative may be authorized within five years following the ratification of the 1987 Constitution, and no more than once every five years thereafter. The per-district minimum prevents the initiative from being driven by a single heavily populated region; every district must have a stake in the proposed change. Note that this provision covers only amendments, not revisions — a more fundamental overhaul of the Constitution requires a constitutional convention or Congress acting as a constituent assembly.",
     "distractorExplanations": {
       "A": "Ten percent nationwide and five percent per district are plausible-sounding thresholds but are not what the Constitution prescribes. The correct figures are 12% and 3%. Inverting the percentages — higher district, lower national — would create an inconsistent structure the framers did not adopt.",
       "C": "Fifteen percent nationwide with five percent per district would set a higher bar than the constitutional text requires. The 12%-and-3% formula was chosen to make the initiative accessible to genuinely popular movements while still demanding broad geographic support.",
-      "D": "The absence of a per-district requirement would allow densely populated Metro Manila to drive a constitutional initiative without any representation from the rest of the country's legislative districts — precisely the scenario the mandatory 3%-per-district floor prevents."
+      "D": "The absence of a per-district requirement would allow densely populated Metro Manila to drive a constitutional initiative without any representation from the rest of the country's legislative districts — precisely the scenario the mandatory 3%-per-district floor prevents.",
+      "E": "Neither 8% nor 2% matches the constitutional requirement; Art. XVII Sec. 2 prescribes at least 12% of total registered voters as petitioners, with at least 3% from each legislative district represented."
     },
     "tip": {
       "label": "Constitution Reminder",

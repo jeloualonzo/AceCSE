@@ -22,15 +22,20 @@
       },
       {
         "id": "D",
+        "text": "The right to speedy disposition of cases"
+      },
+      {
+        "id": "E",
         "text": "The equal protection of the laws"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "E",
     "explanation": "Article III, Section 1 of the 1987 Constitution contains two distinct guarantees in a single sentence: the due process clause and the equal protection clause. The full text reads: 'No person shall be deprived of life, liberty, or property without due process of law, nor shall any person be denied the equal protection of the laws.' The equal protection clause means the government must apply laws consistently across similarly situated persons — it prohibits arbitrary or discriminatory classifications. Many examinees know the due process half but overlook that equal protection is explicitly paired with it in the very same section.",
     "distractorExplanations": {
       "A": "The right to counsel of choice is found in Article III, Section 12(1), not in Section 1. It applies to persons under custodial investigation, not as the paired guarantee alongside due process in the opening clause of the Bill of Rights.",
       "B": "The privilege of the writ of habeas corpus is protected by Article III, Section 15, which covers unlawful detention. It is a separate protection in a separate section, not the right paired with the due process clause in Section 1.",
-      "C": "No constitutional provision grants absolute immunity from prosecution. Even the President's immunity from suit while in office is not absolute, and no private person possesses such immunity."
+      "C": "No constitutional provision grants absolute immunity from prosecution. Even the President's immunity from suit while in office is not absolute, and no private person possesses such immunity.",
+      "D": "The right to speedy disposition of cases before all judicial, quasi-judicial, and administrative bodies is guaranteed under Art. III Sec. 16 — a separate provision from the due process and equal protection clause in Sec. 1."
     },
     "tip": {
       "label": "Constitution Reminder",
@@ -68,6 +73,10 @@
       {
         "id": "D",
         "text": "Section 8"
+      },
+      {
+        "id": "E",
+        "text": "Section 5"
       }
     ],
     "correctOptionId": "A",
@@ -75,7 +84,8 @@
     "distractorExplanations": {
       "B": "Section 2 is the Declaration of Policies, which sets the overarching State policy of promoting high ethical standards — it is the purpose clause, not the enumeration of specific behavioral norms.",
       "C": "Section 7 covers prohibited acts and transactions, such as soliciting gifts, engaging in business in conflict of interest, and disclosing confidential information. It contains prohibitions, not the affirmative norms of conduct.",
-      "D": "Section 8 governs the Statement of Assets, Liabilities and Net Worth (SALN) — the filing requirements, exemptions, and public accessibility of those disclosures. SALN rules are a separate obligation from the behavioral standards listed in Section 4."
+      "D": "Section 8 governs the Statement of Assets, Liabilities and Net Worth (SALN) — the filing requirements, exemptions, and public accessibility of those disclosures. SALN rules are a separate obligation from the behavioral standards listed in Section 4.",
+      "E": "Section 5 of RA 6713 covers duties of public officials and employees (e.g., providing public information within 15 working days); the norms of conduct are enumerated in Section 4."
     },
     "tip": {
       "label": "Law Reminder",
@@ -104,23 +114,28 @@
       },
       {
         "id": "B",
-        "text": "March 31"
+        "text": "April 30"
       },
       {
         "id": "C",
-        "text": "December 31"
+        "text": "March 31"
       },
       {
         "id": "D",
-        "text": "April 30"
+        "text": "December 31"
+      },
+      {
+        "id": "E",
+        "text": "On or before June 30 of each year"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "B",
     "explanation": "Section 8 of RA 6713 requires that the SALN and Disclosure of Business Interests be filed on or before April 30 of every year after the initial submission. The full filing schedule under Section 8 has three trigger points: (a) within 30 days after assuming office; (b) on or before April 30 of every year thereafter; and (c) within 30 days after separation from service. The annual April 30 deadline aligns roughly with the income tax return deadline, making it a natural checkpoint for financial transparency. Missing this deadline exposes the official to administrative sanctions under Section 11.",
     "distractorExplanations": {
       "A": "January 15 is not a SALN deadline under RA 6713. It is sometimes confused with early-year government reporting deadlines for other forms, but the annual SALN is due April 30.",
-      "B": "March 31 is not the statutory deadline. It may be confused with tax-related deadlines (e.g., some corporate returns), but the Code of Conduct explicitly fixes April 30 as the annual SALN submission date.",
-      "C": "December 31 is the end of the calendar year for which the SALN covers information, but it is not the filing deadline. The law gives officials until April 30 of the following year to compile and submit the completed form."
+      "C": "March 31 is not the statutory deadline. It may be confused with tax-related deadlines (e.g., some corporate returns), but the Code of Conduct explicitly fixes April 30 as the annual SALN submission date.",
+      "D": "December 31 is the end of the calendar year for which the SALN covers information, but it is not the filing deadline. The law gives officials until April 30 of the following year to compile and submit the completed form.",
+      "E": "June 30 coincides with the end of the first semester but is not the SALN filing deadline; Sec. 8 of RA 6713 requires the annual SALN to be filed on or before April 30 of each year."
     },
     "tip": {
       "label": "Law Reminder",
@@ -145,27 +160,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "RA 9003"
-      },
-      {
-        "id": "B",
         "text": "RA 7586"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "RA 8749"
       },
       {
-        "id": "D",
+        "id": "C",
         "text": "RA 9275"
+      },
+      {
+        "id": "D",
+        "text": "RA 9003"
+      },
+      {
+        "id": "E",
+        "text": "RA 8485"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "D",
     "explanation": "Republic Act No. 9003, signed in 2001, is the Ecological Solid Waste Management Act of 2000. It establishes a comprehensive framework for solid waste management in the Philippines, mandating the phaseout of open dumpsites, requiring sanitary landfills, imposing a waste hierarchy (source reduction, reuse, recycling, composting, and recovery before disposal), and assigning LGUs the primary responsibility for solid waste management. The other options name different environmental laws: RA 7586 is the NIPAS Act (protected areas); RA 8749 is the Philippine Clean Air Act of 1999; RA 9275 is the Philippine Clean Water Act of 2004.",
     "distractorExplanations": {
-      "B": "RA 7586 is the National Integrated Protected Areas System (NIPAS) Act of 1992, which governs the management of protected areas such as national parks, wildlife sanctuaries, and natural biotic areas. It has nothing to do with solid waste.",
-      "C": "RA 8749 is the Philippine Clean Air Act of 1999, which addresses air pollution from mobile and stationary sources and establishes the framework for air quality management led by the DENR. It is a different environmental statute.",
-      "D": "RA 9275 is the Philippine Clean Water Act of 2004, which covers freshwater, brackish, and marine water quality management. It is easy to confuse with RA 9003 because both are environmental laws of the same era."
+      "A": "RA 7586 is the National Integrated Protected Areas System (NIPAS) Act of 1992, which governs the management of protected areas such as national parks, wildlife sanctuaries, and natural biotic areas. It has nothing to do with solid waste.",
+      "B": "RA 8749 is the Philippine Clean Air Act of 1999, which addresses air pollution from mobile and stationary sources and establishes the framework for air quality management led by the DENR. It is a different environmental statute.",
+      "C": "RA 9275 is the Philippine Clean Water Act of 2004, which covers freshwater, brackish, and marine water quality management. It is easy to confuse with RA 9003 because both are environmental laws of the same era.",
+      "E": "RA 8485 is the Animal Welfare Act of 1998; RA 9003 is the Ecological Solid Waste Management Act of 2000, which governs collection, segregation, recycling, and disposal of solid waste."
     },
     "tip": {
       "label": "Mnemonic",
@@ -189,27 +209,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "The Civil Code of the Philippines"
+        "text": "The 1987 Constitution itself"
       },
       {
         "id": "B",
-        "text": "The Revised Penal Code"
+        "text": "The Civil Code of the Philippines"
       },
       {
         "id": "C",
-        "text": "The Local Government Code"
+        "text": "The Revised Penal Code"
       },
       {
         "id": "D",
-        "text": "The 1987 Constitution itself"
+        "text": "The Local Government Code"
+      },
+      {
+        "id": "E",
+        "text": "The Administrative Code of 1987 (EO 292)"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "The 1987 Constitution is the supreme law of the Philippines. This supremacy is implicit in its structure — it creates the three branches of government, defines their powers and limits, and requires that all statutes, executive orders, and court decisions conform to its provisions. A law that conflicts with the Constitution is void and without effect. The Civil Code, Revised Penal Code, and Local Government Code are all ordinary statutes enacted by Congress; they derive their validity from the Constitution and cannot override it. The constitutional supremacy doctrine is enforced by the Supreme Court through the power of judicial review.",
     "distractorExplanations": {
-      "A": "The Civil Code governs private relations — contracts, property, family law, and obligations — and is an important law, but it is a statute subordinate to the Constitution. Any Civil Code provision that violates the Constitution can be struck down.",
-      "B": "The Revised Penal Code defines crimes and penalties and is central to Philippine criminal law, but it too is a statute. Congress may amend or repeal it, subject to constitutional limits. It is not supreme.",
-      "C": "The Local Government Code (RA 7160) defines the powers, structure, and finances of LGUs, but it is a statute enacted pursuant to the constitutional mandate in Article X. It cannot override the Constitution."
+      "B": "The Civil Code governs private relations — contracts, property, family law, and obligations — and is an important law, but it is a statute subordinate to the Constitution. Any Civil Code provision that violates the Constitution can be struck down.",
+      "C": "The Revised Penal Code defines crimes and penalties and is central to Philippine criminal law, but it too is a statute. Congress may amend or repeal it, subject to constitutional limits. It is not supreme.",
+      "D": "The Local Government Code (RA 7160) defines the powers, structure, and finances of LGUs, but it is a statute enacted pursuant to the constitutional mandate in Article X. It cannot override the Constitution.",
+      "E": "The Administrative Code of 1987 is a compilation of laws governing the executive branch and administrative procedures; it is statutory, not constitutional, and is subordinate to the 1987 Constitution as the supreme law."
     },
     "tip": {
       "label": "Constitution Reminder",
@@ -234,11 +259,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "The Congress of the Philippines, consisting of a Senate and a House of Representatives"
+        "text": "The Senate of the Philippines acting alone"
       },
       {
         "id": "B",
-        "text": "The Senate of the Philippines acting alone"
+        "text": "The Congress of the Philippines, consisting of a Senate and a House of Representatives"
       },
       {
         "id": "C",
@@ -247,14 +272,19 @@
       {
         "id": "D",
         "text": "The Supreme Court and the Congress, sharing legislative authority"
+      },
+      {
+        "id": "E",
+        "text": "The Senate of the Philippines, the House of Representatives, and the Commission on Appointments, acting as a joint deliberative assembly."
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "B",
     "explanation": "Article VI, Section 1 states: 'The legislative power shall be vested in the Congress of the Philippines which shall consist of a Senate and a House of Representatives, except to the extent reserved to the people by the provision on initiative and referendum.' This provision establishes the Philippines as a bicameral legislature — two chambers, each with distinct constituencies and functions. The Senate represents the nation at large; the House represents legislative districts. The joint action of both chambers is generally required to pass laws, with each chamber deliberating and voting separately. The exception in the section acknowledges that citizens may directly legislate through the initiative and referendum process.",
     "distractorExplanations": {
-      "B": "The Senate acts alone only in specific constitutional functions — such as ratifying treaties (with a two-thirds vote) and trying impeachment cases — not in ordinary legislation. General lawmaking requires both chambers.",
+      "A": "The Senate acts alone only in specific constitutional functions — such as ratifying treaties (with a two-thirds vote) and trying impeachment cases — not in ordinary legislation. General lawmaking requires both chambers.",
       "C": "The President exercises executive, not legislative, power. While the President participates in the law-making process through the power to sign or veto bills, the legislative power itself is constitutionally vested in Congress, not a joint President-Congress body.",
-      "D": "The Supreme Court exercises judicial power, not legislative power. The separation of powers doctrine assigns lawmaking to Congress, execution of laws to the President, and interpretation of laws to the judiciary."
+      "D": "The Supreme Court exercises judicial power, not legislative power. The separation of powers doctrine assigns lawmaking to Congress, execution of laws to the President, and interpretation of laws to the judiciary.",
+      "E": "The Commission on Appointments is a separate body that confirms certain appointments — it is not part of Congress's legislative branch; Art. VI Sec. 1 defines Congress as consisting only of a Senate and a House of Representatives."
     },
     "tip": {
       "label": "Constitution Reminder",
@@ -283,23 +313,28 @@
       },
       {
         "id": "B",
-        "text": "The supreme audit institution of the government"
+        "text": "The central personnel agency of the government"
       },
       {
         "id": "C",
-        "text": "The administrator of all national elections"
+        "text": "The supreme audit institution of the government"
       },
       {
         "id": "D",
-        "text": "The central personnel agency of the government"
+        "text": "The administrator of all national elections"
+      },
+      {
+        "id": "E",
+        "text": "The primary law enforcement agency for all government personnel violations"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "B",
     "explanation": "Article IX-B, Section 3 of the 1987 Constitution designates the Civil Service Commission as 'the central personnel agency of the Government.' In that capacity, the CSC establishes the career service, promotes morale, efficiency, integrity, responsiveness, progressiveness, and courtesy within the civil service, strengthens the merit and rewards system, integrates human resources development programs, and submits annual personnel reports to the President and Congress. The CSC is the administrative body through which the constitutional requirement of merit-based civil service is operationalized — and it administers the Career Service Examination that most examinees are now preparing for.",
     "distractorExplanations": {
       "A": "Criminal cases involving public officials are handled by the Sandiganbayan (the anti-graft court) and regular courts, not the CSC. The CSC handles administrative — not criminal — jurisdiction over civil servants.",
-      "B": "The Commission on Audit (COA), not the CSC, is the supreme audit institution of the government. COA examines and audits all government revenues and expenditures under Article IX-D of the Constitution.",
-      "C": "The Commission on Elections (COMELEC), not the CSC, administers and enforces all election laws. The CSC has no role in running elections; its mandate is civil service administration and merit-based appointments."
+      "C": "The Commission on Audit (COA), not the CSC, is the supreme audit institution of the government. COA examines and audits all government revenues and expenditures under Article IX-D of the Constitution.",
+      "D": "The Commission on Elections (COMELEC), not the CSC, administers and enforces all election laws. The CSC has no role in running elections; its mandate is civil service administration and merit-based appointments.",
+      "E": "Law enforcement against government personnel violations falls under the Ombudsman and various disciplinary authorities — the CSC's constitutional role under Art. IX-B Sec. 3 is as the central personnel agency, covering merit-based appointments and civil service standards."
     },
     "tip": {
       "label": "Constitution Reminder",
@@ -328,23 +363,28 @@
       },
       {
         "id": "B",
-        "text": "30 working days"
+        "text": "15 working days"
       },
       {
         "id": "C",
-        "text": "15 working days"
+        "text": "30 working days"
       },
       {
         "id": "D",
         "text": "45 working days"
+      },
+      {
+        "id": "E",
+        "text": "10 working days"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "B",
     "explanation": "Section 5(a) of RA 6713 mandates: 'All public officials and employees shall, within fifteen (15) working days from receipt thereof, respond to letters, telegrams or other means of communications sent by the public. The reply must contain the action taken on the request.' This duty falls under the norm of responsiveness to the public (Section 4(A)(e)), and the 15-working-day deadline gives specific, enforceable teeth to that norm. A reply that merely acknowledges receipt without indicating the action taken does not satisfy the requirement. Note that the 45-working-day deadline applies to a separate obligation — annual performance reports by heads of offices.",
     "distractorExplanations": {
       "A": "Seven working days is not the statutory deadline under Section 5(a). It is common to confuse this with other short turnaround requirements in government. The law expressly says fifteen working days.",
-      "B": "Thirty working days is the deadline for filing the SALN within 30 days of assumption of office and within 30 days after separation from service — those are calendar-day or working-day deadlines for a different obligation under Section 8, not for responding to public communications.",
-      "D": "Forty-five working days is the deadline in Section 5(b) for heads of offices to submit their annual performance reports to the public after year-end. It is a different obligation under a different subsection."
+      "C": "Thirty working days is the deadline for filing the SALN within 30 days of assumption of office and within 30 days after separation from service — those are calendar-day or working-day deadlines for a different obligation under Section 8, not for responding to public communications.",
+      "D": "Forty-five working days is the deadline in Section 5(b) for heads of offices to submit their annual performance reports to the public after year-end. It is a different obligation under a different subsection.",
+      "E": "Ten working days is not the statutory period; Sec. 5(e) of RA 6713 requires public officials to attend to requests for public information promptly and act within 15 working days."
     },
     "tip": {
       "label": "Law Reminder",
@@ -369,27 +409,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "The Senate of the Philippines"
-      },
-      {
-        "id": "B",
         "text": "The House of Representatives"
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "The Supreme Court sitting en banc"
+      },
+      {
+        "id": "C",
+        "text": "The Senate of the Philippines"
       },
       {
         "id": "D",
         "text": "A joint session of both chambers of Congress"
+      },
+      {
+        "id": "E",
+        "text": "The Presidential Anti-Graft Commission"
       }
     ],
-    "correctOptionId": "A",
+    "correctOptionId": "C",
     "explanation": "Article XI, Section 3(6) of the 1987 Constitution is unequivocal: 'The Senate shall have the sole power to try and decide all cases of impeachment. When sitting for that purpose, the Senators shall be on oath or affirmation. When the President of the Philippines is on trial, the Chief Justice of the Supreme Court shall preside, but shall not vote. No person shall be convicted without the concurrence of two-thirds of all the Members of the Senate.' The House and Senate therefore play distinct and complementary roles: the House initiates (Section 3(1)); the Senate tries and decides (Section 3(6)). Convicting requires a two-thirds vote — 16 of the 24 Senators.",
     "distractorExplanations": {
-      "B": "The House of Representatives initiates impeachment by filing and affirming the Articles of Impeachment — it is the prosecuting body. The Constitution explicitly reserves the trial and decision to the Senate alone.",
-      "C": "The Supreme Court's Chief Justice presides when the President is on trial, but the Court itself does not try impeachment cases. Judicial power and impeachment power are constitutionally separated; the Court reviews only the sufficiency of factual basis for other presidential emergency powers, not impeachment verdicts.",
-      "D": "Congress does not act jointly in impeachment trials. The two chambers have separate, non-overlapping roles — the House initiates; the Senate tries. A joint session is used for other purposes, such as proclamation of election results and canvassing of presidential votes."
+      "A": "The House of Representatives initiates impeachment by filing and affirming the Articles of Impeachment — it is the prosecuting body. The Constitution explicitly reserves the trial and decision to the Senate alone.",
+      "B": "The Supreme Court's Chief Justice presides when the President is on trial, but the Court itself does not try impeachment cases. Judicial power and impeachment power are constitutionally separated; the Court reviews only the sufficiency of factual basis for other presidential emergency powers, not impeachment verdicts.",
+      "D": "Congress does not act jointly in impeachment trials. The two chambers have separate, non-overlapping roles — the House initiates; the Senate tries. A joint session is used for other purposes, such as proclamation of election results and canvassing of presidential votes.",
+      "E": "The Presidential Anti-Graft Commission investigates graft charges against presidential appointees but has no role in trying impeachment cases; Art. XI Sec. 3(6) grants the Senate exclusive jurisdiction to try and decide all cases of impeachment."
     },
     "tip": {
       "label": "Constitution Reminder",
@@ -422,19 +467,24 @@
       },
       {
         "id": "C",
-        "text": "RA 9275"
+        "text": "RA 6969"
       },
       {
         "id": "D",
-        "text": "RA 6969"
+        "text": "Republic Act No. 9513"
+      },
+      {
+        "id": "E",
+        "text": "RA 9275"
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "E",
     "explanation": "Republic Act No. 9275, enacted in 2004, is the Philippine Clean Water Act of 2004. It establishes a comprehensive water quality management framework covering freshwater, brackish, and marine waters, applying primarily to land-based sources of pollution. The DENR serves as the lead agency under Section 19 of the Act. Key mechanisms include the designation of water quality management areas, the National Sewerage and Septage Management Program, discharge permits, and a wastewater charge system. The other options are different environmental statutes: RA 8749 is the Philippine Clean Air Act of 1999; RA 9003 is the Ecological Solid Waste Management Act of 2000; RA 6969 is the Toxic Substances and Hazardous and Nuclear Wastes Control Act of 1990.",
     "distractorExplanations": {
       "A": "RA 8749 is the Philippine Clean Air Act of 1999, which governs air quality management. 'Clean Air' and 'Clean Water' are frequently confused because both involve environmental protection and both have 'Clean' in the title — but they address different media and carry different RA numbers.",
       "B": "RA 9003 is the Ecological Solid Waste Management Act of 2000, covering the collection, treatment, and disposal of solid waste. It is another major environmental law of the same era but addresses land-based waste, not water quality.",
-      "D": "RA 6969 is the Toxic Substances and Hazardous and Nuclear Wastes Control Act of 1990, which regulates the importation, manufacture, use, and disposal of toxic chemicals and prohibits the entry of hazardous and nuclear wastes. It is an earlier law addressing a different environmental threat."
+      "C": "RA 6969 is the Toxic Substances and Hazardous and Nuclear Wastes Control Act of 1990, which regulates the importation, manufacture, use, and disposal of toxic chemicals and prohibits the entry of hazardous and nuclear wastes. It is an earlier law addressing a different environmental threat.",
+      "D": "RA 9513 is the Renewable Energy Act of 2008; the Philippine Clean Water Act of 2004, which governs water quality management and protection, is Republic Act No. 9275."
     },
     "tip": {
       "label": "Mnemonic",
@@ -459,27 +509,32 @@
     "choices": [
       {
         "id": "A",
-        "text": "It is admissible if corroborated by other evidence"
+        "text": "It is inadmissible in evidence against the accused"
       },
       {
         "id": "B",
-        "text": "It may be used only for purposes of sentencing, not conviction"
+        "text": "It is admissible if corroborated by other evidence"
       },
       {
         "id": "C",
-        "text": "It is subject to the discretion of the trial court whether to admit it"
+        "text": "It may be used only for purposes of sentencing, not conviction"
       },
       {
         "id": "D",
-        "text": "It is inadmissible in evidence against the accused"
+        "text": "It is subject to the discretion of the trial court whether to admit it"
+      },
+      {
+        "id": "E",
+        "text": "It must be immediately returned to the accused by the arresting officer."
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "A",
     "explanation": "Article III, Section 12(3) states unequivocally: 'Any confession or admission obtained in violation of this or Section 17 hereof shall be inadmissible in evidence against him.' Section 17 is the right against self-incrimination. The inadmissibility rule is categorical — it does not depend on corroboration, the judge's discretion, or the phase of the trial. This constitutional exclusionary rule was designed to deter law enforcement from extracting confessions through coercion, threat, or denial of counsel, because evidence so obtained can never reach the court. The 'fruit of the poisonous tree' doctrine in Philippine jurisprudence extends this exclusion to evidence derived from the tainted confession.",
     "distractorExplanations": {
-      "A": "Corroboration by other evidence does not save a constitutionally tainted confession. The exclusionary rule is absolute — the confession itself cannot be used, regardless of what other evidence exists. Allowing corroborated use would undermine the deterrent purpose of the rule.",
-      "B": "The Constitution does not create a 'sentencing only' exception. A coerced confession may not be used at any stage of the proceedings — neither to establish guilt nor to influence the sentence. Such a distinction does not appear in the text of Article III, Section 12.",
-      "C": "Trial courts have no discretion to admit a confession obtained in violation of the constitutional rights in Sections 12 and 17. The Constitution's command is non-negotiable; judicial discretion in evidence admission does not extend to violations of explicit constitutional guarantees."
+      "B": "Corroboration by other evidence does not save a constitutionally tainted confession. The exclusionary rule is absolute — the confession itself cannot be used, regardless of what other evidence exists. Allowing corroborated use would undermine the deterrent purpose of the rule.",
+      "C": "The Constitution does not create a 'sentencing only' exception. A coerced confession may not be used at any stage of the proceedings — neither to establish guilt nor to influence the sentence. Such a distinction does not appear in the text of Article III, Section 12.",
+      "D": "Trial courts have no discretion to admit a confession obtained in violation of the constitutional rights in Sections 12 and 17. The Constitution's command is non-negotiable; judicial discretion in evidence admission does not extend to violations of explicit constitutional guarantees.",
+      "E": "Art. III Sec. 3(2) declares illegally obtained evidence inadmissible — the 'exclusionary rule'; it does not prescribe an affirmative duty to return the evidence to the accused, only that it cannot be used against them in court."
     },
     "tip": {
       "label": "Constitution Reminder",
@@ -518,6 +573,10 @@
       {
         "id": "D",
         "text": "Article VI, Section 26"
+      },
+      {
+        "id": "E",
+        "text": "Article III, Section 20"
       }
     ],
     "correctOptionId": "A",
@@ -525,7 +584,8 @@
     "distractorExplanations": {
       "B": "Article III, Section 14 covers the right to due process in criminal prosecutions, including the presumption of innocence and the right to counsel. It is closely related to but distinct from Section 22, which specifically bans ex post facto laws and bills of attainder.",
       "C": "Article III, Section 1 contains the due process and equal protection clauses — the foundational guarantees of the Bill of Rights. While it is conceptually connected to ex post facto and attainder prohibitions, those prohibitions have their own dedicated section.",
-      "D": "Article VI, Section 26 limits the content and enactment procedure of bills — for instance, requiring that bills embrace only one subject expressed in the title. It is a legislative process rule, not a prohibition on ex post facto laws or attainders."
+      "D": "Article VI, Section 26 limits the content and enactment procedure of bills — for instance, requiring that bills embrace only one subject expressed in the title. It is a legislative process rule, not a prohibition on ex post facto laws or attainders.",
+      "E": "Art. III Sec. 20 prohibits imprisonment for debt and involuntary servitude — a different provision from the ex post facto and bill of attainder prohibition in Sec. 22."
     },
     "tip": {
       "label": "Constitution Reminder",
@@ -558,19 +618,24 @@
       },
       {
         "id": "C",
-        "text": "A law that makes an act criminal, or increases its penalty, after the act was already done"
+        "text": "A law that removes a public official from office by legislative vote"
       },
       {
         "id": "D",
-        "text": "A law that removes a public official from office by legislative vote"
+        "text": "A law that makes an act criminal, or increases its penalty, after the act was already done"
+      },
+      {
+        "id": "E",
+        "text": "A law that prohibits future publication of books criticising the government."
       }
     ],
-    "correctOptionId": "C",
+    "correctOptionId": "D",
     "explanation": "An ex post facto law, in Philippine constitutional law, is a law that retroactively works to the disadvantage of the accused. Philippine jurisprudence recognizes several forms: (1) making criminal an act that was innocent when done; (2) increasing the punishment for a crime already committed; (3) changing the rules of evidence to make conviction easier; (4) altering the legal definition of a crime after the fact; or (5) depriving the accused of a lawful defense available at the time of the act. The prohibition ensures that citizens can order their conduct knowing what the law is — criminal liability must attach to the law in effect at the time of the act, not a harsher law passed afterward.",
     "distractorExplanations": {
       "A": "Retroactive taxation is a separate legal issue and is generally prohibited under the principle against impairment of vested rights, but taxing past income alone is not what the constitutional ex post facto prohibition targets. The ex post facto rule specifically addresses criminal — not civil or tax — retroactivity.",
       "B": "A law that singles out an individual for punishment without a trial describes a bill of attainder, not an ex post facto law. Both are prohibited by the same section (Art. III, Sec. 22), but they are two distinct concepts — the distractor blends them.",
-      "D": "Removing a public official from office by legislative vote could describe an improper exercise of legislative power, but this is not the definition of an ex post facto law. Impeachment — the constitutionally sanctioned legislative removal mechanism — involves a trial, a prescribed vote, and applies to specified grounds prospectively."
+      "C": "Removing a public official from office by legislative vote could describe an improper exercise of legislative power, but this is not the definition of an ex post facto law. Impeachment — the constitutionally sanctioned legislative removal mechanism — involves a trial, a prescribed vote, and applies to specified grounds prospectively.",
+      "E": "A law prohibiting future publications is a prospective prior restraint on speech — not an ex post facto law; ex post facto laws operate retroactively, criminalising or penalising acts that were lawful when committed."
     },
     "tip": {
       "label": "Law Reminder",
@@ -599,23 +664,28 @@
       },
       {
         "id": "B",
-        "text": "RA 6969"
+        "text": "RA 9003"
       },
       {
         "id": "C",
-        "text": "RA 9003"
+        "text": "RA 6969"
       },
       {
         "id": "D",
         "text": "RA 8749"
+      },
+      {
+        "id": "E",
+        "text": "Republic Act No. 7586"
       }
     ],
-    "correctOptionId": "B",
+    "correctOptionId": "C",
     "explanation": "Republic Act No. 6969, enacted in 1990, is the Toxic Substances and Hazardous and Nuclear Wastes Control Act. It regulates, restricts, or prohibits the importation, manufacture, processing, sale, distribution, use, and disposal of chemical substances and mixtures that present unreasonable risk to health or the environment. Critically, it also prohibits the entry into Philippine territory of hazardous and nuclear wastes for any purpose — making the Philippines a nuclear-waste-free zone. The Department of Environment and Natural Resources (DENR) is the implementing agency. Pre-manufacture and pre-importation notifications are required for new chemical substances before they may be produced or brought into the country.",
     "distractorExplanations": {
       "A": "RA 9275 is the Philippine Clean Water Act of 2004, covering freshwater and marine water quality management. It was enacted 14 years after RA 6969 and addresses a different environmental concern.",
-      "C": "RA 9003 is the Ecological Solid Waste Management Act of 2000, which governs the collection, segregation, recycling, and disposal of municipal solid waste. Toxic and chemical wastes are a separate regulatory category under RA 6969.",
-      "D": "RA 8749 is the Philippine Clean Air Act of 1999, which targets air pollutants from stationary and mobile sources. It is a distinct law focused on air quality, not the control of toxic chemical substances."
+      "B": "RA 9003 is the Ecological Solid Waste Management Act of 2000, which governs the collection, segregation, recycling, and disposal of municipal solid waste. Toxic and chemical wastes are a separate regulatory category under RA 6969.",
+      "D": "RA 8749 is the Philippine Clean Air Act of 1999, which targets air pollutants from stationary and mobile sources. It is a distinct law focused on air quality, not the control of toxic chemical substances.",
+      "E": "RA 7586 is the National Integrated Protected Areas System (NIPAS) Act; the law governing toxic substances and hazardous/nuclear wastes is RA 6969."
     },
     "tip": {
       "label": "Law Reminder",
@@ -648,19 +718,24 @@
       },
       {
         "id": "C",
-        "text": "The Senate President, as head of the upper legislative chamber"
+        "text": "The President of the Philippines"
       },
       {
         "id": "D",
-        "text": "The President of the Philippines"
+        "text": "The Senate President, as head of the upper legislative chamber"
+      },
+      {
+        "id": "E",
+        "text": "The National Security Adviser, as head of the National Security Council"
       }
     ],
-    "correctOptionId": "D",
+    "correctOptionId": "C",
     "explanation": "Article VII, Section 18 begins: 'The President shall be the Commander-in-Chief of all armed forces of the Philippines.' This civilian command of the military reflects the principle of civilian supremacy enshrined in Article II, Section 3. As Commander-in-Chief, the President may call out the armed forces to suppress lawless violence, invasion, or rebellion; suspend the privilege of the writ of habeas corpus; and declare martial law — all subject to congressional and judicial checks. The Section 18 designation is not ceremonial; it places real operational authority over the AFP in the hands of the elected civilian President, not uniformed officers or cabinet members.",
     "distractorExplanations": {
       "A": "The Chief of Staff of the AFP is the highest-ranking military officer in the Philippines and commands day-to-day AFP operations, but the constitutional Commander-in-Chief authority belongs to the civilian President. The Chief of Staff is subordinate to the President.",
       "B": "The Secretary of National Defense is a civilian cabinet official who assists the President in civilian oversight of the military. The Secretary is not the Commander-in-Chief — that authority is personally vested in the President by the Constitution.",
-      "C": "The Senate President is the presiding officer of the Senate and has no command authority over the military. The Senate's role in military matters is legislative — approving the defense budget, concurring in treaties — not command."
+      "D": "The Senate President is the presiding officer of the Senate and has no command authority over the military. The Senate's role in military matters is legislative — approving the defense budget, concurring in treaties — not command.",
+      "E": "The National Security Adviser chairs the National Security Council in an advisory capacity but has no command authority over the armed forces; Art. VII Sec. 18 vests the commander-in-chief power exclusively in the President."
     },
     "tip": {
       "label": "Constitution Reminder",
