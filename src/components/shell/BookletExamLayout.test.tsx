@@ -100,14 +100,77 @@ function renderLayout(props: Partial<React.ComponentProps<typeof BookletExamLayo
   return { ...utils, onSelectOption, onSubmitExam, onExitExam, session: props.session ?? defaultSession };
 }
 
-describe('BookletExamLayout — continuous within a subject, not across the exam', () => {
-  it('renders a tab per subject, starting on the first subject with an unanswered question', () => {
+/** Both the desktop and mobile navigator triggers exist in the DOM at once
+ * (Tailwind's `hidden`/`sm:` classes aren't evaluated by jsdom) — always the
+ * first one, exactly like the existing ExamFocusLayout tests would need to. */
+async function openNavigator(user: ReturnType<typeof userEvent.setup>) {
+  const triggers = screen.getAllByRole('button', { name: /open question navigation/i });
+  await user.click(triggers[0]);
+}
+
+/** The subject name also appears as a heading above that subject's own
+ * question grid, so scope to the "Subjects" switcher grid specifically. */
+function getSubjectSwitchButton(dialog: HTMLElement, subjectName: string): HTMLElement {
+  const subjectsHeading = within(dialog).getByText('Subjects');
+  const subjectGrid = subjectsHeading.parentElement!.querySelector('.grid-cols-2') as HTMLElement;
+  return within(subjectGrid).getByText(subjectName).closest('button')!;
+}
+
+describe('BookletExamLayout — header matches Practice, no subject switcher there', () => {
+  it('has no subject buttons or subject tablist in the header', () => {
     renderLayout();
-    expect(screen.getByRole('tab', { name: /Verbal Ability/ })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Numerical Reasoning/ })).toBeInTheDocument();
+    expect(screen.queryByRole('tab')).not.toBeInTheDocument();
+    expect(screen.queryByRole('tablist')).not.toBeInTheDocument();
+    expect(screen.queryByText('Numerical Reasoning', { selector: 'button *' })).not.toBeInTheDocument();
   });
 
-  it('renders only the active subject\'s questions, never the other subject\'s in the same view', () => {
+  it('does not render a global "Question X of N" style counter anywhere', () => {
+    renderLayout();
+    expect(screen.queryByText(/Question \d+ of \d+/)).not.toBeInTheDocument();
+  });
+
+  it('keeps Exit, Grid/Navigator, Previous, Next, and Submit as the only header controls, Exit and Navigator together', () => {
+    renderLayout();
+    expect(screen.getByRole('button', { name: 'Exit Exam' })).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /open question navigation/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('button', { name: 'Previous question' }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('button', { name: 'Next question' }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('button', { name: /submit/i }).length).toBeGreaterThan(0);
+  });
+});
+
+describe('BookletExamLayout — subject switching lives in the navigator drawer', () => {
+  it('shows a 2-column subject grid at the top of the drawer', async () => {
+    const user = userEvent.setup();
+    renderLayout();
+    await openNavigator(user);
+
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const subjectsHeading = within(dialog).getByText('Subjects');
+    const subjectGrid = subjectsHeading.parentElement!.querySelector('.grid-cols-2');
+    expect(subjectGrid).not.toBeNull();
+    expect(within(subjectGrid as HTMLElement).getByText('Verbal Ability')).toBeInTheDocument();
+    expect(within(subjectGrid as HTMLElement).getByText('Numerical Reasoning')).toBeInTheDocument();
+  });
+
+  it('clicking a subject button in the drawer switches the visible booklet content', async () => {
+    const user = userEvent.setup();
+    renderLayout();
+    expect(screen.getByText('Question text for V1')).toBeInTheDocument();
+
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    await user.click(getSubjectSwitchButton(dialog, 'Numerical Reasoning'));
+
+    expect(screen.queryByText('Question text for V1')).not.toBeInTheDocument();
+    expect(screen.getByText('Question text for N1')).toBeInTheDocument();
+    // Drawer closes after switching.
+    expect(screen.queryByRole('dialog', { name: 'Question navigation' })).not.toBeInTheDocument();
+  });
+});
+
+describe('BookletExamLayout — booklet renders one subject at a time', () => {
+  it('renders only the active subject\'s questions, never both at once', () => {
     renderLayout();
     expect(screen.getByText('Question text for V1')).toBeInTheDocument();
     expect(screen.getByText('Question text for V2')).toBeInTheDocument();
@@ -115,25 +178,9 @@ describe('BookletExamLayout — continuous within a subject, not across the exam
     expect(screen.queryByText('Question text for N2')).not.toBeInTheDocument();
   });
 
-  it('switching the subject tab swaps the visible questions and updates the subject-scoped navigator badge', async () => {
-    const user = userEvent.setup();
+  it('shows a plain subject heading above the booklet content', () => {
     renderLayout();
-    expect(screen.getByText('Question text for V1')).toBeInTheDocument();
-
-    await user.click(screen.getByRole('tab', { name: /Numerical Reasoning/ }));
-
-    expect(screen.queryByText('Question text for V1')).not.toBeInTheDocument();
-    expect(screen.queryByText('Question text for V2')).not.toBeInTheDocument();
-    expect(screen.getByText('Question text for N1')).toBeInTheDocument();
-    expect(screen.getByText('Question text for N2')).toBeInTheDocument();
-
-    // Navigator trigger's accessible name (its aria-label) is subject-scoped — "question 1 of 2 in ..." — never a global "of 165" count.
-    expect(screen.getByRole('button', { name: /question 1 of 2 in Numerical Reasoning/i })).toBeInTheDocument();
-  });
-
-  it('does not render a global "Question X of N" style counter anywhere in the header', () => {
-    renderLayout();
-    expect(screen.queryByText(/Question \d+ of \d+/)).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Verbal Ability' })).toBeInTheDocument();
   });
 });
 
@@ -160,64 +207,73 @@ describe('BookletExamLayout — answers preserved across subject switches', () =
       />
     );
 
-    await user.click(screen.getByRole('tab', { name: /Numerical Reasoning/ }));
-    await user.click(screen.getByRole('tab', { name: /Verbal Ability/ }));
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    await user.click(getSubjectSwitchButton(dialog, 'Numerical Reasoning'));
+    await openNavigator(user);
+    const dialog2 = screen.getByRole('dialog', { name: 'Question navigation' });
+    await user.click(getSubjectSwitchButton(dialog2, 'Verbal Ability'));
 
     const v1ChoiceAAfterReturn = within(document.getElementById('question-V1')!).getAllByRole('radio')[0];
     expect(v1ChoiceAAfterReturn).toHaveAttribute('aria-checked', 'true');
   });
 });
 
-describe('BookletExamLayout — navigator is a flat grid, subject-scoped', () => {
-  it('shows a compact grid (not one item per row) numbered 1..N within the active subject only', async () => {
+describe('BookletExamLayout — navigator grids are compact and grouped by subject', () => {
+  it('shows a compact grid (grid-cols-5) per subject, not one item per row', async () => {
     const user = userEvent.setup();
     renderLayout();
-    await user.click(screen.getByRole('button', { name: /open question navigation/i }));
+    await openNavigator(user);
 
-    const nav = screen.getByRole('dialog', { name: 'Exam navigator' });
-    const grid = within(nav).getByText('1').closest('div');
-    expect(grid).toHaveClass('grid-cols-5');
-    // Both Verbal questions show as 1 and 2 (subject-scoped), no Numerical questions present.
-    expect(within(nav).getByRole('button', { name: /go to question 1/i })).toBeInTheDocument();
-    expect(within(nav).getByRole('button', { name: /go to question 2/i })).toBeInTheDocument();
-    expect(within(nav).queryAllByRole('button', { name: /go to question/i })).toHaveLength(2);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    expect(within(dialog).getByRole('heading', { name: 'Verbal Ability', level: 3 })).toBeInTheDocument();
+    expect(within(dialog).getByRole('heading', { name: 'Numerical Reasoning', level: 3 })).toBeInTheDocument();
+
+    const v1Button = within(dialog).getByRole('button', { name: /go to Verbal Ability question 1/i });
+    expect(v1Button.parentElement).toHaveClass('grid-cols-5');
   });
 
-  it('updates to the newly active subject\'s numbers when the subject changes', async () => {
+  it('shows every subject\'s questions at once (not just the active subject)', async () => {
     const user = userEvent.setup();
     renderLayout();
-    await user.click(screen.getByRole('tab', { name: /Numerical Reasoning/ }));
-    await user.click(screen.getByRole('button', { name: /open question navigation/i }));
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
 
-    const nav = screen.getByRole('dialog', { name: 'Exam navigator' });
-    expect(within(nav).queryAllByRole('button', { name: /go to question/i })).toHaveLength(2);
-    expect(within(nav).getByText('Numerical Reasoning')).toBeInTheDocument();
+    expect(within(dialog).getByRole('button', { name: /go to Verbal Ability question 1/i })).toBeInTheDocument();
+    expect(within(dialog).getByRole('button', { name: /go to Numerical Reasoning question 1/i })).toBeInTheDocument();
   });
 
-  it('is positioned flush against the header (left-anchored, matching Practice), not floating below it', async () => {
+  it('clicking a question number in a non-active subject switches to it and scrolls there', async () => {
     const user = userEvent.setup();
     renderLayout();
-    await user.click(screen.getByRole('button', { name: /open question navigation/i }));
-    const nav = screen.getByRole('dialog', { name: 'Exam navigator' });
-    expect(nav).toHaveClass('absolute', 'inset-y-0', 'left-0');
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+
+    await user.click(within(dialog).getByRole('button', { name: /go to Numerical Reasoning question 2/i }));
+
+    expect(screen.getByText('Question text for N1')).toBeInTheDocument();
+    expect(screen.getByText('Question text for N2')).toBeInTheDocument();
+    expect(screen.queryByText('Question text for V1')).not.toBeInTheDocument();
+    expect(Element.prototype.scrollIntoView).toHaveBeenCalled();
   });
 });
 
-describe('BookletExamLayout — Previous/Next within a subject, deliberate crossing at boundaries', () => {
-  it('Next moves within the subject first (V1 -> V2)', async () => {
+describe('BookletExamLayout — navigator drawer positioning matches Practice', () => {
+  it('is positioned absolute inset-y-0 left-0, flush against the header', async () => {
     const user = userEvent.setup();
     renderLayout();
-    const nextButtons = screen.getAllByRole('button', { name: /next question/i });
-    await user.click(nextButtons[0]);
-    // Still on Verbal Ability — no subject switch for an in-bounds Next.
-    expect(screen.getByRole('tab', { name: /Verbal Ability/ })).toHaveAttribute('aria-selected', 'true');
-    expect(Element.prototype.scrollIntoView).toHaveBeenCalled();
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    expect(dialog).toHaveClass('absolute', 'inset-y-0', 'left-0');
   });
 
-  it('Previous is disabled at the very first question of the very first subject', () => {
+  it('closes on Escape and returns focus to the trigger', async () => {
+    const user = userEvent.setup();
     renderLayout();
-    const prevButtons = screen.getAllByRole('button', { name: /previous question/i });
-    for (const button of prevButtons) expect(button).toBeDisabled();
+    await openNavigator(user);
+    expect(screen.getByRole('dialog', { name: 'Question navigation' })).toBeInTheDocument();
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(screen.queryByRole('dialog', { name: 'Question navigation' })).not.toBeInTheDocument();
   });
 });
 
@@ -227,14 +283,18 @@ describe('BookletExamLayout — position restored when returning to a subject', 
     renderLayout();
     (Element.prototype.scrollIntoView as ReturnType<typeof vi.fn>).mockClear();
 
-    // Move to V2 within Verbal (Next), then leave to Numerical, then return.
-    const nextButtons = screen.getAllByRole('button', { name: /next question/i });
-    await user.click(nextButtons[0]); // -> V2
-    await user.click(screen.getByRole('tab', { name: /Numerical Reasoning/ }));
-    (Element.prototype.scrollIntoView as ReturnType<typeof vi.fn>).mockClear();
-    await user.click(screen.getByRole('tab', { name: /Verbal Ability/ }));
+    const nextButtons = screen.getAllByRole('button', { name: 'Next question' });
+    await user.click(nextButtons[0]); // V1 -> V2
 
-    // Returning to Verbal should scroll to V2's anchor, not reset to V1.
+    await openNavigator(user);
+    let dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    await user.click(getSubjectSwitchButton(dialog, 'Numerical Reasoning'));
+
+    (Element.prototype.scrollIntoView as ReturnType<typeof vi.fn>).mockClear();
+    await openNavigator(user);
+    dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    await user.click(getSubjectSwitchButton(dialog, 'Verbal Ability'));
+
     const calledIds = (Element.prototype.scrollIntoView as ReturnType<typeof vi.fn>).mock.instances.map(
       (el) => (el as HTMLElement).id
     );
@@ -242,17 +302,32 @@ describe('BookletExamLayout — position restored when returning to a subject', 
   });
 });
 
-describe('BookletExamLayout — Previous/Next deliberately cross subject boundaries', () => {
-  it('Next from the last question of a subject moves into the first question of the next subject', async () => {
+describe('BookletExamLayout — Previous/Next within a subject, deliberate crossing at boundaries', () => {
+  it('Next moves within the subject first (V1 -> V2), no subject change', async () => {
     const user = userEvent.setup();
     renderLayout();
-    const nextButtons = screen.getAllByRole('button', { name: /next question/i });
-    await user.click(nextButtons[0]); // V1 -> V2 (last in Verbal)
-    await user.click(nextButtons[0]); // V2 -> should cross into Numerical Reasoning (N1)
+    const nextButtons = screen.getAllByRole('button', { name: 'Next question' });
+    await user.click(nextButtons[0]);
+    expect(screen.getByText('Question text for V1')).toBeInTheDocument();
+    expect(screen.getByText('Question text for V2')).toBeInTheDocument();
+    expect(Element.prototype.scrollIntoView).toHaveBeenCalled();
+  });
 
-    expect(screen.getByRole('tab', { name: /Numerical Reasoning/ })).toHaveAttribute('aria-selected', 'true');
+  it('Next from the last question of a subject crosses into the first question of the next subject', async () => {
+    const user = userEvent.setup();
+    renderLayout();
+    const nextButtons = screen.getAllByRole('button', { name: 'Next question' });
+    await user.click(nextButtons[0]); // V1 -> V2
+    await user.click(nextButtons[0]); // V2 -> N1 (crosses boundary)
+
     expect(screen.getByText('Question text for N1')).toBeInTheDocument();
     expect(screen.queryByText('Question text for V1')).not.toBeInTheDocument();
+  });
+
+  it('Previous is disabled at the very first question of the very first subject', () => {
+    renderLayout();
+    const prevButtons = screen.getAllByRole('button', { name: 'Previous question' });
+    for (const button of prevButtons) expect(button).toBeDisabled();
   });
 });
 
@@ -260,7 +335,10 @@ describe('BookletExamLayout — submit is always available', () => {
   it('renders an enabled Submit button regardless of active subject', async () => {
     const user = userEvent.setup();
     const { onSubmitExam } = renderLayout();
-    await user.click(screen.getByRole('tab', { name: /Numerical Reasoning/ }));
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    await user.click(getSubjectSwitchButton(dialog, 'Numerical Reasoning'));
+
     const submitButtons = screen.getAllByRole('button', { name: /submit/i });
     for (const button of submitButtons) expect(button).toBeEnabled();
     await user.click(submitButtons[0]);
@@ -269,23 +347,11 @@ describe('BookletExamLayout — submit is always available', () => {
 });
 
 describe('BookletExamLayout — legacy/flat fallback (no session.items)', () => {
-  it('shows no subject tabs and renders every question in one flat run', () => {
+  it('shows no subject switcher and renders every question in one flat run', () => {
     const legacySession = baseSession({ questionIds: ['V1', 'V2'] }); // no items
     renderLayout({ session: legacySession, questionIndex: twoSubjectIndex() });
-    expect(screen.queryByRole('tablist')).not.toBeInTheDocument();
+    expect(screen.queryByText('Subjects')).not.toBeInTheDocument();
     expect(screen.getByText('Question text for V1')).toBeInTheDocument();
     expect(screen.getByText('Question text for V2')).toBeInTheDocument();
-  });
-});
-
-describe('BookletExamLayout — navigator closes on Escape and returns focus', () => {
-  it('closes on Escape', async () => {
-    const user = userEvent.setup();
-    renderLayout();
-    const trigger = screen.getByRole('button', { name: /open question navigation/i });
-    await user.click(trigger);
-    expect(screen.getByRole('dialog', { name: 'Exam navigator' })).toBeInTheDocument();
-    fireEvent.keyDown(window, { key: 'Escape' });
-    expect(screen.queryByRole('dialog', { name: 'Exam navigator' })).not.toBeInTheDocument();
   });
 });

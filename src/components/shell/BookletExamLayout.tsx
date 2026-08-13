@@ -29,11 +29,12 @@ export interface BookletExamLayoutProps {
 
 /**
  * Continuous CSE-booklet exam experience — continuous WITHIN a subject, not
- * across the whole exam. A subject tab switcher selects one section at a
- * time; only that section is mounted and scrolled. Previous/Next and the
- * navigator scroll/focus an already-rendered question within the active
- * subject; crossing a subject boundary switches sections deliberately
- * rather than folding everything into one 165-question scroll.
+ * across the whole exam. Subject switching lives inside the navigator
+ * drawer (not the header), so the header/chrome stays exactly where Practice
+ * mode already trained the user to look for it: Exit + Grid/Navigator on the
+ * left, Timer centered, Previous/Next/Submit on the right. Only the active
+ * section is mounted and scrolled; the navigator drawer shows every
+ * subject's grid so the user can jump straight to any question anywhere.
  *
  * Practice mode does not use this component — it keeps the original
  * `ExamFocusLayout` + `QuestionCard` single-question flow unchanged.
@@ -83,7 +84,6 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     ? computeSectionAnswerCounts(activeSection, session.answers)
     : { total: 0, answered: 0, unanswered: 0 };
   const globalCounts = computeAnswerCounts(session);
-  const blocks = useMemo(() => (activeSection ? navigatorBlocks(activeSection) : []), [activeSection]);
 
   const lastPositionRef = useRef<Record<string, string>>({});
   const pendingTargetRef = useRef<string | null>(null);
@@ -99,9 +99,9 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   }, []);
 
   // Lands on the right question every time the active section changes —
-  // covers first mount, tab switches, and Previous/Next crossing a subject
-  // boundary (via pendingTargetRef, which wins over the remembered/first-
-  // unanswered default when a boundary crossing set an explicit target).
+  // covers first mount, subject switches, and Previous/Next crossing a
+  // subject boundary (via pendingTargetRef, which wins over the remembered/
+  // first-unanswered default when a boundary crossing set an explicit target).
   useEffect(() => {
     if (!activeSection) return;
     const order = sectionQuestionOrder(activeSection);
@@ -151,6 +151,15 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     setTimeout(() => navTriggerRef.current?.focus(), 0);
   }, []);
 
+  const toggleNavigator = (btnEl?: HTMLButtonElement | null) => {
+    if (btnEl) navTriggerRef.current = btnEl;
+    setIsNavigatorOpen((prev) => {
+      const next = !prev;
+      if (!next && navTriggerRef.current) setTimeout(() => navTriggerRef.current?.focus(), 0);
+      return next;
+    });
+  };
+
   useEffect(() => {
     if (!isNavigatorOpen) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -160,22 +169,31 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [isNavigatorOpen, closeNavigator]);
 
-  /** Manual subject switch (tab click / navigator jump to another subject's item). */
+  /** Subject-switcher button in the drawer: goes to that subject's remembered/first-unanswered question. */
   const switchSection = useCallback(
     (sectionId: string) => {
-      if (sectionId === activeSectionId) return;
-      if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
-      setActiveSectionId(sectionId);
-    },
-    [activeSectionId, currentQuestionId]
-  );
-
-  const jumpTo = useCallback(
-    (questionId: string) => {
-      scrollToQuestion(questionId);
+      if (sectionId !== activeSectionId) {
+        if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
+        setActiveSectionId(sectionId);
+      }
       closeNavigator();
     },
-    [scrollToQuestion, closeNavigator]
+    [activeSectionId, currentQuestionId, closeNavigator]
+  );
+
+  /** Clicking a specific question number in the drawer — may belong to a non-active subject. */
+  const jumpToQuestion = useCallback(
+    (sectionId: string, questionId: string) => {
+      if (sectionId === activeSectionId) {
+        scrollToQuestion(questionId);
+      } else {
+        if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
+        pendingTargetRef.current = questionId;
+        setActiveSectionId(sectionId);
+      }
+      closeNavigator();
+    },
+    [activeSectionId, currentQuestionId, scrollToQuestion, closeNavigator]
   );
 
   const goPrev = useCallback(() => {
@@ -222,6 +240,24 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
 
   const currentLocalNumber = localIdx === -1 ? 1 : localIdx + 1;
   const isProfessional = examLevel === 'Professional';
+  const gridIconColor = isProfessional ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400';
+
+  // Same trigger, same two render sites (left of header on desktop, right on
+  // mobile) as ExamFocusLayout's paletteButton — this is deliberately the
+  // same control in the same place, not a new one.
+  const navigatorButton = (displayClasses: string) => (
+    <button
+      onClick={(e) => toggleNavigator(e.currentTarget)}
+      className={`${displayClasses} items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
+      aria-expanded={isNavigatorOpen}
+      aria-label={`Open question navigation, question ${currentLocalNumber} of ${localOrder.length} in ${sectionTitle(activeSectionId)}, ${examLevel} level session`}
+    >
+      <Grid className={`w-4 h-4 shrink-0 ${gridIconColor}`} aria-hidden="true" />
+      <span>
+        Q {currentLocalNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {localOrder.length}</span>
+      </span>
+    </button>
+  );
 
   const timerBadge = (
     <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/90 text-emerald-700 dark:text-emerald-400 px-3 py-1.5 min-h-[38px] rounded-lg border border-slate-200 dark:border-slate-700/80 font-mono text-xs sm:text-sm font-bold">
@@ -230,10 +266,10 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     </div>
   );
 
-  const submitButton = (className: string) => (
+  const submitButton = (displayClasses: string) => (
     <button
       onClick={onSubmitExam}
-      className={`${className} items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400`}
+      className={`${displayClasses} items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400`}
       aria-label={`Submit exam. ${globalCounts.answered} of ${globalCounts.total} answered overall.`}
     >
       <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
@@ -243,8 +279,11 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 flex flex-col overflow-hidden font-sans">
-      {/* Sticky header — Submit is ALWAYS enabled here, never gated on reaching the last question. */}
-      <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shrink-0">
+      {/* Header — identical layout/positions to Practice's ExamFocusLayout.
+          Exit/Restart/Grid stay on the left, Timer centered, Previous/Next
+          on the right. Submit is the one addition, alongside them. No
+          subject switcher and no "Question X of Y" text live here. */}
+      <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 relative shrink-0">
         <div className="h-14 sm:h-16 px-4 sm:px-6 grid grid-cols-3 items-center">
           <div className="flex items-center gap-2 justify-self-start">
             <button
@@ -264,54 +303,34 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 <span>Restart</span>
               </button>
             )}
+            {navigatorButton('hidden sm:inline-flex')}
           </div>
 
-          <div className="flex flex-col items-center justify-self-center min-w-0">{timerBadge}</div>
+          <div className="justify-self-center">{timerBadge}</div>
 
           <div className="flex items-center gap-2 justify-self-end">
+            {navigatorButton('inline-flex sm:hidden')}
             <button
-              ref={navTriggerRef}
-              onClick={() => setIsNavigatorOpen((v) => !v)}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-              aria-expanded={isNavigatorOpen}
-              aria-label={`Open question navigation, question ${currentLocalNumber} of ${localOrder.length} in ${sectionTitle(activeSectionId)}, ${examLevel} level session`}
+              onClick={goPrev}
+              disabled={isPrevDisabled}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              aria-label="Previous question"
             >
-              <Grid className={`w-4 h-4 shrink-0 ${isProfessional ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'}`} aria-hidden="true" />
-              <span>
-                Q {currentLocalNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {localOrder.length}</span>
-              </span>
+              <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+              <span>Previous</span>
+            </button>
+            <button
+              onClick={goNext}
+              disabled={isNextDisabled}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              aria-label="Next question"
+            >
+              <span>Next</span>
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </button>
             {submitButton('hidden sm:inline-flex')}
           </div>
         </div>
-
-        {/* Subject tabs — the whole point of this iteration: continuous WITHIN a subject, not across the exam. */}
-        {!isLegacy && sections.length > 0 && (
-          <div role="tablist" aria-label="Exam subjects" className="flex gap-1.5 overflow-x-auto px-4 sm:px-6 pb-2 pt-1 scrollbar-hide">
-            {sections.map((section) => {
-              const isActive = section.sectionId === activeSectionId;
-              const counts = computeSectionAnswerCounts(section, session.answers);
-              return (
-                <button
-                  key={section.sectionId}
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => switchSection(section.sectionId)}
-                  className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[34px] rounded-full text-xs font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
-                    isActive
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
-                  }`}
-                >
-                  <span>{sectionTitle(section.sectionId)}</span>
-                  <span className={isActive ? 'text-emerald-100' : 'text-slate-400 dark:text-slate-500'}>
-                    {counts.answered}/{counts.total}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        )}
 
         <div className="w-full bg-slate-200 dark:bg-slate-800/80 h-1">
           <div
@@ -322,24 +341,25 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       </header>
 
       <div className="flex-1 flex overflow-hidden relative">
-        {/* Positioning matches the existing Practice navigator exactly: absolute
-            within this body row (flush under the header, no gap), left-anchored,
-            same z-index and overlay treatment on both desktop and mobile. */}
+        {/* Positioned exactly like Practice's navigator: absolute within this
+            body row, flush under the header, left-anchored, same z-index and
+            overlay treatment on both desktop and mobile. */}
         {isNavigatorOpen && (
           <div
             role="dialog"
             aria-modal="false"
-            aria-label="Exam navigator"
+            aria-label="Question navigation"
             className="absolute inset-y-0 left-0 z-30 w-full sm:w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-xl flex flex-col p-4 overflow-y-auto"
           >
             <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
               <span className="flex items-baseline gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                {sectionTitle(activeSectionId)}
+                Question Navigation
                 <span
                   className={`text-[10px] font-bold tracking-widest ${
                     isProfessional ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400 dark:text-slate-500'
                   }`}
                   title={`${examLevel} level session`}
+                  aria-label={`${examLevel} level session`}
                 >
                   {isProfessional ? 'PRO' : 'SUBPRO'}
                 </span>
@@ -367,50 +387,100 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               </div>
             </div>
 
-            {/* One continuous grid for the active subject. A real multi-question
-                group gets a small label above its ids without breaking the grid
-                into a vertical stack — singleton legacy questions never get their
-                own mini-grid. */}
-            <nav aria-label={`${sectionTitle(activeSectionId)} questions`} className="space-y-3">
-              {blocks.map((block, blockIndex) => (
-                <div key={block.groupId ?? `block-${blockIndex}`}>
-                  {block.groupId && (
-                    <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
-                      {getGroup(block.groupId)?.questionType ?? 'Item Set'}
-                    </p>
-                  )}
-                  <div className="grid grid-cols-5 gap-2">
-                    {block.ids.map((id) => {
-                      const num = localNumbers.get(id) ?? 0;
-                      const isCurrent = id === currentQuestionId;
-                      const isAnswered = Boolean(session.answers[id]);
-                      return (
-                        <button
-                          key={id}
-                          onClick={() => jumpTo(id)}
-                          aria-current={isCurrent ? 'true' : undefined}
-                          className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                            isCurrent
-                              ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
-                              : isAnswered
-                                ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
-                                : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
-                          }`}
-                          aria-label={`Go to question ${num}${isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
-                        >
-                          {num}
-                        </button>
-                      );
-                    })}
-                  </div>
+            {/* Subject switcher lives HERE, not in the header. 2-column grid. */}
+            {!isLegacy && sections.length > 0 && (
+              <div className="pb-4 mb-4 border-b border-slate-200 dark:border-slate-800">
+                <h3 className="text-xs font-bold text-slate-700 dark:text-slate-200 mb-2">Subjects</h3>
+                <div className="grid grid-cols-2 gap-2">
+                  {sections.map((section) => {
+                    const isActive = section.sectionId === activeSectionId;
+                    const counts = computeSectionAnswerCounts(section, session.answers);
+                    return (
+                      <button
+                        key={section.sectionId}
+                        onClick={() => switchSection(section.sectionId)}
+                        aria-current={isActive ? 'true' : undefined}
+                        className={`px-2.5 py-2 min-h-[40px] rounded-lg text-xs font-semibold text-left transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
+                          isActive
+                            ? 'bg-emerald-600 text-white'
+                            : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
+                        }`}
+                      >
+                        <div className="truncate">{sectionTitle(section.sectionId)}</div>
+                        <div className={isActive ? 'text-emerald-100 font-normal' : 'text-slate-400 dark:text-slate-500 font-normal'}>
+                          {counts.answered}/{counts.total}
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
-              ))}
-            </nav>
+              </div>
+            )}
+
+            {/* Every subject's grid, so any question is one click away — a real
+                multi-question group still gets its own labeled sub-block, but
+                consecutive plain/singleton questions always share one flat grid. */}
+            <div className="space-y-5">
+              {sections.map((section) => {
+                const numbers = sectionQuestionNumberMap(section);
+                const blocks = navigatorBlocks(section);
+                if (blocks.length === 0) return null;
+                return (
+                  <div key={section.sectionId}>
+                    {!isLegacy && (
+                      <h3 className="text-xs font-bold text-slate-700 dark:text-slate-200 mb-2">
+                        {sectionTitle(section.sectionId)}
+                      </h3>
+                    )}
+                    <div className="space-y-2">
+                      {blocks.map((block, blockIndex) => (
+                        <div key={block.groupId ?? `${section.sectionId}-block-${blockIndex}`}>
+                          {block.groupId && (
+                            <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
+                              {getGroup(block.groupId)?.questionType ?? 'Item Set'}
+                            </p>
+                          )}
+                          <div className="grid grid-cols-5 gap-2">
+                            {block.ids.map((id) => {
+                              const num = numbers.get(id) ?? 0;
+                              const isCurrent = section.sectionId === activeSectionId && id === currentQuestionId;
+                              const isAnswered = Boolean(session.answers[id]);
+                              return (
+                                <button
+                                  key={id}
+                                  onClick={() => jumpToQuestion(section.sectionId, id)}
+                                  aria-current={isCurrent ? 'true' : undefined}
+                                  className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                                    isCurrent
+                                      ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
+                                      : isAnswered
+                                        ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
+                                        : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
+                                  }`}
+                                  aria-label={`Go to ${sectionTitle(section.sectionId)} question ${num}${isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
+                                >
+                                  {num}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
 
         <main ref={scrollRef} className="flex-1 bg-white dark:bg-slate-950 overflow-y-auto px-4 sm:px-6 py-6 sm:py-8">
           <div className="w-full max-w-2xl mx-auto space-y-14 pb-24">
+            {!isLegacy && activeSection && (
+              <h2 className="text-lg font-extrabold text-slate-900 dark:text-white pb-3 border-b border-slate-200 dark:border-slate-800">
+                {sectionTitle(activeSectionId)}
+              </h2>
+            )}
             {activeSection && (
               <SectionRenderer
                 section={activeSection}
@@ -425,9 +495,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
         </main>
       </div>
 
-      {/* Mobile action bar — Previous/Next are secondary scroll/focus controls
-          within the active subject; they cross subject boundaries only at the
-          very start/end of one, deliberately, never by scrolling past it. */}
+      {/* Mobile-only footer — same structure/position as Practice's:
+          Previous, Submit (always, unlike Practice's conditional Submit/Next), Next. */}
       <footer className="sm:hidden min-h-[64px] bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center justify-between shrink-0">
         <button
           onClick={goPrev}
@@ -449,28 +518,6 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
           <ArrowRight className="w-4 h-4" aria-hidden="true" />
         </button>
       </footer>
-
-      {/* Desktop Previous/Next — secondary, floats above the bottom-right of the scroll area. */}
-      <div className="hidden sm:flex fixed bottom-6 right-6 z-20 items-center gap-2">
-        <button
-          onClick={goPrev}
-          disabled={isPrevDisabled}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed shadow-md transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-          aria-label="Previous question"
-        >
-          <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-          <span>Prev</span>
-        </button>
-        <button
-          onClick={goNext}
-          disabled={isNextDisabled}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed shadow-md transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-          aria-label="Next question"
-        >
-          <span>Next</span>
-          <ArrowRight className="w-4 h-4" aria-hidden="true" />
-        </button>
-      </div>
     </div>
   );
 };
