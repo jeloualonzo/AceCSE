@@ -5,6 +5,7 @@ import type { Subject } from '@/types';
 import { PRACTICE_SIZES, SUBJECTS_BY_LEVEL } from '@/config/exam';
 import { subjectAvailability } from '@/lib/examEngine';
 import { useAppContext } from '@/components/shell/AppLayout';
+import { ExamLevelSwitch } from '@/components/shell/ExamLevelSwitch';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
@@ -19,7 +20,7 @@ type PracticeSize = (typeof PRACTICE_SIZES)[number] | 'all';
 export const PracticePage: React.FC = () => {
   useDocumentTitle('Practice');
   const navigate = useNavigate();
-  const { examLevel } = useAppContext();
+  const { examLevel, setExamLevel } = useAppContext();
 
   const [selectedSubjects, setSelectedSubjects] = useState<Subject[]>([]);
   const [practiceSize, setPracticeSize] = useState<PracticeSize>(PRACTICE_SIZES[0]);
@@ -71,9 +72,7 @@ export const PracticePage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
       <div className="flex items-center gap-3 flex-wrap">
         <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Practice</h1>
-        <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300">
-          {examLevel} Level
-        </span>
+        <ExamLevelSwitch value={examLevel} onChange={setExamLevel} />
       </div>
 
       {/* What practice means — the opposite of the simulation contract */}

@@ -17,6 +17,7 @@ import { simulationOptions } from '@/lib/examEngine';
 import { loadActiveSession } from '@/lib/sessionStorage';
 import { formatDate, formatDuration } from '@/lib/time';
 import { useAppContext } from '@/components/shell/AppLayout';
+import { ExamLevelSwitch } from '@/components/shell/ExamLevelSwitch';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
@@ -41,10 +42,11 @@ const StatCard: React.FC<{
 export const DashboardPage: React.FC = () => {
   useDocumentTitle('Dashboard');
   const navigate = useNavigate();
-  const { examLevel } = useAppContext();
+  const { examLevel, setExamLevel } = useAppContext();
   const { attempts: allAttempts, loading } = useAttempts();
-  // Every dashboard number reflects the ACTIVE examination level only —
-  // Professional users must not see Clerical statistics and vice versa.
+  // Dashboard numbers reflect the level currently SELECTED in the switch
+  // above (a per-activity choice — both levels stay one click away; nothing
+  // app-wide is hidden or filtered permanently).
   const attempts = useMemo(
     () => allAttempts.filter((a) => a.examLevel === examLevel),
     [allAttempts, examLevel]
@@ -77,9 +79,7 @@ export const DashboardPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
       <div className="flex items-center gap-3 flex-wrap">
         <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Dashboard</h1>
-        <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300">
-          {examLevel} Level
-        </span>
+        <ExamLevelSwitch value={examLevel} onChange={setExamLevel} />
       </div>
 
       {activeSession && (

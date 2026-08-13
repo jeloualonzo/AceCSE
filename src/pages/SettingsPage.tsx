@@ -352,7 +352,7 @@ export const SettingsPage: React.FC = () => {
         <h2 id="exam-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
           Examination
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" role="radiogroup" aria-label="Examination level">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" role="radiogroup" aria-label="Default examination level">
           {EXAM_LEVELS.map((level) => {
             const isActive = examLevel === level;
             const blueprint = EXAM_BLUEPRINT[level];
@@ -387,8 +387,9 @@ export const SettingsPage: React.FC = () => {
           })}
         </div>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-3">
-          Simulation blueprints, practice subjects, and your dashboard follow the level you select.
-          Your choice is saved to your account.
+          This sets your DEFAULT level only, as a convenience. Both levels are always available —
+          you can switch levels directly on the Dashboard, Simulation, and Practice pages before
+          starting any activity, and a session that has already started keeps its own level.
         </p>
       </section>
 

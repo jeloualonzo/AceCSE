@@ -5,6 +5,7 @@ import { PASSING_PERCENTAGE } from '@/config/exam';
 import { simulationOptions } from '@/lib/examEngine';
 import { formatDuration } from '@/lib/time';
 import { useAppContext } from '@/components/shell/AppLayout';
+import { ExamLevelSwitch } from '@/components/shell/ExamLevelSwitch';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
@@ -16,7 +17,7 @@ import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 export const SimulationPage: React.FC = () => {
   useDocumentTitle('Exam Simulation');
   const navigate = useNavigate();
-  const { examLevel } = useAppContext();
+  const { examLevel, setExamLevel } = useAppContext();
   const options = useMemo(() => {
     const all = simulationOptions(examLevel);
     // The full exam is the primary feature — surface it first.
@@ -32,9 +33,7 @@ export const SimulationPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
       <div className="flex items-center gap-3 flex-wrap">
         <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Exam Simulation</h1>
-        <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300">
-          {examLevel} Level
-        </span>
+        <ExamLevelSwitch value={examLevel} onChange={setExamLevel} />
       </div>
 
       {/* What simulation means — set the contract once, clearly */}
