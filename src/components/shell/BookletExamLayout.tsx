@@ -455,7 +455,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                         <div key={block.groupId ?? `${section.sectionId}-block-${blockIndex}`}>
                           {block.groupId && (
                             <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
-                              {getGroup(block.groupId)?.questionType ?? 'Item Set'}
+                              {(() => { const g = getGroup(block.groupId!); return g?.title ?? g?.questionType ?? 'Item Set'; })()}
                             </p>
                           )}
                           <div className="grid grid-cols-5 gap-2">

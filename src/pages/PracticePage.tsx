@@ -4,6 +4,7 @@ import { BookOpen, PlayCircle, Timer } from 'lucide-react';
 import type { Subject } from '@/types';
 import { PRACTICE_SIZES, SUBJECTS_BY_LEVEL } from '@/config/exam';
 import { subjectAvailability } from '@/lib/examEngine';
+import { QUESTION_MANIFEST } from '@/data/questionBank';
 import { useAppContext } from '@/components/shell/AppLayout';
 import { ExamLevelSwitch } from '@/components/shell/ExamLevelSwitch';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
@@ -27,6 +28,28 @@ export const PracticePage: React.FC = () => {
   const [practiceTimed, setPracticeTimed] = useState(false);
 
   const availability = useMemo(() => subjectAvailability(examLevel), [examLevel]);
+
+  // Explicit item sets applicable to this level (sync, from the manifest).
+  const itemSets = useMemo(
+    () =>
+      QUESTION_MANIFEST.groups.filter(
+        (g) =>
+          (g.examLevel === 'Both' || g.examLevel === examLevel) &&
+          SUBJECTS_BY_LEVEL[examLevel].includes(g.subject)
+      ),
+    [examLevel]
+  );
+
+  const startItemSet = (groupId: string, size: number) => {
+    const request: ExamLaunchRequest = {
+      kind: 'practice',
+      examLevel,
+      questionCount: size,
+      groupId,
+      timed: false,
+    };
+    navigate('/app/exam', { state: { launch: request } });
+  };
 
   // Switching examination level drops any selected subject the new level
   // does not test (e.g. Clerical Ability disappears under Professional).
@@ -130,6 +153,36 @@ export const PracticePage: React.FC = () => {
           })}
         </div>
       </section>
+
+      {/* Item sets — practice a complete group with its shared directions */}
+      {itemSets.length > 0 && (
+        <section aria-labelledby="itemsets-heading" className="space-y-3">
+          <h2 id="itemsets-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Item Sets
+          </h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Practice a complete question set the way it appears in the booklet — shared directions
+            once, related questions together, instant explanations for each answer.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {itemSets.map((set) => (
+              <button
+                key={set.id}
+                onClick={() => startItemSet(set.id, set.size)}
+                className="text-left rounded-xl border p-4 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-600 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-sm font-bold text-slate-900 dark:text-white truncate">{set.title}</span>
+                  <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full border text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 shrink-0">
+                    {set.size} items
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{set.subject}</p>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Session options */}
       <section className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 space-y-4">

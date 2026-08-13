@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 import type { Attempt, ExamSession, OptionId, Question, Subject } from '@/types';
 import {
+  buildGroupPracticeSession,
   buildPracticeSession,
   buildSimulationSession,
   InsufficientBankError,
@@ -36,6 +37,8 @@ export interface ExamLaunchRequest {
   questionCount: number;
   subjects?: Subject[];
   timed?: boolean;
+  /** Practice an explicit item set (group) as a whole, in authored order. */
+  groupId?: string;
 }
 
 type QuestionIndex = ReadonlyMap<string, Question>;
@@ -51,6 +54,9 @@ function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
   if (request.kind === 'simulation') {
     return buildSimulationSession(request.examLevel, request.questionCount);
   }
+  if (request.groupId) {
+    return buildGroupPracticeSession(request.examLevel, request.groupId);
+  }
   return buildPracticeSession(
     request.examLevel,
     request.subjects ?? [],
@@ -60,12 +66,21 @@ function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
 }
 
 function launchFromSession(session: ExamSession): ExamLaunchRequest {
+  // A group-practice session is exactly one explicit group item — restarts
+  // must rebuild the same item set, not a generic subject drill.
+  const soleGroup =
+    session.config.mode === 'practice' &&
+    session.items?.length === 1 &&
+    session.items[0].kind === 'group'
+      ? session.items[0].groupId
+      : undefined;
   return {
     kind: session.config.mode,
     examLevel: session.config.examLevel,
     questionCount: session.config.questionCount,
     subjects: session.config.subjects,
     timed: session.config.timed,
+    groupId: soleGroup,
   };
 }
 

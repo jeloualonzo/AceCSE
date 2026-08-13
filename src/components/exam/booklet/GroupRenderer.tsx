@@ -68,6 +68,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
               questionNumber={questionNumbers.get(id) ?? 0}
               selectedOptionId={answers[id] ?? null}
               onSelectOption={onSelectOption}
+              suppressPassage={Boolean(group?.contentBlocks && group.contentBlocks.length > 0)}
             />
           );
         })}

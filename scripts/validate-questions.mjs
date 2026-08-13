@@ -218,6 +218,8 @@ for (const path of jsonFiles(questionsDir)) {
 // intentionally optional during the migration foundation phase.
 const groupsDir = join(dirname(questionsDir), 'groups');
 const groupIds = new Set();
+const groupedMembers = new Set();
+let groupCount = 0;
 if (existsSync(groupsDir)) {
   for (const path of jsonFiles(groupsDir)) {
     const file = relative(groupsDir, path);
@@ -241,13 +243,19 @@ if (existsSync(groupsDir)) {
       if (!VALID_LEVELS.has(group.examLevel)) errors.push(`${where}: bad examLevel "${group.examLevel}"`);
       if (!VALID_SUBJECTS.has(group.subject)) errors.push(`${where}: bad subject "${group.subject}"`);
       if (typeof group.topic !== 'string' || !group.topic) errors.push(`${where}: missing topic`);
-      if (!Array.isArray(group.questionIds) || group.questionIds.length === 0) {
-        errors.push(`${where}: questionIds must be a non-empty array`);
+      groupCount += 1;
+      if (!Array.isArray(group.questionIds) || group.questionIds.length < 2) {
+        errors.push(`${where}: a group needs at least 2 member questions`);
       } else {
         if (new Set(group.questionIds).size !== group.questionIds.length) errors.push(`${where}: duplicate question id`);
         for (const questionId of group.questionIds) {
           if (!questionsById.has(questionId)) errors.push(`${where}: missing referenced question "${questionId}"`);
+          if (groupedMembers.has(questionId)) errors.push(`${where}: question ${questionId} belongs to more than one group`);
+          groupedMembers.add(questionId);
         }
+      }
+      if (typeof group.directions !== 'string' || group.directions.length < 20) {
+        errors.push(`${where}: a group must carry real shared directions (≥ 20 chars)`);
       }
       if (!['atomic', 'splittable'].includes(group.selectionPolicy)) errors.push(`${where}: bad selectionPolicy`);
       if (!['fixed', 'shuffle-questions'].includes(group.orderPolicy)) errors.push(`${where}: bad orderPolicy`);
@@ -278,6 +286,7 @@ console.log('\nDifficulty:');
 for (const level of ['Easy', 'Medium', 'Hard']) {
   console.log(`  ${level.padEnd(8)} ${difficultyCounts.get(level) ?? 0}`);
 }
+console.log(`\nGroups: ${groupCount} explicit item sets covering ${groupedMembers.size} questions (${total - groupedMembers.size} singleton questions)`);
 console.log(`\nAnswer letters: A=${letterCounts.A} B=${letterCounts.B} C=${letterCounts.C} D=${letterCounts.D} E=${letterCounts.E}`);
 
 if (errors.length > 0) {

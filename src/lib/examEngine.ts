@@ -398,6 +398,43 @@ export async function buildPracticeSession(
   };
 }
 
+
+/**
+ * Build a practice session for ONE explicit item set (group practice).
+ * Additive capability: shared context appears once (via the group's
+ * directions/stimulus in the QuestionCard context), authored order is
+ * preserved, and immediate per-question feedback still applies. Standalone
+ * subject practice is untouched.
+ */
+export async function buildGroupPracticeSession(
+  level: ExamLevel,
+  groupId: string
+): Promise<ExamSession> {
+  const catalog = await loadContentCatalog(SUBJECTS_BY_LEVEL[level]);
+  const group = catalog.getGroup(groupId);
+  if (!group || group.isImplicitSingleton) {
+    throw new InsufficientBankError(SUBJECTS_BY_LEVEL[level]);
+  }
+  const questionIds = [...group.questionIds];
+  const startedAt = Date.now();
+  return {
+    id: newSessionId(),
+    config: {
+      mode: 'practice',
+      examLevel: level,
+      questionCount: questionIds.length,
+      subjects: [group.subject],
+      timed: false,
+      durationSeconds: null,
+    },
+    questionIds,
+    items: [{ kind: 'group', groupId: group.id, sectionId: group.subject, questionIds }],
+    startedAt,
+    deadlineAt: null,
+    answers: {},
+  };
+}
+
 /** The subjects a session's question ids can reference (for lazy index loads). */
 export function subjectsOfSession(session: ExamSession): Subject[] {
   return session.config.mode === 'practice' && session.config.subjects?.length

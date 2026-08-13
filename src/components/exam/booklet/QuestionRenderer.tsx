@@ -4,18 +4,24 @@ import type { OptionId, Question } from '@/types';
 
 export interface QuestionRendererProps {
   question: Question;
-  /** 1-based booklet-wide position, from questionNumberMap(). */
+  /** 1-based booklet-wide position, from sessionNumberMap(). */
   questionNumber: number;
   selectedOptionId: OptionId | null;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
+  /**
+   * True when the enclosing group renders a shared stimulus block — the
+   * member's own (identical) passage is then suppressed so the stimulus
+   * appears exactly once, booklet-style.
+   */
+  suppressPassage?: boolean;
 }
 
 /**
- * One scored question inside the continuous booklet. Unlike the old
- * single-question `QuestionCard`, this never owns a passage or explanation —
- * shared stimulus content belongs to the enclosing `GroupRenderer`, and
- * simulation never shows feedback until results. Practice keeps using the
- * original `QuestionCard` unchanged.
+ * One scored question inside the continuous booklet. It renders its own
+ * `passage` stimulus (471 singleton questions carry one) EXCEPT when the
+ * enclosing group provides the shared stimulus once (suppressPassage).
+ * It never shows explanations — simulation gives no feedback until results.
+ * Practice keeps using the original `QuestionCard` unchanged.
  *
  * `id="question-{id}"` is the stable anchor the navigator and Previous/Next
  * scroll to; `data-question-id` is what the scroll-spy observer keys off of.
@@ -27,6 +33,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
   questionNumber,
   selectedOptionId,
   onSelectOption,
+  suppressPassage = false,
 }) {
   return (
     <section
@@ -47,6 +54,12 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
           {question.subject}
         </span>
       </div>
+
+      {question.passage && !suppressPassage && (
+        <div className="border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-black dark:text-slate-300 whitespace-pre-line mb-3">
+          {question.passage}
+        </div>
+      )}
 
       <p className="text-base sm:text-lg font-medium text-black dark:text-slate-100 leading-relaxed whitespace-pre-line mb-4">
         {question.question}

@@ -34,12 +34,31 @@ function* jsonFiles(dir: string): Generator<string> {
   }
 }
 
+function buildGroupsMeta(groupsDir: string): QuestionManifest['groups'] {
+  const meta: QuestionManifest['groups'] = [];
+  if (!existsSync(groupsDir)) return meta;
+  for (const path of jsonFiles(groupsDir)) {
+    let parsed: unknown;
+    try { parsed = JSON.parse(readFileSync(path, 'utf8')); } catch { continue; }
+    if (!Array.isArray(parsed)) continue;
+    for (const g of parsed) {
+      if (!g?.id || !Array.isArray(g.questionIds)) continue;
+      meta.push({
+        id: g.id, title: g.title ?? g.questionType ?? g.topic ?? g.id,
+        subject: g.subject, examLevel: g.examLevel,
+        questionType: g.questionType, size: g.questionIds.length,
+      });
+    }
+  }
+  return meta;
+}
+
 function buildManifest(questionsDir: string): QuestionManifest {
   const subjects: QuestionManifest['subjects'] = {};
   let totalQuestions = 0;
   const seenIds = new Set<string>();
 
-  if (!existsSync(questionsDir)) return { subjects, totalQuestions };
+  if (!existsSync(questionsDir)) return { subjects, totalQuestions, groups: [] };
 
   for (const path of jsonFiles(questionsDir)) {
     const topDir = relative(questionsDir, path).split(sep)[0];
@@ -73,7 +92,7 @@ function buildManifest(questionsDir: string): QuestionManifest {
     }
   }
 
-  return { subjects, totalQuestions };
+  return { subjects, totalQuestions, groups: [] };
 }
 
 export function questionManifestPlugin(): Plugin {
@@ -93,14 +112,17 @@ export function questionManifestPlugin(): Plugin {
     load(id) {
       if (id !== RESOLVED_ID) return undefined;
       const manifest = buildManifest(questionsDir);
+      manifest.groups = buildGroupsMeta(join(questionsDir, '..', 'groups'));
       return `export default ${JSON.stringify(manifest)};`;
     },
 
     configureServer(server) {
       // Recompute the manifest when content changes during dev.
+      const groupsDir = join(questionsDir, '..', 'groups');
       server.watcher.add(questionsDir);
+      server.watcher.add(groupsDir);
       const invalidate = (file: string) => {
-        if (!file.startsWith(questionsDir) || !file.endsWith('.json')) return;
+        if ((!file.startsWith(questionsDir) && !file.startsWith(groupsDir)) || !file.endsWith('.json')) return;
         const mod = server.moduleGraph.getModuleById(RESOLVED_ID);
         if (mod) server.moduleGraph.invalidateModule(mod);
         server.ws.send({ type: 'full-reload' });

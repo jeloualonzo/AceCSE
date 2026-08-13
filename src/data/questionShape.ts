@@ -93,10 +93,21 @@ export interface SubjectSupply {
   both: number;
 }
 
+export interface GroupMeta {
+  id: string;
+  title: string;
+  subject: Subject;
+  examLevel: string;
+  questionType?: string;
+  size: number;
+}
+
 export interface QuestionManifest {
   /** Keyed by canonical Subject name. Absent subject ⇒ zero supply. */
   subjects: Partial<Record<Subject, SubjectSupply>>;
   totalQuestions: number;
+  /** Explicit item-set metadata for sync listings (Practice's Item Sets). */
+  groups: GroupMeta[];
 }
 
 /** Unique-question supply a given exam level can draw on. */

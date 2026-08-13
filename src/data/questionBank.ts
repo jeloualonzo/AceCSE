@@ -53,6 +53,28 @@ const groupModules = import.meta.glob<ExplicitGroupDataset>('../../content/fixtu
   import: 'default',
 });
 
+/** Production question groups (item sets), organized like the question tree. */
+const productionGroupModules = import.meta.glob<QuestionGroup[]>('../../content/groups/**/*.json', {
+  import: 'default',
+});
+
+const groupPathsByDir = new Map<string, string[]>();
+for (const path of Object.keys(productionGroupModules)) {
+  const match = path.match(/content\/groups\/([^/]+)\//);
+  if (!match) continue;
+  const list = groupPathsByDir.get(match[1]) ?? [];
+  list.push(path);
+  groupPathsByDir.set(match[1], list);
+}
+
+async function loadGroups(subjects: readonly Subject[]): Promise<QuestionGroup[]> {
+  const dirs = [...new Set(subjects.map((subject) => DIR_BY_SUBJECT[subject]))];
+  const datasets = await Promise.all(
+    dirs.flatMap((dir) => (groupPathsByDir.get(dir) ?? []).map((path) => productionGroupModules[path]()))
+  );
+  return datasets.flat().filter((group) => Array.isArray(group?.questionIds));
+}
+
 export const QUESTION_MANIFEST: QuestionManifest = manifest;
 
 /** Unique-question supply per subject for a level — synchronous, no fetch. */
@@ -143,8 +165,8 @@ export function loadQuestionsForLevel(level: ExamLevel): Promise<Question[]> {
 export async function loadContentCatalog(
   subjects: readonly Subject[]
 ): Promise<NormalizedContentCatalog> {
-  const questions = await loadQuestions(subjects);
-  return createNormalizedCatalog(questions);
+  const [questions, groups] = await Promise.all([loadQuestions(subjects), loadGroups(subjects)]);
+  return createNormalizedCatalog(questions, groups);
 }
 
 /** Load the opt-in grouped fixture without touching the production bank. */
