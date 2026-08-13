@@ -4,7 +4,9 @@
  * Run via `npm run validate:questions`.
  *
  * Structural gates (always fatal):
- *   valid JSON, unique ids, unique stem+choices, exactly 4 in-order choices,
+ *   valid JSON, unique ids, unique stem+choices, 4 or 5 in-order choices
+ *   (legacy bank = 4; NEW authored content should use 5 — never invent a
+ *   fake fifth option for legacy questions),
  *   valid enums, non-empty fields.
  *
  * Teaching-quality gates (fatal — every production question must teach):
@@ -30,8 +32,10 @@ const VALID_SUBJECTS = new Set([
   'General Information',
 ]);
 const VALID_DIFFICULTIES = new Set(['Easy', 'Medium', 'Hard']);
-const VALID_OPTIONS = ['A', 'B', 'C', 'D'];
+const VALID_OPTIONS = ['A', 'B', 'C', 'D', 'E'];
 const VALID_OPTION_SET = new Set(VALID_OPTIONS);
+const MIN_CHOICES = 4;
+const MAX_CHOICES = 5;
 
 /**
  * Directory convention (mirrors src/data/questionShape.ts): every dataset file
@@ -67,7 +71,7 @@ const normalizedQuestions = new Map();
 const questionsById = new Map();
 const subjectCounts = new Map();
 const difficultyCounts = new Map();
-const letterCounts = { A: 0, B: 0, C: 0, D: 0 };
+const letterCounts = { A: 0, B: 0, C: 0, D: 0, E: 0 };
 let total = 0;
 let fileCount = 0;
 
@@ -117,20 +121,22 @@ for (const path of jsonFiles(questionsDir)) {
     if (typeof q.question !== 'string' || q.question.length < 10) errors.push(`${where}: question too short`);
     if (!Array.isArray(q.tags)) errors.push(`${where}: tags must be an array`);
 
-    if (!Array.isArray(q.choices) || q.choices.length !== 4) {
-      errors.push(`${where}: must have exactly 4 choices`);
+    if (!Array.isArray(q.choices) || q.choices.length < MIN_CHOICES || q.choices.length > MAX_CHOICES) {
+      errors.push(`${where}: must have ${MIN_CHOICES} or ${MAX_CHOICES} choices`);
     } else {
       const choiceIds = q.choices.map((c) => c?.id);
-      if (JSON.stringify(choiceIds) !== JSON.stringify(VALID_OPTIONS)) {
-        errors.push(`${where}: choice ids must be A,B,C,D in order`);
+      const expected = VALID_OPTIONS.slice(0, q.choices.length);
+      if (JSON.stringify(choiceIds) !== JSON.stringify(expected)) {
+        errors.push(`${where}: choice ids must be ${expected.join(',')} in order (contiguous, no missing middle options)`);
       }
       const texts = q.choices.map((c) => String(c?.text ?? '').trim().toLowerCase());
-      if (new Set(texts).size !== 4) errors.push(`${where}: duplicate choice text`);
+      if (new Set(texts).size !== q.choices.length) errors.push(`${where}: duplicate choice text`);
       if (texts.some((t) => !t)) errors.push(`${where}: empty choice text`);
     }
 
-    if (!VALID_OPTION_SET.has(q.correctOptionId)) {
-      errors.push(`${where}: bad correctOptionId "${q.correctOptionId}"`);
+    const ownChoiceIds = Array.isArray(q.choices) ? q.choices.map((c) => c?.id) : [];
+    if (!VALID_OPTION_SET.has(q.correctOptionId) || !ownChoiceIds.includes(q.correctOptionId)) {
+      errors.push(`${where}: correctOptionId "${q.correctOptionId}" must be one of this question's choices`);
     } else {
       letterCounts[q.correctOptionId] += 1;
     }
@@ -151,7 +157,8 @@ for (const path of jsonFiles(questionsDir)) {
       }
     }
 
-    const wrongOptions = VALID_OPTIONS.filter((o) => o !== q.correctOptionId);
+    const wrongOptions = (Array.isArray(q.choices) ? q.choices.map((c) => c?.id) : [])
+      .filter((o) => VALID_OPTION_SET.has(o) && o !== q.correctOptionId);
     const distractors = q.distractorExplanations;
     if (typeof distractors !== 'object' || distractors === null) {
       errors.push(`${where}: missing distractorExplanations`);
@@ -164,6 +171,11 @@ for (const path of jsonFiles(questionsDir)) {
       }
       if (distractors[q.correctOptionId] !== undefined) {
         errors.push(`${where}: distractorExplanations must not include the correct option`);
+      }
+      for (const key of Object.keys(distractors)) {
+        if (!ownChoiceIds.includes(key)) {
+          errors.push(`${where}: distractorExplanations references option "${key}" which is not one of this question's choices`);
+        }
       }
     }
 

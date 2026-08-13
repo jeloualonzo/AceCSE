@@ -19,7 +19,13 @@ export type Subject =
 
 export type Difficulty = 'Easy' | 'Medium' | 'Hard';
 
-export type OptionId = 'A' | 'B' | 'C' | 'D';
+/**
+ * Canonical option ids. NEW authored test-proper content uses five choices
+ * (A–E), matching CSE-style materials; the legacy production bank keeps its
+ * original four (A–D). Both are first-class — never invent a fake fifth
+ * option for legacy content.
+ */
+export type OptionId = 'A' | 'B' | 'C' | 'D' | 'E';
 
 export interface QuestionChoice {
   id: OptionId;

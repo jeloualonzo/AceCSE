@@ -9,8 +9,20 @@
 
 import type { Question, Subject } from '@/types';
 
-export const OPTION_IDS = ['A', 'B', 'C', 'D'] as const;
+export const OPTION_IDS = ['A', 'B', 'C', 'D', 'E'] as const;
 const OPTION_ID_SET: ReadonlySet<string> = new Set(OPTION_IDS);
+
+/** Migration contract: legacy content has 4 choices, new content 5. */
+export const MIN_CHOICES = 4;
+export const MAX_CHOICES = 5;
+
+/**
+ * Choice ids must be a contiguous prefix of A–E in order (A,B,C,D or
+ * A,B,C,D,E) — no gaps, no reordering, no missing middle options.
+ */
+export function hasContiguousChoiceIds(choices: readonly { id?: string }[]): boolean {
+  return choices.every((choice, index) => choice?.id === OPTION_IDS[index]);
+}
 
 export const EXAM_LEVELS = ['Professional', 'Subprofessional', 'Both'] as const;
 export const DIFFICULTIES = ['Easy', 'Medium', 'Hard'] as const;
@@ -53,7 +65,9 @@ export function isValidQuestion(q: unknown): q is Question {
     (EXAM_LEVELS as readonly string[]).includes(question.examLevel as string) &&
     (DIFFICULTIES as readonly string[]).includes(question.difficulty as string) &&
     Array.isArray(choices) &&
-    choices.length === 4 &&
+    choices.length >= MIN_CHOICES &&
+    choices.length <= MAX_CHOICES &&
+    hasContiguousChoiceIds(choices as { id?: string }[]) &&
     choices.every(
       (c) =>
         typeof c === 'object' &&
@@ -61,6 +75,8 @@ export function isValidQuestion(q: unknown): q is Question {
         OPTION_ID_SET.has((c as { id?: string }).id ?? '') &&
         typeof (c as { text?: string }).text === 'string'
     ) &&
+    // the keyed answer must exist among THIS question's choices
+    (choices as { id?: string }[]).some((c) => c.id === question.correctOptionId) &&
     OPTION_ID_SET.has(question.correctOptionId as string) &&
     Array.isArray(question.tags)
   );
