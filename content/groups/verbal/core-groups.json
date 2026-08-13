@@ -1,0 +1,401 @@
+[
+  {
+    "id": "grp-synonyms-01",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "questionType": "Synonyms",
+    "title": "Synonyms — Set 1",
+    "directions": "DIRECTIONS: Choose the word or phrase that means most nearly the SAME as the capitalized or highlighted word in each item.",
+    "questionIds": [
+      "seed-verb-001",
+      "verb-0001",
+      "verb-0002",
+      "verb-0005",
+      "verb-0051",
+      "verb-0052",
+      "verb-0053",
+      "verb-0054",
+      "verb-0066",
+      "verb-0073"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "synonyms"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-synonyms-02",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "questionType": "Synonyms",
+    "title": "Synonyms — Set 2",
+    "directions": "DIRECTIONS: Choose the word or phrase that means most nearly the SAME as the capitalized or highlighted word in each item.",
+    "questionIds": [
+      "verb-0082",
+      "verb-0102",
+      "verb-0104",
+      "verb-0112",
+      "verb-0115",
+      "verb-0123",
+      "verb-0129",
+      "verb-0130",
+      "verb-0131",
+      "verb-0132"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "synonyms"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-synonyms-03",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "questionType": "Synonyms",
+    "title": "Synonyms — Set 3",
+    "directions": "DIRECTIONS: Choose the word or phrase that means most nearly the SAME as the capitalized or highlighted word in each item.",
+    "questionIds": [
+      "verb-0148",
+      "verb-0149",
+      "verb-0151",
+      "verb-0152",
+      "verb-0156",
+      "verb-0157",
+      "verb-0174",
+      "verb-0175"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "synonyms"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-syn-context-01",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "questionType": "Synonyms",
+    "title": "Synonyms in Context — Set 1",
+    "directions": "DIRECTIONS: Each sentence uses a capitalized word. Choose the option that gives the meaning of the capitalized word AS USED in that sentence.",
+    "questionIds": [
+      "verb-0136",
+      "verb-0137",
+      "verb-0138",
+      "verb-0139",
+      "verb-0140",
+      "verb-0141",
+      "verb-0142",
+      "verb-0166",
+      "verb-0167"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "synonyms"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-syn-context-02",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "questionType": "Synonyms",
+    "title": "Synonyms in Context — Set 2",
+    "directions": "DIRECTIONS: Each sentence uses a capitalized word. Choose the option that gives the meaning of the capitalized word AS USED in that sentence.",
+    "questionIds": [
+      "verb-0168",
+      "verb-0172",
+      "verb-0176",
+      "verb-0177",
+      "verb-0178",
+      "verb-0179",
+      "verb-0180",
+      "verb-0181",
+      "verb-0183"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "synonyms"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-syn-context-03",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "questionType": "Synonyms",
+    "title": "Synonyms in Context — Set 3",
+    "directions": "DIRECTIONS: Each sentence uses a capitalized word. Choose the option that gives the meaning of the capitalized word AS USED in that sentence.",
+    "questionIds": [
+      "verb-0184",
+      "verb-0185",
+      "verb-0186",
+      "verb-0188",
+      "verb-0189",
+      "verb-0190",
+      "verb-0191",
+      "verb-0192",
+      "verb-0193"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "synonyms"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-antonyms-01",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "questionType": "Antonyms",
+    "title": "Antonyms — Set 1",
+    "directions": "DIRECTIONS: Choose the word most nearly OPPOSITE in meaning to the capitalized or highlighted word in each item. Watch the direction — several choices will be near-synonyms of the given word.",
+    "questionIds": [
+      "seed-verb-002",
+      "verb-0004",
+      "verb-0009",
+      "verb-0055",
+      "verb-0056",
+      "verb-0057",
+      "verb-0058",
+      "verb-0080",
+      "verb-0101"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "antonyms"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-antonyms-02",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Vocabulary",
+    "questionType": "Antonyms",
+    "title": "Antonyms — Set 2",
+    "directions": "DIRECTIONS: Choose the word most nearly OPPOSITE in meaning to the capitalized or highlighted word in each item. Watch the direction — several choices will be near-synonyms of the given word.",
+    "questionIds": [
+      "verb-0105",
+      "verb-0109",
+      "verb-0113",
+      "verb-0116",
+      "verb-0124",
+      "verb-0127",
+      "verb-0128",
+      "verb-0187"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "antonyms"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-rc-public-trust",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "questionType": "Reading Comprehension",
+    "title": "Reading Comprehension — Public Trust",
+    "directions": "DIRECTIONS: Read the following passage carefully, then answer the questions that follow based ONLY on what is stated or implied in the passage.",
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "grp-rc-public-trust-stimulus",
+        "title": "PASSAGE",
+        "body": "Public trust is the foundation on which effective government stands. When citizens believe that officials act fairly and honestly, they cooperate more readily with rules and programs. Corruption, even in small and seemingly harmless forms, chips away at this trust. What is easy to lose is hard to recover: rebuilding public confidence after a scandal is slow, costly, and uncertain, often taking far longer than the misconduct that damaged it. For this reason, ethical conduct in public service is not merely a matter of personal virtue. It is a practical requirement for a state that intends to function at all."
+      }
+    ],
+    "questionIds": [
+      "verb-0117",
+      "verb-0118",
+      "verb-0119"
+    ],
+    "selectionPolicy": "atomic",
+    "orderPolicy": "fixed",
+    "tags": [
+      "item-set",
+      "shared-stimulus"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-rc-csc",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "questionType": "Reading Comprehension",
+    "title": "Reading Comprehension — The Civil Service Commission",
+    "directions": "DIRECTIONS: Read the following passage carefully, then answer the questions that follow based ONLY on what is stated or implied in the passage.",
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "grp-rc-csc-stimulus",
+        "title": "PASSAGE",
+        "body": "The Civil Service Commission is the central human resource institution of the Philippine government. It is responsible for establishing and maintaining a merit-based, professional, and efficient civil service. The Commission administers career service examinations, sets qualification standards, and hears administrative cases involving government employees. Its mandate is rooted in the principle that government positions should be filled by individuals selected on the basis of merit and fitness, not political patronage. By upholding these standards, the Commission aims to ensure that public service is delivered competently and equitably to all Filipino citizens."
+      }
+    ],
+    "questionIds": [
+      "verb-0043",
+      "verb-0044"
+    ],
+    "selectionPolicy": "atomic",
+    "orderPolicy": "fixed",
+    "tags": [
+      "item-set",
+      "shared-stimulus"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-rc-property",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "questionType": "Reading Comprehension",
+    "title": "Reading Comprehension — Government Property",
+    "directions": "DIRECTIONS: Read the following passage carefully, then answer the questions that follow based ONLY on what is stated or implied in the passage.",
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "grp-rc-property-stimulus",
+        "title": "PASSAGE",
+        "body": "Public officials who misuse government property for personal benefit violate both the law and the public trust. Republic Act 6713, or the Code of Conduct and Ethical Standards for Public Officials and Employees, prohibits the use of government resources—including vehicles, equipment, and office supplies—for private purposes. Violations may result in administrative sanctions ranging from reprimand to dismissal, depending on the gravity of the offense. Beyond legal consequences, such misconduct erodes citizens' confidence in government institutions and ultimately undermines the state's capacity to serve the public interest."
+      }
+    ],
+    "questionIds": [
+      "verb-0045",
+      "verb-0046"
+    ],
+    "selectionPolicy": "atomic",
+    "orderPolicy": "fixed",
+    "tags": [
+      "item-set",
+      "shared-stimulus"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-rc-careers",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "questionType": "Reading Comprehension",
+    "title": "Reading Comprehension — Career Development",
+    "directions": "DIRECTIONS: Read the following passage carefully, then answer the questions that follow based ONLY on what is stated or implied in the passage.",
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "grp-rc-careers-stimulus",
+        "title": "PASSAGE",
+        "body": "Career development in the government service is governed by a merit promotion system intended to reward competence and dedication. Appointments to higher positions must be based on performance ratings, relevant training, and eligibility. However, critics argue that in practice, promotions are often influenced by personal connections and political considerations rather than objective criteria. This gap between policy and practice discourages capable employees from pursuing advancement and can lead to talent drain as skilled workers seek opportunities in the private sector. Bridging this gap requires consistent enforcement of promotion rules and robust oversight by the Civil Service Commission."
+      }
+    ],
+    "questionIds": [
+      "verb-0047",
+      "verb-0048"
+    ],
+    "selectionPolicy": "atomic",
+    "orderPolicy": "fixed",
+    "tags": [
+      "item-set",
+      "shared-stimulus"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-rc-frontline",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "questionType": "Reading Comprehension",
+    "title": "Reading Comprehension — Frontline Service",
+    "directions": "DIRECTIONS: Read the following passage carefully, then answer the questions that follow based ONLY on what is stated or implied in the passage.",
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "grp-rc-frontline-stimulus",
+        "title": "PASSAGE",
+        "body": "Frontline government workers play a critical role in public service delivery, yet they are often the least resourced and most overburdened segment of the civil service. In local government units particularly, a single employee may be assigned duties spanning multiple functions due to staffing shortages. This situation compromises service quality and contributes to employee burnout. Advocates have called on national government agencies to review staffing patterns and allocate personnel more equitably across localities. Without adequate staffing, even the best-designed programs risk failing at the point of delivery."
+      }
+    ],
+    "questionIds": [
+      "verb-0049",
+      "verb-0050"
+    ],
+    "selectionPolicy": "atomic",
+    "orderPolicy": "fixed",
+    "tags": [
+      "item-set",
+      "shared-stimulus"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-rc-appointments",
+    "examLevel": "Both",
+    "subject": "Verbal Ability",
+    "topic": "Reading Comprehension",
+    "questionType": "Reading Comprehension",
+    "title": "Reading Comprehension — Online Appointments",
+    "directions": "DIRECTIONS: Read the following passage carefully, then answer the questions that follow based ONLY on what is stated or implied in the passage.",
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "grp-rc-appointments-stimulus",
+        "title": "PASSAGE",
+        "body": "The city opened an online appointment system. Walk-in congestion declined, but some senior citizens struggled to use the platform. The city therefore retained an assisted service desk."
+      }
+    ],
+    "questionIds": [
+      "verb-0090",
+      "verb-0091"
+    ],
+    "selectionPolicy": "atomic",
+    "orderPolicy": "fixed",
+    "tags": [
+      "item-set",
+      "shared-stimulus"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  }
+]

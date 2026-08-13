@@ -1,0 +1,140 @@
+[
+  {
+    "id": "grp-filing-01",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "questionType": "Filing",
+    "title": "Filing — Set 1",
+    "directions": "DIRECTIONS: Apply standard alphabetic filing rules to each item: compare names unit by unit and letter by letter; treat surname prefixes (De, Del, San, Sta.) as part of the surname; disregard personal and professional titles; file nothing before something.",
+    "example": "Example — Reyes, Ana files before Reyes, Benito because A precedes B at the given-name unit.",
+    "questionIds": [
+      "cler-0001",
+      "cler-0002",
+      "cler-0003",
+      "cler-0004",
+      "cler-0005",
+      "cler-0006",
+      "cler-0007",
+      "cler-0008",
+      "cler-0009"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "filing"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-filing-02",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "questionType": "Filing",
+    "title": "Filing — Set 2",
+    "directions": "DIRECTIONS: Apply standard alphabetic filing rules to each item: compare names unit by unit and letter by letter; treat surname prefixes (De, Del, San, Sta.) as part of the surname; disregard personal and professional titles; file nothing before something.",
+    "example": "Example — Reyes, Ana files before Reyes, Benito because A precedes B at the given-name unit.",
+    "questionIds": [
+      "cler-0010",
+      "cler-0011",
+      "cler-0031",
+      "cler-0032",
+      "cler-0033",
+      "cler-0036",
+      "cler-0037",
+      "cler-0038",
+      "cler-0039"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "filing"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-filing-03",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "questionType": "Filing",
+    "title": "Filing — Set 3",
+    "directions": "DIRECTIONS: Apply standard alphabetic filing rules to each item: compare names unit by unit and letter by letter; treat surname prefixes (De, Del, San, Sta.) as part of the surname; disregard personal and professional titles; file nothing before something.",
+    "example": "Example — Reyes, Ana files before Reyes, Benito because A precedes B at the given-name unit.",
+    "questionIds": [
+      "cler-0040",
+      "cler-0041",
+      "cler-0053",
+      "cler-0054",
+      "cler-0058",
+      "cler-0059",
+      "cler-0060",
+      "seed-cler-001"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "filing"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-spelling-01",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "questionType": "Spelling",
+    "title": "Spelling — Set 1",
+    "directions": "DIRECTIONS: Each item tests the standard spelling of words commonly used in office and government correspondence. Read the item carefully — it will ask either for the correctly spelled word or for the misspelled one.",
+    "questionIds": [
+      "cler-0012",
+      "cler-0013",
+      "cler-0014",
+      "cler-0015",
+      "cler-0016",
+      "cler-0017",
+      "cler-0018"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "spelling"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-spelling-02",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Spelling",
+    "questionType": "Spelling",
+    "title": "Spelling — Set 2",
+    "directions": "DIRECTIONS: Each item tests the standard spelling of words commonly used in office and government correspondence. Read the item carefully — it will ask either for the correctly spelled word or for the misspelled one.",
+    "questionIds": [
+      "cler-0019",
+      "cler-0034",
+      "cler-0046",
+      "cler-0047",
+      "cler-0048",
+      "cler-0055",
+      "seed-cler-002"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "spelling"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  }
+]

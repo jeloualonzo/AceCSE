@@ -1,0 +1,275 @@
+[
+  {
+    "id": "grp-analogy-01",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "questionType": "Analogy",
+    "title": "Word Analogy — Set 1",
+    "directions": "DIRECTIONS: Determine how the first pair of capitalized words is related. From the choices, select the word that gives the second pair the same relationship.",
+    "example": "Example — HAMMER : CARPENTER :: STETHOSCOPE : ___. A hammer is the tool of a carpenter; a stethoscope is the tool of a physician. The answer is PHYSICIAN.",
+    "questionIds": [
+      "ana-0001",
+      "ana-0002",
+      "ana-0003",
+      "ana-0004",
+      "ana-0005",
+      "ana-0006",
+      "ana-0007",
+      "ana-0008"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "analogy"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-analogy-02",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "questionType": "Analogy",
+    "title": "Word Analogy — Set 2",
+    "directions": "DIRECTIONS: Determine how the first pair of capitalized words is related. From the choices, select the word that gives the second pair the same relationship.",
+    "example": "Example — HAMMER : CARPENTER :: STETHOSCOPE : ___. A hammer is the tool of a carpenter; a stethoscope is the tool of a physician. The answer is PHYSICIAN.",
+    "questionIds": [
+      "ana-0009",
+      "ana-0010",
+      "ana-0065",
+      "ana-0066",
+      "ana-0078",
+      "ana-0079",
+      "ana-0080",
+      "ana-0081"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "analogy"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-analogy-03",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "questionType": "Analogy",
+    "title": "Word Analogy — Set 3",
+    "directions": "DIRECTIONS: Determine how the first pair of capitalized words is related. From the choices, select the word that gives the second pair the same relationship.",
+    "example": "Example — HAMMER : CARPENTER :: STETHOSCOPE : ___. A hammer is the tool of a carpenter; a stethoscope is the tool of a physician. The answer is PHYSICIAN.",
+    "questionIds": [
+      "ana-0082",
+      "ana-0083",
+      "ana-0084",
+      "ana-0085",
+      "ana-0086",
+      "ana-0087",
+      "ana-0088",
+      "ana-0107"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "analogy"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-analogy-04",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Word Analogy",
+    "questionType": "Analogy",
+    "title": "Word Analogy — Set 4",
+    "directions": "DIRECTIONS: Determine how the first pair of capitalized words is related. From the choices, select the word that gives the second pair the same relationship.",
+    "example": "Example — HAMMER : CARPENTER :: STETHOSCOPE : ___. A hammer is the tool of a carpenter; a stethoscope is the tool of a physician. The answer is PHYSICIAN.",
+    "questionIds": [
+      "ana-0108",
+      "ana-0109",
+      "ana-0110",
+      "ana-0111",
+      "ana-0112",
+      "ana-0113",
+      "ana-0114",
+      "ana-0115"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "analogy"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-ana-series-01",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "questionType": "Number Sequence",
+    "title": "Number and Letter Series — Set 1",
+    "directions": "DIRECTIONS: Each item shows a series that follows a definite pattern. Study the series, work out its rule, and choose the option that correctly continues it.",
+    "example": "Example — 3, 6, 9, 12, ___. Each term increases by 3, so the next term is 15.",
+    "questionIds": [
+      "ana-0035",
+      "ana-0036",
+      "ana-0037",
+      "ana-0038",
+      "ana-0039",
+      "ana-0040",
+      "ana-0046",
+      "ana-0047"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "number-sequence"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-ana-series-02",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "questionType": "Number Sequence",
+    "title": "Number and Letter Series — Set 2",
+    "directions": "DIRECTIONS: Each item shows a series that follows a definite pattern. Study the series, work out its rule, and choose the option that correctly continues it.",
+    "example": "Example — 3, 6, 9, 12, ___. Each term increases by 3, so the next term is 15.",
+    "questionIds": [
+      "ana-0048",
+      "ana-0049",
+      "ana-0089",
+      "ana-0090",
+      "ana-0091",
+      "ana-0092",
+      "ana-0102",
+      "ana-0103"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "number-sequence"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-ana-series-03",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Number and Letter Pattern",
+    "questionType": "Number Sequence",
+    "title": "Number and Letter Series — Set 3",
+    "directions": "DIRECTIONS: Each item shows a series that follows a definite pattern. Study the series, work out its rule, and choose the option that correctly continues it.",
+    "example": "Example — 3, 6, 9, 12, ___. Each term increases by 3, so the next term is 15.",
+    "questionIds": [
+      "ana-0104",
+      "ana-0105",
+      "ana-0117",
+      "ana-0118",
+      "ana-0119",
+      "ana-0120",
+      "seed-ana-001"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "number-sequence"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-syllogism-01",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "questionType": "Logical Reasoning",
+    "title": "Logical Conclusions — Set 1",
+    "directions": "DIRECTIONS: Each item gives one or more statements that you must assume to be true, even if they differ from real life. Choose the conclusion that logically follows from the statements alone.",
+    "questionIds": [
+      "ana-0011",
+      "ana-0012",
+      "ana-0013",
+      "ana-0015",
+      "ana-0016",
+      "ana-0017",
+      "ana-0018",
+      "ana-0050"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "logical-reasoning"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-syllogism-02",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "questionType": "Logical Reasoning",
+    "title": "Logical Conclusions — Set 2",
+    "directions": "DIRECTIONS: Each item gives one or more statements that you must assume to be true, even if they differ from real life. Choose the conclusion that logically follows from the statements alone.",
+    "questionIds": [
+      "ana-0052",
+      "ana-0056",
+      "ana-0057",
+      "ana-0058",
+      "ana-0061",
+      "ana-0072",
+      "ana-0093",
+      "ana-0094"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "logical-reasoning"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-syllogism-03",
+    "examLevel": "Professional",
+    "subject": "Analytical Reasoning",
+    "topic": "Logical Reasoning",
+    "questionType": "Logical Reasoning",
+    "title": "Logical Conclusions — Set 3",
+    "directions": "DIRECTIONS: Each item gives one or more statements that you must assume to be true, even if they differ from real life. Choose the conclusion that logically follows from the statements alone.",
+    "questionIds": [
+      "ana-0095",
+      "ana-0096",
+      "ana-0097",
+      "ana-0101",
+      "seed-ana-002"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "logical-reasoning"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  }
+]

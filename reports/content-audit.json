@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-08-13T15:41:35.089Z",
+  "totalQuestions": 688,
+  "fiveChoiceQuestions": 688,
+  "fourChoiceQuestions": 0,
+  "totalGroups": 33,
+  "multiQuestionGroups": 33,
+  "groupedQuestions": 217,
+  "singletonQuestions": 471,
+  "groupsBySubject": {
+    "Analytical Reasoning": 10,
+    "Clerical Ability": 5,
+    "Numerical Reasoning": 4,
+    "Verbal Ability": 14
+  },
+  "groupsByQuestionType": {
+    "Analogy": 4,
+    "Number Sequence": 5,
+    "Logical Reasoning": 3,
+    "Filing": 3,
+    "Spelling": 2,
+    "Data Interpretation": 2,
+    "Synonyms": 6,
+    "Antonyms": 2,
+    "Reading Comprehension": 6
+  },
+  "questionsPerSubject": {
+    "Analytical Reasoning": 123,
+    "Clerical Ability": 63,
+    "General Information": 147,
+    "Numerical Reasoning": 157,
+    "Verbal Ability": 198
+  },
+  "difficulty": {
+    "Easy": 194,
+    "Medium": 350,
+    "Hard": 144
+  },
+  "answerDistribution": {
+    "A": 138,
+    "D": 138,
+    "B": 138,
+    "C": 139,
+    "E": 135
+  },
+  "exactDuplicateCount": 0,
+  "questionsNeedingHumanReview": []
+}

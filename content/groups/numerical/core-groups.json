@@ -1,0 +1,110 @@
+[
+  {
+    "id": "grp-num-series-01",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "questionType": "Number Sequence",
+    "title": "Number Series — Set 1",
+    "directions": "DIRECTIONS: Each item shows a series of numbers that follows a definite pattern. Determine the rule and choose the option that correctly completes the series.",
+    "questionIds": [
+      "num-0019",
+      "num-0020",
+      "num-0021",
+      "num-0022",
+      "num-0023",
+      "num-0024"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "number-sequence"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-num-series-02",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "questionType": "Number Sequence",
+    "title": "Number Series — Set 2",
+    "directions": "DIRECTIONS: Each item shows a series of numbers that follows a definite pattern. Determine the rule and choose the option that correctly completes the series.",
+    "questionIds": [
+      "num-0025",
+      "num-0026",
+      "num-0108",
+      "num-0137",
+      "num-0147"
+    ],
+    "selectionPolicy": "splittable",
+    "orderPolicy": "shuffle-questions",
+    "tags": [
+      "item-set",
+      "number-sequence"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-di-employment",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "questionType": "Data Interpretation",
+    "title": "Data Interpretation — Employment Summary",
+    "directions": "DIRECTIONS: Study the following information carefully, then answer the questions that follow using only the data given.",
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "grp-di-employment-stimulus",
+        "title": "DATA",
+        "body": "Municipality of Baybayon — Employment Summary: Administration Department: 12 Regular, 8 Casual (Total 20). Finance Department: 9 Regular, 6 Casual (Total 15). Health Department: 15 Regular, 10 Casual (Total 25). Overall: 36 Regular, 24 Casual."
+      }
+    ],
+    "questionIds": [
+      "num-0041",
+      "num-0042",
+      "num-0043"
+    ],
+    "selectionPolicy": "atomic",
+    "orderPolicy": "fixed",
+    "tags": [
+      "item-set",
+      "shared-stimulus"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  },
+  {
+    "id": "grp-di-roadworks",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Data Interpretation",
+    "questionType": "Data Interpretation",
+    "title": "Data Interpretation — Road Repairs",
+    "directions": "DIRECTIONS: Study the following information carefully, then answer the questions that follow using only the data given.",
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "grp-di-roadworks-stimulus",
+        "title": "DATA",
+        "body": "Provincial Engineering Office — Quarterly Road-Repair Budget Utilization: Q1 ₱480,000; Q2 ₱520,000; Q3 ₱450,000; Q4 ₱550,000. Total approved annual budget: ₱2,500,000."
+      }
+    ],
+    "questionIds": [
+      "num-0044",
+      "num-0045"
+    ],
+    "selectionPolicy": "atomic",
+    "orderPolicy": "fixed",
+    "tags": [
+      "item-set",
+      "shared-stimulus"
+    ],
+    "contentVersion": 1,
+    "status": "published"
+  }
+]
