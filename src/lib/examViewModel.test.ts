@@ -8,7 +8,8 @@ import {
   isLegacyBooklet,
   navigatorBlocks,
   questionNumberMap,
-  sectionQuestionNumberMap,
+  sessionNumberMap,
+  sectionItemOrder,
   sectionQuestionOrder,
   sectionTitle,
 } from './examViewModel';
@@ -135,23 +136,64 @@ describe('computeAnswerCounts', () => {
   });
 });
 
-describe('sectionQuestionOrder / sectionQuestionNumberMap — subject-scoped numbering', () => {
-  it('restarts numbering at 1 for every section, independent of other sections', () => {
+describe('sessionNumberMap — session-based booklet numbering', () => {
+  const edqItems: SessionItem[] = Array.from({ length: 20 }, (_, i) => ({
+    kind: 'administrative' as const,
+    id: `edq-${String(i + 1).padStart(2, '0')}`,
+    sectionId: 'EDQ',
+  }));
+
+  it('numbers EDQ 1–20, first scored question 21, and never resets between subjects', () => {
     const items: SessionItem[] = [
+      ...edqItems,
       { kind: 'question', questionId: 'N1', sectionId: 'Numerical Reasoning' },
       { kind: 'question', questionId: 'N2', sectionId: 'Numerical Reasoning' },
       { kind: 'group', groupId: 'g1', sectionId: 'Verbal Ability', questionIds: ['V1', 'V2', 'V3'] },
     ];
     const sections = buildBooklet(session({ items, questionIds: ['N1', 'N2', 'V1', 'V2', 'V3'] }));
-    const [numerical, verbal] = sections;
+    const numbers = sessionNumberMap(sections);
 
-    expect(sectionQuestionOrder(numerical)).toEqual(['N1', 'N2']);
-    expect(sectionQuestionNumberMap(numerical).get('N2')).toBe(2);
+    expect(numbers.get('edq-01')).toBe(1);
+    expect(numbers.get('edq-20')).toBe(20);
+    expect(numbers.get('N1')).toBe(21); // first scored item is 21
+    expect(numbers.get('N2')).toBe(22);
+    // Verbal continues where Numerical ended — NO reset to 1.
+    expect(numbers.get('V1')).toBe(23);
+    expect(numbers.get('V3')).toBe(25);
+  });
 
-    // Verbal's V1 is booklet-wide question #3, but subject-scoped it's #1.
-    expect(sectionQuestionOrder(verbal)).toEqual(['V1', 'V2', 'V3']);
-    expect(sectionQuestionNumberMap(verbal).get('V1')).toBe(1);
-    expect(sectionQuestionNumberMap(verbal).get('V3')).toBe(3);
+  it('a subject ending at n hands n+1 to the next subject (no EDQ variant)', () => {
+    const items: SessionItem[] = [
+      { kind: 'group', groupId: 'g1', sectionId: 'A', questionIds: ['A1', 'A2'] },
+      { kind: 'question', questionId: 'B1', sectionId: 'B' },
+    ];
+    const sections = buildBooklet(session({ items, questionIds: ['A1', 'A2', 'B1'] }));
+    const numbers = sessionNumberMap(sections);
+    expect(numbers.get('A2')).toBe(2);
+    expect(numbers.get('B1')).toBe(3);
+  });
+
+  it('sectionItemOrder includes administrative ids; sectionQuestionOrder never does', () => {
+    const items: SessionItem[] = [
+      ...edqItems.slice(0, 2),
+      { kind: 'question', questionId: 'Q1', sectionId: 'EDQ' /* pathological but tolerated */ },
+    ];
+    const sections = buildBooklet(session({ items, questionIds: ['Q1'] }));
+    expect(sectionItemOrder(sections[0])).toEqual(['edq-01', 'edq-02', 'Q1']);
+    expect(sectionQuestionOrder(sections[0])).toEqual(['Q1']);
+  });
+
+  it('navigatorBlocks marks administrative runs and keeps them out of question blocks', () => {
+    const items: SessionItem[] = [
+      ...edqItems.slice(0, 3),
+      { kind: 'question', questionId: 'Q1', sectionId: 'EDQ' },
+    ];
+    const sections = buildBooklet(session({ items, questionIds: ['Q1'] }));
+    const blocks = navigatorBlocks(sections[0]);
+    expect(blocks).toEqual([
+      { ids: ['edq-01', 'edq-02', 'edq-03'], administrative: true },
+      { ids: ['Q1'] },
+    ]);
   });
 });
 
@@ -199,12 +241,20 @@ describe('navigatorBlocks — flat grid, not one row per legacy question', () =>
     ]);
   });
 
-  it('excludes administrative nodes from the question grid entirely', () => {
-    const items: SessionItem[] = [
-      { kind: 'administrative', id: 'personal-info', sectionId: 'S' },
-      { kind: 'question', questionId: 'Q1', sectionId: 'S' },
-    ];
-    const sections = buildBooklet(session({ items, questionIds: ['Q1'] }));
-    expect(navigatorBlocks(sections[0])).toEqual([{ ids: ['Q1'] }]);
+  it('separates administrative nodes into their own marked block, never a question block', () => {
+    const section = buildBooklet(
+      session({
+        items: [
+          { kind: 'administrative', id: 'edq-01', sectionId: 'S' },
+          { kind: 'question', questionId: 'Q1', sectionId: 'S' },
+        ],
+        questionIds: ['Q1'],
+      })
+    )[0];
+    const blocks = navigatorBlocks(section);
+    expect(blocks).toEqual([
+      { ids: ['edq-01'], administrative: true },
+      { ids: ['Q1'] },
+    ]);
   });
 });

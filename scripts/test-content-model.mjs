@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-const fixture = JSON.parse(readFileSync(new URL('../fixtures/grouped-content.json', import.meta.url), 'utf8'));
+const fixture = JSON.parse(readFileSync(new URL('../content/fixtures/grouped-content.json', import.meta.url), 'utf8'));
 const { group, questions } = fixture;
 
 assert.equal(group.questionIds.length, 3);
