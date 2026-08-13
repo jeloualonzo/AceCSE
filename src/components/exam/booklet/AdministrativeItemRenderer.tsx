@@ -1,10 +1,13 @@
 import React from 'react';
+import { edqApplicability } from '@/data/edq';
 import type { EdqRenderContext } from './SectionRenderer';
 
 export interface AdministrativeItemRendererProps {
   id: string;
   /** Session-based booklet number (EDQ items occupy 1–20). */
   displayNumber: number;
+  /** Render this item's shared run instruction above it (first of its run). */
+  showGroupHeader?: boolean;
   edq?: EdqRenderContext;
 }
 
@@ -22,6 +25,7 @@ export interface AdministrativeItemRendererProps {
 export const AdministrativeItemRenderer: React.FC<AdministrativeItemRendererProps> = ({
   id,
   displayNumber,
+  showGroupHeader = false,
   edq,
 }) => {
   const item = edq?.getItem(id);
@@ -37,7 +41,12 @@ export const AdministrativeItemRenderer: React.FC<AdministrativeItemRendererProp
     );
   }
 
-  const interactive = edq?.responseMode === true;
+  // Conditional structure: 'not-applicable' mirrors the real questionnaire's
+  // "answer only the item that applies to you" runs. 'unknown' (controlling
+  // item unanswered) stays enabled — the examinee decides.
+  const applicability = edqApplicability(item, edq?.answers ?? {});
+  const notApplicable = applicability === 'not-applicable';
+  const interactive = edq?.responseMode === true && !notApplicable;
   const selected = edq?.answers[id];
 
   return (
@@ -46,8 +55,20 @@ export const AdministrativeItemRenderer: React.FC<AdministrativeItemRendererProp
       data-question-id={id}
       tabIndex={-1}
       className="scroll-mt-4 focus:outline-none"
-      aria-label={`Item ${displayNumber}, administrative, not scored`}
+      aria-label={`Item ${displayNumber}, administrative, not scored${notApplicable ? ', not applicable based on an earlier response' : ''}`}
     >
+      {showGroupHeader && item.instruction && (
+        <div className="mb-4 rounded-r-lg border-l-4 border-l-slate-400 dark:border-l-slate-500 border-y border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 p-4">
+          {item.groupLabel && (
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">
+              {item.groupLabel}
+            </p>
+          )}
+          <p className="text-sm text-black dark:text-slate-200 leading-relaxed whitespace-pre-line">
+            {item.instruction}
+          </p>
+        </div>
+      )}
       <div className="flex items-center gap-2.5 flex-wrap mb-2">
         <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
           Item {displayNumber}
@@ -55,6 +76,11 @@ export const AdministrativeItemRenderer: React.FC<AdministrativeItemRendererProp
         <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
           Not scored
         </span>
+        {notApplicable && (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-500/30 text-amber-700 dark:text-amber-400">
+            Not applicable based on your earlier response
+          </span>
+        )}
       </div>
 
       <p className="text-base sm:text-lg font-medium text-black dark:text-slate-100 leading-relaxed mb-3">

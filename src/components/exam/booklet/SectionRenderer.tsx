@@ -44,11 +44,19 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
     <div className="space-y-10">
       {section.nodes.map((node, index) => {
         if (node.kind === 'administrative') {
+          // A shared instruction renders ONCE above the first item of a
+          // labeled run (booklet-style), never repeated per item.
+          const prev = section.nodes[index - 1];
+          const prevLabel =
+            prev?.kind === 'administrative' ? edq?.getItem(prev.id)?.groupLabel : undefined;
+          const ownLabel = edq?.getItem(node.id)?.groupLabel;
+          const showGroupHeader = Boolean(ownLabel) && ownLabel !== prevLabel;
           return (
             <AdministrativeItemRenderer
               key={`admin-${node.id}-${index}`}
               id={node.id}
               displayNumber={questionNumbers.get(node.id) ?? 0}
+              showGroupHeader={showGroupHeader}
               edq={edq}
             />
           );
