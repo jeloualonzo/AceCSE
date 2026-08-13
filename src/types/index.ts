@@ -202,6 +202,16 @@ export interface ExamSession {
   /** Epoch ms wall-clock deadline; null when untimed. */
   deadlineAt: number | null;
   answers: Record<string, OptionId>;
+  /**
+   * OPTIONAL, LOCAL-ONLY responses to the administrative EDQ items.
+   * PRIVACY CONTRACT: this never leaves the device — sessions persist to
+   * localStorage only, and grading builds the Firestore Attempt exclusively
+   * from scored `questionIds`/`answers`. Never copy this into an Attempt or
+   * any Firestore write.
+   */
+  edqAnswers?: Record<string, string>;
+  /** Whether the user enabled optional EDQ response mode for this session. */
+  edqResponseMode?: boolean;
 }
 
 // ---------------------------------------------------------------------------
