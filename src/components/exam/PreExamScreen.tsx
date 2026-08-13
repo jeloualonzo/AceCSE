@@ -6,7 +6,10 @@ import { formatDuration } from '@/lib/time';
 
 interface PreExamScreenProps {
   examLevel: ExamLevel;
+  /** Scored test-proper items in this generated session. */
   questionCount: number;
+  /** Administrative EDQ items presented first (never scored). */
+  edqCount?: number;
   durationSeconds: number;
   /** Honest subject composition of the generated session. */
   distribution: Partial<Record<Subject, number>>;
@@ -18,6 +21,7 @@ interface PreExamScreenProps {
 export const PreExamScreen: React.FC<PreExamScreenProps> = ({
   examLevel,
   questionCount,
+  edqCount = 0,
   durationSeconds,
   distribution,
   isFullExam,
@@ -55,8 +59,13 @@ export const PreExamScreen: React.FC<PreExamScreenProps> = ({
             <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex items-start gap-3">
               <ListChecks className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" aria-hidden="true" />
               <div>
-                <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Questions</dt>
+                <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Scored Questions</dt>
                 <dd className="text-lg font-extrabold text-slate-900 dark:text-slate-100">{questionCount}</dd>
+                {edqCount > 0 && (
+                  <dd className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
+                    + {edqCount} EDQ (not scored)
+                  </dd>
+                )}
               </div>
             </div>
             <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex items-start gap-3">
@@ -79,8 +88,13 @@ export const PreExamScreen: React.FC<PreExamScreenProps> = ({
 
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
-              Subject Composition
+              Subject Composition — This Simulation
             </h2>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mb-3 leading-relaxed">
+              Subject sizes and block order vary between simulations by design — real booklets
+              vary, and preparing for that range is the point. These counts describe this
+              generated session only, not an official CSC allocation.
+            </p>
             <ul className="space-y-2">
               {Object.entries(distribution).map(([subject, count]) => (
                 <li

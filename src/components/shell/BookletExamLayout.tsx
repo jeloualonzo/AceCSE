@@ -7,12 +7,15 @@ import {
   computeSectionAnswerCounts,
   isLegacyBooklet,
   navigatorBlocks,
-  sectionQuestionNumberMap,
+  sectionItemOrder,
   sectionQuestionOrder,
+  sectionShortTitle,
   sectionTitle,
+  sessionNumberMap,
   type BookletSection,
 } from '@/lib/examViewModel';
-import { SectionRenderer } from '@/components/exam/booklet/SectionRenderer';
+import { EDQ_SECTION_ID } from '@/data/edq';
+import { SectionRenderer, type EdqRenderContext } from '@/components/exam/booklet/SectionRenderer';
 
 export interface BookletExamLayoutProps {
   examLevel: ExamLevel;
@@ -25,6 +28,8 @@ export interface BookletExamLayoutProps {
   getGroup: (groupId: string) => NormalizedQuestionGroup | undefined;
   questionIndex: ReadonlyMap<string, Question>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
+  /** EDQ rendering context — present only for sessions that carry an EDQ section. */
+  edq?: EdqRenderContext;
 }
 
 /**
@@ -50,6 +55,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   getGroup,
   questionIndex,
   onSelectOption,
+  edq,
 }) => {
   const scrollRef = useRef<HTMLElement | null>(null);
   const navTriggerRef = useRef<HTMLButtonElement | null>(null);
@@ -63,6 +69,11 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
 
   const [activeSectionId, setActiveSectionId] = useState<string>(() => {
     if (sections.length === 0) return '';
+    // A brand-new session starts at the very beginning — the EDQ, exactly
+    // like the real booklet. A resumed session with scored answers already
+    // in progress lands on the first subject with unanswered questions.
+    const hasAnyScoredAnswer = Object.keys(session.answers).length > 0;
+    if (!hasAnyScoredAnswer) return sections[0].sectionId;
     const withUnanswered = sections.find((sec) =>
       sectionQuestionOrder(sec).some((id) => !session.answers[id])
     );
@@ -75,14 +86,13 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     [sections, activeSectionId]
   );
 
-  const localOrder = useMemo(() => (activeSection ? sectionQuestionOrder(activeSection) : []), [activeSection]);
-  const localNumbers = useMemo(
-    () => (activeSection ? sectionQuestionNumberMap(activeSection) : new Map<string, number>()),
-    [activeSection]
-  );
-  const localCounts = activeSection
-    ? computeSectionAnswerCounts(activeSection, session.answers)
-    : { total: 0, answered: 0, unanswered: 0 };
+  const localOrder = useMemo(() => (activeSection ? sectionItemOrder(activeSection) : []), [activeSection]);
+  // SESSION-BASED numbering: one continuous sequence across the whole
+  // booklet (EDQ occupies 1–20, first scored item is 21, numbers never
+  // reset between subjects). Content ids stay permanent; these numbers are
+  // this session's booklet positions.
+  const displayNumbers = useMemo(() => sessionNumberMap(sections), [sections]);
+  const presentedTotal = displayNumbers.size;
   const globalCounts = computeAnswerCounts(session);
 
   const lastPositionRef = useRef<Record<string, string>>({});
@@ -104,7 +114,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   // first-unanswered default when a boundary crossing set an explicit target).
   useEffect(() => {
     if (!activeSection) return;
-    const order = sectionQuestionOrder(activeSection);
+    const order = sectionItemOrder(activeSection);
     if (order.length === 0) return;
 
     let target: string;
@@ -115,7 +125,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       target =
         remembered && order.includes(remembered)
           ? remembered
-          : order.find((id) => !session.answers[id]) ?? order[0];
+          : order.find((id) => !session.answers[id] && !(session.edqAnswers ?? {})[id]) ?? order[0];
     }
     pendingTargetRef.current = null;
     scrollToQuestion(target, 'auto');
@@ -206,7 +216,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     const sectionIdx = sections.findIndex((s) => s.sectionId === activeSectionId);
     if (sectionIdx > 0) {
       const prevSection = sections[sectionIdx - 1];
-      const prevOrder = sectionQuestionOrder(prevSection);
+      const prevOrder = sectionItemOrder(prevSection);
       if (prevOrder.length === 0) return;
       if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
       pendingTargetRef.current = prevOrder[prevOrder.length - 1];
@@ -224,7 +234,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     const sectionIdx = sections.findIndex((s) => s.sectionId === activeSectionId);
     if (sectionIdx !== -1 && sectionIdx < sections.length - 1) {
       const nextSection = sections[sectionIdx + 1];
-      const nextOrder = sectionQuestionOrder(nextSection);
+      const nextOrder = sectionItemOrder(nextSection);
       if (nextOrder.length === 0) return;
       if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
       pendingTargetRef.current = nextOrder[0];
@@ -238,7 +248,10 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   const isPrevDisabled = isFirstSection && localIdx <= 0;
   const isNextDisabled = isLastSection && (localIdx === -1 || localIdx >= localOrder.length - 1);
 
-  const currentLocalNumber = localIdx === -1 ? 1 : localIdx + 1;
+  const currentDisplayNumber =
+    (currentQuestionId ? displayNumbers.get(currentQuestionId) : undefined) ??
+    displayNumbers.get(localOrder[0] ?? '') ??
+    1;
   const isProfessional = examLevel === 'Professional';
   const gridIconColor = isProfessional ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400';
 
@@ -250,11 +263,11 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       onClick={(e) => toggleNavigator(e.currentTarget)}
       className={`${displayClasses} items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
       aria-expanded={isNavigatorOpen}
-      aria-label={`Open question navigation, question ${currentLocalNumber} of ${localOrder.length} in ${sectionTitle(activeSectionId)}, ${examLevel} level session`}
+      aria-label={`Open question navigation, item ${currentDisplayNumber} of ${presentedTotal}, in ${sectionTitle(activeSectionId)}, ${examLevel} level session`}
     >
       <Grid className={`w-4 h-4 shrink-0 ${gridIconColor}`} aria-hidden="true" />
       <span>
-        Q {currentLocalNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {localOrder.length}</span>
+        Q {currentDisplayNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {presentedTotal}</span>
       </span>
     </button>
   );
@@ -335,7 +348,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
         <div className="w-full bg-slate-200 dark:bg-slate-800/80 h-1">
           <div
             className="bg-emerald-500 h-1 transition-all duration-300"
-            style={{ width: `${localCounts.total === 0 ? 0 : Math.round((localCounts.answered / localCounts.total) * 100)}%` }}
+            style={{ width: `${globalCounts.total === 0 ? 0 : Math.round((globalCounts.answered / globalCounts.total) * 100)}%` }}
           />
         </div>
       </header>
@@ -406,9 +419,9 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                             : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
                         }`}
                       >
-                        <div className="truncate">{sectionTitle(section.sectionId)}</div>
+                        <div className="truncate">{sectionShortTitle(section.sectionId)}</div>
                         <div className={isActive ? 'text-emerald-100 font-normal' : 'text-slate-400 dark:text-slate-500 font-normal'}>
-                          {counts.answered}/{counts.total}
+                          {section.sectionId === EDQ_SECTION_ID ? 'Not scored' : `${counts.answered}/${counts.total}`}
                         </div>
                       </button>
                     );
@@ -422,14 +435,19 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 consecutive plain/singleton questions always share one flat grid. */}
             <div className="space-y-5">
               {sections.map((section) => {
-                const numbers = sectionQuestionNumberMap(section);
                 const blocks = navigatorBlocks(section);
                 if (blocks.length === 0) return null;
+                const order = sectionItemOrder(section);
+                const first = displayNumbers.get(order[0] ?? '') ?? 0;
+                const last = displayNumbers.get(order[order.length - 1] ?? '') ?? 0;
                 return (
                   <div key={section.sectionId}>
                     {!isLegacy && (
                       <h3 className="text-xs font-bold text-slate-700 dark:text-slate-200 mb-2">
-                        {sectionTitle(section.sectionId)}
+                        {sectionShortTitle(section.sectionId)}{' '}
+                        <span className="text-slate-400 dark:text-slate-500 font-semibold">
+                          {first}–{last}
+                        </span>
                       </h3>
                     )}
                     <div className="space-y-2">
@@ -442,9 +460,11 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                           )}
                           <div className="grid grid-cols-5 gap-2">
                             {block.ids.map((id) => {
-                              const num = numbers.get(id) ?? 0;
+                              const num = displayNumbers.get(id) ?? 0;
                               const isCurrent = section.sectionId === activeSectionId && id === currentQuestionId;
-                              const isAnswered = Boolean(session.answers[id]);
+                              const isAnswered = block.administrative
+                                ? Boolean((session.edqAnswers ?? {})[id])
+                                : Boolean(session.answers[id]);
                               return (
                                 <button
                                   key={id}
@@ -457,7 +477,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                                         ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
                                         : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
                                   }`}
-                                  aria-label={`Go to ${sectionTitle(section.sectionId)} question ${num}${isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
+                                  aria-label={`Go to item ${num} in ${sectionTitle(section.sectionId)}${block.administrative ? ', administrative, not scored' : isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
                                 >
                                   {num}
                                 </button>
@@ -481,14 +501,36 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 {sectionTitle(activeSectionId)}
               </h2>
             )}
+            {activeSectionId === EDQ_SECTION_ID && edq && (
+              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 p-4 sm:p-5 space-y-3 -mt-6">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  These are administrative items and are not scored. On exam day, booklet items
+                  1–20 ask about the examinee — the test proper starts at item 21. Answering here
+                  is optional; nothing you select leaves this device.
+                </p>
+                <button
+                  onClick={edq.onToggleResponseMode}
+                  role="switch"
+                  aria-checked={edq.responseMode}
+                  className={`inline-flex items-center gap-2 min-h-[40px] px-3.5 rounded-lg border text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                    edq.responseMode
+                      ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300'
+                      : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300'
+                  }`}
+                >
+                  {edq.responseMode ? 'EDQ Response Mode: On' : 'Enable EDQ Response Mode'}
+                </button>
+              </div>
+            )}
             {activeSection && (
               <SectionRenderer
                 section={activeSection}
                 getGroup={getGroup}
                 questionIndex={questionIndex}
-                questionNumbers={localNumbers}
+                questionNumbers={displayNumbers}
                 answers={session.answers}
                 onSelectOption={onSelectOption}
+                edq={edq}
               />
             )}
           </div>

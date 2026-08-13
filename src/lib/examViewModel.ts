@@ -78,9 +78,8 @@ export function isLegacyBooklet(sections: readonly BookletSection[]): boolean {
 
 /**
  * Every scored question id in booklet reading order, with groups expanded
- * in place. Used for Previous/Next targets and the default "current
- * question" before the reader has scrolled. Administrative nodes contribute
- * no ids — they are never scored and never part of Previous/Next.
+ * in place. Administrative nodes contribute no ids here — this is the
+ * SCORED order (grading, answer counts).
  */
 export function bookletQuestionOrder(sections: readonly BookletSection[]): string[] {
   const ids: string[] = [];
@@ -93,7 +92,34 @@ export function bookletQuestionOrder(sections: readonly BookletSection[]): strin
   return ids;
 }
 
-/** 1-based display number for every scored question, in booklet order. */
+/**
+ * Every DISPLAYABLE item id in booklet reading order — administrative (EDQ)
+ * items included. This is the sequence display numbers are assigned from.
+ */
+export function bookletItemOrder(sections: readonly BookletSection[]): string[] {
+  const ids: string[] = [];
+  for (const section of sections) {
+    for (const node of section.nodes) {
+      if (node.kind === 'question') ids.push(node.questionId);
+      else if (node.kind === 'group') ids.push(...node.questionIds);
+      else ids.push(node.id);
+    }
+  }
+  return ids;
+}
+
+/**
+ * SESSION-BASED display numbers: one continuous 1..N sequence across the
+ * whole generated booklet. Administrative EDQ items occupy 1–20, the first
+ * scored question is 21, and numbering NEVER resets between subjects.
+ * Content ids stay permanent — these numbers exist only for this session.
+ */
+export function sessionNumberMap(sections: readonly BookletSection[]): Map<string, number> {
+  const order = bookletItemOrder(sections);
+  return new Map(order.map((id, index) => [id, index + 1]));
+}
+
+/** @deprecated scored-only numbering — kept for legacy callers; prefer sessionNumberMap. */
 export function questionNumberMap(sections: readonly BookletSection[]): Map<string, number> {
   const order = bookletQuestionOrder(sections);
   return new Map(order.map((id, index) => [id, index + 1]));
@@ -119,10 +145,17 @@ export function computeAnswerCounts(session: ExamSession): AnswerCounts {
   return { total, answered, unanswered: total - answered };
 }
 
-/** Human-readable label for a section id, for headings and the navigator. */
+/** Synthetic-free label for a section id, for headings and the navigator. */
 export function sectionTitle(sectionId: string): string {
   if (sectionId === LEGACY_SECTION_ID || sectionId === UNSECTIONED_ID) return 'Questions';
+  if (sectionId === 'EDQ') return 'Examinee Descriptive Questionnaire';
   return sectionId;
+}
+
+/** Compact label for tight UI (subject buttons). */
+export function sectionShortTitle(sectionId: string): string {
+  if (sectionId === 'EDQ') return 'EDQ';
+  return sectionTitle(sectionId);
 }
 
 // ---------------------------------------------------------------------------
@@ -144,10 +177,19 @@ export function sectionQuestionOrder(section: BookletSection): string[] {
   return ids;
 }
 
-/** 1-based display number for each question, restarting at 1 for every section. */
-export function sectionQuestionNumberMap(section: BookletSection): Map<string, number> {
-  const order = sectionQuestionOrder(section);
-  return new Map(order.map((id, index) => [id, index + 1]));
+/**
+ * Every DISPLAYABLE item id within one section (administrative items
+ * included) — Previous/Next and scroll-spy walk this, so the EDQ section is
+ * navigable exactly like a scored section.
+ */
+export function sectionItemOrder(section: BookletSection): string[] {
+  const ids: string[] = [];
+  for (const node of section.nodes) {
+    if (node.kind === 'question') ids.push(node.questionId);
+    else if (node.kind === 'group') ids.push(...node.questionIds);
+    else ids.push(node.id);
+  }
+  return ids;
 }
 
 /** Answered/unanswered counts scoped to one section — powers the subject tab badges. */
@@ -162,6 +204,8 @@ export function computeSectionAnswerCounts(
 
 export interface NavigatorBlock {
   ids: string[];
+  /** True for a block of administrative (EDQ) items — rendered muted, never scored. */
+  administrative?: boolean;
   /** Present only for a real multi-question group — lets the UI show an
    * optional, subtle label. Absent for plain questions and singleton
    * groups, which are rendered as one continuous flat grid rather than
@@ -190,11 +234,21 @@ export function navigatorBlocks(section: BookletSection): NavigatorBlock[] {
     }
   };
 
+  let adminBuffer: string[] = [];
+  const flushAdmin = () => {
+    if (adminBuffer.length > 0) {
+      blocks.push({ ids: adminBuffer, administrative: true });
+      adminBuffer = [];
+    }
+  };
+
   for (const node of section.nodes) {
     if (node.kind === 'administrative') {
       flush();
+      adminBuffer.push(node.id);
       continue;
     }
+    flushAdmin();
     if (node.kind === 'question') {
       buffer.push(node.questionId);
       continue;
@@ -208,5 +262,6 @@ export function navigatorBlocks(section: BookletSection): NavigatorBlock[] {
     blocks.push({ ids: node.questionIds, groupId: node.groupId });
   }
   flush();
+  flushAdmin();
   return blocks;
 }

@@ -10,6 +10,7 @@ import {
 } from '@/lib/examEngine';
 import { gradeSession } from '@/lib/grading';
 import { loadContentCatalog } from '@/data/questionBank';
+import { getEdqItem } from '@/data/edq';
 import type { NormalizedContentCatalog } from '@/data/contentCatalog';
 import {
   clearActiveSession,
@@ -43,7 +44,7 @@ type Stage =
   | { name: 'conflict'; request: ExamLaunchRequest; saved: ExamSession }
   | { name: 'pre'; session: ExamSession }
   | { name: 'active'; session: ExamSession }
-  | { name: 'results'; attempt: Attempt; launch: ExamLaunchRequest }
+  | { name: 'results'; attempt: Attempt; launch: ExamLaunchRequest; edqCount: number }
   | { name: 'error' };
 
 function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
@@ -100,10 +101,14 @@ export const ExamPage: React.FC = () => {
 
   const finishWith = useCallback(
     (finished: ExamSession, index: QuestionIndex, completedAt: number = Date.now()) => {
+      // EDQ items are administrative: they are never in `questionIds`, so
+      // gradeSession cannot see them and the Firestore Attempt cannot carry
+      // them. Count them only for the honest "presented but not scored" note.
+      const edqCount = (finished.items ?? []).filter((item) => item.kind === 'administrative').length;
       const attempt = gradeSession(finished, index, completedAt);
       clearActiveSession();
       setIsSubmitModalOpen(false);
-      setStage({ name: 'results', attempt, launch: launchFromSession(finished) });
+      setStage({ name: 'results', attempt, launch: launchFromSession(finished), edqCount });
       if (user) {
         void saveAttempt(user.uid, attempt).catch(() => setSaveError(true));
       }
@@ -290,6 +295,25 @@ export const ExamPage: React.FC = () => {
     [catalog]
   );
 
+  /**
+   * EDQ responses are OPTIONAL practice input. They persist only inside the
+   * local session (localStorage) and are excluded from grading by
+   * construction — never sent to Firestore.
+   */
+  const handleSelectEdq = useCallback(
+    (edqItemId: string, option: string) => {
+      updateSession((prev) => ({
+        ...prev,
+        edqAnswers: { ...(prev.edqAnswers ?? {}), [edqItemId]: option },
+      }));
+    },
+    [updateSession]
+  );
+
+  const handleToggleEdqMode = useCallback(() => {
+    updateSession((prev) => ({ ...prev, edqResponseMode: !prev.edqResponseMode }));
+  }, [updateSession]);
+
   const handleExit = useCallback(() => {
     // The session is persisted; exiting never destroys progress.
     navigate('/app/dashboard');
@@ -381,6 +405,7 @@ export const ExamPage: React.FC = () => {
           <PreExamScreen
             examLevel={stage.session.config.examLevel}
             questionCount={stage.session.config.questionCount}
+            edqCount={(stage.session.items ?? []).filter((item) => item.kind === 'administrative').length}
             durationSeconds={stage.session.config.durationSeconds ?? 0}
             distribution={questionIndex ? distributionOf(stage.session, questionIndex) : {}}
             isFullExam={false}
@@ -407,6 +432,7 @@ export const ExamPage: React.FC = () => {
         <ResultsScreen
           attempt={stage.attempt}
           questionIndex={questionIndex ?? new Map()}
+          edqPresented={stage.edqCount}
           onRetake={() => handleRetake(stage.launch)}
           onReturnToDashboard={() => navigate('/app/dashboard')}
         />
@@ -456,6 +482,7 @@ export const ExamPage: React.FC = () => {
         // Simulation: continuous booklet. Renders every section/group/question
         // from session.items (or a flat fallback for a legacy saved session).
         <BookletExamLayout
+          key={activeSession.id}
           examLevel={activeSession.config.examLevel}
           timeRemainingFormatted={
             secondsRemaining !== null ? formatHMS(secondsRemaining) : 'Untimed'
@@ -466,6 +493,13 @@ export const ExamPage: React.FC = () => {
           getGroup={getGroup}
           questionIndex={questionIndex ?? new Map()}
           onSelectOption={handleSelectOptionFor}
+          edq={{
+            getItem: getEdqItem,
+            answers: activeSession.edqAnswers ?? {},
+            responseMode: activeSession.edqResponseMode ?? false,
+            onSelect: handleSelectEdq,
+            onToggleResponseMode: handleToggleEdqMode,
+          }}
         />
       )}
 

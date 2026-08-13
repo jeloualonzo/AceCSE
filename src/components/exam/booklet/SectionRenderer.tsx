@@ -1,18 +1,30 @@
 import React from 'react';
 import type { NormalizedQuestionGroup, OptionId, Question } from '@/types';
+import type { EdqItem } from '@/data/edq';
 import type { BookletSection } from '@/lib/examViewModel';
 import { AdministrativeItemRenderer } from './AdministrativeItemRenderer';
 import { GroupRenderer } from './GroupRenderer';
 import { QuestionRenderer } from './QuestionRenderer';
 
+/** Everything the booklet needs to render optional, local-only EDQ items. */
+export interface EdqRenderContext {
+  getItem: (id: string) => EdqItem | undefined;
+  /** LOCAL-ONLY responses — never written to Firestore. */
+  answers: Readonly<Record<string, string>>;
+  responseMode: boolean;
+  onSelect: (edqItemId: string, option: string) => void;
+  onToggleResponseMode: () => void;
+}
+
 export interface SectionRendererProps {
   section: BookletSection;
   getGroup: (groupId: string) => NormalizedQuestionGroup | undefined;
   questionIndex: ReadonlyMap<string, Question>;
-  /** Subject-scoped numbering (restarts at 1 per section) — see examViewModel.sectionQuestionNumberMap. */
+  /** SESSION-BASED numbering: continuous across the whole booklet (EDQ = 1–20, first scored = 21). */
   questionNumbers: ReadonlyMap<string, number>;
   answers: Readonly<Record<string, OptionId>>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
+  edq?: EdqRenderContext;
 }
 
 /**
@@ -26,12 +38,20 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
   questionNumbers,
   answers,
   onSelectOption,
+  edq,
 }) {
   return (
     <div className="space-y-10">
       {section.nodes.map((node, index) => {
         if (node.kind === 'administrative') {
-          return <AdministrativeItemRenderer key={`admin-${node.id}-${index}`} id={node.id} />;
+          return (
+            <AdministrativeItemRenderer
+              key={`admin-${node.id}-${index}`}
+              id={node.id}
+              displayNumber={questionNumbers.get(node.id) ?? 0}
+              edq={edq}
+            />
+          );
         }
         if (node.kind === 'group') {
           return (

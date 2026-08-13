@@ -62,7 +62,7 @@ export const SimulationPage: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {options.map((option) => (
           <div
-            key={option.questionCount}
+            key={option.scoredCount}
             className={`rounded-xl border p-5 flex flex-col ${
               option.available
                 ? 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800'
@@ -77,8 +77,11 @@ export const SimulationPage: React.FC = () => {
 
             <dl className="space-y-3 mb-5">
               <div>
-                <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Questions</dt>
-                <dd className="text-2xl font-extrabold text-slate-900 dark:text-white">{option.questionCount}</dd>
+                <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Scored Questions</dt>
+                <dd className="text-2xl font-extrabold text-slate-900 dark:text-white">{option.scoredCount}</dd>
+                <dd className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
+                  + {option.edqCount} EDQ items (not scored) — {option.presentedCount} presented
+                </dd>
               </div>
               <div>
                 <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Duration</dt>
@@ -90,7 +93,7 @@ export const SimulationPage: React.FC = () => {
 
             {option.available ? (
               <button
-                onClick={() => launch(option.questionCount)}
+                onClick={() => launch(option.scoredCount)}
                 className="mt-auto inline-flex items-center justify-center gap-1.5 min-h-[44px] rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
               >
                 <PlayCircle className="w-4 h-4" aria-hidden="true" />

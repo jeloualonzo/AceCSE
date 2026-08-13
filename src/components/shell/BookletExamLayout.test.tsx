@@ -226,10 +226,11 @@ describe('BookletExamLayout — navigator grids are compact and grouped by subje
     await openNavigator(user);
 
     const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
-    expect(within(dialog).getByRole('heading', { name: 'Verbal Ability', level: 3 })).toBeInTheDocument();
-    expect(within(dialog).getByRole('heading', { name: 'Numerical Reasoning', level: 3 })).toBeInTheDocument();
+    // Headings carry the section's session-based number range.
+    expect(within(dialog).getByRole('heading', { name: /Verbal Ability 1–2/, level: 3 })).toBeInTheDocument();
+    expect(within(dialog).getByRole('heading', { name: /Numerical Reasoning 3–4/, level: 3 })).toBeInTheDocument();
 
-    const v1Button = within(dialog).getByRole('button', { name: /go to Verbal Ability question 1/i });
+    const v1Button = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
     expect(v1Button.parentElement).toHaveClass('grid-cols-5');
   });
 
@@ -239,8 +240,10 @@ describe('BookletExamLayout — navigator grids are compact and grouped by subje
     await openNavigator(user);
     const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
 
-    expect(within(dialog).getByRole('button', { name: /go to Verbal Ability question 1/i })).toBeInTheDocument();
-    expect(within(dialog).getByRole('button', { name: /go to Numerical Reasoning question 1/i })).toBeInTheDocument();
+    expect(within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i })).toBeInTheDocument();
+    // Numbering NEVER resets between subjects: Numerical starts at 3, not 1.
+    expect(within(dialog).getByRole('button', { name: /go to item 3 in Numerical Reasoning/i })).toBeInTheDocument();
+    expect(within(dialog).queryByRole('button', { name: /go to item 1 in Numerical Reasoning/i })).not.toBeInTheDocument();
   });
 
   it('clicking a question number in a non-active subject switches to it and scrolls there', async () => {
@@ -249,7 +252,7 @@ describe('BookletExamLayout — navigator grids are compact and grouped by subje
     await openNavigator(user);
     const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
 
-    await user.click(within(dialog).getByRole('button', { name: /go to Numerical Reasoning question 2/i }));
+    await user.click(within(dialog).getByRole('button', { name: /go to item 4 in Numerical Reasoning/i }));
 
     expect(screen.getByText('Question text for N1')).toBeInTheDocument();
     expect(screen.getByText('Question text for N2')).toBeInTheDocument();

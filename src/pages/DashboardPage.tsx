@@ -65,7 +65,7 @@ export const DashboardPage: React.FC = () => {
     const launch: ExamLaunchRequest = {
       kind: 'simulation',
       examLevel,
-      questionCount: bestSimulation.questionCount,
+      questionCount: bestSimulation.scoredCount,
     };
     navigate('/app/exam', { state: { launch } });
   };
@@ -120,7 +120,7 @@ export const DashboardPage: React.FC = () => {
           {bestSimulation && (
             <div className="flex items-center gap-2 mt-3">
               <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-200">
-                {bestSimulation.questionCount} Questions
+                {bestSimulation.scoredCount} Scored + {bestSimulation.edqCount} EDQ
               </span>
               <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-200">
                 {formatDuration(bestSimulation.durationSeconds)}

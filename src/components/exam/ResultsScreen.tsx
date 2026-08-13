@@ -16,6 +16,8 @@ import { formatDuration } from '@/lib/time';
 import { useTheme } from '@/context/ThemeContext';
 
 interface ResultsScreenProps {
+  /** Administrative EDQ items presented in the session (never scored). */
+  edqPresented?: number;
   attempt: Attempt;
   questionIndex: ReadonlyMap<string, Question>;
   onRetake: () => void;
@@ -32,6 +34,7 @@ const FILTERS: { id: ReviewFilter; label: string }[] = [
 ];
 
 export const ResultsScreen: React.FC<ResultsScreenProps> = ({
+  edqPresented = 0,
   attempt,
   questionIndex,
   onRetake,
@@ -155,6 +158,11 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                     {formatDuration(attempt.durationSeconds)} {isSimulation ? 'used' : 'spent'}
                   </span>
                 </div>
+                {edqPresented > 0 && (
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                    {edqPresented} EDQ items were presented but were not scored.
+                  </p>
+                )}
               </div>
             </div>
 
