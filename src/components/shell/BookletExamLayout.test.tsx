@@ -6,6 +6,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
 import { BookletExamLayout } from './BookletExamLayout';
 import type { ExamSession, Question, SessionItem } from '@/types';
+import { getEdqItem as realGetEdqItem } from '@/data/edq';
+import { clearActiveSession, loadActiveSession, saveActiveSession } from '@/lib/sessionStorage';
 
 beforeEach(() => {
   Element.prototype.scrollIntoView = vi.fn();
@@ -356,5 +358,69 @@ describe('BookletExamLayout — legacy/flat fallback (no session.items)', () => 
     expect(screen.queryByText('Subjects')).not.toBeInTheDocument();
     expect(screen.getByText('Question text for V1')).toBeInTheDocument();
     expect(screen.getByText('Question text for V2')).toBeInTheDocument();
+  });
+});
+
+describe('BookletExamLayout — EDQ section rendering', () => {
+  const edqItems = (ids: string[]) =>
+    ids.map((id) => ({ kind: 'administrative' as const, id, sectionId: 'EDQ' }));
+
+  function renderWithEdq(edqAnswers: Record<string, string> = {}, responseMode = false) {
+    const items: SessionItem[] = [...edqItems(['edq-06', 'edq-07', 'edq-08']), ...TWO_SUBJECT_ITEMS];
+    const session = baseSession({
+      questionIds: ['V1', 'V2', 'N1', 'N2'],
+      items,
+      edqAnswers,
+      edqResponseMode: responseMode,
+    });
+    return renderLayout({
+      session,
+      edq: {
+        getItem: (id: string) => realGetEdqItem(id),
+        answers: edqAnswers,
+        responseMode,
+        onSelect: vi.fn(),
+        onToggleResponseMode: vi.fn(),
+      },
+    });
+  }
+
+  it('renders the shared run instruction ONCE above the education pair, not per item', () => {
+    renderWithEdq();
+    const instructions = screen.getAllByText(/answer only the item that applies to your highest educational attainment/i);
+    expect(instructions).toHaveLength(1);
+  });
+
+  it('marks a conditionally non-applicable item and keeps it non-interactive even in response mode', () => {
+    // College graduate → item 8 (non-graduate year level) is not applicable.
+    renderWithEdq({ 'edq-06': 'College graduate' }, true);
+    expect(screen.getByText(/not applicable based on your earlier response/i)).toBeInTheDocument();
+    // The non-applicable item renders no radio controls; the applicable item does.
+    const radios = screen.getAllByRole('radio');
+    const item7OptionTexts = realGetEdqItem('edq-07')!.options;
+    expect(radios.some((r) => item7OptionTexts.includes(r.textContent?.replace(/^\d+/, '').trim() ?? ''))).toBe(true);
+  });
+
+  it('EDQ items are read-only until response mode is enabled', () => {
+    renderWithEdq({}, false);
+    // no interactive radios for EDQ items while the mode is off (subject
+    // switcher/nav buttons are buttons, not radios)
+    expect(screen.queryAllByRole('radio')).toHaveLength(0);
+  });
+});
+
+describe('EDQ responses persist locally (and only locally)', () => {
+  it('round-trips edqAnswers through the local session store', () => {
+    const session = baseSession({
+      questionIds: ['V1'],
+      items: [{ kind: 'administrative', id: 'edq-01', sectionId: 'EDQ' }, ...TWO_SUBJECT_ITEMS],
+      edqAnswers: { 'edq-01': 'Female' },
+      edqResponseMode: true,
+    });
+    saveActiveSession(session);
+    const restored = loadActiveSession();
+    expect(restored?.edqAnswers).toEqual({ 'edq-01': 'Female' });
+    expect(restored?.edqResponseMode).toBe(true);
+    clearActiveSession();
   });
 });

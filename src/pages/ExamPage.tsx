@@ -98,9 +98,15 @@ export const ExamPage: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [saveError, setSaveError] = useState(false);
+  /** Session id already graded — prevents double submission (modal + timer). */
+  const finishedRef = React.useRef<string | null>(null);
 
   const finishWith = useCallback(
     (finished: ExamSession, index: QuestionIndex, completedAt: number = Date.now()) => {
+      // Duplicate-submission / timer-race guard: the submit modal and the
+      // countdown expiry can both request finishing; only the first wins.
+      if (finishedRef.current === finished.id) return;
+      finishedRef.current = finished.id;
       // EDQ items are administrative: they are never in `questionIds`, so
       // gradeSession cannot see them and the Firestore Attempt cannot carry
       // them. Count them only for the honest "presented but not scored" note.
@@ -296,6 +302,26 @@ export const ExamPage: React.FC = () => {
   );
 
   /**
+   * Practice grouped-content compatibility: map each question to its
+   * EXPLICIT group (never implicit singletons) so Practice can show shared
+   * directions/examples once above a group member. Production legacy
+   * questions are all singletons, so this is empty until grouped content
+   * ships — zero behavior change for them.
+   */
+  const explicitGroupByQuestion = useMemo(() => {
+    const map = new Map<string, { title?: string; directions?: string; example?: string }>();
+    if (!catalog) return map;
+    for (const group of catalog.groups.values()) {
+      if (group.isImplicitSingleton) continue;
+      if (!group.directions && !group.example && !group.title) continue;
+      for (const qid of group.questionIds) {
+        map.set(qid, { title: group.title ?? group.questionType, directions: group.directions, example: group.example });
+      }
+    }
+    return map;
+  }, [catalog]);
+
+  /**
    * EDQ responses are OPTIONAL practice input. They persist only inside the
    * local session (localStorage) and are excluded from grading by
    * construction — never sent to Firestore.
@@ -470,6 +496,7 @@ export const ExamPage: React.FC = () => {
             <QuestionCard
               question={currentQuestion}
               questionNumber={currentIndex + 1}
+              groupContext={explicitGroupByQuestion.get(currentQuestion.id)}
               selectedOptionId={activeSession.answers[currentQuestion.id] ?? null}
               onSelectOption={handleSelectOption}
               instantFeedback

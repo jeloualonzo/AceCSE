@@ -8,6 +8,13 @@ export interface QuestionCardProps {
   question: Question;
   /** 1-based position within the session, shown as a quiet label. */
   questionNumber?: number;
+  /**
+   * Grouped-content compatibility: when the question belongs to an explicit
+   * item set (filing set, passage set, …), its shared directions/example
+   * render once above the question — same information the booklet shows,
+   * without redesigning Practice's one-question learning flow.
+   */
+  groupContext?: { title?: string; directions?: string; example?: string };
   selectedOptionId: OptionId | null;
   onSelectOption: (optionId: OptionId) => void;
   /**
@@ -26,6 +33,7 @@ export interface QuestionCardProps {
 export const QuestionCard: React.FC<QuestionCardProps> = ({
   question,
   questionNumber,
+  groupContext,
   selectedOptionId,
   onSelectOption,
   instantFeedback = false,
@@ -67,6 +75,27 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             {question.topic}
           </span>
         </div>
+
+        {groupContext && (groupContext.directions || groupContext.example) && (
+          <div className="rounded-r-lg border-l-4 border-l-slate-400 dark:border-l-slate-500 border-y border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 p-4 space-y-2">
+            {groupContext.title && (
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                {groupContext.title}
+              </p>
+            )}
+            {groupContext.directions && (
+              <p className="text-sm text-black dark:text-slate-200 leading-relaxed whitespace-pre-line">
+                {groupContext.directions}
+              </p>
+            )}
+            {groupContext.example && (
+              <p className="text-sm text-black dark:text-slate-200 leading-relaxed whitespace-pre-line">
+                <span className="font-semibold">Example: </span>
+                {groupContext.example}
+              </p>
+            )}
+          </div>
+        )}
 
         {question.passage && (
           <div className="border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-black dark:text-slate-300 whitespace-pre-line">

@@ -380,3 +380,58 @@ describe('production and fixture verification', () => {
     expect(found).toBe(true);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Five-choice questions in the engine and grading
+// ---------------------------------------------------------------------------
+
+describe('five-choice questions', () => {
+  function fiveChoice(id: string, subject: Subject): Question {
+    return {
+      ...question(id, subject, 0),
+      choices: [
+        { id: 'A', text: 'a' },
+        { id: 'B', text: 'b' },
+        { id: 'C', text: 'c' },
+        { id: 'D', text: 'd' },
+        { id: 'E', text: 'e' },
+      ],
+      correctOptionId: 'E',
+    };
+  }
+
+  it('mixes 4- and 5-choice questions in one simulation and grades E correctly', async () => {
+    const five = Array.from({ length: 5 }, (_, i) => fiveChoice(`FIVE-${i}`, 'Verbal Ability'));
+    const catalog = syntheticCatalog(
+      five.map((q) => group(`g-${q.id}`, 'Verbal Ability', [q.id])),
+      five
+    );
+    // sweep seeds until at least one 5-choice question is selected
+    let session = await buildSimulationSession('Professional', 20, { seed: 'five-0', catalog });
+    for (let i = 1; i < 30 && !session.questionIds.some((id) => id.startsWith('FIVE-')); i++) {
+      session = await buildSimulationSession('Professional', 20, { seed: `five-${i}`, catalog });
+    }
+    const picked = session.questionIds.filter((id) => id.startsWith('FIVE-'));
+    expect(picked.length).toBeGreaterThan(0);
+
+    const index = new Map(
+      session.questionIds.map((id) => [
+        id,
+        id.startsWith('FIVE-') ? fiveChoice(id, 'Verbal Ability') : question(id, 'Verbal Ability', 0),
+      ])
+    );
+    const answers = Object.fromEntries(
+      session.questionIds.map((id) => [id, id.startsWith('FIVE-') ? ('E' as const) : ('A' as const)])
+    );
+    const graded = gradeSession({ ...session, answers }, index);
+    expect(graded.percentage).toBe(100);
+
+    // A wrong E-answer on a 4-choice question is simply incorrect, never a crash.
+    const wrongAnswers = { ...answers, [session.questionIds[0]]: 'E' as const };
+    const idx0 = index.get(session.questionIds[0])!;
+    const gradedWrong = gradeSession({ ...session, answers: wrongAnswers }, index);
+    if (idx0.correctOptionId !== 'E') {
+      expect(gradedWrong.correctCount).toBe(graded.correctCount - 1);
+    }
+  });
+});
