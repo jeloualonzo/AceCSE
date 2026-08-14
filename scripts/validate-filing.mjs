@@ -31,6 +31,9 @@ if (!Array.isArray(task.rules) || task.rules.length < 3) fail('filing_default mu
 if (!Array.isArray(task.examples) || task.examples.length < 2) fail('filing_default must include reusable examples');
 if (!Array.isArray(task.supportedEntityTypes) || !task.supportedEntityTypes.includes('personal_name')) fail('filing_default entity types are incomplete');
 if (task.orderingMode !== 'alphabetical_filing') fail('filing_default ordering mode is not alphabetical_filing');
+const visibleTask = JSON.stringify({ title: task.title, directions: task.directions, rules: task.rules, examples: task.examples });
+if (/AceCSE|simulator|training platform|authored task|prefixes supported|Example: Example:/i.test(visibleTask)) fail('filing_default contains banned or internal examinee-facing wording');
+if (!task.examples.every((example) => /filed before|filed after/i.test(String(example.result)))) fail('filing_default examples must demonstrate a concrete filing comparison');
 
 for (const q of filing) {
   const row = filingManifest.get(q.id);
@@ -52,6 +55,19 @@ for (const q of compact) {
 for (const q of legacy) {
   if (q.taskFormat !== 'legacy_full_prompt') fail(`${q.id}: legacy Filing taskFormat must be legacy_full_prompt`);
   if (q.taskInstance.payload.sourcePromptPreserved !== true) fail(`${q.id}: legacy prompt preservation missing`);
+}
+for (const id of ['cler-0059', 'cler-0060', 'seed-cler-001']) {
+  const q = filing.find((item) => item.id === id);
+  const entries = q?.taskInstance?.payload?.entries;
+  const choices = q?.choices?.map((choice) => choice.text);
+  if (!Array.isArray(entries) || entries.length !== 5) fail(`${id}: candidate-entry task must display five candidates`);
+  if (JSON.stringify([...new Set(choices)].sort()) !== JSON.stringify([...new Set(entries)].sort())) fail(`${id}: displayed candidates and choices do not describe the same set`);
+}
+const suffix = filing.find((q) => q.id === 'cler-0010');
+if (!/unsuffixed name first.*Jr\., Sr\., and III/i.test(String(suffix?.taskInstance?.payload?.itemNote))) fail('cler-0010: suffix-order convention is not visible');
+for (const id of ['cler-0001', 'cler-0006', 'cler-0007', 'cler-0036', 'cler-0038', 'cler-0039', 'cler-0040', 'cler-0041']) {
+  const explanation = filing.find((q) => q.id === id)?.explanation ?? '';
+  if (/wait|let me recheck|actually|correcting|keyed answer|let me correct/i.test(explanation)) fail(`${id}: explanation contains drafting or self-repair narration`);
 }
 
 console.log(`Validated Filing: ${filing.length} total, ${compact.length} compact, ${legacy.length} legacy full-prompt, task definition resolved.`);

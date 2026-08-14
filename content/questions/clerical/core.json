@@ -30,7 +30,7 @@
       }
     ],
     "correctOptionId": "D",
-    "explanation": "Filing is done surname-first, then letter-by-letter through every character. All four surnames begin with 'Ba' or 'Bu'. Comparing the third letter: Bar- ('r') < Bau- ('u') < Bon- ('o') — wait, 'a' < 'o' < 'u'. Correct order: Bar < Bau < Bon < Bue. The full sequence is Bartolome, Bautista, Bondoc, Buenaventura — matching Option D exactly. The exam tests whether you stop too early (e.g., grouping all 'B' names together without comparing further).",
+    "explanation": "Compare the surnames from left to right. Bartolome (Bar-) comes before Bautista (Bau-), followed by Bondoc (Bon-) and Buenaventura (Bue-). The correct order is 1-3-2-4, so Option D is correct.",
     "steps": [
       "Step 1 — Normalize: strip spaces, compare letter-by-letter from the left.",
       "Step 2 — Position 1 all start with 'B'. Move to position 2.",
@@ -85,7 +85,7 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Tie-Breaking by Given Name",
     "difficulty": "Easy",
-    "question": "Which name would be filed FIRST among the four names below?",
+    "question": "Which name would be filed FIRST among the following names?",
     "choices": [
       {
         "id": "A",
@@ -384,7 +384,7 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "Normalize all names by ignoring spaces and capital letters: lacson, lacsina, lagman, laguna. Positions 1-3 are 'lac' or 'lag'. 'lac' < 'lag' (position 3: 'c'<'g'). So Lacson and Lacsina both file before Lagman and Laguna. Between Lacson and Lacsina: positions 1-5 are 'lacso' vs 'lacsi'. At position 5: 'o'(15) vs 'i'(9). Wait — let us recheck letter by letter: L-a-c-s-o-n vs L-a-c-s-i-n-a. Position 5: Lacson='o', Lacsina='i'. 'i'(9) < 'o'(15) → Lacsina comes before Lacson? That would make Option C correct. Let us verify: l-a-c-s- then Lacson's 5th letter is 'o', Lacsina's 5th letter is 'i'. Since 'i'<'o', Lacsina files before Lacson. But the keyed answer is A (Lacson first). Re-examining: Lacson = L-a-c-s-o-n; Lacsina = L-a-c-s-i-n-a. Position 5: 'o' vs 'i'. 'i'<'o' means Lacsina files before Lacson. So the correct order is: Lacsina, Lacson, Lagman, Laguna — which matches Option C, not A. The original explanation in the source contained an error. The correct answer should be C. Explanation corrected: Lacsina ('lacsi-') files before Lacson ('lacso-') because at position 5, 'i' precedes 'o'. Then Lagman and Laguna follow (sharing 'lag-', with 'm'<'u' at position 4 within the 'lag' group). The correct sequence is Lacsina, Lacson, Lagman, Laguna.",
+    "explanation": "Compare the surnames letter by letter. Lacsina (Lacsi-) comes before Lacson (Lacso-) because i precedes o. The two Lag- names follow, with Lagman before Laguna because m precedes u. The correct order is 2-1-3-4, so Option C is correct.",
     "steps": [
       "Step 1 — Normalize: lacson, lacsina, lagman, laguna (no spaces, lowercase).",
       "Step 2 — Position 3: 'c' (lacson/lacsina) vs 'g' (lagman/laguna). 'c'<'g'. Lacson/Lacsina come first.",
@@ -461,7 +461,7 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "Philippine and ARMA filing rules treat prefixes (De, De la, Dela, Del, Delos, San, Santos, etc.) as part of the surname unit. Spaces and capitalization are ignored when sorting. Normalized forms: 'De la Cruz' → 'delacruz'; 'Dela Torre' → 'delatorre'; 'Dimaculangan' → 'dimaculangan'; 'Dionisio' → 'dionisio'. Comparing these: delac- < delat- (position 5: 'c'<'t') < dima- (position 3: 'l'<'m') — actually position 3: 'l' in 'dela' vs 'm' in 'dima'. Since 'l'(12)<'m'(13), both 'dela-' names come before 'dima-' and 'dion-'. Between dima- and dion-: position 3: 'm'(13)<'o'(15), so Dimaculangan before Dionisio. Option A is correct.",
+    "explanation": "Treat the prefixes as part of each surname and compare the names from left to right. De la Cruz (delac-) comes before Dela Torre (delat-), followed by Dimaculangan (dim-) and Dionisio (dio-). The correct order is 1-2-3-4, so Option A is correct.",
     "steps": [
       "Step 1 — Treat prefix as part of name, strip spaces: delacruz, delatorre, dimaculangan, dionisio.",
       "Step 2 — Position 3: 'dela-' names have 'l'(12); 'dima-'/'dion-' have 'm'(13) and 'o'(15). 'l'<'m'<'o'. So both 'dela' names file before the others.",
@@ -729,7 +729,8 @@
         "answerStructure": "order_code",
         "migrationStatus": "safe_compact_conversion",
         "sourcePromptPreserved": true,
-        "choiceEncoding": "index_permutation"
+        "choiceEncoding": "index_permutation",
+        "itemNote": "For this item, file the unsuffixed name first, followed by Jr., Sr., and III. This is the convention used by this practice item."
       }
     }
   },
@@ -2144,7 +2145,8 @@
           "De La Cruz, Juan",
           "Del Rosario, Maria",
           "De Castro, Pedro",
-          "Del Fierro, Ana"
+          "Del Fierro, Ana",
+          "De la Rama, Pilar"
         ],
         "itemPrompt": "Which name comes third?",
         "answerStructure": "candidate_name",
@@ -2291,7 +2293,7 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "Under Philippine filing rules, abbreviations are expanded before sorting: 'Sta.' expands to 'Santa'. After expansion, normalize by removing spaces: Santos='santos', San Pedro='sanpedro', Santa Maria (from Sta. Maria)='santamaria', Santa Cruz='santacruz'. Compare from position 4: sanpedro='p'(16) vs santa...='t'(20). 'p'<'t', so San Pedro files before all 'santa-' names. Among 'santa-' names, position 6: santacruz='c'(3) vs santamaria='m'(13). 'c'<'m', so Santa Cruz before Sta. Maria. Santos ('santos') at position 4 has 't'(20), same as 'santa-', but position 5: santos='o'(15) vs santa...='a'(1). Wait — santacruz/santamaria both have 'a' at position 5, while santos has 'o'(15). 'a'(1)<'o'(15). So Santos files LAST. Final order: San Pedro(1st), Santa Cruz(2nd), Sta. Maria(3rd), Santos(4th). First = San Pedro = Option C.",
+    "explanation": "Expand Sta. to Santa for comparison. San Pedro comes before the Santa- names; among those, Santa Cruz comes before Santa Maria, and Santos follows them. San Pedro is first, so Option C is correct.",
     "steps": [
       "Step 1 — Expand: Sta. Maria → Santa Maria.",
       "Step 2 — Normalize (no spaces): sanpedro, santacruz, santamaria, santos.",
@@ -2430,7 +2432,7 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "Normalize all surnames: navarro, ng, ngo, nieto. Compare position by position. Position 1: all 'n'. Position 2: navarro='a'(1), ng='g'(7), ngo='g'(7), nieto='i'(9). 'a'<'g'<'i'. Navarro files first. Between Ng and Ngo (both 'ng' at positions 1-2): position 3: Ng has no third letter while Ngo has 'o'. Applying nothing-before-something: Ng (shorter, ends at position 2) files before Ngo. Then Nieto ('ni') follows. Final order: Navarro(1), Ng(2), Ngo(3), Nieto(4). Second = Ng = Option B. Wait — the keyed answer says Option A (Ngo). Let me recheck the question: choices are A=Ngo, B=Ng. Ng files before Ngo → second is Ng = Option B. Correcting correctOptionId.",
+    "explanation": "Compare the surnames letter by letter. Navarro comes first. Ng ends after the second letter, so it files before Ngo under the nothing-before-something rule. Nieto follows the Ng names. Ng is second, so Option B is correct.",
     "steps": [
       "Normalize: navarro, ng, ngo, nieto.",
       "Position 2: 'a'(1)<'g'(7)<'i'(9). Navarro first.",
@@ -2499,7 +2501,7 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "Under ARMA and Philippine filing rules for business names, numbers are spelled out and filed alphabetically as if written in words. '7-Eleven' becomes 'seven eleven'; '3M Philippines' becomes 'three m philippines'. Comparing the first words spelled out: 'three'(3M) vs 'seven'(7-Eleven) vs 'ace'(Ace Hardware) vs 'ag' (A.G. Reyes — initials are filed as letters). Alphabetically: 'ace' < 'ag' < 'seven' < 'three'? No — let us compare: a-c-e vs a-g vs s-e-v-e-n vs t-h-r-e-e. Position 1: 'a'<'s'<'t'. Both 'a' names (Ace, A.G.) file before the numerical names. Between 'ace' and 'ag': position 2: 'c'(3) < 'g'(7). Ace Hardware files before A.G. Reyes. So order: Ace Hardware(1), A.G. Reyes(2), 7-Eleven(3=seven), 3M(4=three). But wait — the question asks which files FIRST = Ace Hardware = Option B. Hmm, but then the answer would be B not C. \n\nActually the question needs reanalysis. Let me correct: under ARMA rules, numbers in business names are filed as if spelled out in words. So 3M → 'three m'; 7-Eleven → 'seven eleven'. 'ace' < 'ag' < 'seven' < 'three'. First = Ace Hardware = Option B. Correcting.",
+    "explanation": "Treat the leading numbers as words for comparison: 7-Eleven becomes seven and 3M becomes three. Ace comes before A.G., seven, and three. Ace Hardware Philippines is first, so Option B is correct.",
     "steps": [
       "Spell out numbers: '3M' → 'three m'; '7-Eleven' → 'seven eleven'.",
       "A.G. Reyes: file each letter separately — 'a g reyes'.",
@@ -2569,7 +2571,7 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "Normalize: enrile, enrique, enriquez, enriquezo. Compare position by position. Positions 1-5 all share 'enri'. Position 6: Enrile='l'(12), Enrique='q'? — wait: e-n-r-i-l-e = Enrile; e-n-r-i-q-u-e = Enrique. Position 5: Enrile='l'(12), Enrique='q'? No — let us spell out: E-n-r-i-l-e (Enrile, 6 letters) and E-n-r-i-q-u-e-z (Enriquez) and E-n-r-i-q-u-e (Enrique) and E-n-r-i-q-u-e-z-o (Enriquezo). Position 5: Enrile='l'(12) vs others='q'(17). 'l'<'q'. Enrile files first. Among 'enriq-' names, position 6: all 'u'. Position 7: all 'e'. Position 8: Enrique ends (7 letters); Enriquez='z'(26); Enriquezo='z'(26). Enrique runs out → nothing-before-something: Enrique before Enriquez and Enriquezo. Between Enriquez(8 letters) and Enriquezo(9 letters): Enriquez ends at position 8; Enriquezo continues with 'o' at position 9. Nothing-before-something: Enriquez before Enriquezo. Final order: Enrile(1), Enrique(2), Enriquez(3), Enriquezo(4). Third = Enriquez = Option A.",
+    "explanation": "Compare the names from left to right. Enrile comes first because l precedes q. Among the Enriq- names, Enrique ends before Enriquez, and Enriquez ends before Enriquezo. Enriquez is third, so Option A is correct.",
     "steps": [
       "Normalize: enrile, enrique, enriquez, enriquezo.",
       "Position 5: Enrile='l'(12) vs others='q'(17). 'l'<'q'. Enrile first.",
@@ -2637,7 +2639,7 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "Government department names are filed as written, beginning with 'Department of'. All four share 'Department of', so the third word determines order. Third words: Agriculture='a'(1), Budget='b'(2), Education='e'(5), Finance='f'(6). Alphabetically: Agriculture(1st) < Budget(2nd) < Education(3rd) < Finance(4th). The second name in order is Department of Budget and Management = Option B. Wait — 'b' at position 1 of 'Budget' is the second letter alphabetically, but we need the second name. Agriculture is first, Budget is second. So second = Budget and Management = Option B, not D. Let me recheck: a < b < e < f. First=Agriculture(A), Second=Budget(B), Third=Education(D), Fourth=Finance(C). Second = Option B.",
+    "explanation": "All names begin with Department of, so compare the next word. Agriculture comes first, followed by Budget, Education, and Finance. Department of Budget and Management is second, so Option B is correct.",
     "steps": [
       "All begin with 'Department of'. Compare word 3.",
       "Agriculture='A'(1), Budget='B'(2), Education='E'(5), Finance='F'(6).",

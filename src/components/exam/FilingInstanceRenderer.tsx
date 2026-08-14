@@ -4,6 +4,7 @@ interface FilingPayload {
   instanceFormat?: unknown;
   entries?: unknown;
   itemPrompt?: unknown;
+  itemNote?: unknown;
 }
 
 function compactFilingPayload(question: Question): FilingPayload | null {
@@ -23,12 +24,18 @@ export const FilingInstanceRenderer: React.FC<{ question: Question }> = ({ quest
     ? payload.entries.filter((entry): entry is string => typeof entry === 'string')
     : [];
   const itemPrompt = typeof payload.itemPrompt === 'string' ? payload.itemPrompt : undefined;
+  const itemNote = typeof payload.itemNote === 'string' ? payload.itemNote : undefined;
   return (
     <div className="mb-6">
       {entries.length > 0 && (
         <ol className="list-decimal list-inside space-y-1 text-sm sm:text-base text-slate-800 dark:text-slate-200 whitespace-pre-line mb-4">
           {entries.map((entry, index) => <li key={`${question.id}-entry-${index}`}>{entry}</li>)}
         </ol>
+      )}
+      {itemNote && (
+        <p className="text-sm text-slate-600 dark:text-slate-400 whitespace-pre-line mb-3">
+          {itemNote}
+        </p>
       )}
       {itemPrompt && (
         <p className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 whitespace-pre-line">

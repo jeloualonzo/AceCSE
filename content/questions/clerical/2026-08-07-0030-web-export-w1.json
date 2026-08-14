@@ -67,7 +67,8 @@
           "Gen. Renato Villamor",
           "Atty. Crisanto Banal",
           "Dr. Leonora Quizon",
-          "Col. Primo Santos"
+          "Col. Primo Santos",
+          "Engr. Rodolfo Zamora"
         ],
         "itemPrompt": "Which folder comes first?",
         "answerStructure": "candidate_name",
@@ -144,7 +145,8 @@
           "Judge Erlinda Manalastas",
           "Sec. Arturo Dimaculangan",
           "Prof. Nicanor Tagalog",
-          "Atty. Melinda Ferrer"
+          "Atty. Melinda Ferrer",
+          "Dr. Marisol Urbano"
         ],
         "itemPrompt": "Which folder comes third?",
         "answerStructure": "candidate_name",

@@ -178,23 +178,23 @@
         "orderingMode"
       ],
       "title": "Filing and Alphabetizing",
-      "directions": "Use the filing rules below when answering the following items. Compare entries unit by unit and letter by letter; keep initials, punctuation, prefixes, suffixes, and numerals as shown.",
+      "directions": "Use the filing rules below when answering the following items. Compare entries unit by unit and letter by letter. Keep initials, punctuation, prefixes, suffixes, and numerals as shown.",
       "rules": [
-        "Compare names unit by unit and letter by letter.",
-        "Treat the prefixes supported by the authored task as part of the surname or entry.",
-        "Disregard personal and professional titles when the item requires name comparison.",
-        "Apply nothing-before-something when one entry ends before another continues.",
-        "Do not expand initials or rewrite numerals unless the authored task explicitly defines that rule."
+        "Compare names and entries from left to right, one unit at a time.",
+        "Treat prefixes such as De, De la, Dela, Del, and San as part of the surname when they appear in the item.",
+        "Ignore personal and professional titles when the item asks you to file names.",
+        "If one entry ends before the other continues, file the shorter entry first.",
+        "Keep initials, punctuation, suffixes, and numerals as shown unless the item states otherwise."
       ],
       "examples": [
         {
-          "input": "Reyes, Ana; Reyes, Benito",
-          "result": "Reyes, Ana is filed before Reyes, Benito because Ana comes before Benito at the given-name unit.",
+          "input": "Ramos, Al; Ramos, Alex",
+          "result": "Ramos, Al is filed before Ramos, Alex because the shorter given name ends first.",
           "note": "Illustrative training example; not official CSC wording."
         },
         {
-          "input": "Jelou Benitez Alonzo; Jelou B. Alonzo; J. B. Alonzo; Alonzo, Jelou B.",
-          "result": "Keep each authored form as written when applying the filing rules.",
+          "input": "Dela Cruz, Mira; Del Mundo, Paolo",
+          "result": "Dela Cruz is filed before Del Mundo because c precedes m after the shared dela- prefix.",
           "note": "Illustrative training example; not official CSC wording."
         }
       ],
