@@ -59,10 +59,18 @@ for (const q of legacy) {
 for (const id of ['cler-0059', 'cler-0060', 'seed-cler-001']) {
   const q = filing.find((item) => item.id === id);
   const entries = q?.taskInstance?.payload?.entries;
-  const choices = q?.choices?.map((choice) => choice.text);
-  if (!Array.isArray(entries) || entries.length !== 5) fail(`${id}: candidate-entry task must display five candidates`);
-  if (JSON.stringify([...new Set(choices)].sort()) !== JSON.stringify([...new Set(entries)].sort())) fail(`${id}: displayed candidates and choices do not describe the same set`);
+  const choices = q?.choices?.map((choice) => choice.text) ?? [];
+  const expectedEntryCount = id === 'seed-cler-001' ? 4 : 5;
+  if (!Array.isArray(entries) || entries.length !== expectedEntryCount) fail(`${id}: candidate-entry task has an unexpected displayed-entry count`);
+  if (id === 'seed-cler-001') {
+    if (!entries.every((entry) => choices.includes(entry))) fail(`${id}: every displayed name must be offered as a choice`);
+    if (choices.filter((choice) => !entries.includes(choice)).length !== 1) fail(`${id}: expected exactly one authored distractor outside the four displayed names`);
+  } else if (JSON.stringify([...new Set(choices)].sort()) !== JSON.stringify([...new Set(entries)].sort())) {
+    fail(`${id}: displayed candidates and choices do not describe the same set`);
+  }
 }
+const seed = filing.find((q) => q.id === 'seed-cler-001');
+if (seed?.correctOptionId !== 'C' || seed.choices.find((choice) => choice.id === 'C')?.text !== 'Del Fierro, Ana') fail('seed-cler-001: displayed four-name order must make Del Fierro the third answer (Option C)');
 const suffix = filing.find((q) => q.id === 'cler-0010');
 if (!/unsuffixed name first.*Jr\., Sr\., and III/i.test(String(suffix?.taskInstance?.payload?.itemNote))) fail('cler-0010: suffix-order convention is not visible');
 for (const id of ['cler-0001', 'cler-0006', 'cler-0007', 'cler-0036', 'cler-0038', 'cler-0039', 'cler-0040', 'cler-0041']) {

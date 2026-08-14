@@ -64,8 +64,14 @@ describe('Filing task architecture', () => {
       const entries = question?.taskInstance?.payload?.entries;
       expect(question?.choices.some((choice) => /[A-Za-z]/.test(choice.text))).toBe(true);
       expect(question?.choices.every((choice) => !/^\d(?:-\d){3}$/.test(choice.text))).toBe(true);
-      expect(entries).toHaveLength(5);
-      expect(new Set(question?.choices.map((choice) => choice.text))).toEqual(new Set(entries as string[]));
+      if (id === 'seed-cler-001') {
+        expect(entries).toHaveLength(4);
+        expect((entries as string[]).every((entry) => question?.choices.some((choice) => choice.text === entry))).toBe(true);
+        expect(question?.choices.filter((choice) => !(entries as string[]).includes(choice.text))).toHaveLength(1);
+      } else {
+        expect(entries).toHaveLength(5);
+        expect(new Set(question?.choices.map((choice) => choice.text))).toEqual(new Set(entries as string[]));
+      }
     }
     const filing = catalog.getQuestionsForSubject('Clerical Ability', 'Subprofessional').filter((question) => question.topic === 'Filing & Alphabetizing');
     const visible = JSON.stringify(filing.map((question) => ({ question: question.question, choices: question.choices, taskInstance: question.taskInstance })));
@@ -82,6 +88,12 @@ describe('Filing task architecture', () => {
     }
     expect(catalog.getQuestion('cler-0002')?.question).not.toMatch(/four names/i);
     expect(catalog.getQuestion('cler-0003')?.question).toMatch(/following/i);
+    const seed = catalog.getQuestion('seed-cler-001');
+    expect(seed?.correctOptionId).toBe('C');
+    expect(seed?.choices.find((choice) => choice.id === 'C')?.text).toBe('Del Fierro, Ana');
+    expect(seed?.taskInstance?.payload?.entries).toEqual(['De La Cruz, Juan', 'Del Rosario, Maria', 'De Castro, Pedro', 'Del Fierro, Ana']);
+    expect(seed?.explanation).toMatch(/Del Fierro.*third|third.*Del Fierro/i);
+    expect(seed?.steps?.join(' ')).not.toMatch(/De la Rama|hypothetical|actually|wait/i);
   });
 
   it('uses one canonical Filing block across multiple real-bank simulation seeds', async () => {

@@ -32,10 +32,7 @@
     "correctOptionId": "D",
     "explanation": "Compare the surnames from left to right. Bartolome (Bar-) comes before Bautista (Bau-), followed by Bondoc (Bon-) and Buenaventura (Bue-). The correct order is 1-3-2-4, so Option D is correct.",
     "steps": [
-      "Step 1 — Normalize: strip spaces, compare letter-by-letter from the left.",
-      "Step 2 — Position 1 all start with 'B'. Move to position 2.",
-      "Step 3 — Position 2 all start with 'a' or 'u'. Bartolome/Bautista/Bondoc start with 'a'; Buenaventura starts with 'u'. 'a' < 'u', so Buenaventura is last.",
-      "Step 4 — Among 'Ba-' names, compare position 3: Bartolome='r', Bautista='u', Bondoc='o'. 'r'<'u' and 'o'<'r'? No: 'o'=15, 'r'=18, 'u'=21. So Bartolome ('r') < Bautista ('u'). Bondoc: 'o' < 'r', so Bondoc comes before Bartolome — but wait, Bondoc's position 2 is 'o', not 'a'. So Bondoc ('Bo') ≠ 'Ba'.",
+      "Step 4 — The names group as Bar-, Bau-, Bo-, and Bu-. Alphabetically, Bar < Bau < Bo < Bu, so Bondoc follows both Ba- names and precedes Buenaventura.",
       "Step 5 — Correct grouping: Bar/Bau start with 'Ba'; Bon starts with 'Bo'; Bue starts with 'Bu'. Alphabetically 'a'<'o'<'u', so Bar/Bau come before Bon, which comes before Bue.",
       "Step 6 — Between Bartolome and Bautista (both 'Ba'), compare position 3: 'r' vs 'u'. 'r'(18) < 'u'(21). Bartolome first.",
       "Final order: Bartolome, Bautista, Bondoc, Buenaventura = Option D."
@@ -2106,19 +2103,18 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "Treat all prefixes (De, De La, Del) as part of the surname unit and strip spaces for sorting. Normalized: decastro, delacruz, delfierro, delrosario. Position 3 comparison: decastro='c'(3), delacruz='l'(12), delfierro='l'(12), delrosario='l'(12). 'c'<'l', so De Castro files first. Among the 'del-' names, compare position 4: delacruz='a'(1), delfierro='f'(6), delrosario='r'(18). 'a'<'f'<'r', giving order: De La Cruz (2nd), Del Fierro (3rd), Del Rosario (4th). The third name is Del Fierro, Ana = Option C.",
+    "explanation": "Treat De, De La, and Del as part of the surname and ignore spaces when comparing the four displayed names. The normalized forms are decastro, delacruz, delfierro, and delrosario. De Castro comes first because 'c' precedes 'l' at the third character. Among the del- names, 'a' precedes 'f', which precedes 'r', so the order is De La Cruz, Del Fierro, and Del Rosario. Del Fierro is third, so Option C is correct.",
     "steps": [
-      "Normalize: decastro(1), delacruz(2), delfierro(3=?), delrosario(4=?).",
-      "Position 3: 'c'(3) < 'l'(12). De Castro first.",
-      "Position 4 among del-: delacruz='a'(1) < delfierro='f'(6) < delrosario='r'(18).",
-      "Order: De Castro(1), De La Cruz(2), Del Fierro(3), Del Rosario(4).",
-      "Third = Del Fierro = Option C."
+      "Normalize the four displayed names as decastro (1), delacruz (2), delfierro (3), and delrosario (4).",
+      "Compare the third character: decastro has 'c', while the three del- names have 'l'. De Castro files first.",
+      "Among the del- names, compare the next character: delacruz has 'a', delfierro has 'f', and delrosario has 'r'. Therefore, De La Cruz is second, Del Fierro is third, and Del Rosario is fourth.",
+      "The third displayed name is Del Fierro, Ana, so Option C is correct."
     ],
     "distractorExplanations": {
-      "A": "De Castro normalizes to 'decastro' — position 3 is 'c', the lowest, placing it FIRST, not third.",
-      "B": "De La Cruz normalizes to 'delacruz' — position 4 is 'a', the lowest among 'del-' names, placing it SECOND.",
-      "D": "Del Rosario normalizes to 'delrosario' — position 4 is 'r', the highest, placing it LAST (fourth), not third.",
-      "E": "Inserting 'De la Rama' would file between 'De La Cruz' and 'Del Fierro' (significant word: Rama vs Fierro; R>F so Rama after Fierro); actually R(18)>F(6), so De la Rama files AFTER Del Fierro — meaning Del Fierro remains third in the given set of four."
+      "A": "De Castro has 'c' as the third character, so it files first rather than third.",
+      "B": "De La Cruz is the first of the del- names because 'a' precedes 'f' and 'r'; it files second overall.",
+      "D": "Del Rosario has 'r' after the shared del- prefix, so it files fourth.",
+      "E": "De la Rama is not one of the four displayed names being ordered, so it is not the answer to this item."
     },
     "tip": {
       "label": "Filing Rule",
@@ -2145,8 +2141,7 @@
           "De La Cruz, Juan",
           "Del Rosario, Maria",
           "De Castro, Pedro",
-          "Del Fierro, Ana",
-          "De la Rama, Pilar"
+          "Del Fierro, Ana"
         ],
         "itemPrompt": "Which name comes third?",
         "answerStructure": "candidate_name",
