@@ -1,0 +1,215 @@
+{
+  "audit": {
+    "author": "Manus AI",
+    "repository": "jeloualonzo/AceCSE",
+    "branch": "phase4-booklet",
+    "startingSha": "a0525079c64f775f35f234d118faa46419b424c0",
+    "migrationClaimAudited": true,
+    "migrationArtifactsPresent": false,
+    "productionMigrationPerformedByAuditor": false,
+    "verdict": "MAJOR ISSUES"
+  },
+  "bankIntegrity": {
+    "questionFiles": 27,
+    "questionRecords": 688,
+    "uniqueQuestionIds": 688,
+    "duplicateQuestionIds": 0,
+    "missingQuestionIds": 0,
+    "groupCount": 33,
+    "uniqueGroupIds": 33,
+    "groupedQuestions": 217,
+    "singletonQuestions": 471,
+    "unresolvedGroupReferences": 0,
+    "overlappingGroupMemberships": 0,
+    "fiveChoiceExactCount": 688,
+    "correctAnswerExistsCount": 688,
+    "fourDistractorExplanationCount": 688,
+    "referencesPresent": 243,
+    "sourcesPresent": 0,
+    "validation": {
+      "questionValidator": "passed",
+      "typecheck": "passed",
+      "automatedTests": "passed: 6 files / 84 tests",
+      "productionBuild": "passed with Vite chunk-size warning"
+    }
+  },
+  "claimedArchitecture": {
+    "taxonomyJson": {"path": "content/taxonomy/taxonomy.json", "exists": false},
+    "classificationManifest": {"path": "content/taxonomy/classification-manifest.json", "exists": false},
+    "poolDirectory": {"path": "content/taxonomy/pools/", "exists": false},
+    "aiContentGuide": {"path": "content/taxonomy/AI_CONTENT_GUIDE.md", "exists": false},
+    "claimedPoolCount": 50,
+    "actualCanonicalPoolCount": 0,
+    "classificationCoverage": {
+      "questionTypePresent": 0,
+      "questionFormatPresent": 0,
+      "poolClassificationPresent": 0,
+      "fixedGroupClassificationPresent": 0
+    }
+  },
+  "findings": [
+    {
+      "id": "PM-CRIT-001",
+      "severity": "CRITICAL",
+      "file": "content/taxonomy/ (missing)",
+      "exactIds": [],
+      "whatIsWrong": "The claimed post-migration taxonomy, 688-row classification manifest, 50 semantic pool indexes, and AI content guide are absent from the checked-out branch. The latest reachable commit is the prior audit commit a0525079, not a Gemini migration commit.",
+      "whyItMatters": "There is no canonical classification layer to validate or consume. The 688-question taxonomy is not implemented, and the future-AI contract claimed by Gemini cannot be audited or used.",
+      "recommendedCorrection": "Do not freeze or extend the taxonomy. Supply or implement the claimed artifacts in a subsequent migration step, then rerun this post-migration audit."
+    },
+    {
+      "id": "PM-HIGH-001",
+      "severity": "HIGH",
+      "file": "src/data/questionBank.ts; src/lib/examEngine.ts",
+      "exactIds": ["grp-syn-context-02", "grp-syn-context-03", "grp-analogy-01", "grp-analogy-04", "grp-filing-02"],
+      "whatIsWrong": "Runtime still discovers content/groups/**/*.json and builds simulations from normalized historical groups. It does not load content/taxonomy/pools or a classification manifest.",
+      "whyItMatters": "The claimed canonical pool selection flow is not active. Historical template groups remain runtime selection boundaries.",
+      "recommendedCorrection": "After the taxonomy artifacts exist, route simulation allocation through canonical pool indexes and reserve historical groups for provenance or fixed-set resolution only."
+    },
+    {
+      "id": "PM-HIGH-002",
+      "severity": "HIGH",
+      "file": "src/lib/examEngine.ts; content/groups/**/*.json",
+      "exactIds": ["grp-syn-context-02", "grp-syn-context-03", "grp-filing-02"],
+      "whatIsWrong": "Ten generated real simulations produced 8 partial selections from historical splittable groups and 3 one-question remnants from historical multi-question groups. One observed Clerical run selected grp-filing-02 as 1/9.",
+      "whyItMatters": "The original bug remains possible: the simulator can produce one-question remnants labeled by an old Set boundary. The new architecture has not solved the motivating problem.",
+      "recommendedCorrection": "Replace group-based sampling for pool-like content with compatible canonical-pool sampling. Keep only true atomic/fixed groups whole and contiguous."
+    },
+    {
+      "id": "PM-HIGH-003",
+      "severity": "HIGH",
+      "file": "content/questions/**/*.json; src/types/index.ts",
+      "exactIds": [],
+      "whatIsWrong": "All 688 question records have no questionType, no questionFormat, and no pool/fixed-group classification fields. Only historical group metadata carries broad questionType values.",
+      "whyItMatters": "The engine cannot form semantic type blocks for singleton questions, and a future AI cannot determine a canonical destination from the question record or a repository manifest.",
+      "recommendedCorrection": "Add the claimed row-level classification manifest and wire it into runtime selection. Make questionFormat a controlled vocabulary with compatibility rules."
+    },
+    {
+      "id": "PM-MED-001",
+      "severity": "MEDIUM",
+      "file": "content/groups/analytical/core-groups.json; content/questions/analytical/core.json",
+      "exactIds": ["ana-0038", "ana-0040", "grp-ana-series-01"],
+      "whatIsWrong": "ana-0038 and ana-0040 are explicit letter-series items, but their historical group is labeled questionType Number Sequence. There is no canonical format metadata correcting this.",
+      "whyItMatters": "A future numeric-only selector could mix or exclude these items incorrectly, and the claimed known correction is not present in the checked-out architecture.",
+      "recommendedCorrection": "Classify both as letter_sequence in the canonical manifest and keep them out of numeric-only pools."
+    },
+    {
+      "id": "PM-MED-002",
+      "severity": "MEDIUM",
+      "file": "content/questions/**/*.json",
+      "exactIds": [],
+      "whatIsWrong": "Direct synonym versus synonym-in-context, logical-reasoning formats, and filing formats are not represented as controlled questionFormat metadata. They remain only inferable from subtopic or historical group labels.",
+      "whyItMatters": "The claimed semantic distinctions cannot be enforced at sampling time and are not a reliable future-AI insertion contract.",
+      "recommendedCorrection": "Add explicit controlled format values in the classification manifest and validate pool compatibility against them."
+    },
+    {
+      "id": "PM-LOW-001",
+      "severity": "LOW",
+      "file": "dist/assets/ and build output",
+      "exactIds": [],
+      "whatIsWrong": "The build still emits a 602.98 kB minified Firestore chunk and several other chunks above 200 kB; Vite reports a chunk-size warning.",
+      "whyItMatters": "This is not a taxonomy correctness defect, but it is a scale/performance concern as content and indexes grow.",
+      "recommendedCorrection": "Measure mobile load performance and establish a bundle budget before adding larger taxonomy indexes."
+    }
+  ],
+  "fixedSets": {
+    "expectedCount": 8,
+    "actualCount": 8,
+    "ids": [
+      "grp-di-employment",
+      "grp-di-roadworks",
+      "grp-rc-public-trust",
+      "grp-rc-csc",
+      "grp-rc-property",
+      "grp-rc-careers",
+      "grp-rc-frontline",
+      "grp-rc-appointments"
+    ],
+    "allMembersResolve": true,
+    "allHaveSharedContentBlock": true,
+    "allAtomic": true,
+    "allFixedOrder": true,
+    "allMembersSharePassage": true,
+    "additionalMultiQuestionDependenciesFound": false,
+    "assessment": "The existing eight fixed groups are structurally correct. They are not connected to the claimed missing taxonomy layer."
+  },
+  "runtimeAudit": {
+    "simulationCount": 10,
+    "levels": ["Professional", "Subprofessional"],
+    "seeds": ["post-audit-01", "post-audit-02", "post-audit-03", "post-audit-04", "post-audit-05"],
+    "scoredCounts": {"Professional": 150, "Subprofessional": 145},
+    "allQuestionIdsUniqueWithinSessions": true,
+    "fixedAtomicChecks": 22,
+    "fixedAtomicSelectionsWhole": true,
+    "partialHistoricalGroupSelections": 8,
+    "oneQuestionHistoricalGroupSelections": 3,
+    "observedPartialSelections": [
+      {"groupId": "grp-syn-context-03", "selected": 1, "full": 9},
+      {"groupId": "grp-analogy-04", "selected": 3, "full": 8},
+      {"groupId": "grp-analogy-01", "selected": 7, "full": 8},
+      {"groupId": "grp-analogy-04", "selected": 5, "full": 8},
+      {"groupId": "grp-syn-context-02", "selected": 1, "full": 9},
+      {"groupId": "grp-filing-02", "selected": 5, "full": 9},
+      {"groupId": "grp-syn-context-03", "selected": 5, "full": 9},
+      {"groupId": "grp-filing-02", "selected": 1, "full": 9}
+    ],
+    "originalBugReproduced": true,
+    "exampleClericalSequence": [
+      "Spelling: grp-spelling-01, 7/7",
+      "Clerical Operations singleton: cler-0042",
+      "Clerical Operations singleton: seed-cler-003",
+      "Spelling: grp-spelling-02, 7/7",
+      "Filing: grp-filing-01, 9/9",
+      "Office Procedures singleton: cler-0030",
+      "Filing: grp-filing-02, 1/9"
+    ],
+    "assessment": "Fixed groups remain whole, but pool-like groups and singleton questions are still selected through the historical group model; semantic type contiguity is not implemented."
+  },
+  "knownCorrections": {
+    "ana-0038": {"expected": "letter_sequence", "implemented": false},
+    "ana-0040": {"expected": "letter_sequence", "implemented": false},
+    "synonymFormats": {"expected": "direct_synonym versus synonym_in_context", "implemented": false},
+    "logicalFormats": {"expected": "controlled categorical/conditional/disjunctive/chain/grid/deduction formats", "implemented": false},
+    "filingFormats": {"expected": "controlled filing formats", "implemented": false},
+    "standaloneContextualItems": {"count": 26, "artificiallyGrouped": false, "implementedInManifest": false}
+  },
+  "futureAiAudit": {
+    "guidePresent": false,
+    "taxonomyPresent": false,
+    "classificationManifestPresent": false,
+    "destinationForMisspelledWord": "Not defined by post-migration artifacts; inferable only from existing docs as Clerical Ability / Spelling.",
+    "destinationForDirectSynonym": "Not defined by post-migration artifacts; inferable only from subtopic/group history.",
+    "destinationForSynonymInContext": "Not defined by post-migration artifacts; inferable only from subtopic/group history.",
+    "destinationForLetterSequence": "Not defined by post-migration artifacts; current group metadata says Number Sequence for ana-0038/0040.",
+    "destinationForStandaloneTable": "Not defined by post-migration artifacts; current record can carry a local passage but no pool classification.",
+    "assessment": "A new AI cannot reliably use the claimed post-migration contract because the contract files are absent."
+  },
+  "provenance": {
+    "historicalQuestionFilesRemain": true,
+    "historicalQuestionFileCount": 27,
+    "originalIdsRemain": true,
+    "referencesRemain": true,
+    "sourceFieldValues": 0,
+    "classificationProvenanceLayerPresent": false
+  },
+  "performance": {
+    "buildPassed": true,
+    "largestMinifiedChunkBytes": 602981,
+    "largestChunk": "firebase-firestore-Ba9LJuTO.js",
+    "chunkWarning": true,
+    "lazySubjectLoadingPresent": true,
+    "poolIndexPerformanceUnknown": true
+  },
+  "requiredCorrections": [
+    "Add content/taxonomy/taxonomy.json with controlled subjects, topics, questionTypes, questionFormats, and compatibility rules.",
+    "Add content/taxonomy/classification-manifest.json with exactly 688 unique question IDs and a classification for every question.",
+    "Add reference-only semantic pool indexes under content/taxonomy/pools/.",
+    "Add content/taxonomy/AI_CONTENT_GUIDE.md with deterministic classification and fixed-set rules.",
+    "Change runtime simulation generation to use canonical pool indexes rather than historical pool-like groups.",
+    "Ensure pool selection produces contiguous compatible type blocks and cannot create one-question historical-group remnants.",
+    "Represent ana-0038 and ana-0040 as letter_sequence and distinguish synonym, logic, and filing formats.",
+    "Rerun this post-migration audit after the actual migration artifacts are present."
+  ],
+  "whatAuditorChanged": "No production files changed. Only post-migration audit artifacts will be added.",
+  "remaining": "The claimed Gemini migration is not present on the audited branch, so the taxonomy is not safe to freeze or use for question 689."
+}
