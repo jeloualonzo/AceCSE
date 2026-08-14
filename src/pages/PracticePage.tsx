@@ -5,6 +5,7 @@ import type { Subject } from '@/types';
 import { PRACTICE_SIZES, SUBJECTS_BY_LEVEL } from '@/config/exam';
 import { subjectAvailability } from '@/lib/examEngine';
 import { QUESTION_MANIFEST } from '@/data/questionBank';
+import { getCanonicalPool } from '@/data/taxonomy';
 import { useAppContext } from '@/components/shell/AppLayout';
 import { ExamLevelSwitch } from '@/components/shell/ExamLevelSwitch';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
@@ -28,6 +29,7 @@ export const PracticePage: React.FC = () => {
   const [practiceTimed, setPracticeTimed] = useState(false);
 
   const availability = useMemo(() => subjectAvailability(examLevel), [examLevel]);
+  const spellingCount = getCanonicalPool('clerical-spelling')?.entries.length ?? 0;
 
   // Explicit item sets applicable to this level (sync, from the manifest).
   const itemSets = useMemo(
@@ -52,11 +54,11 @@ export const PracticePage: React.FC = () => {
     navigate('/app/exam', { state: { launch: request } });
   };
 
-  const startTaskFormat = (taskFormat: string) => {
+  const startTaskFormat = (taskFormat: string, questionCount: number) => {
     const request: ExamLaunchRequest = {
       kind: 'practice',
       examLevel,
-      questionCount: 26,
+      questionCount,
       taskFormat,
       timed: false,
     };
@@ -176,7 +178,7 @@ export const PracticePage: React.FC = () => {
             Shared Filing directions and examples appear once; each existing Filing question remains individually answerable with immediate explanations.
           </p>
           <button
-            onClick={() => startTaskFormat('shared_filing_task')}
+            onClick={() => startTaskFormat('shared_filing_task', 26)}
             className="w-full sm:w-auto text-left rounded-xl border p-4 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-emerald-400 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
           >
             <div className="flex items-center justify-between gap-3">
@@ -186,6 +188,29 @@ export const PracticePage: React.FC = () => {
               </span>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Personal names, business names, offices, and subject filing.</p>
+          </button>
+        </section>
+      )}
+
+      {examLevel === 'Subprofessional' && spellingCount > 0 && (
+        <section aria-labelledby="spelling-task-heading" className="space-y-3">
+          <h2 id="spelling-task-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Spelling
+          </h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Shared Spelling directions appear once; each existing word-choice item remains individually answerable with immediate explanations.
+          </p>
+          <button
+            onClick={() => startTaskFormat('shared_spelling_task', spellingCount)}
+            className="w-full sm:w-auto text-left rounded-xl border p-4 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-emerald-400 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-sm font-bold text-slate-900 dark:text-white">Spelling task</span>
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full border text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700">
+                {spellingCount} items
+              </span>
+            </div>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Correctly spelled and misspelled word variants.</p>
           </button>
         </section>
       )}

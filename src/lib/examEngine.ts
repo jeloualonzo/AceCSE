@@ -512,6 +512,39 @@ export async function buildPracticeSession(
 
 
 /**
+ * Build a Spelling task-format practice session from the canonical Spelling pool.
+ * All 14 existing Spelling questions remain individually answerable; the session
+ * carries one semantic Spelling block so shared directions are not represented
+ * as historical Set 1/2 boundaries.
+ */
+export async function buildSpellingPracticeSession(level: ExamLevel): Promise<ExamSession> {
+  const catalog = await loadContentCatalog(['Clerical Ability']);
+  const questionIds = catalog
+    .getQuestionsForSubject('Clerical Ability', level)
+    .filter((question) => catalog.getClassification(question.id)?.topic === 'Spelling')
+    .map((question) => question.id);
+  if (questionIds.length === 0) throw new InsufficientBankError(['Clerical Ability']);
+  const startedAt = Date.now();
+  return {
+    id: newSessionId(),
+    config: {
+      mode: 'practice',
+      examLevel: level,
+      questionCount: questionIds.length,
+      subjects: ['Clerical Ability'],
+      taskFormat: 'shared_spelling_task',
+      timed: false,
+      durationSeconds: null,
+    },
+    questionIds,
+    items: [{ kind: 'pool', poolId: 'clerical-spelling', questionType: 'spelling', taskFormat: 'shared_spelling_task', sectionId: 'Clerical Ability', questionIds }],
+    startedAt,
+    deadlineAt: null,
+    answers: {},
+  };
+}
+
+/**
  * Build a Filing task-format practice session from the canonical Filing pool.
  * All 26 existing Filing questions remain individually answerable; the session
  * carries one semantic Filing block so shared directions are not represented

@@ -5,6 +5,7 @@ import type { Attempt, ExamSession, OptionId, Question, Subject } from '@/types'
 import {
   buildGroupPracticeSession,
   buildFilingPracticeSession,
+  buildSpellingPracticeSession,
   buildPracticeSession,
   buildSimulationSession,
   InsufficientBankError,
@@ -63,6 +64,9 @@ function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
   }
   if (request.taskFormat === 'shared_filing_task') {
     return buildFilingPracticeSession(request.examLevel);
+  }
+  if (request.taskFormat === 'shared_spelling_task') {
+    return buildSpellingPracticeSession(request.examLevel);
   }
   return buildPracticeSession(
     request.examLevel,
@@ -335,6 +339,7 @@ export const ExamPage: React.FC = () => {
     const map = new Map<string, { title?: string; directions?: string; example?: string }>();
     if (!catalog) return map;
     const filingTask = getSharedTaskDefinition('filing_default');
+    const spellingTask = getSharedTaskDefinition('spelling_default');
     for (const group of catalog.groups.values()) {
       if (group.isImplicitSingleton) continue;
       if (!group.directions && !group.example && !group.title) continue;
@@ -352,6 +357,20 @@ export const ExamPage: React.FC = () => {
         } else {
           map.set(qid, { title: group.title ?? group.questionType, directions: group.directions, example: group.example });
         }
+      }
+    }
+    if (spellingTask) {
+      const firstExample = Array.isArray(spellingTask.examples) && spellingTask.examples[0] && typeof spellingTask.examples[0] === 'object'
+        ? spellingTask.examples[0] as { input?: string; result?: string }
+        : undefined;
+      for (const question of catalog.getQuestionsForSubject('Clerical Ability')) {
+        const classification = catalog.getClassification(question.id);
+        if (classification?.taskFormat !== 'shared_spelling_task') continue;
+        map.set(question.id, {
+          title: typeof spellingTask.title === 'string' ? spellingTask.title : 'Spelling',
+          directions: typeof spellingTask.directions === 'string' ? spellingTask.directions : undefined,
+          example: firstExample?.input && firstExample.result ? `Example: ${firstExample.input} — ${firstExample.result}` : undefined,
+        });
       }
     }
     return map;

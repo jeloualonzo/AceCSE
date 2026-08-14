@@ -213,16 +213,36 @@
     "spelling_default": {
       "taskFormat": "shared_spelling_task",
       "subject": "Clerical Ability",
-      "directionsSource": "grp-spelling-01",
+      "title": "Spelling",
+      "directions": "For each item, choose the letter of the word that matches the instruction. Choose the correctly spelled word when asked for the correct spelling, or choose the word containing the error when asked for the misspelled word. An item may include E. No Error when all listed words are correctly spelled.",
       "supports": [
         "correctly_spelled_word",
         "misspelled_word"
       ],
+      "answerStructure": "word_selection",
       "noErrorOptional": true,
+      "instanceFormats": [
+        "compact",
+        "legacy_full_prompt"
+      ],
       "instanceSchema": [
+        "taskDefinitionId",
+        "instanceFormat",
         "words",
-        "answerStructure"
-      ]
+        "itemPrompt",
+        "answerStructure",
+        "noErrorVariant",
+        "migrationStatus",
+        "sourcePromptPreserved",
+        "choiceEncoding"
+      ],
+      "examples": [
+        {
+          "input": "A. receive\\nB. separate\\nC. accomodate\\nD. rhythm\\nE. No Error",
+          "result": "C — accomodate is misspelled; the other four words are correctly spelled."
+        }
+      ],
+      "provenance": "Training representation based on the current question bank and observed exam behavior; not official CSC wording or a reproduced official test form."
     },
     "number_series_default": {
       "taskFormat": "number_sequence",

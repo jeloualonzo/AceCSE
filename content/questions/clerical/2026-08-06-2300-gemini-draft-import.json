@@ -294,7 +294,30 @@
       "personnel",
       "commonly-misspelled",
       "government-vocabulary"
-    ]
+    ],
+    "questionType": "correctly_spelled_word",
+    "questionFormat": "correctly_spelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "Personel",
+          "Personell",
+          "Personnel",
+          "Pursonnel",
+          "Personnell"
+        ],
+        "itemPrompt": "Choose the correctly spelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0056",

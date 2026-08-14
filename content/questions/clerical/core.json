@@ -856,7 +856,30 @@
       "spelling",
       "double-consonant",
       "commonly-misspelled"
-    ]
+    ],
+    "questionType": "correctly_spelled_word",
+    "questionFormat": "correctly_spelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "accomodate",
+          "acommodate",
+          "acomodate",
+          "accommodate",
+          "accommadate"
+        ],
+        "itemPrompt": "Choose the correctly spelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0013",
@@ -905,7 +928,30 @@
       "misspelled",
       "common-errors",
       "separate"
-    ]
+    ],
+    "questionType": "misspelled_word",
+    "questionFormat": "misspelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "occurrence",
+          "recommend",
+          "necessary",
+          "conscientious",
+          "seperate"
+        ],
+        "itemPrompt": "Choose the misspelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0014",
@@ -953,7 +999,30 @@
       "spelling",
       "double-consonant",
       "embarrass"
-    ]
+    ],
+    "questionType": "correctly_spelled_word",
+    "questionFormat": "correctly_spelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "embarass",
+          "embarras",
+          "embaras",
+          "embarrass",
+          "embarrasses"
+        ],
+        "itemPrompt": "Choose the correctly spelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0015",
@@ -1002,7 +1071,30 @@
       "misspelled",
       "suffix",
       "privilege"
-    ]
+    ],
+    "questionType": "misspelled_word",
+    "questionFormat": "misspelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "commitment",
+          "beginning",
+          "occurrence",
+          "priviledge",
+          "perseverance"
+        ],
+        "itemPrompt": "Choose the misspelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0016",
@@ -1051,7 +1143,30 @@
       "suffix",
       "-ance",
       "maintenance"
-    ]
+    ],
+    "questionType": "correctly_spelled_word",
+    "questionFormat": "correctly_spelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "maintenance",
+          "maintainance",
+          "maintenence",
+          "maintainence",
+          "maintennance"
+        ],
+        "itemPrompt": "Choose the correctly spelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0017",
@@ -1101,7 +1216,30 @@
       "suffix",
       "-ious",
       "conscientious"
-    ]
+    ],
+    "questionType": "misspelled_word",
+    "questionFormat": "misspelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "liaison",
+          "conscientous",
+          "conscientious",
+          "judgement",
+          "occurrence"
+        ],
+        "itemPrompt": "Choose the misspelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0018",
@@ -1150,7 +1288,30 @@
       "suffix",
       "-ance",
       "perseverance"
-    ]
+    ],
+    "questionType": "correctly_spelled_word",
+    "questionFormat": "correctly_spelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "perseverence",
+          "perserverance",
+          "perserverence",
+          "persevrence",
+          "perseverance"
+        ],
+        "itemPrompt": "Choose the correctly spelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0019",
@@ -1200,7 +1361,30 @@
       "latin-root",
       "-sede",
       "supersede"
-    ]
+    ],
+    "questionType": "misspelled_word",
+    "questionFormat": "misspelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "supersede",
+          "proceed",
+          "precede",
+          "intercede",
+          "supercede"
+        ],
+        "itemPrompt": "Choose the misspelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0020",
@@ -2020,7 +2204,30 @@
       "suffix",
       "-ance",
       "maintenance"
-    ]
+    ],
+    "questionType": "correctly_spelled_word",
+    "questionFormat": "correctly_spelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "maintainance",
+          "maintenance",
+          "maintenence",
+          "maintanance",
+          "maintainence"
+        ],
+        "itemPrompt": "Choose the correctly spelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0035",
@@ -2197,7 +2404,30 @@
       "double-consonant",
       "accommodation",
       "commonly-misspelled"
-    ]
+    ],
+    "questionType": "correctly_spelled_word",
+    "questionFormat": "correctly_spelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "Accomodation",
+          "Accommodation",
+          "Acommodation",
+          "Accommodasion",
+          "Accomoddasion"
+        ],
+        "itemPrompt": "Choose the correctly spelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "seed-cler-003",
@@ -2948,7 +3178,30 @@
       "achieve",
       "receive",
       "believe"
-    ]
+    ],
+    "questionType": "correctly_spelled_word",
+    "questionFormat": "correctly_spelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "recieve",
+          "beleive",
+          "achieve",
+          "freind",
+          "acheive"
+        ],
+        "itemPrompt": "Choose the correctly spelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0047",
@@ -2998,7 +3251,30 @@
       "affidavit",
       "legal-vocabulary",
       "government-correspondence"
-    ]
+    ],
+    "questionType": "misspelled_word",
+    "questionFormat": "misspelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "subpoena",
+          "afidavit",
+          "memorandum",
+          "acknowledgment",
+          "questionnaire"
+        ],
+        "itemPrompt": "Choose the misspelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0048",
@@ -3048,7 +3324,30 @@
       "single-consonant",
       "hard-spelling",
       "exam-trap"
-    ]
+    ],
+    "questionType": "correctly_spelled_word",
+    "questionFormat": "correctly_spelled_word",
+    "taskFormat": "shared_spelling_task",
+    "taskInstance": {
+      "kind": "spelling",
+      "payload": {
+        "taskDefinitionId": "spelling_default",
+        "instanceFormat": "compact",
+        "words": [
+          "inocculate",
+          "innoculate",
+          "innocculate",
+          "inoculate",
+          "inoculatte"
+        ],
+        "itemPrompt": "Choose the correctly spelled word.",
+        "answerStructure": "word_selection",
+        "noErrorVariant": false,
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "direct_word_choices"
+      }
+    }
   },
   {
     "id": "cler-0049",
