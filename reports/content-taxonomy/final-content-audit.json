@@ -1,0 +1,260 @@
+{
+  "audit": {
+    "author": "Manus AI",
+    "repository": "jeloualonzo/AceCSE",
+    "branch": "phase4-booklet",
+    "startingSha": "4f88a342db5367fb5e5ed1569b339d49a9510bb5",
+    "migrationArtifactsAudited": false,
+    "productionContentChanged": false,
+    "verdict": "MAJOR ISSUES",
+    "freezeReady": false,
+    "question689Ready": false
+  },
+  "migrationVerification": {
+    "taxonomyPath": "content/taxonomy/taxonomy.json",
+    "taxonomyExists": false,
+    "manifestPath": "content/taxonomy/classification-manifest.json",
+    "manifestExists": false,
+    "poolDirectory": "content/taxonomy/pools/",
+    "poolDirectoryExists": false,
+    "reportedPoolCount": 50,
+    "actualPoolCount": 0,
+    "aiGuidePath": "content/taxonomy/AI_CONTENT_GUIDE.md",
+    "aiGuideExists": false,
+    "classificationCoverage": {
+      "questionCount": 688,
+      "manifestQuestionCount": 0,
+      "questionTypeFields": 0,
+      "questionFormatFields": 0,
+      "storageModeFields": 0,
+      "poolIdFields": 0,
+      "fixedGroupIdFields": 0
+    }
+  },
+  "bankIntegrity": {
+    "questionFiles": 27,
+    "questions": 688,
+    "uniqueIds": 688,
+    "duplicateIds": 0,
+    "missingIds": 0,
+    "groups": 33,
+    "groupedQuestions": 217,
+    "singletonQuestions": 471,
+    "unresolvedGroupReferences": 0,
+    "overlappingGroupMemberships": 0,
+    "subjects": {
+      "Analytical Reasoning": 123,
+      "Clerical Ability": 63,
+      "General Information": 147,
+      "Numerical Reasoning": 157,
+      "Verbal Ability": 198
+    },
+    "fiveChoiceRecords": 688,
+    "correctAnswerExists": 688,
+    "duplicateChoiceTextRecords": 0,
+    "answerDistribution": {"A": 138, "B": 138, "C": 139, "D": 138, "E": 135},
+    "eCorrectPresent": true,
+    "references": 243,
+    "sources": 0
+  },
+  "findings": [
+    {
+      "id": "FINAL-CRIT-001",
+      "severity": "CRITICAL",
+      "file": "content/taxonomy/ (missing)",
+      "questionIds": [],
+      "groupIds": [],
+      "whatIsWrong": "The claimed canonical taxonomy, 688-row classification manifest, 50 semantic pool indexes, and future-AI guide do not exist on the audited branch. The latest reachable commit before this audit is the prior Manus audit commit, not a Gemini migration commit.",
+      "whyItMatters": "There is no canonical classification layer to validate or load. The claimed migration has not been implemented in this checkout.",
+      "recommendedCorrection": "Supply or implement the four claimed artifacts and wire them into runtime before declaring the bank organized or frozen."
+    },
+    {
+      "id": "FINAL-HIGH-001",
+      "severity": "HIGH",
+      "file": "src/data/questionBank.ts; src/data/contentNormalization.ts; src/lib/examEngine.ts",
+      "questionIds": [],
+      "groupIds": ["grp-filing-02", "grp-spelling-01", "grp-spelling-02", "grp-ana-series-01", "grp-synonyms-03", "grp-analogy-02"],
+      "whatIsWrong": "The runtime still discovers question files and historical group files, normalizes each standalone question into a singleton group, overlays explicit groups, and selects simulation content from eligible groups. No canonical semantic pool is loaded or consulted.",
+      "whyItMatters": "The runtime flow remains subject → historical QuestionGroup → partial selection. The required subject → compatible pool → contiguous task batch flow is absent.",
+      "recommendedCorrection": "Route pool-like content through canonical reference-only pool indexes and reserve QuestionGroup objects for true shared-context sets or a separate task-block representation."
+    },
+    {
+      "id": "FINAL-HIGH-002",
+      "severity": "HIGH",
+      "file": "src/lib/examEngine.ts; content/groups/**/*.json",
+      "questionIds": ["cler-0010", "cler-0011", "cler-0031", "cler-0032", "cler-0033", "cler-0036", "cler-0037", "cler-0038", "cler-0039"],
+      "groupIds": ["grp-filing-02"],
+      "whatIsWrong": "The historical Filing Set 2 remains a splittable runtime group. In the final audit’s ten deterministic sessions, nine partial historical-group selections occurred; the earlier ten-session audit on the unchanged runtime also observed `grp-filing-02` selected as 1/9 and three one-question historical remnants overall.",
+      "whyItMatters": "The original Set-boundary/remnant problem is still reproducible. A group with nine compatible filing items can appear as an arbitrary partial block or one-question Set 2 remnant.",
+      "recommendedCorrection": "Remove pool-like historical sets from simulation allocation. Sample Filing questions from a canonical Filing pool/task format, while keeping any shared task directions separately from fixed-context membership."
+    },
+    {
+      "id": "FINAL-HIGH-003",
+      "severity": "HIGH",
+      "file": "src/types/index.ts; src/data/questionShape.ts; all 688 question records",
+      "questionIds": [],
+      "groupIds": [],
+      "whatIsWrong": "The current model has optional broad `questionType` and group fields but no controlled `questionFormat`, `storageMode`, `poolId`, `fixedGroupId`, shared-task reference, or number-series missing-position field. The question validator does not enforce any of these concepts.",
+      "whyItMatters": "Pool, presentation format, and fixed-context membership remain collapsed or implicit. A future AI cannot add an item without guessing the canonical destination and rendering behavior.",
+      "recommendedCorrection": "Add the missing classification/task-format contract and enforce it with a migration validator before accepting question #689."
+    },
+    {
+      "id": "FINAL-MED-001",
+      "severity": "MEDIUM",
+      "file": "content/questions/analytical/core.json; content/groups/analytical/core-groups.json",
+      "questionIds": ["ana-0038", "ana-0040"],
+      "groupIds": ["grp-ana-series-01"],
+      "whatIsWrong": "Both records are explicitly letter-series questions, but the historical group’s `questionType` is `Number Sequence` and no canonical format metadata exists.",
+      "whyItMatters": "Numeric and letter sequence sampling cannot be enforced safely.",
+      "recommendedCorrection": "Classify both records as `letter_sequence` in the canonical manifest and keep them out of numeric-only pools."
+    },
+    {
+      "id": "FINAL-MED-002",
+      "severity": "MEDIUM",
+      "file": "content/groups/clerical/core-groups.json; content/questions/clerical/core.json",
+      "questionIds": ["cler-0001", "cler-0012", "cler-0013", "cler-0037", "cler-0039", "cler-0053", "cler-0054", "cler-0058", "cler-0059", "cler-0060"],
+      "groupIds": ["grp-filing-01", "grp-filing-02", "grp-filing-03", "grp-spelling-01", "grp-spelling-02"],
+      "whatIsWrong": "Filing and Spelling shared directions exist only as fields on historical splittable groups, while most individual records remain full-sentence prompts. There is no separate task/presentation-format layer or compact instance schema.",
+      "whyItMatters": "The observed exam-like block behavior cannot be represented cleanly without treating task directions, reusable pools, and fixed-context sets as distinct concepts.",
+      "recommendedCorrection": "Add a task-format/block model with shared directions/examples and compact instances. Do not mass-rewrite the 688 items in this audit; migrate incrementally after the taxonomy is stable."
+    },
+    {
+      "id": "FINAL-MED-003",
+      "severity": "MEDIUM",
+      "file": "content/questions/numerical/core.json; content/groups/numerical/core-groups.json",
+      "questionIds": ["num-0019", "num-0020", "num-0021", "num-0022", "num-0023", "num-0024", "num-0025", "num-0026", "num-0108", "num-0137", "num-0147"],
+      "groupIds": ["grp-num-series-01", "grp-num-series-02"],
+      "whatIsWrong": "All 11 Numerical Reasoning Number Series records use a text stem with the blank at the final position. None has structured sequence tokens or a missing-position field.",
+      "whyItMatters": "The schema cannot faithfully represent series with a missing term in the middle, first, or another nonterminal position without encoding the structure inside freeform text.",
+      "recommendedCorrection": "Add optional structured series data and an explicit missing-position representation for future content; do not mass-rewrite existing items during this audit."
+    },
+    {
+      "id": "FINAL-MED-004",
+      "severity": "MEDIUM",
+      "file": "content/groups/analytical/core-groups.json; content/questions/analytical/core.json; content/groups/verbal/core-groups.json",
+      "questionIds": ["ana-0038", "ana-0040"],
+      "groupIds": ["grp-ana-series-01", "grp-syllogism-01", "grp-syllogism-02", "grp-syllogism-03", "grp-synonyms-01", "grp-synonyms-02", "grp-synonyms-03"],
+      "whatIsWrong": "Direct synonym versus synonym-in-context, logical reasoning procedures, and filing subformats are only inferable from historical group names, topics, subtopics, or freeform stems.",
+      "whyItMatters": "The proposed distinctions cannot be validated or enforced by runtime selection or future-AI authoring.",
+      "recommendedCorrection": "Add controlled format metadata for direct/contextual synonym, categorical/conditional/disjunctive/chain/grid/deduction logic, and filing entity/ordering modes."
+    },
+    {
+      "id": "FINAL-LOW-001",
+      "severity": "LOW",
+      "file": "dist/assets/ build output",
+      "questionIds": [],
+      "groupIds": [],
+      "whatIsWrong": "The build passes but emits a 602.98 kB minified Firestore chunk and multiple chunks over 200 kB, triggering Vite’s chunk-size warning.",
+      "whyItMatters": "This is not the migration’s primary correctness defect, but adding large indexes without a bundle budget could hurt mobile performance.",
+      "recommendedCorrection": "Keep pool indexes reference-only and measure bundle/load performance at 1,000, 5,000, and 10,000 questions before scaling further."
+    }
+  ],
+  "fixedSets": {
+    "expected": 8,
+    "actual": 8,
+    "ids": ["grp-di-employment","grp-di-roadworks","grp-rc-public-trust","grp-rc-csc","grp-rc-property","grp-rc-careers","grp-rc-frontline","grp-rc-appointments"],
+    "allMembersResolve": true,
+    "sharedContextVerified": true,
+    "atomicVerified": true,
+    "fixedOrderVerified": true,
+    "additionalMultiQuestionDependencyFound": false,
+    "assessment": "The eight existing fixed groups are structurally correct, but no canonical fixedGroupId layer exists."
+  },
+  "runtimeAudit": {
+    "finalRun": {
+      "sessions": 10,
+      "levels": ["Professional", "Subprofessional"],
+      "seeds": ["final-audit-01","final-audit-02","final-audit-03","final-audit-04","final-audit-05"],
+      "counts": {"Professional": 150, "Subprofessional": 145},
+      "duplicateFree": true,
+      "partialHistoricalGroupSelections": 9,
+      "oneQuestionRemnants": 0,
+      "atomicFixedChecks": 13,
+      "atomicFixedSelectionsWhole": true,
+      "canonicalPoolSelections": 0
+    },
+    "combinedEvidence": {
+      "sessions": 20,
+      "partialHistoricalGroupSelectionsAtLeast": 17,
+      "oneQuestionRemnantsObserved": 3,
+      "example": {"groupId": "grp-filing-02", "selected": 1, "full": 9}
+    },
+    "assessment": "The current run confirms partial historical-group selection; the previous ten-session run on the unchanged production runtime confirms one-question remnants. The original architecture problem remains."
+  },
+  "taskFormatAudit": {
+    "filing": {
+      "questionCount": 26,
+      "groupCount": 3,
+      "currentRepresentation": "Full-sentence standalone question records plus repeated shared directions on splittable shuffled historical groups.",
+      "sharedDirectionsRepresentable": true,
+      "separateTaskFormatModel": false,
+      "compactInstanceModel": false,
+      "noMassRewritePerformed": true,
+      "requiredFutureFields": ["taskFormat", "sharedDirectionsRef", "filingEntityType", "orderingMode"]
+    },
+    "spelling": {
+      "questionCount": 14,
+      "groupCount": 2,
+      "currentRepresentation": "Full-sentence word-choice prompts plus repeated shared directions on splittable shuffled historical groups.",
+      "sharedDirectionsRepresentable": true,
+      "separateTaskFormatModel": false,
+      "compactInstanceModel": false,
+      "noErrorOptionObserved": false,
+      "requiredFutureFields": ["taskFormat", "sharedDirectionsRef", "answerStructure", "noErrorAllowed"]
+    },
+    "numberSeries": {
+      "questionCount": 11,
+      "allObservedMissingAtFinalPosition": true,
+      "structuredSequenceField": false,
+      "missingPositionField": false,
+      "requiredFutureFields": ["taskFormat", "sequenceTokens", "missingPosition", "answerValueType"]
+    }
+  },
+  "futureAiAudit": {
+    "guideExists": false,
+    "taxonomyExists": false,
+    "manifestExists": false,
+    "canClassifyQuestion689WithoutGuessing": false,
+    "missingRules": [
+      "separate pool versus task/presentation format versus fixed-context set",
+      "shared task directions and compact instances",
+      "number-series missing-position structure",
+      "direct versus contextual synonym format",
+      "controlled logical reasoning formats",
+      "filing entity and ordering modes",
+      "spelling answer structure and optional No Error support"
+    ]
+  },
+  "provenance": {
+    "historicalFilesPreserved": true,
+    "originalIdsPreserved": true,
+    "referencesPreserved": true,
+    "fullQuestionBodyDuplicationInPoolIndexes": "Cannot assess because pool indexes are absent",
+    "classificationProvenanceLayer": false
+  },
+  "performance": {
+    "lazyQuestionLoading": true,
+    "poolIndexLoading": "Not implemented",
+    "largestMinifiedChunkBytes": 602981,
+    "buildWarning": true,
+    "scaleAssessment": "Question lazy loading is reasonable, but semantic pool scale cannot be assessed until the claimed reference-only indexes exist."
+  },
+  "validation": {
+    "questionValidator": "passed",
+    "typecheck": "passed",
+    "tests": "passed: 6 files / 84 tests",
+    "build": "passed with chunk-size warning",
+    "jsonArtifactValidation": "will be run before commit"
+  },
+  "requiredCorrections": [
+    "Implement content/taxonomy/taxonomy.json with controlled subject, topic, questionType, questionFormat, task-format, and compatibility definitions.",
+    "Implement content/taxonomy/classification-manifest.json with exactly 688 unique IDs and complete classification/provenance fields.",
+    "Implement reference-only pool indexes under content/taxonomy/pools/; do not duplicate full question bodies.",
+    "Implement content/taxonomy/AI_CONTENT_GUIDE.md with deterministic examples for Filing, Spelling, Number Series, Letter Series, synonyms, logic, reading sets, tables, and General Information.",
+    "Change runtime allocation to use semantic pools and separate task/presentation blocks from fixed-context groups.",
+    "Make only the eight true shared-context sets atomic/fixed; stop using old Set 1/Set 2 boundaries as semantic selection units.",
+    "Classify ana-0038 and ana-0040 as letter_sequence.",
+    "Add explicit metadata for direct/contextual synonyms, logical reasoning formats, filing formats, spelling answer structure, and number-series missing position.",
+    "Rerun the full final audit after implementation; do not add question 689 before approval."
+  ]
+}
