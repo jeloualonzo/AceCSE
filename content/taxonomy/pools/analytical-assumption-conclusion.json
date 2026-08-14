@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "poolId": "analytical-assumption-conclusion",
+  "subject": "Analytical Reasoning",
+  "topics": [
+    "Assumption and Conclusion"
+  ],
+  "questionFormats": [
+    "assumption_conclusion"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "ana-0027",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0030",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0031",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0032",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0033",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0034",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0059",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0060",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0073",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0074",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0076",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0077",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0098",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0099",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "seed-ana-003",
+      "questionType": "assumption_conclusion",
+      "questionFormat": "assumption_conclusion",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

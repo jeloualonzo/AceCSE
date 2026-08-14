@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "poolId": "general-environment-management-and-protection",
+  "subject": "General Information",
+  "topics": [
+    "Environment Management and Protection"
+  ],
+  "questionFormats": [
+    "general_information_recall"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "gen-0043",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0044",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0045",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0046",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0047",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0048",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0049",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0050",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0087",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0088",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0089",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0093",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0099",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0103",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0141",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "seed-gen-003",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

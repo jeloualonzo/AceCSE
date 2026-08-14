@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "poolId": "numerical-percentages",
+  "subject": "Numerical Reasoning",
+  "topics": [
+    "Percentages"
+  ],
+  "questionFormats": [
+    "percentage_problem"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "num-0009",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0010",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0011",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0012",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0015",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0016",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0018",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0068",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0071",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0072",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0084",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0090",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0092",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0102",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0111",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0117",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0135",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "seed-num-002",
+      "questionType": "percentage_problem",
+      "questionFormat": "percentage_problem",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

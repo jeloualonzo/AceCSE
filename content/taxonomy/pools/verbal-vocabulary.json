@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "poolId": "verbal-vocabulary",
+  "subject": "Verbal Ability",
+  "topics": [
+    "Vocabulary"
+  ],
+  "questionFormats": [
+    "vocabulary"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "verb-0003",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0006",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0007",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0008",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0010",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0079",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0093",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0107",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0122",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0150",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0153",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0154",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0155",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0169",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0170",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0171",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0173",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0182",
+      "questionType": "vocabulary",
+      "questionFormat": "vocabulary",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

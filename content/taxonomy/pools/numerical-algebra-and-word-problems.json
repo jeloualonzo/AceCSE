@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "poolId": "numerical-algebra-and-word-problems",
+  "subject": "Numerical Reasoning",
+  "topics": [
+    "Basic Algebra",
+    "Ratio and Proportion",
+    "Age Problems",
+    "Mixture Problems"
+  ],
+  "questionFormats": [
+    "algebra_word_problem"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "num-0013",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0014",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0017",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0030",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0031",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0032",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0033",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0048",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0050",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0069",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0073",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0074",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0085",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0086",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0094",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0095",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0113",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0122",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0128",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0136",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0140",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0141",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0142",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0150",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "seed-num-003",
+      "questionType": "algebra_word_problem",
+      "questionFormat": "algebra_word_problem",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

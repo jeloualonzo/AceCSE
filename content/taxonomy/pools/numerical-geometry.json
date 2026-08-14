@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "poolId": "numerical-geometry",
+  "subject": "Numerical Reasoning",
+  "topics": [
+    "Geometry"
+  ],
+  "questionFormats": [
+    "geometry_problem"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "num-0051",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0052",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0053",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0054",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0079",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0080",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0081",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0091",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0096",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0099",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0100",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0101",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0106",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0121",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0123",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0125",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0126",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0143",
+      "questionType": "geometry_problem",
+      "questionFormat": "geometry_problem",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

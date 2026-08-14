@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "poolId": "verbal-paragraph-organization",
+  "subject": "Verbal Ability",
+  "topics": [
+    "Paragraph Organization"
+  ],
+  "questionFormats": [
+    "paragraph_organization"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "seed-verb-004",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0037",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0038",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0039",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0040",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0041",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0042",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0087",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0088",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0089",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0100",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0126",
+      "questionType": "paragraph_organization",
+      "questionFormat": "paragraph_organization",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

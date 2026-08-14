@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "poolId": "verbal-sentence-completion",
+  "subject": "Verbal Ability",
+  "topics": [
+    "Sentence Completion"
+  ],
+  "questionFormats": [
+    "sentence_completion"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "verb-0031",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0032",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0033",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0034",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0035",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0036",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0069",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0070",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0077",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0083",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0103",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0125",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0143",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0144",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0145",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0158",
+      "questionType": "sentence_completion",
+      "questionFormat": "sentence_completion",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

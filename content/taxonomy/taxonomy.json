@@ -1,0 +1,1588 @@
+{
+  "version": 1,
+  "status": "canonical",
+  "description": "AceCSE content taxonomy layered over immutable historical question sources.",
+  "subjects": [
+    "Analytical Reasoning",
+    "Clerical Ability",
+    "General Information",
+    "Numerical Reasoning",
+    "Verbal Ability"
+  ],
+  "topics": [
+    "1987 Constitution",
+    "Age Problems",
+    "Assumption and Conclusion",
+    "Averages",
+    "Basic Algebra",
+    "Clerical Operations",
+    "Data Interpretation",
+    "Decimals",
+    "Distance, Speed, Time",
+    "Environment Management and Protection",
+    "Error Identification",
+    "Exponents and Roots",
+    "Filing & Alphabetizing",
+    "Fractions",
+    "Geometry",
+    "Grammar & Usage",
+    "Human Rights and Peace",
+    "Local Government Code RA 7160",
+    "Logical Reasoning",
+    "Mixture Problems",
+    "Money and Finance",
+    "Number Series",
+    "Number Theory",
+    "Number and Letter Pattern",
+    "Office Procedures & Correspondence",
+    "Order of Operations",
+    "Ordering and Arrangement",
+    "Paragraph Organization",
+    "Percentages",
+    "Philippine Culture and National Symbols",
+    "Philippine Economics and Taxation",
+    "Philippine Geography",
+    "Philippine Government Structure",
+    "Philippine History",
+    "Probability",
+    "RA 6713 Code of Conduct",
+    "Ratio and Proportion",
+    "Reading Comprehension",
+    "Sentence Completion",
+    "Simple and Compound Interest",
+    "Spelling",
+    "Statistics",
+    "Vocabulary",
+    "Word Analogy",
+    "Work Rate"
+  ],
+  "questionTypes": [
+    "Data Interpretation",
+    "Reading Comprehension",
+    "algebra_word_problem",
+    "antonym",
+    "assumption_conclusion",
+    "business_or_office_filing",
+    "categorical_logic",
+    "clerical_code_or_record_check",
+    "clerical_record_check",
+    "conditional_logic",
+    "correctly_spelled_word",
+    "data_interpretation",
+    "direct_synonym",
+    "disjunctive_logic",
+    "error_identification",
+    "finance_problem",
+    "fraction_decimal_problem",
+    "general_information_recall",
+    "geometry_problem",
+    "grammar_usage",
+    "letter_code",
+    "letter_sequence",
+    "logic_grid",
+    "logical_deduction",
+    "misspelled_word",
+    "number_analogy",
+    "number_operations",
+    "number_sequence",
+    "office_procedure",
+    "ordering_arrangement",
+    "paragraph_organization",
+    "percentage_problem",
+    "personal_name_filing",
+    "probability_statistics_problem",
+    "rate_work_problem",
+    "reading_comprehension",
+    "sentence_completion",
+    "subject_or_office_filing",
+    "synonym_in_context",
+    "vocabulary",
+    "word_analogy"
+  ],
+  "questionFormats": [
+    "algebra_word_problem",
+    "antonym",
+    "assumption_conclusion",
+    "business_or_office_filing",
+    "categorical_logic",
+    "clerical_code_or_record_check",
+    "clerical_record_check",
+    "conditional_logic",
+    "correctly_spelled_word",
+    "data_interpretation",
+    "direct_synonym",
+    "disjunctive_logic",
+    "error_identification",
+    "finance_problem",
+    "fraction_decimal_problem",
+    "general_information_recall",
+    "geometry_problem",
+    "grammar_usage",
+    "letter_code",
+    "letter_sequence",
+    "logic_grid",
+    "logical_deduction",
+    "misspelled_word",
+    "number_analogy",
+    "number_operations",
+    "number_sequence",
+    "office_procedure",
+    "ordering_arrangement",
+    "paragraph_organization",
+    "percentage_problem",
+    "personal_name_filing",
+    "probability_statistics_problem",
+    "rate_work_problem",
+    "reading_comprehension",
+    "sentence_completion",
+    "subject_or_office_filing",
+    "synonym_in_context",
+    "vocabulary",
+    "word_analogy"
+  ],
+  "taskFormats": [
+    "fixed_shared_context",
+    "letter_sequence",
+    "number_sequence",
+    "shared_filing_task",
+    "shared_spelling_task",
+    "standard_multiple_choice",
+    "fixed_shared_context"
+  ],
+  "storageModes": [
+    "pool",
+    "fixed-set"
+  ],
+  "rules": {
+    "poolVsTaskFormatVsFixedSet": "Pool is the reusable selection supply; taskFormat controls presentation; fixed-set is reserved for multiple questions dependent on one exact shared stimulus.",
+    "standaloneStimulus": "A self-contained passage, table, codebook, or puzzle remains pool-eligible and is marked embeddedStimulus=true.",
+    "historicalGroups": "Historical pool-like groups are provenance only and must not control semantic pool selection.",
+    "fixedSets": "Only fixed-set definitions with shared context, atomic selection, and fixed order may force contiguous dependency blocks.",
+    "numberSeries": "New number-series items must declare missingPosition; existing terminal blanks are represented as final and should not be assumed for future items.",
+    "subjectTerminology": "Persist only the five application subject names in this registry."
+  },
+  "sharedTaskDefinitions": {
+    "filing_default": {
+      "taskFormat": "shared_filing_task",
+      "subject": "Clerical Ability",
+      "directionsSource": "grp-filing-01",
+      "supports": [
+        "personal_name_filing",
+        "business_or_office_filing",
+        "subject_or_office_filing"
+      ],
+      "instanceSchema": [
+        "entries",
+        "entityType",
+        "orderingMode"
+      ]
+    },
+    "spelling_default": {
+      "taskFormat": "shared_spelling_task",
+      "subject": "Clerical Ability",
+      "directionsSource": "grp-spelling-01",
+      "supports": [
+        "correctly_spelled_word",
+        "misspelled_word"
+      ],
+      "noErrorOptional": true,
+      "instanceSchema": [
+        "words",
+        "answerStructure"
+      ]
+    },
+    "number_series_default": {
+      "taskFormat": "number_sequence",
+      "subject": "Numerical Reasoning",
+      "missingPositionRequiredForNewItems": true,
+      "instanceSchema": [
+        "sequence",
+        "missingPosition"
+      ]
+    },
+    "letter_series_default": {
+      "taskFormat": "letter_sequence",
+      "subject": "Analytical Reasoning",
+      "instanceSchema": [
+        "sequence",
+        "missingPosition"
+      ]
+    }
+  },
+  "poolCompatibilityRules": [
+    {
+      "poolId": "analytical-assumption-conclusion",
+      "subject": "Analytical Reasoning",
+      "allowedTopics": [
+        "Assumption and Conclusion"
+      ],
+      "allowedQuestionFormats": [
+        "assumption_conclusion"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "analytical-letter-and-code-pattern",
+      "subject": "Analytical Reasoning",
+      "allowedTopics": [
+        "Number and Letter Pattern"
+      ],
+      "allowedQuestionFormats": [
+        "letter_code"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "analytical-letter-sequence",
+      "subject": "Analytical Reasoning",
+      "allowedTopics": [
+        "Number and Letter Pattern"
+      ],
+      "allowedQuestionFormats": [
+        "letter_sequence"
+      ],
+      "allowedTaskFormats": [
+        "letter_sequence"
+      ]
+    },
+    {
+      "poolId": "analytical-logical-reasoning",
+      "subject": "Analytical Reasoning",
+      "allowedTopics": [
+        "Logical Reasoning"
+      ],
+      "allowedQuestionFormats": [
+        "categorical_logic",
+        "conditional_logic",
+        "disjunctive_logic",
+        "logic_grid",
+        "logical_deduction"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "analytical-number-pattern",
+      "subject": "Analytical Reasoning",
+      "allowedTopics": [
+        "Number and Letter Pattern"
+      ],
+      "allowedQuestionFormats": [
+        "number_sequence",
+        "number_analogy"
+      ],
+      "allowedTaskFormats": [
+        "number_sequence",
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "analytical-ordering-arrangement",
+      "subject": "Analytical Reasoning",
+      "allowedTopics": [
+        "Ordering and Arrangement"
+      ],
+      "allowedQuestionFormats": [
+        "ordering_arrangement"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "analytical-word-analogy",
+      "subject": "Analytical Reasoning",
+      "allowedTopics": [
+        "Word Analogy"
+      ],
+      "allowedQuestionFormats": [
+        "word_analogy"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "clerical-filing",
+      "subject": "Clerical Ability",
+      "allowedTopics": [
+        "Filing & Alphabetizing"
+      ],
+      "allowedQuestionFormats": [
+        "personal_name_filing",
+        "business_or_office_filing",
+        "subject_or_office_filing"
+      ],
+      "allowedTaskFormats": [
+        "shared_filing_task"
+      ]
+    },
+    {
+      "poolId": "clerical-office-procedures",
+      "subject": "Clerical Ability",
+      "allowedTopics": [
+        "Office Procedures & Correspondence"
+      ],
+      "allowedQuestionFormats": [
+        "office_procedure"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "clerical-operations",
+      "subject": "Clerical Ability",
+      "allowedTopics": [
+        "Clerical Operations"
+      ],
+      "allowedQuestionFormats": [
+        "clerical_record_check",
+        "clerical_code_or_record_check"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "clerical-spelling",
+      "subject": "Clerical Ability",
+      "allowedTopics": [
+        "Spelling"
+      ],
+      "allowedQuestionFormats": [
+        "correctly_spelled_word",
+        "misspelled_word"
+      ],
+      "allowedTaskFormats": [
+        "shared_spelling_task"
+      ]
+    },
+    {
+      "poolId": "general-1987-constitution",
+      "subject": "General Information",
+      "allowedTopics": [
+        "1987 Constitution"
+      ],
+      "allowedQuestionFormats": [
+        "general_information_recall"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "general-environment-management-and-protection",
+      "subject": "General Information",
+      "allowedTopics": [
+        "Environment Management and Protection"
+      ],
+      "allowedQuestionFormats": [
+        "general_information_recall"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "general-human-rights-and-peace",
+      "subject": "General Information",
+      "allowedTopics": [
+        "Human Rights and Peace"
+      ],
+      "allowedQuestionFormats": [
+        "general_information_recall"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "general-local-government-code-ra-7160",
+      "subject": "General Information",
+      "allowedTopics": [
+        "Local Government Code RA 7160"
+      ],
+      "allowedQuestionFormats": [
+        "general_information_recall"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "general-philippine-culture-and-national-symbols",
+      "subject": "General Information",
+      "allowedTopics": [
+        "Philippine Culture and National Symbols"
+      ],
+      "allowedQuestionFormats": [
+        "general_information_recall"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "general-philippine-economics-and-taxation",
+      "subject": "General Information",
+      "allowedTopics": [
+        "Philippine Economics and Taxation"
+      ],
+      "allowedQuestionFormats": [
+        "general_information_recall"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "general-philippine-geography",
+      "subject": "General Information",
+      "allowedTopics": [
+        "Philippine Geography"
+      ],
+      "allowedQuestionFormats": [
+        "general_information_recall"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "general-philippine-government-structure",
+      "subject": "General Information",
+      "allowedTopics": [
+        "Philippine Government Structure"
+      ],
+      "allowedQuestionFormats": [
+        "general_information_recall"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "general-philippine-history",
+      "subject": "General Information",
+      "allowedTopics": [
+        "Philippine History"
+      ],
+      "allowedQuestionFormats": [
+        "general_information_recall"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "general-ra-6713-code-of-conduct",
+      "subject": "General Information",
+      "allowedTopics": [
+        "RA 6713 Code of Conduct"
+      ],
+      "allowedQuestionFormats": [
+        "general_information_recall"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "numerical-algebra-and-word-problems",
+      "subject": "Numerical Reasoning",
+      "allowedTopics": [
+        "Basic Algebra",
+        "Ratio and Proportion",
+        "Age Problems",
+        "Mixture Problems"
+      ],
+      "allowedQuestionFormats": [
+        "algebra_word_problem"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "numerical-data-interpretation",
+      "subject": "Numerical Reasoning",
+      "allowedTopics": [
+        "Data Interpretation"
+      ],
+      "allowedQuestionFormats": [
+        "data_interpretation"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "numerical-finance",
+      "subject": "Numerical Reasoning",
+      "allowedTopics": [
+        "Money and Finance",
+        "Simple and Compound Interest"
+      ],
+      "allowedQuestionFormats": [
+        "finance_problem"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "numerical-fractions-and-decimals",
+      "subject": "Numerical Reasoning",
+      "allowedTopics": [
+        "Fractions",
+        "Decimals"
+      ],
+      "allowedQuestionFormats": [
+        "fraction_decimal_problem"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "numerical-geometry",
+      "subject": "Numerical Reasoning",
+      "allowedTopics": [
+        "Geometry"
+      ],
+      "allowedQuestionFormats": [
+        "geometry_problem"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "numerical-number-operations",
+      "subject": "Numerical Reasoning",
+      "allowedTopics": [
+        "Number Theory",
+        "Exponents and Roots",
+        "Order of Operations"
+      ],
+      "allowedQuestionFormats": [
+        "number_operations"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "numerical-number-sequence",
+      "subject": "Numerical Reasoning",
+      "allowedTopics": [
+        "Number Series"
+      ],
+      "allowedQuestionFormats": [
+        "number_sequence"
+      ],
+      "allowedTaskFormats": [
+        "number_sequence"
+      ]
+    },
+    {
+      "poolId": "numerical-percentages",
+      "subject": "Numerical Reasoning",
+      "allowedTopics": [
+        "Percentages"
+      ],
+      "allowedQuestionFormats": [
+        "percentage_problem"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "numerical-probability-and-data",
+      "subject": "Numerical Reasoning",
+      "allowedTopics": [
+        "Probability",
+        "Statistics",
+        "Averages"
+      ],
+      "allowedQuestionFormats": [
+        "probability_statistics_problem"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "numerical-rate-and-work",
+      "subject": "Numerical Reasoning",
+      "allowedTopics": [
+        "Distance, Speed, Time",
+        "Work Rate"
+      ],
+      "allowedQuestionFormats": [
+        "rate_work_problem"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "verbal-antonym",
+      "subject": "Verbal Ability",
+      "allowedTopics": [
+        "Vocabulary"
+      ],
+      "allowedQuestionFormats": [
+        "antonym"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "verbal-direct-synonym",
+      "subject": "Verbal Ability",
+      "allowedTopics": [
+        "Vocabulary"
+      ],
+      "allowedQuestionFormats": [
+        "direct_synonym"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "verbal-error-identification",
+      "subject": "Verbal Ability",
+      "allowedTopics": [
+        "Error Identification"
+      ],
+      "allowedQuestionFormats": [
+        "error_identification"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "verbal-grammar-usage",
+      "subject": "Verbal Ability",
+      "allowedTopics": [
+        "Grammar & Usage"
+      ],
+      "allowedQuestionFormats": [
+        "grammar_usage"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "verbal-paragraph-organization",
+      "subject": "Verbal Ability",
+      "allowedTopics": [
+        "Paragraph Organization"
+      ],
+      "allowedQuestionFormats": [
+        "paragraph_organization"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "verbal-reading-comprehension",
+      "subject": "Verbal Ability",
+      "allowedTopics": [
+        "Reading Comprehension"
+      ],
+      "allowedQuestionFormats": [
+        "reading_comprehension"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "verbal-sentence-completion",
+      "subject": "Verbal Ability",
+      "allowedTopics": [
+        "Sentence Completion"
+      ],
+      "allowedQuestionFormats": [
+        "sentence_completion"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "verbal-synonym-context",
+      "subject": "Verbal Ability",
+      "allowedTopics": [
+        "Vocabulary"
+      ],
+      "allowedQuestionFormats": [
+        "synonym_in_context"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    },
+    {
+      "poolId": "verbal-vocabulary",
+      "subject": "Verbal Ability",
+      "allowedTopics": [
+        "Vocabulary"
+      ],
+      "allowedQuestionFormats": [
+        "vocabulary"
+      ],
+      "allowedTaskFormats": [
+        "standard_multiple_choice"
+      ]
+    }
+  ],
+  "pools": [
+    {
+      "poolId": "analytical-assumption-conclusion",
+      "subject": "Analytical Reasoning",
+      "topics": [
+        "Assumption and Conclusion"
+      ],
+      "questionFormats": [
+        "assumption_conclusion"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 15,
+      "indexPath": "content/taxonomy/pools/analytical-assumption-conclusion.json"
+    },
+    {
+      "poolId": "analytical-letter-and-code-pattern",
+      "subject": "Analytical Reasoning",
+      "topics": [
+        "Number and Letter Pattern"
+      ],
+      "questionFormats": [
+        "letter_code"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 6,
+      "indexPath": "content/taxonomy/pools/analytical-letter-and-code-pattern.json"
+    },
+    {
+      "poolId": "analytical-letter-sequence",
+      "subject": "Analytical Reasoning",
+      "topics": [
+        "Number and Letter Pattern"
+      ],
+      "questionFormats": [
+        "letter_sequence"
+      ],
+      "taskFormats": [
+        "letter_sequence"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 2,
+      "indexPath": "content/taxonomy/pools/analytical-letter-sequence.json"
+    },
+    {
+      "poolId": "analytical-logical-reasoning",
+      "subject": "Analytical Reasoning",
+      "topics": [
+        "Logical Reasoning"
+      ],
+      "questionFormats": [
+        "categorical_logic",
+        "conditional_logic",
+        "disjunctive_logic",
+        "logic_grid",
+        "logical_deduction"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 26,
+      "indexPath": "content/taxonomy/pools/analytical-logical-reasoning.json"
+    },
+    {
+      "poolId": "analytical-number-pattern",
+      "subject": "Analytical Reasoning",
+      "topics": [
+        "Number and Letter Pattern"
+      ],
+      "questionFormats": [
+        "number_sequence",
+        "number_analogy"
+      ],
+      "taskFormats": [
+        "number_sequence",
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 26,
+      "indexPath": "content/taxonomy/pools/analytical-number-pattern.json"
+    },
+    {
+      "poolId": "analytical-ordering-arrangement",
+      "subject": "Analytical Reasoning",
+      "topics": [
+        "Ordering and Arrangement"
+      ],
+      "questionFormats": [
+        "ordering_arrangement"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 16,
+      "indexPath": "content/taxonomy/pools/analytical-ordering-arrangement.json"
+    },
+    {
+      "poolId": "analytical-word-analogy",
+      "subject": "Analytical Reasoning",
+      "topics": [
+        "Word Analogy"
+      ],
+      "questionFormats": [
+        "word_analogy"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 32,
+      "indexPath": "content/taxonomy/pools/analytical-word-analogy.json"
+    },
+    {
+      "poolId": "clerical-filing",
+      "subject": "Clerical Ability",
+      "topics": [
+        "Filing & Alphabetizing"
+      ],
+      "questionFormats": [
+        "personal_name_filing",
+        "business_or_office_filing",
+        "subject_or_office_filing"
+      ],
+      "taskFormats": [
+        "shared_filing_task"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 26,
+      "indexPath": "content/taxonomy/pools/clerical-filing.json"
+    },
+    {
+      "poolId": "clerical-office-procedures",
+      "subject": "Clerical Ability",
+      "topics": [
+        "Office Procedures & Correspondence"
+      ],
+      "questionFormats": [
+        "office_procedure"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 10,
+      "indexPath": "content/taxonomy/pools/clerical-office-procedures.json"
+    },
+    {
+      "poolId": "clerical-operations",
+      "subject": "Clerical Ability",
+      "topics": [
+        "Clerical Operations"
+      ],
+      "questionFormats": [
+        "clerical_record_check",
+        "clerical_code_or_record_check"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 13,
+      "indexPath": "content/taxonomy/pools/clerical-operations.json"
+    },
+    {
+      "poolId": "clerical-spelling",
+      "subject": "Clerical Ability",
+      "topics": [
+        "Spelling"
+      ],
+      "questionFormats": [
+        "correctly_spelled_word",
+        "misspelled_word"
+      ],
+      "taskFormats": [
+        "shared_spelling_task"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 14,
+      "indexPath": "content/taxonomy/pools/clerical-spelling.json"
+    },
+    {
+      "poolId": "general-1987-constitution",
+      "subject": "General Information",
+      "topics": [
+        "1987 Constitution"
+      ],
+      "questionFormats": [
+        "general_information_recall"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 61,
+      "indexPath": "content/taxonomy/pools/general-1987-constitution.json"
+    },
+    {
+      "poolId": "general-environment-management-and-protection",
+      "subject": "General Information",
+      "topics": [
+        "Environment Management and Protection"
+      ],
+      "questionFormats": [
+        "general_information_recall"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 16,
+      "indexPath": "content/taxonomy/pools/general-environment-management-and-protection.json"
+    },
+    {
+      "poolId": "general-human-rights-and-peace",
+      "subject": "General Information",
+      "topics": [
+        "Human Rights and Peace"
+      ],
+      "questionFormats": [
+        "general_information_recall"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 8,
+      "indexPath": "content/taxonomy/pools/general-human-rights-and-peace.json"
+    },
+    {
+      "poolId": "general-local-government-code-ra-7160",
+      "subject": "General Information",
+      "topics": [
+        "Local Government Code RA 7160"
+      ],
+      "questionFormats": [
+        "general_information_recall"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 4,
+      "indexPath": "content/taxonomy/pools/general-local-government-code-ra-7160.json"
+    },
+    {
+      "poolId": "general-philippine-culture-and-national-symbols",
+      "subject": "General Information",
+      "topics": [
+        "Philippine Culture and National Symbols"
+      ],
+      "questionFormats": [
+        "general_information_recall"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 6,
+      "indexPath": "content/taxonomy/pools/general-philippine-culture-and-national-symbols.json"
+    },
+    {
+      "poolId": "general-philippine-economics-and-taxation",
+      "subject": "General Information",
+      "topics": [
+        "Philippine Economics and Taxation"
+      ],
+      "questionFormats": [
+        "general_information_recall"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 2,
+      "indexPath": "content/taxonomy/pools/general-philippine-economics-and-taxation.json"
+    },
+    {
+      "poolId": "general-philippine-geography",
+      "subject": "General Information",
+      "topics": [
+        "Philippine Geography"
+      ],
+      "questionFormats": [
+        "general_information_recall"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 5,
+      "indexPath": "content/taxonomy/pools/general-philippine-geography.json"
+    },
+    {
+      "poolId": "general-philippine-government-structure",
+      "subject": "General Information",
+      "topics": [
+        "Philippine Government Structure"
+      ],
+      "questionFormats": [
+        "general_information_recall"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 9,
+      "indexPath": "content/taxonomy/pools/general-philippine-government-structure.json"
+    },
+    {
+      "poolId": "general-philippine-history",
+      "subject": "General Information",
+      "topics": [
+        "Philippine History"
+      ],
+      "questionFormats": [
+        "general_information_recall"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 12,
+      "indexPath": "content/taxonomy/pools/general-philippine-history.json"
+    },
+    {
+      "poolId": "general-ra-6713-code-of-conduct",
+      "subject": "General Information",
+      "topics": [
+        "RA 6713 Code of Conduct"
+      ],
+      "questionFormats": [
+        "general_information_recall"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 24,
+      "indexPath": "content/taxonomy/pools/general-ra-6713-code-of-conduct.json"
+    },
+    {
+      "poolId": "numerical-algebra-and-word-problems",
+      "subject": "Numerical Reasoning",
+      "topics": [
+        "Basic Algebra",
+        "Ratio and Proportion",
+        "Age Problems",
+        "Mixture Problems"
+      ],
+      "questionFormats": [
+        "algebra_word_problem"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 25,
+      "indexPath": "content/taxonomy/pools/numerical-algebra-and-word-problems.json"
+    },
+    {
+      "poolId": "numerical-data-interpretation",
+      "subject": "Numerical Reasoning",
+      "topics": [
+        "Data Interpretation"
+      ],
+      "questionFormats": [
+        "data_interpretation"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 2,
+      "indexPath": "content/taxonomy/pools/numerical-data-interpretation.json"
+    },
+    {
+      "poolId": "numerical-finance",
+      "subject": "Numerical Reasoning",
+      "topics": [
+        "Money and Finance",
+        "Simple and Compound Interest"
+      ],
+      "questionFormats": [
+        "finance_problem"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 16,
+      "indexPath": "content/taxonomy/pools/numerical-finance.json"
+    },
+    {
+      "poolId": "numerical-fractions-and-decimals",
+      "subject": "Numerical Reasoning",
+      "topics": [
+        "Fractions",
+        "Decimals"
+      ],
+      "questionFormats": [
+        "fraction_decimal_problem"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 16,
+      "indexPath": "content/taxonomy/pools/numerical-fractions-and-decimals.json"
+    },
+    {
+      "poolId": "numerical-geometry",
+      "subject": "Numerical Reasoning",
+      "topics": [
+        "Geometry"
+      ],
+      "questionFormats": [
+        "geometry_problem"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 18,
+      "indexPath": "content/taxonomy/pools/numerical-geometry.json"
+    },
+    {
+      "poolId": "numerical-number-operations",
+      "subject": "Numerical Reasoning",
+      "topics": [
+        "Number Theory",
+        "Exponents and Roots",
+        "Order of Operations"
+      ],
+      "questionFormats": [
+        "number_operations"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 14,
+      "indexPath": "content/taxonomy/pools/numerical-number-operations.json"
+    },
+    {
+      "poolId": "numerical-number-sequence",
+      "subject": "Numerical Reasoning",
+      "topics": [
+        "Number Series"
+      ],
+      "questionFormats": [
+        "number_sequence"
+      ],
+      "taskFormats": [
+        "number_sequence"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 11,
+      "indexPath": "content/taxonomy/pools/numerical-number-sequence.json"
+    },
+    {
+      "poolId": "numerical-percentages",
+      "subject": "Numerical Reasoning",
+      "topics": [
+        "Percentages"
+      ],
+      "questionFormats": [
+        "percentage_problem"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 18,
+      "indexPath": "content/taxonomy/pools/numerical-percentages.json"
+    },
+    {
+      "poolId": "numerical-probability-and-data",
+      "subject": "Numerical Reasoning",
+      "topics": [
+        "Probability",
+        "Statistics",
+        "Averages"
+      ],
+      "questionFormats": [
+        "probability_statistics_problem"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 17,
+      "indexPath": "content/taxonomy/pools/numerical-probability-and-data.json"
+    },
+    {
+      "poolId": "numerical-rate-and-work",
+      "subject": "Numerical Reasoning",
+      "topics": [
+        "Distance, Speed, Time",
+        "Work Rate"
+      ],
+      "questionFormats": [
+        "rate_work_problem"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 15,
+      "indexPath": "content/taxonomy/pools/numerical-rate-and-work.json"
+    },
+    {
+      "poolId": "verbal-antonym",
+      "subject": "Verbal Ability",
+      "topics": [
+        "Vocabulary"
+      ],
+      "questionFormats": [
+        "antonym"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 17,
+      "indexPath": "content/taxonomy/pools/verbal-antonym.json"
+    },
+    {
+      "poolId": "verbal-direct-synonym",
+      "subject": "Verbal Ability",
+      "topics": [
+        "Vocabulary"
+      ],
+      "questionFormats": [
+        "direct_synonym"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 28,
+      "indexPath": "content/taxonomy/pools/verbal-direct-synonym.json"
+    },
+    {
+      "poolId": "verbal-error-identification",
+      "subject": "Verbal Ability",
+      "topics": [
+        "Error Identification"
+      ],
+      "questionFormats": [
+        "error_identification"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 12,
+      "indexPath": "content/taxonomy/pools/verbal-error-identification.json"
+    },
+    {
+      "poolId": "verbal-grammar-usage",
+      "subject": "Verbal Ability",
+      "topics": [
+        "Grammar & Usage"
+      ],
+      "questionFormats": [
+        "grammar_usage"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 47,
+      "indexPath": "content/taxonomy/pools/verbal-grammar-usage.json"
+    },
+    {
+      "poolId": "verbal-paragraph-organization",
+      "subject": "Verbal Ability",
+      "topics": [
+        "Paragraph Organization"
+      ],
+      "questionFormats": [
+        "paragraph_organization"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 12,
+      "indexPath": "content/taxonomy/pools/verbal-paragraph-organization.json"
+    },
+    {
+      "poolId": "verbal-reading-comprehension",
+      "subject": "Verbal Ability",
+      "topics": [
+        "Reading Comprehension"
+      ],
+      "questionFormats": [
+        "reading_comprehension"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 8,
+      "indexPath": "content/taxonomy/pools/verbal-reading-comprehension.json"
+    },
+    {
+      "poolId": "verbal-sentence-completion",
+      "subject": "Verbal Ability",
+      "topics": [
+        "Sentence Completion"
+      ],
+      "questionFormats": [
+        "sentence_completion"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 16,
+      "indexPath": "content/taxonomy/pools/verbal-sentence-completion.json"
+    },
+    {
+      "poolId": "verbal-synonym-context",
+      "subject": "Verbal Ability",
+      "topics": [
+        "Vocabulary"
+      ],
+      "questionFormats": [
+        "synonym_in_context"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 27,
+      "indexPath": "content/taxonomy/pools/verbal-synonym-context.json"
+    },
+    {
+      "poolId": "verbal-vocabulary",
+      "subject": "Verbal Ability",
+      "topics": [
+        "Vocabulary"
+      ],
+      "questionFormats": [
+        "vocabulary"
+      ],
+      "taskFormats": [
+        "standard_multiple_choice"
+      ],
+      "selectionPolicy": "without-replacement",
+      "contiguity": "one contiguous task block per selected pool",
+      "questionCount": 18,
+      "indexPath": "content/taxonomy/pools/verbal-vocabulary.json"
+    }
+  ],
+  "fixedSets": [
+    {
+      "fixedGroupId": "grp-di-employment",
+      "subject": "Numerical Reasoning",
+      "topic": "Data Interpretation",
+      "questionType": "Data Interpretation",
+      "questionIds": [
+        "num-0041",
+        "num-0042",
+        "num-0043"
+      ],
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockIds": [
+        "grp-di-employment-stimulus"
+      ],
+      "sharedContextRequired": true
+    },
+    {
+      "fixedGroupId": "grp-di-roadworks",
+      "subject": "Numerical Reasoning",
+      "topic": "Data Interpretation",
+      "questionType": "Data Interpretation",
+      "questionIds": [
+        "num-0044",
+        "num-0045"
+      ],
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockIds": [
+        "grp-di-roadworks-stimulus"
+      ],
+      "sharedContextRequired": true
+    },
+    {
+      "fixedGroupId": "grp-rc-appointments",
+      "subject": "Verbal Ability",
+      "topic": "Reading Comprehension",
+      "questionType": "Reading Comprehension",
+      "questionIds": [
+        "verb-0090",
+        "verb-0091"
+      ],
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockIds": [
+        "grp-rc-appointments-stimulus"
+      ],
+      "sharedContextRequired": true
+    },
+    {
+      "fixedGroupId": "grp-rc-careers",
+      "subject": "Verbal Ability",
+      "topic": "Reading Comprehension",
+      "questionType": "Reading Comprehension",
+      "questionIds": [
+        "verb-0047",
+        "verb-0048"
+      ],
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockIds": [
+        "grp-rc-careers-stimulus"
+      ],
+      "sharedContextRequired": true
+    },
+    {
+      "fixedGroupId": "grp-rc-csc",
+      "subject": "Verbal Ability",
+      "topic": "Reading Comprehension",
+      "questionType": "Reading Comprehension",
+      "questionIds": [
+        "verb-0043",
+        "verb-0044"
+      ],
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockIds": [
+        "grp-rc-csc-stimulus"
+      ],
+      "sharedContextRequired": true
+    },
+    {
+      "fixedGroupId": "grp-rc-frontline",
+      "subject": "Verbal Ability",
+      "topic": "Reading Comprehension",
+      "questionType": "Reading Comprehension",
+      "questionIds": [
+        "verb-0049",
+        "verb-0050"
+      ],
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockIds": [
+        "grp-rc-frontline-stimulus"
+      ],
+      "sharedContextRequired": true
+    },
+    {
+      "fixedGroupId": "grp-rc-property",
+      "subject": "Verbal Ability",
+      "topic": "Reading Comprehension",
+      "questionType": "Reading Comprehension",
+      "questionIds": [
+        "verb-0045",
+        "verb-0046"
+      ],
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockIds": [
+        "grp-rc-property-stimulus"
+      ],
+      "sharedContextRequired": true
+    },
+    {
+      "fixedGroupId": "grp-rc-public-trust",
+      "subject": "Verbal Ability",
+      "topic": "Reading Comprehension",
+      "questionType": "Reading Comprehension",
+      "questionIds": [
+        "verb-0117",
+        "verb-0118",
+        "verb-0119"
+      ],
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockIds": [
+        "grp-rc-public-trust-stimulus"
+      ],
+      "sharedContextRequired": true
+    }
+  ]
+}

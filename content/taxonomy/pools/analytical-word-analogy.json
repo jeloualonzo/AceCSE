@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "poolId": "analytical-word-analogy",
+  "subject": "Analytical Reasoning",
+  "topics": [
+    "Word Analogy"
+  ],
+  "questionFormats": [
+    "word_analogy"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "ana-0001",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0002",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0003",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0004",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0005",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0006",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0007",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0008",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0009",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0010",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0065",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0066",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0078",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0079",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0080",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0081",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0082",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0083",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0084",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0085",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0086",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0087",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0088",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0107",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0108",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0109",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0110",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0111",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0112",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0113",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0114",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0115",
+      "questionType": "word_analogy",
+      "questionFormat": "word_analogy",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

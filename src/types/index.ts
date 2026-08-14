@@ -74,13 +74,30 @@ export type GroupSelectionPolicy = 'atomic' | 'splittable';
 export type GroupOrderPolicy = 'fixed' | 'shuffle-questions';
 export type ContentStatus = 'published' | 'deprecated';
 
+export interface NumberSeriesStructure {
+  /** Terms in authored order; null marks the missing term. */
+  sequence: Array<number | string | null>;
+  /** One-based position of the missing term. */
+  missingPosition: number;
+}
+
+export interface TaskInstance {
+  /** Compact task-specific payload, such as names to file or words to inspect. */
+  kind: string;
+  payload: Record<string, unknown>;
+}
+
 export interface Question {
   id: string;
   examLevel: QuestionLevel;
   subject: Subject;
   topic: string;
-  /** Optional semantic classification, such as analogy or reading comprehension. */
+  /** Canonical semantic classification, such as analogy or reading comprehension. */
   questionType?: string;
+  /** Canonical reusable presentation/solving format. */
+  questionFormat?: string;
+  /** Task-level presentation format, distinct from semantic pool membership. */
+  taskFormat?: string;
   /** Finer-grained classification within the topic, e.g. "Simple Interest". */
   subtopic?: string;
   difficulty: Difficulty;
@@ -108,6 +125,10 @@ export interface Question {
   /** Where the item was researched/derived from, when distinct from reference. */
   source?: string;
   tags: string[];
+  /** Optional structured representation for Number Series items. */
+  numberSeries?: NumberSeriesStructure;
+  /** Optional compact payload for a shared task/presentation block. */
+  taskInstance?: TaskInstance;
   /** Optional membership in a normalized question group. */
   groupId?: string;
   /** One-based authored order inside its group. */
@@ -144,6 +165,14 @@ export interface NormalizedQuestionGroup extends QuestionGroup {
 export type SessionItem =
   | { kind: 'question'; questionId: string; sectionId?: string; groupId?: string }
   | { kind: 'group'; groupId: string; sectionId?: string; questionIds: string[] }
+  | {
+      kind: 'pool';
+      poolId: string;
+      questionType: string;
+      taskFormat: string;
+      sectionId?: string;
+      questionIds: string[];
+    }
   | { kind: 'administrative'; id: string; sectionId: string; contentBlockIds?: string[] };
 
 export interface ExamSection {

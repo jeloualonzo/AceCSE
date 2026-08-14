@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "poolId": "numerical-rate-and-work",
+  "subject": "Numerical Reasoning",
+  "topics": [
+    "Distance, Speed, Time",
+    "Work Rate"
+  ],
+  "questionFormats": [
+    "rate_work_problem"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "num-0027",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0028",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0029",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0034",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0035",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0036",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0037",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0089",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0093",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0105",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0124",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0148",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0149",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0151",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "seed-num-001",
+      "questionType": "rate_work_problem",
+      "questionFormat": "rate_work_problem",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

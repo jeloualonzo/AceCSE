@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "poolId": "verbal-antonym",
+  "subject": "Verbal Ability",
+  "topics": [
+    "Vocabulary"
+  ],
+  "questionFormats": [
+    "antonym"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "seed-verb-002",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0004",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0009",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0055",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0056",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0057",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0058",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0080",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0101",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0105",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0109",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0113",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0116",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0124",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0127",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0128",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0187",
+      "questionType": "antonym",
+      "questionFormat": "antonym",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

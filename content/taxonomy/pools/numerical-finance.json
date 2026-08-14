@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "poolId": "numerical-finance",
+  "subject": "Numerical Reasoning",
+  "topics": [
+    "Money and Finance",
+    "Simple and Compound Interest"
+  ],
+  "questionFormats": [
+    "finance_problem"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "num-0038",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0039",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0040",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0059",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0060",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0061",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0062",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0098",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0104",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0107",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0109",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0110",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0112",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0114",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0133",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0134",
+      "questionType": "finance_problem",
+      "questionFormat": "finance_problem",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

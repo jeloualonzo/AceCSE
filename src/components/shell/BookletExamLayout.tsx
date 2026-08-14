@@ -15,6 +15,7 @@ import {
   type BookletSection,
 } from '@/lib/examViewModel';
 import { EDQ_SECTION_ID } from '@/data/edq';
+import { taskFormatLabel } from '@/data/taxonomy';
 import { SectionRenderer, type EdqRenderContext } from '@/components/exam/booklet/SectionRenderer';
 
 export interface BookletExamLayoutProps {
@@ -452,10 +453,12 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                     )}
                     <div className="space-y-2">
                       {blocks.map((block, blockIndex) => (
-                        <div key={block.groupId ?? `${section.sectionId}-block-${blockIndex}`}>
-                          {block.groupId && (
+                        <div key={block.groupId ?? block.poolId ?? `${section.sectionId}-block-${blockIndex}`}>
+                          {(block.groupId || block.poolId) && (
                             <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
-                              {(() => { const g = getGroup(block.groupId!); return g?.title ?? g?.questionType ?? 'Item Set'; })()}
+                              {block.poolId
+                                ? taskFormatLabel(block.questionType ?? block.poolId ?? 'pool', block.taskFormat ?? block.poolId ?? 'pool')
+                                : (() => { const g = getGroup(block.groupId!); return g?.title ?? g?.questionType ?? 'Item Set'; })()}
                             </p>
                           )}
                           <div className="grid grid-cols-5 gap-2">

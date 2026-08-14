@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "poolId": "clerical-operations",
+  "subject": "Clerical Ability",
+  "topics": [
+    "Clerical Operations"
+  ],
+  "questionFormats": [
+    "clerical_record_check",
+    "clerical_code_or_record_check"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "cler-0020",
+      "questionType": "clerical_record_check",
+      "questionFormat": "clerical_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0021",
+      "questionType": "clerical_record_check",
+      "questionFormat": "clerical_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0022",
+      "questionType": "clerical_record_check",
+      "questionFormat": "clerical_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0023",
+      "questionType": "clerical_code_or_record_check",
+      "questionFormat": "clerical_code_or_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0024",
+      "questionType": "clerical_code_or_record_check",
+      "questionFormat": "clerical_code_or_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0025",
+      "questionType": "clerical_record_check",
+      "questionFormat": "clerical_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0042",
+      "questionType": "clerical_code_or_record_check",
+      "questionFormat": "clerical_code_or_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0043",
+      "questionType": "clerical_code_or_record_check",
+      "questionFormat": "clerical_code_or_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0044",
+      "questionType": "clerical_code_or_record_check",
+      "questionFormat": "clerical_code_or_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0045",
+      "questionType": "clerical_code_or_record_check",
+      "questionFormat": "clerical_code_or_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0051",
+      "questionType": "clerical_record_check",
+      "questionFormat": "clerical_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0057",
+      "questionType": "clerical_code_or_record_check",
+      "questionFormat": "clerical_code_or_record_check",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "seed-cler-003",
+      "questionType": "clerical_code_or_record_check",
+      "questionFormat": "clerical_code_or_record_check",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

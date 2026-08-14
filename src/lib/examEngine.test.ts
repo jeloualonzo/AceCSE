@@ -151,7 +151,7 @@ describe('variable subject order', () => {
       const s = await seededRun('Professional', 20, seed);
       const seen: string[] = [];
       for (const item of s.items ?? []) {
-        if (item.kind === 'group' && item.sectionId && seen[seen.length - 1] !== item.sectionId) {
+        if ((item.kind === 'group' || item.kind === 'pool') && item.sectionId && seen[seen.length - 1] !== item.sectionId) {
           seen.push(item.sectionId);
         }
       }
@@ -174,7 +174,7 @@ describe('variable subject allocation', () => {
 
     const bySubject = new Map<string, number>();
     for (const item of session.items ?? []) {
-      if (item.kind !== 'group') continue;
+      if (item.kind !== 'group' && item.kind !== 'pool') continue;
       bySubject.set(item.sectionId ?? '', (bySubject.get(item.sectionId ?? '') ?? 0) + item.questionIds.length);
     }
     for (const rule of SIMULATION_ALLOCATION_POLICY.Professional.rules) {
@@ -194,7 +194,7 @@ describe('variable subject allocation', () => {
 
     const bySubject = new Map<string, number>();
     for (const item of session.items ?? []) {
-      if (item.kind !== 'group') continue;
+      if (item.kind !== 'group' && item.kind !== 'pool') continue;
       bySubject.set(item.sectionId ?? '', (bySubject.get(item.sectionId ?? '') ?? 0) + item.questionIds.length);
     }
     for (const rule of SIMULATION_ALLOCATION_POLICY.Subprofessional.rules) {
@@ -232,7 +232,7 @@ describe('variable subject allocation', () => {
     const session = await seededRun('Professional', 20, 'tier-20');
     const bySubject = new Map<string, number>();
     for (const item of session.items ?? []) {
-      if (item.kind !== 'group') continue;
+      if (item.kind !== 'group' && item.kind !== 'pool') continue;
       bySubject.set(item.sectionId ?? '', (bySubject.get(item.sectionId ?? '') ?? 0) + item.questionIds.length);
     }
     expect(session.questionIds).toHaveLength(20);

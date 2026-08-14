@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "poolId": "verbal-reading-comprehension",
+  "subject": "Verbal Ability",
+  "topics": [
+    "Reading Comprehension"
+  ],
+  "questionFormats": [
+    "reading_comprehension"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "seed-verb-005",
+      "questionType": "reading_comprehension",
+      "questionFormat": "reading_comprehension",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0092",
+      "questionType": "reading_comprehension",
+      "questionFormat": "reading_comprehension",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0094",
+      "questionType": "reading_comprehension",
+      "questionFormat": "reading_comprehension",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0099",
+      "questionType": "reading_comprehension",
+      "questionFormat": "reading_comprehension",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0110",
+      "questionType": "reading_comprehension",
+      "questionFormat": "reading_comprehension",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0133",
+      "questionType": "reading_comprehension",
+      "questionFormat": "reading_comprehension",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0134",
+      "questionType": "reading_comprehension",
+      "questionFormat": "reading_comprehension",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0147",
+      "questionType": "reading_comprehension",
+      "questionFormat": "reading_comprehension",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

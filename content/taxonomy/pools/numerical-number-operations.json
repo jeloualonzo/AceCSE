@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "poolId": "numerical-number-operations",
+  "subject": "Numerical Reasoning",
+  "topics": [
+    "Number Theory",
+    "Exponents and Roots",
+    "Order of Operations"
+  ],
+  "questionFormats": [
+    "number_operations"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "num-0003",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0075",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0076",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0077",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0078",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0087",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0116",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0118",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0120",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0129",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0130",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0131",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0132",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0144",
+      "questionType": "number_operations",
+      "questionFormat": "number_operations",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

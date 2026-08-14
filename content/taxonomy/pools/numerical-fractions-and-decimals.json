@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "poolId": "numerical-fractions-and-decimals",
+  "subject": "Numerical Reasoning",
+  "topics": [
+    "Fractions",
+    "Decimals"
+  ],
+  "questionFormats": [
+    "fraction_decimal_problem"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "num-0001",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0002",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0004",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0005",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0006",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0007",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0008",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0066",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0067",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0070",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0103",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0115",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0119",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0127",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0138",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0139",
+      "questionType": "fraction_decimal_problem",
+      "questionFormat": "fraction_decimal_problem",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

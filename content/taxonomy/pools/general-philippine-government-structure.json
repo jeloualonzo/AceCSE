@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "poolId": "general-philippine-government-structure",
+  "subject": "General Information",
+  "topics": [
+    "Philippine Government Structure"
+  ],
+  "questionFormats": [
+    "general_information_recall"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "gen-0059",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0060",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0062",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0081",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0116",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0120",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0122",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0123",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0140",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

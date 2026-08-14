@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "poolId": "analytical-number-pattern",
+  "subject": "Analytical Reasoning",
+  "topics": [
+    "Number and Letter Pattern"
+  ],
+  "questionFormats": [
+    "number_sequence",
+    "number_analogy"
+  ],
+  "taskFormats": [
+    "number_sequence",
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "ana-0035",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0036",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0037",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0039",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0046",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0047",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0048",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0049",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0067",
+      "questionType": "number_analogy",
+      "questionFormat": "number_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0068",
+      "questionType": "number_analogy",
+      "questionFormat": "number_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0071",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0089",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0090",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0091",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0092",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0102",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0103",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0104",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0105",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0106",
+      "questionType": "number_analogy",
+      "questionFormat": "number_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0116",
+      "questionType": "number_analogy",
+      "questionFormat": "number_analogy",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0117",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0118",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0119",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "ana-0120",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "seed-ana-001",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    }
+  ]
+}

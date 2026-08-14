@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "poolId": "numerical-data-interpretation",
+  "subject": "Numerical Reasoning",
+  "topics": [
+    "Data Interpretation"
+  ],
+  "questionFormats": [
+    "data_interpretation"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "num-0088",
+      "questionType": "data_interpretation",
+      "questionFormat": "data_interpretation",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "seed-num-004",
+      "questionType": "data_interpretation",
+      "questionFormat": "data_interpretation",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

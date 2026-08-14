@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "poolId": "numerical-number-sequence",
+  "subject": "Numerical Reasoning",
+  "topics": [
+    "Number Series"
+  ],
+  "questionFormats": [
+    "number_sequence"
+  ],
+  "taskFormats": [
+    "number_sequence"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "num-0019",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "num-0020",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "num-0021",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "num-0022",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "num-0023",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "num-0024",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "num-0025",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "num-0026",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "num-0108",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "num-0137",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    },
+    {
+      "questionId": "num-0147",
+      "questionType": "number_sequence",
+      "questionFormat": "number_sequence",
+      "taskFormat": "number_sequence"
+    }
+  ]
+}

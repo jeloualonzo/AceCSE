@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "poolId": "general-philippine-history",
+  "subject": "General Information",
+  "topics": [
+    "Philippine History"
+  ],
+  "questionFormats": [
+    "general_information_recall"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "gen-0051",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0052",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0053",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0054",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0055",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0085",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0086",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0125",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0126",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0136",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0137",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0143",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

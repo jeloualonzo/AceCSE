@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "poolId": "analytical-letter-and-code-pattern",
+  "subject": "Analytical Reasoning",
+  "topics": [
+    "Number and Letter Pattern"
+  ],
+  "questionFormats": [
+    "letter_code"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "ana-0041",
+      "questionType": "letter_code",
+      "questionFormat": "letter_code",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0042",
+      "questionType": "letter_code",
+      "questionFormat": "letter_code",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0043",
+      "questionType": "letter_code",
+      "questionFormat": "letter_code",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0044",
+      "questionType": "letter_code",
+      "questionFormat": "letter_code",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0045",
+      "questionType": "letter_code",
+      "questionFormat": "letter_code",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0070",
+      "questionType": "letter_code",
+      "questionFormat": "letter_code",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

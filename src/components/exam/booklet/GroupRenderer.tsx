@@ -4,9 +4,10 @@ import { ContentBlockRenderer } from './ContentBlockRenderer';
 import { QuestionRenderer } from './QuestionRenderer';
 
 export interface GroupRendererProps {
-  /** Resolved group metadata, or undefined if the catalog has no record of it
-   * (shouldn't happen for a real session, but rendering must not crash). */
+  /** Resolved historical/fixed group metadata, or undefined for a pool block. */
   group: NormalizedQuestionGroup | undefined;
+  /** Shared task directions/examples for a canonical pool block. */
+  sharedContext?: { title?: string; directions?: string; example?: string };
   questionIds: string[];
   questionIndex: ReadonlyMap<string, Question>;
   questionNumbers: ReadonlyMap<string, number>;
@@ -26,29 +27,31 @@ export interface GroupRendererProps {
  */
 export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function GroupRenderer({
   group,
+  sharedContext,
   questionIds,
   questionIndex,
   questionNumbers,
   answers,
   onSelectOption,
 }) {
+  const taskContext = sharedContext ?? group;
   const hasSharedContent = Boolean(
-    group?.directions || group?.example || (group?.contentBlocks && group.contentBlocks.length > 0)
+    taskContext?.directions || taskContext?.example || group?.contentBlocks?.length
   );
 
   return (
     <div id={group ? `group-${group.id}` : undefined} className="space-y-6">
       {hasSharedContent && (
         <div className="rounded-lg border-l-4 border-l-slate-300 dark:border-l-slate-700 border-y border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 p-4 sm:p-5 space-y-3">
-          {group?.title && (
-            <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100">{group.title}</h3>
+          {taskContext?.title && (
+            <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100">{taskContext.title}</h3>
           )}
-          {group?.directions && (
-            <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">{group.directions}</p>
+          {taskContext?.directions && (
+            <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">{taskContext.directions}</p>
           )}
-          {group?.example && (
+          {taskContext?.example && (
             <p className="text-sm italic text-slate-600 dark:text-slate-400 whitespace-pre-line">
-              {group.example}
+              {taskContext.example}
             </p>
           )}
           {group?.contentBlocks?.map((block) => (

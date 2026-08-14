@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "poolId": "verbal-error-identification",
+  "subject": "Verbal Ability",
+  "topics": [
+    "Error Identification"
+  ],
+  "questionFormats": [
+    "error_identification"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "verb-0025",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0026",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0027",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0028",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0029",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0030",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0085",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0120",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0146",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0161",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0162",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0163",
+      "questionType": "error_identification",
+      "questionFormat": "error_identification",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

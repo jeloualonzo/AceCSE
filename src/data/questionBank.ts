@@ -12,6 +12,7 @@ import {
   type QuestionManifest,
 } from '@/data/questionShape';
 import { SUBJECTS_BY_LEVEL } from '@/config/exam';
+import { allClassifications, getCanonicalPoolsForSubject } from '@/data/taxonomy';
 
 /**
  * The question bank, lazily loaded.
@@ -166,7 +167,10 @@ export async function loadContentCatalog(
   subjects: readonly Subject[]
 ): Promise<NormalizedContentCatalog> {
   const [questions, groups] = await Promise.all([loadQuestions(subjects), loadGroups(subjects)]);
-  return createNormalizedCatalog(questions, groups);
+  const subjectSet = new Set(subjects);
+  const classifications = allClassifications().filter((record) => subjectSet.has(record.subject));
+  const pools = subjects.flatMap((subject) => getCanonicalPoolsForSubject(subject));
+  return createNormalizedCatalog(questions, groups, classifications, pools);
 }
 
 /** Load the opt-in grouped fixture without touching the production bank. */
@@ -174,7 +178,7 @@ export async function loadGroupedFixtureCatalog(): Promise<NormalizedContentCata
   const datasets = await Promise.all(Object.values(groupModules).map((load) => load()));
   const questions = datasets.flatMap((dataset) => dataset.questions);
   const groups = datasets.map((dataset) => dataset.group);
-  return createNormalizedCatalog(questions, groups);
+  return createNormalizedCatalog(questions, groups, [], []);
 }
 
 /** Compose production content with explicitly loaded fixture/test content. */

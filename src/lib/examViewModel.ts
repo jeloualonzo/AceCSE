@@ -14,6 +14,7 @@ import type { ExamSession, SessionItem } from '@/types';
 export type BookletNode =
   | { kind: 'question'; questionId: string }
   | { kind: 'group'; groupId: string; questionIds: string[] }
+  | { kind: 'pool'; poolId: string; questionType: string; taskFormat: string; questionIds: string[] }
   | { kind: 'administrative'; id: string };
 
 export interface BookletSection {
@@ -30,6 +31,15 @@ export const UNSECTIONED_ID = '__unsectioned__';
 function toNode(item: SessionItem): BookletNode {
   if (item.kind === 'group') {
     return { kind: 'group', groupId: item.groupId, questionIds: item.questionIds };
+  }
+  if (item.kind === 'pool') {
+    return {
+      kind: 'pool',
+      poolId: item.poolId,
+      questionType: item.questionType,
+      taskFormat: item.taskFormat,
+      questionIds: item.questionIds,
+    };
   }
   if (item.kind === 'administrative') {
     return { kind: 'administrative', id: item.id };
@@ -86,7 +96,7 @@ export function bookletQuestionOrder(sections: readonly BookletSection[]): strin
   for (const section of sections) {
     for (const node of section.nodes) {
       if (node.kind === 'question') ids.push(node.questionId);
-      else if (node.kind === 'group') ids.push(...node.questionIds);
+      else if (node.kind === 'group' || node.kind === 'pool') ids.push(...node.questionIds);
     }
   }
   return ids;
@@ -101,7 +111,7 @@ export function bookletItemOrder(sections: readonly BookletSection[]): string[] 
   for (const section of sections) {
     for (const node of section.nodes) {
       if (node.kind === 'question') ids.push(node.questionId);
-      else if (node.kind === 'group') ids.push(...node.questionIds);
+      else if (node.kind === 'group' || node.kind === 'pool') ids.push(...node.questionIds);
       else ids.push(node.id);
     }
   }
@@ -172,7 +182,7 @@ export function sectionQuestionOrder(section: BookletSection): string[] {
   const ids: string[] = [];
   for (const node of section.nodes) {
     if (node.kind === 'question') ids.push(node.questionId);
-    else if (node.kind === 'group') ids.push(...node.questionIds);
+    else if (node.kind === 'group' || node.kind === 'pool') ids.push(...node.questionIds);
   }
   return ids;
 }
@@ -186,7 +196,7 @@ export function sectionItemOrder(section: BookletSection): string[] {
   const ids: string[] = [];
   for (const node of section.nodes) {
     if (node.kind === 'question') ids.push(node.questionId);
-    else if (node.kind === 'group') ids.push(...node.questionIds);
+    else if (node.kind === 'group' || node.kind === 'pool') ids.push(...node.questionIds);
     else ids.push(node.id);
   }
   return ids;
@@ -206,13 +216,14 @@ export interface NavigatorBlock {
   ids: string[];
   /** True for a block of administrative (EDQ) items — rendered muted, never scored. */
   administrative?: boolean;
-  /** Present only for a real multi-question group — lets the UI show an
-   * optional, subtle label. Absent for plain questions and singleton
-   * groups, which are rendered as one continuous flat grid rather than
-   * one separate mini-grid per legacy question (the bug being fixed here:
-   * with ~688 singleton-group questions, one grid-per-node made the
-   * navigator look like a vertical list of one-button rows). */
+  /** Present for a real multi-question group; retained for legacy navigation. */
   groupId?: string;
+  /** Present for a canonical semantic pool block. */
+  poolId?: string;
+  /** Task/presentation label for a canonical pool block. */
+  taskFormat?: string;
+  /** Canonical skill label for a canonical pool block. */
+  questionType?: string;
 }
 
 /**
@@ -253,13 +264,13 @@ export function navigatorBlocks(section: BookletSection): NavigatorBlock[] {
       buffer.push(node.questionId);
       continue;
     }
-    // group
+    // group or canonical pool block
     if (node.questionIds.length <= 1) {
       buffer.push(...node.questionIds);
       continue;
     }
     flush();
-    blocks.push({ ids: node.questionIds, groupId: node.groupId });
+    blocks.push({ ids: node.questionIds, groupId: node.kind === 'group' ? node.groupId : undefined, poolId: node.kind === 'pool' ? node.poolId : undefined, taskFormat: node.kind === 'pool' ? node.taskFormat : undefined, questionType: node.kind === 'pool' ? node.questionType : undefined });
   }
   flush();
   flushAdmin();

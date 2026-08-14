@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "poolId": "verbal-grammar-usage",
+  "subject": "Verbal Ability",
+  "topics": [
+    "Grammar & Usage"
+  ],
+  "questionFormats": [
+    "grammar_usage"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "seed-verb-003",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0011",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0012",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0013",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0014",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0015",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0016",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0017",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0018",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0019",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0020",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0021",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0022",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0023",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0024",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0059",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0060",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0061",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0062",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0063",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0064",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0065",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0067",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0068",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0071",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0072",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0074",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0075",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0076",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0078",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0081",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0084",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0086",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0095",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0096",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0097",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0098",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0106",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0108",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0111",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0114",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0121",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0135",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0159",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0160",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0164",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0165",
+      "questionType": "grammar_usage",
+      "questionFormat": "grammar_usage",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "poolId": "analytical-ordering-arrangement",
+  "subject": "Analytical Reasoning",
+  "topics": [
+    "Ordering and Arrangement"
+  ],
+  "questionFormats": [
+    "ordering_arrangement"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "ana-0019",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0020",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0021",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0022",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0023",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0024",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0025",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0026",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0028",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0029",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0053",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0054",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0055",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0062",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0063",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0064",
+      "questionType": "ordering_arrangement",
+      "questionFormat": "ordering_arrangement",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

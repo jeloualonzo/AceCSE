@@ -1,0 +1,177 @@
+{
+  "version": 1,
+  "poolId": "analytical-logical-reasoning",
+  "subject": "Analytical Reasoning",
+  "topics": [
+    "Logical Reasoning"
+  ],
+  "questionFormats": [
+    "categorical_logic",
+    "conditional_logic",
+    "disjunctive_logic",
+    "logic_grid",
+    "logical_deduction"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "ana-0011",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0012",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0013",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0014",
+      "questionType": "logical_deduction",
+      "questionFormat": "logical_deduction",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0015",
+      "questionType": "conditional_logic",
+      "questionFormat": "conditional_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0016",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0017",
+      "questionType": "disjunctive_logic",
+      "questionFormat": "disjunctive_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0018",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0050",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0051",
+      "questionType": "logic_grid",
+      "questionFormat": "logic_grid",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0052",
+      "questionType": "conditional_logic",
+      "questionFormat": "conditional_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0056",
+      "questionType": "logical_deduction",
+      "questionFormat": "logical_deduction",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0057",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0058",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0061",
+      "questionType": "conditional_logic",
+      "questionFormat": "conditional_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0069",
+      "questionType": "logical_deduction",
+      "questionFormat": "logical_deduction",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0072",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0075",
+      "questionType": "logical_deduction",
+      "questionFormat": "logical_deduction",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0093",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0094",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0095",
+      "questionType": "conditional_logic",
+      "questionFormat": "conditional_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0096",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0097",
+      "questionType": "conditional_logic",
+      "questionFormat": "conditional_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0100",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "ana-0101",
+      "questionType": "logical_deduction",
+      "questionFormat": "logical_deduction",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "seed-ana-002",
+      "questionType": "categorical_logic",
+      "questionFormat": "categorical_logic",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

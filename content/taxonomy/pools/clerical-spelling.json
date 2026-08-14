@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "poolId": "clerical-spelling",
+  "subject": "Clerical Ability",
+  "topics": [
+    "Spelling"
+  ],
+  "questionFormats": [
+    "correctly_spelled_word",
+    "misspelled_word"
+  ],
+  "taskFormats": [
+    "shared_spelling_task"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "cler-0012",
+      "questionType": "correctly_spelled_word",
+      "questionFormat": "correctly_spelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0013",
+      "questionType": "misspelled_word",
+      "questionFormat": "misspelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0014",
+      "questionType": "correctly_spelled_word",
+      "questionFormat": "correctly_spelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0015",
+      "questionType": "misspelled_word",
+      "questionFormat": "misspelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0016",
+      "questionType": "correctly_spelled_word",
+      "questionFormat": "correctly_spelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0017",
+      "questionType": "misspelled_word",
+      "questionFormat": "misspelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0018",
+      "questionType": "correctly_spelled_word",
+      "questionFormat": "correctly_spelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0019",
+      "questionType": "misspelled_word",
+      "questionFormat": "misspelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0034",
+      "questionType": "correctly_spelled_word",
+      "questionFormat": "correctly_spelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0046",
+      "questionType": "correctly_spelled_word",
+      "questionFormat": "correctly_spelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0047",
+      "questionType": "misspelled_word",
+      "questionFormat": "misspelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0048",
+      "questionType": "correctly_spelled_word",
+      "questionFormat": "correctly_spelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "cler-0055",
+      "questionType": "correctly_spelled_word",
+      "questionFormat": "correctly_spelled_word",
+      "taskFormat": "shared_spelling_task"
+    },
+    {
+      "questionId": "seed-cler-002",
+      "questionType": "correctly_spelled_word",
+      "questionFormat": "correctly_spelled_word",
+      "taskFormat": "shared_spelling_task"
+    }
+  ]
+}

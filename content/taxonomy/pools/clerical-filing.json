@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "poolId": "clerical-filing",
+  "subject": "Clerical Ability",
+  "topics": [
+    "Filing & Alphabetizing"
+  ],
+  "questionFormats": [
+    "personal_name_filing",
+    "business_or_office_filing",
+    "subject_or_office_filing"
+  ],
+  "taskFormats": [
+    "shared_filing_task"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "cler-0001",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0002",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0003",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0004",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0005",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0006",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0007",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0008",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0009",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0010",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0011",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0031",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0032",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0033",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0036",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0037",
+      "questionType": "business_or_office_filing",
+      "questionFormat": "business_or_office_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0038",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0039",
+      "questionType": "business_or_office_filing",
+      "questionFormat": "business_or_office_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0040",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0041",
+      "questionType": "business_or_office_filing",
+      "questionFormat": "business_or_office_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0053",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0054",
+      "questionType": "business_or_office_filing",
+      "questionFormat": "business_or_office_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0058",
+      "questionType": "subject_or_office_filing",
+      "questionFormat": "subject_or_office_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0059",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "cler-0060",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    },
+    {
+      "questionId": "seed-cler-001",
+      "questionType": "personal_name_filing",
+      "questionFormat": "personal_name_filing",
+      "taskFormat": "shared_filing_task"
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "poolId": "verbal-synonym-context",
+  "subject": "Verbal Ability",
+  "topics": [
+    "Vocabulary"
+  ],
+  "questionFormats": [
+    "synonym_in_context"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "verb-0136",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0137",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0138",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0139",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0140",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0141",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0142",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0166",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0167",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0168",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0172",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0176",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0177",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0178",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0179",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0180",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0181",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0183",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0184",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0185",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0186",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0188",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0189",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0190",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0191",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0192",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0193",
+      "questionType": "synonym_in_context",
+      "questionFormat": "synonym_in_context",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

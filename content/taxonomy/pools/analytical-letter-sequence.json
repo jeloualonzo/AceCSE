@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "poolId": "analytical-letter-sequence",
+  "subject": "Analytical Reasoning",
+  "topics": [
+    "Number and Letter Pattern"
+  ],
+  "questionFormats": [
+    "letter_sequence"
+  ],
+  "taskFormats": [
+    "letter_sequence"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "ana-0038",
+      "questionType": "letter_sequence",
+      "questionFormat": "letter_sequence",
+      "taskFormat": "letter_sequence"
+    },
+    {
+      "questionId": "ana-0040",
+      "questionType": "letter_sequence",
+      "questionFormat": "letter_sequence",
+      "taskFormat": "letter_sequence"
+    }
+  ]
+}

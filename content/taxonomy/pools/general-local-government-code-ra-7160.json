@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "poolId": "general-local-government-code-ra-7160",
+  "subject": "General Information",
+  "topics": [
+    "Local Government Code RA 7160"
+  ],
+  "questionFormats": [
+    "general_information_recall"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "gen-0131",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0132",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0133",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0134",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

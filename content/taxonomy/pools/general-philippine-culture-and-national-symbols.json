@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "poolId": "general-philippine-culture-and-national-symbols",
+  "subject": "General Information",
+  "topics": [
+    "Philippine Culture and National Symbols"
+  ],
+  "questionFormats": [
+    "general_information_recall"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "gen-0063",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0064",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0065",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0127",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0128",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "gen-0144",
+      "questionType": "general_information_recall",
+      "questionFormat": "general_information_recall",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

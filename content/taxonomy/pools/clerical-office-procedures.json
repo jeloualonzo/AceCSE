@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "poolId": "clerical-office-procedures",
+  "subject": "Clerical Ability",
+  "topics": [
+    "Office Procedures & Correspondence"
+  ],
+  "questionFormats": [
+    "office_procedure"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "cler-0026",
+      "questionType": "office_procedure",
+      "questionFormat": "office_procedure",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0027",
+      "questionType": "office_procedure",
+      "questionFormat": "office_procedure",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0028",
+      "questionType": "office_procedure",
+      "questionFormat": "office_procedure",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0029",
+      "questionType": "office_procedure",
+      "questionFormat": "office_procedure",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0030",
+      "questionType": "office_procedure",
+      "questionFormat": "office_procedure",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0035",
+      "questionType": "office_procedure",
+      "questionFormat": "office_procedure",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0049",
+      "questionType": "office_procedure",
+      "questionFormat": "office_procedure",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0050",
+      "questionType": "office_procedure",
+      "questionFormat": "office_procedure",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0052",
+      "questionType": "office_procedure",
+      "questionFormat": "office_procedure",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "cler-0056",
+      "questionType": "office_procedure",
+      "questionFormat": "office_procedure",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

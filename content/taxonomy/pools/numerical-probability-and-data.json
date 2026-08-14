@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "poolId": "numerical-probability-and-data",
+  "subject": "Numerical Reasoning",
+  "topics": [
+    "Probability",
+    "Statistics",
+    "Averages"
+  ],
+  "questionFormats": [
+    "probability_statistics_problem"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "num-0046",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0047",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0049",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0055",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0056",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0057",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0058",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0063",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0064",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0065",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0082",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0083",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0097",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0145",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0146",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "num-0152",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "seed-num-005",
+      "questionType": "probability_statistics_problem",
+      "questionFormat": "probability_statistics_problem",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}

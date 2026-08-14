@@ -19,6 +19,7 @@ import {
 import { EDQ_ITEMS, EDQ_SECTION_ID } from '@/data/edq';
 import { loadQuestions, subjectAvailability } from '@/data/questionBank';
 import type { NormalizedContentCatalog } from '@/data/contentCatalog';
+import type { ClassificationRecord } from '@/data/taxonomy';
 import { loadContentCatalog } from '@/data/questionBank';
 
 /**
@@ -254,8 +255,19 @@ export async function buildSimulationSession(
 
   // Supply per subject as the catalog actually sees it (level-eligible,
   // non-deprecated questions reachable through groups).
+  const useCanonicalPools = catalog.pools.size > 0 && catalog.classifications.size > 0;
   const supply = Object.fromEntries(
     policy.rules.map((rule) => {
+      if (useCanonicalPools) {
+        const ids = new Set(
+          [...catalog.classifications.values()]
+            .filter((record) => record.subject === rule.subject)
+            .filter((record) => record.storageMode === 'pool' || record.fixedGroupId !== null)
+            .filter((record) => record.examLevel === 'Both' || record.examLevel === level)
+            .map((record) => record.questionId)
+        );
+        return [rule.subject, ids.size];
+      }
       const groups = eligibleGroups(catalog, rule.subject, level);
       return [rule.subject, groups.reduce((sum, g) => sum + g.questions.length, 0)];
     })
@@ -280,33 +292,10 @@ export async function buildSimulationSession(
   const missing: Subject[] = [];
 
   for (const subject of subjectOrder) {
-    const groups = eligibleGroups(catalog, subject, level);
-    const candidates = shuffled(groups, random);
     const target = allocation[subject];
-    let selected = 0;
-    for (const group of candidates) {
-      if (selected >= target) break;
-      const availableQuestions = group.questions.filter((question) => !used.has(question.id));
-      if (availableQuestions.length === 0) continue;
-      const remaining = target - selected;
-      if (group.selectionPolicy === 'atomic' && availableQuestions.length > remaining) continue;
-      const chosen =
-        group.orderPolicy === 'fixed' ? availableQuestions : shuffled(availableQuestions, random);
-      const questionSelection =
-        group.selectionPolicy === 'atomic' ? chosen : chosen.slice(0, remaining);
-      if (questionSelection.length === 0) continue;
-      items.push({
-        kind: 'group',
-        groupId: group.id,
-        sectionId: subject,
-        questionIds: questionSelection.map((question) => question.id),
-      });
-      for (const question of questionSelection) {
-        used.add(question.id);
-        questionIds.push(question.id);
-      }
-      selected += questionSelection.length;
-    }
+    const selected = useCanonicalPools
+      ? appendCanonicalSubjectSelection(catalog, subject, level, target, random, used, items, questionIds)
+      : appendLegacySubjectSelection(catalog, subject, level, target, random, used, items, questionIds);
     if (selected < target) missing.push(subject);
   }
 
@@ -334,6 +323,121 @@ export async function buildSimulationSession(
     answers: {},
     edqResponseMode: false,
   };
+}
+
+function appendLegacySubjectSelection(
+  catalog: NormalizedContentCatalog,
+  subject: Subject,
+  level: ExamLevel,
+  target: number,
+  random: () => number,
+  used: Set<string>,
+  items: SessionItem[],
+  questionIds: string[]
+): number {
+  const candidates = shuffled(eligibleGroups(catalog, subject, level), random);
+  let selected = 0;
+  for (const group of candidates) {
+    if (selected >= target) break;
+    const availableQuestions = group.questions.filter((question) => !used.has(question.id));
+    if (availableQuestions.length === 0) continue;
+    const remaining = target - selected;
+    if (group.selectionPolicy === 'atomic' && availableQuestions.length > remaining) continue;
+    const chosen = group.orderPolicy === 'fixed' ? availableQuestions : shuffled(availableQuestions, random);
+    const questionSelection = group.selectionPolicy === 'atomic' ? chosen : chosen.slice(0, remaining);
+    if (questionSelection.length === 0) continue;
+    items.push({ kind: 'group', groupId: group.id, sectionId: subject, questionIds: questionSelection.map((question) => question.id) });
+    for (const question of questionSelection) {
+      used.add(question.id);
+      questionIds.push(question.id);
+    }
+    selected += questionSelection.length;
+  }
+  return selected;
+}
+
+function appendCanonicalSubjectSelection(
+  catalog: NormalizedContentCatalog,
+  subject: Subject,
+  level: ExamLevel,
+  target: number,
+  random: () => number,
+  used: Set<string>,
+  items: SessionItem[],
+  questionIds: string[]
+): number {
+  let selected = 0;
+  const fixedGroups = shuffled(eligibleFixedGroups(catalog, subject, level), random);
+  for (const group of fixedGroups) {
+    if (selected >= target || group.questionIds.length > target - selected) continue;
+    if (random() < 0.5) continue;
+    const members = group.questionIds.filter((id) => !used.has(id));
+    if (members.length !== group.questionIds.length) continue;
+    items.push({ kind: 'group', groupId: group.id, sectionId: subject, questionIds: members });
+    for (const id of members) {
+      used.add(id);
+      questionIds.push(id);
+    }
+    selected += members.length;
+  }
+
+  const remaining = target - selected;
+  if (remaining <= 0) return selected;
+  const poolCandidates: Array<{ record: ClassificationRecord; id: string }> = [];
+  for (const record of catalog.classifications.values()) {
+    if (record.subject !== subject || record.storageMode !== 'pool') continue;
+    if (record.examLevel !== 'Both' && record.examLevel !== level) continue;
+    if (!record.poolId || !catalog.pools.has(record.poolId) || used.has(record.questionId)) continue;
+    if (!catalog.getQuestion(record.questionId)) continue;
+    poolCandidates.push({ record, id: record.questionId });
+  }
+  const chosen = shuffled(poolCandidates, random).slice(0, remaining);
+  const blocks = new Map<string, { record: ClassificationRecord; ids: string[] }>();
+  for (const candidate of chosen) {
+    const key = `${candidate.record.poolId}:${candidate.record.questionFormat}:${candidate.record.taskFormat}`;
+    const block = blocks.get(key) ?? { record: candidate.record, ids: [] };
+    block.ids.push(candidate.id);
+    blocks.set(key, block);
+  }
+  for (const block of blocks.values()) {
+    items.push({
+      kind: 'pool',
+      poolId: block.record.poolId!,
+      questionType: block.record.questionType,
+      taskFormat: block.record.taskFormat,
+      sectionId: subject,
+      questionIds: block.ids,
+    });
+    for (const id of block.ids) {
+      used.add(id);
+      questionIds.push(id);
+    }
+    selected += block.ids.length;
+  }
+  return selected;
+}
+
+function eligibleFixedGroups(
+  catalog: NormalizedContentCatalog,
+  subject: Subject,
+  level: ExamLevel
+) {
+  const canonicalFixedIds = new Set(
+    [...catalog.classifications.values()]
+      .filter((record) => record.storageMode === 'fixed-set' && record.fixedGroupId)
+      .map((record) => record.fixedGroupId as string)
+  );
+  return catalog
+    .getGroupsForSubject(subject, level)
+    .filter((group) => canonicalFixedIds.has(group.id))
+    .filter((group) => group.status !== 'deprecated')
+    .filter((group) => group.selectionPolicy === 'atomic' && group.orderPolicy === 'fixed')
+    .filter((group) => !group.isImplicitSingleton)
+    .filter((group) =>
+      group.questions.every(
+        (question) => question.examLevel === 'Both' || question.examLevel === level
+      )
+    );
 }
 
 /** Level-eligible, non-deprecated groups for one subject. */

@@ -2,6 +2,7 @@ import React from 'react';
 import type { NormalizedQuestionGroup, OptionId, Question } from '@/types';
 import type { EdqItem } from '@/data/edq';
 import type { BookletSection } from '@/lib/examViewModel';
+import { getSharedTaskDefinitionForTaskFormat, taskFormatLabel } from '@/data/taxonomy';
 import { AdministrativeItemRenderer } from './AdministrativeItemRenderer';
 import { GroupRenderer } from './GroupRenderer';
 import { QuestionRenderer } from './QuestionRenderer';
@@ -66,6 +67,31 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
             <GroupRenderer
               key={`group-${node.groupId}`}
               group={getGroup(node.groupId)}
+              questionIds={node.questionIds}
+              questionIndex={questionIndex}
+              questionNumbers={questionNumbers}
+              answers={answers}
+              onSelectOption={onSelectOption}
+            />
+          );
+        }
+        if (node.kind === 'pool') {
+          const shared = getSharedTaskDefinitionForTaskFormat(node.taskFormat);
+          const directionsSource = typeof shared?.[1]?.directionsSource === 'string'
+            ? getGroup(shared[1].directionsSource)
+            : undefined;
+          const sharedContext = directionsSource
+            ? {
+                title: taskFormatLabel(node.questionType, node.taskFormat),
+                directions: directionsSource.directions,
+                example: directionsSource.example,
+              }
+            : { title: taskFormatLabel(node.questionType, node.taskFormat) };
+          return (
+            <GroupRenderer
+              key={`pool-${node.poolId}-${index}`}
+              group={undefined}
+              sharedContext={sharedContext}
               questionIds={node.questionIds}
               questionIndex={questionIndex}
               questionNumbers={questionNumbers}

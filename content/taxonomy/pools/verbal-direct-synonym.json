@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "poolId": "verbal-direct-synonym",
+  "subject": "Verbal Ability",
+  "topics": [
+    "Vocabulary"
+  ],
+  "questionFormats": [
+    "direct_synonym"
+  ],
+  "taskFormats": [
+    "standard_multiple_choice"
+  ],
+  "selectionPolicy": "without-replacement",
+  "entries": [
+    {
+      "questionId": "seed-verb-001",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0001",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0002",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0005",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0051",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0052",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0053",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0054",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0066",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0073",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0082",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0102",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0104",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0112",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0115",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0123",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0129",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0130",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0131",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0132",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0148",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0149",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0151",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0152",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0156",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0157",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0174",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    },
+    {
+      "questionId": "verb-0175",
+      "questionType": "direct_synonym",
+      "questionFormat": "direct_synonym",
+      "taskFormat": "standard_multiple_choice"
+    }
+  ]
+}
