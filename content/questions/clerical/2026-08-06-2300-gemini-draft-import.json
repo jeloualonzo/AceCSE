@@ -163,7 +163,26 @@
       "first-name",
       "nothing-before-something",
       "error-detection"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Abad, Fernando C.",
+          "Abad, Fernando M.",
+          "Abad, Bernardo S.",
+          "Abadilla, Teresa G."
+        ],
+        "itemPrompt": "Which numbered folder is OUT OF ORDER?",
+        "answerStructure": "folder_reference",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0054",
@@ -214,7 +233,18 @@
       "business-names",
       "article-The",
       "ARMA-rules"
-    ]
+    ],
+    "questionFormat": "business_or_office_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0055",
@@ -421,6 +451,17 @@
       "filing-systems",
       "subject-filing",
       "records-management"
-    ]
+    ],
+    "questionFormat": "subject_or_office_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   }
 ]

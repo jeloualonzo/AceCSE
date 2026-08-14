@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 import type { OptionId, Question } from '@/types';
+import { FilingInstanceRenderer, hasCompactFilingInstance } from '../FilingInstanceRenderer';
 
 export interface QuestionRendererProps {
   question: Question;
@@ -55,15 +56,19 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
         </span>
       </div>
 
-      {question.passage && !suppressPassage && (
+      {question.passage && !suppressPassage && !hasCompactFilingInstance(question) && (
         <div className="border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-black dark:text-slate-300 whitespace-pre-line mb-3">
           {question.passage}
         </div>
       )}
 
-      <p className="text-base sm:text-lg font-medium text-black dark:text-slate-100 leading-relaxed whitespace-pre-line mb-4">
-        {question.question}
-      </p>
+      {hasCompactFilingInstance(question) ? (
+        <FilingInstanceRenderer question={question} />
+      ) : (
+        <p className="text-base sm:text-lg font-medium text-black dark:text-slate-100 leading-relaxed whitespace-pre-line mb-4">
+          {question.question}
+        </p>
+      )}
 
       <div
         className="space-y-2.5"

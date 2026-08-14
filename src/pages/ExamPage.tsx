@@ -4,6 +4,7 @@ import { CheckCircle2 } from 'lucide-react';
 import type { Attempt, ExamSession, OptionId, Question, Subject } from '@/types';
 import {
   buildGroupPracticeSession,
+  buildFilingPracticeSession,
   buildPracticeSession,
   buildSimulationSession,
   InsufficientBankError,
@@ -12,6 +13,7 @@ import {
 import { gradeSession } from '@/lib/grading';
 import { loadContentCatalog } from '@/data/questionBank';
 import { getEdqItem } from '@/data/edq';
+import { getSharedTaskDefinition } from '@/data/taxonomy';
 import type { NormalizedContentCatalog } from '@/data/contentCatalog';
 import {
   clearActiveSession,
@@ -39,6 +41,8 @@ export interface ExamLaunchRequest {
   timed?: boolean;
   /** Practice an explicit item set (group) as a whole, in authored order. */
   groupId?: string;
+  /** Practice a canonical task format, such as Filing. */
+  taskFormat?: string;
 }
 
 type QuestionIndex = ReadonlyMap<string, Question>;
@@ -56,6 +60,9 @@ function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
   }
   if (request.groupId) {
     return buildGroupPracticeSession(request.examLevel, request.groupId);
+  }
+  if (request.taskFormat === 'shared_filing_task') {
+    return buildFilingPracticeSession(request.examLevel);
   }
   return buildPracticeSession(
     request.examLevel,
@@ -81,6 +88,7 @@ function launchFromSession(session: ExamSession): ExamLaunchRequest {
     subjects: session.config.subjects,
     timed: session.config.timed,
     groupId: soleGroup,
+    taskFormat: session.config.taskFormat,
   };
 }
 
@@ -326,11 +334,24 @@ export const ExamPage: React.FC = () => {
   const explicitGroupByQuestion = useMemo(() => {
     const map = new Map<string, { title?: string; directions?: string; example?: string }>();
     if (!catalog) return map;
+    const filingTask = getSharedTaskDefinition('filing_default');
     for (const group of catalog.groups.values()) {
       if (group.isImplicitSingleton) continue;
       if (!group.directions && !group.example && !group.title) continue;
       for (const qid of group.questionIds) {
-        map.set(qid, { title: group.title ?? group.questionType, directions: group.directions, example: group.example });
+        const classification = catalog.getClassification(qid);
+        if (classification?.taskFormat === 'shared_filing_task' && filingTask) {
+          const firstExample = Array.isArray(filingTask.examples) && filingTask.examples[0] && typeof filingTask.examples[0] === 'object'
+            ? filingTask.examples[0] as { input?: string; result?: string }
+            : undefined;
+          map.set(qid, {
+            title: typeof filingTask.title === 'string' ? filingTask.title : 'Filing and Alphabetizing',
+            directions: typeof filingTask.directions === 'string' ? filingTask.directions : group.directions,
+            example: firstExample?.input && firstExample.result ? `Example: ${firstExample.input} — ${firstExample.result}` : group.example,
+          });
+        } else {
+          map.set(qid, { title: group.title ?? group.questionType, directions: group.directions, example: group.example });
+        }
       }
     }
     return map;

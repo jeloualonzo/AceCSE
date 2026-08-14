@@ -11,6 +11,7 @@
     "subject_or_office_filing"
   ],
   "taskFormats": [
+    "legacy_full_prompt",
     "shared_filing_task"
   ],
   "selectionPolicy": "without-replacement",
@@ -25,13 +26,13 @@
       "questionId": "cler-0002",
       "questionType": "personal_name_filing",
       "questionFormat": "personal_name_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0003",
       "questionType": "personal_name_filing",
       "questionFormat": "personal_name_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0004",
@@ -43,7 +44,7 @@
       "questionId": "cler-0005",
       "questionType": "personal_name_filing",
       "questionFormat": "personal_name_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0006",
@@ -67,7 +68,7 @@
       "questionId": "cler-0009",
       "questionType": "personal_name_filing",
       "questionFormat": "personal_name_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0010",
@@ -85,55 +86,55 @@
       "questionId": "cler-0031",
       "questionType": "personal_name_filing",
       "questionFormat": "personal_name_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0032",
       "questionType": "personal_name_filing",
       "questionFormat": "personal_name_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0033",
       "questionType": "personal_name_filing",
       "questionFormat": "personal_name_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0036",
       "questionType": "personal_name_filing",
       "questionFormat": "personal_name_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0037",
       "questionType": "business_or_office_filing",
       "questionFormat": "business_or_office_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0038",
       "questionType": "personal_name_filing",
       "questionFormat": "personal_name_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0039",
       "questionType": "business_or_office_filing",
       "questionFormat": "business_or_office_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0040",
       "questionType": "personal_name_filing",
       "questionFormat": "personal_name_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0041",
       "questionType": "business_or_office_filing",
       "questionFormat": "business_or_office_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0053",
@@ -145,13 +146,13 @@
       "questionId": "cler-0054",
       "questionType": "business_or_office_filing",
       "questionFormat": "business_or_office_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0058",
       "questionType": "subject_or_office_filing",
       "questionFormat": "subject_or_office_filing",
-      "taskFormat": "shared_filing_task"
+      "taskFormat": "legacy_full_prompt"
     },
     {
       "questionId": "cler-0059",

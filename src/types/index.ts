@@ -213,6 +213,8 @@ export interface SessionConfig {
   questionCount: number;
   /** Practice mode only: restrict to these subjects. */
   subjects?: Subject[];
+  /** Optional semantic task-format practice marker. */
+  taskFormat?: string;
   timed: boolean;
   /** Total allotted seconds when timed; null when untimed. */
   durationSeconds: number | null;

@@ -77,16 +77,22 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
         }
         if (node.kind === 'pool') {
           const shared = getSharedTaskDefinitionForTaskFormat(node.taskFormat);
-          const directionsSource = typeof shared?.[1]?.directionsSource === 'string'
-            ? getGroup(shared[1].directionsSource)
+          const definition = shared?.[1];
+          const directionsSource = definition && typeof definition.directionsSource === 'string'
+            ? getGroup(definition.directionsSource)
             : undefined;
-          const sharedContext = directionsSource
-            ? {
-                title: taskFormatLabel(node.questionType, node.taskFormat),
-                directions: directionsSource.directions,
-                example: directionsSource.example,
-              }
-            : { title: taskFormatLabel(node.questionType, node.taskFormat) };
+          const examples = Array.isArray(definition?.examples)
+            ? definition.examples
+                .filter((example): example is Record<string, unknown> => Boolean(example) && typeof example === 'object')
+                .map((example) => [example.input, example.result].filter((part): part is string => typeof part === 'string').join(' — '))
+                .filter(Boolean)
+                .join('\\n\\n')
+            : undefined;
+          const sharedContext = {
+            title: typeof definition?.title === 'string' ? definition.title : taskFormatLabel(node.questionType, node.taskFormat),
+            directions: typeof definition?.directions === 'string' ? definition.directions : directionsSource?.directions,
+            example: examples || directionsSource?.example,
+          };
           return (
             <GroupRenderer
               key={`pool-${node.poolId}-${index}`}

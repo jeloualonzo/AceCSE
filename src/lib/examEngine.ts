@@ -394,17 +394,25 @@ function appendCanonicalSubjectSelection(
   const chosen = shuffled(poolCandidates, random).slice(0, remaining);
   const blocks = new Map<string, { record: ClassificationRecord; ids: string[] }>();
   for (const candidate of chosen) {
-    const key = `${candidate.record.poolId}:${candidate.record.questionFormat}:${candidate.record.taskFormat}`;
+    const key = candidate.record.poolId === 'clerical-filing'
+      ? candidate.record.poolId
+      : `${candidate.record.poolId}:${candidate.record.taskFormat}`;
     const block = blocks.get(key) ?? { record: candidate.record, ids: [] };
     block.ids.push(candidate.id);
     blocks.set(key, block);
   }
-  for (const block of blocks.values()) {
+  const taskOrder = ['shared_filing_task', 'shared_spelling_task', 'number_sequence', 'letter_sequence', 'standard_multiple_choice'];
+  const orderedBlocks = [...blocks.values()].sort((left, right) => {
+    const leftOrder = taskOrder.indexOf(left.record.taskFormat);
+    const rightOrder = taskOrder.indexOf(right.record.taskFormat);
+    return (leftOrder === -1 ? taskOrder.length : leftOrder) - (rightOrder === -1 ? taskOrder.length : rightOrder);
+  });
+  for (const block of orderedBlocks) {
     items.push({
       kind: 'pool',
       poolId: block.record.poolId!,
       questionType: block.record.questionType,
-      taskFormat: block.record.taskFormat,
+      taskFormat: block.record.poolId === 'clerical-filing' ? 'shared_filing_task' : block.record.taskFormat,
       sectionId: subject,
       questionIds: block.ids,
     });
@@ -502,6 +510,39 @@ export async function buildPracticeSession(
   };
 }
 
+
+/**
+ * Build a Filing task-format practice session from the canonical Filing pool.
+ * All 26 existing Filing questions remain individually answerable; the session
+ * carries one semantic Filing block so shared directions are not represented
+ * as historical Set 1/2/3 boundaries.
+ */
+export async function buildFilingPracticeSession(level: ExamLevel): Promise<ExamSession> {
+  const catalog = await loadContentCatalog(['Clerical Ability']);
+  const questionIds = catalog
+    .getQuestionsForSubject('Clerical Ability', level)
+    .filter((question) => catalog.getClassification(question.id)?.topic === 'Filing & Alphabetizing')
+    .map((question) => question.id);
+  if (questionIds.length === 0) throw new InsufficientBankError(['Clerical Ability']);
+  const startedAt = Date.now();
+  return {
+    id: newSessionId(),
+    config: {
+      mode: 'practice',
+      examLevel: level,
+      questionCount: questionIds.length,
+      subjects: ['Clerical Ability'],
+      taskFormat: 'shared_filing_task',
+      timed: false,
+      durationSeconds: null,
+    },
+    questionIds,
+    items: [{ kind: 'pool', poolId: 'clerical-filing', questionType: 'personal_name_filing', taskFormat: 'shared_filing_task', sectionId: 'Clerical Ability', questionIds }],
+    startedAt,
+    deadlineAt: null,
+    answers: {},
+  };
+}
 
 /**
  * Build a practice session for ONE explicit item set (group practice).

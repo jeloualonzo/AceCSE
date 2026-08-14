@@ -147,7 +147,8 @@
     "shared_filing_task",
     "shared_spelling_task",
     "standard_multiple_choice",
-    "fixed_shared_context"
+    "fixed_shared_context",
+    "legacy_full_prompt"
   ],
   "storageModes": [
     "pool",
@@ -175,7 +176,39 @@
         "entries",
         "entityType",
         "orderingMode"
-      ]
+      ],
+      "title": "Filing and Alphabetizing",
+      "directions": "Apply the AceCSE Filing and Alphabetizing training rules to each item. Compare entries unit by unit and letter by letter; preserve the authored punctuation, initials, prefixes, suffixes, and numerals.",
+      "rules": [
+        "Compare names unit by unit and letter by letter.",
+        "Treat the prefixes supported by the authored task as part of the surname or entry.",
+        "Disregard personal and professional titles when the item requires name comparison.",
+        "Apply nothing-before-something when one entry ends before another continues.",
+        "Do not expand initials or rewrite numerals unless the authored task explicitly defines that rule."
+      ],
+      "examples": [
+        {
+          "input": "Reyes, Ana; Reyes, Benito",
+          "result": "Reyes, Ana files before Reyes, Benito because the given-name unit A precedes B.",
+          "note": "Illustrative AceCSE training example; not an official CSC reproduction."
+        },
+        {
+          "input": "Jelou Benitez Alonzo; Jelou B. Alonzo; J. B. Alonzo; Alonzo, Jelou B.",
+          "result": "Retain the authored forms and apply the task rules; do not normalize initials or punctuation automatically.",
+          "note": "Based on observed exam behavior/product research; wording and rules are provisional."
+        }
+      ],
+      "supportedEntityTypes": [
+        "personal_name",
+        "business_name",
+        "government_office",
+        "subject_or_function",
+        "numeric_entry"
+      ],
+      "orderingMode": "alphabetical_filing",
+      "provenance": "AceCSE training representation based on the current bank and observed exam behavior; not an official CSC 2026 wording or rule reproduction.",
+      "reference": "Historical Filing group directions plus authored question references; verify external filing rules before claiming official status.",
+      "supportsLegacyFullPrompt": true
     },
     "spelling_default": {
       "taskFormat": "shared_spelling_task",
@@ -319,7 +352,8 @@
         "subject_or_office_filing"
       ],
       "allowedTaskFormats": [
-        "shared_filing_task"
+        "shared_filing_task",
+        "legacy_full_prompt"
       ]
     },
     {
@@ -889,7 +923,8 @@
         "subject_or_office_filing"
       ],
       "taskFormats": [
-        "shared_filing_task"
+        "shared_filing_task",
+        "legacy_full_prompt"
       ],
       "selectionPolicy": "without-replacement",
       "contiguity": "one contiguous task block per selected pool",

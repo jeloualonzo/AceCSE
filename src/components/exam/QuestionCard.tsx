@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import type { Question, OptionId } from '@/types';
+import { FilingInstanceRenderer, hasCompactFilingInstance } from './FilingInstanceRenderer';
 import { useTheme } from '@/context/ThemeContext';
 import { ExplanationPanel } from './ExplanationPanel';
 
@@ -97,15 +98,19 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           </div>
         )}
 
-        {question.passage && (
+        {question.passage && !hasCompactFilingInstance(question) && (
           <div className="border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-black dark:text-slate-300 whitespace-pre-line">
             {question.passage}
           </div>
         )}
 
-        <div className="text-lg sm:text-xl font-medium text-black dark:text-slate-100 leading-relaxed whitespace-pre-line">
-          {question.question}
-        </div>
+        {hasCompactFilingInstance(question) ? (
+          <FilingInstanceRenderer question={question} />
+        ) : (
+          <div className="text-lg sm:text-xl font-medium text-black dark:text-slate-100 leading-relaxed whitespace-pre-line">
+            {question.question}
+          </div>
+        )}
 
         {/* Explanation lives in the left column on desktop */}
         {isAnswered && showExplanation && <div className="hidden lg:block">{explanation}</div>}

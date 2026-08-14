@@ -88,7 +88,7 @@ Use `data_interpretation` for table/data tasks. A table that belongs to one ques
 
 Spelling and Filing are Clerical Ability and Subprofessional-only. Historical Filing and Spelling sets are not semantic pools.
 
-Filing uses `clerical-filing` with `shared_filing_task`. Use the format values `personal_name_filing`, `business_or_office_filing`, or `subject_or_office_filing` when supported by the actual item. Shared directions and examples come from the task definition; a compact future instance should contain the names, entities, data, and answer options without repeating the entire instruction.
+Filing uses `clerical-filing` with `shared_filing_task`. Use the format values `personal_name_filing`, `business_or_office_filing`, or `subject_or_office_filing` when supported by the actual item. Shared directions and examples come from the `filing_default` task definition; a compact instance should contain the names, entities, data, and item prompt without repeating the entire instruction. Existing items that cannot be transformed safely use `taskFormat: "legacy_full_prompt"` and an additive Filing task instance with `migrationStatus: "manual_review_required"`. Do not fabricate compact entries from uncertain prose. The current bank intentionally contains both safe compact instances and preserved legacy prompts until manual editorial review is complete.
 
 Spelling uses `clerical-spelling` with `shared_spelling_task`. Use `correctly_spelled_word` or `misspelled_word`. A `no_error_variant` may be added only when the authored task deliberately includes an E = No Error answer structure. Never fabricate a No Error choice for an item that does not use that format.
 

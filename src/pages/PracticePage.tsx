@@ -35,7 +35,8 @@ export const PracticePage: React.FC = () => {
       QUESTION_MANIFEST.groups.filter(
         (g) =>
           (g.examLevel === 'Both' || g.examLevel === examLevel) &&
-          SUBJECTS_BY_LEVEL[examLevel].includes(g.subject)
+          SUBJECTS_BY_LEVEL[examLevel].includes(g.subject) &&
+          !g.id.startsWith('grp-filing-')
       ),
     [examLevel]
   );
@@ -46,6 +47,17 @@ export const PracticePage: React.FC = () => {
       examLevel,
       questionCount: size,
       groupId,
+      timed: false,
+    };
+    navigate('/app/exam', { state: { launch: request } });
+  };
+
+  const startTaskFormat = (taskFormat: string) => {
+    const request: ExamLaunchRequest = {
+      kind: 'practice',
+      examLevel,
+      questionCount: 26,
+      taskFormat,
       timed: false,
     };
     navigate('/app/exam', { state: { launch: request } });
@@ -153,6 +165,30 @@ export const PracticePage: React.FC = () => {
           })}
         </div>
       </section>
+
+      {/* Filing task-format practice — one semantic block, not historical Set 1/2/3 cards. */}
+      {examLevel === 'Subprofessional' && (
+        <section aria-labelledby="filing-task-heading" className="space-y-3">
+          <h2 id="filing-task-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Filing and Alphabetizing
+          </h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Shared Filing directions and examples appear once; each existing Filing question remains individually answerable with immediate explanations.
+          </p>
+          <button
+            onClick={() => startTaskFormat('shared_filing_task')}
+            className="w-full sm:w-auto text-left rounded-xl border p-4 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-emerald-400 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-sm font-bold text-slate-900 dark:text-white">Filing task</span>
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full border text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700">
+                26 items
+              </span>
+            </div>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Personal names, business names, offices, and subject filing.</p>
+          </button>
+        </section>
+      )}
 
       {/* Item sets — practice a complete group with its shared directions */}
       {itemSets.length > 0 && (

@@ -56,7 +56,26 @@
       "alphabetizing",
       "surnames",
       "letter-by-letter"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Bartolome, Leo A.",
+          "Bondoc, Nina R.",
+          "Bautista, Rina M.",
+          "Buenaventura, Carlo S."
+        ],
+        "itemPrompt": "Which arrangement is in correct alphabetical filing order?",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0002",
@@ -112,7 +131,18 @@
       "alphabetizing",
       "tie-breaking",
       "first-name"
-    ]
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0003",
@@ -168,7 +198,18 @@
       "alphabetizing",
       "nothing-before-something",
       "initials"
-    ]
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0004",
@@ -223,7 +264,26 @@
       "filing",
       "alphabetizing",
       "letter-by-letter"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Flores, Carmen",
+          "Ferrer, Diego",
+          "Fajardo, Lora",
+          "Fungo, Noel"
+        ],
+        "itemPrompt": "Which arrangement is in correct alphabetical filing order?",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0005",
@@ -278,7 +338,18 @@
       "alphabetizing",
       "letter-by-letter",
       "Villa-surnames"
-    ]
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0006",
@@ -335,7 +406,26 @@
       "alphabetizing",
       "nothing-before-something",
       "letter-by-letter"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Lacson, Iris",
+          "Lacsina, Myrna",
+          "Lagman, Pio",
+          "Laguna, Rene"
+        ],
+        "itemPrompt": "Which group is in correct alphabetical filing order?",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0007",
@@ -394,7 +484,26 @@
       "De la",
       "Dela",
       "Filipino-surnames"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "De la Cruz, Maria",
+          "Dela Torre, Jose",
+          "Dimaculangan, Risa",
+          "Dionisio, Pao"
+        ],
+        "itemPrompt": "What is the correct alphabetical filing order?",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0008",
@@ -452,7 +561,26 @@
       "prefixes",
       "San",
       "Filipino-surnames"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Salazar, Mila",
+          "San Juan, Pedro",
+          "Santiago, Rosa",
+          "Santos, Celia"
+        ],
+        "itemPrompt": "Which arrangement is in correct alphabetical filing order?",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0009",
@@ -509,7 +637,18 @@
       "alphabetizing",
       "hyphenated-names",
       "nothing-before-something"
-    ]
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0010",
@@ -567,7 +706,26 @@
       "Jr",
       "Sr",
       "nothing-before-something"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Mendoza, Roberto (no suffix)",
+          "Mendoza, Roberto Jr.",
+          "Mendoza, Roberto Sr.",
+          "Mendoza, Roberto III"
+        ],
+        "itemPrompt": "In what order should these family-member folders be filed?",
+        "answerStructure": "suffix_order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0011",
@@ -626,7 +784,26 @@
       "Del",
       "Delos",
       "Filipino-surnames"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "De Jesus, Mario",
+          "Del Mundo, Carla",
+          "Delos Reyes, Tina",
+          "De Vera, Luis"
+        ],
+        "itemPrompt": "Which arrangement is correctly filed in alphabetical order?",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0012",
@@ -1641,7 +1818,18 @@
       "alphabetizing",
       "letter-by-letter",
       "Ba-surnames"
-    ]
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0032",
@@ -1700,7 +1888,18 @@
       "San",
       "nothing-before-something",
       "Filipino-surnames"
-    ]
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0033",
@@ -1756,7 +1955,18 @@
       "alphabetizing",
       "nothing-before-something",
       "Villa-surnames"
-    ]
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0034",
@@ -1915,7 +2125,26 @@
       "De La",
       "Del",
       "Filipino-surnames"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "De La Cruz, Juan",
+          "Del Rosario, Maria",
+          "De Castro, Pedro",
+          "Del Fierro, Ana"
+        ],
+        "itemPrompt": "Which listed name should be filed THIRD?",
+        "answerStructure": "candidate_name",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "seed-cler-002",
@@ -2082,7 +2311,18 @@
       "Santa",
       "Filipino-surnames",
       "abbreviations"
-    ]
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0037",
@@ -2139,7 +2379,18 @@
       "alphabetizing",
       "government-offices",
       "business-names"
-    ]
+    ],
+    "questionFormat": "business_or_office_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0038",
@@ -2197,7 +2448,18 @@
       "Ng",
       "Ngo",
       "nothing-before-something"
-    ]
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0039",
@@ -2256,7 +2518,18 @@
       "business-names",
       "numbers-spelled-out",
       "ARMA-rules"
-    ]
+    ],
+    "questionFormat": "business_or_office_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0040",
@@ -2313,7 +2586,18 @@
       "Filipino-surnames",
       "nothing-before-something",
       "similar-names"
-    ]
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0041",
@@ -2370,7 +2654,18 @@
       "government-offices",
       "Department-of",
       "Philippine-government"
-    ]
+    ],
+    "questionFormat": "business_or_office_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0042",

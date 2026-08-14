@@ -55,7 +55,26 @@
       "personal-titles",
       "titles-disregarded",
       "ARMA-rules"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Gen. Renato Villamor",
+          "Atty. Crisanto Banal",
+          "Dr. Leonora Quizon",
+          "Col. Primo Santos"
+        ],
+        "itemPrompt": "Which folder is filed FIRST in standard alphabetical order?",
+        "answerStructure": "candidate_name",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "cler-0060",
@@ -113,6 +132,25 @@
       "personal-titles",
       "titles-disregarded",
       "ARMA-rules"
-    ]
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Judge Erlinda Manalastas",
+          "Sec. Arturo Dimaculangan",
+          "Prof. Nicanor Tagalog",
+          "Atty. Melinda Ferrer"
+        ],
+        "itemPrompt": "Which folder is filed THIRD in correct alphabetical order?",
+        "answerStructure": "candidate_name",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   }
 ]
