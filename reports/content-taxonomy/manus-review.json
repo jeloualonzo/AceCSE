@@ -1,0 +1,910 @@
+{
+  "audit": {
+    "author": "Manus AI",
+    "auditedAt": "2026-08-14T10:07:14.384408+00:00",
+    "repository": "jeloualonzo/AceCSE",
+    "branch": "phase4-booklet",
+    "startingSha": "23cfc721a48b1ca9775eb9b8f48756c85cdab32c",
+    "currentShaAtAudit": "23cfc721a48b1ca9775eb9b8f48756c85cdab32c",
+    "overallVerdict": "APPROVE WITH CORRECTIONS",
+    "migrationPerformed": false
+  },
+  "artifactAvailability": {
+    "geminiTaxonomyJsonPresent": false,
+    "geminiClassificationManifestPresent": false,
+    "geminiAiGuidePresent": false,
+    "limitation": "The repository contains no Gemini taxonomy.json, classification-manifest.json, or AI_CONTENT_GUIDE.md. Therefore the exact 688-row Gemini map and exact 28-pool membership cannot be audited line by line. The findings below are independently derived from the live question and group files and from the proposal summary supplied to the auditor."
+  },
+  "counts": {
+    "questions": 688,
+    "subjects": {
+      "Analytical Reasoning": 123,
+      "Clerical Ability": 63,
+      "General Information": 147,
+      "Numerical Reasoning": 157,
+      "Verbal Ability": 198
+    },
+    "groups": 33,
+    "groupedQuestions": 217,
+    "singletonQuestions": 471,
+    "fixedGroups": 8,
+    "fixedGroupMembers": 18,
+    "poolLikeGroups": 25,
+    "poolLikeGroupMembers": 199,
+    "derivedPoolQuestions": 670,
+    "distinctLiveTopics": 45,
+    "references": 243,
+    "sourceValues": 0,
+    "questionTypeValues": 0,
+    "standaloneContextualQuestions": 26
+  },
+  "groupAudit": [
+    {
+      "id": "grp-analogy-01",
+      "subject": "Analytical Reasoning",
+      "questionType": "Analogy",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "ana-0001",
+        "ana-0002",
+        "ana-0003",
+        "ana-0004",
+        "ana-0005",
+        "ana-0006",
+        "ana-0007",
+        "ana-0008"
+      ]
+    },
+    {
+      "id": "grp-analogy-02",
+      "subject": "Analytical Reasoning",
+      "questionType": "Analogy",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "ana-0009",
+        "ana-0010",
+        "ana-0065",
+        "ana-0066",
+        "ana-0078",
+        "ana-0079",
+        "ana-0080",
+        "ana-0081"
+      ]
+    },
+    {
+      "id": "grp-analogy-03",
+      "subject": "Analytical Reasoning",
+      "questionType": "Analogy",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "ana-0082",
+        "ana-0083",
+        "ana-0084",
+        "ana-0085",
+        "ana-0086",
+        "ana-0087",
+        "ana-0088",
+        "ana-0107"
+      ]
+    },
+    {
+      "id": "grp-analogy-04",
+      "subject": "Analytical Reasoning",
+      "questionType": "Analogy",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "ana-0108",
+        "ana-0109",
+        "ana-0110",
+        "ana-0111",
+        "ana-0112",
+        "ana-0113",
+        "ana-0114",
+        "ana-0115"
+      ]
+    },
+    {
+      "id": "grp-ana-series-01",
+      "subject": "Analytical Reasoning",
+      "questionType": "Number Sequence",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [
+        "Correct ana-0038 and ana-0040 to letter_sequence format; group label is too numeric."
+      ],
+      "questionIds": [
+        "ana-0035",
+        "ana-0036",
+        "ana-0037",
+        "ana-0038",
+        "ana-0039",
+        "ana-0040",
+        "ana-0046",
+        "ana-0047"
+      ]
+    },
+    {
+      "id": "grp-ana-series-02",
+      "subject": "Analytical Reasoning",
+      "questionType": "Number Sequence",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "ana-0048",
+        "ana-0049",
+        "ana-0089",
+        "ana-0090",
+        "ana-0091",
+        "ana-0092",
+        "ana-0102",
+        "ana-0103"
+      ]
+    },
+    {
+      "id": "grp-ana-series-03",
+      "subject": "Analytical Reasoning",
+      "questionType": "Number Sequence",
+      "size": 7,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "ana-0104",
+        "ana-0105",
+        "ana-0117",
+        "ana-0118",
+        "ana-0119",
+        "ana-0120",
+        "seed-ana-001"
+      ]
+    },
+    {
+      "id": "grp-syllogism-01",
+      "subject": "Analytical Reasoning",
+      "questionType": "Logical Reasoning",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [
+        "Keep broad topic but classify the logical procedure explicitly."
+      ],
+      "questionIds": [
+        "ana-0011",
+        "ana-0012",
+        "ana-0013",
+        "ana-0015",
+        "ana-0016",
+        "ana-0017",
+        "ana-0018",
+        "ana-0050"
+      ]
+    },
+    {
+      "id": "grp-syllogism-02",
+      "subject": "Analytical Reasoning",
+      "questionType": "Logical Reasoning",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [
+        "Keep broad topic but classify the logical procedure explicitly."
+      ],
+      "questionIds": [
+        "ana-0052",
+        "ana-0056",
+        "ana-0057",
+        "ana-0058",
+        "ana-0061",
+        "ana-0072",
+        "ana-0093",
+        "ana-0094"
+      ]
+    },
+    {
+      "id": "grp-syllogism-03",
+      "subject": "Analytical Reasoning",
+      "questionType": "Logical Reasoning",
+      "size": 5,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [
+        "Keep broad topic but classify the logical procedure explicitly."
+      ],
+      "questionIds": [
+        "ana-0095",
+        "ana-0096",
+        "ana-0097",
+        "ana-0101",
+        "seed-ana-002"
+      ]
+    },
+    {
+      "id": "grp-filing-01",
+      "subject": "Clerical Ability",
+      "questionType": "Filing",
+      "size": 9,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "cler-0001",
+        "cler-0002",
+        "cler-0003",
+        "cler-0004",
+        "cler-0005",
+        "cler-0006",
+        "cler-0007",
+        "cler-0008",
+        "cler-0009"
+      ]
+    },
+    {
+      "id": "grp-filing-02",
+      "subject": "Clerical Ability",
+      "questionType": "Filing",
+      "size": 9,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "cler-0010",
+        "cler-0011",
+        "cler-0031",
+        "cler-0032",
+        "cler-0033",
+        "cler-0036",
+        "cler-0037",
+        "cler-0038",
+        "cler-0039"
+      ]
+    },
+    {
+      "id": "grp-filing-03",
+      "subject": "Clerical Ability",
+      "questionType": "Filing",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "cler-0040",
+        "cler-0041",
+        "cler-0053",
+        "cler-0054",
+        "cler-0058",
+        "cler-0059",
+        "cler-0060",
+        "seed-cler-001"
+      ]
+    },
+    {
+      "id": "grp-spelling-01",
+      "subject": "Clerical Ability",
+      "questionType": "Spelling",
+      "size": 7,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "cler-0012",
+        "cler-0013",
+        "cler-0014",
+        "cler-0015",
+        "cler-0016",
+        "cler-0017",
+        "cler-0018"
+      ]
+    },
+    {
+      "id": "grp-spelling-02",
+      "subject": "Clerical Ability",
+      "questionType": "Spelling",
+      "size": 7,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "cler-0019",
+        "cler-0034",
+        "cler-0046",
+        "cler-0047",
+        "cler-0048",
+        "cler-0055",
+        "seed-cler-002"
+      ]
+    },
+    {
+      "id": "grp-num-series-01",
+      "subject": "Numerical Reasoning",
+      "questionType": "Number Sequence",
+      "size": 6,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "num-0019",
+        "num-0020",
+        "num-0021",
+        "num-0022",
+        "num-0023",
+        "num-0024"
+      ]
+    },
+    {
+      "id": "grp-num-series-02",
+      "subject": "Numerical Reasoning",
+      "questionType": "Number Sequence",
+      "size": 5,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "num-0025",
+        "num-0026",
+        "num-0108",
+        "num-0137",
+        "num-0147"
+      ]
+    },
+    {
+      "id": "grp-di-employment",
+      "subject": "Numerical Reasoning",
+      "questionType": "Data Interpretation",
+      "size": 3,
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockCount": 1,
+      "classification": "TRUE FIXED SET — KEEP",
+      "recommendedAction": "Keep exact membership, shared context, atomic selection, and fixed order.",
+      "notes": [
+        "Shared content block and atomic/fixed policy verified."
+      ],
+      "questionIds": [
+        "num-0041",
+        "num-0042",
+        "num-0043"
+      ]
+    },
+    {
+      "id": "grp-di-roadworks",
+      "subject": "Numerical Reasoning",
+      "questionType": "Data Interpretation",
+      "size": 2,
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockCount": 1,
+      "classification": "TRUE FIXED SET — KEEP",
+      "recommendedAction": "Keep exact membership, shared context, atomic selection, and fixed order.",
+      "notes": [
+        "Shared content block and atomic/fixed policy verified."
+      ],
+      "questionIds": [
+        "num-0044",
+        "num-0045"
+      ]
+    },
+    {
+      "id": "grp-synonyms-01",
+      "subject": "Verbal Ability",
+      "questionType": "Synonyms",
+      "size": 10,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "seed-verb-001",
+        "verb-0001",
+        "verb-0002",
+        "verb-0005",
+        "verb-0051",
+        "verb-0052",
+        "verb-0053",
+        "verb-0054",
+        "verb-0066",
+        "verb-0073"
+      ]
+    },
+    {
+      "id": "grp-synonyms-02",
+      "subject": "Verbal Ability",
+      "questionType": "Synonyms",
+      "size": 10,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "verb-0082",
+        "verb-0102",
+        "verb-0104",
+        "verb-0112",
+        "verb-0115",
+        "verb-0123",
+        "verb-0129",
+        "verb-0130",
+        "verb-0131",
+        "verb-0132"
+      ]
+    },
+    {
+      "id": "grp-synonyms-03",
+      "subject": "Verbal Ability",
+      "questionType": "Synonyms",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "verb-0148",
+        "verb-0149",
+        "verb-0151",
+        "verb-0152",
+        "verb-0156",
+        "verb-0157",
+        "verb-0174",
+        "verb-0175"
+      ]
+    },
+    {
+      "id": "grp-syn-context-01",
+      "subject": "Verbal Ability",
+      "questionType": "Synonyms",
+      "size": 9,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [
+        "Keep separate format metadata from direct Synonyms; no shared stimulus."
+      ],
+      "questionIds": [
+        "verb-0136",
+        "verb-0137",
+        "verb-0138",
+        "verb-0139",
+        "verb-0140",
+        "verb-0141",
+        "verb-0142",
+        "verb-0166",
+        "verb-0167"
+      ]
+    },
+    {
+      "id": "grp-syn-context-02",
+      "subject": "Verbal Ability",
+      "questionType": "Synonyms",
+      "size": 9,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [
+        "Keep separate format metadata from direct Synonyms; no shared stimulus."
+      ],
+      "questionIds": [
+        "verb-0168",
+        "verb-0172",
+        "verb-0176",
+        "verb-0177",
+        "verb-0178",
+        "verb-0179",
+        "verb-0180",
+        "verb-0181",
+        "verb-0183"
+      ]
+    },
+    {
+      "id": "grp-syn-context-03",
+      "subject": "Verbal Ability",
+      "questionType": "Synonyms",
+      "size": 9,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [
+        "Keep separate format metadata from direct Synonyms; no shared stimulus."
+      ],
+      "questionIds": [
+        "verb-0184",
+        "verb-0185",
+        "verb-0186",
+        "verb-0188",
+        "verb-0189",
+        "verb-0190",
+        "verb-0191",
+        "verb-0192",
+        "verb-0193"
+      ]
+    },
+    {
+      "id": "grp-antonyms-01",
+      "subject": "Verbal Ability",
+      "questionType": "Antonyms",
+      "size": 9,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "seed-verb-002",
+        "verb-0004",
+        "verb-0009",
+        "verb-0055",
+        "verb-0056",
+        "verb-0057",
+        "verb-0058",
+        "verb-0080",
+        "verb-0101"
+      ]
+    },
+    {
+      "id": "grp-antonyms-02",
+      "subject": "Verbal Ability",
+      "questionType": "Antonyms",
+      "size": 8,
+      "selectionPolicy": "splittable",
+      "orderPolicy": "shuffle-questions",
+      "contentBlockCount": 0,
+      "classification": "POOL-LIKE — REHOME AS POOL",
+      "recommendedAction": "Do not treat Set numbering as semantic membership; migrate members to compatible reusable pools.",
+      "notes": [],
+      "questionIds": [
+        "verb-0105",
+        "verb-0109",
+        "verb-0113",
+        "verb-0116",
+        "verb-0124",
+        "verb-0127",
+        "verb-0128",
+        "verb-0187"
+      ]
+    },
+    {
+      "id": "grp-rc-public-trust",
+      "subject": "Verbal Ability",
+      "questionType": "Reading Comprehension",
+      "size": 3,
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockCount": 1,
+      "classification": "TRUE FIXED SET — KEEP",
+      "recommendedAction": "Keep exact membership, shared context, atomic selection, and fixed order.",
+      "notes": [
+        "Shared content block and atomic/fixed policy verified."
+      ],
+      "questionIds": [
+        "verb-0117",
+        "verb-0118",
+        "verb-0119"
+      ]
+    },
+    {
+      "id": "grp-rc-csc",
+      "subject": "Verbal Ability",
+      "questionType": "Reading Comprehension",
+      "size": 2,
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockCount": 1,
+      "classification": "TRUE FIXED SET — KEEP",
+      "recommendedAction": "Keep exact membership, shared context, atomic selection, and fixed order.",
+      "notes": [
+        "Shared content block and atomic/fixed policy verified."
+      ],
+      "questionIds": [
+        "verb-0043",
+        "verb-0044"
+      ]
+    },
+    {
+      "id": "grp-rc-property",
+      "subject": "Verbal Ability",
+      "questionType": "Reading Comprehension",
+      "size": 2,
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockCount": 1,
+      "classification": "TRUE FIXED SET — KEEP",
+      "recommendedAction": "Keep exact membership, shared context, atomic selection, and fixed order.",
+      "notes": [
+        "Shared content block and atomic/fixed policy verified."
+      ],
+      "questionIds": [
+        "verb-0045",
+        "verb-0046"
+      ]
+    },
+    {
+      "id": "grp-rc-careers",
+      "subject": "Verbal Ability",
+      "questionType": "Reading Comprehension",
+      "size": 2,
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockCount": 1,
+      "classification": "TRUE FIXED SET — KEEP",
+      "recommendedAction": "Keep exact membership, shared context, atomic selection, and fixed order.",
+      "notes": [
+        "Shared content block and atomic/fixed policy verified."
+      ],
+      "questionIds": [
+        "verb-0047",
+        "verb-0048"
+      ]
+    },
+    {
+      "id": "grp-rc-frontline",
+      "subject": "Verbal Ability",
+      "questionType": "Reading Comprehension",
+      "size": 2,
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockCount": 1,
+      "classification": "TRUE FIXED SET — KEEP",
+      "recommendedAction": "Keep exact membership, shared context, atomic selection, and fixed order.",
+      "notes": [
+        "Shared content block and atomic/fixed policy verified."
+      ],
+      "questionIds": [
+        "verb-0049",
+        "verb-0050"
+      ]
+    },
+    {
+      "id": "grp-rc-appointments",
+      "subject": "Verbal Ability",
+      "questionType": "Reading Comprehension",
+      "size": 2,
+      "selectionPolicy": "atomic",
+      "orderPolicy": "fixed",
+      "contentBlockCount": 1,
+      "classification": "TRUE FIXED SET — KEEP",
+      "recommendedAction": "Keep exact membership, shared context, atomic selection, and fixed order.",
+      "notes": [
+        "Shared content block and atomic/fixed policy verified."
+      ],
+      "questionIds": [
+        "verb-0090",
+        "verb-0091"
+      ]
+    }
+  ],
+  "questionClassificationAudit": {
+    "status": "partial-by-evidence",
+    "limitation": "The repository contains no Gemini taxonomy.json, classification-manifest.json, or AI_CONTENT_GUIDE.md. Therefore the exact 688-row Gemini map and exact 28-pool membership cannot be audited line by line. The findings below are independently derived from the live question and group files and from the proposal summary supplied to the auditor.",
+    "confirmedApplicationTerminology": {
+      "subjects": [
+        "Analytical Reasoning",
+        "Clerical Ability",
+        "General Information",
+        "Numerical Reasoning",
+        "Verbal Ability"
+      ],
+      "source": "src/types/index.ts and scripts/validate-questions.mjs"
+    },
+    "definiteFormatCorrections": [
+      {
+        "questionIds": [
+          "ana-0038",
+          "ana-0040"
+        ],
+        "currentEvidence": "Members of grp-ana-series-01; group metadata says questionType Number Sequence, while both stems explicitly ask for the next letter and subtopics are Letter Series with Increasing/Decreasing Gaps.",
+        "recommendedChange": "Keep subject Analytical Reasoning and topic Number and Letter Pattern, but classify as questionType=sequence and questionFormat=letter_sequence; do not place them in a numeric-only pool.",
+        "confidence": "high"
+      }
+    ],
+    "contextualSingletons": {
+      "questionIds": [
+        "ana-0019",
+        "ana-0020",
+        "ana-0021",
+        "ana-0022",
+        "ana-0023",
+        "ana-0024",
+        "ana-0025",
+        "ana-0026",
+        "ana-0028",
+        "ana-0029",
+        "ana-0051",
+        "ana-0053",
+        "ana-0054",
+        "ana-0055",
+        "ana-0076",
+        "cler-0042",
+        "cler-0043",
+        "cler-0044",
+        "cler-0045",
+        "num-0088",
+        "seed-verb-005",
+        "verb-0092",
+        "verb-0110",
+        "verb-0133",
+        "verb-0134",
+        "verb-0147"
+      ],
+      "count": 26,
+      "recommendedTreatment": "These items contain self-sufficient, item-local passages, tables, codebooks, or puzzle setups. Keep the stimulus on the question. Treat them as independently sampleable pool questions with an embedded_stimulus flag, or as singleton fixed items in an internal representation; do not invent multi-question groups around them.",
+      "confidence": "high"
+    },
+    "confirmedSkillRules": [
+      {
+        "questionIds": [
+          "ana-0076",
+          "ana-0077"
+        ],
+        "rule": "Assumption/conclusion evaluation remains Analytical Reasoning even when wrapped in a short passage."
+      },
+      {
+        "questionIds": [
+          "ana-0065",
+          "ana-0066",
+          "ana-0078"
+        ],
+        "rule": "Word analogy remains Analytical Reasoning under the application’s internal taxonomy."
+      },
+      {
+        "questionIds": [
+          "cler-0042",
+          "cler-0043",
+          "cler-0044",
+          "cler-0045"
+        ],
+        "rule": "Clerical coding remains Clerical Ability; an embedded code table does not make the item a fixed multi-question group."
+      }
+    ],
+    "noEvidenceOfStructuralMisclassification": "All 688 records have valid subjects matching their directory, all 33 group memberships resolve, there are no duplicate IDs, no cross-group overlaps, and no group subject mismatches. Semantic correctness of every proposed Gemini row remains unverified because the proposed row-level map is absent."
+  },
+  "taxonomyCorrections": [
+    {
+      "currentCategory": "Gemini aggregate pool/fixed-set split",
+      "recommendedChange": "KEEP the aggregate split provisionally: 670 pool questions, 18 members of 8 fixed-context groups, 33 current groups, 8 fixed groups, and 25 pool-like groups.",
+      "reason": "All five aggregate counts are reproduced independently from the live repository. The exact 28 pool definitions are not present and therefore cannot receive unconditional approval."
+    },
+    {
+      "currentCategory": "Number and Letter Pattern / Number Sequence",
+      "recommendedChange": "SPLIT the questionFormat dimension into numeric_sequence and letter_sequence; correct ana-0038 and ana-0040.",
+      "reason": "The first Analytical series group contains six numeric items and two explicit letter-series items but is labeled Number Sequence. A broad topic is acceptable; a numeric-only sampling pool is not."
+    },
+    {
+      "currentCategory": "Logical Reasoning",
+      "recommendedChange": "KEEP the closed topic, but require finer questionType/questionFormat metadata for categorical syllogisms, conditional logic, disjunction, assumption/conclusion, and logic-grid items.",
+      "reason": "The 21 grouped logical items are independently answerable but exercise materially different procedures. A future AI should not infer compatibility from the current Set 1/2/3 grouping."
+    },
+    {
+      "currentCategory": "Synonyms",
+      "recommendedChange": "SPLIT format metadata into direct_synonym and synonym_in_context; retain both under Verbal Ability / Vocabulary unless pool-size evidence later justifies separate pools.",
+      "reason": "The three Synonyms groups and three Synonyms-in-Context groups are all splittable, but their directions and stems express different tasks. The current group questionType collapses that distinction."
+    },
+    {
+      "currentCategory": "Filing & Alphabetizing and Spelling",
+      "recommendedChange": "KEEP as Clerical topics and pool-like categories; add format metadata for personal-name filing, business/office-name filing, coding, and spelling-rule subtypes.",
+      "reason": "All 25 non-context groups are independently answerable, but the subtopics show multiple compatible formats. The groups must not become permanent Set 1/Set 2 containers."
+    },
+    {
+      "currentCategory": "General Information",
+      "recommendedChange": "KEEP the established subject and topic vocabulary; do not collapse all 147 items into one generic GI pool.",
+      "reason": "The live bank has ten General Information topics with different statutes, constitutional strands, history, geography, and civic content. Cross-topic merging would make sampling and future AI insertion ambiguous."
+    },
+    {
+      "currentCategory": "Subtopic",
+      "recommendedChange": "KEEP subtopic as descriptive fine-grained metadata, not as the canonical pool key.",
+      "reason": "The live bank contains many precise one-off subtopics by design. The repository guide explicitly treats topic as closed vocabulary and subtopic as descriptive."
+    }
+  ],
+  "aiGuideCorrections": [
+    "Add a deterministic decision tree: identify the tested skill first; identify whether the item has an item-local stimulus; then decide independent pool versus shared fixed set; then assign subject, closed topic, questionType, and questionFormat.",
+    "Define fixed item set as exact shared context plus two or more dependent questions, with contentBlocks, atomic selection, fixed order, and repeated passage text on each member. A single question with its own passage is not automatically a multi-question fixed set.",
+    "Define pool question as independently answerable even when it carries an item-local passage, table, codebook, or puzzle setup. The pool key must reflect compatible solving format, not merely the presence of a passage.",
+    "Require explicit rules for Word Analogy → Analytical Reasoning, Assumption/Conclusion → Analytical Reasoning, and Spelling/Filing → Clerical Ability. These are already repository rules and must not drift.",
+    "Require questionType and questionFormat to be populated during migration. The current 688 question records have zero explicit questionType values, so the proposed taxonomy cannot be operationalized through current metadata alone.",
+    "Preserve the distinction between direct synonyms and synonyms in context, numeric versus letter sequences, and logical-reasoning procedures even when they share a broad topic.",
+    "Require General Information references and preserve citations. The current bank has references on all 147 General Information items, 243 references overall, and no source-field values.",
+    "Warn future agents that docs/content/JSON_SPEC.md contains stale 424/501-item and four-choice figures; current live facts are 688 questions and five choices. Update guidance only as a separate documentation task after the audit is accepted."
+  ],
+  "migrationRisks": [
+    "Do not move, delete, rewrite, renumber, or alter the 688 question records, choices, answer keys, explanations, references, or passages during the next migration step.",
+    "Preserve all question IDs, including legacy seed-* IDs, because attempts and history depend on stable identifiers.",
+    "Do not delete the 25 pool-like group files until the engine and tests no longer depend on them. They are currently runtime inputs even though they should not define permanent sampling pools.",
+    "Keep the eight fixed groups atomic and contiguous. Their 18 members must remain whole in simulation allocation.",
+    "Keep item-local passages on their question records. Do not turn the 26 standalone contextual questions into artificial multi-question groups.",
+    "Use the existing validator and add migration-specific checks for questionType/questionFormat completeness, pool compatibility, fixed-set references, and source/reference preservation.",
+    "Do not trust the proposal’s claimed row-level confidence because the underlying classification manifest is not present in this checkout."
+  ],
+  "recommendedFinalArchitecture": {
+    "canonicalQuestions": "Keep content/questions/<subject>/<timestamped-batch>.json as the canonical source-of-truth and preserve current provenance-oriented file naming.",
+    "fixedSets": "Keep only true shared-context multi-question sets under content/groups/<subject>/<fixed-set>.json. Use atomic/fixed policies and contentBlocks.",
+    "taxonomy": "Add content/taxonomy/taxonomy.json containing controlled subjects, topics, questionTypes, questionFormats, pool definitions, and compatibility rules.",
+    "classificationManifest": "Add content/taxonomy/classification-manifest.json mapping every question ID to subject, topic, questionType, questionFormat, poolId or fixedSetId, embeddedStimulus, and review status.",
+    "aiGuide": "Add content/taxonomy/AI_CONTENT_GUIDE.md with the decision tree, examples, prohibited merges, provenance rules, and migration invariants.",
+    "runtimeIndexes": "If needed, generate pool indexes from the manifest rather than making one canonical file per pool. This preserves Git history and allows lazy loading by subject."
+  },
+  "verification": {
+    "independentChecks": [
+      "688 unique question records; 688 raw records; zero duplicate IDs.",
+      "33 unique groups; 217 grouped questions; 471 singleton questions.",
+      "8 groups have shared content blocks plus atomic/fixed policy; 25 groups are splittable/shuffle with no shared blocks.",
+      "No missing group question IDs, within-group duplicates, overlapping group memberships, or group subject mismatches.",
+      "All five application subject strings match source types and validator rules."
+    ]
+  }
+}
