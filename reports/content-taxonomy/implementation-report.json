@@ -1,0 +1,63 @@
+{
+  "repository": "jeloualonzo/AceCSE",
+  "branch": "phase4-booklet",
+  "startingSha": "778a58fab8e7f467c40bb8e19d1a0bde75947ab1",
+  "implementationCommit": "820e6295a09aeb79f51600ac5906b22bba25b4de",
+  "remoteVerifiedAtImplementationCommit": true,
+  "workingTreeCleanAtImplementationCommit": true,
+  "verdict": "READY TO FREEZE",
+  "question689Added": false,
+  "taxonomy": {
+    "version": 1,
+    "subjects": ["Analytical Reasoning", "Clerical Ability", "General Information", "Numerical Reasoning", "Verbal Ability"],
+    "poolCount": 40,
+    "fixedSetCount": 8,
+    "classificationCount": 688,
+    "poolQuestionCount": 670,
+    "fixedSetQuestionCount": 18,
+    "confidence": {"high": 579, "medium": 109, "low": 0},
+    "unresolved": 0
+  },
+  "runtime": {
+    "sessions": 10,
+    "professionalSessions": 5,
+    "subprofessionalSessions": 5,
+    "professionalScoredCount": 150,
+    "subprofessionalScoredCount": 145,
+    "duplicateFreeSessions": 10,
+    "poolBlocks": 349,
+    "fixedBlocks": 36,
+    "historicalPoolLikeGroupIdsObserved": 0,
+    "fixedGroupIdsObservedOnlyFromCanonicalEight": true
+  },
+  "bankIntegrity": {
+    "sourceQuestions": 688,
+    "uniqueIds": 688,
+    "choiceRecordsWithAThroughE": 688,
+    "references": 243,
+    "historicalSourceFiles": 27,
+    "historicalExplicitGroups": 33
+  },
+  "gates": {
+    "npm run validate:questions": "passed",
+    "npm run audit:content": "passed",
+    "npm run test:content-model": "passed",
+    "npm run test:engine": "passed: 18 tests",
+    "npm run test:booklet": "passed: 40 tests",
+    "npm test -- --run": "passed: 7 files / 89 tests",
+    "npm run typecheck": "passed",
+    "npm run build": "passed with existing chunk-size warning"
+  },
+  "artifacts": {
+    "taxonomy": "content/taxonomy/taxonomy.json",
+    "manifest": "content/taxonomy/classification-manifest.json",
+    "pools": "content/taxonomy/pools/",
+    "aiGuide": "content/taxonomy/AI_CONTENT_GUIDE.md",
+    "validator": "scripts/validate-taxonomy.mjs"
+  },
+  "remainingWork": [
+    "Incrementally reformat current Filing and Spelling records into compact shared-task instances where safe.",
+    "Add structured numberSeries.missingPosition to future or manually migrated Number Series items.",
+    "Monitor the existing approximately 603 kB Firestore build chunk as content scales."
+  ]
+}
