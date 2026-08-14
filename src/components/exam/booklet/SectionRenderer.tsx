@@ -98,6 +98,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
               key={`pool-${node.poolId}-${index}`}
               group={undefined}
               sharedContext={sharedContext}
+              plainFlow={node.poolId === 'clerical-filing'}
               questionIds={node.questionIds}
               questionIndex={questionIndex}
               questionNumbers={questionNumbers}

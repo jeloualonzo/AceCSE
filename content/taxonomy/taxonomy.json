@@ -178,7 +178,7 @@
         "orderingMode"
       ],
       "title": "Filing and Alphabetizing",
-      "directions": "Apply the AceCSE Filing and Alphabetizing training rules to each item. Compare entries unit by unit and letter by letter; preserve the authored punctuation, initials, prefixes, suffixes, and numerals.",
+      "directions": "Use the filing rules below when answering the following items. Compare entries unit by unit and letter by letter; keep initials, punctuation, prefixes, suffixes, and numerals as shown.",
       "rules": [
         "Compare names unit by unit and letter by letter.",
         "Treat the prefixes supported by the authored task as part of the surname or entry.",
@@ -189,13 +189,13 @@
       "examples": [
         {
           "input": "Reyes, Ana; Reyes, Benito",
-          "result": "Reyes, Ana files before Reyes, Benito because the given-name unit A precedes B.",
-          "note": "Illustrative AceCSE training example; not an official CSC reproduction."
+          "result": "Reyes, Ana is filed before Reyes, Benito because Ana comes before Benito at the given-name unit.",
+          "note": "Illustrative training example; not official CSC wording."
         },
         {
           "input": "Jelou Benitez Alonzo; Jelou B. Alonzo; J. B. Alonzo; Alonzo, Jelou B.",
-          "result": "Retain the authored forms and apply the task rules; do not normalize initials or punctuation automatically.",
-          "note": "Based on observed exam behavior/product research; wording and rules are provisional."
+          "result": "Keep each authored form as written when applying the filing rules.",
+          "note": "Illustrative training example; not official CSC wording."
         }
       ],
       "supportedEntityTypes": [
@@ -206,8 +206,8 @@
         "numeric_entry"
       ],
       "orderingMode": "alphabetical_filing",
-      "provenance": "AceCSE training representation based on the current bank and observed exam behavior; not an official CSC 2026 wording or rule reproduction.",
-      "reference": "Historical Filing group directions plus authored question references; verify external filing rules before claiming official status.",
+      "provenance": "Training representation based on the current question bank and observed exam behavior; not official CSC 2026 wording or a reproduced official rule set.",
+      "reference": "Historical Filing group directions and authored question references; verify external filing rules before claiming official status.",
       "supportsLegacyFullPrompt": true
     },
     "spelling_default": {

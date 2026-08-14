@@ -6,27 +6,27 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Letter-by-Letter Comparison",
     "difficulty": "Easy",
-    "question": "Which of the following sets of names is arranged in correct alphabetical filing order?",
+    "question": "Select the correct filing order.",
     "choices": [
       {
         "id": "A",
-        "text": "Bartolome, Leo A. / Bondoc, Nina R. / Bautista, Rina M. / Buenaventura, Carlo S."
+        "text": "1-2-3-4"
       },
       {
         "id": "B",
-        "text": "Bautista, Rina M. / Bartolome, Leo A. / Bondoc, Nina R. / Buenaventura, Carlo S."
+        "text": "3-1-2-4"
       },
       {
         "id": "C",
-        "text": "Bondoc, Nina R. / Bartolome, Leo A. / Bautista, Rina M. / Buenaventura, Carlo S."
+        "text": "2-1-3-4"
       },
       {
         "id": "D",
-        "text": "Bartolome, Leo A. / Bautista, Rina M. / Bondoc, Nina R. / Buenaventura, Carlo S."
+        "text": "1-3-2-4"
       },
       {
         "id": "E",
-        "text": "Bautista, Rina M. / Bartolome, Leo A. / Buenaventura, Carlo S. / Bondoc, Nina R."
+        "text": "3-1-4-2"
       }
     ],
     "correctOptionId": "D",
@@ -70,10 +70,11 @@
           "Bautista, Rina M.",
           "Buenaventura, Carlo S."
         ],
-        "itemPrompt": "Which arrangement is in correct alphabetical filing order?",
+        "itemPrompt": "Select the correct filing order.",
         "answerStructure": "order_code",
         "migrationStatus": "safe_compact_conversion",
-        "sourcePromptPreserved": true
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
       }
     }
   },
@@ -218,27 +219,27 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Letter-by-Letter Comparison",
     "difficulty": "Easy",
-    "question": "A file clerk must arrange the following names in alphabetical order. Which arrangement is correct?\n\n  Flores, Carmen\n  Ferrer, Diego\n  Fajardo, Lora\n  Fungo, Noel",
+    "question": "Select the correct filing order.",
     "choices": [
       {
         "id": "A",
-        "text": "Fajardo / Ferrer / Flores / Fungo"
+        "text": "3-2-1-4"
       },
       {
         "id": "B",
-        "text": "Fajardo / Flores / Ferrer / Fungo"
+        "text": "3-1-2-4"
       },
       {
         "id": "C",
-        "text": "Ferrer / Fajardo / Flores / Fungo"
+        "text": "2-3-1-4"
       },
       {
         "id": "D",
-        "text": "Ferrer / Flores / Fajardo / Fungo"
+        "text": "2-1-3-4"
       },
       {
         "id": "E",
-        "text": "Fungo / Fajardo / Ferrer / Flores"
+        "text": "4-3-2-1"
       }
     ],
     "correctOptionId": "A",
@@ -278,10 +279,11 @@
           "Fajardo, Lora",
           "Fungo, Noel"
         ],
-        "itemPrompt": "Which arrangement is in correct alphabetical filing order?",
+        "itemPrompt": "Select the correct filing order.",
         "answerStructure": "order_code",
         "migrationStatus": "safe_compact_conversion",
-        "sourcePromptPreserved": true
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
       }
     }
   },
@@ -358,27 +360,27 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Nothing-Before-Something in Practice",
     "difficulty": "Easy",
-    "question": "Which of the following groups is arranged in correct alphabetical filing order?",
+    "question": "Select the correct filing order.",
     "choices": [
       {
         "id": "A",
-        "text": "Lacson, Iris / Lacsina, Myrna / Lagman, Pio / Laguna, Rene"
+        "text": "1-2-3-4"
       },
       {
         "id": "B",
-        "text": "Lagman, Pio / Lacsina, Myrna / Lacson, Iris / Laguna, Rene"
+        "text": "3-2-1-4"
       },
       {
         "id": "C",
-        "text": "Lacsina, Myrna / Lacson, Iris / Lagman, Pio / Laguna, Rene"
+        "text": "2-1-3-4"
       },
       {
         "id": "D",
-        "text": "Lacson, Iris / Lacsina, Myrna / Laguna, Rene / Lagman, Pio"
+        "text": "1-2-4-3"
       },
       {
         "id": "E",
-        "text": "Lagman, Pio / Laguna, Rene / Lacsina, Myrna / Lacson, Iris"
+        "text": "3-4-2-1"
       }
     ],
     "correctOptionId": "C",
@@ -420,10 +422,11 @@
           "Lagman, Pio",
           "Laguna, Rene"
         ],
-        "itemPrompt": "Which group is in correct alphabetical filing order?",
+        "itemPrompt": "Select the correct filing order.",
         "answerStructure": "order_code",
         "migrationStatus": "safe_compact_conversion",
-        "sourcePromptPreserved": true
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
       }
     }
   },
@@ -434,27 +437,27 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Prefixes — De la / Dela",
     "difficulty": "Medium",
-    "question": "In standard Philippine filing rules, how are the following names correctly ordered?\n\n  De la Cruz, Maria\n  Dela Torre, Jose\n  Dimaculangan, Risa\n  Dionisio, Pao",
+    "question": "Select the correct filing order.",
     "choices": [
       {
         "id": "A",
-        "text": "De la Cruz / Dela Torre / Dimaculangan / Dionisio"
+        "text": "1-2-3-4"
       },
       {
         "id": "B",
-        "text": "Dela Torre / De la Cruz / Dionisio / Dimaculangan"
+        "text": "2-1-4-3"
       },
       {
         "id": "C",
-        "text": "Dimaculangan / Dionisio / De la Cruz / Dela Torre"
+        "text": "3-4-1-2"
       },
       {
         "id": "D",
-        "text": "De la Cruz / Dimaculangan / Dela Torre / Dionisio"
+        "text": "1-3-2-4"
       },
       {
         "id": "E",
-        "text": "De la Cruz / Dela Torre / Dionisio / Dimaculangan"
+        "text": "1-2-4-3"
       }
     ],
     "correctOptionId": "A",
@@ -498,10 +501,11 @@
           "Dimaculangan, Risa",
           "Dionisio, Pao"
         ],
-        "itemPrompt": "What is the correct alphabetical filing order?",
+        "itemPrompt": "Select the correct filing order.",
         "answerStructure": "order_code",
         "migrationStatus": "safe_compact_conversion",
-        "sourcePromptPreserved": true
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
       }
     }
   },
@@ -512,27 +516,27 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Prefixes — San",
     "difficulty": "Medium",
-    "question": "Which arrangement places the following names in correct alphabetical filing order?\n\n  Salazar, Mila\n  San Juan, Pedro\n  Santiago, Rosa\n  Santos, Celia",
+    "question": "Select the correct filing order.",
     "choices": [
       {
         "id": "A",
-        "text": "Salazar / San Juan / Santiago / Santos"
+        "text": "1-2-3-4"
       },
       {
         "id": "B",
-        "text": "San Juan / Santiago / Santos / Salazar"
+        "text": "2-3-4-1"
       },
       {
         "id": "C",
-        "text": "Salazar / Santiago / San Juan / Santos"
+        "text": "1-3-2-4"
       },
       {
         "id": "D",
-        "text": "San Juan / Salazar / Santos / Santiago"
+        "text": "2-1-4-3"
       },
       {
         "id": "E",
-        "text": "San Juan / Salazar / Santiago / Santos"
+        "text": "2-1-3-4"
       }
     ],
     "correctOptionId": "A",
@@ -575,10 +579,11 @@
           "Santiago, Rosa",
           "Santos, Celia"
         ],
-        "itemPrompt": "Which arrangement is in correct alphabetical filing order?",
+        "itemPrompt": "Select the correct filing order.",
         "answerStructure": "order_code",
         "migrationStatus": "safe_compact_conversion",
-        "sourcePromptPreserved": true
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
       }
     }
   },
@@ -657,27 +662,27 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Suffixes (Jr., Sr., III)",
     "difficulty": "Hard",
-    "question": "A records officer files four documents for members of the same family. In what order should the following be filed?\n\n  Mendoza, Roberto (no suffix)\n  Mendoza, Roberto Jr.\n  Mendoza, Roberto Sr.\n  Mendoza, Roberto III",
+    "question": "Select the correct order for these folders.",
     "choices": [
       {
         "id": "A",
-        "text": "Jr. / Sr. / no suffix / III"
+        "text": "2-3-1-4"
       },
       {
         "id": "B",
-        "text": "no suffix / Jr. / Sr. / III"
+        "text": "1-2-3-4"
       },
       {
         "id": "C",
-        "text": "Sr. / Jr. / III / no suffix"
+        "text": "3-2-4-1"
       },
       {
         "id": "D",
-        "text": "no suffix / Sr. / Jr. / III"
+        "text": "1-3-2-4"
       },
       {
         "id": "E",
-        "text": "no suffix / III / Jr. / Sr."
+        "text": "1-4-2-3"
       }
     ],
     "correctOptionId": "B",
@@ -720,10 +725,11 @@
           "Mendoza, Roberto Sr.",
           "Mendoza, Roberto III"
         ],
-        "itemPrompt": "In what order should these family-member folders be filed?",
-        "answerStructure": "suffix_order_code",
+        "itemPrompt": "Select the correct order for these folders.",
+        "answerStructure": "order_code",
         "migrationStatus": "safe_compact_conversion",
-        "sourcePromptPreserved": true
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
       }
     }
   },
@@ -734,27 +740,27 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Prefixes — De, Del, Delos",
     "difficulty": "Hard",
-    "question": "Which of the following sets is correctly filed in alphabetical order?\n\n  De Jesus, Mario\n  Del Mundo, Carla\n  Delos Reyes, Tina\n  De Vera, Luis",
+    "question": "Select the correct filing order.",
     "choices": [
       {
         "id": "A",
-        "text": "De Vera / De Jesus / Delos Reyes / Del Mundo"
+        "text": "4-1-3-2"
       },
       {
         "id": "B",
-        "text": "Del Mundo / Delos Reyes / De Jesus / De Vera"
+        "text": "2-3-1-4"
       },
       {
         "id": "C",
-        "text": "De Jesus / Delos Reyes / Del Mundo / De Vera"
+        "text": "1-3-2-4"
       },
       {
         "id": "D",
-        "text": "De Jesus / Del Mundo / Delos Reyes / De Vera"
+        "text": "1-2-3-4"
       },
       {
         "id": "E",
-        "text": "De Vera / Del Mundo / Delos Reyes / De Jesus"
+        "text": "4-2-3-1"
       }
     ],
     "correctOptionId": "D",
@@ -798,10 +804,11 @@
           "Delos Reyes, Tina",
           "De Vera, Luis"
         ],
-        "itemPrompt": "Which arrangement is correctly filed in alphabetical order?",
+        "itemPrompt": "Select the correct filing order.",
         "answerStructure": "order_code",
         "migrationStatus": "safe_compact_conversion",
-        "sourcePromptPreserved": true
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
       }
     }
   },
@@ -2074,7 +2081,7 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Prefixes — De, De La, Del",
     "difficulty": "Easy",
-    "question": "Which of the following personal names should be filed THIRD when arranged strictly according to standard alphabetical rules?\n\n1. De La Cruz, Juan\n2. Del Rosario, Maria\n3. De Castro, Pedro\n4. Del Fierro, Ana",
+    "question": "Which name comes third?",
     "choices": [
       {
         "id": "A",
@@ -2139,7 +2146,7 @@
           "De Castro, Pedro",
           "Del Fierro, Ana"
         ],
-        "itemPrompt": "Which listed name should be filed THIRD?",
+        "itemPrompt": "Which name comes third?",
         "answerStructure": "candidate_name",
         "migrationStatus": "safe_compact_conversion",
         "sourcePromptPreserved": true

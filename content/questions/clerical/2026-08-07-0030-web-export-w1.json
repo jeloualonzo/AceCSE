@@ -6,7 +6,7 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Personal Titles Disregarded in Indexing",
     "difficulty": "Medium",
-    "question": "A records officer must file four personnel folders. The names on the folders are:\n\n  A. Gen. Renato Villamor\n  B. Atty. Crisanto Banal\n  C. Dr. Leonora Quizon\n  D. Col. Primo Santos\n\nWhich folder is filed FIRST in standard alphabetical order?",
+    "question": "Which folder comes first?",
     "choices": [
       {
         "id": "A",
@@ -69,7 +69,7 @@
           "Dr. Leonora Quizon",
           "Col. Primo Santos"
         ],
-        "itemPrompt": "Which folder is filed FIRST in standard alphabetical order?",
+        "itemPrompt": "Which folder comes first?",
         "answerStructure": "candidate_name",
         "migrationStatus": "safe_compact_conversion",
         "sourcePromptPreserved": true
@@ -83,7 +83,7 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Personal Titles Disregarded in Indexing — Mixed Honorifics",
     "difficulty": "Medium",
-    "question": "A file clerk arranges four folders bearing the following names:\n\n  A. Judge Erlinda Manalastas\n  B. Sec. Arturo Dimaculangan\n  C. Prof. Nicanor Tagalog\n  D. Atty. Melinda Ferrer\n\nWhich folder is filed THIRD in correct alphabetical order?",
+    "question": "Which folder comes third?",
     "choices": [
       {
         "id": "A",
@@ -146,7 +146,7 @@
           "Prof. Nicanor Tagalog",
           "Atty. Melinda Ferrer"
         ],
-        "itemPrompt": "Which folder is filed THIRD in correct alphabetical order?",
+        "itemPrompt": "Which folder comes third?",
         "answerStructure": "candidate_name",
         "migrationStatus": "safe_compact_conversion",
         "sourcePromptPreserved": true

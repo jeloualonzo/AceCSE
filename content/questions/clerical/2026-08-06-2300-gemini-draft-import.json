@@ -113,7 +113,7 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Detecting Out-of-Order Entries — First-Name Tie-Breaking",
     "difficulty": "Medium",
-    "question": "Examine the following list of personnel folders as currently arranged:\n\n  1. Abad, Fernando C.\n  2. Abad, Fernando M.\n  3. Abad, Bernardo S.\n  4. Abadilla, Teresa G.\n\nWhich numbered folder is OUT OF ORDER?",
+    "question": "Which numbered folder is out of order?",
     "choices": [
       {
         "id": "A",
@@ -177,7 +177,7 @@
           "Abad, Bernardo S.",
           "Abadilla, Teresa G."
         ],
-        "itemPrompt": "Which numbered folder is OUT OF ORDER?",
+        "itemPrompt": "Which numbered folder is out of order?",
         "answerStructure": "folder_reference",
         "migrationStatus": "safe_compact_conversion",
         "sourcePromptPreserved": true
