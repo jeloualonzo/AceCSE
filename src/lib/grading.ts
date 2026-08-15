@@ -16,18 +16,20 @@ export function gradeSession(
   completedAt: number = Date.now()
 ): Attempt {
   const items: AttemptItem[] = [];
-  const subjectTotals = new Map<string, { total: number; correct: number }>();
+  const subjectTotals = new Map<string, { total: number; answered: number; correct: number }>();
   let correctCount = 0;
 
   for (const questionId of session.questionIds) {
     const question = questionIndex.get(questionId);
     if (!question) continue; // bank changed underneath a stale session
     const selected = session.answers[questionId] ?? null;
-    const isCorrect = selected === question.correctOptionId;
+    const isAnswered = selected !== null;
+    const isCorrect = isAnswered && selected === question.correctOptionId;
     if (isCorrect) correctCount += 1;
 
-    const bucket = subjectTotals.get(question.subject) ?? { total: 0, correct: 0 };
+    const bucket = subjectTotals.get(question.subject) ?? { total: 0, answered: 0, correct: 0 };
     bucket.total += 1;
+    if (isAnswered) bucket.answered += 1;
     if (isCorrect) bucket.correct += 1;
     subjectTotals.set(question.subject, bucket);
 
@@ -41,16 +43,20 @@ export function gradeSession(
     });
   }
 
+  const answeredCount = items.filter((item) => item.selected !== null).length;
+  const unansweredCount = items.length - answeredCount;
   const subjects: SubjectPerformance[] = [...subjectTotals.entries()].map(
-    ([subject, { total, correct }]) => ({
+    ([subject, { total, answered, correct }]) => ({
       subject: subject as SubjectPerformance['subject'],
       total,
       correct,
-      percentage: roundPercent(correct, total),
+      answered,
+      unanswered: total - answered,
+      percentage: roundPercent(correct, session.config.mode === 'practice' ? answered : total),
     })
   );
 
-  const percentage = roundPercent(correctCount, items.length);
+  const percentage = roundPercent(correctCount, session.config.mode === 'practice' ? answeredCount : items.length);
 
   return {
     id: session.id,
@@ -58,8 +64,10 @@ export function gradeSession(
     examLevel: session.config.examLevel,
     questionCount: items.length,
     correctCount,
+    answeredCount,
+    unansweredCount,
     percentage,
-    passed: percentage >= PASSING_PERCENTAGE,
+    passed: session.config.mode === 'simulation' && percentage >= PASSING_PERCENTAGE,
     durationSeconds: Math.max(0, Math.round((completedAt - session.startedAt) / 1000)),
     startedAt: session.startedAt,
     completedAt,

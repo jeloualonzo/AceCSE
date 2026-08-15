@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Check } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import type { OptionId, Question } from '@/types';
 import { FilingInstanceRenderer, hasCompactFilingInstance } from '../FilingInstanceRenderer';
 import { SpellingInstanceRenderer, hasCompactSpellingInstance } from '../SpellingInstanceRenderer';
@@ -63,7 +63,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
       aria-labelledby={`question-${question.id}-heading`}
       tabIndex={-1}
       className={`${itemContainer
-        ? 'scroll-mt-28 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-none'
+        ? 'scroll-mt-28 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-sm'
         : 'scroll-mt-28'} focus:outline-none`}
     >
       <div className="flex items-center gap-2.5 flex-wrap mb-2">
@@ -151,12 +151,22 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
             type="button"
             onClick={() => setShowExplanation((visible) => !visible)}
             aria-expanded={showExplanation}
-            className="w-full inline-flex items-center justify-center min-h-[44px] rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="w-full inline-flex items-center justify-center gap-2 min-h-[44px] rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           >
-            {showExplanation ? 'Hide Explanation' : 'Show Explanation'}
+            {showExplanation ? (
+              <>
+                <ChevronUp className="w-4 h-4" aria-hidden="true" />
+                Hide Explanation
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-4 h-4" aria-hidden="true" />
+                Show Explanation
+              </>
+            )}
           </button>
           {showExplanation && (
-            <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5">
+            <div className="rounded-r-lg border-l-4 border-l-emerald-500 border-y border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4 sm:p-5">
               <ExplanationPanel
                 question={question}
                 selectedOptionId={selectedOptionId}

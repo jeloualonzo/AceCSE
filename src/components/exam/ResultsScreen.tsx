@@ -47,10 +47,11 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   const isSimulation = attempt.mode === 'simulation';
 
   const counts = useMemo(() => {
+    const unanswered = attempt.unansweredCount ?? attempt.items.filter((i) => i.selected === null).length;
+    const answered = attempt.answeredCount ?? attempt.items.length - unanswered;
     const incorrect = attempt.items.filter((i) => !i.isCorrect && i.selected !== null).length;
-    const unanswered = attempt.items.filter((i) => i.selected === null).length;
-    return { incorrect, unanswered };
-  }, [attempt.items]);
+    return { answered, incorrect, unanswered };
+  }, [attempt]);
 
   const filteredItems = useMemo(
     () =>
@@ -112,18 +113,22 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
         {/* Score banner */}
         <div
           className={`rounded-2xl p-6 sm:p-8 border shadow-xl ${
-            attempt.passed
-              ? 'bg-gradient-to-br from-emerald-50 via-white to-white dark:from-emerald-950/80 dark:via-slate-900 dark:to-slate-900 border-emerald-300 dark:border-emerald-500/40'
-              : 'bg-gradient-to-br from-rose-50 via-white to-white dark:from-rose-950/80 dark:via-slate-900 dark:to-slate-900 border-rose-300 dark:border-rose-500/40'
+            !isSimulation
+              ? 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800'
+              : attempt.passed
+                ? 'bg-gradient-to-br from-emerald-50 via-white to-white dark:from-emerald-950/80 dark:via-slate-900 dark:to-slate-900 border-emerald-300 dark:border-emerald-500/40'
+                : 'bg-gradient-to-br from-rose-50 via-white to-white dark:from-rose-950/80 dark:via-slate-900 dark:to-slate-900 border-rose-300 dark:border-rose-500/40'
           }`}
         >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-5 text-center sm:text-left">
               <div
                 className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center shrink-0 border ${
-                  attempt.passed
-                    ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-300 dark:border-emerald-500/30'
-                    : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-300 dark:border-rose-500/30'
+                  !isSimulation
+                    ? 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
+                    : attempt.passed
+                      ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-300 dark:border-emerald-500/30'
+                      : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-300 dark:border-rose-500/30'
                 }`}
               >
                 <Award className="w-8 h-8 sm:w-10 sm:h-10" aria-hidden="true" />
@@ -145,9 +150,14 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
                   {attempt.correctCount}{' '}
                   <span className="text-slate-500 dark:text-slate-400 font-normal text-lg sm:text-xl">
-                    / {attempt.questionCount} correct
+                    / {isSimulation ? attempt.questionCount : counts.answered} correct
                   </span>
                 </h2>
+                {!isSimulation && (
+                  <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                    {counts.answered} of {attempt.questionCount} questions answered; {counts.unanswered} unanswered.
+                  </p>
+                )}
                 <div className="flex items-center justify-center sm:justify-start gap-2 mt-2 flex-wrap">
                   {isSimulation && (
                     <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200">
@@ -158,10 +168,30 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                     {formatDuration(attempt.durationSeconds)} {isSimulation ? 'used' : 'spent'}
                   </span>
                 </div>
+                {!isSimulation && counts.unanswered > 0 && (
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                    Your accuracy is based only on the {counts.answered} questions you answered. The {counts.unanswered} unanswered practice items were not counted as incorrect.
+                  </p>
+                )}
                 {edqPresented > 0 && (
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
                     {edqPresented} EDQ items were presented but were not scored.
                   </p>
+                )}
+                {!isSimulation && (
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 text-center sm:text-left" aria-label="Practice result metrics">
+                    {[
+                      ['Total', attempt.questionCount],
+                      ['Answered', counts.answered],
+                      ['Unanswered', counts.unanswered],
+                      ['Incorrect', counts.incorrect],
+                    ].map(([label, value]) => (
+                      <div key={String(label)} className="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/70 px-3 py-2">
+                        <div className="text-[10px] font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</div>
+                        <div className="text-base font-bold text-slate-900 dark:text-white">{value}</div>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
             </div>
@@ -169,13 +199,17 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
             <div className="flex flex-col items-center sm:items-end justify-center">
               <div
                 className={`text-4xl sm:text-5xl font-black font-mono tracking-tight ${
-                  attempt.passed ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+                  !isSimulation
+                    ? 'text-slate-900 dark:text-white'
+                    : attempt.passed
+                      ? 'text-emerald-600 dark:text-emerald-400'
+                      : 'text-rose-600 dark:text-rose-400'
                 }`}
               >
                 {attempt.percentage.toFixed(1)}%
               </div>
               <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1">
-                Overall Rating
+                {isSimulation ? 'Overall Rating' : 'Accuracy among answered'}
               </span>
             </div>
           </div>
@@ -194,9 +228,12 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
               >
                 <div className="flex items-center justify-between text-xs sm:text-sm">
                   <span className="font-semibold text-slate-700 dark:text-slate-200">{subject.subject}</span>
-                  <span className="font-mono font-bold text-slate-600 dark:text-slate-300">
-                    {subject.correct} / {subject.total}{' '}
+                  <span className="font-mono font-bold text-slate-600 dark:text-slate-300 text-right">
+                    {isSimulation ? `${subject.correct} / ${subject.total}` : `${subject.correct} / ${subject.answered ?? subject.total}`}{' '}
                     <span className="text-slate-400 dark:text-slate-500">({subject.percentage.toFixed(0)}%)</span>
+                    {!isSimulation && (subject.unanswered ?? 0) > 0 && (
+                      <span className="block text-[10px] font-normal text-slate-400 dark:text-slate-500">{subject.unanswered} unanswered</span>
+                    )}
                   </span>
                 </div>
                 <div

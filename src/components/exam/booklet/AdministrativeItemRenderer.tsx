@@ -54,7 +54,7 @@ export const AdministrativeItemRenderer: React.FC<AdministrativeItemRendererProp
       id={`question-${id}`}
       data-question-id={id}
       tabIndex={-1}
-      className="scroll-mt-4 focus:outline-none"
+      className="scroll-mt-28 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-sm focus:outline-none"
       aria-label={`Item ${displayNumber}, administrative, not scored${notApplicable ? ', not applicable based on an earlier response' : ''}`}
     >
       {showGroupHeader && item.instruction && (

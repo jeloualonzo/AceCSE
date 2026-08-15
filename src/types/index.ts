@@ -266,9 +266,14 @@ export interface AttemptItem {
 
 export interface SubjectPerformance {
   subject: Subject;
+  /** Total scored items in the subject, including unanswered Practice items. */
   total: number;
   correct: number;
-  /** 0–100, rounded to one decimal. */
+  /** Answered scored items; optional for backward-compatible stored attempts. */
+  answered?: number;
+  /** Unanswered scored items; optional for backward-compatible stored attempts. */
+  unanswered?: number;
+  /** 0–100, rounded to one decimal; Practice uses answered as denominator. */
   percentage: number;
 }
 
@@ -276,9 +281,14 @@ export interface Attempt {
   id: string;
   mode: SessionMode;
   examLevel: ExamLevel;
+  /** Total scored items, including unanswered Practice items. */
   questionCount: number;
   correctCount: number;
-  /** 0–100, rounded to one decimal. */
+  /** Answered scored items; optional for backward-compatible stored attempts. */
+  answeredCount?: number;
+  /** Unanswered scored items; optional for backward-compatible stored attempts. */
+  unansweredCount?: number;
+  /** 0–100, rounded to one decimal; Practice uses answered as denominator. */
   percentage: number;
   passed: boolean;
   /** Actual seconds spent, not the allotment. */

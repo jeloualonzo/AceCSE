@@ -40,11 +40,12 @@ export function computeStats(attempts: readonly Attempt[]): AttemptStats {
   let totalTimeSeconds = 0;
 
   for (const attempt of attempts) {
-    totalQuestionsAnswered += attempt.questionCount;
+    const answeredCount = attempt.answeredCount ?? attempt.items.filter((item) => item.selected !== null).length;
+    totalQuestionsAnswered += answeredCount;
     totalTimeSeconds += attempt.durationSeconds;
     for (const subject of attempt.subjects) {
       const bucket = subjectTotals.get(subject.subject) ?? { total: 0, correct: 0 };
-      bucket.total += subject.total;
+      bucket.total += subject.answered ?? subject.total;
       bucket.correct += subject.correct;
       subjectTotals.set(subject.subject, bucket);
     }

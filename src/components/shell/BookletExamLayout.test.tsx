@@ -124,6 +124,7 @@ describe('BookletExamLayout — header matches Practice, no subject switcher the
     expect(screen.queryByRole('tab')).not.toBeInTheDocument();
     expect(screen.queryByRole('tablist')).not.toBeInTheDocument();
     expect(screen.queryByText('Numerical Reasoning', { selector: 'button *' })).not.toBeInTheDocument();
+    expect(screen.getByRole('main').querySelector('.max-w-5xl')).not.toBeNull();
   });
 
   it('does not render a global "Question X of N" style counter anywhere', () => {
@@ -204,8 +205,11 @@ describe('BookletExamLayout — Practice uses the same booklet renderer', () => 
 
     expect(screen.getByText('Question text for V1')).toBeInTheDocument();
     expect(screen.getByText('Question text for V2')).toBeInTheDocument();
+    const firstQuestionCard = document.getElementById('question-V1');
+    expect(firstQuestionCard).toHaveClass('rounded-xl', 'shadow-sm');
+    expect(firstQuestionCard).not.toHaveClass('border-emerald-500', 'bg-emerald-50');
     expect(screen.getAllByRole('button', { name: 'Next question' })).toHaveLength(2);
-    expect(screen.queryByRole('button', { name: /Submit exam/i })).not.toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /Submit exam/i })).toHaveLength(1);
     expect(screen.queryByRole('button', { name: 'Show Explanation' })).not.toBeInTheDocument();
 
     await user.click(within(document.getElementById('question-V1')!).getAllByRole('radio')[0]);
@@ -226,14 +230,19 @@ describe('BookletExamLayout — Practice uses the same booklet renderer', () => 
     );
 
     expect(screen.getAllByRole('button', { name: 'Show Explanation' })).toHaveLength(1);
+    expect(screen.getByRole('button', { name: 'Show Explanation' }).querySelector('svg')).toHaveClass('lucide-chevron-down');
     await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
-    expect(within(document.getElementById('question-V1')!).getByText('Because A is correct.')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Hide Explanation' }).querySelector('svg')).toHaveClass('lucide-chevron-up');
+    const explanation = within(document.getElementById('question-V1')!).getByText('Because A is correct.');
+    expect(explanation).toBeInTheDocument();
+    expect(explanation.closest('.border-l-emerald-500')).toHaveClass('border-l-emerald-500', 'shadow-sm');
 
     await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
     await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
     await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
     expect(screen.getAllByRole('button', { name: /Submit exam/i })).toHaveLength(2);
-    expect(screen.queryByRole('button', { name: 'Next question' })).not.toBeInTheDocument();
+    const finalNextButtons = screen.getAllByRole('button', { name: 'Next question' });
+    expect(finalNextButtons.every((button) => (button as HTMLButtonElement).disabled)).toBe(true);
   });
 });
 
@@ -452,11 +461,28 @@ describe('BookletExamLayout — EDQ section rendering', () => {
     expect(radios.some((r) => item7OptionTexts.includes(r.textContent?.replace(/^\d+/, '').trim() ?? ''))).toBe(true);
   });
 
-  it('EDQ items are read-only until response mode is enabled', () => {
+  it('EDQ items use the neutral card treatment and are read-only until response mode is enabled', () => {
     renderWithEdq({}, false);
+    const edqCard = document.getElementById('question-edq-06');
+    expect(edqCard).toHaveClass('rounded-xl', 'shadow-sm');
+    expect(edqCard).not.toHaveClass('bg-emerald-50', 'border-emerald-500');
     // no interactive radios for EDQ items while the mode is off (subject
     // switcher/nav buttons are buttons, not radios)
     expect(screen.queryAllByRole('radio')).toHaveLength(0);
+  });
+
+  it('Skip EDQ jumps to the first scored subject while keeping EDQ reachable in the navigator', async () => {
+    const user = userEvent.setup();
+    renderWithEdq({}, false);
+
+    await user.click(screen.getByRole('button', { name: 'Skip EDQ and continue to test proper' }));
+    expect(screen.getByText('Question text for V1')).toBeInTheDocument();
+    expect(screen.queryByText('Sex')).not.toBeInTheDocument();
+
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    await user.click(getSubjectSwitchButton(dialog, 'EDQ'));
+    expect(screen.getByText('Highest educational attainment')).toBeInTheDocument();
   });
 });
 

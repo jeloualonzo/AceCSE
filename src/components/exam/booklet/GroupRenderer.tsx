@@ -83,7 +83,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
               selectedOptionId={answers[id] ?? null}
               onSelectOption={onSelectOption}
               suppressPassage={Boolean(group?.contentBlocks && group.contentBlocks.length > 0)}
-              itemContainer={questionIds.length > 1 || Boolean(sharedContext || group?.contentBlocks?.length)}
+              itemContainer={true}
               practiceMode={practiceMode}
             />
           );

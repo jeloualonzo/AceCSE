@@ -225,6 +225,17 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     }
   }, [activeSection, activeSectionId, currentQuestionId, localOrder, scrollToQuestion, sections]);
 
+  const skipEdq = useCallback(() => {
+    if (activeSectionId !== EDQ_SECTION_ID) return;
+    const edqIndex = sections.findIndex((section) => section.sectionId === EDQ_SECTION_ID);
+    const nextScored = sections.slice(Math.max(0, edqIndex + 1)).find((section) => sectionQuestionOrder(section).length > 0);
+    if (!nextScored) return;
+    const nextOrder = sectionItemOrder(nextScored);
+    if (nextOrder.length === 0) return;
+    pendingTargetRef.current = nextOrder[0];
+    setActiveSectionId(nextScored.sectionId);
+  }, [activeSectionId, sections]);
+
   const goNext = useCallback(() => {
     if (!activeSection) return;
     const idx = currentQuestionId ? localOrder.indexOf(currentQuestionId) : -1;
@@ -308,9 +319,9 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   return (
     <div className="fixed inset-0 z-50 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 flex flex-col overflow-hidden font-sans">
       {/* Header — identical layout/positions to Practice's ExamFocusLayout.
-          Exit/Restart/Grid stay on the left, Timer centered, Previous/Next
-          on the right. Submit is the one addition, alongside them. No
-          subject switcher and no "Question X of Y" text live here. */}
+          Exit/Grid stay on the left, Timer centered, Previous/Next/Submit
+          on the right. Practice Restart remains available in the mobile footer.
+          No subject switcher and no "Question X of Y" text live here. */}
       <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 relative shrink-0">
         <div className="h-14 sm:h-16 px-4 sm:px-6 grid grid-cols-3 items-center">
           <div className="flex items-center gap-2 justify-self-start">
@@ -322,15 +333,6 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               <XCircle className="w-4 h-4 text-slate-500 dark:text-slate-400" aria-hidden="true" />
               <span className="hidden sm:inline">{exitLabel}</span>
             </button>
-            {onRestart && (
-              <button
-                onClick={onRestart}
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-3 py-1.5 min-h-[40px] rounded-lg border border-slate-300 dark:border-slate-700/80 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-              >
-                <RotateCcw className="w-4 h-4 text-slate-500 dark:text-slate-400" aria-hidden="true" />
-                <span>Restart</span>
-              </button>
-            )}
             {navigatorButton('hidden sm:inline-flex')}
           </div>
 
@@ -347,12 +349,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               <ArrowLeft className="w-4 h-4" aria-hidden="true" />
               <span>Previous</span>
             </button>
-            {isPractice
-              ? (isPracticeLast ? submitButton('hidden sm:inline-flex') : nextButton('hidden sm:inline-flex'))
-              : <>
-                  {nextButton('hidden sm:inline-flex')}
-                  {submitButton('hidden sm:inline-flex')}
-                </>}
+            {nextButton('hidden sm:inline-flex')}
+            {submitButton('hidden sm:inline-flex')}
           </div>
         </div>
 
@@ -508,11 +506,24 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
         )}
 
         <main ref={scrollRef} className="flex-1 bg-white dark:bg-slate-950 overflow-y-auto px-4 sm:px-6 py-6 sm:py-8">
-          <div className="w-full max-w-2xl mx-auto space-y-14 pb-24">
+          <div className="w-full max-w-5xl mx-auto space-y-14 pb-24">
             {!isLegacy && activeSection && (
-              <h2 className="text-lg font-extrabold text-slate-900 dark:text-white pb-3 border-b border-slate-200 dark:border-slate-800">
-                {sectionTitle(activeSectionId)}
-              </h2>
+              <div className="flex items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
+                <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
+                  {sectionTitle(activeSectionId)}
+                </h2>
+                {onRestart && (
+                  <button
+                    type="button"
+                    onClick={onRestart}
+                    className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[36px] rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                    aria-label="Restart Practice"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Restart</span>
+                  </button>
+                )}
+              </div>
             )}
             {activeSectionId === EDQ_SECTION_ID && edq && (
               <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 p-4 sm:p-5 space-y-3 -mt-6">
@@ -521,18 +532,29 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                   1–20 ask about the examinee — the test proper starts at item 21. Answering here
                   is optional; nothing you select leaves this device.
                 </p>
-                <button
-                  onClick={edq.onToggleResponseMode}
-                  role="switch"
-                  aria-checked={edq.responseMode}
-                  className={`inline-flex items-center gap-2 min-h-[40px] px-3.5 rounded-lg border text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                    edq.responseMode
-                      ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300'
-                      : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300'
-                  }`}
-                >
-                  {edq.responseMode ? 'EDQ Response Mode: On' : 'Enable EDQ Response Mode'}
-                </button>
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={edq.onToggleResponseMode}
+                    role="switch"
+                    aria-checked={edq.responseMode}
+                    className={`inline-flex items-center gap-2 min-h-[40px] px-3.5 rounded-lg border text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                      edq.responseMode
+                        ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300'
+                        : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300'
+                    }`}
+                  >
+                    {edq.responseMode ? 'EDQ Response Mode: On' : 'Enable EDQ Response Mode'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={edq.onSkip ?? skipEdq}
+                    className="inline-flex items-center gap-1.5 min-h-[40px] px-3.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                    aria-label="Skip EDQ and continue to test proper"
+                  >
+                    <span>Skip EDQ</span>
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </button>
+                </div>
               </div>
             )}
             {activeSection && (
@@ -543,7 +565,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 questionNumbers={displayNumbers}
                 answers={session.answers}
                 onSelectOption={onSelectOption}
-                edq={edq}
+                edq={edq ? { ...edq, onSkip: skipEdq } : undefined}
                 practiceMode={session.config.mode === 'practice'}
               />
             )}

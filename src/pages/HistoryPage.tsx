@@ -50,6 +50,8 @@ export const HistoryPage: React.FC = () => {
           <ul className="divide-y divide-slate-100 dark:divide-slate-800">
             {attempts.map((attempt) => {
               const isExpanded = expandedId === attempt.id;
+              const answeredCount = attempt.answeredCount ?? attempt.items.filter((item) => item.selected !== null).length;
+              const unansweredCount = attempt.unansweredCount ?? attempt.items.filter((item) => item.selected === null).length;
               return (
                 <li key={attempt.id}>
                   <button
@@ -64,7 +66,11 @@ export const HistoryPage: React.FC = () => {
                       <div className="flex items-center gap-x-3 flex-wrap text-xs text-slate-500 dark:text-slate-400">
                         <span>{attempt.examLevel}</span>
                         <span>{formatDateTime(attempt.completedAt)}</span>
-                        <span>{attempt.questionCount} questions</span>
+                        <span>
+                          {attempt.mode === 'practice'
+                            ? `${answeredCount} answered of ${attempt.questionCount} (${unansweredCount} unanswered)`
+                            : `${attempt.questionCount} questions`}
+                        </span>
                         <span>{formatDuration(attempt.durationSeconds)}</span>
                       </div>
                     </div>
@@ -103,8 +109,15 @@ export const HistoryPage: React.FC = () => {
                           >
                             <div className="flex items-center justify-between text-xs">
                               <span className="font-semibold text-slate-800 dark:text-slate-100">{subject.subject}</span>
-                              <span className="font-mono font-bold text-slate-600 dark:text-slate-300">
-                                {subject.correct}/{subject.total} ({subject.percentage.toFixed(0)}%)
+                              <span className="font-mono font-bold text-slate-600 dark:text-slate-300 text-right">
+                                {attempt.mode === 'practice'
+                                  ? `${subject.correct}/${subject.answered ?? subject.total}`
+                                  : `${subject.correct}/${subject.total}`} ({subject.percentage.toFixed(0)}%)
+                                {attempt.mode === 'practice' && (subject.unanswered ?? 0) > 0 && (
+                                  <span className="block text-[10px] font-normal text-slate-400 dark:text-slate-500">
+                                    {subject.unanswered} unanswered
+                                  </span>
+                                )}
                               </span>
                             </div>
                             <div

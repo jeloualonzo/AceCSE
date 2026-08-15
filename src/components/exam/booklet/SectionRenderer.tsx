@@ -16,6 +16,8 @@ export interface EdqRenderContext {
   responseMode: boolean;
   onSelect: (edqItemId: string, option: string) => void;
   onToggleResponseMode: () => void;
+  /** Optional navigation shortcut from EDQ to the first scored section. */
+  onSkip?: () => void;
 }
 
 export interface SectionRendererProps {
@@ -125,6 +127,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
             questionNumber={questionNumbers.get(node.questionId) ?? 0}
             selectedOptionId={answers[node.questionId] ?? null}
             onSelectOption={onSelectOption}
+            itemContainer={true}
             practiceMode={practiceMode}
           />
         );
