@@ -98,7 +98,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
               key={`pool-${node.poolId}-${index}`}
               group={undefined}
               sharedContext={sharedContext}
-              plainFlow={node.poolId === 'clerical-filing'}
+              plainFlow={node.poolId === 'clerical-filing' || node.taskFormat === 'shared_grammar_sentence_correction'}
               questionIds={node.questionIds}
               questionIndex={questionIndex}
               questionNumbers={questionNumbers}

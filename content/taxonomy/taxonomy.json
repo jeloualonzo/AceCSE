@@ -146,6 +146,7 @@
     "number_sequence",
     "shared_filing_task",
     "shared_spelling_task",
+    "shared_grammar_sentence_correction",
     "standard_multiple_choice",
     "fixed_shared_context",
     "legacy_full_prompt"
@@ -243,6 +244,35 @@
         }
       ],
       "provenance": "Training representation based on the current question bank and observed exam behavior; not official CSC wording or a reproduced official test form."
+    },
+    "grammar_sentence_correction_pilot": {
+      "taskFormat": "shared_grammar_sentence_correction",
+      "subject": "Verbal Ability",
+      "title": "Grammar & Usage — Sentence Correction",
+      "directions": "Choose the sentence that is grammatically correct in formal edited English.",
+      "supports": [
+        "grammar_usage"
+      ],
+      "answerStructure": "sentence_selection",
+      "register": "formal_edited_english",
+      "instanceFormats": [
+        "compact"
+      ],
+      "instanceSchema": [
+        "taskDefinitionId",
+        "instanceFormat",
+        "itemNote",
+        "answerStructure",
+        "migrationStatus",
+        "sourcePromptPreserved"
+      ],
+      "examples": [
+        {
+          "input": "A. The office closed at five.\\nB. The office close at five.",
+          "result": "A — The singular subject office takes the past-tense verb closed."
+        }
+      ],
+      "provenance": "Pilot training representation based on the corrected Grammar & Usage question bank; not official CSC wording or a reproduced official test form."
     },
     "number_series_default": {
       "taskFormat": "number_sequence",
@@ -760,7 +790,8 @@
         "grammar_usage"
       ],
       "allowedTaskFormats": [
-        "standard_multiple_choice"
+        "standard_multiple_choice",
+        "shared_grammar_sentence_correction"
       ]
     },
     {
@@ -1439,7 +1470,8 @@
         "grammar_usage"
       ],
       "taskFormats": [
-        "standard_multiple_choice"
+        "standard_multiple_choice",
+        "shared_grammar_sentence_correction"
       ],
       "selectionPolicy": "without-replacement",
       "contiguity": "one contiguous task block per selected pool",

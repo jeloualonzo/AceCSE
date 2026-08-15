@@ -4,6 +4,7 @@ import type { Question, OptionId } from '@/types';
 import { FilingInstanceRenderer, hasCompactFilingInstance } from './FilingInstanceRenderer';
 import { SpellingInstanceRenderer, hasCompactSpellingInstance } from './SpellingInstanceRenderer';
 import { NumberSeriesInstanceRenderer, hasCompactNumberSeriesInstance } from './NumberSeriesInstanceRenderer';
+import { GrammarInstanceRenderer, hasCompactGrammarInstance } from './GrammarInstanceRenderer';
 import { useTheme } from '@/context/ThemeContext';
 import { ExplanationPanel } from './ExplanationPanel';
 
@@ -18,6 +19,8 @@ export interface QuestionCardProps {
    * without redesigning Practice's one-question learning flow.
    */
   groupContext?: { title?: string; directions?: string; example?: string };
+  /** Shared Grammar directions use normal document flow rather than a tinted context box. */
+  plainFlow?: boolean;
   selectedOptionId: OptionId | null;
   onSelectOption: (optionId: OptionId) => void;
   /**
@@ -37,6 +40,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   question,
   questionNumber,
   groupContext,
+  plainFlow = false,
   selectedOptionId,
   onSelectOption,
   instantFeedback = false,
@@ -80,7 +84,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         </div>
 
         {groupContext && (groupContext.directions || groupContext.example) && (
-          <div className="rounded-r-lg border-l-4 border-l-slate-400 dark:border-l-slate-500 border-y border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 p-4 space-y-2">
+          <div className={plainFlow
+            ? 'border-b border-slate-300 dark:border-slate-700 pb-4 mb-2 space-y-2'
+            : 'rounded-r-lg border-l-4 border-l-slate-400 dark:border-l-slate-500 border-y border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 p-4 space-y-2'}>
             {groupContext.title && (
               <p className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
                 {groupContext.title}
@@ -100,7 +106,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           </div>
         )}
 
-        {question.passage && !hasCompactFilingInstance(question) && !hasCompactSpellingInstance(question) && !hasCompactNumberSeriesInstance(question) && (
+        {question.passage && !hasCompactFilingInstance(question) && !hasCompactSpellingInstance(question) && !hasCompactNumberSeriesInstance(question) && !hasCompactGrammarInstance(question) && (
           <div className="border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-black dark:text-slate-300 whitespace-pre-line">
             {question.passage}
           </div>
@@ -112,6 +118,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           <SpellingInstanceRenderer question={question} />
         ) : hasCompactNumberSeriesInstance(question) ? (
           <NumberSeriesInstanceRenderer question={question} />
+        ) : hasCompactGrammarInstance(question) ? (
+          <GrammarInstanceRenderer question={question} />
         ) : (
           <div className="text-lg sm:text-xl font-medium text-black dark:text-slate-100 leading-relaxed whitespace-pre-line">
             {question.question}

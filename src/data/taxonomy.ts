@@ -158,6 +158,7 @@ export function taskFormatLabel(questionType: string, taskFormat: string): strin
   const labels: Record<string, string> = {
     shared_filing_task: 'Filing',
     shared_spelling_task: 'Spelling',
+    shared_grammar_sentence_correction: 'Grammar — Sentence Correction',
     number_sequence: 'Number Series',
     letter_sequence: 'Letter Series',
   };

@@ -108,6 +108,14 @@ Use `verbal-direct-synonym` and `direct_synonym` for a word or phrase whose near
 
 Use the dedicated pools for Antonym, Grammar & Usage, Error Identification, Reading Comprehension, Paragraph Organization, and Sentence Completion. Multiple questions sharing a reading passage must use a fixed set; a self-contained reading item remains a pool item with `embeddedStimulus: true`.
 
+#### Grammar & Usage Sentence Correction pilot
+
+The four QA-approved pilot items `verb-0059` through `verb-0062` remain independently answerable entries in `verbal-grammar-usage`. They use the additive task format `shared_grammar_sentence_correction` and the shared definition `grammar_sentence_correction_pilot`; this is reusable task presentation, not a fixed-context group and not a new pool. Do not migrate any other Grammar & Usage question into this pilot.
+
+The shared direction is exactly: “Choose the sentence that is grammatically correct in formal edited English.” The pilot is governed by an answer-uniqueness gate: every item must have one defensible answer under the explicit formal-edited-English criterion, retain exactly five A–E choices, and preserve the corrected answer key, explanation, reference, provenance, and tags. `verb-0059` must show the item qualifier “Treat the collective noun panel as a single unit.” `verb-0061` must show the item qualifier “Apply the formal-edited-English convention: use 'the reason ... is that' rather than 'the reason ... is because'.” The other two pilot items have no additional qualifier.
+
+Compact Grammar payloads contain the shared task definition ID, `instanceFormat: "compact"`, `answerStructure: "sentence_selection"`, `migrationStatus: "safe_compact_conversion"`, and `sourcePromptPreserved: true`, with `itemNote` only where the criterion needs clarification. The long source stem remains preserved in the record for provenance but must not be rendered repeatedly; the shared direction appears once in the task block, and the pilot uses normal document flow rather than a tinted or emerald question card. Grammar & Usage remains broader than Sentence Correction: all non-pilot Grammar items stay in `verbal-grammar-usage` with `standard_multiple_choice` until separately reviewed.
+
 ### General Information
 
 Use the existing General Information topic exactly as authored, preserve the reference, and assign `general_information_recall` with the matching `general-*` pool. Never invent a citation or section number. If a citation is not verified, flag it for review rather than silently accepting it.
@@ -121,6 +129,7 @@ The canonical shared task references are:
 | `filing_default` | `shared_filing_task` | Filing directions, examples, and rules |
 | `spelling_default` | `shared_spelling_task` | Spelling directions and answer structure |
 | `number_series_default` | `number_sequence` | Number Series conventions and explicit missing position |
+| `grammar_sentence_correction_pilot` | `shared_grammar_sentence_correction` | Four-item formal-edited-English Sentence Correction pilot |
 | `letter_series_default` | `letter_sequence` | Letter-series presentation |
 
 These shared definitions are not fixed-context sets. They describe reusable task presentation. Fixed sets are reserved for exact shared stimuli and use `fixedGroupId`.

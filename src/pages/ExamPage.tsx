@@ -7,6 +7,7 @@ import {
   buildFilingPracticeSession,
   buildSpellingPracticeSession,
   buildNumberSeriesPracticeSession,
+  buildGrammarPilotPracticeSession,
   buildPracticeSession,
   buildSimulationSession,
   InsufficientBankError,
@@ -71,6 +72,9 @@ function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
   }
   if (request.taskFormat === 'number_sequence') {
     return buildNumberSeriesPracticeSession(request.examLevel);
+  }
+  if (request.taskFormat === 'shared_grammar_sentence_correction') {
+    return buildGrammarPilotPracticeSession(request.examLevel);
   }
   return buildPracticeSession(
     request.examLevel,
@@ -345,6 +349,7 @@ export const ExamPage: React.FC = () => {
     const filingTask = getSharedTaskDefinition('filing_default');
     const spellingTask = getSharedTaskDefinition('spelling_default');
     const numberSeriesTask = getSharedTaskDefinition('number_series_default');
+    const grammarPilotTask = getSharedTaskDefinition('grammar_sentence_correction_pilot');
     for (const group of catalog.groups.values()) {
       if (group.isImplicitSingleton) continue;
       if (!group.directions && !group.example && !group.title) continue;
@@ -389,6 +394,16 @@ export const ExamPage: React.FC = () => {
           title: typeof numberSeriesTask.title === 'string' ? numberSeriesTask.title : 'Number Series',
           directions: typeof numberSeriesTask.directions === 'string' ? numberSeriesTask.directions : undefined,
           example: firstExample?.input && firstExample.result ? `Example: ${firstExample.input} — ${firstExample.result}` : undefined,
+        });
+      }
+    }
+    if (grammarPilotTask) {
+      for (const question of catalog.getQuestionsForSubject('Verbal Ability')) {
+        const classification = catalog.getClassification(question.id);
+        if (classification?.taskFormat !== 'shared_grammar_sentence_correction') continue;
+        map.set(question.id, {
+          title: typeof grammarPilotTask.title === 'string' ? grammarPilotTask.title : 'Grammar & Usage — Sentence Correction',
+          directions: typeof grammarPilotTask.directions === 'string' ? grammarPilotTask.directions : undefined,
         });
       }
     }
@@ -571,6 +586,7 @@ export const ExamPage: React.FC = () => {
               question={currentQuestion}
               questionNumber={currentIndex + 1}
               groupContext={explicitGroupByQuestion.get(currentQuestion.id)}
+              plainFlow={currentQuestion.taskFormat === 'shared_grammar_sentence_correction'}
               selectedOptionId={activeSession.answers[currentQuestion.id] ?? null}
               onSelectOption={handleSelectOption}
               instantFeedback

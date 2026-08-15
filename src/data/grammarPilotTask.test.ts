@@ -1,8 +1,29 @@
-import { describe, expect, it } from 'vitest';
+// @vitest-environment jsdom
+
+import { cleanup, render, screen } from '@testing-library/react';
+import { createElement } from 'react';
+import '@testing-library/jest-dom/vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { loadContentCatalog } from '@/data/questionBank';
+import { getCanonicalPool, getSharedTaskDefinition } from '@/data/taxonomy';
+import { buildGrammarPilotPracticeSession, buildSimulationSession } from '@/lib/examEngine';
+import { GroupRenderer } from '@/components/exam/booklet/GroupRenderer';
+import { QuestionRenderer } from '@/components/exam/booklet/QuestionRenderer';
 
 const pilotIds = ['verb-0059', 'verb-0060', 'verb-0061', 'verb-0062'] as const;
 const subjects = ['Verbal Ability'] as const;
+const allSubjects = [
+  'Analytical Reasoning',
+  'Clerical Ability',
+  'General Information',
+  'Numerical Reasoning',
+  'Verbal Ability',
+] as const;
+const sharedDirections = 'Choose the sentence that is grammatically correct in formal edited English.';
+const expectedNotes = {
+  'verb-0059': 'Treat the collective noun panel as a single unit.',
+  'verb-0061': "Apply the formal-edited-English convention: use 'the reason ... is that' rather than 'the reason ... is because'.",
+} as const;
 
 const expected = {
   'verb-0059': {
@@ -51,8 +72,10 @@ const expected = {
   },
 } as const;
 
+afterEach(() => cleanup());
+
 describe('Grammar pilot content corrections', () => {
-  it('preserves exactly four pilot IDs, five-choice structures, classifications, and no migration metadata', async () => {
+  it('preserves exactly four pilot IDs, five-choice structures, classifications, and corrected source content', async () => {
     const catalog = await loadContentCatalog(subjects);
     const questions = pilotIds.map((id) => catalog.getQuestion(id));
     expect(questions.every(Boolean)).toBe(true);
@@ -73,8 +96,9 @@ describe('Grammar pilot content corrections', () => {
       expect(classification?.topic).toBe('Grammar & Usage');
       expect(classification?.questionType).toBe('grammar_usage');
       expect(classification?.questionFormat).toBe('grammar_usage');
-      expect(classification?.taskFormat).toBe('standard_multiple_choice');
-      expect(question?.taskInstance).toBeUndefined();
+      expect(classification?.taskFormat).toBe('shared_grammar_sentence_correction');
+      expect(question?.taskFormat).toBe('shared_grammar_sentence_correction');
+      expect(question?.taskInstance?.kind).toBe('grammar');
     }
   });
 
@@ -117,5 +141,105 @@ describe('Grammar pilot content corrections', () => {
     expect(parallel?.explanation).toMatch(/strict parallelism convention/i);
     expect(parallel?.explanation).toMatch(/scrutinizing.*does not parallel/i);
     expect(JSON.stringify([panel, causal, reason, parallel])).not.toMatch(/AI drafting residue|generated question|authored task/i);
+  });
+});
+
+describe('Grammar pilot compact task architecture', () => {
+  it('defines one concise formal-edited-English task contract and keeps the pilot in the canonical verbal pool', () => {
+    const definition = getSharedTaskDefinition('grammar_sentence_correction_pilot');
+    expect(definition?.taskFormat).toBe('shared_grammar_sentence_correction');
+    expect(definition?.title).toBe('Grammar & Usage — Sentence Correction');
+    expect(definition?.directions).toBe(sharedDirections);
+    expect(definition?.answerStructure).toBe('sentence_selection');
+    expect(definition?.register).toBe('formal_edited_english');
+    expect(getCanonicalPool('verbal-grammar-usage')?.entries.filter((entry) => entry.taskFormat === 'shared_grammar_sentence_correction').map((entry) => entry.questionId)).toEqual([...pilotIds]);
+    expect(JSON.stringify(definition)).not.toMatch(/AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|authored task/i);
+  });
+
+  it('creates one four-item canonical Grammar block for both exam levels', async () => {
+    for (const level of ['Professional', 'Subprofessional'] as const) {
+      const session = await buildGrammarPilotPracticeSession(level);
+      expect(session.questionIds).toEqual([...pilotIds]);
+      expect(session.config.taskFormat).toBe('shared_grammar_sentence_correction');
+      expect(session.items).toEqual([
+        expect.objectContaining({
+          kind: 'pool',
+          poolId: 'verbal-grammar-usage',
+          questionType: 'grammar_usage',
+          taskFormat: 'shared_grammar_sentence_correction',
+          questionIds: [...pilotIds],
+        }),
+      ]);
+    }
+  });
+
+  it('renders shared directions once in normal document flow and does not create an emerald card', async () => {
+    const catalog = await loadContentCatalog(subjects);
+    const questionIndex = new Map(pilotIds.map((id) => [id, catalog.getQuestion(id)!]));
+    const questionNumbers = new Map(pilotIds.map((id, index) => [id, index + 1]));
+    const definition = getSharedTaskDefinition('grammar_sentence_correction_pilot')!;
+
+    const { container } = render(createElement(GroupRenderer, {
+      group: undefined,
+      sharedContext: { title: String(definition.title), directions: String(definition.directions) },
+      plainFlow: true,
+      questionIds: [...pilotIds],
+      questionIndex,
+      questionNumbers,
+      answers: {},
+      onSelectOption: () => undefined,
+    }));
+
+    expect(screen.getAllByText(sharedDirections)).toHaveLength(1);
+    expect(container.querySelector('[class*="border-b"]')).not.toBeNull();
+    expect(container.querySelector('[class*="bg-emerald"]')).toBeNull();
+  });
+
+  it('shows only the required item qualifiers and suppresses every repeated source stem', async () => {
+    const catalog = await loadContentCatalog(subjects);
+    for (const id of pilotIds) {
+      const question = catalog.getQuestion(id)!;
+      render(createElement(QuestionRenderer, {
+        question,
+        questionNumber: 1,
+        selectedOptionId: null,
+        onSelectOption: () => undefined,
+      }));
+      expect(screen.queryByText(expected[id].stem)).not.toBeInTheDocument();
+      if (id in expectedNotes) {
+        expect(screen.getByText(expectedNotes[id as keyof typeof expectedNotes])).toBeInTheDocument();
+      } else {
+        expect(screen.queryByText(/Treat the collective noun|Apply the formal-edited-English convention/)).not.toBeInTheDocument();
+      }
+      cleanup();
+    }
+  });
+
+  it('keeps pilot blocks contiguous in seeded simulations and leaves all other Grammar items legacy', async () => {
+    const catalog = await loadContentCatalog(allSubjects);
+    let seenPilotBlock = false;
+    for (const level of ['Professional', 'Subprofessional'] as const) {
+      for (const seed of ['grammar-pilot-runtime-01', 'grammar-pilot-runtime-02', 'grammar-pilot-runtime-03', 'grammar-pilot-runtime-04', 'grammar-pilot-runtime-05', 'grammar-pilot-runtime-06']) {
+        const session = await buildSimulationSession(level, level === 'Professional' ? 150 : 145, { seed, catalog });
+        const blocks = (session.items ?? []).filter((item) => item.kind === 'pool' && item.poolId === 'verbal-grammar-usage' && item.taskFormat === 'shared_grammar_sentence_correction');
+        expect(blocks.length).toBeLessThanOrEqual(1);
+        for (const block of blocks) {
+          if (block.kind !== 'pool') continue;
+          seenPilotBlock = true;
+          expect(block.questionIds.every((id) => pilotIds.includes(id as typeof pilotIds[number]))).toBe(true);
+          expect(block.questionIds.every((id) => catalog.getQuestion(id)?.taskInstance?.payload?.instanceFormat === 'compact')).toBe(true);
+          const positions = block.questionIds.map((id) => session.questionIds.indexOf(id)).sort((a, b) => a - b);
+          expect(positions.every((position, index) => position === positions[0] + index)).toBe(true);
+        }
+        expect((session.items ?? []).filter((item) => item.kind === 'group' && item.questionIds.some((id) => pilotIds.includes(id as typeof pilotIds[number])))).toHaveLength(0);
+        expect(new Set(session.questionIds).size).toBe(session.questionIds.length);
+      }
+    }
+    expect(seenPilotBlock).toBe(true);
+
+    for (const question of catalog.getQuestionsForSubject('Verbal Ability').filter((item) => item.topic === 'Grammar & Usage' && !pilotIds.includes(item.id as typeof pilotIds[number]))) {
+      expect(catalog.getClassification(question.id)?.taskFormat).toBe('standard_multiple_choice');
+      expect(question.taskInstance).toBeUndefined();
+    }
   });
 });

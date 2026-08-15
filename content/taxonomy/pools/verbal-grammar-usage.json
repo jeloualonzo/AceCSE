@@ -9,7 +9,8 @@
     "grammar_usage"
   ],
   "taskFormats": [
-    "standard_multiple_choice"
+    "standard_multiple_choice",
+    "shared_grammar_sentence_correction"
   ],
   "selectionPolicy": "without-replacement",
   "entries": [
@@ -107,25 +108,25 @@
       "questionId": "verb-0059",
       "questionType": "grammar_usage",
       "questionFormat": "grammar_usage",
-      "taskFormat": "standard_multiple_choice"
+      "taskFormat": "shared_grammar_sentence_correction"
     },
     {
       "questionId": "verb-0060",
       "questionType": "grammar_usage",
       "questionFormat": "grammar_usage",
-      "taskFormat": "standard_multiple_choice"
+      "taskFormat": "shared_grammar_sentence_correction"
     },
     {
       "questionId": "verb-0061",
       "questionType": "grammar_usage",
       "questionFormat": "grammar_usage",
-      "taskFormat": "standard_multiple_choice"
+      "taskFormat": "shared_grammar_sentence_correction"
     },
     {
       "questionId": "verb-0062",
       "questionType": "grammar_usage",
       "questionFormat": "grammar_usage",
-      "taskFormat": "standard_multiple_choice"
+      "taskFormat": "shared_grammar_sentence_correction"
     },
     {
       "questionId": "verb-0063",

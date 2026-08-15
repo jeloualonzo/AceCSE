@@ -401,7 +401,7 @@ function appendCanonicalSubjectSelection(
     block.ids.push(candidate.id);
     blocks.set(key, block);
   }
-  const taskOrder = ['shared_filing_task', 'shared_spelling_task', 'number_sequence', 'letter_sequence', 'standard_multiple_choice'];
+  const taskOrder = ['shared_filing_task', 'shared_spelling_task', 'shared_grammar_sentence_correction', 'number_sequence', 'letter_sequence', 'standard_multiple_choice'];
   const orderedBlocks = [...blocks.values()].sort((left, right) => {
     const leftOrder = taskOrder.indexOf(left.record.taskFormat);
     const rightOrder = taskOrder.indexOf(right.record.taskFormat);
@@ -538,6 +538,42 @@ export async function buildSpellingPracticeSession(level: ExamLevel): Promise<Ex
     },
     questionIds,
     items: [{ kind: 'pool', poolId: 'clerical-spelling', questionType: 'spelling', taskFormat: 'shared_spelling_task', sectionId: 'Clerical Ability', questionIds }],
+    startedAt,
+    deadlineAt: null,
+    answers: {},
+  };
+}
+
+/**
+ * Build a Grammar Sentence Correction task-format practice session from the
+ * four explicitly migrated pilot items in the canonical Grammar pool. The
+ * broader Grammar & Usage pool remains ordinary multiple choice.
+ */
+export async function buildGrammarPilotPracticeSession(level: ExamLevel): Promise<ExamSession> {
+  const catalog = await loadContentCatalog(['Verbal Ability']);
+  const questionIds = catalog
+    .getQuestionsForSubject('Verbal Ability', level)
+    .filter((question) => {
+      const classification = catalog.getClassification(question.id);
+      return classification?.poolId === 'verbal-grammar-usage'
+        && classification.taskFormat === 'shared_grammar_sentence_correction';
+    })
+    .map((question) => question.id);
+  if (questionIds.length === 0) throw new InsufficientBankError(['Verbal Ability']);
+  const startedAt = Date.now();
+  return {
+    id: newSessionId(),
+    config: {
+      mode: 'practice',
+      examLevel: level,
+      questionCount: questionIds.length,
+      subjects: ['Verbal Ability'],
+      taskFormat: 'shared_grammar_sentence_correction',
+      timed: false,
+      durationSeconds: null,
+    },
+    questionIds,
+    items: [{ kind: 'pool', poolId: 'verbal-grammar-usage', questionType: 'grammar_usage', taskFormat: 'shared_grammar_sentence_correction', sectionId: 'Verbal Ability', questionIds }],
     startedAt,
     deadlineAt: null,
     answers: {},

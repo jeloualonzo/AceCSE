@@ -3130,7 +3130,19 @@
       "sentence-correction",
       "collective-nouns",
       "subject-verb-agreement"
-    ]
+    ],
+    "taskFormat": "shared_grammar_sentence_correction",
+    "taskInstance": {
+      "kind": "grammar",
+      "payload": {
+        "taskDefinitionId": "grammar_sentence_correction_pilot",
+        "instanceFormat": "compact",
+        "itemNote": "Treat the collective noun panel as a single unit.",
+        "answerStructure": "sentence_selection",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "verb-0060",
@@ -3179,7 +3191,18 @@
       "grammar",
       "sentence-correction",
       "subordinate-clauses"
-    ]
+    ],
+    "taskFormat": "shared_grammar_sentence_correction",
+    "taskInstance": {
+      "kind": "grammar",
+      "payload": {
+        "taskDefinitionId": "grammar_sentence_correction_pilot",
+        "instanceFormat": "compact",
+        "answerStructure": "sentence_selection",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "verb-0061",
@@ -3228,7 +3251,19 @@
       "grammar",
       "sentence-correction",
       "redundancy"
-    ]
+    ],
+    "taskFormat": "shared_grammar_sentence_correction",
+    "taskInstance": {
+      "kind": "grammar",
+      "payload": {
+        "taskDefinitionId": "grammar_sentence_correction_pilot",
+        "instanceFormat": "compact",
+        "itemNote": "Apply the formal-edited-English convention: use 'the reason ... is that' rather than 'the reason ... is because'.",
+        "answerStructure": "sentence_selection",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "verb-0062",
@@ -3278,7 +3313,18 @@
       "sentence-correction",
       "parallel-structure",
       "correlative-conjunctions"
-    ]
+    ],
+    "taskFormat": "shared_grammar_sentence_correction",
+    "taskInstance": {
+      "kind": "grammar",
+      "payload": {
+        "taskDefinitionId": "grammar_sentence_correction_pilot",
+        "instanceFormat": "compact",
+        "answerStructure": "sentence_selection",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "verb-0063",
