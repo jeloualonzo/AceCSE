@@ -271,8 +271,8 @@
       ],
       "examples": [
         {
-          "input": "4, 9, 14, 19, ___",
-          "result": "24 — add 5 to each term."
+          "input": "4, 9, 14, 19, ___, 24",
+          "result": "add 5 to each term."
         }
       ],
       "provenance": "Training representation based on the current question bank and observed exam behavior; not official CSC wording or a reproduced official test form."

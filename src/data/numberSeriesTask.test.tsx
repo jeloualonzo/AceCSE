@@ -72,6 +72,11 @@ describe('Number Series task architecture', () => {
     expect(definition?.answerStructure).toBe('sequence_missing_term');
     expect(definition?.sequenceRepresentation).toBe('ordered_terms_with_null_marker');
     expect(definition?.missingPositionBase).toBe(1);
+    const examples = definition?.examples as Array<{ input?: string; result?: string }> | undefined;
+    const example = examples?.[0];
+    const exampleText = `Example: ${example?.input} — ${example?.result}`;
+    expect(exampleText).toBe('Example: 4, 9, 14, 19, ___, 24 — add 5 to each term.');
+    expect(exampleText).not.toBe('Example: 4, 9, 14, 19, ___ — 24 — add 5 to each term.');
     expect(JSON.stringify(definition)).not.toMatch(/AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|authored task|training rules/i);
   });
 
