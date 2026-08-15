@@ -6,6 +6,7 @@ import { PRACTICE_SIZES, SUBJECTS_BY_LEVEL } from '@/config/exam';
 import { subjectAvailability } from '@/lib/examEngine';
 import { QUESTION_MANIFEST } from '@/data/questionBank';
 import { getCanonicalPool } from '@/data/taxonomy';
+import { getVisiblePracticeItemSets } from '@/data/practiceCatalog';
 import { useAppContext } from '@/components/shell/AppLayout';
 import { ExamLevelSwitch } from '@/components/shell/ExamLevelSwitch';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
@@ -33,13 +34,7 @@ export const PracticePage: React.FC = () => {
 
   // Explicit item sets applicable to this level (sync, from the manifest).
   const itemSets = useMemo(
-    () =>
-      QUESTION_MANIFEST.groups.filter(
-        (g) =>
-          (g.examLevel === 'Both' || g.examLevel === examLevel) &&
-          SUBJECTS_BY_LEVEL[examLevel].includes(g.subject) &&
-          !g.id.startsWith('grp-filing-')
-      ),
+    () => getVisiblePracticeItemSets(QUESTION_MANIFEST.groups, examLevel, SUBJECTS_BY_LEVEL[examLevel]),
     [examLevel]
   );
 

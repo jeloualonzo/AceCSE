@@ -98,7 +98,11 @@ export interface GroupMeta {
   title: string;
   subject: Subject;
   examLevel: string;
+  topic?: string;
   questionType?: string;
+  selectionPolicy?: 'atomic' | 'splittable';
+  orderPolicy?: 'fixed' | 'shuffle-questions';
+  tags?: string[];
   size: number;
 }
 

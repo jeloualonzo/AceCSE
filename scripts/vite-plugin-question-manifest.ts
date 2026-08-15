@@ -46,7 +46,10 @@ function buildGroupsMeta(groupsDir: string): QuestionManifest['groups'] {
       meta.push({
         id: g.id, title: g.title ?? g.questionType ?? g.topic ?? g.id,
         subject: g.subject, examLevel: g.examLevel,
-        questionType: g.questionType, size: g.questionIds.length,
+        topic: g.topic, questionType: g.questionType,
+        selectionPolicy: g.selectionPolicy, orderPolicy: g.orderPolicy,
+        tags: Array.isArray(g.tags) ? g.tags : undefined,
+        size: g.questionIds.length,
       });
     }
   }

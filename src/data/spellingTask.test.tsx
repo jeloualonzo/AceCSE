@@ -60,6 +60,10 @@ describe('Spelling task architecture', () => {
       if (question.questionType === 'misspelled_word') expect(prompt).toBe('Choose the misspelled word.');
       else expect(prompt).toBe('Choose the correctly spelled word.');
     }
+    const repaired = catalog.getQuestion('cler-0014');
+    expect(repaired?.choices.map((choice) => choice.text)).toEqual(['embarass', 'embarras', 'embaras', 'embarrass', 'embarrased']);
+    expect(repaired?.correctOptionId).toBe('D');
+    expect(repaired?.explanation).toMatch(/Embarrass.*double.*r.*double.*s/i);
     expect(JSON.stringify(spelling)).not.toMatch(/AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|training rules|authored task/i);
   });
 

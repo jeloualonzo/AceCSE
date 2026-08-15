@@ -980,16 +980,16 @@
       },
       {
         "id": "E",
-        "text": "embarrasses"
+        "text": "embarrased"
       }
     ],
     "correctOptionId": "D",
-    "explanation": "'Embarrass' contains both a double 'r' and a double 's' — two sets of doubled consonants. The word derives from the French 'embarrasser' (to block, hinder), which already carried both doublings. In Philippine civil service exams, this word regularly appears as a distractor because test-takers often remember only one of the doublings. The pattern to remember: embar-R-a-SS — double R, double S. Options A, B, and D each omit at least one of these.",
+    "explanation": "'Embarrass' is the correctly spelled word: it has a double 'r' and a double 's'. The word derives from the French 'embarrasser', which also contains both doubled consonants. Options A ('embarass') has only one 'r', B ('embarras') has only one final 's', C ('embaras') omits both doublings, and E ('embarrased') incorrectly uses one 's' before '-ed'; the correct past-tense form is 'embarrassed' with double 's'.",
     "distractorExplanations": {
       "A": "'Embarass' doubles only the 's' but keeps only one 'r'. The double 'r' is required: emba-RR-ass.",
       "B": "'Embarras' doubles only the 'r' but keeps only one 's'. The double 's' at the end is equally required: embarr-ASS.",
       "C": "'Embaras' omits both doublings — single 'r' and single 's'. This is the most stripped-down and most incorrect variant.",
-      "E": "Pluralizing or conjugating the root misspelling \"embarras\" with an \"es\" suffix; the base form alone confirms the correct spelling must be \"embarrass\" with double-r and double-s before any suffix."
+      "E": "'Embarrased' has only one 's' before '-ed'. The correct past-tense form is 'embarrassed', retaining the double 's' from 'embarrass'."
     },
     "tip": {
       "label": "Spelling Pattern",
@@ -1013,7 +1013,7 @@
           "embarras",
           "embaras",
           "embarrass",
-          "embarrasses"
+          "embarrased"
         ],
         "itemPrompt": "Choose the correctly spelled word.",
         "answerStructure": "word_selection",
@@ -1272,7 +1272,7 @@
       }
     ],
     "correctOptionId": "E",
-    "explanation": "'Perseverance' is formed from the verb 'persevere' plus the suffix '-ance'. The verb root retains its 'e' before the consonant-starting suffix: persever + ance = perseverance. Two common errors appear in the distractors: (1) substituting '-ence' for '-ance' (Options B and D), and (2) inserting an extra 'r' in the middle to produce 'perserve-' (Options C and D). The correct form has one 'r', the root '-sever-', and the suffix '-ance'. Perseverance is spelled p-e-r-s-e-v-e-r-a-n-c-e.",
+    "explanation": "'Perseverance' is formed from 'persevere' plus '-ance' and is spelled with one 'r' in the root 'sever'. Option A ('perseverence') uses the wrong suffix vowel, changing '-ance' to '-ence'. Option B ('perserverance') inserts an extra 'r' after 'perse', while C ('perserverence') combines that extra 'r' with the wrong '-ence' ending. Option D ('persevrence') omits the second 'e' in 'persevere' and also uses '-ence'. Only Option E, 'perseverance', has the correct root and '-ance' ending.",
     "distractorExplanations": {
       "A": "'Perseverence' has the correct root ('persever-') but uses the wrong suffix: '-ence' instead of '-ance'. The correct suffix is '-ance'.",
       "B": "'Perserverance' inserts an extra 'r' ('perserve-' instead of 'perseve-'), corrupting the root. The verb is 'persevere', not 'perserve'.",
@@ -1344,7 +1344,7 @@
       }
     ],
     "correctOptionId": "E",
-    "explanation": "'Supercede' is misspelled. The correct spelling is 'supersede' — it is the only common English word in its meaning class that ends in '-sede' (from the Latin 'sedere', to sit). All other words that sound similar (precede, succeed, proceed, recede, accede) use '-cede' or '-ceed', because they derive from a different Latin root ('cedere', to go). 'Supercede' is a near-universal error created by applying the more common '-cede' pattern to a word that requires '-sede'. The other three options are correctly spelled.",
+    "explanation": "'Supercede' is misspelled; the correct form is 'supersede', which ends in '-sede'. The other four choices—'supersede', 'proceed', 'precede', and 'intercede'—are correctly spelled, although they use different Latin roots and endings. 'Supersede' comes from Latin 'sedere' ('to sit'), while 'proceed', 'precede', and 'intercede' use forms related to 'cedere' ('to go').",
     "distractorExplanations": {
       "A": "'Supersede' is correctly spelled — this is the correct form of the word that the question is checking. It ends in '-sede', not '-cede'.",
       "B": "'Proceed' is correctly spelled with '-ceed'. Among '-ceed' words, the mnemonic 'ExCEED, proCEED, sucCEED' (only three common words use '-ceed').",
@@ -3161,7 +3161,7 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "'Achieve' is the correctly spelled word. The classic 'i before e, except after c' rule helps here: 'achieve' follows the standard 'ie' pattern (no preceding 'c', so 'ie' is correct). Options A ('recieve'), B ('beleive'), and D ('freind') all violate the rule or the standard: 'receive' correctly has 'ei' after 'c'; 'believe' has 'ie' (correct) but Option B misspells it as 'beleive' — swapping 'i' and 'e' inside the cluster; 'friend' correctly has 'ie' but Option D writes 'freind', transposing the letters. Of the four options, only 'achieve' is correctly spelled.",
+    "explanation": "'Achieve' is the only correctly spelled word among the five choices. Options A ('recieve'), B ('beleive'), D ('freind'), and E ('acheive') transpose the letters in the 'ie/ei' sequence. 'Receive' correctly uses 'ei' after 'c', while 'believe', 'friend', and 'achieve' use 'ie'.",
     "distractorExplanations": {
       "A": "'Recieve' misspells 'receive'. The rule is 'i before e EXCEPT after c' — since there is a 'c' before the vowel cluster, the correct order is 'ei': rec-EI-ve.",
       "B": "'Beleive' misspells 'believe'. 'Believe' follows the normal 'ie' pattern — but Option B swaps the letters to 'ei' within 'lieve', producing 'leive'. The correct spelling is bel-IE-ve.",
