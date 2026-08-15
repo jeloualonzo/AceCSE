@@ -3089,7 +3089,7 @@
     "topic": "Grammar & Usage",
     "subtopic": "Sentence Correction",
     "difficulty": "Medium",
-    "question": "Which of the following is the correctly written sentence?",
+    "question": "Which of the following correctly applies formal American-English agreement when the collective noun “panel” is treated as a single unit?",
     "choices": [
       {
         "id": "A",
@@ -3113,12 +3113,12 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "Two rules must be applied together here. First, 'panel' is a collective noun functioning as a single entity announcing one unified decision. In American English, a collective noun acting as one unit takes a singular verb—'has' (not 'have'). This eliminates choices A and D. Second, the pronoun referring to 'the panel' (singular collective noun) must also be singular: 'its,' not 'their.' 'Their' is plural and would be used only if the panel members were acting individually. Choice C correctly applies both rules: singular verb 'has' and singular pronoun 'its.'",
+    "explanation": "The stem specifies formal American-English agreement and treats the collective noun “panel” as one unit. Under that stated convention, choice C is the only sentence that keeps both the verb and the pronoun singular: “has announced its decision.” Choice A uses the plural verb “have” and plural “their”; choice B mixes singular “has” with plural “their”; and choice D uses plural “have” with singular “its.” Choice E also uses singular “has” with plural “their” and explicitly describes individual verdicts, which conflicts with the required single-unit reading. Plural collective agreement or a plural pronoun can occur when members are foregrounded in other contexts, but that is not the convention this item asks the examinee to apply.",
     "distractorExplanations": {
       "A": "'Have announced their' uses a plural verb and plural pronoun; both disagree with 'panel,' which functions as a singular collective noun in this sentence.",
       "B": "'Has announced their' correctly uses the singular verb 'has' but then switches to the plural pronoun 'their.' Both the verb and pronoun must be singular for consistency.",
       "D": "'Have announced its' uses a plural verb 'have' but then correctly uses singular 'its.' Both must be singular—'has announced its' is the only fully correct combination.",
-      "E": "Adding 'individual' to justify 'their' attempts to sidestep the rule by treating panel members as acting separately, but in the absence of such a modifier the standard is singular agreement; this option tests whether examinees understand why 'their' is wrong in the original question."
+      "E": "Under the stated formal American-English single-unit convention, the modifier “individual” does not change the required agreement: the item asks the reader to treat the panel as one unit, so “has announced its decision” is the only accepted pattern."
     },
     "tip": {
       "label": "Grammar Rule",
@@ -3143,11 +3143,11 @@
     "choices": [
       {
         "id": "A",
-        "text": "Being that she was late, her application was disqualified."
+        "text": "Being she was late, her application was disqualified."
       },
       {
         "id": "B",
-        "text": "Due to the fact that she was late, her application was disqualified."
+        "text": "Due to she was late, her application was disqualified."
       },
       {
         "id": "C",
@@ -3159,16 +3159,16 @@
       },
       {
         "id": "E",
-        "text": "Since she arrived late, her application was disqualified."
+        "text": "Since of her late arrival, her application was disqualified."
       }
     ],
     "correctOptionId": "C",
-    "explanation": "This question tests the correct way to introduce a causal relationship. Choice C uses 'because,' a subordinating conjunction that correctly introduces a clause (with its own subject and verb: 'she arrived late'). It is the concise, standard, and grammatically correct way to express cause. Choice A uses 'being that,' which is considered non-standard and informal—not acceptable in formal written English. Choice B uses 'due to the fact that,' which is wordy and should be replaced by the shorter 'because' whenever possible; it is technically acceptable but stylistically poor. Choice D uses 'on account of' followed by a clause, which is non-standard; 'on account of' is a preposition and must be followed by a noun phrase, not a clause with subject and verb.",
+    "explanation": "Choice C is the only grammatically correct causal construction in the repaired set: “because” is a subordinating conjunction followed by the complete clause “she arrived late.” Choice A is missing the required complement after “being”; “being that” cannot be used here as a complete formal causal construction. Choice B incorrectly places the finite clause directly after the preposition “due to the fact” without the required “that.” Choice D incorrectly follows the preposition “on account of” with a finite clause instead of a noun phrase or gerund phrase. Choice E incorrectly combines “since” with “of”; a causal “since” clause must be followed directly by a subject and verb, not by “of.”",
     "distractorExplanations": {
-      "A": "'Being that' is a non-standard, informal substitute for 'because' or 'since.' It is not accepted in formal or government writing—avoid it entirely.",
-      "B": "'Due to the fact that' is a wordy phrase that should always be replaced by 'because.' While not technically wrong, it is stylistically poor and a recognized wordiness error in editing.",
+      "A": "“Being” cannot be followed directly by the finite clause “she was late.” A valid alternative would be “Because she was late” or “Being late,” but the sentence as written is defective.",
+      "B": "“Due to” is a preposition and cannot be followed directly by the finite clause “she was late.” A valid construction would be “Due to her late arrival,” not the wording shown here.",
       "D": "'On account of she was late' incorrectly follows the preposition 'on account of' with a clause. A preposition must be followed by a noun or gerund phrase: 'on account of her late arrival' would be correct.",
-      "E": "'Since' can express a causal relationship and is grammatically correct here, making it a near-duplicate of option C in meaning; however, 'since' also carries a temporal meaning (from a point in time), creating potential ambiguity — 'because' is preferred in formal writing when causation is the only intended meaning."
+      "E": "“Since” can introduce a causal clause, but “since of her late arrival” is not a valid construction. The preposition “of” cannot follow the conjunction in this option."
     },
     "tip": {
       "label": "Common Mistake",
@@ -3188,7 +3188,7 @@
     "topic": "Grammar & Usage",
     "subtopic": "Sentence Correction",
     "difficulty": "Hard",
-    "question": "Which of the following is the correctly written sentence?",
+    "question": "Which of the following sentences follows formal edited English and avoids the redundancy of using “because” after “the reason ... is”?",
     "choices": [
       {
         "id": "A",
@@ -3212,12 +3212,12 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "The construction 'The reason is because' is a classic grammatical redundancy error. 'Because' already contains the meaning of 'for the reason that'—so saying 'the reason is because' literally means 'the reason is for the reason that,' which is circular and redundant. The correct construction is 'The reason is that + clause.' Choice B uses 'the reason...is that,' which is grammatically clean and non-redundant. Choice A repeats the 'reason...because' error. Choice C compounds the error with 'reason why...because' (double redundancy: 'why' already implies reason, and 'because' also implies reason). Choice D is syntactically awkward and illogically ordered.",
+    "explanation": "The stem specifies formal edited English and asks for the construction that avoids the redundancy of placing “because” after “the reason ... is.” Choice B is the only option that uses the formal pattern “the reason ... is that.” Choices A and E use the common but formally discouraged “the reason ... is because” construction; choice C compounds that construction with “reason why”; and choice D is syntactically ill-formed. The correction is a formal-editing convention, not a claim that every contemporary use of “reason ... is because” is unintelligible or never encountered.",
     "distractorExplanations": {
-      "A": "'The reason...is because' is a recognized grammatical redundancy. 'Because' means 'for the reason that,' so the construction repeats the word 'reason' twice in different forms.",
+      "A": "Under the formal-edited-English criterion stated by the item, “the reason ... is because” is not selected because formal usage avoids the redundant construction; the sentence is common in contemporary speech but is not the target convention here.",
       "C": "'The reason why...is because' compounds two redundancy errors: 'reason why' is also slightly redundant (reason already implies why), and adding 'because' triples the redundancy.",
       "D": "This construction reverses the natural sentence order and separates the subject ('the reason') from the main clause in a confusing, ungrammatical way.",
-      "E": "'The reason for... is because' still commits the reason-because redundancy even when 'why' is dropped; inserting 'for' before the noun phrase does not resolve the logical circularity of having 'reason' followed by 'because' (which means 'for the reason that')."
+      "E": "Under the formal-edited-English criterion stated by the item, “the reason ... is because” is not selected because formal usage avoids the redundant construction; changing “for the memorandum’s delay” does not remove that issue."
     },
     "tip": {
       "label": "Common Mistake",
@@ -3257,16 +3257,16 @@
       },
       {
         "id": "E",
-        "text": "The commission not only reviewed the budget, but scrutinized the disbursements also."
+        "text": "The commission not only reviewed the budget but also scrutinizing the disbursements."
       }
     ],
     "correctOptionId": "B",
-    "explanation": "The correlative conjunction 'not only...but also' requires parallel structure—the elements it connects must be the same grammatical form. In choice B, 'not only' precedes 'reviewed' and 'but also' precedes 'scrutinized': both are past-tense verbs in the same position (predicate verbs), making the construction perfectly parallel. In choice A, 'but also it scrutinized' breaks parallelism by inserting the pronoun 'it' before the second verb, making the second element a full independent clause while the first is just a verb phrase. In choice C, the placement of 'not only' before 'the budget' incorrectly brackets only the object, not the verb, creating faulty parallelism. Choice D inverts word order awkwardly and uses a singular verb 'was' for 'disbursements' (plural).",
+    "explanation": "Choice B is the only option that follows the strict parallelism convention stated by the item: “not only reviewed” is paired with “but also scrutinized,” so both coordinated elements are parallel past-tense verb phrases. Choice A mixes a verb phrase with a new subject-and-verb clause after “but also.” Choice C pairs an object phrase with a verb phrase. Choice D has faulty inversion and uses singular “was” with plural “disbursements.” Choice E has been repaired so that “scrutinizing” does not parallel the past-tense verb “reviewed”; the former recognized “but ... also” variant is therefore no longer present as a competing answer.",
     "distractorExplanations": {
       "A": "Inserting 'it' after 'but also' creates an asymmetry: 'not only [reviewed]' (verb) vs. 'but also it scrutinized' (subject + verb). The two elements must be grammatically identical.",
       "C": "Placing 'not only' before 'the budget' makes it bracket only the object, not the verb. The second element 'scrutinized the disbursements' then becomes a verb phrase—mismatched with an object phrase.",
       "D": "The inverted word order ('not only the commission reviewed') is non-standard and confusing, and 'the disbursements was scrutinized' contains a subject-verb disagreement ('disbursements' is plural, requiring 'were').",
-      "E": "Moving 'also' to the end and dropping it from 'but also' produces an informal construction that disrupts the fixed correlative pair; formal usage requires 'not only...but also' as a unit, with 'also' immediately following 'but,' not placed elsewhere in the clause."
+      "E": "“Scrutinizing” is a participle and does not parallel the past-tense verb “reviewed.” The second coordinated element must use the past-tense verb “scrutinized,” as in choice B."
     },
     "tip": {
       "label": "Grammar Rule",
