@@ -109,20 +109,26 @@ describe('Number Series task architecture', () => {
     }
   });
 
-  it('renders first, middle, and final missing positions in authored order with commas and underscores', () => {
+  it('renders exact comma spacing and first, middle, and final blanks without decorative underlines', () => {
     for (const [sequence, missingPosition] of [
-      [[null, '2', '4'], 1],
-      [['12', null, '48', '96'], 2],
-      [['12', '24', '48', null], 4],
+      [[null, '2', '3'], 1],
+      [['1', '2', null, '4', '5'], 3],
+      [['1', '2', '3', '4', '5', null], 6],
     ] as const) {
       const question = makeQuestion([...sequence]);
       const { container } = render(<NumberSeriesInstanceRenderer question={question} />);
       const series = container.querySelector('[aria-label="Number series"]');
+      const blank = container.querySelector(`[data-sequence-position="${missingPosition}"]`);
       const expectedText = sequence.map((term) => term === null ? '___' : term).join(', ');
-      expect(series).toHaveTextContent(expectedText);
+      expect(series?.textContent).toBe(expectedText);
+      expect(series?.textContent).not.toBe(expectedText.replaceAll(', ', ' , '));
       expect(series?.textContent).not.toContain('?');
       expect(series?.textContent).not.toContain('·');
-      expect(container.querySelector(`[data-sequence-position="${missingPosition}"]`)).toHaveTextContent('___');
+      expect(blank).toHaveTextContent('___');
+      expect(blank?.className).not.toMatch(/border|underline|decoration/i);
+      expect(blank?.getAttribute('style') ?? '').not.toMatch(/border|underline|text-decoration/i);
+      expect(blank?.childElementCount).toBe(0);
+      expect(blank?.parentElement?.querySelectorAll('[data-sequence-position]').length).toBe(sequence.length);
       expect(container.querySelectorAll('[data-sequence-position]')).toHaveLength(sequence.length);
       cleanup();
     }

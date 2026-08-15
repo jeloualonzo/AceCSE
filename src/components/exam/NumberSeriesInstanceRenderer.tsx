@@ -25,15 +25,14 @@ export const NumberSeriesInstanceRenderer: React.FC<{ question: Question }> = ({
   return (
     <div className="mb-6">
       <div
-        className="flex flex-wrap items-center gap-x-3 gap-y-2 text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100 font-mono"
+        className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100 font-mono whitespace-pre-wrap"
         aria-label="Number series"
       >
         {payload.sequence.map((term, index) => (
           <React.Fragment key={`${question.id}-${index}`}>
-            {index > 0 && <span aria-hidden="true">, </span>}
+            {index > 0 && ', '}
             <span
               data-sequence-position={index + 1}
-              className={term === null ? 'inline-flex min-w-[3.25rem] justify-center border-b-2 border-slate-500 dark:border-slate-400' : undefined}
               aria-label={term === null ? `Missing term at position ${index + 1}` : undefined}
             >
               {term === null ? '___' : String(term)}
