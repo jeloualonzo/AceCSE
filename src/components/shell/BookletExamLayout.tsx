@@ -42,8 +42,8 @@ export interface BookletExamLayoutProps {
  * section is mounted and scrolled; the navigator drawer shows every
  * subject's grid so the user can jump straight to any question anywhere.
  *
- * Practice mode does not use this component — it keeps the original
- * `ExamFocusLayout` + `QuestionCard` single-question flow unchanged.
+ * Practice and Simulation both use this component. The session mode is
+ * passed to scored item renderers so only Practice exposes explanations.
  */
 export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   examLevel,
@@ -248,6 +248,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   const localIdx = currentQuestionId ? localOrder.indexOf(currentQuestionId) : -1;
   const isPrevDisabled = isFirstSection && localIdx <= 0;
   const isNextDisabled = isLastSection && (localIdx === -1 || localIdx >= localOrder.length - 1);
+  const isPractice = session.config.mode === 'practice';
+  const isPracticeLast = isPractice && isNextDisabled;
 
   const currentDisplayNumber =
     (currentQuestionId ? displayNumbers.get(currentQuestionId) : undefined) ??
@@ -288,6 +290,18 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     >
       <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
       <span>Submit</span>
+    </button>
+  );
+
+  const nextButton = (displayClasses: string) => (
+    <button
+      onClick={goNext}
+      disabled={isNextDisabled}
+      className={`${displayClasses} items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
+      aria-label="Next question"
+    >
+      <span>Next</span>
+      <ArrowRight className="w-4 h-4" aria-hidden="true" />
     </button>
   );
 
@@ -333,16 +347,12 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               <ArrowLeft className="w-4 h-4" aria-hidden="true" />
               <span>Previous</span>
             </button>
-            <button
-              onClick={goNext}
-              disabled={isNextDisabled}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-              aria-label="Next question"
-            >
-              <span>Next</span>
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </button>
-            {submitButton('hidden sm:inline-flex')}
+            {isPractice
+              ? (isPracticeLast ? submitButton('hidden sm:inline-flex') : nextButton('hidden sm:inline-flex'))
+              : <>
+                  {nextButton('hidden sm:inline-flex')}
+                  {submitButton('hidden sm:inline-flex')}
+                </>}
           </div>
         </div>
 
@@ -534,14 +544,15 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 answers={session.answers}
                 onSelectOption={onSelectOption}
                 edq={edq}
+                practiceMode={session.config.mode === 'practice'}
               />
             )}
           </div>
         </main>
       </div>
 
-      {/* Mobile-only footer — same structure/position as Practice's:
-          Previous, Submit (always, unlike Practice's conditional Submit/Next), Next. */}
+      {/* Mobile-only footer — shared across modes. Practice shows Next until
+          the last item and then Submit; Simulation keeps Submit and Next. */}
       <footer className="sm:hidden min-h-[64px] bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center justify-between shrink-0">
         <button
           onClick={goPrev}
@@ -552,16 +563,22 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
           <ArrowLeft className="w-4 h-4" aria-hidden="true" />
           <span>Prev</span>
         </button>
-        {submitButton('inline-flex')}
-        <button
-          onClick={goNext}
-          disabled={isNextDisabled}
-          className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-          aria-label="Next question"
-        >
-          <span>Next</span>
-          <ArrowRight className="w-4 h-4" aria-hidden="true" />
-        </button>
+        {onRestart && (
+          <button
+            onClick={onRestart}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[44px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            aria-label="Restart"
+          >
+            <RotateCcw className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+            <span>Restart</span>
+          </button>
+        )}
+        {isPractice
+          ? (isPracticeLast ? submitButton('inline-flex') : nextButton('inline-flex'))
+          : <>
+              {submitButton('inline-flex')}
+              {nextButton('inline-flex')}
+            </>}
       </footer>
     </div>
   );

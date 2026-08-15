@@ -15,6 +15,8 @@ export interface GroupRendererProps {
   questionNumbers: ReadonlyMap<string, number>;
   answers: Readonly<Record<string, OptionId>>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
+  /** Practice-only local explanation controls for each scored item. */
+  practiceMode?: boolean;
 }
 
 /**
@@ -36,6 +38,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
   questionNumbers,
   answers,
   onSelectOption,
+  practiceMode = false,
 }) {
   const taskContext = sharedContext ?? group;
   const hasSharedContent = Boolean(
@@ -80,6 +83,8 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
               selectedOptionId={answers[id] ?? null}
               onSelectOption={onSelectOption}
               suppressPassage={Boolean(group?.contentBlocks && group.contentBlocks.length > 0)}
+              itemContainer={questionIds.length > 1 || Boolean(sharedContext || group?.contentBlocks?.length)}
+              practiceMode={practiceMode}
             />
           );
         })}

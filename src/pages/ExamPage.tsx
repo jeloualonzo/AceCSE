@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 import type { Attempt, ExamSession, OptionId, Question, Subject } from '@/types';
@@ -16,7 +16,6 @@ import {
 import { gradeSession } from '@/lib/grading';
 import { loadContentCatalog } from '@/data/questionBank';
 import { getEdqItem } from '@/data/edq';
-import { getSharedTaskDefinition } from '@/data/taxonomy';
 import type { NormalizedContentCatalog } from '@/data/contentCatalog';
 import {
   clearActiveSession,
@@ -29,9 +28,7 @@ import { useCountdown } from '@/hooks/useCountdown';
 import { formatHMS } from '@/lib/time';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { FullScreenLoader } from '@/components/FullScreenLoader';
-import { ExamFocusLayout } from '@/components/shell/ExamFocusLayout';
 import { BookletExamLayout } from '@/components/shell/BookletExamLayout';
-import { QuestionCard } from '@/components/exam/QuestionCard';
 import { PreExamScreen } from '@/components/exam/PreExamScreen';
 import { ResultsScreen } from '@/components/exam/ResultsScreen';
 
@@ -117,11 +114,6 @@ function distributionOf(
   return distribution;
 }
 
-function firstUnansweredIndex(session: ExamSession): number {
-  const first = session.questionIds.findIndex((id) => !session.answers[id]);
-  return first === -1 ? session.questionIds.length - 1 : first;
-}
-
 export const ExamPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -130,7 +122,6 @@ export const ExamPage: React.FC = () => {
   const [stage, setStage] = useState<Stage | null>(null);
   const [questionIndex, setQuestionIndex] = useState<QuestionIndex | null>(null);
   const [catalog, setCatalog] = useState<NormalizedContentCatalog | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [saveError, setSaveError] = useState(false);
   /** Session id already graded — prevents double submission (modal + timer). */
@@ -173,7 +164,6 @@ export const ExamPage: React.FC = () => {
       setQuestionIndex(index);
       if (entry === 'active') {
         saveActiveSession(session);
-        setCurrentIndex(firstUnansweredIndex(session));
       }
       setStage(entry === 'pre' ? { name: 'pre', session } : { name: 'active', session });
     } catch {
@@ -278,17 +268,6 @@ export const ExamPage: React.FC = () => {
     });
   }, []);
 
-  const currentQuestionId = session?.questionIds[currentIndex];
-  const currentQuestion = currentQuestionId ? questionIndex?.get(currentQuestionId) : undefined;
-
-  const answersByNumber = useMemo(() => {
-    const map: Record<number, string> = {};
-    session?.questionIds.forEach((id, index) => {
-      if (session.answers[id]) map[index + 1] = session.answers[id];
-    });
-    return map;
-  }, [session]);
-
   const startSimulation = useCallback(() => {
     if (stage?.name !== 'pre') return;
     // Reset the clock to the actual start moment.
@@ -301,25 +280,14 @@ export const ExamPage: React.FC = () => {
     };
     saveActiveSession(started);
     setStage({ name: 'active', session: started });
-    setCurrentIndex(0);
   }, [stage]);
-
-  const handleSelectOption = useCallback(
-    (optionId: OptionId) => {
-      if (!currentQuestionId) return;
-      updateSession((prev) => ({
-        ...prev,
-        answers: { ...prev.answers, [currentQuestionId]: optionId },
-      }));
-    },
-    [currentQuestionId, updateSession]
-  );
 
   /**
    * Booklet mode: every question is mounted at once, so the answer handler
-   * takes the question id explicitly rather than relying on `currentIndex`.
+   * takes the question id explicitly so every mounted booklet item updates
+   * the session answer map by its stable question id.
    * Still funnels through the same `updateSession` → `saveActiveSession`
-   * path as practice's single-question flow.
+   * path used by every session mode.
    */
   const handleSelectOptionFor = useCallback(
     (questionId: string, optionId: OptionId) => {
@@ -335,80 +303,6 @@ export const ExamPage: React.FC = () => {
     (groupId: string) => catalog?.getGroup(groupId),
     [catalog]
   );
-
-  /**
-   * Practice grouped-content compatibility: map each question to its
-   * EXPLICIT group (never implicit singletons) so Practice can show shared
-   * directions/examples once above a group member. Production legacy
-   * questions are all singletons, so this is empty until grouped content
-   * ships — zero behavior change for them.
-   */
-  const explicitGroupByQuestion = useMemo(() => {
-    const map = new Map<string, { title?: string; directions?: string; example?: string }>();
-    if (!catalog) return map;
-    const filingTask = getSharedTaskDefinition('filing_default');
-    const spellingTask = getSharedTaskDefinition('spelling_default');
-    const numberSeriesTask = getSharedTaskDefinition('number_series_default');
-    const grammarPilotTask = getSharedTaskDefinition('grammar_sentence_correction_pilot');
-    for (const group of catalog.groups.values()) {
-      if (group.isImplicitSingleton) continue;
-      if (!group.directions && !group.example && !group.title) continue;
-      for (const qid of group.questionIds) {
-        const classification = catalog.getClassification(qid);
-        if (classification?.taskFormat === 'shared_filing_task' && filingTask) {
-          const firstExample = Array.isArray(filingTask.examples) && filingTask.examples[0] && typeof filingTask.examples[0] === 'object'
-            ? filingTask.examples[0] as { input?: string; result?: string }
-            : undefined;
-          map.set(qid, {
-            title: typeof filingTask.title === 'string' ? filingTask.title : 'Filing and Alphabetizing',
-            directions: typeof filingTask.directions === 'string' ? filingTask.directions : group.directions,
-            example: firstExample?.input && firstExample.result ? `Example: ${firstExample.input} — ${firstExample.result}` : group.example,
-          });
-        } else {
-          map.set(qid, { title: group.title ?? group.questionType, directions: group.directions, example: group.example });
-        }
-      }
-    }
-    if (spellingTask) {
-      const firstExample = Array.isArray(spellingTask.examples) && spellingTask.examples[0] && typeof spellingTask.examples[0] === 'object'
-        ? spellingTask.examples[0] as { input?: string; result?: string }
-        : undefined;
-      for (const question of catalog.getQuestionsForSubject('Clerical Ability')) {
-        const classification = catalog.getClassification(question.id);
-        if (classification?.taskFormat !== 'shared_spelling_task') continue;
-        map.set(question.id, {
-          title: typeof spellingTask.title === 'string' ? spellingTask.title : 'Spelling',
-          directions: typeof spellingTask.directions === 'string' ? spellingTask.directions : undefined,
-          example: firstExample?.input && firstExample.result ? `Example: ${firstExample.input} — ${firstExample.result}` : undefined,
-        });
-      }
-    }
-    if (numberSeriesTask) {
-      const firstExample = Array.isArray(numberSeriesTask.examples) && numberSeriesTask.examples[0] && typeof numberSeriesTask.examples[0] === 'object'
-        ? numberSeriesTask.examples[0] as { input?: string; result?: string }
-        : undefined;
-      for (const question of catalog.getQuestionsForSubject('Numerical Reasoning')) {
-        const classification = catalog.getClassification(question.id);
-        if (classification?.taskFormat !== 'number_sequence') continue;
-        map.set(question.id, {
-          title: typeof numberSeriesTask.title === 'string' ? numberSeriesTask.title : 'Number Series',
-          directions: typeof numberSeriesTask.directions === 'string' ? numberSeriesTask.directions : undefined,
-          example: firstExample?.input && firstExample.result ? `Example: ${firstExample.input} — ${firstExample.result}` : undefined,
-        });
-      }
-    }
-    if (grammarPilotTask) {
-      for (const question of catalog.getQuestionsForSubject('Verbal Ability')) {
-        const classification = catalog.getClassification(question.id);
-        if (classification?.taskFormat !== 'shared_grammar_sentence_correction') continue;
-        map.set(question.id, {
-          title: typeof grammarPilotTask.title === 'string' ? grammarPilotTask.title : 'Grammar & Usage — Sentence Correction',
-          directions: typeof grammarPilotTask.directions === 'string' ? grammarPilotTask.directions : undefined,
-        });
-      }
-    }
-    return map;
-  }, [catalog]);
 
   /**
    * EDQ responses are OPTIONAL practice input. They persist only inside the
@@ -436,7 +330,6 @@ export const ExamPage: React.FC = () => {
 
   const handleRetake = useCallback(
     (launch: ExamLaunchRequest) => {
-      setCurrentIndex(0);
       void launchNew(launch);
     },
     [launchNew]
@@ -475,7 +368,6 @@ export const ExamPage: React.FC = () => {
     const resumeSaved = () => void activateSession(stage.saved, 'active');
     const discardAndStart = () => {
       clearActiveSession();
-      setCurrentIndex(0);
       void launchNew(stage.request);
     };
     const savedMode = stage.saved.config.mode === 'simulation' ? 'simulation' : 'practice session';
@@ -563,62 +455,28 @@ export const ExamPage: React.FC = () => {
 
   return (
     <>
-      {isPractice ? (
-        // Practice keeps its original single-question flow, unchanged.
-        <ExamFocusLayout
-          examLevel={activeSession.config.examLevel}
-          timeRemainingFormatted={
-            secondsRemaining !== null ? formatHMS(secondsRemaining) : 'Untimed'
-          }
-          onExitExam={handleExit}
-          onSubmitExam={() => setIsSubmitModalOpen(true)}
-          currentQuestionNumber={currentIndex + 1}
-          totalQuestions={totalQuestions}
-          userAnswers={answersByNumber}
-          exitLabel="Exit Practice"
-          onRestart={() => handleRetake(launchFromSession(activeSession))}
-          onSelectQuestionNumber={(num) => setCurrentIndex(num - 1)}
-          onPrevQuestion={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
-          onNextQuestion={() => setCurrentIndex((prev) => Math.min(totalQuestions - 1, prev + 1))}
-        >
-          {currentQuestion ? (
-            <QuestionCard
-              question={currentQuestion}
-              questionNumber={currentIndex + 1}
-              groupContext={explicitGroupByQuestion.get(currentQuestion.id)}
-              plainFlow={currentQuestion.taskFormat === 'shared_grammar_sentence_correction'}
-              selectedOptionId={activeSession.answers[currentQuestion.id] ?? null}
-              onSelectOption={handleSelectOption}
-              instantFeedback
-            />
-          ) : (
-            <div className="text-center text-slate-400 text-sm">Question unavailable.</div>
-          )}
-        </ExamFocusLayout>
-      ) : (
-        // Simulation: continuous booklet. Renders every section/group/question
-        // from session.items (or a flat fallback for a legacy saved session).
-        <BookletExamLayout
-          key={activeSession.id}
-          examLevel={activeSession.config.examLevel}
-          timeRemainingFormatted={
-            secondsRemaining !== null ? formatHMS(secondsRemaining) : 'Untimed'
-          }
-          onExitExam={handleExit}
-          onSubmitExam={() => setIsSubmitModalOpen(true)}
-          session={activeSession}
-          getGroup={getGroup}
-          questionIndex={questionIndex ?? new Map()}
-          onSelectOption={handleSelectOptionFor}
-          edq={{
-            getItem: getEdqItem,
-            answers: activeSession.edqAnswers ?? {},
-            responseMode: activeSession.edqResponseMode ?? false,
-            onSelect: handleSelectEdq,
-            onToggleResponseMode: handleToggleEdqMode,
-          }}
-        />
-      )}
+      <BookletExamLayout
+        key={activeSession.id}
+        examLevel={activeSession.config.examLevel}
+        timeRemainingFormatted={
+          secondsRemaining !== null ? formatHMS(secondsRemaining) : 'Untimed'
+        }
+        onExitExam={handleExit}
+        onSubmitExam={() => setIsSubmitModalOpen(true)}
+        onRestart={isPractice ? () => handleRetake(launchFromSession(activeSession)) : undefined}
+        exitLabel={isPractice ? 'Exit Practice' : 'Exit Exam'}
+        session={activeSession}
+        getGroup={getGroup}
+        questionIndex={questionIndex ?? new Map()}
+        onSelectOption={handleSelectOptionFor}
+        edq={isPractice ? undefined : {
+          getItem: getEdqItem,
+          answers: activeSession.edqAnswers ?? {},
+          responseMode: activeSession.edqResponseMode ?? false,
+          onSelect: handleSelectEdq,
+          onToggleResponseMode: handleToggleEdqMode,
+        }}
+      />
 
       {isSubmitModalOpen && (
         <div

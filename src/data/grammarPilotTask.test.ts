@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { createElement } from 'react';
 import '@testing-library/jest-dom/vitest';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -9,6 +9,8 @@ import { getCanonicalPool, getSharedTaskDefinition } from '@/data/taxonomy';
 import { buildGrammarPilotPracticeSession, buildSimulationSession } from '@/lib/examEngine';
 import { GroupRenderer } from '@/components/exam/booklet/GroupRenderer';
 import { QuestionRenderer } from '@/components/exam/booklet/QuestionRenderer';
+import { SectionRenderer } from '@/components/exam/booklet/SectionRenderer';
+import { normalizeIntendedNewlines } from '@/lib/text';
 
 const pilotIds = ['verb-0059', 'verb-0060', 'verb-0061', 'verb-0062'] as const;
 const subjects = ['Verbal Ability'] as const;
@@ -213,6 +215,71 @@ describe('Grammar pilot compact task architecture', () => {
       }
       cleanup();
     }
+  });
+
+  it('uses neutral item containers, keeps explanations local in Practice, and hides them in Simulation', async () => {
+    const catalog = await loadContentCatalog(subjects);
+    const questionIndex = new Map(pilotIds.map((id) => [id, catalog.getQuestion(id)!]));
+    const questionNumbers = new Map(pilotIds.map((id, index) => [id, index + 1]));
+    const renderTask = (practiceMode: boolean, answers: Record<string, 'A' | 'B' | 'C' | 'D' | 'E'> = {}) => render(createElement(GroupRenderer, {
+      group: undefined,
+      sharedContext: { title: 'Grammar & Usage — Sentence Correction', directions: sharedDirections },
+      plainFlow: true,
+      questionIds: [...pilotIds],
+      questionIndex,
+      questionNumbers,
+      answers,
+      practiceMode,
+      onSelectOption: () => undefined,
+    }));
+
+    const practice = renderTask(true, { 'verb-0059': 'C' });
+    expect(practice.container.querySelectorAll('section[data-question-id]')).toHaveLength(4);
+    expect([...practice.container.querySelectorAll('section[data-question-id]')].every((item) => item.className.includes('rounded-xl'))).toBe(true);
+    expect([...practice.container.querySelectorAll('section[data-question-id]')].some((item) => item.className.includes('bg-emerald'))).toBe(false);
+    expect(screen.getAllByText(sharedDirections)).toHaveLength(1);
+    expect(screen.getAllByRole('button', { name: 'Show Explanation' })).toHaveLength(1);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Show Explanation' }));
+    expect(practice.container.querySelector('#question-verb-0059')?.textContent).toMatch(/formal American-English.*one unit/i);
+
+    practice.unmount();
+    const simulation = renderTask(false, { 'verb-0059': 'C' });
+    expect(simulation.container.querySelectorAll('section[data-question-id]')).toHaveLength(4);
+    expect(screen.queryByRole('button', { name: 'Show Explanation' })).not.toBeInTheDocument();
+  });
+
+  it('decodes only declared shared-example escapes and preserves ordinary literal backslashes', () => {
+    const literal = String.raw`A. first\nB. second`;
+    expect(normalizeIntendedNewlines(literal)).toBe(literal);
+    expect(normalizeIntendedNewlines(literal, 'decode-escaped-newlines')).toBe('A. first\nB. second');
+    expect(normalizeIntendedNewlines(String.raw`regex \d+`, 'decode-escaped-newlines')).toBe(String.raw`regex \d+`);
+  });
+
+  it('renders the canonical Spelling shared example with real line breaks and no literal escape artifact', async () => {
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+    const spellingIds = (getCanonicalPool('clerical-spelling')?.entries ?? []).slice(0, 2).map((entry) => entry.questionId);
+    const section = {
+      sectionId: 'Clerical Ability',
+      nodes: [{
+        kind: 'pool' as const,
+        poolId: 'clerical-spelling',
+        questionType: 'spelling',
+        taskFormat: 'shared_spelling_task',
+        questionIds: spellingIds,
+      }],
+    };
+    const { container } = render(createElement(SectionRenderer, {
+      section,
+      getGroup: catalog.getGroup,
+      questionIndex: catalog.questions,
+      questionNumbers: new Map(spellingIds.map((id, index) => [id, index + 1])),
+      answers: {},
+      onSelectOption: () => undefined,
+    }));
+    const text = container.textContent ?? '';
+    expect(text).toContain('A. receive\nB. separate');
+    expect(text).not.toContain('A. receive\\nB. separate');
   });
 
   it('keeps pilot blocks contiguous in seeded simulations and leaves all other Grammar items legacy', async () => {

@@ -5,10 +5,9 @@ import type { ExamSession, SessionItem } from '@/types';
  * session without mutating or re-deriving grouping from question subjects.
  *
  * Structural source of truth: `session.items` when present. Sessions saved
- * before grouped rendering existed, and practice sessions (which never
- * populate `items`), fall back to one flat, unsectioned run of
- * `questionIds` — this is what keeps old localStorage sessions resumable
- * and keeps practice's existing one-question flow unaffected.
+ * before grouped rendering existed fall back to one flat, unsectioned run of
+ * `questionIds`; this keeps old localStorage sessions resumable while all new
+ * Practice and Simulation sessions use the shared booklet structure.
  */
 
 export type BookletNode =

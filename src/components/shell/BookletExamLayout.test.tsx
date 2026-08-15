@@ -186,6 +186,57 @@ describe('BookletExamLayout — booklet renders one subject at a time', () => {
   });
 });
 
+describe('BookletExamLayout — Practice uses the same booklet renderer', () => {
+  it('renders multiple Practice items continuously and keeps explanation state per question', async () => {
+    const user = userEvent.setup();
+    const practiceSession = baseSession({
+      config: {
+        mode: 'practice',
+        examLevel: 'Professional',
+        questionCount: 4,
+        timed: false,
+        durationSeconds: null,
+      },
+      questionIds: ['V1', 'V2', 'N1', 'N2'],
+      items: TWO_SUBJECT_ITEMS,
+    });
+    const { onSelectOption, rerender } = renderLayout({ session: practiceSession });
+
+    expect(screen.getByText('Question text for V1')).toBeInTheDocument();
+    expect(screen.getByText('Question text for V2')).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: 'Next question' })).toHaveLength(2);
+    expect(screen.queryByRole('button', { name: /Submit exam/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Show Explanation' })).not.toBeInTheDocument();
+
+    await user.click(within(document.getElementById('question-V1')!).getAllByRole('radio')[0]);
+    expect(onSelectOption).toHaveBeenCalledWith('V1', 'A');
+
+    const answered = { ...practiceSession, answers: { V1: 'A' as const } };
+    rerender(
+      <BookletExamLayout
+        examLevel="Professional"
+        timeRemainingFormatted="Untimed"
+        onExitExam={vi.fn()}
+        onSubmitExam={vi.fn()}
+        session={answered}
+        getGroup={() => undefined}
+        questionIndex={twoSubjectIndex()}
+        onSelectOption={onSelectOption}
+      />
+    );
+
+    expect(screen.getAllByRole('button', { name: 'Show Explanation' })).toHaveLength(1);
+    await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
+    expect(within(document.getElementById('question-V1')!).getByText('Because A is correct.')).toBeInTheDocument();
+
+    await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
+    await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
+    await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
+    expect(screen.getAllByRole('button', { name: /Submit exam/i })).toHaveLength(2);
+    expect(screen.queryByRole('button', { name: 'Next question' })).not.toBeInTheDocument();
+  });
+});
+
 describe('BookletExamLayout — answers preserved across subject switches', () => {
   it('an answer given in one subject survives switching away and back', async () => {
     const user = userEvent.setup();

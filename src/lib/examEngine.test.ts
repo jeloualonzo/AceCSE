@@ -4,6 +4,7 @@ import { loadContentCatalog, loadGroupedFixtureCatalog } from '@/data/questionBa
 import {
   allocateScoredSubjects,
   buildSimulationSession,
+  buildPracticeSession,
   scalePolicy,
 } from '@/lib/examEngine';
 import { gradeSession } from '@/lib/grading';
@@ -117,6 +118,27 @@ describe('EDQ section', () => {
     expect(some.percentage).toBe(none.percentage);
     expect(some.correctCount).toBe(none.correctCount);
     expect(some.passed).toBe(none.passed);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Unified Practice booklet structure
+// ---------------------------------------------------------------------------
+
+describe('generic Practice booklet structure', () => {
+  it('builds structured items instead of the legacy flat fallback', async () => {
+    const session = await buildPracticeSession(
+      'Professional',
+      ['Verbal Ability', 'Numerical Reasoning'],
+      12,
+      false
+    );
+    expect(session.items?.length).toBeGreaterThan(0);
+    expect(session.questionIds).toHaveLength(12);
+    expect(new Set(session.questionIds).size).toBe(12);
+    expect(buildBooklet(session)).toHaveLength(2);
+    expect(session.items?.flatMap((item) => item.kind === 'question' ? [item.questionId] : item.kind === 'group' || item.kind === 'pool' ? item.questionIds : [])).toEqual(session.questionIds);
+    expect(session.items?.every((item) => item.kind !== 'administrative')).toBe(true);
   });
 });
 

@@ -6,6 +6,7 @@ import { getSharedTaskDefinitionForTaskFormat, taskFormatLabel } from '@/data/ta
 import { AdministrativeItemRenderer } from './AdministrativeItemRenderer';
 import { GroupRenderer } from './GroupRenderer';
 import { QuestionRenderer } from './QuestionRenderer';
+import { normalizeIntendedNewlines } from '@/lib/text';
 
 /** Everything the booklet needs to render optional, local-only EDQ items. */
 export interface EdqRenderContext {
@@ -26,6 +27,8 @@ export interface SectionRendererProps {
   answers: Readonly<Record<string, OptionId>>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
   edq?: EdqRenderContext;
+  /** Practice keeps local explanation toggles; Simulation keeps feedback hidden. */
+  practiceMode?: boolean;
 }
 
 /**
@@ -40,6 +43,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
   answers,
   onSelectOption,
   edq,
+  practiceMode = false,
 }) {
   return (
     <div className="space-y-10">
@@ -72,6 +76,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
               questionNumbers={questionNumbers}
               answers={answers}
               onSelectOption={onSelectOption}
+              practiceMode={practiceMode}
             />
           );
         }
@@ -84,9 +89,12 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
           const examples = Array.isArray(definition?.examples)
             ? definition.examples
                 .filter((example): example is Record<string, unknown> => Boolean(example) && typeof example === 'object')
-                .map((example) => [example.input, example.result].filter((part): part is string => typeof part === 'string').join(' — '))
+                .map((example) => [example.input, example.result]
+                  .filter((part): part is string => typeof part === 'string')
+                  .map((part) => normalizeIntendedNewlines(part, 'decode-escaped-newlines'))
+                  .join(' — '))
                 .filter(Boolean)
-                .join('\\n\\n')
+                .join('\n\n')
             : undefined;
           const sharedContext = {
             title: typeof definition?.title === 'string' ? definition.title : taskFormatLabel(node.questionType, node.taskFormat),
@@ -104,6 +112,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
               questionNumbers={questionNumbers}
               answers={answers}
               onSelectOption={onSelectOption}
+              practiceMode={practiceMode}
             />
           );
         }
@@ -116,6 +125,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
             questionNumber={questionNumbers.get(node.questionId) ?? 0}
             selectedOptionId={answers[node.questionId] ?? null}
             onSelectOption={onSelectOption}
+            practiceMode={practiceMode}
           />
         );
       })}

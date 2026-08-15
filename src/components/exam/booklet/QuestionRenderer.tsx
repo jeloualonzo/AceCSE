@@ -1,10 +1,12 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { Check } from 'lucide-react';
 import type { OptionId, Question } from '@/types';
 import { FilingInstanceRenderer, hasCompactFilingInstance } from '../FilingInstanceRenderer';
 import { SpellingInstanceRenderer, hasCompactSpellingInstance } from '../SpellingInstanceRenderer';
 import { NumberSeriesInstanceRenderer, hasCompactNumberSeriesInstance } from '../NumberSeriesInstanceRenderer';
 import { GrammarInstanceRenderer, hasCompactGrammarInstance } from '../GrammarInstanceRenderer';
+import { ExplanationPanel } from '../ExplanationPanel';
 
 export interface QuestionRendererProps {
   question: Question;
@@ -18,14 +20,19 @@ export interface QuestionRendererProps {
    * appears exactly once, booklet-style.
    */
   suppressPassage?: boolean;
+  /** Render this scored item as a restrained container inside a shared task/set. */
+  itemContainer?: boolean;
+  /** Practice shows a local explanation toggle; Simulation keeps feedback hidden. */
+  practiceMode?: boolean;
 }
 
 /**
  * One scored question inside the continuous booklet. It renders its own
  * `passage` stimulus (471 singleton questions carry one) EXCEPT when the
  * enclosing group provides the shared stimulus once (suppressPassage).
- * It never shows explanations — simulation gives no feedback until results.
- * Practice keeps using the original `QuestionCard` unchanged.
+ * Simulation never shows explanations; Practice enables a local toggle on
+ * the same item renderer. Shared-task callers opt into a restrained neutral
+ * item container while standalone callers remain plain document flow.
  *
  * `id="question-{id}"` is the stable anchor the navigator and Previous/Next
  * scroll to; `data-question-id` is what the scroll-spy observer keys off of.
@@ -38,14 +45,26 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
   selectedOptionId,
   onSelectOption,
   suppressPassage = false,
+  itemContainer = false,
+  practiceMode = false,
 }) {
+  const [showExplanation, setShowExplanation] = useState(false);
+  const isAnswered = practiceMode && selectedOptionId !== null;
+  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+
+  useEffect(() => {
+    setShowExplanation(false);
+  }, [question.id]);
+
   return (
     <section
       id={`question-${question.id}`}
       data-question-id={question.id}
       aria-labelledby={`question-${question.id}-heading`}
       tabIndex={-1}
-      className="scroll-mt-28 focus:outline-none"
+      className={`${itemContainer
+        ? 'scroll-mt-28 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-none'
+        : 'scroll-mt-28'} focus:outline-none`}
     >
       <div className="flex items-center gap-2.5 flex-wrap mb-2">
         <span
@@ -125,6 +144,28 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
           );
         })}
       </div>
+
+      {isAnswered && (
+        <div className="mt-4 space-y-3" aria-live="polite">
+          <button
+            type="button"
+            onClick={() => setShowExplanation((visible) => !visible)}
+            aria-expanded={showExplanation}
+            className="w-full inline-flex items-center justify-center min-h-[44px] rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          >
+            {showExplanation ? 'Hide Explanation' : 'Show Explanation'}
+          </button>
+          {showExplanation && (
+            <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5">
+              <ExplanationPanel
+                question={question}
+                selectedOptionId={selectedOptionId}
+                theme={isDark ? 'dark' : 'light'}
+              />
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 });

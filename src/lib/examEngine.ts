@@ -17,7 +17,7 @@ import {
   type SubjectAllocationRule,
 } from '@/config/exam';
 import { EDQ_ITEMS, EDQ_SECTION_ID } from '@/data/edq';
-import { loadQuestions, subjectAvailability } from '@/data/questionBank';
+import { subjectAvailability } from '@/data/questionBank';
 import type { NormalizedContentCatalog } from '@/data/contentCatalog';
 import type { ClassificationRecord } from '@/data/taxonomy';
 import { loadContentCatalog } from '@/data/questionBank';
@@ -465,8 +465,80 @@ function eligibleGroups(
 }
 
 /**
+ * Turn a sampled Practice selection into the same structural item model used
+ * by Simulation. Explicit item sets stay atomic; canonical non-standard task
+ * formats become pool blocks; ordinary questions remain standalone items.
+ */
+function buildPracticeItems(
+  selectedQuestions: readonly Question[],
+  catalog: NormalizedContentCatalog
+): { questionIds: string[]; items: SessionItem[] } {
+  const groupByQuestion = new Map<string, NonNullable<ReturnType<NormalizedContentCatalog['getGroup']>>>();
+  for (const group of catalog.groups.values()) {
+    if (group.isImplicitSingleton) continue;
+    for (const questionId of group.questionIds) groupByQuestion.set(questionId, group);
+  }
+
+  const used = new Set<string>();
+  const items: SessionItem[] = [];
+  for (const question of selectedQuestions) {
+    if (used.has(question.id)) continue;
+
+    const explicitGroup = groupByQuestion.get(question.id);
+    if (explicitGroup && (
+      explicitGroup.selectionPolicy === 'splittable'
+      || explicitGroup.questionIds.every((id) => selectedQuestions.some((candidate) => candidate.id === id))
+    )) {
+      const ids = selectedQuestions
+        .filter((candidate) => !used.has(candidate.id) && explicitGroup.questionIds.includes(candidate.id))
+        .sort((a, b) => explicitGroup.questionIds.indexOf(a.id) - explicitGroup.questionIds.indexOf(b.id))
+        .map((candidate) => candidate.id);
+      if (ids.length > 0) {
+        items.push({ kind: 'group', groupId: explicitGroup.id, sectionId: question.subject, questionIds: ids });
+        ids.forEach((id) => used.add(id));
+        continue;
+      }
+    }
+
+    const classification = catalog.getClassification(question.id);
+    const isSharedTask = Boolean(
+      classification?.storageMode === 'pool' &&
+      classification.poolId &&
+      classification.taskFormat !== 'standard_multiple_choice'
+    );
+    if (classification && isSharedTask) {
+      const ids = selectedQuestions
+        .filter((candidate) => {
+          if (used.has(candidate.id)) return false;
+          const candidateClassification = catalog.getClassification(candidate.id);
+          return candidateClassification?.storageMode === 'pool'
+            && candidateClassification.poolId === classification.poolId
+            && candidateClassification.taskFormat === classification.taskFormat;
+        })
+        .map((candidate) => candidate.id);
+      items.push({
+        kind: 'pool',
+        poolId: classification.poolId as string,
+        questionType: classification.questionType,
+        taskFormat: classification.taskFormat,
+        sectionId: question.subject,
+        questionIds: ids,
+      });
+      ids.forEach((id) => used.add(id));
+      continue;
+    }
+
+    items.push({ kind: 'question', questionId: question.id, sectionId: question.subject });
+    used.add(question.id);
+  }
+
+  return { questionIds: items.flatMap((item) => item.kind === 'question' ? [item.questionId] : item.kind === 'group' || item.kind === 'pool' ? item.questionIds : []), items };
+}
+
+/**
  * Build a practice session over the chosen subjects. Questions are drawn
- * evenly across subjects (never repeated) and shuffled together.
+ * evenly across subjects (never repeated) and shuffled together, then exposed
+ * through the same structured booklet items used by Simulation.
  */
 export async function buildPracticeSession(
   level: ExamLevel,
@@ -474,7 +546,8 @@ export async function buildPracticeSession(
   questionCount: number,
   timed: boolean
 ): Promise<ExamSession> {
-  const pool = questionsForLevel(level, await loadQuestions(subjects)).filter((q) =>
+  const catalog = await loadContentCatalog(subjects);
+  const pool = questionsForLevel(level, [...catalog.questions.values()]).filter((q) =>
     subjects.includes(q.subject)
   );
   if (pool.length === 0) throw new InsufficientBankError(subjects);
@@ -489,21 +562,23 @@ export async function buildPracticeSession(
     const pickedIds = new Set(picked.map((q) => q.id));
     picked.push(...sample(pool.filter((q) => !pickedIds.has(q.id)), questionCount - picked.length));
   }
-  const questionIds = shuffled(picked).slice(0, questionCount).map((q) => q.id);
+  const selectedQuestions = shuffled(picked).slice(0, questionCount);
+  const structured = buildPracticeItems(selectedQuestions, catalog);
 
-  const durationSeconds = timed ? questionIds.length * PRACTICE_SECONDS_PER_QUESTION : null;
+  const durationSeconds = timed ? structured.questionIds.length * PRACTICE_SECONDS_PER_QUESTION : null;
   const startedAt = Date.now();
   return {
     id: newSessionId(),
     config: {
       mode: 'practice',
       examLevel: level,
-      questionCount: questionIds.length,
+      questionCount: structured.questionIds.length,
       subjects,
       timed,
       durationSeconds,
     },
-    questionIds,
+    questionIds: structured.questionIds,
+    items: structured.items,
     startedAt,
     deadlineAt: durationSeconds ? startedAt + durationSeconds * 1000 : null,
     answers: {},
