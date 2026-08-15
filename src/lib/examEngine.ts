@@ -545,6 +545,38 @@ export async function buildSpellingPracticeSession(level: ExamLevel): Promise<Ex
 }
 
 /**
+ * Build a Number Series task-format practice session from the canonical pool.
+ * Existing items remain individually answerable while the semantic pool carries
+ * one shared task block instead of historical Number Series Set boundaries.
+ */
+export async function buildNumberSeriesPracticeSession(level: ExamLevel): Promise<ExamSession> {
+  const catalog = await loadContentCatalog(['Numerical Reasoning']);
+  const questionIds = catalog
+    .getQuestionsForSubject('Numerical Reasoning', level)
+    .filter((question) => catalog.getClassification(question.id)?.topic === 'Number Series')
+    .map((question) => question.id);
+  if (questionIds.length === 0) throw new InsufficientBankError(['Numerical Reasoning']);
+  const startedAt = Date.now();
+  return {
+    id: newSessionId(),
+    config: {
+      mode: 'practice',
+      examLevel: level,
+      questionCount: questionIds.length,
+      subjects: ['Numerical Reasoning'],
+      taskFormat: 'number_sequence',
+      timed: false,
+      durationSeconds: null,
+    },
+    questionIds,
+    items: [{ kind: 'pool', poolId: 'numerical-number-sequence', questionType: 'number_sequence', taskFormat: 'number_sequence', sectionId: 'Numerical Reasoning', questionIds }],
+    startedAt,
+    deadlineAt: null,
+    answers: {},
+  };
+}
+
+/**
  * Build a Filing task-format practice session from the canonical Filing pool.
  * All 26 existing Filing questions remain individually answerable; the session
  * carries one semantic Filing block so shared directions are not represented

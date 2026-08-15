@@ -6,6 +6,7 @@ import {
   buildGroupPracticeSession,
   buildFilingPracticeSession,
   buildSpellingPracticeSession,
+  buildNumberSeriesPracticeSession,
   buildPracticeSession,
   buildSimulationSession,
   InsufficientBankError,
@@ -67,6 +68,9 @@ function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
   }
   if (request.taskFormat === 'shared_spelling_task') {
     return buildSpellingPracticeSession(request.examLevel);
+  }
+  if (request.taskFormat === 'number_sequence') {
+    return buildNumberSeriesPracticeSession(request.examLevel);
   }
   return buildPracticeSession(
     request.examLevel,
@@ -340,6 +344,7 @@ export const ExamPage: React.FC = () => {
     if (!catalog) return map;
     const filingTask = getSharedTaskDefinition('filing_default');
     const spellingTask = getSharedTaskDefinition('spelling_default');
+    const numberSeriesTask = getSharedTaskDefinition('number_series_default');
     for (const group of catalog.groups.values()) {
       if (group.isImplicitSingleton) continue;
       if (!group.directions && !group.example && !group.title) continue;
@@ -369,6 +374,20 @@ export const ExamPage: React.FC = () => {
         map.set(question.id, {
           title: typeof spellingTask.title === 'string' ? spellingTask.title : 'Spelling',
           directions: typeof spellingTask.directions === 'string' ? spellingTask.directions : undefined,
+          example: firstExample?.input && firstExample.result ? `Example: ${firstExample.input} — ${firstExample.result}` : undefined,
+        });
+      }
+    }
+    if (numberSeriesTask) {
+      const firstExample = Array.isArray(numberSeriesTask.examples) && numberSeriesTask.examples[0] && typeof numberSeriesTask.examples[0] === 'object'
+        ? numberSeriesTask.examples[0] as { input?: string; result?: string }
+        : undefined;
+      for (const question of catalog.getQuestionsForSubject('Numerical Reasoning')) {
+        const classification = catalog.getClassification(question.id);
+        if (classification?.taskFormat !== 'number_sequence') continue;
+        map.set(question.id, {
+          title: typeof numberSeriesTask.title === 'string' ? numberSeriesTask.title : 'Number Series',
+          directions: typeof numberSeriesTask.directions === 'string' ? numberSeriesTask.directions : undefined,
           example: firstExample?.input && firstExample.result ? `Example: ${firstExample.input} — ${firstExample.result}` : undefined,
         });
       }

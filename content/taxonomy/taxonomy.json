@@ -247,11 +247,35 @@
     "number_series_default": {
       "taskFormat": "number_sequence",
       "subject": "Numerical Reasoning",
+      "title": "Number Series",
+      "directions": "Determine the pattern in each number series and choose the term that completes it.",
+      "supports": [
+        "number_sequence"
+      ],
+      "answerStructure": "sequence_missing_term",
+      "sequenceRepresentation": "ordered_terms_with_null_marker",
+      "missingPositionBase": 1,
       "missingPositionRequiredForNewItems": true,
+      "instanceFormats": [
+        "compact"
+      ],
       "instanceSchema": [
+        "taskDefinitionId",
+        "instanceFormat",
         "sequence",
-        "missingPosition"
-      ]
+        "missingPosition",
+        "itemPrompt",
+        "answerStructure",
+        "migrationStatus",
+        "sourcePromptPreserved"
+      ],
+      "examples": [
+        {
+          "input": "4, 9, 14, 19, ?",
+          "result": "24 — add 5 to each term."
+        }
+      ],
+      "provenance": "Training representation based on the current question bank and observed exam behavior; not official CSC wording or a reproduced official test form."
     },
     "letter_series_default": {
       "taskFormat": "letter_sequence",

@@ -31,6 +31,7 @@ export const PracticePage: React.FC = () => {
 
   const availability = useMemo(() => subjectAvailability(examLevel), [examLevel]);
   const spellingCount = getCanonicalPool('clerical-spelling')?.entries.length ?? 0;
+  const numberSeriesCount = getCanonicalPool('numerical-number-sequence')?.entries.length ?? 0;
 
   // Explicit item sets applicable to this level (sync, from the manifest).
   const itemSets = useMemo(
@@ -183,6 +184,29 @@ export const PracticePage: React.FC = () => {
               </span>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Personal names, business names, offices, and subject filing.</p>
+          </button>
+        </section>
+      )}
+
+      {numberSeriesCount > 0 && (
+        <section aria-labelledby="number-series-task-heading" className="space-y-3">
+          <h2 id="number-series-task-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Number Series
+          </h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Shared directions appear once; each sequence keeps its authored order and explicit missing position.
+          </p>
+          <button
+            onClick={() => startTaskFormat('number_sequence', numberSeriesCount)}
+            className="w-full sm:w-auto text-left rounded-xl border p-4 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-600 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-sm font-bold text-slate-900 dark:text-white">Number Series task</span>
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full border text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700">
+                {numberSeriesCount} items
+              </span>
+            </div>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Complete arithmetic, geometric, interleaved, fraction, and signed series.</p>
           </button>
         </section>
       )}

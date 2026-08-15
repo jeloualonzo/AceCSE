@@ -3,6 +3,7 @@ import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import type { Question, OptionId } from '@/types';
 import { FilingInstanceRenderer, hasCompactFilingInstance } from './FilingInstanceRenderer';
 import { SpellingInstanceRenderer, hasCompactSpellingInstance } from './SpellingInstanceRenderer';
+import { NumberSeriesInstanceRenderer, hasCompactNumberSeriesInstance } from './NumberSeriesInstanceRenderer';
 import { useTheme } from '@/context/ThemeContext';
 import { ExplanationPanel } from './ExplanationPanel';
 
@@ -99,7 +100,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           </div>
         )}
 
-        {question.passage && !hasCompactFilingInstance(question) && !hasCompactSpellingInstance(question) && (
+        {question.passage && !hasCompactFilingInstance(question) && !hasCompactSpellingInstance(question) && !hasCompactNumberSeriesInstance(question) && (
           <div className="border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-black dark:text-slate-300 whitespace-pre-line">
             {question.passage}
           </div>
@@ -109,6 +110,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           <FilingInstanceRenderer question={question} />
         ) : hasCompactSpellingInstance(question) ? (
           <SpellingInstanceRenderer question={question} />
+        ) : hasCompactNumberSeriesInstance(question) ? (
+          <NumberSeriesInstanceRenderer question={question} />
         ) : (
           <div className="text-lg sm:text-xl font-medium text-black dark:text-slate-100 leading-relaxed whitespace-pre-line">
             {question.question}

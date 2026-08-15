@@ -1013,7 +1013,39 @@
     "tags": [
       "number-series",
       "arithmetic-sequence"
-    ]
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "4",
+        "9",
+        "14",
+        "19",
+        null
+      ],
+      "missingPosition": 5
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "4",
+          "9",
+          "14",
+          "19",
+          null
+        ],
+        "missingPosition": 5,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "num-0020",
@@ -1064,7 +1096,39 @@
     "tags": [
       "number-series",
       "geometric-sequence"
-    ]
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "3",
+        "6",
+        "12",
+        "24",
+        null
+      ],
+      "missingPosition": 5
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "3",
+          "6",
+          "12",
+          "24",
+          null
+        ],
+        "missingPosition": 5,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "num-0021",
@@ -1116,7 +1180,41 @@
     "tags": [
       "number-series",
       "increasing-differences"
-    ]
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "2",
+        "5",
+        "9",
+        "14",
+        "20",
+        null
+      ],
+      "missingPosition": 6
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "2",
+          "5",
+          "9",
+          "14",
+          "20",
+          null
+        ],
+        "missingPosition": 6,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "num-0022",
@@ -1168,7 +1266,43 @@
     "tags": [
       "number-series",
       "fibonacci"
-    ]
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "1",
+        "1",
+        "2",
+        "3",
+        "5",
+        "8",
+        null
+      ],
+      "missingPosition": 7
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "1",
+          "1",
+          "2",
+          "3",
+          "5",
+          "8",
+          null
+        ],
+        "missingPosition": 7,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "num-0023",
@@ -1219,7 +1353,39 @@
     "tags": [
       "number-series",
       "multiply-add-pattern"
-    ]
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "2",
+        "5",
+        "11",
+        "23",
+        null
+      ],
+      "missingPosition": 5
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "2",
+          "5",
+          "11",
+          "23",
+          null
+        ],
+        "missingPosition": 5,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "num-0024",
@@ -1270,7 +1436,41 @@
     "tags": [
       "number-series",
       "perfect-squares"
-    ]
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "1",
+        "4",
+        "9",
+        "16",
+        "25",
+        null
+      ],
+      "missingPosition": 6
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "1",
+          "4",
+          "9",
+          "16",
+          "25",
+          null
+        ],
+        "missingPosition": 6,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "num-0025",
@@ -1321,7 +1521,45 @@
     "tags": [
       "number-series",
       "interleaved-sequences"
-    ]
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "3",
+        "7",
+        "4",
+        "10",
+        "5",
+        "13",
+        "6",
+        null
+      ],
+      "missingPosition": 8
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "3",
+          "7",
+          "4",
+          "10",
+          "5",
+          "13",
+          "6",
+          null
+        ],
+        "missingPosition": 8,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "num-0026",
@@ -1374,7 +1612,41 @@
     "tags": [
       "number-series",
       "second-differences"
-    ]
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "1",
+        "3",
+        "7",
+        "13",
+        "21",
+        null
+      ],
+      "missingPosition": 6
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "1",
+          "3",
+          "7",
+          "13",
+          "21",
+          null
+        ],
+        "missingPosition": 6,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "num-0027",

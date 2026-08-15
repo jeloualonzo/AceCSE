@@ -331,7 +331,41 @@
       "fibonacci",
       "alternating-signs",
       "recurrence"
-    ]
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "13",
+        "−21",
+        "34",
+        "−55",
+        "89",
+        null
+      ],
+      "missingPosition": 6
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "13",
+          "−21",
+          "34",
+          "−55",
+          "89",
+          null
+        ],
+        "missingPosition": 6,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
   },
   {
     "id": "num-0148",
