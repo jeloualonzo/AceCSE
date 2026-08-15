@@ -159,7 +159,7 @@
     "standaloneStimulus": "A self-contained passage, table, codebook, or puzzle remains pool-eligible and is marked embeddedStimulus=true.",
     "historicalGroups": "Historical pool-like groups are provenance only and must not control semantic pool selection.",
     "fixedSets": "Only fixed-set definitions with shared context, atomic selection, and fixed order may force contiguous dependency blocks.",
-    "numberSeries": "New number-series items must declare missingPosition; existing terminal blanks are represented as final and should not be assumed for future items.",
+    "numberSeries": "Number Series supports a missing term at any valid one-based position. Preserve sequence order and the supplied missingPosition exactly; represent the missing term structurally; never move a blank to the end; and never reorder a sequence. Current terminal blanks describe existing authored items only and are not a rule for future items.",
     "subjectTerminology": "Persist only the five application subject names in this registry."
   },
   "sharedTaskDefinitions": {
@@ -271,7 +271,7 @@
       ],
       "examples": [
         {
-          "input": "4, 9, 14, 19, ?",
+          "input": "4, 9, 14, 19, ___",
           "result": "24 — add 5 to each term."
         }
       ],

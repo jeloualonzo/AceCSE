@@ -47,6 +47,8 @@ if (task.taskFormat !== 'number_sequence' || task.answerStructure !== 'sequence_
 if (typeof task.directions !== 'string' || task.directions.length < 30) fail('number_series_default directions are missing or too short');
 if (!Array.isArray(task.examples) || task.examples.length < 1) fail('number_series_default must include an original example');
 if (task.sequenceRepresentation !== 'ordered_terms_with_null_marker' || task.missingPositionBase !== 1) fail('number_series_default sequence representation contract is incomplete');
+const numberSeriesRule = taxonomy.rules?.numberSeries;
+if (typeof numberSeriesRule !== 'string' || !/any valid one-based position/i.test(numberSeriesRule) || !/never move a blank to the end/i.test(numberSeriesRule) || !/never reorder/i.test(numberSeriesRule)) fail('taxonomy Number Series rule does not protect arbitrary missing positions and authored order');
 if (forbidden.test(JSON.stringify({ title: task.title, directions: task.directions, examples: task.examples, provenance: task.provenance }))) fail('number_series_default contains forbidden user-visible language');
 if (pool.poolId !== 'numerical-number-sequence' || JSON.stringify(pool.entries.map((entry) => entry.questionId).sort()) !== JSON.stringify(expectedIds.slice().sort())) fail('numerical-number-sequence pool does not contain exactly the 11 Number Series IDs');
 
@@ -77,4 +79,4 @@ for (const id of ['ana-0038', 'ana-0040']) {
   if (row?.taskFormat !== 'letter_sequence' || row.poolId !== 'analytical-letter-sequence') fail(`${id}: letter-series exclusion regressed`);
 }
 
-console.log(`Validated Number Series: ${numberSeries.length} total, ${numberSeries.filter((q) => q.taskInstance?.payload?.instanceFormat === 'compact').length} compact, final-position distribution verified, numeric pool and letter-series exclusions resolved.`);
+console.log(`Validated Number Series: ${numberSeries.length} total, ${numberSeries.filter((q) => q.taskInstance?.payload?.instanceFormat === 'compact').length} compact, arbitrary missing-position semantics verified, current final-position distribution recorded, numeric pool and letter-series exclusions resolved.`);

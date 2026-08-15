@@ -30,13 +30,13 @@ export const NumberSeriesInstanceRenderer: React.FC<{ question: Question }> = ({
       >
         {payload.sequence.map((term, index) => (
           <React.Fragment key={`${question.id}-${index}`}>
-            {index > 0 && <span aria-hidden="true" className="text-slate-400 dark:text-slate-500">·</span>}
+            {index > 0 && <span aria-hidden="true">, </span>}
             <span
               data-sequence-position={index + 1}
-              className={term === null ? 'inline-flex min-w-[2.5rem] justify-center border-b-2 border-slate-500 dark:border-slate-400' : undefined}
+              className={term === null ? 'inline-flex min-w-[3.25rem] justify-center border-b-2 border-slate-500 dark:border-slate-400' : undefined}
               aria-label={term === null ? `Missing term at position ${index + 1}` : undefined}
             >
-              {term === null ? '?' : String(term)}
+              {term === null ? '___' : String(term)}
             </span>
           </React.Fragment>
         ))}

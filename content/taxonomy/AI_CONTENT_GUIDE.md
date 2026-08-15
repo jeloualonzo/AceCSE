@@ -73,7 +73,15 @@ Logical Reasoning uses one reusable pool with controlled `questionFormat` values
 
 ### Numerical Reasoning
 
-Use the established topic vocabulary. Number Series uses `numerical-number-sequence` and `number_sequence`. New series items must explicitly support a structured missing position; the terminal blank is not a universal assumption. The question model supports:
+Use the established topic vocabulary. Number Series uses `numerical-number-sequence` and `number_sequence`.
+
+**Current bank versus architecture:** All 11 current production Number Series items happen to use final-position blanks. That is a descriptive fact about the current authored bank, not a rule of the architecture. Number Series supports a missing term at any valid position: first, middle, or final.
+
+Preserve the missing-term position exactly as supplied by the source or author. Never move the blank to the end, never reorder the sequence, and never rewrite a question merely to fit the current production examples. `missingPosition` is one-based; `sequence` preserves authored order; and the missing term is represented structurally rather than inferred from the current bank. The renderer derives the visible `___` from that structured representation. Future questions may use first, middle, or final positions, and the current final-position distribution is descriptive, not normative.
+
+Preserve exact authored display strings for fractions, signs, decimals, negative values, Unicode minus signs, and other numeric notation. Do not simplify or normalize sequence values.
+
+The question model supports:
 
 ```json
 "numberSeries": {

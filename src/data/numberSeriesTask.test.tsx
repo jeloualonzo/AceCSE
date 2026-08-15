@@ -109,7 +109,7 @@ describe('Number Series task architecture', () => {
     }
   });
 
-  it('renders first, middle, and final missing positions from structured data', () => {
+  it('renders first, middle, and final missing positions in authored order with commas and underscores', () => {
     for (const [sequence, missingPosition] of [
       [[null, '2', '4'], 1],
       [['12', null, '48', '96'], 2],
@@ -117,7 +117,12 @@ describe('Number Series task architecture', () => {
     ] as const) {
       const question = makeQuestion([...sequence]);
       const { container } = render(<NumberSeriesInstanceRenderer question={question} />);
-      expect(container.querySelector(`[data-sequence-position="${missingPosition}"]`)).toHaveTextContent('?');
+      const series = container.querySelector('[aria-label="Number series"]');
+      const expectedText = sequence.map((term) => term === null ? '___' : term).join(', ');
+      expect(series).toHaveTextContent(expectedText);
+      expect(series?.textContent).not.toContain('?');
+      expect(series?.textContent).not.toContain('·');
+      expect(container.querySelector(`[data-sequence-position="${missingPosition}"]`)).toHaveTextContent('___');
       expect(container.querySelectorAll('[data-sequence-position]')).toHaveLength(sequence.length);
       cleanup();
     }
@@ -133,7 +138,9 @@ describe('Number Series task architecture', () => {
     expect(screen.getByText('Choose the missing term.')).toBeInTheDocument();
     expect(screen.queryByText('What is the next number in the series: 4, 9, 14, ___?')).not.toBeInTheDocument();
     expect(screen.getByText('24')).toBeInTheDocument();
-    expect(container.querySelector('[data-sequence-position="4"]')).toHaveTextContent('?');
+    expect(container.querySelector('[aria-label="Number series"]')).toHaveTextContent('2/4, 1/2, −21, ___');
+    expect(container.querySelector('[aria-label="Number series"]')?.textContent).not.toContain('?');
+    expect(container.querySelector('[data-sequence-position="4"]')).toHaveTextContent('___');
   });
 
   it('keeps numeric pool blocks contiguous and excludes letter-series and historical groups in seeded simulations', async () => {
