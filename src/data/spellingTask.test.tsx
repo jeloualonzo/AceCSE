@@ -64,6 +64,11 @@ describe('Spelling task architecture', () => {
     expect(repaired?.choices.map((choice) => choice.text)).toEqual(['embarass', 'embarras', 'embaras', 'embarrass', 'embarrased']);
     expect(repaired?.correctOptionId).toBe('D');
     expect(repaired?.explanation).toMatch(/Embarrass.*double.*r.*double.*s/i);
+    const accommodate = catalog.getQuestion('cler-0012');
+    expect(accommodate?.choices.map((choice) => choice.text)).toEqual(['accomodate', 'acommodate', 'acomodate', 'accommodate', 'accommadate']);
+    expect(accommodate?.correctOptionId).toBe('D');
+    expect(accommodate?.explanation).toMatch(/double 'c'.*double 'm'.*Option E.*middle vowel.*'o'.*'a'/i);
+    expect(accommodate?.explanation).not.toMatch(/Options A, B, and D/i);
     expect(JSON.stringify(spelling)).not.toMatch(/AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|training rules|authored task/i);
   });
 
