@@ -8,7 +8,7 @@ export interface GroupRendererProps {
   group: NormalizedQuestionGroup | undefined;
   /** Shared task directions/examples for a canonical pool block. */
   sharedContext?: { title?: string; directions?: string; example?: string };
-  /** Use document flow rather than a card for canonical Filing context. */
+  /** @deprecated Retained for compatible callers; shared tasks now use one neutral container. */
   plainFlow?: boolean;
   questionIds: string[];
   questionIndex: ReadonlyMap<string, Question>;
@@ -32,7 +32,7 @@ export interface GroupRendererProps {
 export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function GroupRenderer({
   group,
   sharedContext,
-  plainFlow = false,
+  plainFlow: _plainFlow = false,
   questionIds,
   questionIndex,
   questionNumbers,
@@ -48,9 +48,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
   return (
     <div id={group ? `group-${group.id}` : undefined} className="space-y-6">
       {hasSharedContent && (
-        <div className={plainFlow
-          ? 'border-b border-slate-300 dark:border-slate-700 pb-5 mb-2 space-y-3'
-          : 'rounded-lg border-l-4 border-l-slate-300 dark:border-l-slate-700 border-y border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 p-4 sm:p-5 space-y-3'}>
+        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4 sm:p-5 space-y-3">
           {taskContext?.title && (
             <h3 className="text-sm font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">{taskContext.title}</h3>
           )}

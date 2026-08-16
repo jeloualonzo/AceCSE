@@ -207,6 +207,13 @@ export interface ExamBlueprint {
 
 export type SessionMode = 'simulation' | 'practice';
 
+/** Internal, local-only cursor for progressive Practice sessions. */
+export interface PracticeProgress {
+  batchSize: number;
+  nextIndex: number;
+  candidateQuestionIds: string[];
+}
+
 export interface SessionConfig {
   mode: SessionMode;
   examLevel: ExamLevel;
@@ -249,6 +256,8 @@ export interface ExamSession {
   edqAnswers?: Record<string, string>;
   /** Whether the user enabled optional EDQ response mode for this session. */
   edqResponseMode?: boolean;
+  /** Internal Practice-only progressive cursor; never copied to Attempts. */
+  practiceProgress?: PracticeProgress;
 }
 
 // ---------------------------------------------------------------------------

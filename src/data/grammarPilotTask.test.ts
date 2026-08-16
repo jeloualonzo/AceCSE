@@ -193,7 +193,8 @@ describe('Grammar pilot compact task architecture', () => {
     }));
 
     expect(screen.getAllByText(sharedDirections)).toHaveLength(1);
-    expect(container.querySelector('[class*="border-b"]')).not.toBeNull();
+    expect(container.querySelector('[class*="rounded-xl"]')).not.toBeNull();
+    expect(container.querySelector('[class*="bg-white"]')).not.toBeNull();
     expect(container.querySelector('[class*="bg-emerald"]')).toBeNull();
   });
 

@@ -50,7 +50,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
     const unanswered = attempt.unansweredCount ?? attempt.items.filter((i) => i.selected === null).length;
     const answered = attempt.answeredCount ?? attempt.items.length - unanswered;
     const incorrect = attempt.items.filter((i) => !i.isCorrect && i.selected !== null).length;
-    return { answered, incorrect, unanswered };
+    return { answered, correct: attempt.correctCount, incorrect, unanswered };
   }, [attempt]);
 
   const filteredItems = useMemo(
@@ -69,7 +69,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   const filterCount = (id: ReviewFilter): number => {
     switch (id) {
       case 'ALL':
-        return attempt.questionCount;
+        return isSimulation ? attempt.questionCount : attempt.items.length;
       case 'CORRECT':
         return attempt.correctCount;
       case 'INCORRECT':
@@ -147,15 +147,22 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                     )}
                   </div>
                 )}
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-                  {attempt.correctCount}{' '}
-                  <span className="text-slate-500 dark:text-slate-400 font-normal text-lg sm:text-xl">
-                    / {isSimulation ? attempt.questionCount : counts.answered} correct
-                  </span>
-                </h2>
+                {isSimulation ? (
+                  <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+                    {attempt.correctCount}{' '}
+                    <span className="text-slate-500 dark:text-slate-400 font-normal text-lg sm:text-xl">
+                      / {attempt.questionCount} correct
+                    </span>
+                  </h2>
+                ) : (
+                  <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+                    {counts.answered}{' '}
+                    <span className="text-slate-500 dark:text-slate-400 font-normal text-lg sm:text-xl">Questions Answered</span>
+                  </h2>
+                )}
                 {!isSimulation && (
                   <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                    {counts.answered} of {attempt.questionCount} questions answered; {counts.unanswered} unanswered.
+                    {counts.correct} Correct · {counts.incorrect} Incorrect · {counts.unanswered} Skipped
                   </p>
                 )}
                 <div className="flex items-center justify-center sm:justify-start gap-2 mt-2 flex-wrap">
@@ -168,9 +175,9 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                     {formatDuration(attempt.durationSeconds)} {isSimulation ? 'used' : 'spent'}
                   </span>
                 </div>
-                {!isSimulation && counts.unanswered > 0 && (
+                {!isSimulation && (
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
-                    Your accuracy is based only on the {counts.answered} questions you answered. The {counts.unanswered} unanswered practice items were not counted as incorrect.
+                    Accuracy is based only on answered questions. Skipped questions were not counted as incorrect.
                   </p>
                 )}
                 {edqPresented > 0 && (
@@ -181,10 +188,10 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                 {!isSimulation && (
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 text-center sm:text-left" aria-label="Practice result metrics">
                     {[
-                      ['Total', attempt.questionCount],
                       ['Answered', counts.answered],
-                      ['Unanswered', counts.unanswered],
+                      ['Correct', counts.correct],
                       ['Incorrect', counts.incorrect],
+                      ['Skipped', counts.unanswered],
                     ].map(([label, value]) => (
                       <div key={String(label)} className="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/70 px-3 py-2">
                         <div className="text-[10px] font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</div>
@@ -229,10 +236,13 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                 <div className="flex items-center justify-between text-xs sm:text-sm">
                   <span className="font-semibold text-slate-700 dark:text-slate-200">{subject.subject}</span>
                   <span className="font-mono font-bold text-slate-600 dark:text-slate-300 text-right">
-                    {isSimulation ? `${subject.correct} / ${subject.total}` : `${subject.correct} / ${subject.answered ?? subject.total}`}{' '}
-                    <span className="text-slate-400 dark:text-slate-500">({subject.percentage.toFixed(0)}%)</span>
-                    {!isSimulation && (subject.unanswered ?? 0) > 0 && (
-                      <span className="block text-[10px] font-normal text-slate-400 dark:text-slate-500">{subject.unanswered} unanswered</span>
+                    {isSimulation ? (
+                      <>{subject.correct} / {subject.total} ({subject.percentage.toFixed(0)}%)</>
+                    ) : (
+                      <>
+                        {subject.correct} correct · {(subject.answered ?? subject.total) - subject.correct} incorrect · {subject.unanswered ?? 0} skipped
+                        <span className="block text-[10px] font-normal text-slate-400 dark:text-slate-500">{subject.percentage.toFixed(0)}% accuracy among answered</span>
+                      </>
                     )}
                   </span>
                 </div>
@@ -286,7 +296,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                       : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700'
                   }`}
                 >
-                  {label} ({filterCount(id)})
+                    {id === 'ALL' && !isSimulation ? 'Encountered' : label} ({filterCount(id)})
                 </button>
               ))}
             </div>

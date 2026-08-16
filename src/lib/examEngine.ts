@@ -9,6 +9,7 @@ import type {
 import {
   EXAM_FRAMEWORK,
   PRACTICE_SECONDS_PER_QUESTION,
+  PROGRESSIVE_PRACTICE_BATCH_SIZE,
   SIMULATION_ALLOCATION_POLICY,
   SIMULATION_TIERS,
   SUBJECTS_BY_LEVEL,
@@ -533,6 +534,148 @@ function buildPracticeItems(
   }
 
   return { questionIds: items.flatMap((item) => item.kind === 'question' ? [item.questionId] : item.kind === 'group' || item.kind === 'pool' ? item.questionIds : []), items };
+}
+
+/**
+ * Build a unique candidate order for progressive Practice. Atomic groups are
+ * treated as indivisible units; shared pools remain independently answerable.
+ */
+function progressiveCandidateOrder(
+  level: ExamLevel,
+  subjects: readonly Subject[],
+  catalog: NormalizedContentCatalog
+): string[] {
+  const pool = questionsForLevel(level, [...catalog.questions.values()]).filter((question) =>
+    subjects.includes(question.subject)
+  );
+  const eligibleIds = new Set(pool.map((question) => question.id));
+  const groupByQuestion = new Map<string, NonNullable<ReturnType<NormalizedContentCatalog['getGroup']>>>();
+  for (const group of catalog.groups.values()) {
+    if (group.isImplicitSingleton) continue;
+    for (const questionId of group.questionIds) groupByQuestion.set(questionId, group);
+  }
+
+  const units: string[][] = [];
+  const consumed = new Set<string>();
+  for (const question of shuffled(pool)) {
+    if (consumed.has(question.id)) continue;
+    const group = groupByQuestion.get(question.id);
+    const isAtomic = group?.selectionPolicy === 'atomic';
+    const groupIds = group?.questionIds ?? [];
+    if (isAtomic && groupIds.length > 0 && groupIds.every((id) => eligibleIds.has(id))) {
+      const ids = groupIds.filter((id) => !consumed.has(id));
+      if (ids.length === groupIds.length) {
+        units.push(ids);
+        ids.forEach((id) => consumed.add(id));
+        continue;
+      }
+    }
+    units.push([question.id]);
+    consumed.add(question.id);
+  }
+  return shuffled(units).flat();
+}
+
+function takeProgressiveBatch(
+  candidateQuestionIds: readonly string[],
+  startIndex: number,
+  batchSize: number,
+  catalog: NormalizedContentCatalog
+): { questionIds: string[]; nextIndex: number } {
+  const groupByQuestion = new Map<string, NonNullable<ReturnType<NormalizedContentCatalog['getGroup']>>>();
+  for (const group of catalog.groups.values()) {
+    if (group.isImplicitSingleton || group.selectionPolicy !== 'atomic') continue;
+    for (const questionId of group.questionIds) groupByQuestion.set(questionId, group);
+  }
+
+  const questionIds: string[] = [];
+  let cursor = startIndex;
+  while (cursor < candidateQuestionIds.length && (questionIds.length < batchSize || questionIds.length === 0)) {
+    const currentId = candidateQuestionIds[cursor];
+    const group = groupByQuestion.get(currentId);
+    const unit = group && group.questionIds[0] === currentId ? group.questionIds : [currentId];
+    questionIds.push(...unit);
+    cursor += unit.length;
+  }
+  return { questionIds, nextIndex: cursor };
+}
+
+/**
+ * Build the initial learner-facing Practice batch. The internal candidate
+ * order is persisted on the live session only; the UI sees just encountered
+ * questions and session-local numbering.
+ */
+export async function buildProgressivePracticeSession(
+  level: ExamLevel,
+  subjects: Subject[],
+  timed = false,
+  batchSize = PROGRESSIVE_PRACTICE_BATCH_SIZE,
+  options: { catalog?: NormalizedContentCatalog } = {}
+): Promise<ExamSession> {
+  const catalog = options.catalog ?? (await loadContentCatalog(subjects));
+  const candidateQuestionIds = progressiveCandidateOrder(level, subjects, catalog);
+  if (candidateQuestionIds.length === 0) throw new InsufficientBankError(subjects);
+  const batch = takeProgressiveBatch(candidateQuestionIds, 0, batchSize, catalog);
+  const selectedQuestions = batch.questionIds
+    .map((id) => catalog.getQuestion(id))
+    .filter((question): question is Question => Boolean(question));
+  const structured = buildPracticeItems(selectedQuestions, catalog);
+  const durationSeconds = timed ? structured.questionIds.length * PRACTICE_SECONDS_PER_QUESTION : null;
+  const startedAt = Date.now();
+  return {
+    id: newSessionId(),
+    config: {
+      mode: 'practice',
+      examLevel: level,
+      questionCount: structured.questionIds.length,
+      subjects,
+      timed,
+      durationSeconds,
+    },
+    questionIds: structured.questionIds,
+    items: structured.items,
+    practiceProgress: {
+      batchSize,
+      nextIndex: batch.nextIndex,
+      candidateQuestionIds,
+    },
+    startedAt,
+    deadlineAt: durationSeconds ? startedAt + durationSeconds * 1000 : null,
+    answers: {},
+  };
+}
+
+/** Append one internal batch to an active progressive Practice session. */
+export function appendProgressivePracticeBatch(
+  session: ExamSession,
+  catalog: NormalizedContentCatalog
+): ExamSession {
+  const progress = session.practiceProgress;
+  if (!progress || progress.nextIndex >= progress.candidateQuestionIds.length) return session;
+  const batch = takeProgressiveBatch(
+    progress.candidateQuestionIds,
+    progress.nextIndex,
+    progress.batchSize,
+    catalog
+  );
+  if (batch.questionIds.length === 0) return session;
+  const allQuestionIds = [...session.questionIds, ...batch.questionIds];
+  const selectedQuestions = allQuestionIds
+    .map((id) => catalog.getQuestion(id))
+    .filter((question): question is Question => Boolean(question));
+  const structured = buildPracticeItems(selectedQuestions, catalog);
+  return {
+    ...session,
+    config: { ...session.config, questionCount: structured.questionIds.length },
+    questionIds: structured.questionIds,
+    items: structured.items,
+    practiceProgress: { ...progress, nextIndex: batch.nextIndex },
+  };
+}
+
+export function hasMoreProgressivePractice(session: ExamSession): boolean {
+  const progress = session.practiceProgress;
+  return Boolean(progress && progress.nextIndex < progress.candidateQuestionIds.length);
 }
 
 /**

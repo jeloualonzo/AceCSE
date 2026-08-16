@@ -209,7 +209,7 @@ describe('BookletExamLayout — Practice uses the same booklet renderer', () => 
     expect(firstQuestionCard).toHaveClass('rounded-xl', 'shadow-sm');
     expect(firstQuestionCard).not.toHaveClass('border-emerald-500', 'bg-emerald-50');
     expect(screen.getAllByRole('button', { name: 'Next question' })).toHaveLength(2);
-    expect(screen.getAllByRole('button', { name: /Submit exam/i })).toHaveLength(1);
+    expect(screen.getAllByRole('button', { name: /Submit practice/i })).toHaveLength(1);
     expect(screen.queryByRole('button', { name: 'Show Explanation' })).not.toBeInTheDocument();
 
     await user.click(within(document.getElementById('question-V1')!).getAllByRole('radio')[0]);
@@ -240,9 +240,48 @@ describe('BookletExamLayout — Practice uses the same booklet renderer', () => 
     await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
     await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
     await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
-    expect(screen.getAllByRole('button', { name: /Submit exam/i })).toHaveLength(2);
+    expect(screen.getAllByRole('button', { name: /Submit practice/i })).toHaveLength(2);
     const finalNextButtons = screen.getAllByRole('button', { name: 'Next question' });
     expect(finalNextButtons.every((button) => (button as HTMLButtonElement).disabled)).toBe(true);
+  });
+});
+
+describe('BookletExamLayout — progressive Practice privacy and growth', () => {
+  it('shows Show More without exposing bank totals, ranges, task labels, or Restart', async () => {
+    const user = userEvent.setup();
+    const onLoadMore = vi.fn();
+    const practiceSession = baseSession({
+      config: {
+        mode: 'practice',
+        examLevel: 'Professional',
+        questionCount: 2,
+        timed: false,
+        durationSeconds: null,
+        subjects: ['Verbal Ability'],
+      },
+      questionIds: ['V1', 'V2'],
+      items: TWO_SUBJECT_ITEMS.slice(0, 2),
+      practiceProgress: {
+        batchSize: 2,
+        nextIndex: 2,
+        candidateQuestionIds: ['V1', 'V2', 'N1', 'N2'],
+      },
+    });
+
+    renderLayout({ session: practiceSession, onLoadMore, hasMorePractice: true });
+
+    expect(screen.getByRole('button', { name: 'Show more Practice questions' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /Restart/i })).not.toBeInTheDocument();
+    expect(document.body.textContent).not.toMatch(/\/\s*2/);
+    expect(document.body.textContent).not.toMatch(/\bItem Set\b|Filing|Spelling|Number Series/);
+
+    await user.click(screen.getByRole('button', { name: 'Show more Practice questions' }));
+    expect(onLoadMore).toHaveBeenCalledTimes(1);
+
+    await user.click(screen.getAllByRole('button', { name: /Open question navigation/i })[0]);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    expect(dialog.textContent).toContain('Verbal Ability');
+    expect(dialog.textContent).not.toMatch(/\d+\s*[–-]\s*\d+/);
   });
 });
 
@@ -288,9 +327,12 @@ describe('BookletExamLayout — navigator grids are compact and grouped by subje
     await openNavigator(user);
 
     const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
-    // Headings carry the section's session-based number range.
-    expect(within(dialog).getByRole('heading', { name: /Verbal Ability 1–2/, level: 3 })).toBeInTheDocument();
-    expect(within(dialog).getByRole('heading', { name: /Numerical Reasoning 3–4/, level: 3 })).toBeInTheDocument();
+    // Headings remain subject-labelled; the grid itself carries the item numbers.
+    const headingTexts = within(dialog)
+      .getAllByRole('heading', { level: 3 })
+      .map((heading) => heading.textContent?.replace(/\s+/g, ' ').trim());
+    expect(headingTexts.some((text) => text?.startsWith('Verbal Ability'))).toBe(true);
+    expect(headingTexts.some((text) => text?.startsWith('Numerical Reasoning'))).toBe(true);
 
     const v1Button = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
     expect(v1Button.parentElement).toHaveClass('grid-cols-5');

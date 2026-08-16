@@ -68,7 +68,7 @@ export const HistoryPage: React.FC = () => {
                         <span>{formatDateTime(attempt.completedAt)}</span>
                         <span>
                           {attempt.mode === 'practice'
-                            ? `${answeredCount} answered of ${attempt.questionCount} (${unansweredCount} unanswered)`
+                            ? `${answeredCount} answered · ${unansweredCount} skipped`
                             : `${attempt.questionCount} questions`}
                         </span>
                         <span>{formatDuration(attempt.durationSeconds)}</span>

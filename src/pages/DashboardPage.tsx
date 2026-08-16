@@ -251,7 +251,11 @@ export const DashboardPage: React.FC = () => {
                     </p>
                     <div className="flex items-center gap-x-3 flex-wrap text-xs text-slate-500 dark:text-slate-400">
                       <span>{formatDate(attempt.completedAt)}</span>
-                      <span>{attempt.questionCount} questions</span>
+                      <span>
+                        {attempt.mode === 'practice'
+                          ? `${attempt.answeredCount ?? attempt.items.filter((item) => item.selected !== null).length} answered · ${attempt.unansweredCount ?? attempt.items.filter((item) => item.selected === null).length} skipped`
+                          : `${attempt.questionCount} questions`}
+                      </span>
                       <span>{formatDuration(attempt.durationSeconds)}</span>
                     </div>
                   </div>

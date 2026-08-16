@@ -114,7 +114,7 @@ beforeEach(() => {
 afterEach(() => cleanup());
 
 describe('ResultsScreen Practice metrics', () => {
-  it('shows total, answered, unanswered, incorrect, and answered-only accuracy', () => {
+  it('shows answered, correct, incorrect, skipped, and answered-only accuracy', () => {
     const { container } = renderResults('practice');
     const text = container.textContent ?? '';
 
@@ -122,9 +122,10 @@ describe('ResultsScreen Practice metrics', () => {
     expect(screen.getByText('Accuracy among answered')).toBeInTheDocument();
     expect(screen.getByLabelText('Practice result metrics')).toBeInTheDocument();
     expect(container.querySelector('.max-w-5xl')).not.toBeNull();
-    expect(text).toContain('9 / 12 correct');
-    expect(text).toContain('Your accuracy is based only on the 12 questions you answered.');
-    expect(text).toContain('The 8 unanswered practice items were not counted as incorrect.');
+    expect(text).toContain('12 Questions Answered');
+    expect(text).toContain('9 Correct · 3 Incorrect · 8 Skipped');
+    expect(text).toContain('Accuracy is based only on answered questions. Skipped questions were not counted as incorrect.');
+    expect(text).not.toContain('of 20');
     expect(screen.getByRole('tab', { name: 'Unanswered (8)' })).toBeInTheDocument();
   });
 

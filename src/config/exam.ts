@@ -4,6 +4,9 @@ import type { ExamLevel, Subject } from '@/types';
 export const PASSING_PERCENTAGE = 80;
 
 /** Subjects tested per exam level. Practice uses this order; simulation may reorder blocks. */
+/** Initial and subsequent Practice batch size; intentionally not learner-visible. */
+export const PROGRESSIVE_PRACTICE_BATCH_SIZE = 4;
+
 export const SUBJECTS_BY_LEVEL: Record<ExamLevel, Subject[]> = {
   Professional: [
     'Numerical Reasoning',

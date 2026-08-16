@@ -8,6 +8,9 @@ import {
   buildNumberSeriesPracticeSession,
   buildGrammarPilotPracticeSession,
   buildPracticeSession,
+  buildProgressivePracticeSession,
+  appendProgressivePracticeBatch,
+  hasMoreProgressivePractice,
   buildSimulationSession,
   InsufficientBankError,
   subjectsOfSession,
@@ -43,6 +46,8 @@ export interface ExamLaunchRequest {
   groupId?: string;
   /** Practice a canonical task format, such as Filing. */
   taskFormat?: string;
+  /** Start a learner-facing Practice session with append-only batches. */
+  progressive?: boolean;
 }
 
 type QuestionIndex = ReadonlyMap<string, Question>;
@@ -57,6 +62,9 @@ type Stage =
 function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
   if (request.kind === 'simulation') {
     return buildSimulationSession(request.examLevel, request.questionCount);
+  }
+  if (request.progressive) {
+    return buildProgressivePracticeSession(request.examLevel, request.subjects ?? [], request.timed ?? false);
   }
   if (request.groupId) {
     return buildGroupPracticeSession(request.examLevel, request.groupId);
@@ -98,6 +106,7 @@ function launchFromSession(session: ExamSession): ExamLaunchRequest {
     timed: session.config.timed,
     groupId: soleGroup,
     taskFormat: session.config.taskFormat,
+    progressive: Boolean(session.practiceProgress),
   };
 }
 
@@ -323,6 +332,11 @@ export const ExamPage: React.FC = () => {
     updateSession((prev) => ({ ...prev, edqResponseMode: !prev.edqResponseMode }));
   }, [updateSession]);
 
+  const handleLoadMorePractice = useCallback(() => {
+    if (stage?.name !== 'active' || !catalog || !stage.session.practiceProgress) return;
+    updateSession((prev) => appendProgressivePracticeBatch(prev, catalog));
+  }, [catalog, stage, updateSession]);
+
   const handleExit = useCallback(() => {
     // The session is persisted; exiting never destroys progress.
     navigate('/app/dashboard');
@@ -371,6 +385,8 @@ export const ExamPage: React.FC = () => {
       void launchNew(stage.request);
     };
     const savedMode = stage.saved.config.mode === 'simulation' ? 'simulation' : 'practice session';
+    const savedAnswered = Object.keys(stage.saved.answers).length;
+    const savedProgressive = stage.saved.config.mode === 'practice' && Boolean(stage.saved.practiceProgress);
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 font-sans">
         <div
@@ -382,9 +398,10 @@ export const ExamPage: React.FC = () => {
             You have an unfinished {savedMode}
           </h1>
           <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-            {Object.keys(stage.saved.answers).length} of {stage.saved.questionIds.length} questions
-            answered{stage.saved.deadlineAt ? ' — its timer is still running' : ''}. Starting a new
-            session will discard it permanently.
+            {savedProgressive
+              ? `${savedAnswered} answered · ${Math.max(0, stage.saved.questionIds.length - savedAnswered)} skipped`
+              : `${savedAnswered} of ${stage.saved.questionIds.length} questions answered`}
+            {stage.saved.deadlineAt ? ' — its timer is still running' : ''}. Starting a new session will discard it permanently.
           </p>
           <div className="space-y-3">
             <button
@@ -463,12 +480,13 @@ export const ExamPage: React.FC = () => {
         }
         onExitExam={handleExit}
         onSubmitExam={() => setIsSubmitModalOpen(true)}
-        onRestart={isPractice ? () => handleRetake(launchFromSession(activeSession)) : undefined}
         exitLabel={isPractice ? 'Exit Practice' : 'Exit Exam'}
         session={activeSession}
         getGroup={getGroup}
         questionIndex={questionIndex ?? new Map()}
         onSelectOption={handleSelectOptionFor}
+        onLoadMore={isPractice && activeSession.practiceProgress ? handleLoadMorePractice : undefined}
+        hasMorePractice={isPractice && hasMoreProgressivePractice(activeSession)}
         edq={isPractice ? undefined : {
           getItem: getEdqItem,
           answers: activeSession.edqAnswers ?? {},

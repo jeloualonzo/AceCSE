@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Grid, RotateCcw, XCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Grid, XCircle } from 'lucide-react';
 import type { ExamLevel, ExamSession, NormalizedQuestionGroup, OptionId, Question } from '@/types';
 import {
   buildBooklet,
@@ -15,7 +15,6 @@ import {
   type BookletSection,
 } from '@/lib/examViewModel';
 import { EDQ_SECTION_ID } from '@/data/edq';
-import { taskFormatLabel } from '@/data/taxonomy';
 import { SectionRenderer, type EdqRenderContext } from '@/components/exam/booklet/SectionRenderer';
 
 export interface BookletExamLayoutProps {
@@ -23,12 +22,14 @@ export interface BookletExamLayoutProps {
   timeRemainingFormatted: string;
   onExitExam: () => void;
   onSubmitExam: () => void;
-  onRestart?: () => void;
   exitLabel?: string;
   session: ExamSession;
   getGroup: (groupId: string) => NormalizedQuestionGroup | undefined;
   questionIndex: ReadonlyMap<string, Question>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
+  /** Progressive Practice only: append the next internal batch. */
+  onLoadMore?: () => void;
+  hasMorePractice?: boolean;
   /** EDQ rendering context — present only for sessions that carry an EDQ section. */
   edq?: EdqRenderContext;
 }
@@ -36,11 +37,10 @@ export interface BookletExamLayoutProps {
 /**
  * Continuous CSE-booklet exam experience — continuous WITHIN a subject, not
  * across the whole exam. Subject switching lives inside the navigator
- * drawer (not the header), so the header/chrome stays exactly where Practice
- * mode already trained the user to look for it: Exit + Grid/Navigator on the
- * left, Timer centered, Previous/Next/Submit on the right. Only the active
- * section is mounted and scrolled; the navigator drawer shows every
- * subject's grid so the user can jump straight to any question anywhere.
+ * drawer (not the header), so the header/chrome stays compact: Exit + Submit
+ * + Grid/Navigator on the left, Timer centered, and Previous/Next on the right.
+ * Only the active section is mounted and scrolled; the navigator drawer shows
+ * subject grids so the user can jump straight to any encountered question.
  *
  * Practice and Simulation both use this component. The session mode is
  * passed to scored item renderers so only Practice exposes explanations.
@@ -50,12 +50,13 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   timeRemainingFormatted,
   onExitExam,
   onSubmitExam,
-  onRestart,
   exitLabel = 'Exit Exam',
   session,
   getGroup,
   questionIndex,
   onSelectOption,
+  onLoadMore,
+  hasMorePractice = false,
   edq,
 }) => {
   const scrollRef = useRef<HTMLElement | null>(null);
@@ -118,6 +119,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     const order = sectionItemOrder(activeSection);
     if (order.length === 0) return;
 
+    if (!pendingTargetRef.current && currentQuestionId && order.includes(currentQuestionId)) return;
+
     let target: string;
     if (pendingTargetRef.current && order.includes(pendingTargetRef.current)) {
       target = pendingTargetRef.current;
@@ -131,7 +134,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     pendingTargetRef.current = null;
     scrollToQuestion(target, 'auto');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSectionId, activeSection]);
+  }, [activeSectionId, activeSection, currentQuestionId]);
 
   // Scroll-spy within the active section only — the DOM never holds more
   // than one subject's questions at a time.
@@ -277,11 +280,14 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       onClick={(e) => toggleNavigator(e.currentTarget)}
       className={`${displayClasses} items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
       aria-expanded={isNavigatorOpen}
-      aria-label={`Open question navigation, item ${currentDisplayNumber} of ${presentedTotal}, in ${sectionTitle(activeSectionId)}, ${examLevel} level session`}
+      aria-label={isPractice
+        ? `Open question navigation, item ${currentDisplayNumber}, in ${sectionTitle(activeSectionId)}, ${examLevel} level practice`
+        : `Open question navigation, item ${currentDisplayNumber} of ${presentedTotal}, in ${sectionTitle(activeSectionId)}, ${examLevel} level session`}
     >
       <Grid className={`w-4 h-4 shrink-0 ${gridIconColor}`} aria-hidden="true" />
       <span>
-        Q {currentDisplayNumber} <span className="text-slate-400 dark:text-slate-500 font-normal">/ {presentedTotal}</span>
+        Q {currentDisplayNumber}
+        {!isPractice && <span className="text-slate-400 dark:text-slate-500 font-normal"> / {presentedTotal}</span>}
       </span>
     </button>
   );
@@ -297,7 +303,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     <button
       onClick={onSubmitExam}
       className={`${displayClasses} items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400`}
-      aria-label={`Submit exam. ${globalCounts.answered} of ${globalCounts.total} answered overall.`}
+      aria-label={`Submit ${isPractice ? 'practice' : 'exam'}. ${globalCounts.answered} of ${globalCounts.total} answered overall.`}
     >
       <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
       <span>Submit</span>
@@ -319,8 +325,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   return (
     <div className="fixed inset-0 z-50 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 flex flex-col overflow-hidden font-sans">
       {/* Header — identical layout/positions to Practice's ExamFocusLayout.
-          Exit/Grid stay on the left, Timer centered, Previous/Next/Submit
-          on the right. Practice Restart remains available in the mobile footer.
+          Exit/Submit/Grid stay on the left, Timer centered, Previous/Next
+          on the right. Practice has no in-session restart control.
           No subject switcher and no "Question X of Y" text live here. */}
       <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 relative shrink-0">
         <div className="h-14 sm:h-16 px-4 sm:px-6 grid grid-cols-3 items-center">
@@ -333,6 +339,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               <XCircle className="w-4 h-4 text-slate-500 dark:text-slate-400" aria-hidden="true" />
               <span className="hidden sm:inline">{exitLabel}</span>
             </button>
+            {submitButton('hidden sm:inline-flex')}
             {navigatorButton('hidden sm:inline-flex')}
           </div>
 
@@ -350,7 +357,6 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               <span>Previous</span>
             </button>
             {nextButton('hidden sm:inline-flex')}
-            {submitButton('hidden sm:inline-flex')}
           </div>
         </div>
 
@@ -429,9 +435,11 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                         }`}
                       >
                         <div className="truncate">{sectionShortTitle(section.sectionId)}</div>
-                        <div className={isActive ? 'text-emerald-100 font-normal' : 'text-slate-400 dark:text-slate-500 font-normal'}>
-                          {section.sectionId === EDQ_SECTION_ID ? 'Not scored' : `${counts.answered}/${counts.total}`}
-                        </div>
+                        {!isPractice && (
+                          <div className={isActive ? 'text-emerald-100 font-normal' : 'text-slate-400 dark:text-slate-500 font-normal'}>
+                            {section.sectionId === EDQ_SECTION_ID ? 'Not scored' : `${counts.answered}/${counts.total}`}
+                          </div>
+                        )}
                       </button>
                     );
                   })}
@@ -453,22 +461,15 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                   <div key={section.sectionId}>
                     {!isLegacy && (
                       <h3 className="text-xs font-bold text-slate-700 dark:text-slate-200 mb-2">
-                        {sectionShortTitle(section.sectionId)}{' '}
-                        <span className="text-slate-400 dark:text-slate-500 font-semibold">
-                          {first}–{last}
-                        </span>
+                        {sectionShortTitle(section.sectionId)}
+                        {!isPractice && (
+                          <span className="text-slate-400 dark:text-slate-500 font-semibold"> {first}–{last}</span>
+                        )}
                       </h3>
                     )}
                     <div className="space-y-2">
                       {blocks.map((block, blockIndex) => (
                         <div key={block.groupId ?? block.poolId ?? `${section.sectionId}-block-${blockIndex}`}>
-                          {(block.groupId || block.poolId) && (
-                            <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
-                              {block.poolId
-                                ? taskFormatLabel(block.questionType ?? block.poolId ?? 'pool', block.taskFormat ?? block.poolId ?? 'pool')
-                                : (() => { const g = getGroup(block.groupId!); return g?.title ?? g?.questionType ?? 'Item Set'; })()}
-                            </p>
-                          )}
                           <div className="grid grid-cols-5 gap-2">
                             {block.ids.map((id) => {
                               const num = displayNumbers.get(id) ?? 0;
@@ -508,21 +509,10 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
         <main ref={scrollRef} className="flex-1 bg-white dark:bg-slate-950 overflow-y-auto px-4 sm:px-6 py-6 sm:py-8">
           <div className="w-full max-w-5xl mx-auto space-y-14 pb-24">
             {!isLegacy && activeSection && (
-              <div className="flex items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
+              <div className="pb-3 border-b border-slate-200 dark:border-slate-800">
                 <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
                   {sectionTitle(activeSectionId)}
                 </h2>
-                {onRestart && (
-                  <button
-                    type="button"
-                    onClick={onRestart}
-                    className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[36px] rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-                    aria-label="Restart Practice"
-                  >
-                    <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
-                    <span>Restart</span>
-                  </button>
-                )}
               </div>
             )}
             {activeSectionId === EDQ_SECTION_ID && edq && (
@@ -569,6 +559,18 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 practiceMode={session.config.mode === 'practice'}
               />
             )}
+            {isPractice && onLoadMore && hasMorePractice && (
+              <div className="flex justify-center pt-2" data-progressive-practice="true">
+                <button
+                  type="button"
+                  onClick={onLoadMore}
+                  className="inline-flex items-center justify-center min-h-[44px] px-6 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 text-sm font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                  aria-label="Show more Practice questions"
+                >
+                  Show More
+                </button>
+              </div>
+            )}
           </div>
         </main>
       </div>
@@ -585,16 +587,6 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
           <ArrowLeft className="w-4 h-4" aria-hidden="true" />
           <span>Prev</span>
         </button>
-        {onRestart && (
-          <button
-            onClick={onRestart}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[44px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-            aria-label="Restart"
-          >
-            <RotateCcw className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
-            <span>Restart</span>
-          </button>
-        )}
         {isPractice
           ? (isPracticeLast ? submitButton('inline-flex') : nextButton('inline-flex'))
           : <>
