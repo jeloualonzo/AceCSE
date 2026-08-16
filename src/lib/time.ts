@@ -7,6 +7,16 @@ export function formatHMS(totalSeconds: number): string {
   return [h, m, s].map((n) => String(n).padStart(2, '0')).join(':');
 }
 
+/** Elapsed stopwatch format: mm:ss, expanding to hh:mm:ss for long sessions. */
+export function formatElapsedMs(milliseconds: number): string {
+  const totalSeconds = Math.max(0, Math.floor(milliseconds / 1000));
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  if (hours > 0) return [hours, minutes, seconds].map((value) => String(value).padStart(2, '0')).join(':');
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
 /** Human duration like "3 h 10 min" or "45 min". */
 export function formatDuration(totalSeconds: number): string {
   const minutes = Math.round(totalSeconds / 60);

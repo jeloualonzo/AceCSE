@@ -258,6 +258,10 @@ export interface ExamSession {
   edqResponseMode?: boolean;
   /** Internal Practice-only progressive cursor; never copied to Attempts. */
   practiceProgress?: PracticeProgress;
+  /** Buffered active Practice/Simulation stopwatch total, in milliseconds. */
+  sessionElapsedMs?: number;
+  /** Buffered cumulative primary-view time by encountered question id, in milliseconds. */
+  questionTimeSpentMs?: Record<string, number>;
 }
 
 // ---------------------------------------------------------------------------
@@ -271,6 +275,8 @@ export interface AttemptItem {
   selected: OptionId | null;
   correct: OptionId;
   isCorrect: boolean;
+  /** Optional cumulative primary-view time for post-session behavioral review. */
+  timeSpentMs?: number;
 }
 
 export interface SubjectPerformance {

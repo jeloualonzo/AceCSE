@@ -68,6 +68,21 @@ describe('gradeSession mode-specific unanswered semantics', () => {
     expect(attempt.items.filter((item) => item.selected === null)).toHaveLength(8);
   });
 
+  it('copies optional buffered timing into Attempt metadata without changing the score', () => {
+    const session = {
+      ...makeSession('practice', partialAnswers),
+      sessionElapsedMs: 14_900,
+      questionTimeSpentMs: { 'q-1': 24_000, 'q-13': 9_000 },
+    };
+    const attempt = gradeSession(session, questionIndex, 61_000);
+
+    expect(attempt.durationSeconds).toBe(15);
+    expect(attempt.items.find((item) => item.questionId === 'q-1')?.timeSpentMs).toBe(24_000);
+    expect(attempt.items.find((item) => item.questionId === 'q-13')?.timeSpentMs).toBe(9_000);
+    expect(attempt.correctCount).toBe(9);
+    expect(attempt.percentage).toBe(75);
+  });
+
   it('keeps Simulation accuracy based on all scored items, including unanswered items', () => {
     const attempt = gradeSession(makeSession('simulation', partialAnswers), questionIndex, 61_000);
 

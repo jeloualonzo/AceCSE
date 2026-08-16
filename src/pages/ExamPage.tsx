@@ -27,7 +27,8 @@ import {
 import { saveAttempt } from '@/services/attempts';
 import { useAuth } from '@/context/AuthContext';
 import { useCountdown } from '@/hooks/useCountdown';
-import { formatHMS } from '@/lib/time';
+import { usePassiveTiming, type PassiveTimingSnapshot } from '@/hooks/usePassiveTiming';
+import { formatElapsedMs, formatHMS } from '@/lib/time';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { FullScreenLoader } from '@/components/FullScreenLoader';
 import { BookletExamLayout } from '@/components/shell/BookletExamLayout';
@@ -133,8 +134,33 @@ export const ExamPage: React.FC = () => {
   const [catalog, setCatalog] = useState<NormalizedContentCatalog | null>(null);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [saveError, setSaveError] = useState(false);
+  const [activeQuestionId, setActiveQuestionId] = useState<string | null>(null);
   /** Session id already graded — prevents double submission (modal + timer). */
   const finishedRef = React.useRef<string | null>(null);
+  const activeSessionForTiming = stage?.name === 'active' ? stage.session : null;
+
+  const persistTiming = useCallback((snapshot: PassiveTimingSnapshot) => {
+    setStage((prev) => {
+      if (!prev || prev.name !== 'active') return prev;
+      const next: ExamSession = {
+        ...prev.session,
+        sessionElapsedMs: snapshot.sessionElapsedMs,
+        questionTimeSpentMs: snapshot.questionTimeSpentMs,
+      };
+      saveActiveSession(next);
+      return { name: 'active', session: next };
+    });
+  }, []);
+
+  const passiveTiming = usePassiveTiming({
+    sessionKey: activeSessionForTiming?.id ?? 'inactive',
+    sessionElapsedMs: activeSessionForTiming?.sessionElapsedMs,
+    questionTimeSpentMs: activeSessionForTiming?.questionTimeSpentMs,
+    activeQuestionId,
+    enabled: Boolean(activeSessionForTiming),
+    showStopwatch: activeSessionForTiming?.config.mode === 'practice',
+    onPersist: persistTiming,
+  });
 
   const finishWith = useCallback(
     (finished: ExamSession, index: QuestionIndex, completedAt: number = Date.now()) => {
@@ -142,19 +168,27 @@ export const ExamPage: React.FC = () => {
       // countdown expiry can both request finishing; only the first wins.
       if (finishedRef.current === finished.id) return;
       finishedRef.current = finished.id;
+      const finalTiming = activeSessionForTiming?.id === finished.id ? passiveTiming.stop() : null;
+      const completedSession = finalTiming
+        ? {
+            ...finished,
+            sessionElapsedMs: finalTiming.sessionElapsedMs,
+            questionTimeSpentMs: finalTiming.questionTimeSpentMs,
+          }
+        : finished;
       // EDQ items are administrative: they are never in `questionIds`, so
-      // gradeSession cannot see them and the Firestore Attempt cannot carry
+      // `gradeSession` cannot see them and the Firestore Attempt cannot carry
       // them. Count them only for the honest "presented but not scored" note.
-      const edqCount = (finished.items ?? []).filter((item) => item.kind === 'administrative').length;
-      const attempt = gradeSession(finished, index, completedAt);
+      const edqCount = (completedSession.items ?? []).filter((item) => item.kind === 'administrative').length;
+      const attempt = gradeSession(completedSession, index, completedAt);
       clearActiveSession();
       setIsSubmitModalOpen(false);
-      setStage({ name: 'results', attempt, launch: launchFromSession(finished), edqCount });
+      setStage({ name: 'results', attempt, launch: launchFromSession(completedSession), edqCount });
       if (user) {
         void saveAttempt(user.uid, attempt).catch(() => setSaveError(true));
       }
     },
-    [user]
+    [activeSessionForTiming, passiveTiming, user]
   );
 
   /**
@@ -338,9 +372,11 @@ export const ExamPage: React.FC = () => {
   }, [catalog, stage, updateSession]);
 
   const handleExit = useCallback(() => {
-    // The session is persisted; exiting never destroys progress.
+    // The session is persisted; exiting never destroys progress. Flush the
+    // current passive segment before leaving so resume starts with no lost time.
+    if (activeSessionForTiming) passiveTiming.stop();
     navigate('/app/dashboard');
-  }, [navigate]);
+  }, [activeSessionForTiming, navigate, passiveTiming]);
 
   const handleRetake = useCallback(
     (launch: ExamLaunchRequest) => {
@@ -476,7 +512,7 @@ export const ExamPage: React.FC = () => {
         key={activeSession.id}
         examLevel={activeSession.config.examLevel}
         timeRemainingFormatted={
-          secondsRemaining !== null ? formatHMS(secondsRemaining) : 'Untimed'
+          isPractice ? formatElapsedMs(passiveTiming.elapsedMs) : secondsRemaining !== null ? formatHMS(secondsRemaining) : 'Untimed'
         }
         onExitExam={handleExit}
         onSubmitExam={() => setIsSubmitModalOpen(true)}
@@ -485,6 +521,7 @@ export const ExamPage: React.FC = () => {
         getGroup={getGroup}
         questionIndex={questionIndex ?? new Map()}
         onSelectOption={handleSelectOptionFor}
+        onActiveQuestionChange={setActiveQuestionId}
         onLoadMore={isPractice && activeSession.practiceProgress ? handleLoadMorePractice : undefined}
         hasMorePractice={isPractice && hasMoreProgressivePractice(activeSession)}
         edq={isPractice ? undefined : {

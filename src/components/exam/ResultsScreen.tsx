@@ -12,7 +12,7 @@ import {
 import type { Attempt, Question } from '@/types';
 import { ExplanationPanel } from './ExplanationPanel';
 import { PASSING_PERCENTAGE } from '@/config/exam';
-import { formatDuration } from '@/lib/time';
+import { formatDuration, formatElapsedMs } from '@/lib/time';
 import { useTheme } from '@/context/ThemeContext';
 
 interface ResultsScreenProps {
@@ -344,6 +344,11 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                         ) : (
                           <span className="inline-flex items-center gap-1 text-xs font-bold text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 border border-rose-300 dark:border-rose-500/40 px-2.5 py-0.5 rounded-full">
                             <XCircle className="w-3.5 h-3.5" aria-hidden="true" /> Incorrect
+                          </span>
+                        )}
+                        {item.timeSpentMs !== undefined && (
+                          <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 px-2.5 py-1 rounded-md">
+                            Time spent: {formatElapsedMs(item.timeSpentMs)}
                           </span>
                         )}
                       </div>

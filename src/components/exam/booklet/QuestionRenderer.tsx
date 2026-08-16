@@ -14,6 +14,8 @@ export interface QuestionRendererProps {
   questionNumber: number;
   /** Optional learner-facing label such as N1/V1 for All Subjects Practice. */
   questionLabel?: string;
+  /** True only for the one primary question from the booklet scroll-spy model. */
+  active?: boolean;
   selectedOptionId: OptionId | null;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
   /**
@@ -45,6 +47,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
   question,
   questionNumber,
   questionLabel,
+  active = false,
   selectedOptionId,
   onSelectOption,
   suppressPassage = false,
@@ -64,10 +67,13 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
     <section
       id={`question-${question.id}`}
       data-question-id={question.id}
+      data-primary-active={active ? 'true' : 'false'}
       aria-labelledby={`question-${question.id}-heading`}
       tabIndex={-1}
       className={`${itemContainer
-        ? 'scroll-mt-28 rounded-xl border border-emerald-200/80 dark:border-emerald-900/70 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-sm'
+        ? `scroll-mt-28 rounded-xl border bg-white dark:bg-slate-900 p-4 sm:p-5 ${active
+          ? 'border-emerald-400/90 dark:border-emerald-500/80 shadow-md'
+          : 'border-emerald-200/80 dark:border-emerald-900/70 shadow-sm'}`
         : 'scroll-mt-28'} focus:outline-none`}
     >
       <div className="flex items-center gap-2.5 flex-wrap mb-2">

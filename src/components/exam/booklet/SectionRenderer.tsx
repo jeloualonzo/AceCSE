@@ -28,6 +28,8 @@ export interface SectionRendererProps {
   questionNumbers: ReadonlyMap<string, number>;
   /** Optional learner-facing labels such as N1/V1 for All Subjects Practice. */
   questionLabels?: ReadonlyMap<string, string>;
+  /** One primary question selected by the booklet scroll-spy/navigation model. */
+  activeQuestionId?: string | null;
   answers: Readonly<Record<string, OptionId>>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
   edq?: EdqRenderContext;
@@ -45,6 +47,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
   questionIndex,
   questionNumbers,
   questionLabels,
+  activeQuestionId,
   answers,
   onSelectOption,
   edq,
@@ -80,6 +83,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
               questionIndex={questionIndex}
               questionNumbers={questionNumbers}
               questionLabels={questionLabels}
+              activeQuestionId={activeQuestionId}
               answers={answers}
               onSelectOption={onSelectOption}
               practiceMode={practiceMode}
@@ -117,6 +121,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
               questionIndex={questionIndex}
               questionNumbers={questionNumbers}
               questionLabels={questionLabels}
+              activeQuestionId={activeQuestionId}
               answers={answers}
               onSelectOption={onSelectOption}
               practiceMode={practiceMode}
@@ -131,6 +136,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
             question={question}
             questionNumber={questionNumbers.get(node.questionId) ?? 0}
             questionLabel={questionLabels?.get(node.questionId)}
+            active={activeQuestionId === node.questionId}
             selectedOptionId={answers[node.questionId] ?? null}
             onSelectOption={onSelectOption}
             itemContainer={true}

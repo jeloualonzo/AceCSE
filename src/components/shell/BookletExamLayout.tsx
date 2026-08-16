@@ -53,6 +53,8 @@ export interface BookletExamLayoutProps {
   /** Progressive Practice only: append the next internal batch. */
   onLoadMore?: () => void;
   hasMorePractice?: boolean;
+  /** Reports the one primary question chosen by the booklet scroll/navigation model. */
+  onActiveQuestionChange?: (questionId: string | null) => void;
   /** EDQ rendering context — present only for sessions that carry an EDQ section. */
   edq?: EdqRenderContext;
 }
@@ -80,12 +82,17 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   onSelectOption,
   onLoadMore,
   hasMorePractice = false,
+  onActiveQuestionChange,
   edq,
 }) => {
   const scrollRef = useRef<HTMLElement | null>(null);
   const navTriggerRef = useRef<HTMLButtonElement | null>(null);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState<string | null>(null);
+  const setPrimaryQuestion = useCallback((questionId: string | null) => {
+    setCurrentQuestionId(questionId);
+    onActiveQuestionChange?.(questionId);
+  }, [onActiveQuestionChange]);
   const isPractice = session.config.mode === 'practice';
   const isAllSubjectsPractice = isAllSubjectsPracticeSession(session);
 
@@ -164,17 +171,23 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     if (!target) return;
     target.scrollIntoView({ behavior, block: 'start' });
     requestAnimationFrame(() => target.focus({ preventScroll: true }));
-    setCurrentQuestionId(questionId);
-  }, []);
+    setPrimaryQuestion(questionId);
+  }, [setPrimaryQuestion]);
 
   // Lands on the right question every time the active section changes —
   // covers first mount, subject switches, and Previous/Next crossing a
   // subject boundary (via pendingTargetRef, which wins over the remembered/
   // first-unanswered default when a boundary crossing set an explicit target).
   useEffect(() => {
-    if (!activeSection) return;
+    if (!activeSection) {
+      setPrimaryQuestion(null);
+      return;
+    }
     const order = sectionItemOrder(activeSection);
-    if (order.length === 0) return;
+    if (order.length === 0) {
+      setPrimaryQuestion(null);
+      return;
+    }
 
     if (!pendingTargetRef.current && currentQuestionId && order.includes(currentQuestionId)) return;
 
@@ -191,7 +204,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     pendingTargetRef.current = null;
     scrollToQuestion(target, 'auto');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSectionId, activeSection, currentQuestionId]);
+  }, [activeSectionId, activeSection, currentQuestionId, setPrimaryQuestion]);
 
   // Scroll-spy within the active section only — the DOM never holds more
   // than one subject's questions at a time.
@@ -209,13 +222,13 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
           entry.boundingClientRect.top < best.boundingClientRect.top ? entry : best
         );
         const id = topmost.target.getAttribute('data-question-id');
-        if (id) setCurrentQuestionId(id);
+        if (id) setPrimaryQuestion(id);
       },
       { root: container, rootMargin: '0px 0px -70% 0px', threshold: [0, 1] }
     );
     targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
-  }, [activeSectionId, activeSection]);
+  }, [activeSectionId, activeSection, setPrimaryQuestion]);
 
   const closeNavigator = useCallback(() => {
     setIsNavigatorOpen(false);
@@ -617,6 +630,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 questionIndex={questionIndex}
                 questionNumbers={displayNumbers}
                 questionLabels={displayLabels}
+                activeQuestionId={currentQuestionId}
                 answers={session.answers}
                 onSelectOption={onSelectOption}
                 edq={edq ? { ...edq, onSkip: skipEdq } : undefined}

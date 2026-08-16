@@ -78,7 +78,12 @@ function attempt(mode: 'practice' | 'simulation'): Attempt {
       correct: 9,
       percentage: mode === 'practice' ? 75 : 45,
     }],
-    items,
+    items: items.map((item, index) => (
+      index === 0 ? { ...item, timeSpentMs: 24_000 }
+        : index === 9 ? { ...item, timeSpentMs: 78_000 }
+          : index === 12 ? { ...item, timeSpentMs: 9_000 }
+            : item
+    )),
   };
 }
 
@@ -129,6 +134,14 @@ describe('ResultsScreen Practice metrics', () => {
     expect(screen.getByRole('tab', { name: 'Unanswered (8)' })).toBeInTheDocument();
   });
 
+  it('shows per-question time for correct, incorrect, and skipped Practice items', () => {
+    renderResults('practice');
+
+    expect(screen.getByText('Time spent: 00:24')).toBeInTheDocument();
+    expect(screen.getByText('Time spent: 01:18')).toBeInTheDocument();
+    expect(screen.getByText('Time spent: 00:09')).toBeInTheDocument();
+  });
+
   it('keeps Simulation result language and score denominator unchanged', () => {
     const { container } = renderResults('simulation');
     const text = container.textContent ?? '';
@@ -138,5 +151,6 @@ describe('ResultsScreen Practice metrics', () => {
     expect(screen.queryByText('Accuracy among answered')).not.toBeInTheDocument();
     expect(screen.queryByText(/unanswered practice items were not counted as incorrect/i)).not.toBeInTheDocument();
     expect(text).toContain('9 / 20 correct');
+    expect(screen.getByText('Time spent: 00:24')).toBeInTheDocument();
   });
 });

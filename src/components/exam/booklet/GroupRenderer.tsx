@@ -15,6 +15,8 @@ export interface GroupRendererProps {
   questionNumbers: ReadonlyMap<string, number>;
   /** Optional learner-facing labels such as N1/V1 for All Subjects Practice. */
   questionLabels?: ReadonlyMap<string, string>;
+  /** One primary question selected by the booklet scroll-spy/navigation model. */
+  activeQuestionId?: string | null;
   answers: Readonly<Record<string, OptionId>>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
   /** Practice-only local explanation controls for each scored item. */
@@ -39,6 +41,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
   questionIndex,
   questionNumbers,
   questionLabels,
+  activeQuestionId,
   answers,
   onSelectOption,
   practiceMode = false,
@@ -82,6 +85,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
               question={question}
               questionNumber={questionNumbers.get(id) ?? 0}
               questionLabel={questionLabels?.get(id)}
+              active={activeQuestionId === id}
               selectedOptionId={answers[id] ?? null}
               onSelectOption={onSelectOption}
               suppressPassage={Boolean(group?.contentBlocks && group.contentBlocks.length > 0)}

@@ -206,7 +206,7 @@ describe('BookletExamLayout — Practice uses the same booklet renderer', () => 
     expect(screen.getByText('Question text for V1')).toBeInTheDocument();
     expect(screen.getByText('Question text for V2')).toBeInTheDocument();
     const firstQuestionCard = document.getElementById('question-V1');
-    expect(firstQuestionCard).toHaveClass('rounded-xl', 'shadow-sm', 'border-emerald-200/80', 'bg-white');
+    expect(firstQuestionCard).toHaveClass('rounded-xl', 'shadow-md', 'border-emerald-400/90', 'bg-white');
     expect(firstQuestionCard).not.toHaveClass('bg-emerald-50');
     expect(firstQuestionCard?.parentElement).toHaveClass('space-y-4');
     expect(screen.getAllByRole('button', { name: 'Next question' })).toHaveLength(2);
@@ -247,6 +247,25 @@ describe('BookletExamLayout — Practice uses the same booklet renderer', () => 
   });
 });
 
+describe('BookletExamLayout — active question visual state', () => {
+  it('marks exactly one primary card and moves the emphasis with existing navigation', async () => {
+    const user = userEvent.setup();
+    const onActiveQuestionChange = vi.fn();
+    renderLayout({ onActiveQuestionChange });
+
+    expect(document.querySelectorAll('[data-primary-active="true"]')).toHaveLength(1);
+    expect(document.getElementById('question-V1')).toHaveAttribute('data-primary-active', 'true');
+    expect(document.getElementById('question-V1')).toHaveClass('border-emerald-400/90', 'shadow-md');
+    expect(document.getElementById('question-V2')).toHaveAttribute('data-primary-active', 'false');
+    expect(document.getElementById('question-V2')).toHaveClass('border-emerald-200/80', 'shadow-sm');
+
+    await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
+    expect(document.getElementById('question-V2')).toHaveAttribute('data-primary-active', 'true');
+    expect(document.getElementById('question-V1')).toHaveAttribute('data-primary-active', 'false');
+    expect(onActiveQuestionChange).toHaveBeenCalledWith('V2');
+  });
+});
+
 describe('BookletExamLayout — shared task and question card hierarchy', () => {
   it('keeps directions in a distinct left-accent container above emerald question cards', () => {
     const sharedSession = baseSession({
@@ -273,7 +292,7 @@ describe('BookletExamLayout — shared task and question card hierarchy', () => 
     const firstQuestionCard = document.getElementById('question-V1');
     expect(taskCard).not.toBeNull();
     expect(taskCard).toHaveClass('border-slate-200', 'bg-white', 'shadow-sm');
-    expect(firstQuestionCard).toHaveClass('border-emerald-200/80', 'bg-white', 'shadow-sm');
+    expect(firstQuestionCard).toHaveClass('border-emerald-400/90', 'bg-white', 'shadow-md');
     expect(taskCard).not.toBe(firstQuestionCard);
     expect(taskCard?.parentElement).toHaveClass('space-y-4');
   });

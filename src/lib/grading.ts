@@ -40,6 +40,7 @@ export function gradeSession(
       selected,
       correct: question.correctOptionId,
       isCorrect,
+      timeSpentMs: Math.max(0, session.questionTimeSpentMs?.[questionId] ?? 0),
     });
   }
 
@@ -68,7 +69,10 @@ export function gradeSession(
     unansweredCount,
     percentage,
     passed: session.config.mode === 'simulation' && percentage >= PASSING_PERCENTAGE,
-    durationSeconds: Math.max(0, Math.round((completedAt - session.startedAt) / 1000)),
+    durationSeconds: Math.max(0, Math.round(
+      ((session.config.mode === 'practice' ? session.sessionElapsedMs : undefined)
+        ?? (completedAt - session.startedAt)) / 1000
+    )),
     startedAt: session.startedAt,
     completedAt,
     subjects,
