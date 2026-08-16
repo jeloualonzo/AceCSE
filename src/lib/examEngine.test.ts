@@ -147,33 +147,46 @@ describe('generic Practice booklet structure', () => {
 
 describe('progressive Practice batches', () => {
   it('starts with an internal batch and appends unique questions without resetting numbering or answers', async () => {
-    const catalog = syntheticCatalog([], [], 20);
+    const catalog = syntheticCatalog([], [], 30);
     const initial = await buildProgressivePracticeSession(
       'Professional',
       ['Verbal Ability'],
       false,
-      4,
+      undefined,
       { catalog }
     );
 
-    expect(initial.questionIds).toHaveLength(4);
-    expect(initial.practiceProgress?.batchSize).toBe(4);
-    expect(initial.practiceProgress?.nextIndex).toBe(4);
+    expect(initial.questionIds).toHaveLength(10);
+    expect(initial.practiceProgress?.batchSize).toBe(10);
+    expect(initial.practiceProgress?.nextIndex).toBe(10);
     expect(hasMoreProgressivePractice(initial)).toBe(true);
     const initialNumbers = sessionNumberMap(buildBooklet(initial));
-    expect([...initialNumbers.values()]).toEqual([1, 2, 3, 4]);
+    expect([...initialNumbers.values()]).toEqual(Array.from({ length: 10 }, (_, index) => index + 1));
 
     const firstAnswer = { [initial.questionIds[0]]: 'A' as const };
     const answered = { ...initial, answers: firstAnswer };
     const extended = appendProgressivePracticeBatch(answered, catalog);
 
-    expect(extended.questionIds).toHaveLength(8);
-    expect(new Set(extended.questionIds).size).toBe(8);
+    expect(extended.questionIds).toHaveLength(20);
+    expect(new Set(extended.questionIds).size).toBe(20);
     expect(extended.answers).toEqual(firstAnswer);
-    expect(extended.questionIds.slice(0, 4)).toEqual(initial.questionIds);
+    expect(extended.questionIds.slice(0, 10)).toEqual(initial.questionIds);
     expect(sessionNumberMap(buildBooklet(extended)).get(initial.questionIds[0])).toBe(1);
-    expect(sessionNumberMap(buildBooklet(extended)).get(extended.questionIds[7])).toBe(8);
+    expect(sessionNumberMap(buildBooklet(extended)).get(extended.questionIds[19])).toBe(20);
     expect(hasMoreProgressivePractice(extended)).toBe(true);
+  });
+
+  it('preserves timed deadlines and leaves Untimed Practice without a deadline', async () => {
+    const catalog = syntheticCatalog([], [], 30);
+    const timed = await buildProgressivePracticeSession('Professional', ['Verbal Ability'], true, undefined, { catalog });
+    const untimed = await buildProgressivePracticeSession('Professional', ['Verbal Ability'], false, undefined, { catalog });
+
+    expect(timed.config.timed).toBe(true);
+    expect(timed.config.durationSeconds).toBeGreaterThan(0);
+    expect(timed.deadlineAt).toBeGreaterThan(timed.startedAt);
+    expect(untimed.config.timed).toBe(false);
+    expect(untimed.config.durationSeconds).toBeNull();
+    expect(untimed.deadlineAt).toBeNull();
   });
 
   it('supports All Subjects without exposing a fixed session total in the live Practice contract', async () => {
@@ -182,14 +195,14 @@ describe('progressive Practice batches', () => {
       'Professional',
       profSubjects,
       false,
-      4,
+      10,
       { catalog }
     );
 
     expect(session.config.subjects).toEqual(profSubjects);
     expect(session.config.mode).toBe('practice');
-    expect(session.questionIds).toHaveLength(4);
-    expect(session.practiceProgress?.candidateQuestionIds.length).toBeGreaterThan(4);
+    expect(session.questionIds).toHaveLength(10);
+    expect(session.practiceProgress?.candidateQuestionIds.length).toBeGreaterThan(10);
     expect(session.items?.every((item) => item.kind !== 'administrative')).toBe(true);
   });
 });

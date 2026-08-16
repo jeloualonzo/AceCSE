@@ -13,6 +13,8 @@ export interface GroupRendererProps {
   questionIds: string[];
   questionIndex: ReadonlyMap<string, Question>;
   questionNumbers: ReadonlyMap<string, number>;
+  /** Optional learner-facing labels such as N1/V1 for All Subjects Practice. */
+  questionLabels?: ReadonlyMap<string, string>;
   answers: Readonly<Record<string, OptionId>>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
   /** Practice-only local explanation controls for each scored item. */
@@ -36,6 +38,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
   questionIds,
   questionIndex,
   questionNumbers,
+  questionLabels,
   answers,
   onSelectOption,
   practiceMode = false,
@@ -46,9 +49,9 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
   );
 
   return (
-    <div id={group ? `group-${group.id}` : undefined} className="space-y-6">
+    <div id={group ? `group-${group.id}` : undefined} className="space-y-4">
       {hasSharedContent && (
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4 sm:p-5 space-y-3">
+        <div className="rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-emerald-500 bg-white dark:bg-slate-900 shadow-sm p-4 sm:p-5 space-y-3">
           {taskContext?.title && (
             <h3 className="text-sm font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">{taskContext.title}</h3>
           )}
@@ -69,7 +72,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
         </div>
       )}
 
-      <div className="space-y-8">
+      <div className="space-y-4">
         {questionIds.map((id) => {
           const question = questionIndex.get(id);
           if (!question) return null;
@@ -78,6 +81,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
               key={id}
               question={question}
               questionNumber={questionNumbers.get(id) ?? 0}
+              questionLabel={questionLabels?.get(id)}
               selectedOptionId={answers[id] ?? null}
               onSelectOption={onSelectOption}
               suppressPassage={Boolean(group?.contentBlocks && group.contentBlocks.length > 0)}

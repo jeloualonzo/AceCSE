@@ -24,8 +24,10 @@ export interface SectionRendererProps {
   section: BookletSection;
   getGroup: (groupId: string) => NormalizedQuestionGroup | undefined;
   questionIndex: ReadonlyMap<string, Question>;
-  /** SESSION-BASED numbering: continuous across the whole booklet (EDQ = 1–20, first scored = 21). */
+  /** Internal numeric positions used for ordering and legacy Simulation display. */
   questionNumbers: ReadonlyMap<string, number>;
+  /** Optional learner-facing labels such as N1/V1 for All Subjects Practice. */
+  questionLabels?: ReadonlyMap<string, string>;
   answers: Readonly<Record<string, OptionId>>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
   edq?: EdqRenderContext;
@@ -42,13 +44,14 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
   getGroup,
   questionIndex,
   questionNumbers,
+  questionLabels,
   answers,
   onSelectOption,
   edq,
   practiceMode = false,
 }) {
   return (
-    <div className="space-y-10">
+    <div className="space-y-4">
       {section.nodes.map((node, index) => {
         if (node.kind === 'administrative') {
           // A shared instruction renders ONCE above the first item of a
@@ -76,6 +79,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
               questionIds={node.questionIds}
               questionIndex={questionIndex}
               questionNumbers={questionNumbers}
+              questionLabels={questionLabels}
               answers={answers}
               onSelectOption={onSelectOption}
               practiceMode={practiceMode}
@@ -112,6 +116,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
               questionIds={node.questionIds}
               questionIndex={questionIndex}
               questionNumbers={questionNumbers}
+              questionLabels={questionLabels}
               answers={answers}
               onSelectOption={onSelectOption}
               practiceMode={practiceMode}
@@ -125,6 +130,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
             key={`q-${node.questionId}`}
             question={question}
             questionNumber={questionNumbers.get(node.questionId) ?? 0}
+            questionLabel={questionLabels?.get(node.questionId)}
             selectedOptionId={answers[node.questionId] ?? null}
             onSelectOption={onSelectOption}
             itemContainer={true}

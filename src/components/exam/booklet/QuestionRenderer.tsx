@@ -12,6 +12,8 @@ export interface QuestionRendererProps {
   question: Question;
   /** 1-based booklet-wide position, from sessionNumberMap(). */
   questionNumber: number;
+  /** Optional learner-facing label such as N1/V1 for All Subjects Practice. */
+  questionLabel?: string;
   selectedOptionId: OptionId | null;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
   /**
@@ -42,6 +44,7 @@ export interface QuestionRendererProps {
 export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(function QuestionRenderer({
   question,
   questionNumber,
+  questionLabel,
   selectedOptionId,
   onSelectOption,
   suppressPassage = false,
@@ -50,6 +53,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
 }) {
   const [showExplanation, setShowExplanation] = useState(false);
   const isAnswered = practiceMode && selectedOptionId !== null;
+  const displayLabel = questionLabel ?? String(questionNumber);
   const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
 
   useEffect(() => {
@@ -63,7 +67,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
       aria-labelledby={`question-${question.id}-heading`}
       tabIndex={-1}
       className={`${itemContainer
-        ? 'scroll-mt-28 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-sm'
+        ? 'scroll-mt-28 rounded-xl border border-emerald-200/80 dark:border-emerald-900/70 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-sm'
         : 'scroll-mt-28'} focus:outline-none`}
     >
       <div className="flex items-center gap-2.5 flex-wrap mb-2">
@@ -71,7 +75,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
           id={`question-${question.id}-heading`}
           className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500"
         >
-          Question {questionNumber}
+          Question {displayLabel}
         </span>
         <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
           {question.subject}
@@ -101,7 +105,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
       <div
         className="space-y-2.5"
         role="radiogroup"
-        aria-label={`Answer options for question ${questionNumber}`}
+        aria-label={`Answer options for question ${displayLabel}`}
       >
         {question.choices.map((option) => {
           const isSelected = selectedOptionId === option.id;

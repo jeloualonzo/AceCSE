@@ -206,8 +206,9 @@ describe('BookletExamLayout — Practice uses the same booklet renderer', () => 
     expect(screen.getByText('Question text for V1')).toBeInTheDocument();
     expect(screen.getByText('Question text for V2')).toBeInTheDocument();
     const firstQuestionCard = document.getElementById('question-V1');
-    expect(firstQuestionCard).toHaveClass('rounded-xl', 'shadow-sm');
-    expect(firstQuestionCard).not.toHaveClass('border-emerald-500', 'bg-emerald-50');
+    expect(firstQuestionCard).toHaveClass('rounded-xl', 'shadow-sm', 'border-emerald-200/80', 'bg-white');
+    expect(firstQuestionCard).not.toHaveClass('bg-emerald-50');
+    expect(firstQuestionCard?.parentElement).toHaveClass('space-y-4');
     expect(screen.getAllByRole('button', { name: 'Next question' })).toHaveLength(2);
     expect(screen.getAllByRole('button', { name: /Submit practice/i })).toHaveLength(1);
     expect(screen.queryByRole('button', { name: 'Show Explanation' })).not.toBeInTheDocument();
@@ -243,6 +244,38 @@ describe('BookletExamLayout — Practice uses the same booklet renderer', () => 
     expect(screen.getAllByRole('button', { name: /Submit practice/i })).toHaveLength(2);
     const finalNextButtons = screen.getAllByRole('button', { name: 'Next question' });
     expect(finalNextButtons.every((button) => (button as HTMLButtonElement).disabled)).toBe(true);
+  });
+});
+
+describe('BookletExamLayout — shared task and question card hierarchy', () => {
+  it('keeps directions in a distinct left-accent container above emerald question cards', () => {
+    const sharedSession = baseSession({
+      config: {
+        mode: 'simulation',
+        examLevel: 'Professional',
+        questionCount: 2,
+        timed: true,
+        durationSeconds: 3600,
+      },
+      questionIds: ['V1', 'V2'],
+      items: [{
+        kind: 'pool',
+        poolId: 'spelling',
+        questionType: 'Spelling',
+        taskFormat: 'shared_spelling_task',
+        sectionId: 'Verbal Ability',
+        questionIds: ['V1', 'V2'],
+      }],
+    });
+    renderLayout({ session: sharedSession });
+
+    const taskCard = document.querySelector('[class*="border-l-emerald-500"]');
+    const firstQuestionCard = document.getElementById('question-V1');
+    expect(taskCard).not.toBeNull();
+    expect(taskCard).toHaveClass('border-slate-200', 'bg-white', 'shadow-sm');
+    expect(firstQuestionCard).toHaveClass('border-emerald-200/80', 'bg-white', 'shadow-sm');
+    expect(taskCard).not.toBe(firstQuestionCard);
+    expect(taskCard?.parentElement).toHaveClass('space-y-4');
   });
 });
 
@@ -320,6 +353,39 @@ describe('BookletExamLayout — answers preserved across subject switches', () =
   });
 });
 
+describe('BookletExamLayout — All Subjects Practice navigator labels and subjects', () => {
+  it('shows all five subject buttons immediately and only encountered N1/V1 grid items', async () => {
+    const user = userEvent.setup();
+    const allSubjectSession = baseSession({
+      config: {
+        mode: 'practice',
+        examLevel: 'Professional',
+        questionCount: 2,
+        timed: false,
+        durationSeconds: null,
+        subjects: ['Numerical Reasoning', 'Analytical Reasoning', 'Verbal Ability', 'Clerical Ability', 'General Information'],
+      },
+      questionIds: ['N1', 'V1'],
+      items: [
+        { kind: 'question', questionId: 'N1', sectionId: 'Numerical Reasoning' },
+        { kind: 'question', questionId: 'V1', sectionId: 'Verbal Ability' },
+      ],
+    });
+    renderLayout({ session: allSubjectSession });
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const subjectsHeading = within(dialog).getByRole('heading', { name: 'Subjects' });
+    const subjectGrid = subjectsHeading.nextElementSibling;
+    expect(subjectGrid).not.toBeNull();
+    for (const subject of ['Numerical Reasoning', 'Analytical Reasoning', 'Verbal Ability', 'Clerical Ability', 'General Information']) {
+      expect(within(subjectGrid as HTMLElement).getByRole('button', { name: subject })).toBeInTheDocument();
+    }
+    expect(within(dialog).getByRole('button', { name: /go to Numerical Reasoning question N1/i })).toBeInTheDocument();
+    expect(within(dialog).getByRole('button', { name: /go to Verbal Ability question V1/i })).toBeInTheDocument();
+    expect(within(dialog).queryByRole('button', { name: /go to Clerical Ability question C1/i })).not.toBeInTheDocument();
+  });
+});
+
 describe('BookletExamLayout — navigator grids are compact and grouped by subject', () => {
   it('shows a compact grid (grid-cols-5) per subject, not one item per row', async () => {
     const user = userEvent.setup();
@@ -345,7 +411,7 @@ describe('BookletExamLayout — navigator grids are compact and grouped by subje
     const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
 
     expect(within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i })).toBeInTheDocument();
-    // Numbering NEVER resets between subjects: Numerical starts at 3, not 1.
+    // Simulation numbering remains continuous across subjects.
     expect(within(dialog).getByRole('button', { name: /go to item 3 in Numerical Reasoning/i })).toBeInTheDocument();
     expect(within(dialog).queryByRole('button', { name: /go to item 1 in Numerical Reasoning/i })).not.toBeInTheDocument();
   });

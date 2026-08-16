@@ -17,6 +17,29 @@ import {
 import { EDQ_SECTION_ID } from '@/data/edq';
 import { SectionRenderer, type EdqRenderContext } from '@/components/exam/booklet/SectionRenderer';
 
+const ALL_PRACTICE_SUBJECTS = new Set([
+  'Numerical Reasoning',
+  'Verbal Ability',
+  'Analytical Reasoning',
+  'Clerical Ability',
+  'General Information',
+]);
+
+const PRACTICE_SUBJECT_PREFIX: Record<string, string> = {
+  'Numerical Reasoning': 'N',
+  'Verbal Ability': 'V',
+  'Analytical Reasoning': 'A',
+  'Clerical Ability': 'C',
+  'General Information': 'G',
+};
+
+function isAllSubjectsPracticeSession(session: ExamSession): boolean {
+  const subjects = session.config.subjects ?? [];
+  return session.config.mode === 'practice'
+    && subjects.length === ALL_PRACTICE_SUBJECTS.size
+    && subjects.every((subject) => ALL_PRACTICE_SUBJECTS.has(subject));
+}
+
 export interface BookletExamLayoutProps {
   examLevel: ExamLevel;
   timeRemainingFormatted: string;
@@ -63,10 +86,23 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   const navTriggerRef = useRef<HTMLButtonElement | null>(null);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState<string | null>(null);
+  const isPractice = session.config.mode === 'practice';
+  const isAllSubjectsPractice = isAllSubjectsPracticeSession(session);
 
   // Structural data is stable for the session's lifetime (only `answers`
   // mutates on every keystroke), so this never re-derives on every answer.
-  const sections = useMemo(() => buildBooklet(session), [session.id, session.items, session.questionIds]);
+  // All Subjects Practice also materializes empty subject sections so every
+  // subject button is available before its first question is encountered.
+  const sections = useMemo(() => {
+    const built = buildBooklet(session);
+    if (!isAllSubjectsPractice) return built;
+    const byId = new Map(built.map((section) => [section.sectionId, section]));
+    const subjectSections = (session.config.subjects ?? []).map((subject) =>
+      byId.get(subject) ?? { sectionId: subject, nodes: [] }
+    );
+    const subjectIds = new Set<string>(session.config.subjects ?? []);
+    return [...subjectSections, ...built.filter((section) => !subjectIds.has(section.sectionId))];
+  }, [isAllSubjectsPractice, session.id, session.items, session.questionIds, session.config.subjects]);
   const isLegacy = isLegacyBooklet(sections);
 
   const [activeSectionId, setActiveSectionId] = useState<string>(() => {
@@ -75,7 +111,12 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     // like the real booklet. A resumed session with scored answers already
     // in progress lands on the first subject with unanswered questions.
     const hasAnyScoredAnswer = Object.keys(session.answers).length > 0;
-    if (!hasAnyScoredAnswer) return sections[0].sectionId;
+    if (!hasAnyScoredAnswer) {
+      if (isAllSubjectsPractice) {
+        return sections.find((section) => sectionQuestionOrder(section).length > 0)?.sectionId ?? sections[0].sectionId;
+      }
+      return sections[0].sectionId;
+    }
     const withUnanswered = sections.find((sec) =>
       sectionQuestionOrder(sec).some((id) => !session.answers[id])
     );
@@ -89,11 +130,27 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   );
 
   const localOrder = useMemo(() => (activeSection ? sectionItemOrder(activeSection) : []), [activeSection]);
-  // SESSION-BASED numbering: one continuous sequence across the whole
-  // booklet (EDQ occupies 1–20, first scored item is 21, numbers never
-  // reset between subjects). Content ids stay permanent; these numbers are
-  // this session's booklet positions.
+  // SESSION-BASED numbering remains the internal Simulation/ordering map.
+  // Learner-facing Practice labels are derived separately so All Subjects
+  // can use stable subject-local N1/V1/A1/C1/G1 labels.
   const displayNumbers = useMemo(() => sessionNumberMap(sections), [sections]);
+  const displayLabels = useMemo(() => {
+    const labels = new Map<string, string>();
+    for (const section of sections) {
+      const prefix = PRACTICE_SUBJECT_PREFIX[section.sectionId];
+      let localNumber = 0;
+      for (const id of sectionItemOrder(section)) {
+        const numeric = displayNumbers.get(id) ?? 0;
+        if (isAllSubjectsPractice && prefix) {
+          localNumber += 1;
+          labels.set(id, `${prefix}${localNumber}`);
+        } else {
+          labels.set(id, String(numeric));
+        }
+      }
+    }
+    return labels;
+  }, [displayNumbers, isAllSubjectsPractice, sections]);
   const presentedTotal = displayNumbers.size;
   const globalCounts = computeAnswerCounts(session);
 
@@ -218,10 +275,11 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       return;
     }
     const sectionIdx = sections.findIndex((s) => s.sectionId === activeSectionId);
-    if (sectionIdx > 0) {
-      const prevSection = sections[sectionIdx - 1];
+    let previousIdx = sectionIdx - 1;
+    while (previousIdx >= 0 && sectionItemOrder(sections[previousIdx]).length === 0) previousIdx -= 1;
+    if (previousIdx >= 0) {
+      const prevSection = sections[previousIdx];
       const prevOrder = sectionItemOrder(prevSection);
-      if (prevOrder.length === 0) return;
       if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
       pendingTargetRef.current = prevOrder[prevOrder.length - 1];
       setActiveSectionId(prevSection.sectionId);
@@ -247,28 +305,31 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       return;
     }
     const sectionIdx = sections.findIndex((s) => s.sectionId === activeSectionId);
-    if (sectionIdx !== -1 && sectionIdx < sections.length - 1) {
-      const nextSection = sections[sectionIdx + 1];
+    let nextIdx = sectionIdx + 1;
+    while (nextIdx < sections.length && sectionItemOrder(sections[nextIdx]).length === 0) nextIdx += 1;
+    if (nextIdx < sections.length) {
+      const nextSection = sections[nextIdx];
       const nextOrder = sectionItemOrder(nextSection);
-      if (nextOrder.length === 0) return;
       if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
       pendingTargetRef.current = nextOrder[0];
       setActiveSectionId(nextSection.sectionId);
     }
   }, [activeSection, activeSectionId, currentQuestionId, localOrder, scrollToQuestion, sections]);
 
-  const isFirstSection = sections.findIndex((s) => s.sectionId === activeSectionId) <= 0;
-  const isLastSection = sections.findIndex((s) => s.sectionId === activeSectionId) >= sections.length - 1;
+  const activeSectionIndex = sections.findIndex((s) => s.sectionId === activeSectionId);
+  const hasPreviousSection = sections.slice(0, Math.max(0, activeSectionIndex)).some((section) => sectionItemOrder(section).length > 0);
+  const hasNextSection = sections.slice(activeSectionIndex + 1).some((section) => sectionItemOrder(section).length > 0);
   const localIdx = currentQuestionId ? localOrder.indexOf(currentQuestionId) : -1;
-  const isPrevDisabled = isFirstSection && localIdx <= 0;
-  const isNextDisabled = isLastSection && (localIdx === -1 || localIdx >= localOrder.length - 1);
-  const isPractice = session.config.mode === 'practice';
+  const isAtFirstLocalItem = localOrder.length === 0 || localIdx <= 0;
+  const isAtLastLocalItem = localOrder.length === 0 || localIdx === -1 || localIdx >= localOrder.length - 1;
+  const isPrevDisabled = isAtFirstLocalItem && !hasPreviousSection;
+  const isNextDisabled = isAtLastLocalItem && !hasNextSection;
   const isPracticeLast = isPractice && isNextDisabled;
 
-  const currentDisplayNumber =
-    (currentQuestionId ? displayNumbers.get(currentQuestionId) : undefined) ??
-    displayNumbers.get(localOrder[0] ?? '') ??
-    1;
+  const currentDisplayLabel =
+    (currentQuestionId ? displayLabels.get(currentQuestionId) : undefined) ??
+    displayLabels.get(localOrder[0] ?? '') ??
+    '1';
   const isProfessional = examLevel === 'Professional';
   const gridIconColor = isProfessional ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400';
 
@@ -281,12 +342,12 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       className={`${displayClasses} items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white px-2.5 py-1.5 min-h-[40px] rounded-lg border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
       aria-expanded={isNavigatorOpen}
       aria-label={isPractice
-        ? `Open question navigation, item ${currentDisplayNumber}, in ${sectionTitle(activeSectionId)}, ${examLevel} level practice`
-        : `Open question navigation, item ${currentDisplayNumber} of ${presentedTotal}, in ${sectionTitle(activeSectionId)}, ${examLevel} level session`}
+        ? `Open question navigation, item ${currentDisplayLabel}, in ${sectionTitle(activeSectionId)}, ${examLevel} level practice`
+        : `Open question navigation, item ${currentDisplayLabel} of ${presentedTotal}, in ${sectionTitle(activeSectionId)}, ${examLevel} level session`}
     >
       <Grid className={`w-4 h-4 shrink-0 ${gridIconColor}`} aria-hidden="true" />
       <span>
-        Q {currentDisplayNumber}
+        Q {currentDisplayLabel}
         {!isPractice && <span className="text-slate-400 dark:text-slate-500 font-normal"> / {presentedTotal}</span>}
       </span>
     </button>
@@ -455,8 +516,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 const blocks = navigatorBlocks(section);
                 if (blocks.length === 0) return null;
                 const order = sectionItemOrder(section);
-                const first = displayNumbers.get(order[0] ?? '') ?? 0;
-                const last = displayNumbers.get(order[order.length - 1] ?? '') ?? 0;
+                const first = displayLabels.get(order[0] ?? '') ?? '0';
+                const last = displayLabels.get(order[order.length - 1] ?? '') ?? '0';
                 return (
                   <div key={section.sectionId}>
                     {!isLegacy && (
@@ -472,7 +533,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                         <div key={block.groupId ?? block.poolId ?? `${section.sectionId}-block-${blockIndex}`}>
                           <div className="grid grid-cols-5 gap-2">
                             {block.ids.map((id) => {
-                              const num = displayNumbers.get(id) ?? 0;
+                              const num = displayLabels.get(id) ?? '0';
                               const isCurrent = section.sectionId === activeSectionId && id === currentQuestionId;
                               const isAnswered = block.administrative
                                 ? Boolean((session.edqAnswers ?? {})[id])
@@ -489,7 +550,9 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                                         ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
                                         : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
                                   }`}
-                                  aria-label={`Go to item ${num} in ${sectionTitle(section.sectionId)}${block.administrative ? ', administrative, not scored' : isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
+                                  aria-label={`${isPractice
+                                    ? `Go to ${sectionTitle(section.sectionId)} question ${num}`
+                                    : `Go to item ${num} in ${sectionTitle(section.sectionId)}`}${block.administrative ? ', administrative, not scored' : isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
                                 >
                                   {num}
                                 </button>
@@ -507,7 +570,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
         )}
 
         <main ref={scrollRef} className="flex-1 bg-white dark:bg-slate-950 overflow-y-auto px-4 sm:px-6 py-6 sm:py-8">
-          <div className="w-full max-w-5xl mx-auto space-y-14 pb-24">
+          <div className="w-full max-w-5xl mx-auto space-y-6 pb-24">
             {!isLegacy && activeSection && (
               <div className="pb-3 border-b border-slate-200 dark:border-slate-800">
                 <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
@@ -553,6 +616,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 getGroup={getGroup}
                 questionIndex={questionIndex}
                 questionNumbers={displayNumbers}
+                questionLabels={displayLabels}
                 answers={session.answers}
                 onSelectOption={onSelectOption}
                 edq={edq ? { ...edq, onSkip: skipEdq } : undefined}
