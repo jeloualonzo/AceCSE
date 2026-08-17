@@ -1,4 +1,4 @@
-import { PlayCircle } from 'lucide-react';
+import { BookOpen, PlayCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { Subject } from '@/types';
 import { useAppContext } from '@/components/shell/AppLayout';
@@ -83,7 +83,25 @@ export const PracticePage: React.FC = () => {
         <ExamLevelSwitch value={examLevel} onChange={setExamLevel} />
       </div>
 
-      <section aria-label="Practice choices">
+      <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 rounded-2xl p-5 sm:p-6">
+        <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-2">
+          <BookOpen className="w-4 h-4" aria-hidden="true" />
+          <span>Learning Mode</span>
+        </div>
+        <p className="text-xs sm:text-sm text-emerald-900 dark:text-emerald-300 leading-relaxed">
+          Practice at your own pace. Answer, skip, revisit, and reveal explanations as you learn.
+          Start with any subject and show more questions whenever you are ready. The session stopwatch starts automatically.
+        </p>
+      </div>
+      <section aria-labelledby="practice-start-heading" className="space-y-3">
+        <div>
+          <h2 id="practice-start-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Start Practice
+          </h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Choose a subject or mix all five subject areas. Your session grows as you work.
+          </p>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
           <PracticeLaunchCard
             subjectLabel="All Subjects"

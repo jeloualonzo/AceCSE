@@ -51,10 +51,20 @@ describe('Practice progressive landing page', () => {
       expect(svg.closest('button')).not.toBeNull();
     }
 
-    expect(screen.queryByRole('heading', { name: 'Start Practice' })).not.toBeInTheDocument();
-    expect(screen.queryByText(/Choose a subject or mix all five subject areas/i)).not.toBeInTheDocument();
-    expect(screen.queryByText('Learning Mode')).not.toBeInTheDocument();
-    expect(screen.queryByText(/Build speed with operations|Mix all five subject areas|Practice logic|Strengthen vocabulary|Review filing|Review constitutional/i)).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Start Practice' })).toBeInTheDocument();
+    expect(screen.getByText('Choose a subject or mix all five subject areas. Your session grows as you work.')).toBeInTheDocument();
+    expect(screen.getByText('Learning Mode')).toBeInTheDocument();
+    expect(screen.getByText(/Practice at your own pace\. Answer, skip, revisit, and reveal explanations as you learn\./i)).toBeInTheDocument();
+    for (const description of [
+      'Mix all five subject areas for a broader learning session.',
+      'Build speed with operations, word problems, ratios, data, and series.',
+      'Practice logic, syllogisms, patterns, and structured problem solving.',
+      'Strengthen vocabulary, grammar, reading comprehension, and organization.',
+      'Review filing, spelling, coding, and practical office procedures.',
+      'Review constitutional, legal, environmental, and civic knowledge.',
+    ]) {
+      expect(screen.queryByText(description)).not.toBeInTheDocument();
+    }
     expect(screen.queryByText(/Timed|Untimed/i)).not.toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/question bank|fixed session|select size|question count|available questions|task|pool|category|inventory|description/i);
   });
