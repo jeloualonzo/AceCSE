@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -24,7 +24,7 @@ afterEach(() => cleanup());
 beforeEach(() => navigateMock.mockReset());
 
 describe('Practice progressive landing page', () => {
-  it('puts All Subjects first and keeps each card to title, description, and one icon-bearing Start button', () => {
+  it('puts All Subjects first and keeps each card to a title and bottom-aligned icon-bearing Start button', () => {
     const { container } = render(<PracticePage />);
 
     expect(container.querySelector('.max-w-7xl')).not.toBeNull();
@@ -39,17 +39,24 @@ describe('Practice progressive landing page', () => {
       'General Information',
     ]);
 
-    const startButtons = screen.getAllByRole('button', { name: /^Start .*Practice$/ });
-    expect(startButtons).toHaveLength(6);
-    for (const button of startButtons) {
+    const cards = [...container.querySelectorAll<HTMLElement>('[data-practice-card]')];
+    expect(cards).toHaveLength(6);
+    for (const card of cards) {
+      expect(card).toHaveClass('flex', 'flex-col');
+      const button = within(card).getByRole('button');
       expect(button.querySelector('svg')).not.toBeNull();
+      expect(button.parentElement).toHaveClass('mt-auto', 'pt-6');
     }
     for (const svg of container.querySelectorAll('[data-practice-card] svg')) {
       expect(svg.closest('button')).not.toBeNull();
     }
 
+    expect(screen.queryByRole('heading', { name: 'Start Practice' })).not.toBeInTheDocument();
+    expect(screen.queryByText(/Choose a subject or mix all five subject areas/i)).not.toBeInTheDocument();
+    expect(screen.queryByText('Learning Mode')).not.toBeInTheDocument();
+    expect(screen.queryByText(/Build speed with operations|Mix all five subject areas|Practice logic|Strengthen vocabulary|Review filing|Review constitutional/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Timed|Untimed/i)).not.toBeInTheDocument();
-    expect(document.body.textContent).not.toMatch(/question bank|fixed session|select size|question count|available questions|task|pool|category|inventory/i);
+    expect(document.body.textContent).not.toMatch(/question bank|fixed session|select size|question count|available questions|task|pool|category|inventory|description/i);
   });
 
   it('launches a single subject with progressive metadata and no Practice timing mode', async () => {
