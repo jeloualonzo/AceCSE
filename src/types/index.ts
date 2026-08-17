@@ -207,6 +207,12 @@ export interface ExamBlueprint {
 
 export type SessionMode = 'simulation' | 'practice';
 
+/** Exactly one primary focus entity may be active for passive timing. */
+export type ActiveFocus =
+  | { type: 'task'; taskId: string }
+  | { type: 'question'; questionId: string }
+  | null;
+
 /** Internal, local-only cursor for progressive Practice sessions. */
 export interface PracticeProgress {
   batchSize: number;
@@ -262,6 +268,8 @@ export interface ExamSession {
   sessionElapsedMs?: number;
   /** Buffered cumulative primary-view time by encountered question id, in milliseconds. */
   questionTimeSpentMs?: Record<string, number>;
+  /** Buffered cumulative shared-task/directions time by stable task id, in milliseconds. */
+  taskTimeSpentMs?: Record<string, number>;
 }
 
 // ---------------------------------------------------------------------------
@@ -312,6 +320,8 @@ export interface Attempt {
   completedAt: number;
   subjects: SubjectPerformance[];
   items: AttemptItem[];
+  /** Optional cumulative shared-task/directions time by stable task id, in milliseconds. */
+  taskTimeSpentMs?: Record<string, number>;
 }
 
 // ---------------------------------------------------------------------------

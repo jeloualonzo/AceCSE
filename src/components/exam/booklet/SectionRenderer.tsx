@@ -1,5 +1,5 @@
 import React from 'react';
-import type { NormalizedQuestionGroup, OptionId, Question } from '@/types';
+import type { ActiveFocus, NormalizedQuestionGroup, OptionId, Question } from '@/types';
 import type { EdqItem } from '@/data/edq';
 import type { BookletSection } from '@/lib/examViewModel';
 import { getSharedTaskDefinitionForTaskFormat, taskFormatLabel } from '@/data/taxonomy';
@@ -28,13 +28,20 @@ export interface SectionRendererProps {
   questionNumbers: ReadonlyMap<string, number>;
   /** Optional learner-facing labels such as N1/V1 for All Subjects Practice. */
   questionLabels?: ReadonlyMap<string, string>;
-  /** One primary question selected by the booklet scroll-spy/navigation model. */
+  /** New exclusive task/question focus source of truth. */
+  activeFocus?: ActiveFocus;
+  /** Legacy question-only focus input retained for compatible callers. */
   activeQuestionId?: string | null;
   answers: Readonly<Record<string, OptionId>>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
   edq?: EdqRenderContext;
   /** Practice keeps local explanation toggles; Simulation keeps feedback hidden. */
   practiceMode?: boolean;
+}
+
+function focusFromLegacy(activeFocus: ActiveFocus | undefined, activeQuestionId: string | null | undefined): ActiveFocus {
+  if (activeFocus !== undefined) return activeFocus;
+  return activeQuestionId ? { type: 'question', questionId: activeQuestionId } : null;
 }
 
 /**
@@ -47,12 +54,16 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
   questionIndex,
   questionNumbers,
   questionLabels,
+  activeFocus,
   activeQuestionId,
   answers,
   onSelectOption,
   edq,
   practiceMode = false,
 }) {
+  const resolvedFocus = focusFromLegacy(activeFocus, activeQuestionId);
+  const activeQuestion = resolvedFocus?.type === 'question' ? resolvedFocus.questionId : null;
+
   return (
     <div className="space-y-4">
       {section.nodes.map((node, index) => {
@@ -79,11 +90,12 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
             <GroupRenderer
               key={`group-${node.groupId}`}
               group={getGroup(node.groupId)}
+              taskId={`group:${section.sectionId}:${node.groupId}`}
               questionIds={node.questionIds}
               questionIndex={questionIndex}
               questionNumbers={questionNumbers}
               questionLabels={questionLabels}
-              activeQuestionId={activeQuestionId}
+              activeFocus={resolvedFocus}
               answers={answers}
               onSelectOption={onSelectOption}
               practiceMode={practiceMode}
@@ -115,13 +127,14 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
             <GroupRenderer
               key={`pool-${node.poolId}-${index}`}
               group={undefined}
+              taskId={`pool:${section.sectionId}:${node.poolId}:${node.taskFormat}`}
               sharedContext={sharedContext}
               plainFlow={node.poolId === 'clerical-filing' || node.taskFormat === 'shared_grammar_sentence_correction'}
               questionIds={node.questionIds}
               questionIndex={questionIndex}
               questionNumbers={questionNumbers}
               questionLabels={questionLabels}
-              activeQuestionId={activeQuestionId}
+              activeFocus={resolvedFocus}
               answers={answers}
               onSelectOption={onSelectOption}
               practiceMode={practiceMode}
@@ -136,7 +149,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
             question={question}
             questionNumber={questionNumbers.get(node.questionId) ?? 0}
             questionLabel={questionLabels?.get(node.questionId)}
-            active={activeQuestionId === node.questionId}
+            active={activeQuestion === node.questionId}
             selectedOptionId={answers[node.questionId] ?? null}
             onSelectOption={onSelectOption}
             itemContainer={true}

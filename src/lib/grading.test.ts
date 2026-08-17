@@ -73,12 +73,14 @@ describe('gradeSession mode-specific unanswered semantics', () => {
       ...makeSession('practice', partialAnswers),
       sessionElapsedMs: 14_900,
       questionTimeSpentMs: { 'q-1': 24_000, 'q-13': 9_000 },
+      taskTimeSpentMs: { 'task-spelling': 31_000 },
     };
     const attempt = gradeSession(session, questionIndex, 61_000);
 
     expect(attempt.durationSeconds).toBe(15);
     expect(attempt.items.find((item) => item.questionId === 'q-1')?.timeSpentMs).toBe(24_000);
     expect(attempt.items.find((item) => item.questionId === 'q-13')?.timeSpentMs).toBe(9_000);
+    expect(attempt.taskTimeSpentMs).toEqual({ 'task-spelling': 31_000 });
     expect(attempt.correctCount).toBe(9);
     expect(attempt.percentage).toBe(75);
   });

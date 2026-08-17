@@ -59,6 +59,12 @@ export function gradeSession(
 
   const percentage = roundPercent(correctCount, session.config.mode === 'practice' ? answeredCount : items.length);
 
+  const taskTimeSpentMs = session.taskTimeSpentMs && Object.fromEntries(
+    Object.entries(session.taskTimeSpentMs)
+      .filter(([, value]) => Number.isFinite(value) && value > 0)
+      .map(([taskId, value]) => [taskId, Math.max(0, value)] as const)
+  );
+
   return {
     id: session.id,
     mode: session.config.mode,
@@ -77,5 +83,6 @@ export function gradeSession(
     completedAt,
     subjects,
     items,
+    ...(taskTimeSpentMs && Object.keys(taskTimeSpentMs).length > 0 ? { taskTimeSpentMs } : {}),
   };
 }

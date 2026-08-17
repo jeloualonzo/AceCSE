@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import React from 'react';
-import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
@@ -406,6 +406,102 @@ describe('BookletExamLayout — shared task and question card hierarchy', () => 
     expect(firstQuestionCard).toHaveClass('border-emerald-400/90', 'bg-white', 'shadow-md');
     expect(taskCard).not.toBe(firstQuestionCard);
     expect(taskCard?.parentElement).toHaveClass('space-y-4');
+  });
+});
+
+describe('BookletExamLayout — shared task active focus', () => {
+  it('activates directions and then Question 1 through the same focus-line observer', async () => {
+    const callbacks: Array<(entries: IntersectionObserverEntry[]) => void> = [];
+    vi.stubGlobal('IntersectionObserver', class {
+      constructor(callback: (entries: IntersectionObserverEntry[]) => void) {
+        callbacks.push(callback);
+      }
+      observe() {}
+      disconnect() {}
+    });
+    const onActiveFocusChange = vi.fn();
+    const sharedSession = baseSession({
+      config: {
+        mode: 'simulation',
+        examLevel: 'Professional',
+        questionCount: 2,
+        timed: true,
+        durationSeconds: 3600,
+      },
+      questionIds: ['V1', 'V2'],
+      items: [{
+        kind: 'pool',
+        poolId: 'spelling',
+        questionType: 'Spelling',
+        taskFormat: 'shared_spelling_task',
+        sectionId: 'Verbal Ability',
+        questionIds: ['V1', 'V2'],
+      }],
+    });
+    renderLayout({ session: sharedSession, onActiveFocusChange });
+
+    const main = document.querySelector('main') as HTMLElement;
+    vi.spyOn(main, 'getBoundingClientRect').mockReturnValue({
+      top: 0,
+      bottom: 100,
+      height: 100,
+      width: 100,
+      left: 0,
+      right: 100,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    });
+    Object.defineProperty(main, 'clientHeight', { configurable: true, value: 100 });
+
+    const taskCard = document.querySelector('[data-focus-type="task"]') as HTMLElement;
+    const questionOne = document.getElementById('question-V1') as HTMLElement;
+    const questionTwo = document.getElementById('question-V2') as HTMLElement;
+    const observer = callbacks.at(-1);
+    expect(observer).toBeDefined();
+
+    const entry = (target: HTMLElement, top: number, bottom: number): IntersectionObserverEntry => ({
+      target,
+      isIntersecting: true,
+      boundingClientRect: { top, bottom, height: bottom - top, width: 100, left: 0, right: 100, x: 0, y: top, toJSON: () => ({}) },
+      intersectionRatio: 1,
+      intersectionRect: { top, bottom, height: bottom - top, width: 100, left: 0, right: 100, x: 0, y: top, toJSON: () => ({}) },
+      rootBounds: null,
+      time: 0,
+    } as IntersectionObserverEntry);
+
+    await act(async () => {
+      observer?.([
+        entry(taskCard, 0, 70),
+        entry(questionOne, 70, 220),
+        entry(questionTwo, 220, 360),
+      ]);
+    });
+
+    expect(taskCard).toHaveAttribute('data-focus-active', 'true');
+    expect(taskCard).toHaveClass('border-emerald-300', 'shadow-md');
+    expect(questionOne).toHaveAttribute('data-focus-active', 'false');
+    expect(questionOne).toHaveAttribute('data-primary-active', 'false');
+    expect(document.querySelectorAll('[data-focus-active="true"]')).toHaveLength(1);
+    expect(onActiveFocusChange).toHaveBeenLastCalledWith({
+      type: 'task',
+      taskId: 'pool:Verbal Ability:spelling:shared_spelling_task',
+    });
+
+    await act(async () => {
+      observer?.([
+        entry(taskCard, -80, 20),
+        entry(questionOne, 20, 120),
+        entry(questionTwo, 120, 260),
+      ]);
+    });
+
+    expect(taskCard).toHaveAttribute('data-focus-active', 'false');
+    expect(questionOne).toHaveAttribute('data-focus-active', 'true');
+    expect(questionOne).toHaveAttribute('data-primary-active', 'true');
+    expect(questionOne).toHaveClass('border-emerald-400/90', 'shadow-md');
+    expect(document.querySelectorAll('[data-focus-active="true"]')).toHaveLength(1);
+    expect(onActiveFocusChange).toHaveBeenLastCalledWith({ type: 'question', questionId: 'V1' });
   });
 });
 

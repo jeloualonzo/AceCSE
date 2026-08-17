@@ -67,6 +67,9 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
     <section
       id={`question-${question.id}`}
       data-question-id={question.id}
+      data-focus-id={question.id}
+      data-focus-type="question"
+      data-focus-active={active ? 'true' : 'false'}
       data-primary-active={active ? 'true' : 'false'}
       aria-labelledby={`question-${question.id}-heading`}
       tabIndex={-1}

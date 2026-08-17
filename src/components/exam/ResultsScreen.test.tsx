@@ -84,6 +84,7 @@ function attempt(mode: 'practice' | 'simulation'): Attempt {
           : index === 12 ? { ...item, timeSpentMs: 9_000 }
             : item
     )),
+    taskTimeSpentMs: { 'task-spelling': 31_000 },
   };
 }
 
@@ -140,6 +141,15 @@ describe('ResultsScreen Practice metrics', () => {
     expect(screen.getByText('Time spent: 00:24')).toBeInTheDocument();
     expect(screen.getByText('Time spent: 01:18')).toBeInTheDocument();
     expect(screen.getByText('Time spent: 00:09')).toBeInTheDocument();
+  });
+
+  it('shows task/directions time separately from question time', () => {
+    renderResults('practice');
+
+    expect(screen.getByRole('region', { name: 'Task and directions timing' })).toBeInTheDocument();
+    expect(screen.getByText('Task / Directions Time')).toBeInTheDocument();
+    expect(screen.getByText('00:31')).toBeInTheDocument();
+    expect(screen.getByText('Time spent: 00:24')).toBeInTheDocument();
   });
 
   it('keeps Simulation result language and score denominator unchanged', () => {

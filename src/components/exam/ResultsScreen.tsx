@@ -270,6 +270,26 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
           </div>
         </div>
 
+        {Object.keys(attempt.taskTimeSpentMs ?? {}).length > 0 && (
+          <section
+            aria-label="Task and directions timing"
+            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-md space-y-3"
+          >
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">Task / Directions Time</h3>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Reading shared instructions and examples is tracked separately from question time.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {Object.entries(attempt.taskTimeSpentMs ?? {}).map(([taskId, timeMs]) => (
+                <div key={taskId} className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/70 px-3 py-2">
+                  <span className="min-w-0 truncate text-xs font-semibold text-slate-700 dark:text-slate-200" title={taskId}>Shared task / directions</span>
+                  <span className="shrink-0 text-[11px] font-mono font-bold text-slate-600 dark:text-slate-300">{formatElapsedMs(timeMs)}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Item review */}
         <div className="space-y-4 pt-2">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">

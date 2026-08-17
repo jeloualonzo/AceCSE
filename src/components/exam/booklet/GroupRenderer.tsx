@@ -1,5 +1,5 @@
 import React from 'react';
-import type { NormalizedQuestionGroup, OptionId, Question } from '@/types';
+import type { ActiveFocus, NormalizedQuestionGroup, OptionId, Question } from '@/types';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
 import { QuestionRenderer } from './QuestionRenderer';
 
@@ -8,6 +8,8 @@ export interface GroupRendererProps {
   group: NormalizedQuestionGroup | undefined;
   /** Shared task directions/examples for a canonical pool block. */
   sharedContext?: { title?: string; directions?: string; example?: string };
+  /** Stable task identity from the existing group/pool identity. */
+  taskId?: string;
   /** @deprecated Retained for compatible callers; shared tasks now use one neutral container. */
   plainFlow?: boolean;
   questionIds: string[];
@@ -15,7 +17,9 @@ export interface GroupRendererProps {
   questionNumbers: ReadonlyMap<string, number>;
   /** Optional learner-facing labels such as N1/V1 for All Subjects Practice. */
   questionLabels?: ReadonlyMap<string, string>;
-  /** One primary question selected by the booklet scroll-spy/navigation model. */
+  /** New exclusive task/question focus source of truth. */
+  activeFocus?: ActiveFocus;
+  /** Legacy question-only focus input retained for compatible callers. */
   activeQuestionId?: string | null;
   answers: Readonly<Record<string, OptionId>>;
   onSelectOption: (questionId: string, optionId: OptionId) => void;
@@ -26,21 +30,20 @@ export interface GroupRendererProps {
 /**
  * Group ├── Directions ├── Example/passage/table ├── Question 1..N
  *
- * Shared content renders exactly once above the member questions — this is
- * the whole point of the group model. Almost every group in the current
- * production bank is a migrated singleton with no directions/contentBlocks,
- * so `hasSharedContent` is false for it and this renders as a plain question
- * with no visual overhead, which is intentional: singleton groups should be
- * indistinguishable from a real ungrouped question.
+ * Shared content renders exactly once above the member questions. Shared task
+ * blocks participate in the same focus line as their member question cards,
+ * and exactly one of those entities can be active at a time.
  */
 export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function GroupRenderer({
   group,
   sharedContext,
+  taskId,
   plainFlow: _plainFlow = false,
   questionIds,
   questionIndex,
   questionNumbers,
   questionLabels,
+  activeFocus,
   activeQuestionId,
   answers,
   onSelectOption,
@@ -50,11 +53,30 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
   const hasSharedContent = Boolean(
     taskContext?.directions || taskContext?.example || group?.contentBlocks?.length
   );
+  const resolvedTaskId = taskId ?? (group ? `group:${group.id}` : undefined);
+  const activeQuestion = activeFocus
+    ? activeFocus.type === 'question' ? activeFocus.questionId : null
+    : activeQuestionId ?? null;
+  const isTaskActive = Boolean(
+    hasSharedContent &&
+    resolvedTaskId &&
+    activeFocus?.type === 'task' &&
+    activeFocus.taskId === resolvedTaskId
+  );
 
   return (
     <div id={group ? `group-${group.id}` : undefined} className="space-y-4">
       {hasSharedContent && (
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 border-l-4 border-l-emerald-500 bg-white dark:bg-slate-900 shadow-sm p-4 sm:p-5 space-y-3">
+        <div
+          data-focus-id={resolvedTaskId}
+          data-focus-type="task"
+          data-focus-active={isTaskActive ? 'true' : 'false'}
+          className={`rounded-xl border border-l-4 bg-white dark:bg-slate-900 p-4 sm:p-5 space-y-3 transition-shadow ${
+            isTaskActive
+              ? 'border-emerald-300 dark:border-emerald-500/70 border-l-emerald-600 dark:border-l-emerald-500 shadow-md'
+              : 'border-slate-200 dark:border-slate-800 border-l-emerald-500 shadow-sm'
+          }`}
+        >
           {taskContext?.title && (
             <h3 className="text-sm font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">{taskContext.title}</h3>
           )}
@@ -85,7 +107,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
               question={question}
               questionNumber={questionNumbers.get(id) ?? 0}
               questionLabel={questionLabels?.get(id)}
-              active={activeQuestionId === id}
+              active={activeQuestion === id}
               selectedOptionId={answers[id] ?? null}
               onSelectOption={onSelectOption}
               suppressPassage={Boolean(group?.contentBlocks && group.contentBlocks.length > 0)}

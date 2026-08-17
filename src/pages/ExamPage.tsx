@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import type { Attempt, ExamSession, OptionId, Question, Subject } from '@/types';
+import type { ActiveFocus, Attempt, ExamSession, OptionId, Question, Subject } from '@/types';
 import {
   buildGroupPracticeSession,
   buildFilingPracticeSession,
@@ -135,7 +135,7 @@ export const ExamPage: React.FC = () => {
   const [catalog, setCatalog] = useState<NormalizedContentCatalog | null>(null);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [saveError, setSaveError] = useState(false);
-  const [activeQuestionId, setActiveQuestionId] = useState<string | null>(null);
+  const [activeFocus, setActiveFocus] = useState<ActiveFocus>(null);
   /** Session id already graded — prevents double submission (modal + timer). */
   const finishedRef = React.useRef<string | null>(null);
   const activeSessionForTiming = stage?.name === 'active' ? stage.session : null;
@@ -147,6 +147,7 @@ export const ExamPage: React.FC = () => {
         ...prev.session,
         sessionElapsedMs: snapshot.sessionElapsedMs,
         questionTimeSpentMs: snapshot.questionTimeSpentMs,
+        taskTimeSpentMs: snapshot.taskTimeSpentMs,
       };
       saveActiveSession(next);
       return { name: 'active', session: next };
@@ -157,7 +158,8 @@ export const ExamPage: React.FC = () => {
     sessionKey: activeSessionForTiming?.id ?? 'inactive',
     sessionElapsedMs: activeSessionForTiming?.sessionElapsedMs,
     questionTimeSpentMs: activeSessionForTiming?.questionTimeSpentMs,
-    activeQuestionId,
+    taskTimeSpentMs: activeSessionForTiming?.taskTimeSpentMs,
+    activeFocus,
     enabled: Boolean(activeSessionForTiming),
     showStopwatch: activeSessionForTiming?.config.mode === 'practice',
     onPersist: persistTiming,
@@ -175,6 +177,7 @@ export const ExamPage: React.FC = () => {
             ...finished,
             sessionElapsedMs: finalTiming.sessionElapsedMs,
             questionTimeSpentMs: finalTiming.questionTimeSpentMs,
+            taskTimeSpentMs: finalTiming.taskTimeSpentMs,
           }
         : finished;
       // EDQ items are administrative: they are never in `questionIds`, so
@@ -522,7 +525,7 @@ export const ExamPage: React.FC = () => {
         getGroup={getGroup}
         questionIndex={questionIndex ?? new Map()}
         onSelectOption={handleSelectOptionFor}
-        onActiveQuestionChange={setActiveQuestionId}
+        onActiveFocusChange={setActiveFocus}
         onLoadMore={isPractice && activeSession.practiceProgress ? handleLoadMorePractice : undefined}
         hasMorePractice={isPractice && hasMoreProgressivePractice(activeSession)}
         edq={isPractice ? undefined : {

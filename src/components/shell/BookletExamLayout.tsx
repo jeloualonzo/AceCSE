@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Grid, XCircle } from 'lucide-react';
-import type { ExamLevel, ExamSession, NormalizedQuestionGroup, OptionId, Question } from '@/types';
+import type { ActiveFocus, ExamLevel, ExamSession, NormalizedQuestionGroup, OptionId, Question } from '@/types';
 import {
   buildBooklet,
   computeAnswerCounts,
@@ -16,7 +16,7 @@ import {
 } from '@/lib/examViewModel';
 import { EDQ_SECTION_ID } from '@/data/edq';
 import { SectionRenderer, type EdqRenderContext } from '@/components/exam/booklet/SectionRenderer';
-import { focusLineY, selectFocusQuestion, type FocusCandidate } from '@/lib/activeQuestionFocus';
+import { focusFromCandidate, focusLineY, selectFocusEntity, type FocusEntityCandidate } from '@/lib/activeQuestionFocus';
 
 const ALL_PRACTICE_SUBJECTS = new Set([
   'Numerical Reasoning',
@@ -48,6 +48,8 @@ export interface BookletExamLayoutProps {
   hasMorePractice?: boolean;
   /** Reports the one primary question chosen by the booklet scroll/navigation model. */
   onActiveQuestionChange?: (questionId: string | null) => void;
+  /** Reports the one exclusive task/question focus entity for passive timing. */
+  onActiveFocusChange?: (focus: ActiveFocus) => void;
   /** EDQ rendering context — present only for sessions that carry an EDQ section. */
   edq?: EdqRenderContext;
 }
@@ -76,19 +78,35 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   onLoadMore,
   hasMorePractice = false,
   onActiveQuestionChange,
+  onActiveFocusChange,
   edq,
 }) => {
   const scrollRef = useRef<HTMLElement | null>(null);
   const navTriggerRef = useRef<HTMLButtonElement | null>(null);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState<string | null>(null);
+  const [activeFocus, setActiveFocus] = useState<ActiveFocus>(null);
+  const activeFocusRef = useRef<ActiveFocus>(null);
   const currentQuestionIdRef = useRef<string | null>(null);
   const navigationTargetRef = useRef<string | null>(null);
-  const setPrimaryQuestion = useCallback((questionId: string | null) => {
+  const focusIdOf = (focus: ActiveFocus): string | null => {
+    if (!focus) return null;
+    return focus.type === 'task' ? focus.taskId : focus.questionId;
+  };
+  const sameFocus = (left: ActiveFocus, right: ActiveFocus): boolean => {
+    return focusIdOf(left) === focusIdOf(right)
+      && (left?.type ?? null) === (right?.type ?? null);
+  };
+  const setPrimaryFocus = useCallback((focus: ActiveFocus) => {
+    if (sameFocus(activeFocusRef.current, focus)) return;
+    activeFocusRef.current = focus;
+    setActiveFocus(focus);
+    const questionId = focus?.type === 'question' ? focus.questionId : null;
     currentQuestionIdRef.current = questionId;
     setCurrentQuestionId(questionId);
     onActiveQuestionChange?.(questionId);
-  }, [onActiveQuestionChange]);
+    onActiveFocusChange?.(focus);
+  }, [onActiveFocusChange, onActiveQuestionChange]);
   const isPractice = session.config.mode === 'practice';
   const isAllSubjectsPractice = isAllSubjectsPracticeSession(session);
 
@@ -158,7 +176,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     const initialContainerRect = container.getBoundingClientRect();
     const initialTargetRect = target.getBoundingClientRect();
     if (initialContainerRect.height === 0 && initialTargetRect.height === 0) {
-      setPrimaryQuestion(questionId);
+      setPrimaryFocus({ type: 'question', questionId });
     }
     const activateIfSettled = () => {
       const containerRect = container.getBoundingClientRect();
@@ -167,12 +185,12 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       const hasGeometry = containerRect.height > 0 || targetRect.height > 0;
       if (!hasGeometry || (targetRect.top <= focusY && targetRect.bottom >= focusY)) {
         navigationTargetRef.current = null;
-        setPrimaryQuestion(questionId);
+        setPrimaryFocus({ type: 'question', questionId });
       }
     };
     if (behavior === 'auto') activateIfSettled();
     requestAnimationFrame(activateIfSettled);
-  }, [setPrimaryQuestion]);
+  }, [setPrimaryFocus]);
 
   // Lands on the right question every time the active section changes —
   // covers first mount, subject switches, and Previous/Next crossing a
@@ -180,16 +198,20 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   // first-unanswered default when a boundary crossing set an explicit target).
   useEffect(() => {
     if (!activeSection) {
-      setPrimaryQuestion(null);
+      setPrimaryFocus(null);
       return;
     }
     const order = sectionItemOrder(activeSection);
     if (order.length === 0) {
-      setPrimaryQuestion(null);
+      setPrimaryFocus(null);
       return;
     }
 
-    if (!pendingTargetRef.current && currentQuestionId && order.includes(currentQuestionId)) return;
+    const taskBelongsToSection = activeFocus?.type === 'task'
+      && (activeFocus.taskId.startsWith(`group:${activeSectionId}:`) || activeFocus.taskId.startsWith(`pool:${activeSectionId}:`));
+    if (!pendingTargetRef.current && (
+      (currentQuestionId && order.includes(currentQuestionId)) || taskBelongsToSection
+    )) return;
 
     let target: string;
     if (pendingTargetRef.current && order.includes(pendingTargetRef.current)) {
@@ -204,7 +226,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     pendingTargetRef.current = null;
     scrollToQuestion(target, 'auto');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSectionId, activeSection, currentQuestionId, setPrimaryQuestion]);
+  }, [activeSectionId, activeSection, currentQuestionId, activeFocus, setPrimaryFocus]);
 
   // Scroll-spy within the active section only — the DOM never holds more
   // than one subject's questions at a time. A focus line, not any visible
@@ -213,21 +235,33 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
-    const targets = Array.from(container.querySelectorAll<HTMLElement>('[data-question-id]'));
+    const targets = Array.from(container.querySelectorAll<HTMLElement>('[data-focus-id]'));
     if (targets.length === 0) return;
-    const known = new Map<string, FocusCandidate & { isIntersecting: boolean }>();
+    const known = new Map<string, FocusEntityCandidate & { isIntersecting: boolean }>();
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const id = entry.target.getAttribute('data-question-id');
-          if (!id) return;
-          known.set(id, {
-            id,
-            top: entry.boundingClientRect.top,
-            bottom: entry.boundingClientRect.bottom,
-            isIntersecting: entry.isIntersecting,
-          });
+          const id = entry.target.getAttribute('data-focus-id');
+          const focusType = entry.target.getAttribute('data-focus-type');
+          if (!id || (focusType !== 'task' && focusType !== 'question')) return;
+          known.set(id, focusType === 'task'
+            ? {
+                id,
+                focusType: 'task',
+                taskId: id,
+                top: entry.boundingClientRect.top,
+                bottom: entry.boundingClientRect.bottom,
+                isIntersecting: entry.isIntersecting,
+              }
+            : {
+                id,
+                focusType: 'question',
+                questionId: id,
+                top: entry.boundingClientRect.top,
+                bottom: entry.boundingClientRect.bottom,
+                isIntersecting: entry.isIntersecting,
+              });
         });
         const candidates = [...known.values()].filter((candidate) => candidate.isIntersecting);
         if (candidates.length === 0) return;
@@ -238,17 +272,18 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
           const target = candidates.find((candidate) => candidate.id === navigationTarget);
           if (!target || target.top > focusY || target.bottom < focusY) return;
           navigationTargetRef.current = null;
-          setPrimaryQuestion(navigationTarget);
+          setPrimaryFocus(focusFromCandidate(target));
           return;
         }
-        const next = selectFocusQuestion(candidates, focusY, currentQuestionIdRef.current);
-        if (next) setPrimaryQuestion(next);
+        const currentFocusId = focusIdOf(activeFocusRef.current);
+        const next = selectFocusEntity(candidates, focusY, currentFocusId);
+        if (next) setPrimaryFocus(focusFromCandidate(next));
       },
       { root: container, rootMargin: '-20% 0px -60% 0px', threshold: [0, 1] }
     );
     targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
-  }, [activeSectionId, activeSection, setPrimaryQuestion]);
+  }, [activeSectionId, activeSection, setPrimaryFocus]);
 
   const closeNavigator = useCallback(() => {
     setIsNavigatorOpen(false);
@@ -675,7 +710,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 questionIndex={questionIndex}
                 questionNumbers={displayNumbers}
                 questionLabels={displayLabels}
-                activeQuestionId={currentQuestionId}
+                activeFocus={activeFocus}
                 answers={session.answers}
                 onSelectOption={onSelectOption}
                 edq={edq ? { ...edq, onSkip: skipEdq } : undefined}

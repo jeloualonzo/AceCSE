@@ -1,15 +1,22 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { ActiveFocus } from '@/types';
 
 export interface PassiveTimingSnapshot {
   /** Total active session time, excluding hidden-tab segments, in milliseconds. */
   sessionElapsedMs: number;
   /** Cumulative primary-view time keyed by encountered question id. */
   questionTimeSpentMs: Record<string, number>;
+  /** Cumulative shared-task/directions time keyed by stable task id. */
+  taskTimeSpentMs?: Record<string, number>;
 }
 
 export interface PassiveTimingOptions {
   sessionElapsedMs?: number;
   questionTimeSpentMs?: Readonly<Record<string, number>>;
+  taskTimeSpentMs?: Readonly<Record<string, number>>;
+  /** New exclusive focus source of truth. */
+  activeFocus?: ActiveFocus;
+  /** Legacy question-only input retained for old callers. */
   activeQuestionId?: string | null;
   visible?: boolean;
   now?: number;
@@ -27,17 +34,34 @@ function isDocumentVisible(): boolean {
   return typeof document === 'undefined' || document.visibilityState !== 'hidden';
 }
 
+function sameFocus(left: ActiveFocus, right: ActiveFocus): boolean {
+  if (left === right) return true;
+  if (!left || !right || left.type !== right.type) return false;
+  if (left.type === 'task' && right.type === 'task') return left.taskId === right.taskId;
+  if (left.type === 'question' && right.type === 'question') return left.questionId === right.questionId;
+  return false;
+}
+
+function legacyFocus(activeQuestionId: string | null | undefined): ActiveFocus {
+  return activeQuestionId ? { type: 'question', questionId: activeQuestionId } : null;
+}
+
 /**
  * Timestamp accumulator for one active session. It intentionally has no
  * interval of its own: callers flush on transitions and may sample the
  * session stopwatch with one shared display interval.
+ *
+ * The task/question focus is exclusive. A task block and a question can never
+ * accumulate from the same segment because both use this one controller and
+ * one `activeFocusStartedAt` timestamp.
  */
 export class PassiveTimingController {
   private sessionElapsedMs: number;
   private questionTimeSpentMs: Record<string, number>;
-  private activeQuestionId: string | null;
+  private taskTimeSpentMs: Record<string, number>;
+  private activeFocus: ActiveFocus;
   private sessionStartedAt: number | null;
-  private activeQuestionStartedAt: number | null;
+  private activeFocusStartedAt: number | null;
   private visible: boolean;
   private stopped = false;
 
@@ -47,10 +71,15 @@ export class PassiveTimingController {
     this.questionTimeSpentMs = Object.fromEntries(
       Object.entries(options.questionTimeSpentMs ?? {}).map(([id, value]) => [id, positive(value)])
     );
-    this.activeQuestionId = options.activeQuestionId ?? null;
+    this.taskTimeSpentMs = Object.fromEntries(
+      Object.entries(options.taskTimeSpentMs ?? {}).map(([id, value]) => [id, positive(value)])
+    );
+    this.activeFocus = options.activeFocus !== undefined
+      ? options.activeFocus
+      : legacyFocus(options.activeQuestionId);
     this.visible = options.visible ?? true;
     this.sessionStartedAt = this.visible ? now : null;
-    this.activeQuestionStartedAt = this.visible && this.activeQuestionId ? now : null;
+    this.activeFocusStartedAt = this.visible && this.activeFocus ? now : null;
   }
 
   private flushSegment(now: number): void {
@@ -59,25 +88,39 @@ export class PassiveTimingController {
       this.sessionElapsedMs += Math.max(0, now - this.sessionStartedAt);
       this.sessionStartedAt = now;
     }
-    if (this.activeQuestionId && this.activeQuestionStartedAt !== null) {
-      const elapsed = Math.max(0, now - this.activeQuestionStartedAt);
-      this.questionTimeSpentMs[this.activeQuestionId] =
-        (this.questionTimeSpentMs[this.activeQuestionId] ?? 0) + elapsed;
-      this.activeQuestionStartedAt = now;
+    if (this.activeFocus && this.activeFocusStartedAt !== null) {
+      const elapsed = Math.max(0, now - this.activeFocusStartedAt);
+      if (this.activeFocus.type === 'task') {
+        this.taskTimeSpentMs[this.activeFocus.taskId] =
+          (this.taskTimeSpentMs[this.activeFocus.taskId] ?? 0) + elapsed;
+      } else {
+        this.questionTimeSpentMs[this.activeFocus.questionId] =
+          (this.questionTimeSpentMs[this.activeFocus.questionId] ?? 0) + elapsed;
+      }
+      this.activeFocusStartedAt = now;
     }
   }
 
   private snapshotAt(now: number): PassiveTimingSnapshot {
     const questionTimeSpentMs = { ...this.questionTimeSpentMs };
+    const taskTimeSpentMs = { ...this.taskTimeSpentMs };
     let sessionElapsedMs = this.sessionElapsedMs;
     if (!this.stopped && this.visible && this.sessionStartedAt !== null) {
       sessionElapsedMs += Math.max(0, now - this.sessionStartedAt);
     }
-    if (!this.stopped && this.visible && this.activeQuestionId && this.activeQuestionStartedAt !== null) {
-      questionTimeSpentMs[this.activeQuestionId] =
-        (questionTimeSpentMs[this.activeQuestionId] ?? 0) + Math.max(0, now - this.activeQuestionStartedAt);
+    if (!this.stopped && this.visible && this.activeFocus && this.activeFocusStartedAt !== null) {
+      const elapsed = Math.max(0, now - this.activeFocusStartedAt);
+      if (this.activeFocus.type === 'task') {
+        taskTimeSpentMs[this.activeFocus.taskId] =
+          (taskTimeSpentMs[this.activeFocus.taskId] ?? 0) + elapsed;
+      } else {
+        questionTimeSpentMs[this.activeFocus.questionId] =
+          (questionTimeSpentMs[this.activeFocus.questionId] ?? 0) + elapsed;
+      }
     }
-    return { sessionElapsedMs, questionTimeSpentMs };
+    const snapshot: PassiveTimingSnapshot = { sessionElapsedMs, questionTimeSpentMs };
+    if (Object.keys(taskTimeSpentMs).length > 0) snapshot.taskTimeSpentMs = taskTimeSpentMs;
+    return snapshot;
   }
 
   /** Restart an active segment after an effect cleanup or session resume. */
@@ -85,29 +128,34 @@ export class PassiveTimingController {
     if (this.stopped) return this.snapshotAt(now);
     if (this.visible) {
       if (this.sessionStartedAt === null) this.sessionStartedAt = now;
-      if (this.activeQuestionId && this.activeQuestionStartedAt === null) {
-        this.activeQuestionStartedAt = now;
+      if (this.activeFocus && this.activeFocusStartedAt === null) {
+        this.activeFocusStartedAt = now;
       }
     }
     return this.snapshotAt(now);
   }
 
-  /** Move the one primary-question segment without resetting its total. */
-  setActiveQuestion(questionId: string | null, now: number = clockNow()): PassiveTimingSnapshot {
+  /** Move the one exclusive task/question segment without resetting totals. */
+  setActiveFocus(focus: ActiveFocus, now: number = clockNow()): PassiveTimingSnapshot {
     if (this.stopped) return this.snapshotAt(now);
-    if (questionId === this.activeQuestionId) {
-      if (this.visible && questionId && this.activeQuestionStartedAt === null) {
-        this.activeQuestionStartedAt = now;
+    if (sameFocus(focus, this.activeFocus)) {
+      if (this.visible && focus && this.activeFocusStartedAt === null) {
+        this.activeFocusStartedAt = now;
       }
       return this.snapshotAt(now);
     }
     this.flushSegment(now);
-    this.activeQuestionId = questionId;
-    this.activeQuestionStartedAt = this.visible && questionId ? now : null;
+    this.activeFocus = focus;
+    this.activeFocusStartedAt = this.visible && focus ? now : null;
     return this.snapshotAt(now);
   }
 
-  /** Pause or resume both session and active-question accumulation. */
+  /** Legacy question-only entry point retained for existing callers/tests. */
+  setActiveQuestion(questionId: string | null, now: number = clockNow()): PassiveTimingSnapshot {
+    return this.setActiveFocus(legacyFocus(questionId), now);
+  }
+
+  /** Pause or resume both session and the one active task/question target. */
   setVisibility(visible: boolean, now: number = clockNow()): PassiveTimingSnapshot {
     if (this.stopped) return this.snapshotAt(now);
     if (visible === this.visible) return this.snapshotAt(now);
@@ -115,11 +163,11 @@ export class PassiveTimingController {
       this.flushSegment(now);
       this.visible = false;
       this.sessionStartedAt = null;
-      this.activeQuestionStartedAt = null;
+      this.activeFocusStartedAt = null;
     } else {
       this.visible = true;
       this.sessionStartedAt = now;
-      this.activeQuestionStartedAt = this.activeQuestionId ? now : null;
+      this.activeFocusStartedAt = this.activeFocus ? now : null;
     }
     return this.snapshotAt(now);
   }
@@ -135,7 +183,7 @@ export class PassiveTimingController {
       this.flushSegment(now);
       this.stopped = true;
       this.sessionStartedAt = null;
-      this.activeQuestionStartedAt = null;
+      this.activeFocusStartedAt = null;
     }
     return this.snapshotAt(now);
   }
@@ -162,13 +210,15 @@ export interface UsePassiveTimingResult {
 /**
  * React lifecycle wrapper around PassiveTimingController. There is one
  * optional display interval for the Practice stopwatch, never one interval per
- * question and never a per-second localStorage write.
+ * task/question and never a per-second localStorage write.
  */
 export function usePassiveTiming({
   sessionKey,
   sessionElapsedMs = 0,
   questionTimeSpentMs = {},
-  activeQuestionId = null,
+  taskTimeSpentMs = {},
+  activeFocus,
+  activeQuestionId,
   visible = isDocumentVisible(),
   enabled = true,
   showStopwatch = false,
@@ -181,7 +231,8 @@ export function usePassiveTiming({
       controller: new PassiveTimingController({
         sessionElapsedMs,
         questionTimeSpentMs,
-        activeQuestionId,
+        taskTimeSpentMs,
+        activeFocus: activeFocus !== undefined ? activeFocus : legacyFocus(activeQuestionId),
         visible,
       }),
     };
@@ -201,8 +252,9 @@ export function usePassiveTiming({
 
   useEffect(() => {
     if (!enabled) return;
-    report(controller.setActiveQuestion(activeQuestionId));
-  }, [activeQuestionId, controller, enabled, report]);
+    const focus = activeFocus !== undefined ? activeFocus : legacyFocus(activeQuestionId);
+    report(controller.setActiveFocus(focus));
+  }, [activeFocus, activeQuestionId, controller, enabled, report]);
 
   useEffect(() => {
     if (!enabled) return;
