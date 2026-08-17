@@ -42,6 +42,48 @@ export interface QuestionTip {
   text: string;
 }
 
+export interface StructuredExplanationHeadingBlock {
+  type: 'heading';
+  text: string;
+}
+
+export interface StructuredExplanationParagraphBlock {
+  type: 'paragraph';
+  text: string;
+}
+
+export interface StructuredExplanationMathBlock {
+  type: 'math';
+  expression: string;
+}
+
+export interface StructuredExplanationAnswerBlock {
+  type: 'answer';
+  text: string;
+}
+
+export type StructuredExplanationLeafBlock =
+  | StructuredExplanationParagraphBlock
+  | StructuredExplanationMathBlock
+  | StructuredExplanationAnswerBlock;
+
+export interface StructuredExplanationStepBlock {
+  type: 'step';
+  title: string;
+  blocks: StructuredExplanationLeafBlock[];
+}
+
+export type StructuredExplanationBlock =
+  | StructuredExplanationHeadingBlock
+  | StructuredExplanationParagraphBlock
+  | StructuredExplanationMathBlock
+  | StructuredExplanationStepBlock
+  | StructuredExplanationAnswerBlock;
+
+export interface StructuredExplanation {
+  blocks: StructuredExplanationBlock[];
+}
+
 export type ContentBlock =
   | {
       kind: 'text';
@@ -120,6 +162,8 @@ export interface Question {
   distractorExplanations?: Partial<Record<OptionId, string>>;
   /** Short retention aid ("Exam Tip", "Common Mistake", "Mnemonic", …). */
   tip?: QuestionTip;
+  /** Additive pilot representation; legacy prose remains the fallback source. */
+  structuredExplanation?: StructuredExplanation;
   /** Citation for fact-based items, e.g. "1987 Constitution, Art. VII, Sec. 4". */
   reference?: string;
   /** Where the item was researched/derived from, when distinct from reference. */

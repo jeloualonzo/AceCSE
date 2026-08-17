@@ -61,6 +61,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         question={question}
         selectedOptionId={selectedOptionId}
         theme={resolvedTheme}
+        preferStructuredExplanation
       />
     </div>
   );

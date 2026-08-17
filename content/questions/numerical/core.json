@@ -1010,6 +1010,27 @@
       "label": "Exam Tip",
       "text": "Always check the difference between consecutive terms first. If it's constant, you have an arithmetic sequence and the pattern is simply 'add the common difference.'"
     },
+    "structuredExplanation": {
+      "blocks": [
+        { "type": "heading", "text": "Solution" },
+        {
+          "type": "step",
+          "title": "Find the common difference.",
+          "blocks": [
+            { "type": "math", "expression": "9 - 4 = 5\n14 - 9 = 5\n19 - 14 = 5" }
+          ]
+        },
+        {
+          "type": "step",
+          "title": "Continue the pattern.",
+          "blocks": [
+            { "type": "paragraph", "text": "The sequence increases by 5 each time." },
+            { "type": "math", "expression": "19 + 5 = 24" }
+          ]
+        },
+        { "type": "answer", "text": "24" }
+      ]
+    },
     "tags": [
       "number-series",
       "arithmetic-sequence"
@@ -1092,6 +1113,27 @@
     "tip": {
       "label": "Remember",
       "text": "If dividing consecutive terms gives the same number, it's a geometric sequence. Multiply the last term by that common ratio to find the next term."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        { "type": "heading", "text": "Solution" },
+        {
+          "type": "step",
+          "title": "Find the common ratio.",
+          "blocks": [
+            { "type": "math", "expression": "6 ÷ 3 = 2\n12 ÷ 6 = 2\n24 ÷ 12 = 2" }
+          ]
+        },
+        {
+          "type": "step",
+          "title": "Continue the pattern.",
+          "blocks": [
+            { "type": "paragraph", "text": "Each term is multiplied by 2." },
+            { "type": "math", "expression": "24 × 2 = 48" }
+          ]
+        },
+        { "type": "answer", "text": "48" }
+      ]
     },
     "tags": [
       "number-series",
@@ -1176,6 +1218,34 @@
     "tip": {
       "label": "Exam Tip",
       "text": "When the terms and ratios are both irregular, write out the differences between terms. Then check if those differences form their own arithmetic or geometric pattern."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        { "type": "heading", "text": "Solution" },
+        {
+          "type": "step",
+          "title": "Find the consecutive differences.",
+          "blocks": [
+            { "type": "math", "expression": "5 - 2 = 3\n9 - 5 = 4\n14 - 9 = 5\n20 - 14 = 6" }
+          ]
+        },
+        {
+          "type": "step",
+          "title": "Identify the pattern.",
+          "blocks": [
+            { "type": "paragraph", "text": "The differences increase by 1." },
+            { "type": "math", "expression": "3, 4, 5, 6\nNext difference = 7" }
+          ]
+        },
+        {
+          "type": "step",
+          "title": "Find the missing term.",
+          "blocks": [
+            { "type": "math", "expression": "20 + 7 = 27" }
+          ]
+        },
+        { "type": "answer", "text": "27" }
+      ]
     },
     "tags": [
       "number-series",

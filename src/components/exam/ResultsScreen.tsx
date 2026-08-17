@@ -447,7 +447,12 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                         </div>
 
                         <div className="p-4 sm:p-5 rounded-r-lg border-l-4 border-l-emerald-500 border-y border-r border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-900">
-                          <ExplanationPanel question={question} selectedOptionId={item.selected} theme={resolvedTheme} />
+                          <ExplanationPanel
+                            question={question}
+                            selectedOptionId={item.selected}
+                            theme={resolvedTheme}
+                            preferStructuredExplanation
+                          />
                         </div>
                       </>
                     )}

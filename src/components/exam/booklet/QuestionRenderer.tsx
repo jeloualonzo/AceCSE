@@ -184,6 +184,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
                 question={question}
                 selectedOptionId={selectedOptionId}
                 theme={isDark ? 'dark' : 'light'}
+                preferStructuredExplanation
               />
             </div>
           )}

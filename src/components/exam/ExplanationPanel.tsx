@@ -1,6 +1,8 @@
 import React from 'react';
 import { BookOpen, Lightbulb, ListOrdered, XCircle } from 'lucide-react';
 import type { OptionId, Question } from '@/types';
+import { getStructuredExplanation } from '@/data/structuredExplanation';
+import { StructuredExplanationRenderer } from './StructuredExplanationRenderer';
 
 interface ExplanationPanelProps {
   question: Question;
@@ -8,6 +10,8 @@ interface ExplanationPanelProps {
   selectedOptionId?: OptionId | null;
   /** Dark (exam surfaces) or light (landing / light-mode surfaces). */
   theme?: 'dark' | 'light';
+  /** Practice/Results opt-in; other surfaces retain the legacy renderer. */
+  preferStructuredExplanation?: boolean;
 }
 
 /**
@@ -20,6 +24,7 @@ export const ExplanationPanel: React.FC<ExplanationPanelProps> = ({
   question,
   selectedOptionId = null,
   theme = 'dark',
+  preferStructuredExplanation = false,
 }) => {
   const dark = theme === 'dark';
   const c = {
@@ -42,6 +47,13 @@ export const ExplanationPanel: React.FC<ExplanationPanelProps> = ({
     tipLabel: dark ? 'text-emerald-300' : 'text-emerald-800',
     tipIcon: dark ? 'text-emerald-400' : 'text-emerald-600',
   };
+
+  const structuredExplanation = preferStructuredExplanation
+    ? getStructuredExplanation(question.structuredExplanation)
+    : undefined;
+  if (structuredExplanation) {
+    return <StructuredExplanationRenderer explanation={structuredExplanation} theme={theme} />;
+  }
 
   const correctChoice = question.choices.find((ch) => ch.id === question.correctOptionId);
   const distractors = question.distractorExplanations;
