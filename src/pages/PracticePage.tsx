@@ -1,7 +1,6 @@
 import { BookOpen, PlayCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { Subject } from '@/types';
-import { SUBJECTS_BY_LEVEL } from '@/config/exam';
 import { useAppContext } from '@/components/shell/AppLayout';
 import { ExamLevelSwitch } from '@/components/shell/ExamLevelSwitch';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
@@ -38,17 +37,17 @@ const PracticeLaunchCard: React.FC<PracticeLaunchCardProps> = ({
   onStart,
 }) => (
   <article
+    data-practice-card={subjectLabel}
     className={`rounded-xl border p-4 sm:p-5 min-h-[170px] shadow-sm ${
       mixed
         ? 'border-emerald-300 dark:border-emerald-500/50 bg-emerald-50 dark:bg-emerald-950/30'
         : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900'
     }`}
   >
-    <div className="flex items-start justify-between gap-3">
+    <div>
       <h3 className={`text-sm font-bold ${mixed ? 'text-emerald-900 dark:text-emerald-200' : 'text-slate-900 dark:text-white'}`}>
         {subjectLabel}
       </h3>
-      <PlayCircle className="w-5 h-5 shrink-0 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
     </div>
     <p className={`text-xs leading-relaxed mt-2 ${mixed ? 'text-emerald-800 dark:text-emerald-300' : 'text-slate-500 dark:text-slate-400'}`}>
       {description}
@@ -57,10 +56,11 @@ const PracticeLaunchCard: React.FC<PracticeLaunchCardProps> = ({
       <button
         type="button"
         onClick={onStart}
-        className="inline-flex items-center justify-center min-h-[40px] px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+        className="inline-flex items-center justify-center gap-1.5 min-h-[40px] px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
         aria-label={mixed ? 'Start Mixed Practice' : `Start ${subjectLabel} Practice`}
       >
-        {mixed ? 'Start Mixed Practice' : 'Start Practice'}
+        <PlayCircle className="w-4 h-4" aria-hidden="true" />
+        <span>{mixed ? 'Start Mixed Practice' : 'Start Practice'}</span>
       </button>
     </div>
   </article>
@@ -88,8 +88,6 @@ export const PracticePage: React.FC = () => {
     };
     navigate('/app/exam', { state: { launch: request } });
   };
-
-  const subjects = SUBJECTS_BY_LEVEL[examLevel];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
@@ -119,7 +117,13 @@ export const PracticePage: React.FC = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-          {subjects.map((subject) => (
+          <PracticeLaunchCard
+            subjectLabel="All Subjects"
+            description="Mix all five subject areas for a broader learning session."
+            mixed
+            onStart={() => startPractice(PRACTICE_ALL_SUBJECTS)}
+          />
+          {PRACTICE_ALL_SUBJECTS.map((subject) => (
             <PracticeLaunchCard
               key={subject}
               subjectLabel={subject}
@@ -127,12 +131,6 @@ export const PracticePage: React.FC = () => {
               onStart={() => startPractice([subject])}
             />
           ))}
-          <PracticeLaunchCard
-            subjectLabel="All Subjects"
-            description="Mix all five subject areas for a broader learning session."
-            mixed
-            onStart={() => startPractice(PRACTICE_ALL_SUBJECTS)}
-          />
         </div>
       </section>
     </div>

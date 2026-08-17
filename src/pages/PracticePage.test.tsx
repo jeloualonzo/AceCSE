@@ -24,22 +24,32 @@ afterEach(() => cleanup());
 beforeEach(() => navigateMock.mockReset());
 
 describe('Practice progressive landing page', () => {
-  it('shows one Start action per subject plus Start Mixed Practice without timing or inventory controls', () => {
+  it('puts All Subjects first and keeps each card to title, description, and one icon-bearing Start button', () => {
     const { container } = render(<PracticePage />);
 
     expect(container.querySelector('.max-w-7xl')).not.toBeNull();
-    for (const subject of [
+    const cardLabels = [...container.querySelectorAll<HTMLElement>('[data-practice-card]')]
+      .map((card) => card.dataset.practiceCard);
+    expect(cardLabels).toEqual([
+      'All Subjects',
       'Numerical Reasoning',
       'Analytical Reasoning',
       'Verbal Ability',
+      'Clerical Ability',
       'General Information',
-    ]) {
-      expect(screen.getByRole('button', { name: `Start ${subject} Practice` })).toBeInTheDocument();
+    ]);
+
+    const startButtons = screen.getAllByRole('button', { name: /^Start .*Practice$/ });
+    expect(startButtons).toHaveLength(6);
+    for (const button of startButtons) {
+      expect(button.querySelector('svg')).not.toBeNull();
     }
-    expect(screen.getByRole('button', { name: 'Start Mixed Practice' })).toBeInTheDocument();
-    expect(screen.getAllByRole('button', { name: /^Start .*Practice$/ })).toHaveLength(5);
+    for (const svg of container.querySelectorAll('[data-practice-card] svg')) {
+      expect(svg.closest('button')).not.toBeNull();
+    }
+
     expect(screen.queryByText(/Timed|Untimed/i)).not.toBeInTheDocument();
-    expect(document.body.textContent).not.toMatch(/question bank|fixed session|select size|question count|available questions/i);
+    expect(document.body.textContent).not.toMatch(/question bank|fixed session|select size|question count|available questions|task|pool|category|inventory/i);
   });
 
   it('launches a single subject with progressive metadata and no Practice timing mode', async () => {
