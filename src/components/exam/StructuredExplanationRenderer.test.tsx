@@ -8,46 +8,51 @@ import { StructuredExplanationRenderer } from './StructuredExplanationRenderer';
 const explanation: StructuredExplanation = {
   blocks: [
     { type: 'heading', text: 'Solution' },
-    {
-      type: 'step',
-      title: 'Find the common difference.',
-      blocks: [{ type: 'math', expression: '9 - 4 = 5\n14 - 9 = 5\n19 - 14 = 5' }],
-    },
-    {
-      type: 'step',
-      title: 'Continue the pattern.',
-      blocks: [
-        { type: 'paragraph', text: 'The sequence increases by 5 each time.' },
-        { type: 'math', expression: '19 + 5 = 24' },
-      ],
-    },
-    { type: 'answer', text: '24' },
+    { type: 'answer', text: 'Correct Answer: E — 48', variant: 'correct' },
+    { type: 'paragraph', label: 'Why', text: 'Each term is doubled.' },
+    { type: 'pattern', expression: '3 → 6 → 12 → 24 → 48' },
+    { type: 'math', expression: '6 - 3 = 3\n12 - 6 = 6' },
+    { type: 'solution', expression: '24 × 2 = 48' },
+    { type: 'answer', text: '48', variant: 'final' },
+    { type: 'rule', text: 'A geometric sequence has a constant multiplication ratio.' },
+    { type: 'common_trap', text: 'Use the repeated multiplication pattern.' },
   ],
 };
 
-describe('StructuredExplanationRenderer', () => {
-  it('renders heading, numbered steps, paragraph, math, and restrained answer emphasis', () => {
+describe('StructuredExplanationRenderer V2', () => {
+  it('renders semantic headings, answer, why, pattern, solution, rule, and common trap content', () => {
     const { container } = render(<StructuredExplanationRenderer explanation={explanation} theme="light" />);
+    const root = screen.getByTestId('structured-explanation');
 
     expect(screen.getByRole('heading', { level: 4, name: 'Solution' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 5, name: 'Find the common difference.' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 5, name: 'Continue the pattern.' })).toBeInTheDocument();
-    expect(screen.getAllByText('Step 2')).toHaveLength(1);
-    expect(screen.getByText('The sequence increases by 5 each time.')).toBeInTheDocument();
-    expect(screen.getAllByRole('math')).toHaveLength(2);
-    expect(screen.getByRole('math', { name: '9 − 4 = 5; 14 − 9 = 5; 19 − 14 = 5' })).toBeInTheDocument();
-    expect(screen.getByText('Answer:', { exact: false })).toBeInTheDocument();
-    expect(screen.getByText('24')).toBeInTheDocument();
-    expect(container.textContent).not.toContain('**');
-    expect(container.textContent).not.toContain('```');
-    expect(container.textContent).not.toContain('\\(');
-    expect(container.textContent).not.toContain('\\)');
+    expect(screen.getByText('Correct Answer: E — 48')).toBeInTheDocument();
+    expect(screen.getByText('Why')).toBeInTheDocument();
+    expect(screen.getByText('Each term is doubled.')).toBeInTheDocument();
+    expect(screen.getByText('Pattern')).toBeInTheDocument();
+    expect(screen.getByText('Solution', { selector: 'h5' })).toBeInTheDocument();
+    expect(screen.getByText('Rule')).toBeInTheDocument();
+    expect(screen.getByText('Common Trap')).toBeInTheDocument();
+    expect(screen.getByRole('math', { name: 'Pattern: 3 → 6 → 12 → 24 → 48' })).toBeInTheDocument();
+    expect(screen.getByRole('math', { name: 'Solution: 24 × 2 = 48' })).toBeInTheDocument();
+    expect(screen.getByRole('math', { name: 'Mathematical expression: 6 − 3 = 3; 12 − 6 = 6' })).toBeInTheDocument();
+    expect(Array.from(root.querySelectorAll('.font-mono.font-bold')).some((node) => node.textContent === '48')).toBe(true);
+    expect(root.querySelector('.border')).toBeNull();
+    expect(root.querySelector('.rounded-lg')).toBeNull();
+    expect(root.textContent).not.toContain('Step 1');
+    expect(root.textContent).not.toContain('Step 2');
+    expect(root.textContent).not.toContain('Step 3');
+    expect(root.textContent).not.toContain('**');
+    expect(root.textContent).not.toContain('```');
+    expect(root.textContent).not.toContain('\\(');
+    expect(root.textContent).not.toContain('\\)');
+    expect(root.textContent).not.toContain('{"blocks"');
+    expect(container.querySelector('[data-testid="structured-explanation"]')).toBe(root);
   });
 
   it('keeps long math expressions inside a horizontally safe scroll container', () => {
     const { container } = render(
       <StructuredExplanationRenderer
-        explanation={{ blocks: [{ type: 'math', expression: '123456789 + 987654321 = 1111111110' }] }}
+        explanation={{ blocks: [{ type: 'solution', expression: '123456789 + 987654321 = 1111111110' }] }}
       />
     );
 

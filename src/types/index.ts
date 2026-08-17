@@ -49,6 +49,7 @@ export interface StructuredExplanationHeadingBlock {
 
 export interface StructuredExplanationParagraphBlock {
   type: 'paragraph';
+  label?: string;
   text: string;
 }
 
@@ -57,28 +58,49 @@ export interface StructuredExplanationMathBlock {
   expression: string;
 }
 
-export interface StructuredExplanationAnswerBlock {
-  type: 'answer';
+export interface StructuredExplanationPatternBlock {
+  type: 'pattern';
+  expression: string;
+}
+
+export interface StructuredExplanationSolutionBlock {
+  type: 'solution';
+  expression: string;
+}
+
+export interface StructuredExplanationRuleBlock {
+  type: 'rule';
   text: string;
 }
 
-export type StructuredExplanationLeafBlock =
-  | StructuredExplanationParagraphBlock
-  | StructuredExplanationMathBlock
-  | StructuredExplanationAnswerBlock;
+export interface StructuredExplanationCommonTrapBlock {
+  type: 'common_trap';
+  text: string;
+}
 
+export interface StructuredExplanationAnswerBlock {
+  type: 'answer';
+  text: string;
+  variant?: 'correct' | 'final';
+}
+
+/** Retained for future authored content; V2 does not auto-number these blocks. */
 export interface StructuredExplanationStepBlock {
   type: 'step';
   title: string;
-  blocks: StructuredExplanationLeafBlock[];
+  blocks: StructuredExplanationBlock[];
 }
 
 export type StructuredExplanationBlock =
   | StructuredExplanationHeadingBlock
   | StructuredExplanationParagraphBlock
   | StructuredExplanationMathBlock
-  | StructuredExplanationStepBlock
-  | StructuredExplanationAnswerBlock;
+  | StructuredExplanationPatternBlock
+  | StructuredExplanationSolutionBlock
+  | StructuredExplanationRuleBlock
+  | StructuredExplanationCommonTrapBlock
+  | StructuredExplanationAnswerBlock
+  | StructuredExplanationStepBlock;
 
 export interface StructuredExplanation {
   blocks: StructuredExplanationBlock[];

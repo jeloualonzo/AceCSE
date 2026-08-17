@@ -1,39 +1,50 @@
-import type {
-  StructuredExplanation,
-  StructuredExplanationBlock,
-  StructuredExplanationLeafBlock,
-} from '@/types';
+import type { StructuredExplanation, StructuredExplanationBlock } from '@/types';
 
-const LEAF_TYPES = new Set<StructuredExplanationLeafBlock['type']>([
+const BLOCK_TYPES = new Set<StructuredExplanationBlock['type']>([
+  'heading',
   'paragraph',
   'math',
+  'pattern',
+  'solution',
   'answer',
+  'rule',
+  'common_trap',
+  'step',
 ]);
 
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
-function isLeafBlock(value: unknown): value is StructuredExplanationLeafBlock {
-  if (typeof value !== 'object' || value === null) return false;
-  const block = value as Record<string, unknown>;
-  return (
-    typeof block.type === 'string' &&
-    LEAF_TYPES.has(block.type as StructuredExplanationLeafBlock['type']) &&
-    isNonEmptyString(block.text ?? block.expression)
-  );
-}
-
 function isBlock(value: unknown): value is StructuredExplanationBlock {
-  if (isLeafBlock(value)) return true;
   if (typeof value !== 'object' || value === null) return false;
   const block = value as Record<string, unknown>;
-  if (block.type === 'heading' || block.type === 'paragraph' || block.type === 'answer') {
-    return isNonEmptyString(block.text);
+  if (typeof block.type !== 'string' || !BLOCK_TYPES.has(block.type as StructuredExplanationBlock['type'])) {
+    return false;
   }
-  if (block.type === 'math') return isNonEmptyString(block.expression);
-  if (block.type !== 'step' || !isNonEmptyString(block.title) || !Array.isArray(block.blocks)) return false;
-  return block.blocks.length > 0 && block.blocks.every(isLeafBlock);
+
+  switch (block.type) {
+    case 'heading':
+    case 'rule':
+    case 'common_trap':
+      return isNonEmptyString(block.text);
+    case 'paragraph':
+      return isNonEmptyString(block.text) && (block.label === undefined || isNonEmptyString(block.label));
+    case 'math':
+    case 'pattern':
+    case 'solution':
+      return isNonEmptyString(block.expression);
+    case 'answer':
+      return isNonEmptyString(block.text)
+        && (block.variant === undefined || block.variant === 'correct' || block.variant === 'final');
+    case 'step':
+      return isNonEmptyString(block.title)
+        && Array.isArray(block.blocks)
+        && block.blocks.length > 0
+        && block.blocks.every(isBlock);
+    default:
+      return false;
+  }
 }
 
 /** Runtime guard used before the structured renderer takes precedence. */
@@ -46,8 +57,6 @@ export function isValidStructuredExplanation(value: unknown): value is Structure
 }
 
 /** Invalid or absent pilot data returns undefined so legacy prose can render. */
-export function getStructuredExplanation(
-  value: StructuredExplanation | unknown
-): StructuredExplanation | undefined {
+export function getStructuredExplanation(value: unknown): StructuredExplanation | undefined {
   return isValidStructuredExplanation(value) ? value : undefined;
 }

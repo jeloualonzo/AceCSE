@@ -1013,22 +1013,12 @@
     "structuredExplanation": {
       "blocks": [
         { "type": "heading", "text": "Solution" },
-        {
-          "type": "step",
-          "title": "Find the common difference.",
-          "blocks": [
-            { "type": "math", "expression": "9 - 4 = 5\n14 - 9 = 5\n19 - 14 = 5" }
-          ]
-        },
-        {
-          "type": "step",
-          "title": "Continue the pattern.",
-          "blocks": [
-            { "type": "paragraph", "text": "The sequence increases by 5 each time." },
-            { "type": "math", "expression": "19 + 5 = 24" }
-          ]
-        },
-        { "type": "answer", "text": "24" }
+        { "type": "answer", "text": "Correct Answer: B — 24", "variant": "correct" },
+        { "type": "paragraph", "label": "Why", "text": "Each term increases by 5." },
+        { "type": "pattern", "expression": "4 → 9 → 14 → 19 → 24" },
+        { "type": "solution", "expression": "19 + 5 = 24" },
+        { "type": "answer", "text": "24", "variant": "final" },
+        { "type": "rule", "text": "In an arithmetic sequence, the difference between consecutive terms is constant." }
       ]
     },
     "tags": [
@@ -1117,22 +1107,12 @@
     "structuredExplanation": {
       "blocks": [
         { "type": "heading", "text": "Solution" },
-        {
-          "type": "step",
-          "title": "Find the common ratio.",
-          "blocks": [
-            { "type": "math", "expression": "6 ÷ 3 = 2\n12 ÷ 6 = 2\n24 ÷ 12 = 2" }
-          ]
-        },
-        {
-          "type": "step",
-          "title": "Continue the pattern.",
-          "blocks": [
-            { "type": "paragraph", "text": "Each term is multiplied by 2." },
-            { "type": "math", "expression": "24 × 2 = 48" }
-          ]
-        },
-        { "type": "answer", "text": "48" }
+        { "type": "answer", "text": "Correct Answer: E — 48", "variant": "correct" },
+        { "type": "paragraph", "label": "Why", "text": "Each term is doubled." },
+        { "type": "pattern", "expression": "3 → 6 → 12 → 24 → 48" },
+        { "type": "solution", "expression": "24 × 2 = 48" },
+        { "type": "answer", "text": "48", "variant": "final" },
+        { "type": "rule", "text": "A geometric sequence has a constant multiplication ratio." }
       ]
     },
     "tags": [
@@ -1222,29 +1202,12 @@
     "structuredExplanation": {
       "blocks": [
         { "type": "heading", "text": "Solution" },
-        {
-          "type": "step",
-          "title": "Find the consecutive differences.",
-          "blocks": [
-            { "type": "math", "expression": "5 - 2 = 3\n9 - 5 = 4\n14 - 9 = 5\n20 - 14 = 6" }
-          ]
-        },
-        {
-          "type": "step",
-          "title": "Identify the pattern.",
-          "blocks": [
-            { "type": "paragraph", "text": "The differences increase by 1." },
-            { "type": "math", "expression": "3, 4, 5, 6\nNext difference = 7" }
-          ]
-        },
-        {
-          "type": "step",
-          "title": "Find the missing term.",
-          "blocks": [
-            { "type": "math", "expression": "20 + 7 = 27" }
-          ]
-        },
-        { "type": "answer", "text": "27" }
+        { "type": "answer", "text": "Correct Answer: C — 27", "variant": "correct" },
+        { "type": "paragraph", "label": "Why", "text": "The differences increase by 1." },
+        { "type": "pattern", "expression": "+3, +4, +5, +6, +7" },
+        { "type": "solution", "expression": "20 + 7 = 27" },
+        { "type": "answer", "text": "27", "variant": "final" },
+        { "type": "rule", "text": "When consecutive differences increase regularly, continue the pattern of the differences." }
       ]
     },
     "tags": [

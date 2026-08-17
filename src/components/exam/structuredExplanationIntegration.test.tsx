@@ -29,12 +29,12 @@ const pilotQuestion: Question = {
   structuredExplanation: {
     blocks: [
       { type: 'heading', text: 'Solution' },
-      {
-        type: 'step',
-        title: 'Find the common difference.',
-        blocks: [{ type: 'math', expression: '9 - 4 = 5' }],
-      },
-      { type: 'answer', text: '24' },
+      { type: 'answer', text: 'Correct Answer: B — 24', variant: 'correct' },
+      { type: 'paragraph', label: 'Why', text: 'Each term increases by 5.' },
+      { type: 'pattern', expression: '4 → 9 → 14 → 19 → 24' },
+      { type: 'solution', expression: '19 + 5 = 24' },
+      { type: 'answer', text: '24', variant: 'final' },
+      { type: 'rule', text: 'In an arithmetic sequence, the difference between consecutive terms is constant.' },
     ],
   },
 };
@@ -61,8 +61,8 @@ beforeEach(() => {
 
 afterEach(() => cleanup());
 
-describe('structured explanation Practice/Results integration', () => {
-  it('preserves Practice Show/Hide behavior around the structured renderer', async () => {
+describe('structured explanation Practice/Results integration V2', () => {
+  it('preserves Practice Show/Hide behavior around the one-card structured renderer', async () => {
     const user = userEvent.setup();
     renderWithTheme(
       <QuestionCard
@@ -76,9 +76,14 @@ describe('structured explanation Practice/Results integration', () => {
     expect(screen.getByRole('button', { name: 'Show Explanation' })).toBeInTheDocument();
     expect(screen.queryByTestId('structured-explanation')).not.toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
-    expect(screen.getAllByTestId('structured-explanation')).toHaveLength(2);
-    expect(screen.getAllByRole('heading', { level: 4, name: 'Solution' })).toHaveLength(2);
-    expect(screen.getAllByTestId('structured-explanation').every((root) => within(root).getByText('24'))).toBe(true);
+
+    const roots = screen.getAllByTestId('structured-explanation');
+    expect(roots).toHaveLength(2);
+    expect(roots.every((root) => within(root).getByText('Correct Answer: B — 24'))).toBe(true);
+    expect(roots.every((root) => within(root).getByText('Why'))).toBe(true);
+    expect(roots.every((root) => within(root).getByText('Pattern'))).toBe(true);
+    expect(roots.every((root) => within(root).getByText('Rule'))).toBe(true);
+    expect(roots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
 
     await user.click(screen.getByRole('button', { name: 'Hide Explanation' }));
     expect(screen.queryByTestId('structured-explanation')).not.toBeInTheDocument();
@@ -137,10 +142,12 @@ describe('structured explanation Practice/Results integration', () => {
     );
 
     await user.click(screen.getByRole('button', { name: 'Expand question details' }));
-    expect(screen.getByRole('heading', { level: 4, name: 'Solution' })).toBeInTheDocument();
-    expect(screen.getByText('Find the common difference.')).toBeInTheDocument();
-    expect(screen.getByRole('math', { name: '9 − 4 = 5' })).toBeInTheDocument();
-    expect(within(screen.getByTestId('structured-explanation')).getByText('24')).toBeInTheDocument();
+    const root = screen.getByTestId('structured-explanation');
+    expect(within(root).getByText('Correct Answer: B — 24')).toBeInTheDocument();
+    expect(within(root).getByText('Pattern')).toBeInTheDocument();
+    expect(within(root).getByText('Solution', { selector: 'h5' })).toBeInTheDocument();
+    expect(within(root).getByText('Rule')).toBeInTheDocument();
+    expect(within(root).queryByText(/Step [123]/)).not.toBeInTheDocument();
     expect(screen.queryByText('Legacy explanation remains available as fallback.')).not.toBeInTheDocument();
   });
 });
