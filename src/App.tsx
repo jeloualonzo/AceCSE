@@ -32,6 +32,11 @@ const SettingsPage = lazy(() =>
   import('@/pages/SettingsPage').then((m) => ({ default: m.SettingsPage }))
 );
 const ExamPage = lazy(() => import('@/pages/ExamPage').then((m) => ({ default: m.ExamPage })));
+const ContentBankPage = lazy(() =>
+  import('@/pages/ContentBankPage').then((m) => ({ default: m.ContentBankPage }))
+);
+
+export const CONTENT_BANK_ROUTE = '/app/content-bank';
 
 /** Start each page at the top; preserve scroll only for in-page hash links. */
 function ScrollToTop() {
@@ -92,6 +97,7 @@ export default function App() {
                 <Route path="practice" element={<PracticePage />} />
                 <Route path="history" element={<HistoryPage />} />
                 <Route path="settings" element={<SettingsPage />} />
+                <Route path="content-bank" element={<ContentBankPage />} />
               </Route>
 
               <Route path="*" element={<Navigate to="/" replace />} />
