@@ -65,6 +65,22 @@ describe('Content Bank / QA Practice page', () => {
     expect(NAV_ITEMS.some((item) => item.path === CONTENT_BANK_ROUTE)).toBe(false);
   });
 
+  it('renders inventory summary before QA focus and uses explicit workflow priority', () => {
+    const { container } = render(<ContentBankPage />);
+    const summary = container.querySelector('[aria-labelledby="inventory-summary-heading"]')!;
+    const qaFocus = container.querySelector('[aria-labelledby="qa-focus-heading"]')!;
+    expect(summary.compareDocumentPosition(qaFocus) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+
+    const renderedOrder = [...container.querySelectorAll<HTMLElement>('[data-qa-group]')]
+      .map((card) => card.dataset.qaGroup);
+    expect(renderedOrder).toEqual([
+      'grammar-sentence-correction',
+      'number-series',
+      'spelling',
+      'filing-alphabetizing',
+    ]);
+  });
+
   it('derives the four QA groups from canonical classification membership', () => {
     const groups = getQAFocusGroups();
     const classifications = allClassifications();
@@ -76,10 +92,28 @@ describe('Content Bank / QA Practice page', () => {
     ]);
 
     expect(QA_FOCUS_GROUPS).toHaveLength(4);
+    expect(QA_FOCUS_GROUPS.map((config) => config.sortOrder)).toEqual([1, 2, 3, 4]);
+    expect(QA_FOCUS_GROUPS.map((config) => config.id)).toEqual([
+      'grammar-sentence-correction',
+      'number-series',
+      'spelling',
+      'filing-alphabetizing',
+    ]);
     for (const group of groups) {
       expect(group.questionIds).toEqual(expected.get(group.config.id));
       expect(group.count).toBe(group.questionIds.length);
     }
+
+    const reordered = [...QA_FOCUS_GROUPS].reverse().map((config, index) => ({
+      ...config,
+      sortOrder: index + 1,
+    }));
+    expect(getQAFocusGroups(reordered).map((group) => group.config.id)).toEqual([
+      'filing-alphabetizing',
+      'spelling',
+      'number-series',
+      'grammar-sentence-correction',
+    ]);
 
     render(<ContentBankPage />);
     expect(screen.getByTestId('qa-count-filing-alphabetizing')).toHaveTextContent('26 questions');

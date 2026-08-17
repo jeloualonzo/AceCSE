@@ -22,6 +22,7 @@ export interface QAFocusGroupConfig {
   subject: Subject;
   poolId: string;
   taskFormat: string;
+  sortOrder: number;
   status: QAGroupStatus;
   matches: (record: ReturnType<typeof allClassifications>[number]) => boolean;
 }
@@ -33,25 +34,17 @@ export interface QAFocusGroupConfig {
  */
 export const QA_FOCUS_GROUPS: readonly QAFocusGroupConfig[] = [
   {
-    id: 'filing-alphabetizing',
-    label: 'Filing & Alphabetizing',
-    subject: 'Clerical Ability',
-    poolId: 'clerical-filing',
-    taskFormat: 'shared_filing_task',
-    status: 'Frozen',
-    matches: (record) => record.subject === 'Clerical Ability' && record.topic === 'Filing & Alphabetizing',
-  },
-  {
-    id: 'spelling',
-    label: 'Spelling',
-    subject: 'Clerical Ability',
-    poolId: 'clerical-spelling',
-    taskFormat: 'shared_spelling_task',
-    status: 'Frozen',
+    id: 'grammar-sentence-correction',
+    label: 'Grammar — Sentence Correction',
+    subject: 'Verbal Ability',
+    poolId: 'verbal-grammar-usage',
+    taskFormat: 'shared_grammar_sentence_correction',
+    sortOrder: 1,
+    status: 'Pilot',
     matches: (record) =>
-      record.subject === 'Clerical Ability' &&
-      record.poolId === 'clerical-spelling' &&
-      record.taskFormat === 'shared_spelling_task',
+      record.subject === 'Verbal Ability' &&
+      record.poolId === 'verbal-grammar-usage' &&
+      record.taskFormat === 'shared_grammar_sentence_correction',
   },
   {
     id: 'number-series',
@@ -59,6 +52,7 @@ export const QA_FOCUS_GROUPS: readonly QAFocusGroupConfig[] = [
     subject: 'Numerical Reasoning',
     poolId: 'numerical-number-sequence',
     taskFormat: 'number_sequence',
+    sortOrder: 2,
     status: 'Frozen',
     matches: (record) =>
       record.subject === 'Numerical Reasoning' &&
@@ -66,16 +60,27 @@ export const QA_FOCUS_GROUPS: readonly QAFocusGroupConfig[] = [
       record.taskFormat === 'number_sequence',
   },
   {
-    id: 'grammar-sentence-correction',
-    label: 'Grammar — Sentence Correction',
-    subject: 'Verbal Ability',
-    poolId: 'verbal-grammar-usage',
-    taskFormat: 'shared_grammar_sentence_correction',
-    status: 'Pilot',
+    id: 'spelling',
+    label: 'Spelling',
+    subject: 'Clerical Ability',
+    poolId: 'clerical-spelling',
+    taskFormat: 'shared_spelling_task',
+    sortOrder: 3,
+    status: 'Frozen',
     matches: (record) =>
-      record.subject === 'Verbal Ability' &&
-      record.poolId === 'verbal-grammar-usage' &&
-      record.taskFormat === 'shared_grammar_sentence_correction',
+      record.subject === 'Clerical Ability' &&
+      record.poolId === 'clerical-spelling' &&
+      record.taskFormat === 'shared_spelling_task',
+  },
+  {
+    id: 'filing-alphabetizing',
+    label: 'Filing & Alphabetizing',
+    subject: 'Clerical Ability',
+    poolId: 'clerical-filing',
+    taskFormat: 'shared_filing_task',
+    sortOrder: 4,
+    status: 'Frozen',
+    matches: (record) => record.subject === 'Clerical Ability' && record.topic === 'Filing & Alphabetizing',
   },
 ];
 
@@ -85,9 +90,11 @@ export interface QAFocusGroup {
   count: number;
 }
 
-export function getQAFocusGroups(): QAFocusGroup[] {
+export function getQAFocusGroups(
+  configs: readonly QAFocusGroupConfig[] = QA_FOCUS_GROUPS
+): QAFocusGroup[] {
   const classifications = allClassifications();
-  return QA_FOCUS_GROUPS.map((config) => {
+  return [...configs].sort((left, right) => left.sortOrder - right.sortOrder).map((config) => {
     const questionIds = classifications.filter(config.matches).map((record) => record.questionId);
     return { config, questionIds, count: questionIds.length };
   });
@@ -143,6 +150,79 @@ function subjectBreakdown(): SubjectBreakdownRow[] {
 
 function activeAvailability(level: ExamLevel, subject: Subject): number {
   return subjectAvailability(level)[subject] ?? 0;
+}
+
+interface QAFocusSectionProps {
+  groups: QAFocusGroup[];
+  expandedGroups: Set<string>;
+  examLevel: ExamLevel;
+  onLaunch: (group: QAFocusGroup) => void;
+  onToggle: (groupId: string) => void;
+}
+
+function QAFocusSection({ groups, expandedGroups, examLevel, onLaunch, onToggle }: QAFocusSectionProps) {
+  return (
+    <section aria-labelledby="qa-focus-heading" className="space-y-3">
+      <div className="flex items-end justify-between gap-3">
+        <div>
+          <h2 id="qa-focus-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">QA focus groups</h2>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Practice uses only the canonical group selected below.</p>
+        </div>
+        <span className="text-xs text-slate-500 dark:text-slate-400">{groups.length} groups</span>
+      </div>
+      <div className="grid grid-cols-1 gap-3 xl:grid-cols-2">
+        {groups.map((group) => {
+          const { config } = group;
+          const expanded = expandedGroups.has(config.id);
+          return (
+            <article key={config.id} data-qa-group={config.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">{config.label}</h3>
+                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${statusClass(config.status)}`}>{config.status}</span>
+                  </div>
+                  <p data-testid={`qa-count-${config.id}`} className="mt-1 text-xs text-slate-500 dark:text-slate-400">{config.subject} · {formatCount(group.count)} questions</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => onLaunch(group)}
+                  className="inline-flex min-h-[40px] shrink-0 items-center justify-center gap-1.5 rounded-lg bg-emerald-600 px-3 text-xs font-bold text-white transition-colors hover:bg-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                  aria-label={`Practice ${config.label}`}
+                >
+                  <PlayCircle className="h-4 w-4" aria-hidden="true" />
+                  <span>Practice</span>
+                </button>
+              </div>
+              <dl className="mt-4 grid grid-cols-1 gap-2 border-t border-slate-100 pt-3 text-xs dark:border-slate-800 sm:grid-cols-3">
+                <div><dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Task format</dt><dd className="mt-0.5 break-words font-mono text-[11px] text-slate-700 dark:text-slate-300">{config.taskFormat}</dd></div>
+                <div><dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Pool</dt><dd className="mt-0.5 break-words font-mono text-[11px] text-slate-700 dark:text-slate-300">{config.poolId}</dd></div>
+                <div><dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Active-level supply</dt><dd className="mt-0.5 font-semibold text-slate-700 dark:text-slate-300">{formatCount(activeAvailability(examLevel, config.subject))}</dd></div>
+              </dl>
+              <button
+                type="button"
+                onClick={() => onToggle(config.id)}
+                className="mt-3 inline-flex min-h-[32px] items-center gap-1 text-xs font-semibold text-slate-600 transition-colors hover:text-emerald-700 dark:text-slate-400 dark:hover:text-emerald-400"
+                aria-expanded={expanded}
+                aria-controls={`${config.id}-members`}
+              >
+                <ChevronDown className={`h-4 w-4 transition-transform ${expanded ? 'rotate-180' : ''}`} aria-hidden="true" />
+                {expanded ? 'Hide' : 'Show'} question IDs ({formatCount(group.count)})
+              </button>
+              {expanded && (
+                <div id={`${config.id}-members`} className="mt-2 max-h-44 overflow-y-auto rounded-lg bg-slate-50 p-2 dark:bg-slate-950">
+                  <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-[11px] font-mono text-slate-600 dark:text-slate-400 sm:grid-cols-3">
+                    {group.questionIds.map((questionId) => <li key={questionId}>{questionId}</li>)}
+                  </ul>
+                </div>
+              )}
+            </article>
+          );
+        })}
+      </div>
+      {groups.length === 0 && <p className="rounded-xl border border-dashed border-slate-300 px-4 py-8 text-center text-xs text-slate-500 dark:border-slate-700 dark:text-slate-400">No matching QA focus groups.</p>}
+    </section>
+  );
 }
 
 export const ContentBankPage: React.FC = () => {
@@ -241,6 +321,14 @@ export const ContentBankPage: React.FC = () => {
         </div>
       </section>
 
+      <QAFocusSection
+        groups={filteredGroups}
+        expandedGroups={expandedGroups}
+        examLevel={examLevel}
+        onLaunch={launchGroup}
+        onToggle={toggleGroup}
+      />
+
       <section aria-labelledby="content-filter-heading" className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -308,66 +396,6 @@ export const ContentBankPage: React.FC = () => {
         </div>
       </section>
 
-      <section aria-labelledby="qa-focus-heading" className="space-y-3">
-        <div className="flex items-end justify-between gap-3">
-          <div>
-            <h2 id="qa-focus-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">QA focus groups</h2>
-            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Practice uses only the canonical group selected below.</p>
-          </div>
-          <span className="text-xs text-slate-500 dark:text-slate-400">{filteredGroups.length} groups</span>
-        </div>
-        <div className="grid grid-cols-1 gap-3 xl:grid-cols-2">
-          {filteredGroups.map((group) => {
-            const { config } = group;
-            const expanded = expandedGroups.has(config.id);
-            return (
-              <article key={config.id} data-qa-group={config.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-sm font-bold text-slate-900 dark:text-white">{config.label}</h3>
-                      <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${statusClass(config.status)}`}>{config.status}</span>
-                    </div>
-                    <p data-testid={`qa-count-${config.id}`} className="mt-1 text-xs text-slate-500 dark:text-slate-400">{config.subject} · {formatCount(group.count)} questions</p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => launchGroup(group)}
-                    className="inline-flex min-h-[40px] shrink-0 items-center justify-center gap-1.5 rounded-lg bg-emerald-600 px-3 text-xs font-bold text-white transition-colors hover:bg-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
-                    aria-label={`Practice ${config.label}`}
-                  >
-                    <PlayCircle className="h-4 w-4" aria-hidden="true" />
-                    <span>Practice</span>
-                  </button>
-                </div>
-                <dl className="mt-4 grid grid-cols-1 gap-2 border-t border-slate-100 pt-3 text-xs dark:border-slate-800 sm:grid-cols-3">
-                  <div><dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Task format</dt><dd className="mt-0.5 break-words font-mono text-[11px] text-slate-700 dark:text-slate-300">{config.taskFormat}</dd></div>
-                  <div><dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Pool</dt><dd className="mt-0.5 break-words font-mono text-[11px] text-slate-700 dark:text-slate-300">{config.poolId}</dd></div>
-                  <div><dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Active-level supply</dt><dd className="mt-0.5 font-semibold text-slate-700 dark:text-slate-300">{formatCount(activeAvailability(examLevel, config.subject))}</dd></div>
-                </dl>
-                <button
-                  type="button"
-                  onClick={() => toggleGroup(config.id)}
-                  className="mt-3 inline-flex min-h-[32px] items-center gap-1 text-xs font-semibold text-slate-600 transition-colors hover:text-emerald-700 dark:text-slate-400 dark:hover:text-emerald-400"
-                  aria-expanded={expanded}
-                  aria-controls={`${config.id}-members`}
-                >
-                  <ChevronDown className={`h-4 w-4 transition-transform ${expanded ? 'rotate-180' : ''}`} aria-hidden="true" />
-                  {expanded ? 'Hide' : 'Show'} question IDs ({formatCount(group.count)})
-                </button>
-                {expanded && (
-                  <div id={`${config.id}-members`} className="mt-2 max-h-44 overflow-y-auto rounded-lg bg-slate-50 p-2 dark:bg-slate-950">
-                    <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-[11px] font-mono text-slate-600 dark:text-slate-400 sm:grid-cols-3">
-                      {group.questionIds.map((questionId) => <li key={questionId}>{questionId}</li>)}
-                    </ul>
-                  </div>
-                )}
-              </article>
-            );
-          })}
-        </div>
-        {filteredGroups.length === 0 && <p className="rounded-xl border border-dashed border-slate-300 px-4 py-8 text-center text-xs text-slate-500 dark:border-slate-700 dark:text-slate-400">No matching QA focus groups.</p>}
-      </section>
     </div>
   );
 };
