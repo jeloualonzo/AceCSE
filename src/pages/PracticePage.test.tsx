@@ -24,25 +24,29 @@ afterEach(() => cleanup());
 beforeEach(() => navigateMock.mockReset());
 
 describe('Practice progressive landing page', () => {
-  it('restores broad layout, shows five subject choices with Timed/Untimed controls, and hides inventory language', () => {
+  it('shows one Start action per subject plus Start Mixed Practice without timing or inventory controls', () => {
     const { container } = render(<PracticePage />);
 
     expect(container.querySelector('.max-w-7xl')).not.toBeNull();
-    expect(screen.getByRole('button', { name: 'Start Numerical Reasoning Practice — Timed' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Start Numerical Reasoning Practice — Untimed' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Start All Subjects Practice — Timed' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Start All Subjects Practice — Untimed' })).toBeInTheDocument();
-    expect(screen.getAllByRole('group', { name: /Practice timing/ })).toHaveLength(5);
-    expect(screen.getAllByRole('button', { name: /Start .*Practice/ })).toHaveLength(10);
-    expect(document.body.textContent).not.toMatch(/\b\d+\s+(available|questions)\b/i);
-    expect(document.body.textContent).not.toMatch(/question bank|fixed session|select size|question count/i);
+    for (const subject of [
+      'Numerical Reasoning',
+      'Analytical Reasoning',
+      'Verbal Ability',
+      'General Information',
+    ]) {
+      expect(screen.getByRole('button', { name: `Start ${subject} Practice` })).toBeInTheDocument();
+    }
+    expect(screen.getByRole('button', { name: 'Start Mixed Practice' })).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /^Start .*Practice$/ })).toHaveLength(5);
+    expect(screen.queryByText(/Timed|Untimed/i)).not.toBeInTheDocument();
+    expect(document.body.textContent).not.toMatch(/question bank|fixed session|select size|question count|available questions/i);
   });
 
-  it('launches a single subject with progressive Timed Practice metadata', async () => {
+  it('launches a single subject with progressive metadata and no Practice timing mode', async () => {
     const user = userEvent.setup();
     render(<PracticePage />);
 
-    await user.click(screen.getByRole('button', { name: 'Start Numerical Reasoning Practice — Timed' }));
+    await user.click(screen.getByRole('button', { name: 'Start Numerical Reasoning Practice' }));
 
     expect(navigateMock).toHaveBeenCalledWith('/app/exam', {
       state: {
@@ -51,18 +55,17 @@ describe('Practice progressive landing page', () => {
           examLevel: 'Professional',
           questionCount: 0,
           subjects: ['Numerical Reasoning'],
-          timed: true,
           progressive: true,
         },
       },
     });
   });
 
-  it('launches All Subjects with all five subject identities and progressive Untimed metadata', async () => {
+  it('launches All Subjects with all five subject identities and no timing-mode metadata', async () => {
     const user = userEvent.setup();
     render(<PracticePage />);
 
-    await user.click(screen.getByRole('button', { name: 'Start All Subjects Practice — Untimed' }));
+    await user.click(screen.getByRole('button', { name: 'Start Mixed Practice' }));
 
     expect(navigateMock).toHaveBeenCalledWith('/app/exam', {
       state: {
@@ -71,7 +74,6 @@ describe('Practice progressive landing page', () => {
           examLevel: 'Professional',
           questionCount: 0,
           subjects: PRACTICE_ALL_SUBJECTS,
-          timed: false,
           progressive: true,
         },
       },

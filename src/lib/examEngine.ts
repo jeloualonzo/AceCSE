@@ -8,7 +8,6 @@ import type {
 } from '@/types';
 import {
   EXAM_FRAMEWORK,
-  PRACTICE_SECONDS_PER_QUESTION,
   PROGRESSIVE_PRACTICE_BATCH_SIZE,
   SIMULATION_ALLOCATION_POLICY,
   SIMULATION_TIERS,
@@ -608,7 +607,6 @@ function takeProgressiveBatch(
 export async function buildProgressivePracticeSession(
   level: ExamLevel,
   subjects: Subject[],
-  timed = false,
   batchSize = PROGRESSIVE_PRACTICE_BATCH_SIZE,
   options: { catalog?: NormalizedContentCatalog } = {}
 ): Promise<ExamSession> {
@@ -620,7 +618,6 @@ export async function buildProgressivePracticeSession(
     .map((id) => catalog.getQuestion(id))
     .filter((question): question is Question => Boolean(question));
   const structured = buildPracticeItems(selectedQuestions, catalog);
-  const durationSeconds = timed ? structured.questionIds.length * PRACTICE_SECONDS_PER_QUESTION : null;
   const startedAt = Date.now();
   return {
     id: newSessionId(),
@@ -629,8 +626,8 @@ export async function buildProgressivePracticeSession(
       examLevel: level,
       questionCount: structured.questionIds.length,
       subjects,
-      timed,
-      durationSeconds,
+      timed: false,
+      durationSeconds: null,
     },
     questionIds: structured.questionIds,
     items: structured.items,
@@ -640,7 +637,7 @@ export async function buildProgressivePracticeSession(
       candidateQuestionIds,
     },
     startedAt,
-    deadlineAt: durationSeconds ? startedAt + durationSeconds * 1000 : null,
+    deadlineAt: null,
     answers: {},
   };
 }
@@ -686,8 +683,7 @@ export function hasMoreProgressivePractice(session: ExamSession): boolean {
 export async function buildPracticeSession(
   level: ExamLevel,
   subjects: Subject[],
-  questionCount: number,
-  timed: boolean
+  questionCount: number
 ): Promise<ExamSession> {
   const catalog = await loadContentCatalog(subjects);
   const pool = questionsForLevel(level, [...catalog.questions.values()]).filter((q) =>
@@ -708,7 +704,6 @@ export async function buildPracticeSession(
   const selectedQuestions = shuffled(picked).slice(0, questionCount);
   const structured = buildPracticeItems(selectedQuestions, catalog);
 
-  const durationSeconds = timed ? structured.questionIds.length * PRACTICE_SECONDS_PER_QUESTION : null;
   const startedAt = Date.now();
   return {
     id: newSessionId(),
@@ -717,13 +712,13 @@ export async function buildPracticeSession(
       examLevel: level,
       questionCount: structured.questionIds.length,
       subjects,
-      timed,
-      durationSeconds,
+      timed: false,
+      durationSeconds: null,
     },
     questionIds: structured.questionIds,
     items: structured.items,
     startedAt,
-    deadlineAt: durationSeconds ? startedAt + durationSeconds * 1000 : null,
+    deadlineAt: null,
     answers: {},
   };
 }

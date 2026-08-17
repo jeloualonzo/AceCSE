@@ -210,7 +210,7 @@ describe('BookletExamLayout — Practice uses the same booklet renderer', () => 
     expect(firstQuestionCard).not.toHaveClass('bg-emerald-50');
     expect(firstQuestionCard?.parentElement).toHaveClass('space-y-4');
     expect(screen.getAllByRole('button', { name: 'Next question' })).toHaveLength(2);
-    expect(screen.getAllByRole('button', { name: /Submit practice/i })).toHaveLength(1);
+    expect(screen.getAllByRole('button', { name: /Submit practice/i })).toHaveLength(2);
     expect(screen.queryByRole('button', { name: 'Show Explanation' })).not.toBeInTheDocument();
 
     await user.click(within(document.getElementById('question-V1')!).getAllByRole('radio')[0]);
@@ -247,6 +247,52 @@ describe('BookletExamLayout — Practice uses the same booklet renderer', () => 
   });
 });
 
+describe('BookletExamLayout — mobile Practice footer', () => {
+  it('always keeps Previous | Submit | Next at first, middle, and final loaded questions', async () => {
+    const user = userEvent.setup();
+    const sameSubjectIndex = new Map(twoSubjectIndex());
+    sameSubjectIndex.set('V3', makeQuestion('V3', 'Verbal Ability'));
+    const practiceSession = baseSession({
+      config: {
+        mode: 'practice',
+        examLevel: 'Professional',
+        questionCount: 3,
+        timed: false,
+        durationSeconds: null,
+        subjects: ['Verbal Ability'],
+      },
+      questionIds: ['V1', 'V2', 'V3'],
+      items: [
+        { kind: 'question', questionId: 'V1', sectionId: 'Verbal Ability' },
+        { kind: 'question', questionId: 'V2', sectionId: 'Verbal Ability' },
+        { kind: 'question', questionId: 'V3', sectionId: 'Verbal Ability' },
+      ],
+    });
+    const { onSubmitExam } = renderLayout({ session: practiceSession, questionIndex: sameSubjectIndex });
+
+    const assertFooterActions = () => {
+      expect(screen.getAllByRole('button', { name: 'Previous question' })).toHaveLength(2);
+      expect(screen.getAllByRole('button', { name: /Submit practice/i })).toHaveLength(2);
+      expect(screen.getAllByRole('button', { name: 'Next question' })).toHaveLength(2);
+    };
+
+    assertFooterActions();
+    expect(screen.getAllByRole('button', { name: 'Previous question' })[0]).toBeDisabled();
+    expect(screen.getAllByRole('button', { name: /Submit practice/i })[0]).toBeEnabled();
+
+    await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
+    assertFooterActions();
+    expect(screen.getAllByRole('button', { name: 'Next question' })[0]).toBeEnabled();
+
+    await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
+    assertFooterActions();
+    expect(screen.getAllByRole('button', { name: 'Next question' })[0]).toBeDisabled();
+    expect(screen.getAllByRole('button', { name: /Submit practice/i })[0]).toBeEnabled();
+    await user.click(screen.getAllByRole('button', { name: /Submit practice/i })[0]);
+    expect(onSubmitExam).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe('BookletExamLayout — active question visual state', () => {
   it('marks exactly one primary card and moves the emphasis with existing navigation', async () => {
     const user = userEvent.setup();
@@ -263,6 +309,52 @@ describe('BookletExamLayout — active question visual state', () => {
     expect(document.getElementById('question-V2')).toHaveAttribute('data-primary-active', 'true');
     expect(document.getElementById('question-V1')).toHaveAttribute('data-primary-active', 'false');
     expect(onActiveQuestionChange).toHaveBeenCalledWith('V2');
+  });
+});
+
+describe('BookletExamLayout — programmatic navigation target synchronization', () => {
+  it('keeps Q2 active after Q3 Previous instead of allowing Q1 to steal the border', async () => {
+    const user = userEvent.setup();
+    const sameSubjectIndex = new Map(twoSubjectIndex());
+    sameSubjectIndex.set('V3', makeQuestion('V3', 'Verbal Ability'));
+    const onActiveQuestionChange = vi.fn();
+    renderLayout({
+      onActiveQuestionChange,
+      questionIndex: sameSubjectIndex,
+      session: baseSession({
+        questionIds: ['V1', 'V2', 'V3'],
+        items: [
+          { kind: 'question', questionId: 'V1', sectionId: 'Verbal Ability' },
+          { kind: 'question', questionId: 'V2', sectionId: 'Verbal Ability' },
+          { kind: 'question', questionId: 'V3', sectionId: 'Verbal Ability' },
+        ],
+      }),
+    });
+
+    const next = screen.getAllByRole('button', { name: 'Next question' })[0];
+    await user.click(next);
+    await user.click(next);
+    expect(document.getElementById('question-V3')).toHaveAttribute('data-primary-active', 'true');
+
+    await user.click(screen.getAllByRole('button', { name: 'Previous question' })[0]);
+    expect(document.getElementById('question-V2')).toHaveAttribute('data-primary-active', 'true');
+    expect(document.getElementById('question-V1')).toHaveAttribute('data-primary-active', 'false');
+    expect(onActiveQuestionChange).toHaveBeenLastCalledWith('V2');
+  });
+
+  it('makes a navigator jump target the active question as well as the visible question', async () => {
+    const user = userEvent.setup();
+    const onActiveQuestionChange = vi.fn();
+    renderLayout({ onActiveQuestionChange });
+    await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
+    await user.click(screen.getAllByRole('button', { name: 'Next question' })[0]);
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    await user.click(within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i }));
+
+    expect(screen.getByText('Question text for V1')).toBeInTheDocument();
+    expect(document.getElementById('question-V1')).toHaveAttribute('data-primary-active', 'true');
+    expect(onActiveQuestionChange).toHaveBeenLastCalledWith('V1');
   });
 });
 

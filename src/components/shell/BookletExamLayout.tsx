@@ -16,6 +16,7 @@ import {
 } from '@/lib/examViewModel';
 import { EDQ_SECTION_ID } from '@/data/edq';
 import { SectionRenderer, type EdqRenderContext } from '@/components/exam/booklet/SectionRenderer';
+import { focusLineY, selectFocusQuestion, type FocusCandidate } from '@/lib/activeQuestionFocus';
 
 const ALL_PRACTICE_SUBJECTS = new Set([
   'Numerical Reasoning',
@@ -89,7 +90,10 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   const navTriggerRef = useRef<HTMLButtonElement | null>(null);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState<string | null>(null);
+  const currentQuestionIdRef = useRef<string | null>(null);
+  const navigationTargetRef = useRef<string | null>(null);
   const setPrimaryQuestion = useCallback((questionId: string | null) => {
+    currentQuestionIdRef.current = questionId;
     setCurrentQuestionId(questionId);
     onActiveQuestionChange?.(questionId);
   }, [onActiveQuestionChange]);
@@ -169,9 +173,26 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     if (!container) return;
     const target = container.querySelector<HTMLElement>(`#question-${CSS.escape(questionId)}`);
     if (!target) return;
+    navigationTargetRef.current = questionId;
     target.scrollIntoView({ behavior, block: 'start' });
-    requestAnimationFrame(() => target.focus({ preventScroll: true }));
-    setPrimaryQuestion(questionId);
+    target.focus({ preventScroll: true });
+    const initialContainerRect = container.getBoundingClientRect();
+    const initialTargetRect = target.getBoundingClientRect();
+    if (initialContainerRect.height === 0 && initialTargetRect.height === 0) {
+      setPrimaryQuestion(questionId);
+    }
+    const activateIfSettled = () => {
+      const containerRect = container.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const focusY = focusLineY(containerRect.top, container.clientHeight || containerRect.height);
+      const hasGeometry = containerRect.height > 0 || targetRect.height > 0;
+      if (!hasGeometry || (targetRect.top <= focusY && targetRect.bottom >= focusY)) {
+        navigationTargetRef.current = null;
+        setPrimaryQuestion(questionId);
+      }
+    };
+    if (behavior === 'auto') activateIfSettled();
+    requestAnimationFrame(activateIfSettled);
   }, [setPrimaryQuestion]);
 
   // Lands on the right question every time the active section changes —
@@ -207,24 +228,44 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   }, [activeSectionId, activeSection, currentQuestionId, setPrimaryQuestion]);
 
   // Scroll-spy within the active section only — the DOM never holds more
-  // than one subject's questions at a time.
+  // than one subject's questions at a time. A focus line, not any visible
+  // pixel, determines the primary question; navigation targets suppress
+  // intermediate observer events until the requested target owns that line.
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
     const targets = Array.from(container.querySelectorAll<HTMLElement>('[data-question-id]'));
     if (targets.length === 0) return;
+    const known = new Map<string, FocusCandidate & { isIntersecting: boolean }>();
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries.filter((entry) => entry.isIntersecting);
-        if (visible.length === 0) return;
-        const topmost = visible.reduce((best, entry) =>
-          entry.boundingClientRect.top < best.boundingClientRect.top ? entry : best
-        );
-        const id = topmost.target.getAttribute('data-question-id');
-        if (id) setPrimaryQuestion(id);
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute('data-question-id');
+          if (!id) return;
+          known.set(id, {
+            id,
+            top: entry.boundingClientRect.top,
+            bottom: entry.boundingClientRect.bottom,
+            isIntersecting: entry.isIntersecting,
+          });
+        });
+        const candidates = [...known.values()].filter((candidate) => candidate.isIntersecting);
+        if (candidates.length === 0) return;
+        const containerRect = container.getBoundingClientRect();
+        const focusY = focusLineY(containerRect.top, container.clientHeight || containerRect.height);
+        const navigationTarget = navigationTargetRef.current;
+        if (navigationTarget) {
+          const target = candidates.find((candidate) => candidate.id === navigationTarget);
+          if (!target || target.top > focusY || target.bottom < focusY) return;
+          navigationTargetRef.current = null;
+          setPrimaryQuestion(navigationTarget);
+          return;
+        }
+        const next = selectFocusQuestion(candidates, focusY, currentQuestionIdRef.current);
+        if (next) setPrimaryQuestion(next);
       },
-      { root: container, rootMargin: '0px 0px -70% 0px', threshold: [0, 1] }
+      { root: container, rootMargin: '-20% 0px -60% 0px', threshold: [0, 1] }
     );
     targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
@@ -337,8 +378,6 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   const isAtLastLocalItem = localOrder.length === 0 || localIdx === -1 || localIdx >= localOrder.length - 1;
   const isPrevDisabled = isAtFirstLocalItem && !hasPreviousSection;
   const isNextDisabled = isAtLastLocalItem && !hasNextSection;
-  const isPracticeLast = isPractice && isNextDisabled;
-
   const currentDisplayLabel =
     (currentQuestionId ? displayLabels.get(currentQuestionId) : undefined) ??
     displayLabels.get(localOrder[0] ?? '') ??
@@ -377,7 +416,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     <button
       onClick={onSubmitExam}
       className={`${displayClasses} items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400`}
-      aria-label={`Submit ${isPractice ? 'practice' : 'exam'}. ${globalCounts.answered} of ${globalCounts.total} answered overall.`}
+      aria-label={`Submit ${isPractice ? 'practice' : 'exam'}. ${isPractice ? `${globalCounts.answered} answered.` : `${globalCounts.answered} of ${globalCounts.total} answered overall.`}`}
     >
       <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
       <span>Submit</span>
@@ -653,24 +692,20 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
         </main>
       </div>
 
-      {/* Mobile-only footer — shared across modes. Practice shows Next until
-          the last item and then Submit; Simulation keeps Submit and Next. */}
-      <footer className="sm:hidden min-h-[64px] bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center justify-between shrink-0">
+      {/* Mobile-only footer — always keeps Previous, Submit, and Next in
+          dedicated positions so Submit never replaces Next in Practice. */}
+      <footer className="sm:hidden min-h-[64px] bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] grid grid-cols-3 items-center shrink-0">
         <button
           onClick={goPrev}
           disabled={isPrevDisabled}
-          className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          className="justify-self-start inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           aria-label="Previous question"
         >
           <ArrowLeft className="w-4 h-4" aria-hidden="true" />
           <span>Prev</span>
         </button>
-        {isPractice
-          ? (isPracticeLast ? submitButton('inline-flex') : nextButton('inline-flex'))
-          : <>
-              {submitButton('inline-flex')}
-              {nextButton('inline-flex')}
-            </>}
+        {submitButton('justify-self-center inline-flex')}
+        {nextButton('justify-self-end inline-flex')}
       </footer>
     </div>
   );

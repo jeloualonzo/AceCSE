@@ -1,4 +1,3 @@
-import React from 'react';
 import { BookOpen, PlayCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { Subject } from '@/types';
@@ -29,7 +28,7 @@ interface PracticeLaunchCardProps {
   subjectLabel: string;
   description: string;
   mixed?: boolean;
-  onStart: (timed: boolean) => void;
+  onStart: () => void;
 }
 
 const PracticeLaunchCard: React.FC<PracticeLaunchCardProps> = ({
@@ -54,26 +53,14 @@ const PracticeLaunchCard: React.FC<PracticeLaunchCardProps> = ({
     <p className={`text-xs leading-relaxed mt-2 ${mixed ? 'text-emerald-800 dark:text-emerald-300' : 'text-slate-500 dark:text-slate-400'}`}>
       {description}
     </p>
-    <div
-      className="flex flex-wrap items-center gap-2 mt-4"
-      role="group"
-      aria-label={`${subjectLabel} Practice timing`}
-    >
+    <div className="mt-4">
       <button
         type="button"
-        onClick={() => onStart(true)}
+        onClick={onStart}
         className="inline-flex items-center justify-center min-h-[40px] px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
-        aria-label={`Start ${subjectLabel} Practice — Timed`}
+        aria-label={mixed ? 'Start Mixed Practice' : `Start ${subjectLabel} Practice`}
       >
-        Timed
-      </button>
-      <button
-        type="button"
-        onClick={() => onStart(false)}
-        className="inline-flex items-center justify-center min-h-[40px] px-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
-        aria-label={`Start ${subjectLabel} Practice — Untimed`}
-      >
-        Untimed
+        {mixed ? 'Start Mixed Practice' : 'Start Practice'}
       </button>
     </div>
   </article>
@@ -82,20 +69,21 @@ const PracticeLaunchCard: React.FC<PracticeLaunchCardProps> = ({
 /**
  * Practice is progressive and inventory-hidden. The engine chooses an initial
  * batch internally, then the shared booklet can append more questions without
- * exposing the bank size or a fixed learner-selected session length.
+ * exposing the bank size or a fixed learner-selected session length. Practice
+ * always uses one open-ended elapsed stopwatch; Simulation is the only mode
+ * with an exam deadline/countdown.
  */
 export const PracticePage: React.FC = () => {
   useDocumentTitle('Practice');
   const navigate = useNavigate();
   const { examLevel, setExamLevel } = useAppContext();
 
-  const startPractice = (subjects: Subject[], timed: boolean) => {
+  const startPractice = (subjects: Subject[]) => {
     const request: ExamLaunchRequest = {
       kind: 'practice',
       examLevel,
       questionCount: 0,
       subjects,
-      timed,
       progressive: true,
     };
     navigate('/app/exam', { state: { launch: request } });
@@ -116,8 +104,8 @@ export const PracticePage: React.FC = () => {
           <span>Learning Mode</span>
         </div>
         <p className="text-xs sm:text-sm text-emerald-900 dark:text-emerald-300 leading-relaxed">
-          Practice at your own pace. Choose a timer when you want one, answer, skip, revisit, and reveal explanations as you learn.
-          Start with any subject and show more questions whenever you are ready.
+          Practice at your own pace. Answer, skip, revisit, and reveal explanations as you learn.
+          Start with any subject and show more questions whenever you are ready. The session stopwatch starts automatically.
         </p>
       </div>
 
@@ -127,7 +115,7 @@ export const PracticePage: React.FC = () => {
             Start Practice
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Choose a subject or mix all five subject areas, then select Timed or Untimed. Your session grows as you work.
+            Choose a subject or mix all five subject areas. Your session grows as you work.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -136,14 +124,14 @@ export const PracticePage: React.FC = () => {
               key={subject}
               subjectLabel={subject}
               description={SUBJECT_DESCRIPTIONS[subject]}
-              onStart={(timed) => startPractice([subject], timed)}
+              onStart={() => startPractice([subject])}
             />
           ))}
           <PracticeLaunchCard
             subjectLabel="All Subjects"
             description="Mix all five subject areas for a broader learning session."
             mixed
-            onStart={(timed) => startPractice(PRACTICE_ALL_SUBJECTS, timed)}
+            onStart={() => startPractice(PRACTICE_ALL_SUBJECTS)}
           />
         </div>
       </section>

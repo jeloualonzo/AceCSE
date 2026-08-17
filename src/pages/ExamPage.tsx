@@ -41,8 +41,9 @@ export interface ExamLaunchRequest {
   kind: 'simulation' | 'practice';
   examLevel: 'Professional' | 'Subprofessional';
   questionCount: number;
-  subjects?: Subject[];
+  /** Simulation only: whether the real exam countdown is enabled. */
   timed?: boolean;
+  subjects?: Subject[];
   /** Practice an explicit item set (group) as a whole, in authored order. */
   groupId?: string;
   /** Practice a canonical task format, such as Filing. */
@@ -65,7 +66,7 @@ function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
     return buildSimulationSession(request.examLevel, request.questionCount);
   }
   if (request.progressive) {
-    return buildProgressivePracticeSession(request.examLevel, request.subjects ?? [], request.timed ?? false);
+    return buildProgressivePracticeSession(request.examLevel, request.subjects ?? []);
   }
   if (request.groupId) {
     return buildGroupPracticeSession(request.examLevel, request.groupId);
@@ -85,8 +86,7 @@ function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
   return buildPracticeSession(
     request.examLevel,
     request.subjects ?? [],
-    request.questionCount,
-    request.timed ?? false
+    request.questionCount
   );
 }
 
@@ -99,16 +99,17 @@ function launchFromSession(session: ExamSession): ExamLaunchRequest {
     session.items[0].kind === 'group'
       ? session.items[0].groupId
       : undefined;
-  return {
+  const launch: ExamLaunchRequest = {
     kind: session.config.mode,
     examLevel: session.config.examLevel,
     questionCount: session.config.questionCount,
     subjects: session.config.subjects,
-    timed: session.config.timed,
     groupId: soleGroup,
     taskFormat: session.config.taskFormat,
     progressive: Boolean(session.practiceProgress),
   };
+  if (session.config.mode === 'simulation') launch.timed = session.config.timed;
+  return launch;
 }
 
 function distributionOf(

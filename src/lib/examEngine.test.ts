@@ -133,8 +133,7 @@ describe('generic Practice booklet structure', () => {
     const session = await buildPracticeSession(
       'Professional',
       ['Verbal Ability', 'Numerical Reasoning'],
-      12,
-      false
+      12
     );
     expect(session.items?.length).toBeGreaterThan(0);
     expect(session.questionIds).toHaveLength(12);
@@ -151,7 +150,6 @@ describe('progressive Practice batches', () => {
     const initial = await buildProgressivePracticeSession(
       'Professional',
       ['Verbal Ability'],
-      false,
       undefined,
       { catalog }
     );
@@ -176,17 +174,18 @@ describe('progressive Practice batches', () => {
     expect(hasMoreProgressivePractice(extended)).toBe(true);
   });
 
-  it('preserves timed deadlines and leaves Untimed Practice without a deadline', async () => {
+  it('keeps Practice open-ended with no countdown deadline', async () => {
     const catalog = syntheticCatalog([], [], 30);
-    const timed = await buildProgressivePracticeSession('Professional', ['Verbal Ability'], true, undefined, { catalog });
-    const untimed = await buildProgressivePracticeSession('Professional', ['Verbal Ability'], false, undefined, { catalog });
+    const session = await buildProgressivePracticeSession(
+      'Professional',
+      ['Verbal Ability'],
+      undefined,
+      { catalog }
+    );
 
-    expect(timed.config.timed).toBe(true);
-    expect(timed.config.durationSeconds).toBeGreaterThan(0);
-    expect(timed.deadlineAt).toBeGreaterThan(timed.startedAt);
-    expect(untimed.config.timed).toBe(false);
-    expect(untimed.config.durationSeconds).toBeNull();
-    expect(untimed.deadlineAt).toBeNull();
+    expect(session.config.timed).toBe(false);
+    expect(session.config.durationSeconds).toBeNull();
+    expect(session.deadlineAt).toBeNull();
   });
 
   it('supports All Subjects without exposing a fixed session total in the live Practice contract', async () => {
@@ -194,7 +193,6 @@ describe('progressive Practice batches', () => {
     const session = await buildProgressivePracticeSession(
       'Professional',
       profSubjects,
-      false,
       10,
       { catalog }
     );
