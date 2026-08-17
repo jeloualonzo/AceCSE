@@ -26,14 +26,6 @@ const ALL_PRACTICE_SUBJECTS = new Set([
   'General Information',
 ]);
 
-const PRACTICE_SUBJECT_PREFIX: Record<string, string> = {
-  'Numerical Reasoning': 'N',
-  'Verbal Ability': 'V',
-  'Analytical Reasoning': 'A',
-  'Clerical Ability': 'C',
-  'General Information': 'G',
-};
-
 function isAllSubjectsPracticeSession(session: ExamSession): boolean {
   const subjects = session.config.subjects ?? [];
   return session.config.mode === 'practice'
@@ -141,27 +133,14 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   );
 
   const localOrder = useMemo(() => (activeSection ? sectionItemOrder(activeSection) : []), [activeSection]);
-  // SESSION-BASED numbering remains the internal Simulation/ordering map.
-  // Learner-facing Practice labels are derived separately so All Subjects
-  // can use stable subject-local N1/V1/A1/C1/G1 labels.
+  // One session-wide numeric map is the learner-facing contract in both
+  // Practice and Simulation. It remains stable because it follows the
+  // session's existing item order; changing subject does not restart at 1.
   const displayNumbers = useMemo(() => sessionNumberMap(sections), [sections]);
-  const displayLabels = useMemo(() => {
-    const labels = new Map<string, string>();
-    for (const section of sections) {
-      const prefix = PRACTICE_SUBJECT_PREFIX[section.sectionId];
-      let localNumber = 0;
-      for (const id of sectionItemOrder(section)) {
-        const numeric = displayNumbers.get(id) ?? 0;
-        if (isAllSubjectsPractice && prefix) {
-          localNumber += 1;
-          labels.set(id, `${prefix}${localNumber}`);
-        } else {
-          labels.set(id, String(numeric));
-        }
-      }
-    }
-    return labels;
-  }, [displayNumbers, isAllSubjectsPractice, sections]);
+  const displayLabels = useMemo(
+    () => new Map([...displayNumbers].map(([id, number]) => [id, String(number)])),
+    [displayNumbers]
+  );
   const presentedTotal = displayNumbers.size;
   const globalCounts = computeAnswerCounts(session);
 
@@ -580,40 +559,67 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                         )}
                       </h3>
                     )}
-                    <div className="space-y-2">
-                      {blocks.map((block, blockIndex) => (
-                        <div key={block.groupId ?? block.poolId ?? `${section.sectionId}-block-${blockIndex}`}>
-                          <div className="grid grid-cols-5 gap-2">
-                            {block.ids.map((id) => {
-                              const num = displayLabels.get(id) ?? '0';
-                              const isCurrent = section.sectionId === activeSectionId && id === currentQuestionId;
-                              const isAnswered = block.administrative
-                                ? Boolean((session.edqAnswers ?? {})[id])
-                                : Boolean(session.answers[id]);
-                              return (
-                                <button
-                                  key={id}
-                                  onClick={() => jumpToQuestion(section.sectionId, id)}
-                                  aria-current={isCurrent ? 'true' : undefined}
-                                  className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                                    isCurrent
-                                      ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
-                                      : isAnswered
-                                        ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
-                                        : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
-                                  }`}
-                                  aria-label={`${isPractice
-                                    ? `Go to ${sectionTitle(section.sectionId)} question ${num}`
-                                    : `Go to item ${num} in ${sectionTitle(section.sectionId)}`}${block.administrative ? ', administrative, not scored' : isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
-                                >
-                                  {num}
-                                </button>
-                              );
-                            })}
+                    {isPractice ? (
+                      <div className="grid grid-cols-5 gap-2">
+                        {blocks.flatMap((block) => block.ids.map((id) => {
+                          const num = displayLabels.get(id) ?? '0';
+                          const isCurrent = section.sectionId === activeSectionId && id === currentQuestionId;
+                          const isAnswered = block.administrative
+                            ? Boolean((session.edqAnswers ?? {})[id])
+                            : Boolean(session.answers[id]);
+                          return (
+                            <button
+                              key={id}
+                              onClick={() => jumpToQuestion(section.sectionId, id)}
+                              aria-current={isCurrent ? 'true' : undefined}
+                              className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                                isCurrent
+                                  ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
+                                  : isAnswered
+                                    ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
+                                    : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
+                              }`}
+                              aria-label={`Go to ${sectionTitle(section.sectionId)} question ${num}${block.administrative ? ', administrative, not scored' : isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
+                            >
+                              {num}
+                            </button>
+                          );
+                        }))}
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        {blocks.map((block, blockIndex) => (
+                          <div key={block.groupId ?? block.poolId ?? `${section.sectionId}-block-${blockIndex}`}>
+                            <div className="grid grid-cols-5 gap-2">
+                              {block.ids.map((id) => {
+                                const num = displayLabels.get(id) ?? '0';
+                                const isCurrent = section.sectionId === activeSectionId && id === currentQuestionId;
+                                const isAnswered = block.administrative
+                                  ? Boolean((session.edqAnswers ?? {})[id])
+                                  : Boolean(session.answers[id]);
+                                return (
+                                  <button
+                                    key={id}
+                                    onClick={() => jumpToQuestion(section.sectionId, id)}
+                                    aria-current={isCurrent ? 'true' : undefined}
+                                    className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                                      isCurrent
+                                        ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
+                                        : isAnswered
+                                          ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
+                                          : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
+                                    }`}
+                                    aria-label={`Go to item ${num} in ${sectionTitle(section.sectionId)}${block.administrative ? ', administrative, not scored' : isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
+                                  >
+                                    {num}
+                                  </button>
+                                );
+                              })}
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 );
               })}

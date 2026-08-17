@@ -80,6 +80,25 @@ function twoSubjectIndex() {
   ]);
 }
 
+function singleSubjectPracticeFixture(count: number) {
+  const questionIds = Array.from({ length: count }, (_, index) => `V${index + 1}`);
+  return {
+    session: baseSession({
+      config: {
+        mode: 'practice',
+        examLevel: 'Professional',
+        questionCount: count,
+        timed: false,
+        durationSeconds: null,
+        subjects: ['Verbal Ability'],
+      },
+      questionIds,
+      items: questionIds.map((questionId) => ({ kind: 'question' as const, questionId, sectionId: 'Verbal Ability' })),
+    }),
+    questionIndex: new Map(questionIds.map((id) => [id, makeQuestion(id, 'Verbal Ability')])),
+  };
+}
+
 function renderLayout(props: Partial<React.ComponentProps<typeof BookletExamLayout>> = {}) {
   const onSelectOption = vi.fn();
   const onSubmitExam = vi.fn();
@@ -465,7 +484,7 @@ describe('BookletExamLayout — answers preserved across subject switches', () =
 });
 
 describe('BookletExamLayout — All Subjects Practice navigator labels and subjects', () => {
-  it('shows all five subject buttons immediately and only encountered N1/V1 grid items', async () => {
+  it('shows all five subject buttons immediately and only encountered numeric grid items', async () => {
     const user = userEvent.setup();
     const allSubjectSession = baseSession({
       config: {
@@ -491,9 +510,56 @@ describe('BookletExamLayout — All Subjects Practice navigator labels and subje
     for (const subject of ['Numerical Reasoning', 'Analytical Reasoning', 'Verbal Ability', 'Clerical Ability', 'General Information']) {
       expect(within(subjectGrid as HTMLElement).getByRole('button', { name: subject })).toBeInTheDocument();
     }
-    expect(within(dialog).getByRole('button', { name: /go to Numerical Reasoning question N1/i })).toBeInTheDocument();
-    expect(within(dialog).getByRole('button', { name: /go to Verbal Ability question V1/i })).toBeInTheDocument();
-    expect(within(dialog).queryByRole('button', { name: /go to Clerical Ability question C1/i })).not.toBeInTheDocument();
+    expect(within(dialog).getByRole('button', { name: /go to Numerical Reasoning question 1/i })).toBeInTheDocument();
+    expect(within(dialog).getByRole('button', { name: /go to Verbal Ability question 2/i })).toBeInTheDocument();
+    expect(within(dialog).queryByRole('button', { name: /go to Clerical Ability question [A-Z]1/i })).not.toBeInTheDocument();
+    expect(within(dialog).queryByRole('button', { name: /question [NVA CG]\d/i })).not.toBeInTheDocument();
+  });
+});
+
+describe('BookletExamLayout — Practice numeric navigator grid', () => {
+  it('uses five columns with left-to-right numeric order and no placeholder cells', async () => {
+    const user = userEvent.setup();
+    for (const count of [7, 12]) {
+      const fixture = singleSubjectPracticeFixture(count);
+      renderLayout({ session: fixture.session, questionIndex: fixture.questionIndex });
+      await openNavigator(user);
+      const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+      const heading = within(dialog).getByRole('heading', { name: 'Verbal Ability' });
+      const grid = heading.nextElementSibling as HTMLElement;
+      expect(grid).toHaveClass('grid-cols-5');
+      const labels = [...grid.querySelectorAll('button')].map((button) => button.textContent?.trim());
+      expect(labels).toEqual(Array.from({ length: count }, (_, index) => String(index + 1)));
+      expect(grid.querySelectorAll(':empty')).toHaveLength(0);
+      cleanup();
+    }
+  });
+
+  it('keeps existing numeric labels stable when an append-only Practice batch is loaded', async () => {
+    const user = userEvent.setup();
+    const initial = singleSubjectPracticeFixture(7);
+    const extended = singleSubjectPracticeFixture(12);
+    const { rerender } = renderLayout({ session: initial.session, questionIndex: initial.questionIndex });
+    await openNavigator(user);
+    let dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    let grid = within(dialog).getByRole('heading', { name: 'Verbal Ability' }).nextElementSibling as HTMLElement;
+    expect([...grid.querySelectorAll('button')].map((button) => button.textContent?.trim())).toEqual(['1', '2', '3', '4', '5', '6', '7']);
+
+    rerender(
+      <BookletExamLayout
+        examLevel="Professional"
+        timeRemainingFormatted="Untimed"
+        onExitExam={vi.fn()}
+        onSubmitExam={vi.fn()}
+        session={extended.session}
+        getGroup={() => undefined}
+        questionIndex={extended.questionIndex}
+        onSelectOption={vi.fn()}
+      />
+    );
+    dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    grid = within(dialog).getByRole('heading', { name: 'Verbal Ability' }).nextElementSibling as HTMLElement;
+    expect([...grid.querySelectorAll('button')].map((button) => button.textContent?.trim())).toEqual(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']);
   });
 });
 
