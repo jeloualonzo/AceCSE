@@ -6,6 +6,7 @@ const BLOCK_TYPES = new Set<StructuredExplanationBlock['type']>([
   'math',
   'pattern',
   'solution',
+  'correct_answer',
   'answer',
   'rule',
   'common_trap',
@@ -34,9 +35,11 @@ function isBlock(value: unknown): value is StructuredExplanationBlock {
     case 'pattern':
     case 'solution':
       return isNonEmptyString(block.expression);
+    case 'correct_answer':
+      return isNonEmptyString(block.text);
     case 'answer':
       return isNonEmptyString(block.text)
-        && (block.variant === undefined || block.variant === 'correct' || block.variant === 'final');
+        && (block.variant === undefined || block.variant === 'final');
     case 'step':
       return isNonEmptyString(block.title)
         && Array.isArray(block.blocks)

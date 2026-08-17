@@ -8,33 +8,35 @@ import { StructuredExplanationRenderer } from './StructuredExplanationRenderer';
 const explanation: StructuredExplanation = {
   blocks: [
     { type: 'heading', text: 'Solution' },
-    { type: 'answer', text: 'Correct Answer: E — 48', variant: 'correct' },
-    { type: 'paragraph', label: 'Why', text: 'Each term is doubled.' },
-    { type: 'pattern', expression: '3 → 6 → 12 → 24 → 48' },
-    { type: 'math', expression: '6 - 3 = 3\n12 - 6 = 6' },
+    { type: 'correct_answer', text: 'E — 48' },
+    { type: 'paragraph', label: 'What to Notice', text: 'Check how each term changes to the next.' },
+    { type: 'pattern', expression: '3 × 2 = 6\n6 × 2 = 12\n12 × 2 = 24' },
+    { type: 'paragraph', text: 'The same operation is repeated: ×2.' },
     { type: 'solution', expression: '24 × 2 = 48' },
     { type: 'answer', text: '48', variant: 'final' },
-    { type: 'rule', text: 'A geometric sequence has a constant multiplication ratio.' },
-    { type: 'common_trap', text: 'Use the repeated multiplication pattern.' },
+    { type: 'rule', text: 'Geometric sequence: consecutive terms have a constant multiplication ratio.' },
+    { type: 'common_trap', text: 'Optional future content.' },
+    { type: 'math', expression: '5 − 2 = 3\n9 − 5 = 4' },
   ],
 };
 
-describe('StructuredExplanationRenderer V2', () => {
-  it('renders semantic headings, answer, why, pattern, solution, rule, and common trap content', () => {
+describe('StructuredExplanationRenderer V3', () => {
+  it('renders the approved semantic hierarchy and math without inventing steps or nested cards', () => {
     const { container } = render(<StructuredExplanationRenderer explanation={explanation} theme="light" />);
     const root = screen.getByTestId('structured-explanation');
 
     expect(screen.getByRole('heading', { level: 4, name: 'Solution' })).toBeInTheDocument();
-    expect(screen.getByText('Correct Answer: E — 48')).toBeInTheDocument();
-    expect(screen.getByText('Why')).toBeInTheDocument();
-    expect(screen.getByText('Each term is doubled.')).toBeInTheDocument();
+    expect(screen.getByText('Correct Answer:')).toBeInTheDocument();
+    expect(screen.getByText('E — 48')).toBeInTheDocument();
+    expect(screen.getByText('What to Notice')).toBeInTheDocument();
+    expect(screen.getByText('Check how each term changes to the next.')).toBeInTheDocument();
     expect(screen.getByText('Pattern')).toBeInTheDocument();
-    expect(screen.getByText('Solution', { selector: 'h5' })).toBeInTheDocument();
+    expect(screen.getByText('Apply the Pattern')).toBeInTheDocument();
     expect(screen.getByText('Rule')).toBeInTheDocument();
     expect(screen.getByText('Common Trap')).toBeInTheDocument();
-    expect(screen.getByRole('math', { name: 'Pattern: 3 → 6 → 12 → 24 → 48' })).toBeInTheDocument();
-    expect(screen.getByRole('math', { name: 'Solution: 24 × 2 = 48' })).toBeInTheDocument();
-    expect(screen.getByRole('math', { name: 'Mathematical expression: 6 − 3 = 3; 12 − 6 = 6' })).toBeInTheDocument();
+    expect(screen.getByRole('math', { name: 'Pattern: 3 × 2 = 6; 6 × 2 = 12; 12 × 2 = 24' })).toBeInTheDocument();
+    expect(screen.getByRole('math', { name: 'Apply the Pattern: 24 × 2 = 48' })).toBeInTheDocument();
+    expect(screen.getByRole('math', { name: '5 − 2 = 3; 9 − 5 = 4' })).toBeInTheDocument();
     expect(Array.from(root.querySelectorAll('.font-mono.font-bold')).some((node) => node.textContent === '48')).toBe(true);
     expect(root.querySelector('.border')).toBeNull();
     expect(root.querySelector('.rounded-lg')).toBeNull();
@@ -46,10 +48,10 @@ describe('StructuredExplanationRenderer V2', () => {
     expect(root.textContent).not.toContain('\\(');
     expect(root.textContent).not.toContain('\\)');
     expect(root.textContent).not.toContain('{"blocks"');
-    expect(container.querySelector('[data-testid="structured-explanation"]')).toBe(root);
+    expect(container.querySelectorAll('[data-testid="structured-explanation"]')).toHaveLength(1);
   });
 
-  it('keeps long math expressions inside a horizontally safe scroll container', () => {
+  it('keeps long expressions inside a horizontally safe scroll container', () => {
     const { container } = render(
       <StructuredExplanationRenderer
         explanation={{ blocks: [{ type: 'solution', expression: '123456789 + 987654321 = 1111111110' }] }}

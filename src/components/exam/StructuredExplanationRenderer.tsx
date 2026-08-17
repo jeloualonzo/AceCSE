@@ -23,13 +23,12 @@ function mathLines(expression: string): string[] {
   return expression.split(/\r?\n/).map(formatMathExpression).filter(Boolean);
 }
 
-function MathDisplay({ expression, dark, kind }: { expression: string; dark: boolean; kind: 'math' | 'pattern' | 'solution' }) {
+function MathDisplay({ expression, dark, label }: { expression: string; dark: boolean; label?: string }) {
   const lines = mathLines(expression);
-  const label = kind === 'pattern' ? 'Pattern' : kind === 'solution' ? 'Solution' : 'Mathematical expression';
   return (
     <div
       role="math"
-      aria-label={`${label}: ${lines.join('; ')}`}
+      aria-label={label ? `${label}: ${lines.join('; ')}` : lines.join('; ')}
       className={`overflow-x-auto px-1 py-1 font-mono text-sm sm:text-base tracking-wide whitespace-nowrap ${
         dark ? 'text-slate-100' : 'text-slate-900'
       }`}
@@ -52,6 +51,12 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
   switch (block.type) {
     case 'heading':
       return <h4 key={key} className={`text-sm font-bold uppercase tracking-wider ${dark ? 'text-slate-100' : 'text-slate-800'}`}>{block.text}</h4>;
+    case 'correct_answer':
+      return (
+        <p key={key} className={`font-semibold ${dark ? 'text-emerald-300' : 'text-emerald-800'}`}>
+          Correct Answer: <span className="font-mono font-bold">{block.text}</span>
+        </p>
+      );
     case 'paragraph':
       return (
         <div key={key} className="space-y-1">
@@ -63,16 +68,16 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       return (
         <div key={key} className="space-y-1">
           <SectionLabel dark={dark}>Pattern</SectionLabel>
-          <MathDisplay expression={block.expression} dark={dark} kind="pattern" />
+          <MathDisplay expression={block.expression} dark={dark} label="Pattern" />
         </div>
       );
     case 'math':
-      return <MathDisplay key={key} expression={block.expression} dark={dark} kind="math" />;
+      return <MathDisplay key={key} expression={block.expression} dark={dark} />;
     case 'solution':
       return (
         <div key={key} className="space-y-1">
-          <SectionLabel dark={dark}>Solution</SectionLabel>
-          <MathDisplay expression={block.expression} dark={dark} kind="solution" />
+          <SectionLabel dark={dark}>Apply the Pattern</SectionLabel>
+          <MathDisplay expression={block.expression} dark={dark} label="Apply the Pattern" />
         </div>
       );
     case 'rule':
@@ -91,12 +96,8 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       );
     case 'answer':
       return (
-        <p
-          key={key}
-          className={`font-semibold ${block.variant === 'final' ? 'text-base' : 'text-sm'} ${dark ? 'text-emerald-300' : 'text-emerald-800'}`}
-        >
-          {block.variant === 'final' ? 'Answer: ' : ''}
-          <span className="font-mono font-bold">{block.text}</span>
+        <p key={key} className={`font-semibold text-base ${dark ? 'text-emerald-300' : 'text-emerald-800'}`}>
+          Answer: <span className="font-mono font-bold">{block.text}</span>
         </p>
       );
     case 'step':

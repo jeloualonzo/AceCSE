@@ -78,13 +78,18 @@ export interface StructuredExplanationCommonTrapBlock {
   text: string;
 }
 
+export interface StructuredExplanationCorrectAnswerBlock {
+  type: 'correct_answer';
+  text: string;
+}
+
 export interface StructuredExplanationAnswerBlock {
   type: 'answer';
   text: string;
-  variant?: 'correct' | 'final';
+  variant?: 'final';
 }
 
-/** Retained for future authored content; V2 does not auto-number these blocks. */
+/** Retained for future authored content; V3 does not auto-number these blocks. */
 export interface StructuredExplanationStepBlock {
   type: 'step';
   title: string;
@@ -99,6 +104,7 @@ export type StructuredExplanationBlock =
   | StructuredExplanationSolutionBlock
   | StructuredExplanationRuleBlock
   | StructuredExplanationCommonTrapBlock
+  | StructuredExplanationCorrectAnswerBlock
   | StructuredExplanationAnswerBlock
   | StructuredExplanationStepBlock;
 

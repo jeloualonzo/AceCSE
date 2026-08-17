@@ -29,12 +29,13 @@ const pilotQuestion: Question = {
   structuredExplanation: {
     blocks: [
       { type: 'heading', text: 'Solution' },
-      { type: 'answer', text: 'Correct Answer: B — 24', variant: 'correct' },
-      { type: 'paragraph', label: 'Why', text: 'Each term increases by 5.' },
-      { type: 'pattern', expression: '4 → 9 → 14 → 19 → 24' },
+      { type: 'correct_answer', text: 'B — 24' },
+      { type: 'paragraph', label: 'What to Notice', text: 'Check the difference between consecutive terms.' },
+      { type: 'pattern', expression: '4 + 5 = 9\n9 + 5 = 14\n14 + 5 = 19' },
+      { type: 'paragraph', text: 'The same operation is repeated: +5.' },
       { type: 'solution', expression: '19 + 5 = 24' },
       { type: 'answer', text: '24', variant: 'final' },
-      { type: 'rule', text: 'In an arithmetic sequence, the difference between consecutive terms is constant.' },
+      { type: 'rule', text: 'Arithmetic sequence: consecutive terms have a constant difference.' },
     ],
   },
 };
@@ -61,7 +62,7 @@ beforeEach(() => {
 
 afterEach(() => cleanup());
 
-describe('structured explanation Practice/Results integration V2', () => {
+describe('structured explanation Practice/Results integration V3', () => {
   it('preserves Practice Show/Hide behavior around the one-card structured renderer', async () => {
     const user = userEvent.setup();
     renderWithTheme(
@@ -79,9 +80,11 @@ describe('structured explanation Practice/Results integration V2', () => {
 
     const roots = screen.getAllByTestId('structured-explanation');
     expect(roots).toHaveLength(2);
-    expect(roots.every((root) => within(root).getByText('Correct Answer: B — 24'))).toBe(true);
-    expect(roots.every((root) => within(root).getByText('Why'))).toBe(true);
+    expect(roots.every((root) => within(root).getByText('Correct Answer:'))).toBe(true);
+    expect(roots.every((root) => within(root).getByText('B — 24'))).toBe(true);
+    expect(roots.every((root) => within(root).getByText('What to Notice'))).toBe(true);
     expect(roots.every((root) => within(root).getByText('Pattern'))).toBe(true);
+    expect(roots.every((root) => within(root).getByText('Apply the Pattern'))).toBe(true);
     expect(roots.every((root) => within(root).getByText('Rule'))).toBe(true);
     expect(roots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
 
@@ -143,11 +146,13 @@ describe('structured explanation Practice/Results integration V2', () => {
 
     await user.click(screen.getByRole('button', { name: 'Expand question details' }));
     const root = screen.getByTestId('structured-explanation');
-    expect(within(root).getByText('Correct Answer: B — 24')).toBeInTheDocument();
+    expect(within(root).getByText('Correct Answer:')).toBeInTheDocument();
+    expect(within(root).getByText('B — 24')).toBeInTheDocument();
+    expect(within(root).getByText('What to Notice')).toBeInTheDocument();
     expect(within(root).getByText('Pattern')).toBeInTheDocument();
-    expect(within(root).getByText('Solution', { selector: 'h5' })).toBeInTheDocument();
+    expect(within(root).getByText('Apply the Pattern')).toBeInTheDocument();
     expect(within(root).getByText('Rule')).toBeInTheDocument();
-    expect(within(root).queryByText(/Step [123]/)).not.toBeInTheDocument();
+    expect(within(root).queryByText(/Step [123]/)).toBeNull();
     expect(screen.queryByText('Legacy explanation remains available as fallback.')).not.toBeInTheDocument();
   });
 });
