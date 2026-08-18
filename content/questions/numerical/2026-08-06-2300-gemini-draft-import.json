@@ -377,6 +377,21 @@
       "label": "Pattern Recognition",
       "text": "When a sequence grows at an accelerating rate, always compute first differences and then ask: are those differences arithmetic, geometric, or square numbers? Perfect square differences (1,4,9,16,25...) mean the next increment is the next perfect square."
     },
+    "structuredExplanation": {
+      "blocks": [
+        { "type": "heading", "text": "Solution" },
+        { "type": "correct_answer", "text": "A — 96" },
+        { "type": "paragraph", "label": "What to Notice", "text": "Check the differences between consecutive terms." },
+        { "type": "pattern", "expression": "6 − 5 = 1\n10 − 6 = 4\n19 − 10 = 9\n35 − 19 = 16\n60 − 35 = 25" },
+        { "type": "paragraph", "text": "The differences are:" },
+        { "type": "math", "expression": "+1, +4, +9, +16, +25" },
+        { "type": "paragraph", "text": "These are consecutive perfect squares:" },
+        { "type": "math", "expression": "1², 2², 3², 4², 5²" },
+        { "type": "solution", "expression": "6² = 36\n60 + 36 = 96" },
+        { "type": "answer", "text": "96", "variant": "final" },
+        { "type": "rule", "text": "When the differences are consecutive perfect squares, continue with the next square." }
+      ]
+    },
     "tags": [
       "number-series",
       "pattern-recognition",

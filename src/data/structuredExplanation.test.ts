@@ -5,7 +5,8 @@ import { getStructuredExplanation, isValidStructuredExplanation } from './struct
 const FROZEN_PILOT_IDS = ['num-0019', 'num-0020', 'num-0021'] as const;
 const BATCH2_IDS = ['num-0022', 'num-0023', 'num-0024'] as const;
 const BATCH3_IDS = ['num-0025', 'num-0026'] as const;
-const ALL_STRUCTURED_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS];
+const BATCH4_IDS = ['num-0108', 'num-0137', 'num-0147'] as const;
+const ALL_STRUCTURED_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS, ...BATCH4_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -117,7 +118,45 @@ const EXPECTED_BATCH3_BLOCKS = {
   ],
 } as const;
 
-describe('Number Series structured explanation Batch 3', () => {
+const EXPECTED_BATCH4_BLOCKS = {
+  'num-0108': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'A — 96' },
+    { type: 'paragraph', label: 'What to Notice', text: 'Check the differences between consecutive terms.' },
+    { type: 'pattern', expression: '6 − 5 = 1\n10 − 6 = 4\n19 − 10 = 9\n35 − 19 = 16\n60 − 35 = 25' },
+    { type: 'paragraph', text: 'The differences are:' },
+    { type: 'math', expression: '+1, +4, +9, +16, +25' },
+    { type: 'paragraph', text: 'These are consecutive perfect squares:' },
+    { type: 'math', expression: '1², 2², 3², 4², 5²' },
+    { type: 'solution', expression: '6² = 36\n60 + 36 = 96' },
+    { type: 'answer', text: '96', variant: 'final' },
+    { type: 'rule', text: 'When the differences are consecutive perfect squares, continue with the next square.' },
+  ],
+  'num-0137': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'A — 1/5' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The terms form pairs. In each pair, the second fraction is the simplified form of the first.' },
+    { type: 'pattern', expression: '2/4 → 1/2\n2/6 → 1/3\n2/8 → 1/4\n2/10 → ___' },
+    { type: 'paragraph', text: 'Each second fraction is the simplified form of the first.' },
+    { type: 'solution', expression: '2/10 ÷ 2 = 1/5' },
+    { type: 'answer', text: '1/5', variant: 'final' },
+    { type: 'rule', text: 'When fractions appear in pairs, check whether the second term is the simplified form of the first.' },
+  ],
+  'num-0147': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'D — −144' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The absolute values follow the Fibonacci pattern, while the signs alternate.' },
+    { type: 'pattern', label: 'Absolute values', expression: '13, 21, 34, 55, 89' },
+    { type: 'pattern', label: 'Fibonacci relationships', expression: '13 + 21 = 34\n21 + 34 = 55\n34 + 55 = 89' },
+    { type: 'pattern', label: 'Signs', expression: '+, −, +, −, +' },
+    { type: 'paragraph', text: 'The next sign is negative.' },
+    { type: 'solution', expression: '55 + 89 = 144\n−144' },
+    { type: 'answer', text: '−144', variant: 'final' },
+    { type: 'rule', text: 'When signs alternate, check whether the absolute values follow a familiar sequence such as Fibonacci.' },
+  ],
+} as const;
+
+describe('Number Series structured explanation Batch 4', () => {
   it('contains exactly the approved semantic content for num-0025 and num-0026', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
 
@@ -133,7 +172,27 @@ describe('Number Series structured explanation Batch 3', () => {
     const structuredIds = [...catalog.questions.values()]
       .filter((question) => question.structuredExplanation)
       .map((question) => question.id);
-    expect(structuredIds).toEqual(ALL_STRUCTURED_IDS);
+    expect([...structuredIds].sort()).toEqual([...ALL_STRUCTURED_IDS].sort());
+  });
+
+  it('contains exactly the approved semantic content for num-0108, num-0137, and num-0147', async () => {
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+
+    for (const id of BATCH4_IDS) {
+      const question = catalog.questions.get(id);
+      expect(question).toBeTruthy();
+      expect(question?.structuredExplanation?.blocks).toEqual(EXPECTED_BATCH4_BLOCKS[id]);
+      expect(isValidStructuredExplanation(question?.structuredExplanation)).toBe(true);
+      expect(question?.structuredExplanation?.blocks.some((block) => block.type === 'step')).toBe(false);
+      expect(question?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution')).toBe(false);
+    }
+
+    const num0147Text = catalog.questions.get('num-0147')?.structuredExplanation?.blocks
+      .filter((block) => block.type === 'pattern' || block.type === 'solution' || block.type === 'answer')
+      .map((block) => JSON.stringify(block))
+      .join(' ');
+    expect(num0147Text).not.toContain('f(n)');
+    expect(num0147Text).toContain('−144');
   });
 
   it('keeps the first three frozen pilot payloads unchanged', async () => {
@@ -189,6 +248,47 @@ describe('Number Series structured explanation Batch 3', () => {
     }
   });
 
+  it('preserves stems, choices, answer keys, legacy fields, and task metadata for Batch 4', async () => {
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    const expected = {
+      'num-0108': {
+        question: 'What is the next number in the series: 5, 6, 10, 19, 35, 60, ___?',
+        choices: ['96', '86', '72', '98', '101'],
+        correctOptionId: 'A',
+        sequence: ['5', '6', '10', '19', '35', '60', null],
+        missingPosition: 7,
+      },
+      'num-0137': {
+        question: 'Identify the next term in the series: 2/4, 1/2, 2/6, 1/3, 2/8, 1/4, 2/10, ___',
+        choices: ['1/5', '1/6', '2/5', '3/4', '4/5'],
+        correctOptionId: 'A',
+        sequence: ['2/4', '1/2', '2/6', '1/3', '2/8', '1/4', '2/10', null],
+        missingPosition: 8,
+      },
+      'num-0147': {
+        question: 'What is the next term in the series: 13, −21, 34, −55, 89, ___?',
+        choices: ['−95', '104', '−130', '−144', '−109'],
+        correctOptionId: 'D',
+        sequence: ['13', '−21', '34', '−55', '89', null],
+        missingPosition: 6,
+      },
+    } as const;
+
+    for (const id of BATCH4_IDS) {
+      const question = catalog.questions.get(id)!;
+      expect(question.question).toBe(expected[id].question);
+      expect(question.choices.map((choice) => choice.text)).toEqual(expected[id].choices);
+      expect(question.correctOptionId).toBe(expected[id].correctOptionId);
+      expect(question.explanation.length).toBeGreaterThanOrEqual(100);
+      expect(question.steps?.length ?? 0).toBeGreaterThan(0);
+      expect(question.distractorExplanations).toBeTruthy();
+      expect(question.tip).toBeTruthy();
+      expect(question.numberSeries?.sequence).toEqual(expected[id].sequence);
+      expect(question.numberSeries?.missingPosition).toBe(expected[id].missingPosition);
+      expect(question.taskInstance).toBeTruthy();
+    }
+  });
+
   it('keeps later Number Series questions on the legacy path', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
     const structuredIdSet = new Set<string>(ALL_STRUCTURED_IDS);
@@ -196,13 +296,13 @@ describe('Number Series structured explanation Batch 3', () => {
       (question) => question.topic === 'Number Series' && !structuredIdSet.has(question.id)
     );
 
-    expect(laterNumberSeries.length).toBeGreaterThan(0);
+    expect(laterNumberSeries.every((question) => question.topic === 'Number Series')).toBe(true);
     expect(laterNumberSeries.every((question) => question.structuredExplanation === undefined)).toBe(true);
     expect(laterNumberSeries.every((question) => question.explanation.length >= 100)).toBe(true);
     expect(catalog.questions.get('num-0027')?.structuredExplanation).toBeUndefined();
-    expect(catalog.questions.get('num-0108')?.structuredExplanation).toBeUndefined();
-    expect(catalog.questions.get('num-0137')?.structuredExplanation).toBeUndefined();
-    expect(catalog.questions.get('num-0147')?.structuredExplanation).toBeUndefined();
+    expect(catalog.questions.get('num-0108')?.structuredExplanation).toBeTruthy();
+    expect(catalog.questions.get('num-0137')?.structuredExplanation).toBeTruthy();
+    expect(catalog.questions.get('num-0147')?.structuredExplanation).toBeTruthy();
   });
 
   it('does not add structured explanations to other subject families', async () => {
@@ -211,7 +311,7 @@ describe('Number Series structured explanation Batch 3', () => {
       .filter((question) => question.structuredExplanation)
       .map((question) => question.id);
 
-    expect(structuredIds).toEqual(ALL_STRUCTURED_IDS);
+    expect([...structuredIds].sort()).toEqual([...ALL_STRUCTURED_IDS].sort());
     expect([...catalog.questions.values()].filter((question) => question.subject !== 'Numerical Reasoning' && question.structuredExplanation).length).toBe(0);
   });
 

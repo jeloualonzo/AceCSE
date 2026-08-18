@@ -326,6 +326,20 @@
       "label": "Pattern Recognition",
       "text": "Series with alternating signs often hide a Fibonacci-type recurrence. Check whether f(n) = f(n−1) + f(n−2), f(n) = f(n−2) − f(n−1), or f(n) = −f(n−1) + f(n−2). Test your rule on at least three consecutive terms before using it to generate the next one."
     },
+    "structuredExplanation": {
+      "blocks": [
+        { "type": "heading", "text": "Solution" },
+        { "type": "correct_answer", "text": "D — −144" },
+        { "type": "paragraph", "label": "What to Notice", "text": "The absolute values follow the Fibonacci pattern, while the signs alternate." },
+        { "type": "pattern", "label": "Absolute values", "expression": "13, 21, 34, 55, 89" },
+        { "type": "pattern", "label": "Fibonacci relationships", "expression": "13 + 21 = 34\n21 + 34 = 55\n34 + 55 = 89" },
+        { "type": "pattern", "label": "Signs", "expression": "+, −, +, −, +" },
+        { "type": "paragraph", "text": "The next sign is negative." },
+        { "type": "solution", "expression": "55 + 89 = 144\n−144" },
+        { "type": "answer", "text": "−144", "variant": "final" },
+        { "type": "rule", "text": "When signs alternate, check whether the absolute values follow a familiar sequence such as Fibonacci." }
+      ]
+    },
     "tags": [
       "number-series",
       "fibonacci",

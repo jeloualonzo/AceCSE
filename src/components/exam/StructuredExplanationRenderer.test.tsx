@@ -84,6 +84,36 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(root.querySelectorAll('[role="math"]')).toHaveLength(2);
   });
 
+  it('renders Batch 4 fraction and Unicode-minus math safely inside one explanation card', () => {
+    const { container } = render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [
+            { type: 'heading', text: 'Solution' },
+            { type: 'correct_answer', text: 'A — 1/5' },
+            { type: 'pattern', expression: '2/4 → 1/2\n2/6 → 1/3\n2/8 → 1/4\n2/10 → ___' },
+            { type: 'solution', expression: '2/10 ÷ 2 = 1/5' },
+            { type: 'answer', text: '1/5', variant: 'final' },
+            { type: 'pattern', label: 'Signs', expression: '+, −, +, −, +' },
+            { type: 'solution', expression: '55 + 89 = 144\n−144' },
+            { type: 'answer', text: '−144', variant: 'final' },
+          ],
+        }}
+      />
+    );
+
+    const root = screen.getByTestId('structured-explanation');
+    expect(within(root).getByRole('math', { name: 'Pattern: 2 ÷ 4 → 1 ÷ 2; 2 ÷ 6 → 1 ÷ 3; 2 ÷ 8 → 1 ÷ 4; 2 ÷ 10 → ___' })).toBeInTheDocument();
+    expect(within(root).getByRole('math', { name: 'Apply the Pattern: 2 ÷ 10 ÷ 2 = 1 ÷ 5' })).toBeInTheDocument();
+    expect(within(root).getByRole('math', { name: 'Pattern, Signs: +, −, +, −, +' })).toBeInTheDocument();
+    expect(within(root).getByRole('math', { name: 'Apply the Pattern: 55 + 89 = 144; −144' })).toBeInTheDocument();
+    expect(root.textContent).not.toContain('Step 1');
+    expect(root.textContent).not.toContain('Why A is wrong');
+    expect(root.querySelector('.rounded-lg')).toBeNull();
+    expect(root.querySelector('.border')).toBeNull();
+    expect(container.querySelectorAll('[data-testid="structured-explanation"]')).toHaveLength(1);
+  });
+
   it('keeps Alternative Method collapsed by default and expands vertically inside the same card', async () => {
     const user = userEvent.setup();
     const { container } = render(

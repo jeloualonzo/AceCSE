@@ -3,7 +3,7 @@ import { cleanup, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { Attempt, Question } from '@/types';
+import type { Attempt, OptionId, Question } from '@/types';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { QuestionCard } from './QuestionCard';
 import { ResultsScreen } from './ResultsScreen';
@@ -104,6 +104,71 @@ const interleavedQuestion: Question = {
     ],
   },
 };
+
+const BATCH4_OPTION_IDS: OptionId[] = ['A', 'B', 'C', 'D', 'E'];
+const makeChoices = (texts: string[]) => texts.map((text, index) => ({ id: BATCH4_OPTION_IDS[index], text }));
+
+const batch4Questions: Question[] = [
+  {
+    ...pilotQuestion,
+    id: 'num-0108',
+    correctOptionId: 'A',
+    choices: makeChoices(['96', '86', '72', '98', '101']),
+    structuredExplanation: {
+      blocks: [
+        { type: 'heading', text: 'Solution' },
+        { type: 'correct_answer', text: 'A — 96' },
+        { type: 'paragraph', label: 'What to Notice', text: 'Check the differences between consecutive terms.' },
+        { type: 'pattern', expression: '6 − 5 = 1\n10 − 6 = 4\n19 − 10 = 9\n35 − 19 = 16\n60 − 35 = 25' },
+        { type: 'paragraph', text: 'The differences are:' },
+        { type: 'math', expression: '+1, +4, +9, +16, +25' },
+        { type: 'paragraph', text: 'These are consecutive perfect squares:' },
+        { type: 'math', expression: '1², 2², 3², 4², 5²' },
+        { type: 'solution', expression: '6² = 36\n60 + 36 = 96' },
+        { type: 'answer', text: '96', variant: 'final' },
+        { type: 'rule', text: 'When the differences are consecutive perfect squares, continue with the next square.' },
+      ],
+    },
+  },
+  {
+    ...pilotQuestion,
+    id: 'num-0137',
+    correctOptionId: 'A',
+    choices: makeChoices(['1/5', '1/6', '2/5', '3/4', '4/5']),
+    structuredExplanation: {
+      blocks: [
+        { type: 'heading', text: 'Solution' },
+        { type: 'correct_answer', text: 'A — 1/5' },
+        { type: 'paragraph', label: 'What to Notice', text: 'The terms form pairs. In each pair, the second fraction is the simplified form of the first.' },
+        { type: 'pattern', expression: '2/4 → 1/2\n2/6 → 1/3\n2/8 → 1/4\n2/10 → ___' },
+        { type: 'paragraph', text: 'Each second fraction is the simplified form of the first.' },
+        { type: 'solution', expression: '2/10 ÷ 2 = 1/5' },
+        { type: 'answer', text: '1/5', variant: 'final' },
+        { type: 'rule', text: 'When fractions appear in pairs, check whether the second term is the simplified form of the first.' },
+      ],
+    },
+  },
+  {
+    ...pilotQuestion,
+    id: 'num-0147',
+    correctOptionId: 'D',
+    choices: makeChoices(['−95', '104', '−130', '−144', '−109']),
+    structuredExplanation: {
+      blocks: [
+        { type: 'heading', text: 'Solution' },
+        { type: 'correct_answer', text: 'D — −144' },
+        { type: 'paragraph', label: 'What to Notice', text: 'The absolute values follow the Fibonacci pattern, while the signs alternate.' },
+        { type: 'pattern', label: 'Absolute values', expression: '13, 21, 34, 55, 89' },
+        { type: 'pattern', label: 'Fibonacci relationships', expression: '13 + 21 = 34\n21 + 34 = 55\n34 + 55 = 89' },
+        { type: 'pattern', label: 'Signs', expression: '+, −, +, −, +' },
+        { type: 'paragraph', text: 'The next sign is negative.' },
+        { type: 'solution', expression: '55 + 89 = 144\n−144' },
+        { type: 'answer', text: '−144', variant: 'final' },
+        { type: 'rule', text: 'When signs alternate, check whether the absolute values follow a familiar sequence such as Fibonacci.' },
+      ],
+    },
+  },
+];
 
 function renderWithTheme(element: React.ReactElement) {
   return render(<ThemeProvider>{element}</ThemeProvider>);
@@ -278,6 +343,73 @@ describe('structured explanation Practice/Results integration V3', () => {
     expect(within(resultsRoot).getByText('Pattern — Odd positions')).toBeInTheDocument();
     expect(within(resultsRoot).getByText('Pattern — Even positions')).toBeInTheDocument();
     expect(within(resultsRoot).getByRole('math', { name: 'Pattern, Even positions: 7 → 10 → 13 → ___; +3, +3, +3' })).toBeInTheDocument();
+  });
+
+  it('renders all Batch 4 explanations through the shared Practice and Results renderer', async () => {
+    const user = userEvent.setup();
+
+    for (const question of batch4Questions) {
+      renderWithTheme(
+        <QuestionCard
+          question={question}
+          selectedOptionId={question.correctOptionId}
+          onSelectOption={vi.fn()}
+          instantFeedback
+        />
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
+      const practiceRoots = screen.getAllByTestId('structured-explanation');
+      expect(practiceRoots).toHaveLength(2);
+      expect(practiceRoots.every((root) => within(root).getByText('Correct Answer:'))).toBe(true);
+      expect(practiceRoots.every((root) => within(root).queryByRole('button', { name: /Alternative Method/ }) === null)).toBe(true);
+      expect(practiceRoots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
+
+      if (question.id === 'num-0137') {
+        expect(practiceRoots.every((root) => within(root).getByRole('math', { name: 'Pattern: 2 ÷ 4 → 1 ÷ 2; 2 ÷ 6 → 1 ÷ 3; 2 ÷ 8 → 1 ÷ 4; 2 ÷ 10 → ___' }))).toBe(true);
+      }
+      if (question.id === 'num-0147') {
+        expect(practiceRoots.every((root) => within(root).getByText('Pattern — Signs'))).toBe(true);
+        expect(practiceRoots.every((root) => within(root).getAllByText('−144').length > 0)).toBe(true);
+      }
+
+      cleanup();
+      const attempt: Attempt = {
+        id: `structured-results-${question.id}`,
+        mode: 'practice',
+        examLevel: 'Professional',
+        questionCount: 1,
+        correctCount: 1,
+        answeredCount: 1,
+        unansweredCount: 0,
+        percentage: 100,
+        passed: false,
+        durationSeconds: 12,
+        startedAt: 1,
+        completedAt: 12_001,
+        subjects: [{ subject: 'Numerical Reasoning', total: 1, correct: 1, answered: 1, unanswered: 0, percentage: 100 }],
+        items: [{
+          questionId: question.id,
+          subject: question.subject,
+          topic: question.topic,
+          selected: question.correctOptionId,
+          correct: question.correctOptionId,
+          isCorrect: true,
+        }],
+      };
+
+      renderWithTheme(
+        <ResultsScreen
+          attempt={attempt}
+          questionIndex={new Map([[question.id, question]])}
+          onRetake={vi.fn()}
+          onReturnToDashboard={vi.fn()}
+        />
+      );
+      await user.click(screen.getByRole('button', { name: 'Expand question details' }));
+      expect(screen.getByTestId('structured-explanation')).toBeInTheDocument();
+      cleanup();
+    }
   });
 
   it('keeps num-0024 primary and alternative methods in one Results explanation card', async () => {
