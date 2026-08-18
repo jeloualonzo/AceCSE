@@ -1,9 +1,12 @@
 // @vitest-environment jsdom
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import type { StructuredExplanation } from '@/types';
 import { StructuredExplanationRenderer } from './StructuredExplanationRenderer';
+
+afterEach(() => cleanup());
 
 const explanation: StructuredExplanation = {
   blocks: [
@@ -20,7 +23,7 @@ const explanation: StructuredExplanation = {
   ],
 };
 
-describe('StructuredExplanationRenderer V3', () => {
+describe('StructuredExplanationRenderer Batch 2', () => {
   it('renders the approved semantic hierarchy and math without inventing steps or nested cards', () => {
     const { container } = render(<StructuredExplanationRenderer explanation={explanation} theme="light" />);
     const root = screen.getByTestId('structured-explanation');
@@ -59,5 +62,55 @@ describe('StructuredExplanationRenderer V3', () => {
     );
 
     expect(container.querySelector('.overflow-x-auto')).not.toBeNull();
+  });
+
+  it('keeps Alternative Method collapsed by default and expands vertically inside the same card', async () => {
+    const user = userEvent.setup();
+    const { container } = render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [
+            { type: 'heading', text: 'Solution' },
+            { type: 'correct_answer', text: 'A — 36' },
+            { type: 'solution', expression: '25 + 11 = 36' },
+            {
+              type: 'alternative_solution',
+              title: 'Alternative Method',
+              blocks: [
+                { type: 'paragraph', text: 'Recognize the perfect squares.' },
+                { type: 'math', expression: '1²\n2²\n3²\n4²\n5²' },
+                { type: 'paragraph', text: 'The next term is:' },
+                { type: 'math', expression: '6² = 36' },
+                { type: 'answer', text: '36', variant: 'final' },
+              ],
+            },
+          ],
+        }}
+      />
+    );
+
+    const root = screen.getByTestId('structured-explanation');
+    const control = screen.getByRole('button', { name: /Alternative Method/ });
+    const content = screen.getByTestId('structured-alternative-content');
+
+    expect(control).toHaveAttribute('aria-expanded', 'false');
+    expect(content).toHaveAttribute('hidden');
+    expect(within(root).queryByText('Recognize the perfect squares.')).not.toBeVisible();
+    expect(root.querySelector('.rounded-lg')).toBeNull();
+    expect(root.querySelector('.grid')).toBeNull();
+    expect(container.querySelectorAll('[data-testid="structured-explanation"]')).toHaveLength(1);
+
+    await user.tab();
+    expect(control).toHaveFocus();
+    await user.keyboard('{Enter}');
+
+    expect(control).toHaveAttribute('aria-expanded', 'true');
+    expect(content).not.toHaveAttribute('hidden');
+    expect(within(content).getByText('Recognize the perfect squares.')).toBeVisible();
+    expect(within(content).getByRole('math', { name: '6² = 36' })).toBeVisible();
+
+    await user.click(control);
+    expect(control).toHaveAttribute('aria-expanded', 'false');
+    expect(content).toHaveAttribute('hidden');
   });
 });

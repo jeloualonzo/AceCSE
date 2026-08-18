@@ -11,6 +11,7 @@ const BLOCK_TYPES = new Set<StructuredExplanationBlock['type']>([
   'rule',
   'common_trap',
   'step',
+  'alternative_solution',
 ]);
 
 function isNonEmptyString(value: unknown): value is string {
@@ -41,6 +42,7 @@ function isBlock(value: unknown): value is StructuredExplanationBlock {
       return isNonEmptyString(block.text)
         && (block.variant === undefined || block.variant === 'final');
     case 'step':
+    case 'alternative_solution':
       return isNonEmptyString(block.title)
         && Array.isArray(block.blocks)
         && block.blocks.length > 0

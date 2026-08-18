@@ -2,7 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { loadContentCatalog } from './questionBank';
 import { getStructuredExplanation, isValidStructuredExplanation } from './structuredExplanation';
 
-const PILOT_IDS = ['num-0019', 'num-0020', 'num-0021'] as const;
+const FROZEN_PILOT_IDS = ['num-0019', 'num-0020', 'num-0021'] as const;
+const BATCH2_IDS = ['num-0022', 'num-0023', 'num-0024'] as const;
+const ALL_STRUCTURED_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -11,7 +13,7 @@ const ALL_SUBJECTS = [
   'Verbal Ability',
 ] as const;
 
-const EXPECTED_BLOCKS = {
+const EXPECTED_FROZEN_BLOCKS = {
   'num-0019': [
     { type: 'heading', text: 'Solution' },
     { type: 'correct_answer', text: 'B — 24' },
@@ -45,58 +47,103 @@ const EXPECTED_BLOCKS = {
   ],
 } as const;
 
-describe('Number Series structured explanation pilot V3', () => {
-  it('contains exactly the approved semantic content for all three pilot questions', async () => {
+const EXPECTED_BATCH2_BLOCKS = {
+  'num-0022': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'D — 13' },
+    { type: 'paragraph', label: 'What to Notice', text: 'Each term is the sum of the two preceding terms.' },
+    { type: 'pattern', expression: '1 + 1 = 2\n1 + 2 = 3\n2 + 3 = 5\n3 + 5 = 8\n5 + 8 = 13' },
+    { type: 'solution', expression: '5 + 8 = 13' },
+    { type: 'answer', text: '13', variant: 'final' },
+    { type: 'rule', text: 'Fibonacci sequence: each term is the sum of the two preceding terms.' },
+  ],
+  'num-0023': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'E — 47' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The terms are multiplied by 2, then increased by 1.' },
+    { type: 'pattern', expression: '2 × 2 + 1 = 5\n5 × 2 + 1 = 11\n11 × 2 + 1 = 23' },
+    { type: 'paragraph', text: 'The same operation is repeated: ×2, then +1.' },
+    { type: 'solution', expression: '23 × 2 + 1 = 47\n46 + 1 = 47' },
+    { type: 'answer', text: '47', variant: 'final' },
+    { type: 'rule', text: 'When simple addition or multiplication does not explain a series, check for a repeated combination of operations.' },
+  ],
+  'num-0024': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'A — 36' },
+    { type: 'paragraph', label: 'What to Notice', text: 'Check the differences between consecutive terms.' },
+    { type: 'pattern', expression: '4 − 1 = 3\n9 − 4 = 5\n16 − 9 = 7\n25 − 16 = 9' },
+    { type: 'paragraph', text: 'The differences increase by 2:' },
+    { type: 'math', expression: '+3, +5, +7, +9, +11' },
+    { type: 'solution', expression: '25 + 11 = 36' },
+    { type: 'answer', text: '36', variant: 'final' },
+    { type: 'rule', text: 'The differences between consecutive perfect squares increase by consecutive odd numbers.' },
+    {
+      type: 'alternative_solution',
+      title: 'Alternative Method',
+      blocks: [
+        { type: 'paragraph', text: 'Recognize the perfect squares.' },
+        { type: 'math', expression: '1²\n2²\n3²\n4²\n5²' },
+        { type: 'paragraph', text: 'The next term is:' },
+        { type: 'math', expression: '6² = 36' },
+        { type: 'answer', text: '36', variant: 'final' },
+      ],
+    },
+  ],
+} as const;
+
+describe('Number Series structured explanation Batch 2', () => {
+  it('contains exactly the approved semantic content for num-0022 through num-0024', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
 
-    for (const id of PILOT_IDS) {
+    for (const id of BATCH2_IDS) {
       const question = catalog.questions.get(id);
       expect(question).toBeTruthy();
-      expect(question?.structuredExplanation?.blocks).toEqual(EXPECTED_BLOCKS[id]);
+      expect(question?.structuredExplanation?.blocks).toEqual(EXPECTED_BATCH2_BLOCKS[id]);
       expect(isValidStructuredExplanation(question?.structuredExplanation)).toBe(true);
       expect(question?.structuredExplanation?.blocks.some((block) => block.type === 'step')).toBe(false);
     }
 
+    expect(catalog.questions.get('num-0022')?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution')).toBe(false);
+    expect(catalog.questions.get('num-0023')?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution')).toBe(false);
+    expect(catalog.questions.get('num-0024')?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution')).toBe(true);
+
     const structuredIds = [...catalog.questions.values()]
       .filter((question) => question.structuredExplanation)
       .map((question) => question.id);
-    expect(structuredIds).toEqual(PILOT_IDS);
+    expect(structuredIds).toEqual(ALL_STRUCTURED_IDS);
   });
 
-  it('preserves the pilot stems, choices, answer keys, and legacy explanation fields', async () => {
+  it('keeps the first three frozen pilot payloads unchanged', async () => {
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    for (const id of FROZEN_PILOT_IDS) {
+      expect(catalog.questions.get(id)?.structuredExplanation?.blocks).toEqual(EXPECTED_FROZEN_BLOCKS[id]);
+    }
+  });
+
+  it('preserves stems, choices, answer keys, legacy fields, and task metadata for Batch 2', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
     const expected = {
-      'num-0019': {
-        question: 'What is the next number in the series: 4, 9, 14, 19, ___?',
-        choices: ['25', '24', '22', '26', '29'],
-        correctOptionId: 'B',
-        steps: [
-          'Find the differences: 9–4=5, 14–9=5, 19–14=5. The common difference is 5.',
-          'Add the common difference to the last term: 19 + 5 = 24.',
-        ],
+      'num-0022': {
+        question: 'What is the next term: 1, 1, 2, 3, 5, 8, ___?',
+        choices: ['12', '14', '11', '13', '15'],
+        correctOptionId: 'D',
+        steps: ['Recognize the rule: each term = sum of the previous two terms.', 'Apply: the two terms before the blank are 5 and 8.', 'Compute: 5 + 8 = 13.'],
       },
-      'num-0020': {
-        question: 'What comes next: 3, 6, 12, 24, ___?',
-        choices: ['44', '36', '40', '56', '48'],
+      'num-0023': {
+        question: 'Identify the next term: 2, 5, 11, 23, ___',
+        choices: ['43', '45', '46', '48', '47'],
         correctOptionId: 'E',
-        steps: [
-          'Find the ratio between consecutive terms: 6÷3=2, 12÷6=2, 24÷12=2. Common ratio = 2.',
-          'Multiply the last term by the common ratio: 24 × 2 = 48.',
-        ],
+        steps: ["Test the rule 'multiply by 2 then add 1': 2×2+1=5 ✓, 5×2+1=11 ✓, 11×2+1=23 ✓.", 'Apply to 23: 23×2 = 46, then 46+1 = 47.'],
       },
-      'num-0021': {
-        question: 'Find the missing term: 2, 5, 9, 14, 20, ___',
-        choices: ['28', '25', '27', '26', '29'],
-        correctOptionId: 'C',
-        steps: [
-          'Compute differences: 5–2=3, 9–5=4, 14–9=5, 20–14=6.',
-          'Observe that the differences increase by 1 each time: 3, 4, 5, 6, so next difference = 7.',
-          'Add to last term: 20 + 7 = 27.',
-        ],
+      'num-0024': {
+        question: 'What number comes next: 1, 4, 9, 16, 25, ___?',
+        choices: ['36', '30', '34', '35', '37'],
+        correctOptionId: 'A',
+        steps: ['Identify the terms as perfect squares: 1²=1, 2²=4, 3²=9, 4²=16, 5²=25.', 'The next term in the pattern is 6² = 36.'],
       },
     } as const;
 
-    for (const id of PILOT_IDS) {
+    for (const id of BATCH2_IDS) {
       const question = catalog.questions.get(id)!;
       expect(question.question).toBe(expected[id].question);
       expect(question.choices.map((choice) => choice.text)).toEqual(expected[id].choices);
@@ -110,18 +157,21 @@ describe('Number Series structured explanation pilot V3', () => {
     }
   });
 
-  it('keeps every non-pilot Number Series record on the legacy path', async () => {
+  it('keeps later Number Series questions on the legacy path', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
-    const pilotIdSet = new Set<string>(PILOT_IDS);
-    const nonPilot = [...catalog.questions.values()].filter(
-      (question) => question.topic === 'Number Series' && !pilotIdSet.has(question.id)
+    const structuredIdSet = new Set<string>(ALL_STRUCTURED_IDS);
+    const laterNumberSeries = [...catalog.questions.values()].filter(
+      (question) => question.topic === 'Number Series' && !structuredIdSet.has(question.id)
     );
 
-    expect(nonPilot.length).toBeGreaterThan(0);
-    expect(nonPilot.every((question) => question.structuredExplanation === undefined)).toBe(true);
-    expect(nonPilot.every((question) => question.explanation.length >= 100)).toBe(true);
-    expect(catalog.questions.get('num-0022')?.question).toBe('What is the next term: 1, 1, 2, 3, 5, 8, ___?');
-    expect(catalog.questions.get('num-0022')?.correctOptionId).toBe('D');
+    expect(laterNumberSeries.length).toBeGreaterThan(0);
+    expect(laterNumberSeries.every((question) => question.structuredExplanation === undefined)).toBe(true);
+    expect(laterNumberSeries.every((question) => question.explanation.length >= 100)).toBe(true);
+    expect(catalog.questions.get('num-0025')?.structuredExplanation).toBeUndefined();
+    expect(catalog.questions.get('num-0026')?.structuredExplanation).toBeUndefined();
+    expect(catalog.questions.get('num-0108')?.structuredExplanation).toBeUndefined();
+    expect(catalog.questions.get('num-0137')?.structuredExplanation).toBeUndefined();
+    expect(catalog.questions.get('num-0147')?.structuredExplanation).toBeUndefined();
   });
 
   it('does not add structured explanations to other subject families', async () => {
@@ -130,13 +180,13 @@ describe('Number Series structured explanation pilot V3', () => {
       .filter((question) => question.structuredExplanation)
       .map((question) => question.id);
 
-    expect(structuredIds).toEqual(PILOT_IDS);
+    expect(structuredIds).toEqual(ALL_STRUCTURED_IDS);
     expect([...catalog.questions.values()].filter((question) => question.subject !== 'Numerical Reasoning' && question.structuredExplanation).length).toBe(0);
   });
 
   it('rejects malformed or unsupported structured blocks so callers can fall back safely', () => {
     expect(isValidStructuredExplanation({ blocks: [{ type: 'pattern', expression: '' }] })).toBe(false);
-    expect(isValidStructuredExplanation({ blocks: [{ type: 'correct_answer', text: '' }] })).toBe(false);
+    expect(isValidStructuredExplanation({ blocks: [{ type: 'alternative_solution', title: 'Alternative Method', blocks: [] }] })).toBe(false);
     expect(getStructuredExplanation({ blocks: [{ type: 'heading', text: 'Solution' }] })).toEqual({
       blocks: [{ type: 'heading', text: 'Solution' }],
     });

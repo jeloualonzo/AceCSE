@@ -96,6 +96,12 @@ export interface StructuredExplanationStepBlock {
   blocks: StructuredExplanationBlock[];
 }
 
+export interface StructuredExplanationAlternativeSolutionBlock {
+  type: 'alternative_solution';
+  title: string;
+  blocks: StructuredExplanationBlock[];
+}
+
 export type StructuredExplanationBlock =
   | StructuredExplanationHeadingBlock
   | StructuredExplanationParagraphBlock
@@ -106,7 +112,8 @@ export type StructuredExplanationBlock =
   | StructuredExplanationCommonTrapBlock
   | StructuredExplanationCorrectAnswerBlock
   | StructuredExplanationAnswerBlock
-  | StructuredExplanationStepBlock;
+  | StructuredExplanationStepBlock
+  | StructuredExplanationAlternativeSolutionBlock;
 
 export interface StructuredExplanation {
   blocks: StructuredExplanationBlock[];

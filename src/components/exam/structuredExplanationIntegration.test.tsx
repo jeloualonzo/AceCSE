@@ -40,6 +40,44 @@ const pilotQuestion: Question = {
   },
 };
 
+const alternativeQuestion: Question = {
+  ...pilotQuestion,
+  id: 'num-0024',
+  question: 'What number comes next: 1, 4, 9, 16, 25, ___?',
+  choices: [
+    { id: 'A', text: '36' },
+    { id: 'B', text: '30' },
+    { id: 'C', text: '34' },
+    { id: 'D', text: '35' },
+    { id: 'E', text: '37' },
+  ],
+  correctOptionId: 'A',
+  structuredExplanation: {
+    blocks: [
+      { type: 'heading', text: 'Solution' },
+      { type: 'correct_answer', text: 'A — 36' },
+      { type: 'paragraph', label: 'What to Notice', text: 'Check the differences between consecutive terms.' },
+      { type: 'pattern', expression: '4 − 1 = 3\n9 − 4 = 5\n16 − 9 = 7\n25 − 16 = 9' },
+      { type: 'paragraph', text: 'The differences increase by 2:' },
+      { type: 'math', expression: '+3, +5, +7, +9, +11' },
+      { type: 'solution', expression: '25 + 11 = 36' },
+      { type: 'answer', text: '36', variant: 'final' },
+      { type: 'rule', text: 'The differences between consecutive perfect squares increase by consecutive odd numbers.' },
+      {
+        type: 'alternative_solution',
+        title: 'Alternative Method',
+        blocks: [
+          { type: 'paragraph', text: 'Recognize the perfect squares.' },
+          { type: 'math', expression: '1²\n2²\n3²\n4²\n5²' },
+          { type: 'paragraph', text: 'The next term is:' },
+          { type: 'math', expression: '6² = 36' },
+          { type: 'answer', text: '36', variant: 'final' },
+        ],
+      },
+    ],
+  },
+};
+
 function renderWithTheme(element: React.ReactElement) {
   return render(<ThemeProvider>{element}</ThemeProvider>);
 }
@@ -154,5 +192,58 @@ describe('structured explanation Practice/Results integration V3', () => {
     expect(within(root).getByText('Rule')).toBeInTheDocument();
     expect(within(root).queryByText(/Step [123]/)).toBeNull();
     expect(screen.queryByText('Legacy explanation remains available as fallback.')).not.toBeInTheDocument();
+  });
+
+  it('keeps num-0024 primary and alternative methods in one Results explanation card', async () => {
+    const attempt: Attempt = {
+      id: 'structured-results-alternative',
+      mode: 'practice',
+      examLevel: 'Professional',
+      questionCount: 1,
+      correctCount: 1,
+      answeredCount: 1,
+      unansweredCount: 0,
+      percentage: 100,
+      passed: false,
+      durationSeconds: 12,
+      startedAt: 1,
+      completedAt: 12_001,
+      subjects: [{ subject: 'Numerical Reasoning', total: 1, correct: 1, answered: 1, unanswered: 0, percentage: 100 }],
+      items: [{
+        questionId: alternativeQuestion.id,
+        subject: alternativeQuestion.subject,
+        topic: alternativeQuestion.topic,
+        selected: 'A',
+        correct: 'A',
+        isCorrect: true,
+      }],
+    };
+
+    const user = userEvent.setup();
+    renderWithTheme(
+      <ResultsScreen
+        attempt={attempt}
+        questionIndex={new Map([[alternativeQuestion.id, alternativeQuestion]])}
+        onRetake={vi.fn()}
+        onReturnToDashboard={vi.fn()}
+      />
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Expand question details' }));
+    const root = screen.getByTestId('structured-explanation');
+    const control = within(root).getByRole('button', { name: /Alternative Method/ });
+    const content = within(root).getByTestId('structured-alternative-content');
+
+    expect(within(root).getByText('Apply the Pattern')).toBeInTheDocument();
+    expect(within(root).getByRole('math', { name: 'Apply the Pattern: 25 + 11 = 36' })).toBeInTheDocument();
+    expect(control).toHaveAttribute('aria-expanded', 'false');
+    expect(content).toHaveAttribute('hidden');
+
+    await user.click(control);
+    expect(control).toHaveAttribute('aria-expanded', 'true');
+    expect(content).not.toHaveAttribute('hidden');
+    expect(within(content).getByText('Recognize the perfect squares.')).toBeVisible();
+    expect(within(content).getByRole('math', { name: '6² = 36' })).toBeVisible();
+    expect(root.querySelector('.rounded-lg')).toBeNull();
   });
 });

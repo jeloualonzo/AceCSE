@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import type {
   StructuredExplanation,
+  StructuredExplanationAlternativeSolutionBlock,
   StructuredExplanationBlock,
   StructuredExplanationStepBlock,
 } from '@/types';
@@ -43,6 +45,46 @@ function SectionLabel({ children, dark }: { children: React.ReactNode; dark: boo
     <h5 className={`text-[11px] font-bold uppercase tracking-wider ${dark ? 'text-slate-400' : 'text-slate-500'}`}>
       {children}
     </h5>
+  );
+}
+
+function AlternativeSolution({
+  block,
+  dark,
+  id,
+}: {
+  block: StructuredExplanationAlternativeSolutionBlock;
+  dark: boolean;
+  id: string;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const contentId = `${id}-content`;
+
+  return (
+    <div data-testid="structured-alternative-method" className="border-t pt-3">
+      <button
+        type="button"
+        aria-expanded={expanded}
+        aria-controls={contentId}
+        onClick={() => setExpanded((value) => !value)}
+        className={`inline-flex items-center gap-2 rounded-md px-2 py-1.5 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 ${
+          dark
+            ? 'text-slate-300 hover:bg-slate-800 hover:text-slate-100 focus-visible:ring-emerald-400'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus-visible:ring-emerald-600'
+        }`}
+      >
+        <span>{block.title}</span>
+        <span aria-hidden="true">{expanded ? '▴' : '▾'}</span>
+      </button>
+      <div
+        id={contentId}
+        hidden={!expanded}
+        data-testid="structured-alternative-content"
+        className="space-y-3 pt-3"
+      >
+        {block.blocks.map((child, index) => renderBlock(child, index, dark))}
+      </div>
+    </div>
   );
 }
 
@@ -102,6 +144,8 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       );
     case 'step':
       return renderFutureStep(block, key, dark);
+    case 'alternative_solution':
+      return <AlternativeSolution key={key} block={block} dark={dark} id={key} />;
     default:
       return null;
   }

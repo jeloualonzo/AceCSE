@@ -1300,6 +1300,17 @@
       "label": "Remember",
       "text": "Fibonacci rule: next term = sum of the two terms immediately before it. If you see 1, 1, 2, 3, 5 in a sequence, you're looking at Fibonacci — the next term is always 5 + 8 = 13."
     },
+    "structuredExplanation": {
+      "blocks": [
+        { "type": "heading", "text": "Solution" },
+        { "type": "correct_answer", "text": "D — 13" },
+        { "type": "paragraph", "label": "What to Notice", "text": "Each term is the sum of the two preceding terms." },
+        { "type": "pattern", "expression": "1 + 1 = 2\n1 + 2 = 3\n2 + 3 = 5\n3 + 5 = 8\n5 + 8 = 13" },
+        { "type": "solution", "expression": "5 + 8 = 13" },
+        { "type": "answer", "text": "13", "variant": "final" },
+        { "type": "rule", "text": "Fibonacci sequence: each term is the sum of the two preceding terms." }
+      ]
+    },
     "tags": [
       "number-series",
       "fibonacci"
@@ -1387,6 +1398,18 @@
       "label": "Exam Tip",
       "text": "When differences are growing rapidly, try multiplying each term and adding a constant. Test: next = (current × n) + k. Use two consecutive pairs to find n and k."
     },
+    "structuredExplanation": {
+      "blocks": [
+        { "type": "heading", "text": "Solution" },
+        { "type": "correct_answer", "text": "E — 47" },
+        { "type": "paragraph", "label": "What to Notice", "text": "The terms are multiplied by 2, then increased by 1." },
+        { "type": "pattern", "expression": "2 × 2 + 1 = 5\n5 × 2 + 1 = 11\n11 × 2 + 1 = 23" },
+        { "type": "paragraph", "text": "The same operation is repeated: ×2, then +1." },
+        { "type": "solution", "expression": "23 × 2 + 1 = 47\n46 + 1 = 47" },
+        { "type": "answer", "text": "47", "variant": "final" },
+        { "type": "rule", "text": "When simple addition or multiplication does not explain a series, check for a repeated combination of operations." }
+      ]
+    },
     "tags": [
       "number-series",
       "multiply-add-pattern"
@@ -1469,6 +1492,30 @@
     "tip": {
       "label": "Remember",
       "text": "Perfect squares appear often in CSE series questions. Memorize squares up to 15²=225. Also, the differences between consecutive perfect squares are always the odd numbers 3, 5, 7, 9, 11..."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        { "type": "heading", "text": "Solution" },
+        { "type": "correct_answer", "text": "A — 36" },
+        { "type": "paragraph", "label": "What to Notice", "text": "Check the differences between consecutive terms." },
+        { "type": "pattern", "expression": "4 − 1 = 3\n9 − 4 = 5\n16 − 9 = 7\n25 − 16 = 9" },
+        { "type": "paragraph", "text": "The differences increase by 2:" },
+        { "type": "math", "expression": "+3, +5, +7, +9, +11" },
+        { "type": "solution", "expression": "25 + 11 = 36" },
+        { "type": "answer", "text": "36", "variant": "final" },
+        { "type": "rule", "text": "The differences between consecutive perfect squares increase by consecutive odd numbers." },
+        {
+          "type": "alternative_solution",
+          "title": "Alternative Method",
+          "blocks": [
+            { "type": "paragraph", "text": "Recognize the perfect squares." },
+            { "type": "math", "expression": "1²\n2²\n3²\n4²\n5²" },
+            { "type": "paragraph", "text": "The next term is:" },
+            { "type": "math", "expression": "6² = 36" },
+            { "type": "answer", "text": "36", "variant": "final" }
+          ]
+        }
+      ]
     },
     "tags": [
       "number-series",
