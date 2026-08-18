@@ -1602,6 +1602,19 @@
       "label": "Exam Tip",
       "text": "When a series seems random, try separating it into two sub-sequences — one for odd-indexed terms and one for even-indexed terms. Each sub-sequence may follow a simple rule."
     },
+    "structuredExplanation": {
+      "blocks": [
+        { "type": "heading", "text": "Solution" },
+        { "type": "correct_answer", "text": "C — 16" },
+        { "type": "paragraph", "label": "What to Notice", "text": "The terms alternate between two sequences." },
+        { "type": "pattern", "label": "Odd positions", "expression": "3 → 4 → 5 → 6\n+1, +1, +1" },
+        { "type": "pattern", "label": "Even positions", "expression": "7 → 10 → 13 → ___\n+3, +3, +3" },
+        { "type": "paragraph", "text": "The missing term is in the 8th position, so it belongs to the even-position sequence." },
+        { "type": "solution", "expression": "13 + 3 = 16" },
+        { "type": "answer", "text": "16", "variant": "final" },
+        { "type": "rule", "text": "When a series does not follow one consistent pattern, separate the odd- and even-position terms and check each sequence independently." }
+      ]
+    },
     "tags": [
       "number-series",
       "interleaved-sequences"
@@ -1692,6 +1705,19 @@
     "tip": {
       "label": "Math Shortcut",
       "text": "If a series' differences are themselves arithmetic, you have a second-difference pattern. The next difference continues that arithmetic sequence — then add it to the last term."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        { "type": "heading", "text": "Solution" },
+        { "type": "correct_answer", "text": "B — 31" },
+        { "type": "paragraph", "label": "What to Notice", "text": "The differences between consecutive terms are not constant, so check the differences themselves." },
+        { "type": "pattern", "expression": "3 − 1 = 2\n7 − 3 = 4\n13 − 7 = 6\n21 − 13 = 8" },
+        { "type": "paragraph", "text": "The differences increase by 2:" },
+        { "type": "math", "expression": "+2, +4, +6, +8, +10" },
+        { "type": "solution", "expression": "21 + 10 = 31" },
+        { "type": "answer", "text": "31", "variant": "final" },
+        { "type": "rule", "text": "When the differences form an arithmetic sequence, continue that pattern to find the next term." }
+      ]
     },
     "tags": [
       "number-series",

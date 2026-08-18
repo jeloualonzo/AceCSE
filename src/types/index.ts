@@ -60,6 +60,7 @@ export interface StructuredExplanationMathBlock {
 
 export interface StructuredExplanationPatternBlock {
   type: 'pattern';
+  label?: string;
   expression: string;
 }
 

@@ -64,6 +64,26 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(container.querySelector('.overflow-x-auto')).not.toBeNull();
   });
 
+  it('renders labeled interleaved subsequences as distinct Pattern sections', () => {
+    render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [
+            { type: 'pattern', label: 'Odd positions', expression: '3 → 4 → 5 → 6\n+1, +1, +1' },
+            { type: 'pattern', label: 'Even positions', expression: '7 → 10 → 13 → ___\n+3, +3, +3' },
+          ],
+        }}
+      />
+    );
+
+    const root = screen.getByTestId('structured-explanation');
+    expect(within(root).getByText('Pattern — Odd positions')).toBeInTheDocument();
+    expect(within(root).getByText('Pattern — Even positions')).toBeInTheDocument();
+    expect(within(root).getByRole('math', { name: 'Pattern, Odd positions: 3 → 4 → 5 → 6; +1, +1, +1' })).toBeInTheDocument();
+    expect(within(root).getByRole('math', { name: 'Pattern, Even positions: 7 → 10 → 13 → ___; +3, +3, +3' })).toBeInTheDocument();
+    expect(root.querySelectorAll('[role="math"]')).toHaveLength(2);
+  });
+
   it('keeps Alternative Method collapsed by default and expands vertically inside the same card', async () => {
     const user = userEvent.setup();
     const { container } = render(

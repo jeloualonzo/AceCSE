@@ -78,6 +78,33 @@ const alternativeQuestion: Question = {
   },
 };
 
+const interleavedQuestion: Question = {
+  ...pilotQuestion,
+  id: 'num-0025',
+  question: 'What is the missing number: 3, 7, 4, 10, 5, 13, 6, ___?',
+  choices: [
+    { id: 'A', text: '7' },
+    { id: 'B', text: '14' },
+    { id: 'C', text: '16' },
+    { id: 'D', text: '15' },
+    { id: 'E', text: '17' },
+  ],
+  correctOptionId: 'C',
+  structuredExplanation: {
+    blocks: [
+      { type: 'heading', text: 'Solution' },
+      { type: 'correct_answer', text: 'C — 16' },
+      { type: 'paragraph', label: 'What to Notice', text: 'The terms alternate between two sequences.' },
+      { type: 'pattern', label: 'Odd positions', expression: '3 → 4 → 5 → 6\n+1, +1, +1' },
+      { type: 'pattern', label: 'Even positions', expression: '7 → 10 → 13 → ___\n+3, +3, +3' },
+      { type: 'paragraph', text: 'The missing term is in the 8th position, so it belongs to the even-position sequence.' },
+      { type: 'solution', expression: '13 + 3 = 16' },
+      { type: 'answer', text: '16', variant: 'final' },
+      { type: 'rule', text: 'When a series does not follow one consistent pattern, separate the odd- and even-position terms and check each sequence independently.' },
+    ],
+  },
+};
+
 function renderWithTheme(element: React.ReactElement) {
   return render(<ThemeProvider>{element}</ThemeProvider>);
 }
@@ -192,6 +219,65 @@ describe('structured explanation Practice/Results integration V3', () => {
     expect(within(root).getByText('Rule')).toBeInTheDocument();
     expect(within(root).queryByText(/Step [123]/)).toBeNull();
     expect(screen.queryByText('Legacy explanation remains available as fallback.')).not.toBeInTheDocument();
+  });
+
+  it('renders num-0025 labeled subsequences through the shared Practice and Results renderer', async () => {
+    const user = userEvent.setup();
+    renderWithTheme(
+      <QuestionCard
+        question={interleavedQuestion}
+        selectedOptionId="C"
+        onSelectOption={vi.fn()}
+        instantFeedback
+      />
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
+    const practiceRoots = screen.getAllByTestId('structured-explanation');
+    expect(practiceRoots).toHaveLength(2);
+    expect(practiceRoots.every((root) => within(root).getByText('Pattern — Odd positions'))).toBeTruthy();
+    expect(practiceRoots.every((root) => within(root).getByText('Pattern — Even positions'))).toBeTruthy();
+    expect(practiceRoots.every((root) => within(root).queryByRole('button', { name: /Alternative Method/ }) === null)).toBe(true);
+    expect(practiceRoots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
+
+    cleanup();
+    const attempt: Attempt = {
+      id: 'structured-results-interleaved',
+      mode: 'practice',
+      examLevel: 'Professional',
+      questionCount: 1,
+      correctCount: 1,
+      answeredCount: 1,
+      unansweredCount: 0,
+      percentage: 100,
+      passed: false,
+      durationSeconds: 12,
+      startedAt: 1,
+      completedAt: 12_001,
+      subjects: [{ subject: 'Numerical Reasoning', total: 1, correct: 1, answered: 1, unanswered: 0, percentage: 100 }],
+      items: [{
+        questionId: interleavedQuestion.id,
+        subject: interleavedQuestion.subject,
+        topic: interleavedQuestion.topic,
+        selected: 'C',
+        correct: 'C',
+        isCorrect: true,
+      }],
+    };
+
+    renderWithTheme(
+      <ResultsScreen
+        attempt={attempt}
+        questionIndex={new Map([[interleavedQuestion.id, interleavedQuestion]])}
+        onRetake={vi.fn()}
+        onReturnToDashboard={vi.fn()}
+      />
+    );
+    await user.click(screen.getByRole('button', { name: 'Expand question details' }));
+    const resultsRoot = screen.getByTestId('structured-explanation');
+    expect(within(resultsRoot).getByText('Pattern — Odd positions')).toBeInTheDocument();
+    expect(within(resultsRoot).getByText('Pattern — Even positions')).toBeInTheDocument();
+    expect(within(resultsRoot).getByRole('math', { name: 'Pattern, Even positions: 7 → 10 → 13 → ___; +3, +3, +3' })).toBeInTheDocument();
   });
 
   it('keeps num-0024 primary and alternative methods in one Results explanation card', async () => {

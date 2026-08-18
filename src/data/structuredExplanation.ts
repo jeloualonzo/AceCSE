@@ -35,7 +35,8 @@ function isBlock(value: unknown): value is StructuredExplanationBlock {
     case 'math':
     case 'pattern':
     case 'solution':
-      return isNonEmptyString(block.expression);
+      return isNonEmptyString(block.expression)
+        && (block.label === undefined || isNonEmptyString(block.label));
     case 'correct_answer':
       return isNonEmptyString(block.text);
     case 'answer':

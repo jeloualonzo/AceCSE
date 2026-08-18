@@ -4,7 +4,8 @@ import { getStructuredExplanation, isValidStructuredExplanation } from './struct
 
 const FROZEN_PILOT_IDS = ['num-0019', 'num-0020', 'num-0021'] as const;
 const BATCH2_IDS = ['num-0022', 'num-0023', 'num-0024'] as const;
-const ALL_STRUCTURED_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS];
+const BATCH3_IDS = ['num-0025', 'num-0026'] as const;
+const ALL_STRUCTURED_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -91,21 +92,43 @@ const EXPECTED_BATCH2_BLOCKS = {
   ],
 } as const;
 
-describe('Number Series structured explanation Batch 2', () => {
-  it('contains exactly the approved semantic content for num-0022 through num-0024', async () => {
+const EXPECTED_BATCH3_BLOCKS = {
+  'num-0025': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'C — 16' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The terms alternate between two sequences.' },
+    { type: 'pattern', label: 'Odd positions', expression: '3 → 4 → 5 → 6\n+1, +1, +1' },
+    { type: 'pattern', label: 'Even positions', expression: '7 → 10 → 13 → ___\n+3, +3, +3' },
+    { type: 'paragraph', text: 'The missing term is in the 8th position, so it belongs to the even-position sequence.' },
+    { type: 'solution', expression: '13 + 3 = 16' },
+    { type: 'answer', text: '16', variant: 'final' },
+    { type: 'rule', text: 'When a series does not follow one consistent pattern, separate the odd- and even-position terms and check each sequence independently.' },
+  ],
+  'num-0026': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'B — 31' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The differences between consecutive terms are not constant, so check the differences themselves.' },
+    { type: 'pattern', expression: '3 − 1 = 2\n7 − 3 = 4\n13 − 7 = 6\n21 − 13 = 8' },
+    { type: 'paragraph', text: 'The differences increase by 2:' },
+    { type: 'math', expression: '+2, +4, +6, +8, +10' },
+    { type: 'solution', expression: '21 + 10 = 31' },
+    { type: 'answer', text: '31', variant: 'final' },
+    { type: 'rule', text: 'When the differences form an arithmetic sequence, continue that pattern to find the next term.' },
+  ],
+} as const;
+
+describe('Number Series structured explanation Batch 3', () => {
+  it('contains exactly the approved semantic content for num-0025 and num-0026', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
 
-    for (const id of BATCH2_IDS) {
+    for (const id of BATCH3_IDS) {
       const question = catalog.questions.get(id);
       expect(question).toBeTruthy();
-      expect(question?.structuredExplanation?.blocks).toEqual(EXPECTED_BATCH2_BLOCKS[id]);
+      expect(question?.structuredExplanation?.blocks).toEqual(EXPECTED_BATCH3_BLOCKS[id]);
       expect(isValidStructuredExplanation(question?.structuredExplanation)).toBe(true);
       expect(question?.structuredExplanation?.blocks.some((block) => block.type === 'step')).toBe(false);
+      expect(question?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution')).toBe(false);
     }
-
-    expect(catalog.questions.get('num-0022')?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution')).toBe(false);
-    expect(catalog.questions.get('num-0023')?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution')).toBe(false);
-    expect(catalog.questions.get('num-0024')?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution')).toBe(true);
 
     const structuredIds = [...catalog.questions.values()]
       .filter((question) => question.structuredExplanation)
@@ -120,30 +143,39 @@ describe('Number Series structured explanation Batch 2', () => {
     }
   });
 
-  it('preserves stems, choices, answer keys, legacy fields, and task metadata for Batch 2', async () => {
+  it('keeps the Batch 2 payloads unchanged', async () => {
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    for (const id of BATCH2_IDS) {
+      expect(catalog.questions.get(id)?.structuredExplanation?.blocks).toEqual(EXPECTED_BATCH2_BLOCKS[id]);
+    }
+  });
+
+  it('preserves stems, choices, answer keys, legacy fields, and task metadata for Batch 3', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
     const expected = {
-      'num-0022': {
-        question: 'What is the next term: 1, 1, 2, 3, 5, 8, ___?',
-        choices: ['12', '14', '11', '13', '15'],
-        correctOptionId: 'D',
-        steps: ['Recognize the rule: each term = sum of the previous two terms.', 'Apply: the two terms before the blank are 5 and 8.', 'Compute: 5 + 8 = 13.'],
+      'num-0025': {
+        question: 'What is the missing number: 3, 7, 4, 10, 5, 13, 6, ___?',
+        choices: ['7', '14', '16', '15', '17'],
+        correctOptionId: 'C',
+        steps: [
+          'Separate by position: odd-position terms = 3, 4, 5, 6 (difference of 1 each); even-position terms = 7, 10, 13, ? (difference of 3 each).',
+          'The blank is the 8th term (even position), so apply the even-position pattern: 13 + 3 = 16.',
+        ],
       },
-      'num-0023': {
-        question: 'Identify the next term: 2, 5, 11, 23, ___',
-        choices: ['43', '45', '46', '48', '47'],
-        correctOptionId: 'E',
-        steps: ["Test the rule 'multiply by 2 then add 1': 2×2+1=5 ✓, 5×2+1=11 ✓, 11×2+1=23 ✓.", 'Apply to 23: 23×2 = 46, then 46+1 = 47.'],
-      },
-      'num-0024': {
-        question: 'What number comes next: 1, 4, 9, 16, 25, ___?',
-        choices: ['36', '30', '34', '35', '37'],
-        correctOptionId: 'A',
-        steps: ['Identify the terms as perfect squares: 1²=1, 2²=4, 3²=9, 4²=16, 5²=25.', 'The next term in the pattern is 6² = 36.'],
+      'num-0026': {
+        question: 'Find the next term: 1, 3, 7, 13, 21, ___',
+        choices: ['29', '31', '33', '34', '35'],
+        correctOptionId: 'B',
+        steps: [
+          'Compute first differences: 3–1=2, 7–3=4, 13–7=6, 21–13=8.',
+          'Observe the first differences form an arithmetic sequence: 2, 4, 6, 8 (common difference = 2).',
+          'The next first difference = 8 + 2 = 10.',
+          'Add to the last term: 21 + 10 = 31.',
+        ],
       },
     } as const;
 
-    for (const id of BATCH2_IDS) {
+    for (const id of BATCH3_IDS) {
       const question = catalog.questions.get(id)!;
       expect(question.question).toBe(expected[id].question);
       expect(question.choices.map((choice) => choice.text)).toEqual(expected[id].choices);
@@ -167,8 +199,7 @@ describe('Number Series structured explanation Batch 2', () => {
     expect(laterNumberSeries.length).toBeGreaterThan(0);
     expect(laterNumberSeries.every((question) => question.structuredExplanation === undefined)).toBe(true);
     expect(laterNumberSeries.every((question) => question.explanation.length >= 100)).toBe(true);
-    expect(catalog.questions.get('num-0025')?.structuredExplanation).toBeUndefined();
-    expect(catalog.questions.get('num-0026')?.structuredExplanation).toBeUndefined();
+    expect(catalog.questions.get('num-0027')?.structuredExplanation).toBeUndefined();
     expect(catalog.questions.get('num-0108')?.structuredExplanation).toBeUndefined();
     expect(catalog.questions.get('num-0137')?.structuredExplanation).toBeUndefined();
     expect(catalog.questions.get('num-0147')?.structuredExplanation).toBeUndefined();

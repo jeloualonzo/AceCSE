@@ -109,8 +109,14 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
     case 'pattern':
       return (
         <div key={key} className="space-y-1">
-          <SectionLabel dark={dark}>Pattern</SectionLabel>
-          <MathDisplay expression={block.expression} dark={dark} label="Pattern" />
+          <SectionLabel dark={dark}>
+            Pattern{block.label ? ` — ${block.label}` : ''}
+          </SectionLabel>
+          <MathDisplay
+            expression={block.expression}
+            dark={dark}
+            label={block.label ? `Pattern, ${block.label}` : 'Pattern'}
+          />
         </div>
       );
     case 'math':
