@@ -9,14 +9,24 @@ const fail = (message) => {
 };
 
 const questions = [];
+const sourceOccurrences = new Map();
 for (const dir of fs.readdirSync(path.join(root, 'content/questions'))) {
   const subjectDir = path.join(root, 'content/questions', dir);
   if (!fs.statSync(subjectDir).isDirectory()) continue;
   for (const file of fs.readdirSync(subjectDir).filter((name) => name.endsWith('.json'))) {
-    questions.push(...readJson(path.join('content/questions', dir, file)));
+    const sourceFile = path.join('content/questions', dir, file).replaceAll('\\', '/');
+    const dataset = readJson(sourceFile);
+    for (const question of dataset) {
+      questions.push(question);
+      const occurrences = sourceOccurrences.get(question.id) ?? [];
+      occurrences.push(sourceFile);
+      sourceOccurrences.set(question.id, occurrences);
+    }
   }
 }
 const spelling = questions.filter((question) => question.topic === 'Spelling');
+const canonicalSpellingFile = 'content/questions/clerical/spelling.json';
+const canonicalSpelling = readJson(canonicalSpellingFile);
 const taxonomy = readJson('content/taxonomy/taxonomy.json');
 const manifest = readJson('content/taxonomy/classification-manifest.json');
 const pool = readJson('content/taxonomy/pools/clerical-spelling.json');
@@ -28,6 +38,7 @@ const expectedIds = [
 ];
 const expected = new Set(expectedIds);
 const actual = new Set(spelling.map((question) => question.id));
+const canonicalIds = canonicalSpelling.map((question) => question.id);
 const approvedStructuredIds = new Set(['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015']);
 const approvedCorrectSpellings = {
   'cler-0055': 'Personnel',
@@ -45,6 +56,8 @@ const expectedCorrect = {
 
 if (spelling.length !== expectedIds.length) fail(`expected ${expectedIds.length} Spelling questions, got ${spelling.length}`);
 if (actual.size !== spelling.length || [...actual].some((id) => !expected.has(id))) fail('Spelling IDs do not match the frozen 14-question inventory');
+if (canonicalSpelling.length !== approvedStructuredIds.size || JSON.stringify(canonicalIds) !== JSON.stringify([...approvedStructuredIds])) fail('canonical spelling.json must contain exactly the five approved IDs in order');
+if (canonicalSpelling.some((question) => question.subject !== 'Clerical Ability' || question.topic !== 'Spelling')) fail('canonical spelling.json contains a non-Clerical Spelling record');
 if (!task || task.title !== 'Spelling') fail('spelling_default task definition is missing or has the wrong title');
 if (typeof task.directions !== 'string' || task.directions.length < 40) fail('spelling_default directions are missing or too short');
 if (forbidden.test(JSON.stringify({ title: task.title, directions: task.directions, examples: task.examples }))) fail('spelling_default contains forbidden user-visible language');
@@ -83,8 +96,18 @@ for (const question of spelling) {
   if (question.correctOptionId !== expectedCorrect[question.id]) fail(`${question.id}: correctOptionId does not match the verified Spelling answer map`);
   if (!question.choices.some((choice) => choice.id === question.correctOptionId)) fail(`${question.id}: correct answer is not among choices`);
   if (approvedStructuredIds.has(question.id)) {
+    const occurrences = sourceOccurrences.get(question.id) ?? [];
+    if (occurrences.length !== 1 || occurrences[0] !== canonicalSpellingFile) fail(`${question.id}: must occur exactly once in canonical spelling.json`);
+    if (spellingRows.get(question.id)?.sourceFile !== canonicalSpellingFile) fail(`${question.id}: manifest sourceFile must point to canonical spelling.json`);
     const correctSpellingBlock = question.structuredExplanation?.blocks?.find((block) => block.type === 'paragraph' && block.label === 'Correct Spelling');
     if (correctSpellingBlock?.text !== approvedCorrectSpellings[question.id]) fail(`${question.id}: approved Correct Spelling block is missing or incorrect`);
+    const memoryAidBlocks = question.structuredExplanation?.blocks?.filter((block) => block.type === 'paragraph' && block.label === 'Memory Aid') ?? [];
+    const alternativeMemoryAids = question.structuredExplanation?.blocks?.filter((block) => block.type === 'alternative_solution' && block.title === 'Memory Aid') ?? [];
+    if (['cler-0012', 'cler-0013', 'cler-0015'].includes(question.id)) {
+      if (memoryAidBlocks.length !== 1 || alternativeMemoryAids.length !== 0) fail(`${question.id}: Memory Aid must be a visible labeled paragraph, not a collapsible alternative`);
+    } else if (memoryAidBlocks.length !== 0 || alternativeMemoryAids.length !== 0) {
+      fail(`${question.id}: unexpected Memory Aid block`);
+    }
   }
   if (question.id === 'cler-0014') {
     const expectedChoices = ['embarass', 'embarras', 'embaras', 'embarrass', 'embarrased'];

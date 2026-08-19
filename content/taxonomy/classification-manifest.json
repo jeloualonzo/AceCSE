@@ -2303,7 +2303,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "spelling_default",
-      "sourceFile": "content/questions/clerical/2026-08-06-2300-gemini-draft-import.json",
+      "sourceFile": "content/questions/clerical/spelling.json",
       "confidence": "high",
       "notes": "No Error is not added unless present in authored options."
     },
@@ -2609,7 +2609,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "spelling_default",
-      "sourceFile": "content/questions/clerical/core.json",
+      "sourceFile": "content/questions/clerical/spelling.json",
       "confidence": "high",
       "notes": "No Error is not added unless present in authored options."
     },
@@ -2627,7 +2627,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "spelling_default",
-      "sourceFile": "content/questions/clerical/core.json",
+      "sourceFile": "content/questions/clerical/spelling.json",
       "confidence": "high",
       "notes": "No Error is not added unless present in authored options."
     },
@@ -2645,7 +2645,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "spelling_default",
-      "sourceFile": "content/questions/clerical/core.json",
+      "sourceFile": "content/questions/clerical/spelling.json",
       "confidence": "high",
       "notes": "No Error is not added unless present in authored options."
     },
@@ -2663,7 +2663,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "spelling_default",
-      "sourceFile": "content/questions/clerical/core.json",
+      "sourceFile": "content/questions/clerical/spelling.json",
       "confidence": "high",
       "notes": "No Error is not added unless present in authored options."
     },

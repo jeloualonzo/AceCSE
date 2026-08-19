@@ -424,6 +424,10 @@ describe('structured explanation Practice/Results integration V3', () => {
       const correctSpellingBlock = question.structuredExplanation?.blocks.find(
         (block) => block.type === 'paragraph' && block.label === 'Correct Spelling'
       );
+      const memoryAidBlock = question.structuredExplanation?.blocks.find(
+        (block) => block.type === 'paragraph' && block.label === 'Memory Aid'
+      );
+      const memoryAidText = memoryAidBlock?.type === 'paragraph' ? memoryAidBlock.text : undefined;
       if (!correctSpellingBlock || correctSpellingBlock.type !== 'paragraph') {
         throw new Error(`${id}: Correct Spelling paragraph is missing`);
       }
@@ -444,11 +448,13 @@ describe('structured explanation Practice/Results integration V3', () => {
       expect(practiceRoots.every((root) => within(root).getByText(correctSpellingBlock!.text))).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Pattern/) === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
+      expect(practiceRoots.every((root) => within(root).queryByRole('button', { name: /Memory Aid/ }) === null)).toBe(true);
       if (memoryAidIds.has(id)) {
-        expect(practiceRoots.every((root) => within(root).getByRole('button', { name: /Memory Aid/ }))).toBe(true);
-        expect(practiceRoots.every((root) => within(root).getByTestId('structured-alternative-content').hasAttribute('hidden'))).toBe(true);
+        if (memoryAidText === undefined) throw new Error(`${id}: visible Memory Aid paragraph is missing`);
+        expect(practiceRoots.every((root) => within(root).getByText('Memory Aid'))).toBe(true);
+        expect(practiceRoots.every((root) => within(root).getByText(memoryAidText))).toBe(true);
       } else {
-        expect(practiceRoots.every((root) => within(root).queryByRole('button', { name: /Memory Aid/ }) === null)).toBe(true);
+        expect(memoryAidBlock).toBeUndefined();
       }
 
       cleanup();
@@ -489,6 +495,12 @@ describe('structured explanation Practice/Results integration V3', () => {
       expect(within(resultsRoot).getByText('Correct Spelling')).toBeInTheDocument();
       expect(within(resultsRoot).getByText(correctSpellingBlock!.text)).toBeInTheDocument();
       expect(within(resultsRoot).queryByText(/Pattern/)).not.toBeInTheDocument();
+      expect(within(resultsRoot).queryByRole('button', { name: /Memory Aid/ })).toBeNull();
+      if (memoryAidIds.has(id)) {
+        expect(within(resultsRoot).getByText('Memory Aid')).toBeInTheDocument();
+        expect(memoryAidText).toBeDefined();
+        expect(within(resultsRoot).getByText(memoryAidText!)).toBeInTheDocument();
+      }
       cleanup();
     }
   });

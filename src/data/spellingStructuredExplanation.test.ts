@@ -18,22 +18,14 @@ const EXPECTED_BLOCKS = {
     { type: 'correct_answer', text: 'D — accommodate' },
     { type: 'paragraph', label: 'Correct Spelling', text: 'accommodate' },
     { type: 'paragraph', label: 'What to Notice', text: 'The word has double c and double m.' },
-    {
-      type: 'alternative_solution',
-      title: 'Memory Aid',
-      blocks: [{ type: 'paragraph', text: 'Accommodate has 2 Cs and 2 Ms.' }],
-    },
+    { type: 'paragraph', label: 'Memory Aid', text: 'Accommodate has 2 Cs and 2 Ms.' },
   ],
   'cler-0013': [
     { type: 'heading', text: 'Solution' },
     { type: 'correct_answer', text: 'E — seperate' },
     { type: 'paragraph', label: 'Correct Spelling', text: 'separate' },
     { type: 'paragraph', label: 'What to Notice', text: 'The correct spelling uses a, not e, in the middle: separate.' },
-    {
-      type: 'alternative_solution',
-      title: 'Memory Aid',
-      blocks: [{ type: 'paragraph', text: 'There is a RAT in separate: sepa-RAT-e.' }],
-    },
+    { type: 'paragraph', label: 'Memory Aid', text: 'There is a RAT in separate: sepa-RAT-e.' },
   ],
   'cler-0014': [
     { type: 'heading', text: 'Solution' },
@@ -46,11 +38,7 @@ const EXPECTED_BLOCKS = {
     { type: 'correct_answer', text: 'D — priviledge' },
     { type: 'paragraph', label: 'Correct Spelling', text: 'privilege' },
     { type: 'paragraph', label: 'What to Notice', text: 'The correct ending is -lege, not -ledge.' },
-    {
-      type: 'alternative_solution',
-      title: 'Memory Aid',
-      blocks: [{ type: 'paragraph', text: 'Privi-LEGE.' }],
-    },
+    { type: 'paragraph', label: 'Memory Aid', text: 'Privi-LEGE.' },
   ],
 } as const satisfies Record<ApprovedId, readonly Record<string, unknown>[]>;
 
