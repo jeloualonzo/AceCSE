@@ -71,7 +71,7 @@ const EXPECTED_QUESTION_CONTENT: Record<ApprovedId, { question: string; choices:
 };
 
 describe('Spelling structured explanation pilot', () => {
-  it('contains exactly the approved structured content and preserves question data and legacy fields', async () => {
+  it('contains exactly the approved structured content, preserves question data, and removes only approved legacy fields', async () => {
     const catalog = await loadContentCatalog(['Clerical Ability']);
     const spellingQuestions = [...catalog.questions.values()].filter((question) => question.topic === 'Spelling');
     const structuredIds = spellingQuestions
@@ -87,10 +87,12 @@ describe('Spelling structured explanation pilot', () => {
       expect(question.question).toBe(expectedContent.question);
       expect(question.choices.map((choice) => choice.text)).toEqual(expectedContent.choices);
       expect(question.correctOptionId).toBe(expectedContent.correctOptionId);
-      expect(question.explanation.length).toBeGreaterThanOrEqual(100);
-      expect(question.tip).toBeTruthy();
-      expect(question.distractorExplanations).toBeTruthy();
+      expect(question.explanation).toBeUndefined();
+      expect(question.steps).toBeUndefined();
+      expect(question.tip).toBeUndefined();
+      expect(question.distractorExplanations).toBeUndefined();
       expect(question.taskInstance).toBeTruthy();
+
       expect(question.structuredExplanation?.blocks).toEqual(EXPECTED_BLOCKS[id]);
       expect(JSON.stringify(question.structuredExplanation)).not.toMatch(/distractor|Option [A-E]|Latin|etymolog/i);
     }

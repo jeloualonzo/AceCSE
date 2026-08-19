@@ -13,8 +13,10 @@
  *   - explanation is real teaching prose (≥ 100 chars)
  *   - worked steps (≥ 2) for computational items (Numerical; non-analogy Analytical)
  *   - distractor explanations for all three incorrect options (≥ 20 chars), except
- *     the eleven frozen Number Series records whose obsolete field was removed
- *   - a labeled tip ("Exam Tip", "Common Mistake", …)
+ *     the eleven frozen Number Series records and five canonical Spelling pilot
+ *     records whose obsolete fields were removed
+ *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the five canonical
+ *     Spelling pilot records that use structuredExplanation as their sole aid
  *
  * Also prints supply, difficulty, and answer-letter reports.
  */
@@ -42,6 +44,8 @@ const CANONICAL_NUMBER_SERIES_IDS = new Set([
   'num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024',
   'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
 ]);
+const CANONICAL_SPELLING_FILE = 'clerical/spelling.json';
+const CANONICAL_SPELLING_IDS = new Set(['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015']);
 
 /**
  * Directory convention (mirrors src/data/questionShape.ts): every dataset file
@@ -83,7 +87,8 @@ let fileCount = 0;
 
 for (const path of jsonFiles(questionsDir)) {
   fileCount += 1;
-  const file = relative(questionsDir, path);
+  const file = relative(questionsDir, path).replaceAll('\\', '/');
+
   let items;
   try {
     items = JSON.parse(readFileSync(path, 'utf8'));
@@ -148,7 +153,8 @@ for (const path of jsonFiles(questionsDir)) {
     }
 
     // ---- teaching-quality gates -------------------------------------------
-    if (typeof q.explanation !== 'string' || q.explanation.length < 100) {
+    const canonicalStructuredSpelling = file === CANONICAL_SPELLING_FILE && CANONICAL_SPELLING_IDS.has(q.id);
+    if (!canonicalStructuredSpelling && (typeof q.explanation !== 'string' || q.explanation.length < 100)) {
       errors.push(`${where}: explanation must teach (≥ 100 chars), got ${q.explanation?.length ?? 0}`);
     }
 
@@ -168,7 +174,8 @@ for (const path of jsonFiles(questionsDir)) {
     const distractors = q.distractorExplanations;
     const canonicalNumberSeries = file === CANONICAL_NUMBER_SERIES_FILE && CANONICAL_NUMBER_SERIES_IDS.has(q.id);
     if (typeof distractors !== 'object' || distractors === null) {
-      if (!canonicalNumberSeries) errors.push(`${where}: missing distractorExplanations`);
+      if (!canonicalNumberSeries && !canonicalStructuredSpelling) errors.push(`${where}: missing distractorExplanations`);
+
     } else {
       for (const option of wrongOptions) {
         const note = distractors[option];
@@ -186,14 +193,14 @@ for (const path of jsonFiles(questionsDir)) {
       }
     }
 
-    if (
+    if (!canonicalStructuredSpelling && (
       typeof q.tip !== 'object' ||
       q.tip === null ||
       typeof q.tip.label !== 'string' ||
       !q.tip.label ||
       typeof q.tip.text !== 'string' ||
       q.tip.text.length < 10
-    ) {
+    )) {
       errors.push(`${where}: missing tip ({ label, text }) — every question needs a retention aid`);
     }
 

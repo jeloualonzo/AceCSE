@@ -1,3 +1,4 @@
+
 import { describe, expect, it } from 'vitest';
 import { hasContiguousChoiceIds, isValidQuestion } from '@/data/questionShape';
 import type { Question } from '@/types';
@@ -40,6 +41,33 @@ describe('choice-set validation (4-/5-choice migration contract)', () => {
       correctOptionId: 'E',
     });
     expect(isValidQuestion(q)).toBe(true);
+  });
+
+  it('accepts a canonical structured-only Spelling question without legacy explanation', () => {
+    const q = {
+      ...base({
+        id: 'cler-0012',
+        subject: 'Clerical Ability',
+        topic: 'Spelling',
+        choices: [
+          { id: 'A' as const, text: 'accomodate' },
+          { id: 'B' as const, text: 'acommodate' },
+          { id: 'C' as const, text: 'acomodate' },
+          { id: 'D' as const, text: 'accommodate' },
+          { id: 'E' as const, text: 'accommadate' },
+        ],
+        correctOptionId: 'D',
+        structuredExplanation: { blocks: [{ type: 'paragraph' as const, label: 'Correct Spelling', text: 'accommodate' }] },
+      }),
+    } as Record<string, unknown>;
+    delete q.explanation;
+    expect(isValidQuestion(q)).toBe(true);
+  });
+
+  it('rejects a structured-only question without explanation outside the canonical Spelling IDs', () => {
+    const q = { ...base({ structuredExplanation: { blocks: [{ type: 'paragraph' as const, text: 'Not canonical' }] } }) } as Record<string, unknown>;
+    delete q.explanation;
+    expect(isValidQuestion(q)).toBe(false);
   });
 
   it('rejects fewer than four choices', () => {

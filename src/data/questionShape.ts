@@ -16,6 +16,10 @@ const OPTION_ID_SET: ReadonlySet<string> = new Set(OPTION_IDS);
 export const MIN_CHOICES = 4;
 export const MAX_CHOICES = 5;
 
+const CANONICAL_STRUCTURED_SPELLING_IDS = new Set([
+  'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
+]);
+
 /**
  * Choice ids must be a contiguous prefix of A–E in order (A,B,C,D or
  * A,B,C,D,E) — no gaps, no reordering, no missing middle options.
@@ -59,7 +63,15 @@ export function isValidQuestion(q: unknown): q is Question {
     question.id.length > 0 &&
     typeof question.question === 'string' &&
     question.question.length > 0 &&
-    typeof question.explanation === 'string' &&
+    (typeof question.explanation === 'string' || (
+      CANONICAL_STRUCTURED_SPELLING_IDS.has(question.id as string) &&
+      question.subject === 'Clerical Ability' &&
+      question.topic === 'Spelling' &&
+      typeof question.structuredExplanation === 'object' &&
+      question.structuredExplanation !== null &&
+      Array.isArray((question.structuredExplanation as { blocks?: unknown }).blocks)
+    )) &&
+
     typeof question.subject === 'string' &&
     typeof question.topic === 'string' &&
     (EXAM_LEVELS as readonly string[]).includes(question.examLevel as string) &&

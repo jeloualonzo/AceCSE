@@ -16,6 +16,7 @@ const migratedNumberSeriesIds = new Set([
   'num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024',
   'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
 ]);
+const cleanedSpellingIds = new Set(['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015']);
 
 describe('production bank — five-choice migration', () => {
   it('every production question has exactly five contiguous choices and a valid key', async () => {
@@ -25,9 +26,10 @@ describe('production bank — five-choice migration', () => {
       expect(q.choices).toHaveLength(5);
       expect(q.choices.map((c) => c.id)).toEqual(['A', 'B', 'C', 'D', 'E']);
       expect(q.choices.some((c) => c.id === q.correctOptionId)).toBe(true);
-      if (migratedNumberSeriesIds.has(q.id)) {
+      if (migratedNumberSeriesIds.has(q.id) || cleanedSpellingIds.has(q.id)) {
         expect(q.distractorExplanations).toBeUndefined();
       } else {
+
         // distractor notes cover exactly the four wrong options
         const wrong = q.choices.filter((c) => c.id !== q.correctOptionId).map((c) => c.id);
         expect(Object.keys(q.distractorExplanations ?? {}).sort()).toEqual(wrong.sort());

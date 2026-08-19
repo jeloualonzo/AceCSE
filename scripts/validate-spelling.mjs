@@ -98,8 +98,12 @@ for (const question of spelling) {
   if (approvedStructuredIds.has(question.id)) {
     const occurrences = sourceOccurrences.get(question.id) ?? [];
     if (occurrences.length !== 1 || occurrences[0] !== canonicalSpellingFile) fail(`${question.id}: must occur exactly once in canonical spelling.json`);
-    if (spellingRows.get(question.id)?.sourceFile !== canonicalSpellingFile) fail(`${question.id}: manifest sourceFile must point to canonical spelling.json`);
+        if (spellingRows.get(question.id)?.sourceFile !== canonicalSpellingFile) fail(`${question.id}: manifest sourceFile must point to canonical spelling.json`);
+    for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+      if (Object.hasOwn(question, field)) fail(`${question.id}: legacy field ${field} must be removed from canonical Spelling records`);
+    }
     const correctSpellingBlock = question.structuredExplanation?.blocks?.find((block) => block.type === 'paragraph' && block.label === 'Correct Spelling');
+
     if (correctSpellingBlock?.text !== approvedCorrectSpellings[question.id]) fail(`${question.id}: approved Correct Spelling block is missing or incorrect`);
     const memoryAidBlocks = question.structuredExplanation?.blocks?.filter((block) => block.type === 'paragraph' && block.label === 'Memory Aid') ?? [];
     const alternativeMemoryAids = question.structuredExplanation?.blocks?.filter((block) => block.type === 'alternative_solution' && block.title === 'Memory Aid') ?? [];
@@ -112,7 +116,8 @@ for (const question of spelling) {
   if (question.id === 'cler-0014') {
     const expectedChoices = ['embarass', 'embarras', 'embaras', 'embarrass', 'embarrased'];
     if (JSON.stringify(question.choices.map((choice) => choice.text)) !== JSON.stringify(expectedChoices)) fail('cler-0014: repaired choices do not match the verified single-answer set');
-    if (!/embarrass.*double.*r.*double.*s|double.*r.*double.*s.*embarrass/i.test(question.explanation)) fail('cler-0014: explanation does not establish D as the correctly spelled word');
+        if (question.structuredExplanation?.blocks?.some((block) => block.type === 'paragraph' && block.label === 'Correct Spelling' && block.text === 'embarrass') !== true) fail('cler-0014: structured explanation does not establish D as the correctly spelled word');
+
   }
   const visible = JSON.stringify({ question: question.question, choices: question.choices, explanation: question.explanation, steps: question.steps, distractors: question.distractorExplanations, tip: question.tip, reference: question.reference, taskInstance: question.taskInstance });
   if (forbidden.test(visible)) fail(`${question.id}: user-visible Spelling content contains forbidden language`);
