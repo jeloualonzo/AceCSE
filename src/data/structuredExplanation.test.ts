@@ -209,7 +209,7 @@ describe('Number Series structured explanation Batch 4', () => {
     }
   });
 
-  it('preserves stems, choices, answer keys, legacy fields, and task metadata for Batch 3', async () => {
+  it('preserves stems, choices, answer keys, approved legacy fields, and task metadata after Batch 3 distractor cleanup', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
     const expected = {
       'num-0025': {
@@ -241,14 +241,14 @@ describe('Number Series structured explanation Batch 4', () => {
       expect(question.correctOptionId).toBe(expected[id].correctOptionId);
       expect(question.explanation.length).toBeGreaterThanOrEqual(100);
       expect(question.steps).toEqual(expected[id].steps);
-      expect(question.distractorExplanations).toBeTruthy();
+      expect(question.distractorExplanations).toBeUndefined();
       expect(question.tip).toBeTruthy();
       expect(question.numberSeries).toBeTruthy();
       expect(question.taskInstance).toBeTruthy();
     }
   });
 
-  it('preserves stems, choices, answer keys, legacy fields, and task metadata for Batch 4', async () => {
+  it('preserves stems, choices, answer keys, approved legacy fields, and task metadata after Batch 4 distractor cleanup', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
     const expected = {
       'num-0108': {
@@ -281,7 +281,7 @@ describe('Number Series structured explanation Batch 4', () => {
       expect(question.correctOptionId).toBe(expected[id].correctOptionId);
       expect(question.explanation.length).toBeGreaterThanOrEqual(100);
       expect(question.steps?.length ?? 0).toBeGreaterThan(0);
-      expect(question.distractorExplanations).toBeTruthy();
+      expect(question.distractorExplanations).toBeUndefined();
       expect(question.tip).toBeTruthy();
       expect(question.numberSeries?.sequence).toEqual(expected[id].sequence);
       expect(question.numberSeries?.missingPosition).toBe(expected[id].missingPosition);

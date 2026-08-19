@@ -8,12 +8,23 @@ const fail = (message) => {
   process.exitCode = 1;
 };
 
+const expectedIds = ['num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024', 'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147'];
+const expectedSet = new Set(expectedIds);
 const questions = [];
+const sourceOccurrences = new Map();
 for (const dir of fs.readdirSync(path.join(root, 'content/questions'))) {
   const subjectDir = path.join(root, 'content/questions', dir);
   if (!fs.statSync(subjectDir).isDirectory()) continue;
   for (const file of fs.readdirSync(subjectDir).filter((name) => name.endsWith('.json'))) {
-    questions.push(...readJson(path.join('content/questions', dir, file)));
+    const sourceFile = path.join('content/questions', dir, file);
+    const dataset = readJson(sourceFile);
+    for (const question of dataset) {
+      questions.push(question);
+      if (!expectedSet.has(question.id)) continue;
+      const occurrences = sourceOccurrences.get(question.id) ?? [];
+      occurrences.push(sourceFile);
+      sourceOccurrences.set(question.id, occurrences);
+    }
   }
 }
 const numberSeries = questions.filter((question) => question.topic === 'Number Series');
@@ -22,7 +33,6 @@ const manifest = readJson('content/taxonomy/classification-manifest.json');
 const pool = readJson('content/taxonomy/pools/numerical-number-sequence.json');
 const rows = new Map(manifest.questions.map((row) => [row.questionId, row]));
 const task = taxonomy.sharedTaskDefinitions?.number_series_default;
-const expectedIds = ['num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024', 'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147'];
 const expected = {
   'num-0019': { sequence: ['4', '9', '14', '19', null], correct: 'B', choices: ['25', '24', '22', '26', '29'] },
   'num-0020': { sequence: ['3', '6', '12', '24', null], correct: 'E', choices: ['44', '36', '40', '56', '48'] },
@@ -36,9 +46,23 @@ const expected = {
   'num-0137': { sequence: ['2/4', '1/2', '2/6', '1/3', '2/8', '1/4', '2/10', null], correct: 'A', choices: ['1/5', '1/6', '2/5', '3/4', '4/5'] },
   'num-0147': { sequence: ['13', '−21', '34', '−55', '89', null], correct: 'D', choices: ['−95', '104', '−130', '−144', '−109'] },
 };
-const expectedSet = new Set(expectedIds);
 const actualSet = new Set(numberSeries.map((question) => question.id));
+const canonicalSource = 'content/questions/numerical/number-series.json';
+const canonicalRecords = readJson(canonicalSource);
 const forbidden = /AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|authored task|training rules/i;
+
+if (!Array.isArray(canonicalRecords) || canonicalRecords.length !== expectedIds.length) fail(`${canonicalSource} must contain exactly ${expectedIds.length} records`);
+if (JSON.stringify(canonicalRecords.map((question) => question.id)) !== JSON.stringify(expectedIds)) fail(`${canonicalSource} IDs/order do not match the verified 11-question inventory`);
+for (const id of expectedIds) {
+  const occurrences = sourceOccurrences.get(id) ?? [];
+  if (JSON.stringify(occurrences) !== JSON.stringify([canonicalSource])) fail(`${id}: expected one active source occurrence in ${canonicalSource}, got ${JSON.stringify(occurrences)}`);
+  const canonicalQuestion = canonicalRecords.find((question) => question.id === id);
+  if (!canonicalQuestion || Object.hasOwn(canonicalQuestion, 'distractorExplanations')) fail(`${id}: canonical record still has distractorExplanations or is missing`);
+  for (const field of ['explanation', 'steps', 'tip', 'structuredExplanation', 'numberSeries', 'taskInstance']) {
+    if (!Object.hasOwn(canonicalQuestion, field)) fail(`${id}: required preserved field ${field} is missing from canonical record`);
+  }
+  if (rows.get(id)?.sourceFile !== canonicalSource) fail(`${id}: classification manifest sourceFile is not ${canonicalSource}`);
+}
 
 if (numberSeries.length !== expectedIds.length) fail(`expected ${expectedIds.length} Number Series questions, got ${numberSeries.length}`);
 if (actualSet.size !== numberSeries.length || [...actualSet].some((id) => !expectedSet.has(id))) fail('Number Series IDs do not match the verified 11-question inventory');

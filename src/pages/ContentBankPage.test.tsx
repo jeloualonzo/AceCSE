@@ -162,8 +162,10 @@ describe('Content Bank / QA Practice page', () => {
         kind: 'pool',
         poolId: group.config.poolId,
         taskFormat: group.config.taskFormat,
-        questionIds: group.questionIds,
       });
+      if (item?.kind === 'pool') {
+        expect(new Set(item.questionIds)).toEqual(new Set(group.questionIds));
+      }
     }
   });
 });

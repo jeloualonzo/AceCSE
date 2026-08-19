@@ -12,6 +12,11 @@ const allSubjects: Subject[] = [
   'General Information',
 ];
 
+const migratedNumberSeriesIds = new Set([
+  'num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024',
+  'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
+]);
+
 describe('production bank — five-choice migration', () => {
   it('every production question has exactly five contiguous choices and a valid key', async () => {
     const catalog = await loadContentCatalog(allSubjects);
@@ -20,9 +25,13 @@ describe('production bank — five-choice migration', () => {
       expect(q.choices).toHaveLength(5);
       expect(q.choices.map((c) => c.id)).toEqual(['A', 'B', 'C', 'D', 'E']);
       expect(q.choices.some((c) => c.id === q.correctOptionId)).toBe(true);
-      // distractor notes cover exactly the four wrong options
-      const wrong = q.choices.filter((c) => c.id !== q.correctOptionId).map((c) => c.id);
-      expect(Object.keys(q.distractorExplanations ?? {}).sort()).toEqual(wrong.sort());
+      if (migratedNumberSeriesIds.has(q.id)) {
+        expect(q.distractorExplanations).toBeUndefined();
+      } else {
+        // distractor notes cover exactly the four wrong options
+        const wrong = q.choices.filter((c) => c.id !== q.correctOptionId).map((c) => c.id);
+        expect(Object.keys(q.distractorExplanations ?? {}).sort()).toEqual(wrong.sort());
+      }
       // no duplicate option texts
       expect(new Set(q.choices.map((c) => c.text.trim().toLowerCase())).size).toBe(5);
     }

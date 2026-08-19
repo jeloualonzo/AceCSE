@@ -6353,7 +6353,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/2026-08-06-2300-gemini-draft-import.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },
@@ -6875,7 +6875,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/2026-08-07-0030-web-export-w1.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },
@@ -7055,7 +7055,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/2026-08-07-0100-web-export-w2.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },
@@ -7487,7 +7487,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/core.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },
@@ -7505,7 +7505,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/core.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },
@@ -7523,7 +7523,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/core.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },
@@ -7541,7 +7541,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/core.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },
@@ -7559,7 +7559,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/core.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },
@@ -7577,7 +7577,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/core.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },
@@ -7595,7 +7595,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/core.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },
@@ -7613,7 +7613,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "number_series_default",
-      "sourceFile": "content/questions/numerical/core.json",
+      "sourceFile": "content/questions/numerical/number-series.json",
       "confidence": "high",
       "notes": "Existing number-series items use a terminal blank; future items require explicit missingPosition."
     },

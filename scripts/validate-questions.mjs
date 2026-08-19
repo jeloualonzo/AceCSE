@@ -12,7 +12,8 @@
  * Teaching-quality gates (fatal — every production question must teach):
  *   - explanation is real teaching prose (≥ 100 chars)
  *   - worked steps (≥ 2) for computational items (Numerical; non-analogy Analytical)
- *   - distractor explanations for all three incorrect options (≥ 20 chars each)
+ *   - distractor explanations for all three incorrect options (≥ 20 chars), except
+ *     the eleven frozen Number Series records whose obsolete field was removed
  *   - a labeled tip ("Exam Tip", "Common Mistake", …)
  *
  * Also prints supply, difficulty, and answer-letter reports.
@@ -36,6 +37,11 @@ const VALID_OPTIONS = ['A', 'B', 'C', 'D', 'E'];
 const VALID_OPTION_SET = new Set(VALID_OPTIONS);
 const MIN_CHOICES = 4;
 const MAX_CHOICES = 5;
+const CANONICAL_NUMBER_SERIES_FILE = 'numerical/number-series.json';
+const CANONICAL_NUMBER_SERIES_IDS = new Set([
+  'num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024',
+  'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
+]);
 
 /**
  * Directory convention (mirrors src/data/questionShape.ts): every dataset file
@@ -160,8 +166,9 @@ for (const path of jsonFiles(questionsDir)) {
     const wrongOptions = (Array.isArray(q.choices) ? q.choices.map((c) => c?.id) : [])
       .filter((o) => VALID_OPTION_SET.has(o) && o !== q.correctOptionId);
     const distractors = q.distractorExplanations;
+    const canonicalNumberSeries = file === CANONICAL_NUMBER_SERIES_FILE && CANONICAL_NUMBER_SERIES_IDS.has(q.id);
     if (typeof distractors !== 'object' || distractors === null) {
-      errors.push(`${where}: missing distractorExplanations`);
+      if (!canonicalNumberSeries) errors.push(`${where}: missing distractorExplanations`);
     } else {
       for (const option of wrongOptions) {
         const note = distractors[option];

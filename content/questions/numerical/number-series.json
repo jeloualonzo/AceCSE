@@ -1,0 +1,1374 @@
+[
+  {
+    "id": "num-0019",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Arithmetic Sequence",
+    "difficulty": "Easy",
+    "question": "What is the next number in the series: 4, 9, 14, 19, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "25"
+      },
+      {
+        "id": "B",
+        "text": "24"
+      },
+      {
+        "id": "C",
+        "text": "22"
+      },
+      {
+        "id": "D",
+        "text": "26"
+      },
+      {
+        "id": "E",
+        "text": "29"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "The first step in any number series is to find the differences between consecutive terms: 9 – 4 = 5, 14 – 9 = 5, 19 – 14 = 5. The common difference is 5 throughout — this is an arithmetic sequence. Because the difference is constant, the next term is simply the last term plus 5: 19 + 5 = 24. Arithmetic sequences are characterized by a fixed 'step' added each time, like a staircase with equal-height steps.",
+    "steps": [
+      "Find the differences: 9–4=5, 14–9=5, 19–14=5. The common difference is 5.",
+      "Add the common difference to the last term: 19 + 5 = 24."
+    ],
+    "tip": {
+      "label": "Exam Tip",
+      "text": "Always check the difference between consecutive terms first. If it's constant, you have an arithmetic sequence and the pattern is simply 'add the common difference.'"
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "B — 24"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Check the difference between consecutive terms."
+        },
+        {
+          "type": "pattern",
+          "expression": "4 + 5 = 9\n9 + 5 = 14\n14 + 5 = 19"
+        },
+        {
+          "type": "paragraph",
+          "text": "The same operation is repeated: +5."
+        },
+        {
+          "type": "solution",
+          "expression": "19 + 5 = 24"
+        },
+        {
+          "type": "answer",
+          "text": "24",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "Arithmetic sequence: consecutive terms have a constant difference."
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "arithmetic-sequence"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "4",
+        "9",
+        "14",
+        "19",
+        null
+      ],
+      "missingPosition": 5
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "4",
+          "9",
+          "14",
+          "19",
+          null
+        ],
+        "missingPosition": 5,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  },
+  {
+    "id": "num-0020",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Geometric Sequence",
+    "difficulty": "Easy",
+    "question": "What comes next: 3, 6, 12, 24, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "44"
+      },
+      {
+        "id": "B",
+        "text": "36"
+      },
+      {
+        "id": "C",
+        "text": "40"
+      },
+      {
+        "id": "D",
+        "text": "56"
+      },
+      {
+        "id": "E",
+        "text": "48"
+      }
+    ],
+    "correctOptionId": "E",
+    "explanation": "When differences between terms are not constant, look at the ratio between consecutive terms instead: 6 ÷ 3 = 2, 12 ÷ 6 = 2, 24 ÷ 12 = 2. Each term is exactly double the previous one — this is a geometric sequence with a common ratio of 2. The next term is 24 × 2 = 48. Geometric sequences grow exponentially and appear frequently in Philippine Civil Service Exam number series questions. If the ratio is greater than 1, the sequence grows; if between 0 and 1, it shrinks.",
+    "steps": [
+      "Find the ratio between consecutive terms: 6÷3=2, 12÷6=2, 24÷12=2. Common ratio = 2.",
+      "Multiply the last term by the common ratio: 24 × 2 = 48."
+    ],
+    "tip": {
+      "label": "Remember",
+      "text": "If dividing consecutive terms gives the same number, it's a geometric sequence. Multiply the last term by that common ratio to find the next term."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "E — 48"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Check how each term changes to the next."
+        },
+        {
+          "type": "pattern",
+          "expression": "3 × 2 = 6\n6 × 2 = 12\n12 × 2 = 24"
+        },
+        {
+          "type": "paragraph",
+          "text": "The same operation is repeated: ×2."
+        },
+        {
+          "type": "solution",
+          "expression": "24 × 2 = 48"
+        },
+        {
+          "type": "answer",
+          "text": "48",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "Geometric sequence: consecutive terms have a constant multiplication ratio."
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "geometric-sequence"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "3",
+        "6",
+        "12",
+        "24",
+        null
+      ],
+      "missingPosition": 5
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "3",
+          "6",
+          "12",
+          "24",
+          null
+        ],
+        "missingPosition": 5,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  },
+  {
+    "id": "num-0021",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Increasing Differences",
+    "difficulty": "Medium",
+    "question": "Find the missing term: 2, 5, 9, 14, 20, ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "28"
+      },
+      {
+        "id": "B",
+        "text": "25"
+      },
+      {
+        "id": "C",
+        "text": "27"
+      },
+      {
+        "id": "D",
+        "text": "26"
+      },
+      {
+        "id": "E",
+        "text": "29"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "When neither the terms nor the ratios are constant, look at the differences and see if THOSE form a pattern. Here, the differences between consecutive terms are: 5–2=3, 9–5=4, 14–9=5, 20–14=6. The differences themselves form an arithmetic sequence: 3, 4, 5, 6 — increasing by 1 each time. The next difference should be 7, making the missing term 20 + 7 = 27. This is a second-level pattern: the sequence of differences is itself arithmetic.",
+    "steps": [
+      "Compute differences: 5–2=3, 9–5=4, 14–9=5, 20–14=6.",
+      "Observe that the differences increase by 1 each time: 3, 4, 5, 6, so next difference = 7.",
+      "Add to last term: 20 + 7 = 27."
+    ],
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When the terms and ratios are both irregular, write out the differences between terms. Then check if those differences form their own arithmetic or geometric pattern."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — 27"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The terms do not increase by the same amount, so check the differences."
+        },
+        {
+          "type": "pattern",
+          "expression": "5 − 2 = 3\n9 − 5 = 4\n14 − 9 = 5\n20 − 14 = 6"
+        },
+        {
+          "type": "paragraph",
+          "text": "The differences increase by 1:"
+        },
+        {
+          "type": "math",
+          "expression": "+3, +4, +5, +6, +7"
+        },
+        {
+          "type": "solution",
+          "expression": "20 + 7 = 27"
+        },
+        {
+          "type": "answer",
+          "text": "27",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "When consecutive differences increase regularly, continue the pattern in the differences."
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "increasing-differences"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "2",
+        "5",
+        "9",
+        "14",
+        "20",
+        null
+      ],
+      "missingPosition": 6
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "2",
+          "5",
+          "9",
+          "14",
+          "20",
+          null
+        ],
+        "missingPosition": 6,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  },
+  {
+    "id": "num-0022",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Fibonacci Sequence",
+    "difficulty": "Medium",
+    "question": "What is the next term: 1, 1, 2, 3, 5, 8, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "12"
+      },
+      {
+        "id": "B",
+        "text": "14"
+      },
+      {
+        "id": "C",
+        "text": "11"
+      },
+      {
+        "id": "D",
+        "text": "13"
+      },
+      {
+        "id": "E",
+        "text": "15"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "This is the famous Fibonacci sequence, and it has a beautifully simple rule: each term is the sum of the two terms before it. Starting from 1, 1: 1+1=2, 1+2=3, 2+3=5, 3+5=8. The next term continues the same rule: 5+8=13. The Fibonacci sequence appears in nature (sunflower seed spirals, nautilus shells, tree branching) and is a classic pattern in CSE numerical reasoning. Once you spot it, the answer follows immediately from adding the last two terms.",
+    "steps": [
+      "Recognize the rule: each term = sum of the previous two terms.",
+      "Apply: the two terms before the blank are 5 and 8.",
+      "Compute: 5 + 8 = 13."
+    ],
+    "tip": {
+      "label": "Remember",
+      "text": "Fibonacci rule: next term = sum of the two terms immediately before it. If you see 1, 1, 2, 3, 5 in a sequence, you're looking at Fibonacci — the next term is always 5 + 8 = 13."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "D — 13"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Each term is the sum of the two preceding terms."
+        },
+        {
+          "type": "pattern",
+          "expression": "1 + 1 = 2\n1 + 2 = 3\n2 + 3 = 5\n3 + 5 = 8\n5 + 8 = 13"
+        },
+        {
+          "type": "solution",
+          "expression": "5 + 8 = 13"
+        },
+        {
+          "type": "answer",
+          "text": "13",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "Fibonacci sequence: each term is the sum of the two preceding terms."
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "fibonacci"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "1",
+        "1",
+        "2",
+        "3",
+        "5",
+        "8",
+        null
+      ],
+      "missingPosition": 7
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "1",
+          "1",
+          "2",
+          "3",
+          "5",
+          "8",
+          null
+        ],
+        "missingPosition": 7,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  },
+  {
+    "id": "num-0023",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Multiply-and-Add Pattern",
+    "difficulty": "Medium",
+    "question": "Identify the next term: 2, 5, 11, 23, ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "43"
+      },
+      {
+        "id": "B",
+        "text": "45"
+      },
+      {
+        "id": "C",
+        "text": "46"
+      },
+      {
+        "id": "D",
+        "text": "48"
+      },
+      {
+        "id": "E",
+        "text": "47"
+      }
+    ],
+    "correctOptionId": "E",
+    "explanation": "Sometimes a number series follows a hidden algebraic rule rather than simple addition or multiplication alone. Let's check: 2×2+1=5 ✓, 5×2+1=11 ✓, 11×2+1=23 ✓. The rule is: multiply by 2, then add 1. Applying this to 23: 23×2+1 = 46+1 = 47. This 'multiply-then-add' pattern is a common trick in CSE exams. When simple arithmetic differences don't work, try multiplying each term by a small integer and see if adding or subtracting a constant gives the next term.",
+    "steps": [
+      "Test the rule 'multiply by 2 then add 1': 2×2+1=5 ✓, 5×2+1=11 ✓, 11×2+1=23 ✓.",
+      "Apply to 23: 23×2 = 46, then 46+1 = 47."
+    ],
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When differences are growing rapidly, try multiplying each term and adding a constant. Test: next = (current × n) + k. Use two consecutive pairs to find n and k."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "E — 47"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The terms are multiplied by 2, then increased by 1."
+        },
+        {
+          "type": "pattern",
+          "expression": "2 × 2 + 1 = 5\n5 × 2 + 1 = 11\n11 × 2 + 1 = 23"
+        },
+        {
+          "type": "paragraph",
+          "text": "The same operation is repeated: ×2, then +1."
+        },
+        {
+          "type": "solution",
+          "expression": "23 × 2 + 1 = 47\n46 + 1 = 47"
+        },
+        {
+          "type": "answer",
+          "text": "47",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "When simple addition or multiplication does not explain a series, check for a repeated combination of operations."
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "multiply-add-pattern"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "2",
+        "5",
+        "11",
+        "23",
+        null
+      ],
+      "missingPosition": 5
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "2",
+          "5",
+          "11",
+          "23",
+          null
+        ],
+        "missingPosition": 5,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  },
+  {
+    "id": "num-0024",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Perfect Squares",
+    "difficulty": "Medium",
+    "question": "What number comes next: 1, 4, 9, 16, 25, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "36"
+      },
+      {
+        "id": "B",
+        "text": "30"
+      },
+      {
+        "id": "C",
+        "text": "34"
+      },
+      {
+        "id": "D",
+        "text": "35"
+      },
+      {
+        "id": "E",
+        "text": "37"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "Recognize these as perfect squares: 1=1², 4=2², 9=3², 16=4², 25=5². The sequence lists the squares of the natural numbers in order. The next natural number is 6, and 6² = 36. Alternatively, notice that the differences between consecutive terms are 3, 5, 7, 9 — odd numbers increasing by 2 each time. The next difference is 11, and 25 + 11 = 36. Both approaches confirm the answer.",
+    "steps": [
+      "Identify the terms as perfect squares: 1²=1, 2²=4, 3²=9, 4²=16, 5²=25.",
+      "The next term in the pattern is 6² = 36."
+    ],
+    "tip": {
+      "label": "Remember",
+      "text": "Perfect squares appear often in CSE series questions. Memorize squares up to 15²=225. Also, the differences between consecutive perfect squares are always the odd numbers 3, 5, 7, 9, 11..."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — 36"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Check the differences between consecutive terms."
+        },
+        {
+          "type": "pattern",
+          "expression": "4 − 1 = 3\n9 − 4 = 5\n16 − 9 = 7\n25 − 16 = 9"
+        },
+        {
+          "type": "paragraph",
+          "text": "The differences increase by 2:"
+        },
+        {
+          "type": "math",
+          "expression": "+3, +5, +7, +9, +11"
+        },
+        {
+          "type": "solution",
+          "expression": "25 + 11 = 36"
+        },
+        {
+          "type": "answer",
+          "text": "36",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "The differences between consecutive perfect squares increase by consecutive odd numbers."
+        },
+        {
+          "type": "alternative_solution",
+          "title": "Alternative Method",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Recognize the perfect squares."
+            },
+            {
+              "type": "math",
+              "expression": "1²\n2²\n3²\n4²\n5²"
+            },
+            {
+              "type": "paragraph",
+              "text": "The next term is:"
+            },
+            {
+              "type": "math",
+              "expression": "6² = 36"
+            },
+            {
+              "type": "answer",
+              "text": "36",
+              "variant": "final"
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "perfect-squares"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "1",
+        "4",
+        "9",
+        "16",
+        "25",
+        null
+      ],
+      "missingPosition": 6
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "1",
+          "4",
+          "9",
+          "16",
+          "25",
+          null
+        ],
+        "missingPosition": 6,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  },
+  {
+    "id": "num-0025",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Interleaved Sequences",
+    "difficulty": "Hard",
+    "question": "What is the missing number: 3, 7, 4, 10, 5, 13, 6, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "7"
+      },
+      {
+        "id": "B",
+        "text": "14"
+      },
+      {
+        "id": "C",
+        "text": "16"
+      },
+      {
+        "id": "D",
+        "text": "15"
+      },
+      {
+        "id": "E",
+        "text": "17"
+      }
+    ],
+    "correctOptionId": "C",
+    "explanation": "Some series are actually two separate sequences woven together, alternating positions. Separate the terms by position: odd positions (1st, 3rd, 5th, 7th) give 3, 4, 5, 6 — increasing by 1 each time. Even positions (2nd, 4th, 6th, 8th) give 7, 10, 13, ? — increasing by 3 each time. The 8th term (even position) continues the second sequence: 13 + 3 = 16. The trick to spotting interleaved sequences is to notice that the standard pattern-finding methods fail until you separate the odd and even positions.",
+    "steps": [
+      "Separate by position: odd-position terms = 3, 4, 5, 6 (difference of 1 each); even-position terms = 7, 10, 13, ? (difference of 3 each).",
+      "The blank is the 8th term (even position), so apply the even-position pattern: 13 + 3 = 16."
+    ],
+    "tip": {
+      "label": "Exam Tip",
+      "text": "When a series seems random, try separating it into two sub-sequences — one for odd-indexed terms and one for even-indexed terms. Each sub-sequence may follow a simple rule."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — 16"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The terms alternate between two sequences."
+        },
+        {
+          "type": "pattern",
+          "label": "Odd positions",
+          "expression": "3 → 4 → 5 → 6\n+1, +1, +1"
+        },
+        {
+          "type": "pattern",
+          "label": "Even positions",
+          "expression": "7 → 10 → 13 → ___\n+3, +3, +3"
+        },
+        {
+          "type": "paragraph",
+          "text": "The missing term is in the 8th position, so it belongs to the even-position sequence."
+        },
+        {
+          "type": "solution",
+          "expression": "13 + 3 = 16"
+        },
+        {
+          "type": "answer",
+          "text": "16",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "When a series does not follow one consistent pattern, separate the odd- and even-position terms and check each sequence independently."
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "interleaved-sequences"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "3",
+        "7",
+        "4",
+        "10",
+        "5",
+        "13",
+        "6",
+        null
+      ],
+      "missingPosition": 8
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "3",
+          "7",
+          "4",
+          "10",
+          "5",
+          "13",
+          "6",
+          null
+        ],
+        "missingPosition": 8,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  },
+  {
+    "id": "num-0026",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Second-Difference Pattern",
+    "difficulty": "Hard",
+    "question": "Find the next term: 1, 3, 7, 13, 21, ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "29"
+      },
+      {
+        "id": "B",
+        "text": "31"
+      },
+      {
+        "id": "C",
+        "text": "33"
+      },
+      {
+        "id": "D",
+        "text": "34"
+      },
+      {
+        "id": "E",
+        "text": "35"
+      }
+    ],
+    "correctOptionId": "B",
+    "explanation": "This series requires looking at two levels of differences. First differences (between consecutive terms): 3–1=2, 7–3=4, 13–7=6, 21–13=8 — the differences are even numbers: 2, 4, 6, 8. These first differences form an arithmetic sequence with a common difference of 2. So the next first difference is 10, and the next term in the original series is 21 + 10 = 31. This is called a 'constant second-difference' pattern and it means the sequence is actually a quadratic (the terms can be expressed as an² + bn + c).",
+    "steps": [
+      "Compute first differences: 3–1=2, 7–3=4, 13–7=6, 21–13=8.",
+      "Observe the first differences form an arithmetic sequence: 2, 4, 6, 8 (common difference = 2).",
+      "The next first difference = 8 + 2 = 10.",
+      "Add to the last term: 21 + 10 = 31."
+    ],
+    "tip": {
+      "label": "Math Shortcut",
+      "text": "If a series' differences are themselves arithmetic, you have a second-difference pattern. The next difference continues that arithmetic sequence — then add it to the last term."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "B — 31"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The differences between consecutive terms are not constant, so check the differences themselves."
+        },
+        {
+          "type": "pattern",
+          "expression": "3 − 1 = 2\n7 − 3 = 4\n13 − 7 = 6\n21 − 13 = 8"
+        },
+        {
+          "type": "paragraph",
+          "text": "The differences increase by 2:"
+        },
+        {
+          "type": "math",
+          "expression": "+2, +4, +6, +8, +10"
+        },
+        {
+          "type": "solution",
+          "expression": "21 + 10 = 31"
+        },
+        {
+          "type": "answer",
+          "text": "31",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "When the differences form an arithmetic sequence, continue that pattern to find the next term."
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "second-differences"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "1",
+        "3",
+        "7",
+        "13",
+        "21",
+        null
+      ],
+      "missingPosition": 6
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "1",
+          "3",
+          "7",
+          "13",
+          "21",
+          null
+        ],
+        "missingPosition": 6,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  },
+  {
+    "id": "num-0108",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Differences as Consecutive Perfect Squares",
+    "difficulty": "Hard",
+    "question": "What is the next number in the series: 5, 6, 10, 19, 35, 60, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "96"
+      },
+      {
+        "id": "B",
+        "text": "86"
+      },
+      {
+        "id": "C",
+        "text": "72"
+      },
+      {
+        "id": "D",
+        "text": "98"
+      },
+      {
+        "id": "E",
+        "text": "101"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The pattern is not visible in the terms themselves — it lives one level deeper, in the differences between consecutive terms. Compute each difference: 6 – 5 = 1, 10 – 6 = 4, 19 – 10 = 9, 35 – 19 = 16, 60 – 35 = 25. Those differences are 1, 4, 9, 16, 25, which are the perfect squares 1², 2², 3², 4², 5². The next difference must be 6² = 36. Adding 36 to the last term gives 60 + 36 = 96. This pattern differs from the bank's other second-difference items: here the differences themselves are squares, not an arithmetic or geometric progression of differences.",
+    "steps": [
+      "Compute consecutive differences: 6–5=1 (1²), 10–6=4 (2²), 19–10=9 (3²), 35–19=16 (4²), 60–35=25 (5²).",
+      "Identify the pattern: each difference is the next perfect square.",
+      "Find the next difference: 6² = 36.",
+      "Add to the last term: 60 + 36 = 96."
+    ],
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "When a sequence grows at an accelerating rate, always compute first differences and then ask: are those differences arithmetic, geometric, or square numbers? Perfect square differences (1,4,9,16,25...) mean the next increment is the next perfect square."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — 96"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Check the differences between consecutive terms."
+        },
+        {
+          "type": "pattern",
+          "expression": "6 − 5 = 1\n10 − 6 = 4\n19 − 10 = 9\n35 − 19 = 16\n60 − 35 = 25"
+        },
+        {
+          "type": "paragraph",
+          "text": "The differences are:"
+        },
+        {
+          "type": "math",
+          "expression": "+1, +4, +9, +16, +25"
+        },
+        {
+          "type": "paragraph",
+          "text": "These are consecutive perfect squares:"
+        },
+        {
+          "type": "math",
+          "expression": "1², 2², 3², 4², 5²"
+        },
+        {
+          "type": "solution",
+          "expression": "6² = 36\n60 + 36 = 96"
+        },
+        {
+          "type": "answer",
+          "text": "96",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "When the differences are consecutive perfect squares, continue with the next square."
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "pattern-recognition",
+      "square-numbers",
+      "second-order-differences"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "5",
+        "6",
+        "10",
+        "19",
+        "35",
+        "60",
+        null
+      ],
+      "missingPosition": 7
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "5",
+          "6",
+          "10",
+          "19",
+          "35",
+          "60",
+          null
+        ],
+        "missingPosition": 7,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  },
+  {
+    "id": "num-0137",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Paired Equivalent Fractions Pattern",
+    "difficulty": "Medium",
+    "question": "Identify the next term in the series: 2/4, 1/2, 2/6, 1/3, 2/8, 1/4, 2/10, ___",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1/5"
+      },
+      {
+        "id": "B",
+        "text": "1/6"
+      },
+      {
+        "id": "C",
+        "text": "2/5"
+      },
+      {
+        "id": "D",
+        "text": "3/4"
+      },
+      {
+        "id": "E",
+        "text": "4/5"
+      }
+    ],
+    "correctOptionId": "A",
+    "explanation": "The series alternates between two forms: a fraction of the form 2/(2n) and its simplified equivalent 1/n. Reading the series in pairs: (2/4, 1/2), (2/6, 1/3), (2/8, 1/4), (2/10, ___). Within each pair, 2/(2n) simplifies to 1/n. The missing term is the simplified form of 2/10: divide numerator and denominator by 2 to get 1/5. Equivalently, the odd-position terms 2/4, 2/6, 2/8, 2/10 follow the pattern 2/(2n) with n increasing by 1 each time; the even-position terms 1/2, 1/3, 1/4, 1/5 are their simplified versions. The missing term at position 8 is 1/5.",
+    "steps": [
+      "Identify the pairing structure: (2/4, 1/2), (2/6, 1/3), (2/8, 1/4), (2/10, ___).",
+      "Within each pair, the second fraction is the simplified form of the first: 2/10 simplifies to 1/5.",
+      "The missing term is 1/5."
+    ],
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "In fraction series, look for pairs or groups. Write each fraction in reduced form: 2/4 = 1/2, 2/6 = 1/3, 2/8 = 1/4, 2/10 = 1/5. If every pair is (unreduced, reduced), the pattern is simply increasing denominators with alternating reduction. The answer is always the simplified form of the preceding term."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — 1/5"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The terms form pairs. In each pair, the second fraction is the simplified form of the first."
+        },
+        {
+          "type": "pattern",
+          "expression": "2/4 → 1/2\n2/6 → 1/3\n2/8 → 1/4\n2/10 → ___"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each second fraction is the simplified form of the first."
+        },
+        {
+          "type": "solution",
+          "expression": "2/10 ÷ 2 = 1/5"
+        },
+        {
+          "type": "answer",
+          "text": "1/5",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "When fractions appear in pairs, check whether the second term is the simplified form of the first."
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "fractions",
+      "equivalence",
+      "pattern-recognition"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "2/4",
+        "1/2",
+        "2/6",
+        "1/3",
+        "2/8",
+        "1/4",
+        "2/10",
+        null
+      ],
+      "missingPosition": 8
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "2/4",
+          "1/2",
+          "2/6",
+          "1/3",
+          "2/8",
+          "1/4",
+          "2/10",
+          null
+        ],
+        "missingPosition": 8,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  },
+  {
+    "id": "num-0147",
+    "examLevel": "Both",
+    "subject": "Numerical Reasoning",
+    "topic": "Number Series",
+    "subtopic": "Signed Fibonacci Variant — Subtraction Recurrence",
+    "difficulty": "Medium",
+    "question": "What is the next term in the series: 13, −21, 34, −55, 89, ___?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "−95"
+      },
+      {
+        "id": "B",
+        "text": "104"
+      },
+      {
+        "id": "C",
+        "text": "−130"
+      },
+      {
+        "id": "D",
+        "text": "−144"
+      },
+      {
+        "id": "E",
+        "text": "−109"
+      }
+    ],
+    "correctOptionId": "D",
+    "explanation": "The series follows the recurrence f(n) = f(n − 2) − f(n − 1). Verify: f(3) = 13 − (−21) = 34 ✓; f(4) = (−21) − 34 = −55 ✓; f(5) = 34 − (−55) = 89 ✓. Applying the rule to find f(6): f(6) = f(4) − f(5) = (−55) − 89 = −144. The pattern is related to the Fibonacci sequence but with alternating signs and a subtraction recurrence rather than addition. Note that the absolute values 13, 21, 34, 55, 89, 144 are consecutive Fibonacci numbers — the sign alternates because of the subtraction.",
+    "steps": [
+      "Identify the recurrence: f(n) = f(n−2) − f(n−1).",
+      "Verify: 13 − (−21) = 34 ✓; (−21) − 34 = −55 ✓; 34 − (−55) = 89 ✓.",
+      "Apply to find f(6): (−55) − 89 = −144.",
+      "The next term is −144."
+    ],
+    "tip": {
+      "label": "Pattern Recognition",
+      "text": "Series with alternating signs often hide a Fibonacci-type recurrence. Check whether f(n) = f(n−1) + f(n−2), f(n) = f(n−2) − f(n−1), or f(n) = −f(n−1) + f(n−2). Test your rule on at least three consecutive terms before using it to generate the next one."
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "D — −144"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The absolute values follow the Fibonacci pattern, while the signs alternate."
+        },
+        {
+          "type": "pattern",
+          "label": "Absolute values",
+          "expression": "13, 21, 34, 55, 89"
+        },
+        {
+          "type": "pattern",
+          "label": "Fibonacci relationships",
+          "expression": "13 + 21 = 34\n21 + 34 = 55\n34 + 55 = 89"
+        },
+        {
+          "type": "pattern",
+          "label": "Signs",
+          "expression": "+, −, +, −, +"
+        },
+        {
+          "type": "paragraph",
+          "text": "The next sign is negative."
+        },
+        {
+          "type": "solution",
+          "expression": "55 + 89 = 144\n−144"
+        },
+        {
+          "type": "answer",
+          "text": "−144",
+          "variant": "final"
+        },
+        {
+          "type": "rule",
+          "text": "When signs alternate, check whether the absolute values follow a familiar sequence such as Fibonacci."
+        }
+      ]
+    },
+    "tags": [
+      "number-series",
+      "fibonacci",
+      "alternating-signs",
+      "recurrence"
+    ],
+    "questionType": "number_sequence",
+    "questionFormat": "number_sequence",
+    "taskFormat": "number_sequence",
+    "numberSeries": {
+      "sequence": [
+        "13",
+        "−21",
+        "34",
+        "−55",
+        "89",
+        null
+      ],
+      "missingPosition": 6
+    },
+    "taskInstance": {
+      "kind": "number_series",
+      "payload": {
+        "taskDefinitionId": "number_series_default",
+        "instanceFormat": "compact",
+        "sequence": [
+          "13",
+          "−21",
+          "34",
+          "−55",
+          "89",
+          null
+        ],
+        "missingPosition": 6,
+        "itemPrompt": "Choose the missing term.",
+        "answerStructure": "sequence_missing_term",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    }
+  }
+]
