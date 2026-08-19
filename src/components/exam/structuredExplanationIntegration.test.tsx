@@ -366,7 +366,7 @@ describe('structured explanation Practice/Results integration V3', () => {
       expect(practiceRoots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
 
       if (question.id === 'num-0137') {
-        expect(practiceRoots.every((root) => within(root).getByRole('math', { name: 'Pattern: 2 ÷ 4 → 1 ÷ 2; 2 ÷ 6 → 1 ÷ 3; 2 ÷ 8 → 1 ÷ 4; 2 ÷ 10 → ___' }))).toBe(true);
+        expect(practiceRoots.every((root) => within(root).getByRole('math', { name: 'Pattern: 2/4 → 1/2; 2/6 → 1/3; 2/8 → 1/4; 2/10 → ___' }))).toBe(true);
       }
       if (question.id === 'num-0147') {
         expect(practiceRoots.every((root) => within(root).getByText('Pattern — Signs'))).toBe(true);

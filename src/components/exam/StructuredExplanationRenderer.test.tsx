@@ -103,8 +103,16 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     );
 
     const root = screen.getByTestId('structured-explanation');
-    expect(within(root).getByRole('math', { name: 'Pattern: 2 ÷ 4 → 1 ÷ 2; 2 ÷ 6 → 1 ÷ 3; 2 ÷ 8 → 1 ÷ 4; 2 ÷ 10 → ___' })).toBeInTheDocument();
-    expect(within(root).getByRole('math', { name: 'Apply the Pattern: 2 ÷ 10 ÷ 2 = 1 ÷ 5' })).toBeInTheDocument();
+    const fractionPattern = within(root).getByRole('math', { name: 'Pattern: 2/4 → 1/2; 2/6 → 1/3; 2/8 → 1/4; 2/10 → ___' });
+    const fractionSolution = within(root).getByRole('math', { name: 'Apply the Pattern: 2/10 ÷ 2 = 1/5' });
+    expect(fractionPattern).toBeInTheDocument();
+    expect(fractionSolution).toBeInTheDocument();
+    expect(fractionPattern).toHaveTextContent('2/4 → 1/2');
+    expect(fractionPattern).not.toHaveTextContent('2 ÷ 4');
+    expect(fractionPattern).toHaveTextContent('1/2');
+    expect(fractionPattern).not.toHaveTextContent('1 ÷ 2');
+    expect(fractionSolution).toHaveTextContent('2/10 ÷ 2 = 1/5');
+    expect(fractionSolution).not.toHaveTextContent('2 ÷ 10 ÷ 2 = 1 ÷ 5');
     expect(within(root).getByRole('math', { name: 'Pattern, Signs: +, −, +, −, +' })).toBeInTheDocument();
     expect(within(root).getByRole('math', { name: 'Apply the Pattern: 55 + 89 = 144; −144' })).toBeInTheDocument();
     expect(root.textContent).not.toContain('Step 1');

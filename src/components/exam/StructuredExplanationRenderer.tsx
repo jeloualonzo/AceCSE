@@ -14,7 +14,6 @@ interface StructuredExplanationRendererProps {
 function formatMathExpression(expression: string): string {
   return expression
     .replace(/\s*-\s*/g, ' − ')
-    .replace(/\s*\/\s*/g, ' ÷ ')
     .replace(/\s*\*\s*/g, ' × ')
     .replace(/\s*=\s*/g, ' = ')
     .replace(/\s+/g, ' ')
