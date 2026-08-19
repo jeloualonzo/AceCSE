@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Attempt, OptionId, Question } from '@/types';
+import { loadContentCatalog } from '@/data/questionBank';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { QuestionCard } from './QuestionCard';
 import { ResultsScreen } from './ResultsScreen';
@@ -408,6 +409,86 @@ describe('structured explanation Practice/Results integration V3', () => {
       );
       await user.click(screen.getByRole('button', { name: 'Expand question details' }));
       expect(screen.getByTestId('structured-explanation')).toBeInTheDocument();
+      cleanup();
+    }
+  });
+
+  it('renders the five approved Spelling explanations through Practice and Results without Number Series sections', async () => {
+    const user = userEvent.setup();
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+    const spellingIds = ['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015'];
+    const memoryAidIds = new Set(['cler-0012', 'cler-0013', 'cler-0015']);
+
+    for (const id of spellingIds) {
+      const question = catalog.questions.get(id)!;
+      const correctSpellingBlock = question.structuredExplanation?.blocks.find(
+        (block) => block.type === 'paragraph' && block.label === 'Correct Spelling'
+      );
+      if (!correctSpellingBlock || correctSpellingBlock.type !== 'paragraph') {
+        throw new Error(`${id}: Correct Spelling paragraph is missing`);
+      }
+
+      renderWithTheme(
+        <QuestionCard
+          question={question}
+          selectedOptionId={question.correctOptionId}
+          onSelectOption={vi.fn()}
+          instantFeedback
+        />
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
+      const practiceRoots = screen.getAllByTestId('structured-explanation');
+      expect(practiceRoots).toHaveLength(2);
+      expect(practiceRoots.every((root) => within(root).getByText('Correct Spelling'))).toBe(true);
+      expect(practiceRoots.every((root) => within(root).getByText(correctSpellingBlock!.text))).toBe(true);
+      expect(practiceRoots.every((root) => within(root).queryByText(/Pattern/) === null)).toBe(true);
+      expect(practiceRoots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
+      if (memoryAidIds.has(id)) {
+        expect(practiceRoots.every((root) => within(root).getByRole('button', { name: /Memory Aid/ }))).toBe(true);
+        expect(practiceRoots.every((root) => within(root).getByTestId('structured-alternative-content').hasAttribute('hidden'))).toBe(true);
+      } else {
+        expect(practiceRoots.every((root) => within(root).queryByRole('button', { name: /Memory Aid/ }) === null)).toBe(true);
+      }
+
+      cleanup();
+      const attempt: Attempt = {
+        id: `spelling-structured-results-${id}`,
+        mode: 'practice',
+        examLevel: 'Subprofessional',
+        questionCount: 1,
+        correctCount: 1,
+        answeredCount: 1,
+        unansweredCount: 0,
+        percentage: 100,
+        passed: false,
+        durationSeconds: 12,
+        startedAt: 1,
+        completedAt: 12_001,
+        subjects: [{ subject: 'Clerical Ability', total: 1, correct: 1, answered: 1, unanswered: 0, percentage: 100 }],
+        items: [{
+          questionId: question.id,
+          subject: question.subject,
+          topic: question.topic,
+          selected: question.correctOptionId,
+          correct: question.correctOptionId,
+          isCorrect: true,
+        }],
+      };
+
+      renderWithTheme(
+        <ResultsScreen
+          attempt={attempt}
+          questionIndex={new Map([[question.id, question]])}
+          onRetake={vi.fn()}
+          onReturnToDashboard={vi.fn()}
+        />
+      );
+      await user.click(screen.getByRole('button', { name: 'Expand question details' }));
+      const resultsRoot = screen.getByTestId('structured-explanation');
+      expect(within(resultsRoot).getByText('Correct Spelling')).toBeInTheDocument();
+      expect(within(resultsRoot).getByText(correctSpellingBlock!.text)).toBeInTheDocument();
+      expect(within(resultsRoot).queryByText(/Pattern/)).not.toBeInTheDocument();
       cleanup();
     }
   });

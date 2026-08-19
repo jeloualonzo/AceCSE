@@ -317,6 +317,32 @@
         "sourcePromptPreserved": true,
         "choiceEncoding": "direct_word_choices"
       }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — Personnel"
+        },
+        {
+          "type": "paragraph",
+          "label": "Correct Spelling",
+          "text": "Personnel"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The correct spelling has a double n and a single l."
+        },
+        {
+          "type": "rule",
+          "text": "Personnel means employees or staff. Personal means individual or private."
+        }
+      ]
     }
   },
   {

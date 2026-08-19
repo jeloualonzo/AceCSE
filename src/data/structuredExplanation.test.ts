@@ -6,7 +6,9 @@ const FROZEN_PILOT_IDS = ['num-0019', 'num-0020', 'num-0021'] as const;
 const BATCH2_IDS = ['num-0022', 'num-0023', 'num-0024'] as const;
 const BATCH3_IDS = ['num-0025', 'num-0026'] as const;
 const BATCH4_IDS = ['num-0108', 'num-0137', 'num-0147'] as const;
-const ALL_STRUCTURED_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS, ...BATCH4_IDS];
+const SPELLING_PILOT_IDS = ['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015'] as const;
+const ALL_NUMBER_SERIES_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS, ...BATCH4_IDS];
+const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...SPELLING_PILOT_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -172,7 +174,7 @@ describe('Number Series structured explanation Batch 4', () => {
     const structuredIds = [...catalog.questions.values()]
       .filter((question) => question.structuredExplanation)
       .map((question) => question.id);
-    expect([...structuredIds].sort()).toEqual([...ALL_STRUCTURED_IDS].sort());
+    expect([...structuredIds].sort()).toEqual([...ALL_NUMBER_SERIES_IDS].sort());
   });
 
   it('contains exactly the approved semantic content for num-0108, num-0137, and num-0147', async () => {
@@ -305,14 +307,14 @@ describe('Number Series structured explanation Batch 4', () => {
     expect(catalog.questions.get('num-0147')?.structuredExplanation).toBeTruthy();
   });
 
-  it('does not add structured explanations to other subject families', async () => {
+  it('does not add structured explanations outside the approved Number Series and Spelling pilots', async () => {
     const catalog = await loadContentCatalog(ALL_SUBJECTS);
     const structuredIds = [...catalog.questions.values()]
       .filter((question) => question.structuredExplanation)
       .map((question) => question.id);
 
     expect([...structuredIds].sort()).toEqual([...ALL_STRUCTURED_IDS].sort());
-    expect([...catalog.questions.values()].filter((question) => question.subject !== 'Numerical Reasoning' && question.structuredExplanation).length).toBe(0);
+    expect([...catalog.questions.values()].filter((question) => question.structuredExplanation && !ALL_STRUCTURED_IDS.some((id) => id === question.id)).length).toBe(0);
   });
 
   it('rejects malformed or unsupported structured blocks so callers can fall back safely', () => {

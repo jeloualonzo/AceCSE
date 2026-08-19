@@ -28,6 +28,14 @@ const expectedIds = [
 ];
 const expected = new Set(expectedIds);
 const actual = new Set(spelling.map((question) => question.id));
+const approvedStructuredIds = new Set(['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015']);
+const approvedCorrectSpellings = {
+  'cler-0055': 'Personnel',
+  'cler-0012': 'accommodate',
+  'cler-0013': 'separate',
+  'cler-0014': 'embarrass',
+  'cler-0015': 'privilege',
+};
 const forbidden = /AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|training rules|authored task/i;
 const expectedCorrect = {
   'cler-0012': 'D', 'cler-0013': 'E', 'cler-0014': 'D', 'cler-0015': 'D', 'cler-0016': 'A',
@@ -45,6 +53,8 @@ if (task.answerStructure !== 'word_selection') fail('spelling_default answerStru
 if (task.noErrorOptional !== true) fail('spelling_default must explicitly mark No Error as optional');
 if (!Array.isArray(task.examples) || task.examples.length < 1) fail('spelling_default must include an original shared example');
 if (pool.poolId !== 'clerical-spelling' || JSON.stringify(pool.entries.map((entry) => entry.questionId).sort()) !== JSON.stringify(expectedIds.slice().sort())) fail('clerical-spelling pool does not contain exactly the 14 Spelling IDs');
+const structuredIds = spelling.filter((question) => question.structuredExplanation).map((question) => question.id);
+if (structuredIds.length !== approvedStructuredIds.size || structuredIds.some((id) => !approvedStructuredIds.has(id))) fail('structuredExplanation must exist for exactly the five approved Spelling pilot IDs');
 
 for (const question of spelling) {
   const row = spellingRows.get(question.id);
@@ -72,6 +82,10 @@ for (const question of spelling) {
   if (new Set(question.choices.map((choice) => choice.text)).size !== question.choices.length) fail(`${question.id}: duplicate choice text creates an ambiguous Spelling item`);
   if (question.correctOptionId !== expectedCorrect[question.id]) fail(`${question.id}: correctOptionId does not match the verified Spelling answer map`);
   if (!question.choices.some((choice) => choice.id === question.correctOptionId)) fail(`${question.id}: correct answer is not among choices`);
+  if (approvedStructuredIds.has(question.id)) {
+    const correctSpellingBlock = question.structuredExplanation?.blocks?.find((block) => block.type === 'paragraph' && block.label === 'Correct Spelling');
+    if (correctSpellingBlock?.text !== approvedCorrectSpellings[question.id]) fail(`${question.id}: approved Correct Spelling block is missing or incorrect`);
+  }
   if (question.id === 'cler-0014') {
     const expectedChoices = ['embarass', 'embarras', 'embaras', 'embarrass', 'embarrased'];
     if (JSON.stringify(question.choices.map((choice) => choice.text)) !== JSON.stringify(expectedChoices)) fail('cler-0014: repaired choices do not match the verified single-answer set');
