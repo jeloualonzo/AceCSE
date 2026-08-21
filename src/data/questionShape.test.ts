@@ -1,6 +1,11 @@
 
 import { describe, expect, it } from 'vitest';
-import { hasContiguousChoiceIds, isValidQuestion } from '@/data/questionShape';
+import {
+  DIR_BY_SUBJECT,
+  SUBJECT_BY_DIR,
+  hasContiguousChoiceIds,
+  isValidQuestion,
+} from '@/data/questionShape';
 import type { Question } from '@/types';
 
 function base(overrides: Partial<Question> = {}): Question {
@@ -23,6 +28,25 @@ function base(overrides: Partial<Question> = {}): Question {
     ...overrides,
   };
 }
+
+describe('question-directory manifest mappings', () => {
+  it('keeps every canonical subject directory mapped for Vite manifest generation', () => {
+    expect(SUBJECT_BY_DIR).toEqual({
+      numerical: 'Numerical Reasoning',
+      analytical: 'Analytical Reasoning',
+      verbal: 'Verbal Ability',
+      clerical: 'Clerical Ability',
+      'general-information': 'General Information',
+    });
+    expect(DIR_BY_SUBJECT).toEqual({
+      'Numerical Reasoning': 'numerical',
+      'Analytical Reasoning': 'analytical',
+      'Verbal Ability': 'verbal',
+      'Clerical Ability': 'clerical',
+      'General Information': 'general-information',
+    });
+  });
+});
 
 describe('choice-set validation (4-/5-choice migration contract)', () => {
   it('accepts a legacy four-choice question (A–D)', () => {
