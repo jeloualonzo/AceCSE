@@ -3,6 +3,9 @@ import path from 'node:path';
 
 const root = process.cwd();
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+const stripInlineFormatting = (text) => text
+  .replace(/\*\*([^*]+)\*\*/g, '$1')
+  .replace(/\*([^*]+)\*/g, '$1');
 const fail = (message) => {
   console.error(`✗ ${message}`);
   process.exitCode = 1;
@@ -104,7 +107,7 @@ for (const question of spelling) {
     }
     const correctSpellingBlock = question.structuredExplanation?.blocks?.find((block) => block.type === 'paragraph' && block.label === 'Correct Spelling');
 
-    if (correctSpellingBlock?.text !== approvedCorrectSpellings[question.id]) fail(`${question.id}: approved Correct Spelling block is missing or incorrect`);
+    if (stripInlineFormatting(correctSpellingBlock?.text ?? '') !== approvedCorrectSpellings[question.id]) fail(`${question.id}: approved Correct Spelling block is missing or incorrect`);
     const memoryAidBlocks = question.structuredExplanation?.blocks?.filter((block) => block.type === 'paragraph' && block.label === 'Memory Aid') ?? [];
     const alternativeMemoryAids = question.structuredExplanation?.blocks?.filter((block) => block.type === 'alternative_solution' && block.title === 'Memory Aid') ?? [];
     if (['cler-0012', 'cler-0013', 'cler-0015'].includes(question.id)) {
@@ -116,7 +119,7 @@ for (const question of spelling) {
   if (question.id === 'cler-0014') {
     const expectedChoices = ['embarass', 'embarras', 'embaras', 'embarrass', 'embarrased'];
     if (JSON.stringify(question.choices.map((choice) => choice.text)) !== JSON.stringify(expectedChoices)) fail('cler-0014: repaired choices do not match the verified single-answer set');
-        if (question.structuredExplanation?.blocks?.some((block) => block.type === 'paragraph' && block.label === 'Correct Spelling' && block.text === 'embarrass') !== true) fail('cler-0014: structured explanation does not establish D as the correctly spelled word');
+    if (question.structuredExplanation?.blocks?.some((block) => block.type === 'paragraph' && block.label === 'Correct Spelling' && stripInlineFormatting(block.text) === 'embarrass') !== true) fail('cler-0014: structured explanation does not establish D as the correctly spelled word');
 
   }
   const visible = JSON.stringify({ question: question.question, choices: question.choices, explanation: question.explanation, steps: question.steps, distractors: question.distractorExplanations, tip: question.tip, reference: question.reference, taskInstance: question.taskInstance });

@@ -68,21 +68,21 @@
         },
         {
           "type": "correct_answer",
-          "text": "C — Personnel"
+          "text": "C — *Personnel*"
         },
         {
           "type": "paragraph",
           "label": "Correct Spelling",
-          "text": "Personnel"
+          "text": "*Personnel*"
         },
         {
           "type": "paragraph",
           "label": "What to Notice",
-          "text": "The correct spelling has a double n and a single l."
+          "text": "The correct spelling has **double n** and a **single l**."
         },
         {
           "type": "rule",
-          "text": "Personnel means employees or staff. Personal means individual or private."
+          "text": "*Personnel* means employees or staff, while *personal* means individual or private."
         }
       ]
     }
@@ -154,22 +154,32 @@
         },
         {
           "type": "correct_answer",
-          "text": "D — accommodate"
+          "text": "D — *accommodate*"
         },
         {
           "type": "paragraph",
           "label": "Correct Spelling",
-          "text": "accommodate"
+          "text": "*accommodate*"
         },
         {
           "type": "paragraph",
           "label": "What to Notice",
-          "text": "The word has double c and double m."
+          "text": "The word has **double c** and **double m**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Double c",
+          "text": "*access*, *accident*, *occur*, *occasion*, *occurrence*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Double m",
+          "text": "*common*, *committee*, *immediate*, *recommend*, *commitment*"
         },
         {
           "type": "paragraph",
           "label": "Memory Aid",
-          "text": "Accommodate has 2 Cs and 2 Ms."
+          "text": "Accommodate has **double c** and **double m**."
         }
       ]
     }
@@ -242,22 +252,22 @@
         },
         {
           "type": "correct_answer",
-          "text": "E — seperate"
+          "text": "E — *seperate*"
         },
         {
           "type": "paragraph",
           "label": "Correct Spelling",
-          "text": "separate"
+          "text": "*separate*"
         },
         {
           "type": "paragraph",
           "label": "What to Notice",
-          "text": "The correct spelling uses a, not e, in the middle: separate."
+          "text": "The correct spelling uses **a**, not **e**, after p:\n\n*sep-a-rate*"
         },
         {
           "type": "paragraph",
           "label": "Memory Aid",
-          "text": "There is a RAT in separate: sepa-RAT-e."
+          "text": "There is a **RAT** in sepa-**RAT**-e."
         }
       ]
     }
@@ -329,17 +339,17 @@
         },
         {
           "type": "correct_answer",
-          "text": "D — embarrass"
+          "text": "D — *embarrass*"
         },
         {
           "type": "paragraph",
           "label": "Correct Spelling",
-          "text": "embarrass"
+          "text": "*embarrass*"
         },
         {
           "type": "paragraph",
           "label": "What to Notice",
-          "text": "The word has double r and double s."
+          "text": "The word has **double r** and **double s**."
         }
       ]
     }
@@ -412,22 +422,32 @@
         },
         {
           "type": "correct_answer",
-          "text": "D — priviledge"
+          "text": "D — *priviledge*"
         },
         {
           "type": "paragraph",
           "label": "Correct Spelling",
-          "text": "privilege"
+          "text": "*privilege*"
         },
         {
           "type": "paragraph",
           "label": "What to Notice",
-          "text": "The correct ending is -lege, not -ledge."
+          "text": "The correct ending is **~lege**, not **~ledge**."
+        },
+        {
+          "type": "paragraph",
+          "label": "~lege",
+          "text": "*privilege*, *college*, *sacrilege*, *allege*"
+        },
+        {
+          "type": "paragraph",
+          "label": "~ledge",
+          "text": "*knowledge*, *acknowledge*, *ledge*, *pledge*, *sledge*"
         },
         {
           "type": "paragraph",
           "label": "Memory Aid",
-          "text": "Privi-LEGE."
+          "text": "Privi-**LEGE**."
         }
       ]
     }

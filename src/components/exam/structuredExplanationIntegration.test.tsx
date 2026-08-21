@@ -9,6 +9,10 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import { QuestionCard } from './QuestionCard';
 import { ResultsScreen } from './ResultsScreen';
 
+const stripInlineFormatting = (text: string) => text
+  .replace(/\*\*([^*]+)\*\*/g, '$1')
+  .replace(/\*([^*]+)\*/g, '$1');
+
 const pilotQuestion: Question = {
   id: 'num-0019',
   examLevel: 'Both',
@@ -445,14 +449,15 @@ describe('structured explanation Practice/Results integration V3', () => {
       const practiceRoots = screen.getAllByTestId('structured-explanation');
       expect(practiceRoots).toHaveLength(2);
       expect(practiceRoots.every((root) => within(root).getByText('Correct Spelling'))).toBe(true);
-      expect(practiceRoots.every((root) => within(root).getByText(correctSpellingBlock!.text))).toBe(true);
+      expect(practiceRoots.every((root) => root.textContent?.includes(stripInlineFormatting(correctSpellingBlock!.text)))).toBe(true);
+      expect(practiceRoots.every((root) => root.querySelector('strong, em') !== null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Pattern/) === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByRole('button', { name: /Memory Aid/ }) === null)).toBe(true);
       if (memoryAidIds.has(id)) {
         if (memoryAidText === undefined) throw new Error(`${id}: visible Memory Aid paragraph is missing`);
         expect(practiceRoots.every((root) => within(root).getByText('Memory Aid'))).toBe(true);
-        expect(practiceRoots.every((root) => within(root).getByText(memoryAidText))).toBe(true);
+        expect(practiceRoots.every((root) => root.textContent?.includes(stripInlineFormatting(memoryAidText)))).toBe(true);
       } else {
         expect(memoryAidBlock).toBeUndefined();
       }
@@ -493,13 +498,14 @@ describe('structured explanation Practice/Results integration V3', () => {
       await user.click(screen.getByRole('button', { name: 'Expand question details' }));
       const resultsRoot = screen.getByTestId('structured-explanation');
       expect(within(resultsRoot).getByText('Correct Spelling')).toBeInTheDocument();
-      expect(within(resultsRoot).getByText(correctSpellingBlock!.text)).toBeInTheDocument();
+      expect(resultsRoot.textContent).toContain(stripInlineFormatting(correctSpellingBlock!.text));
+      expect(resultsRoot.querySelector('strong, em')).not.toBeNull();
       expect(within(resultsRoot).queryByText(/Pattern/)).not.toBeInTheDocument();
       expect(within(resultsRoot).queryByRole('button', { name: /Memory Aid/ })).toBeNull();
       if (memoryAidIds.has(id)) {
         expect(within(resultsRoot).getByText('Memory Aid')).toBeInTheDocument();
         expect(memoryAidText).toBeDefined();
-        expect(within(resultsRoot).getByText(memoryAidText!)).toBeInTheDocument();
+        expect(resultsRoot.textContent).toContain(stripInlineFormatting(memoryAidText!));
       }
       cleanup();
     }

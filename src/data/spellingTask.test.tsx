@@ -64,16 +64,16 @@ describe('Spelling task architecture', () => {
     expect(repaired?.choices.map((choice) => choice.text)).toEqual(['embarass', 'embarras', 'embaras', 'embarrass', 'embarrased']);
     expect(repaired?.correctOptionId).toBe('D');
     expect(repaired?.structuredExplanation?.blocks).toEqual(expect.arrayContaining([
-      { type: 'correct_answer', text: 'D — embarrass' },
-      { type: 'paragraph', label: 'Correct Spelling', text: 'embarrass' },
+      { type: 'correct_answer', text: 'D — *embarrass*' },
+      { type: 'paragraph', label: 'Correct Spelling', text: '*embarrass*' },
     ]));
     const accommodate = catalog.getQuestion('cler-0012');
     expect(accommodate?.choices.map((choice) => choice.text)).toEqual(['accomodate', 'acommodate', 'acomodate', 'accommodate', 'accommadate']);
     expect(accommodate?.correctOptionId).toBe('D');
     expect(accommodate?.structuredExplanation?.blocks).toEqual(expect.arrayContaining([
-      { type: 'correct_answer', text: 'D — accommodate' },
-      { type: 'paragraph', label: 'Correct Spelling', text: 'accommodate' },
-      { type: 'paragraph', label: 'Memory Aid', text: 'Accommodate has 2 Cs and 2 Ms.' },
+      { type: 'correct_answer', text: 'D — *accommodate*' },
+      { type: 'paragraph', label: 'Correct Spelling', text: '*accommodate*' },
+      { type: 'paragraph', label: 'Memory Aid', text: 'Accommodate has **double c** and **double m**.' },
     ]));
 
     expect(JSON.stringify(spelling)).not.toMatch(/AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|training rules|authored task/i);

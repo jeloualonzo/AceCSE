@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import type {
   StructuredExplanation,
   StructuredExplanationAlternativeSolutionBlock,
@@ -9,6 +9,20 @@ import type {
 interface StructuredExplanationRendererProps {
   explanation: StructuredExplanation;
   theme?: 'dark' | 'light';
+}
+
+function renderInlineText(text: string): React.ReactNode {
+  const tokens = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).filter(Boolean);
+  return tokens.map((token, index) => {
+    const key = `${token}-${index}`;
+    if (token.startsWith('**') && token.endsWith('**')) {
+      return <strong key={key}>{token.slice(2, -2)}</strong>;
+    }
+    if (token.startsWith('*') && token.endsWith('*')) {
+      return <em key={key}>{token.slice(1, -1)}</em>;
+    }
+    return <Fragment key={key}>{token}</Fragment>;
+  });
 }
 
 function formatMathExpression(expression: string): string {
@@ -95,14 +109,14 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
     case 'correct_answer':
       return (
         <p key={key} className={`font-semibold ${dark ? 'text-emerald-300' : 'text-emerald-800'}`}>
-          Correct Answer: <span className="font-mono font-bold">{block.text}</span>
+          Correct Answer: <span className="font-mono font-bold">{renderInlineText(block.text)}</span>
         </p>
       );
     case 'paragraph':
       return (
         <div key={key} className="space-y-1">
           {block.label && <SectionLabel dark={dark}>{block.label}</SectionLabel>}
-          <p className={`leading-relaxed ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{block.text}</p>
+          <p className={`leading-relaxed ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineText(block.text)}</p>
         </div>
       );
     case 'pattern':
@@ -131,20 +145,20 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       return (
         <div key={key} className="space-y-1">
           <SectionLabel dark={dark}>Rule</SectionLabel>
-          <p className={`leading-relaxed ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{block.text}</p>
+          <p className={`leading-relaxed ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineText(block.text)}</p>
         </div>
       );
     case 'common_trap':
       return (
         <div key={key} className="space-y-1">
           <SectionLabel dark={dark}>Common Trap</SectionLabel>
-          <p className={`leading-relaxed ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{block.text}</p>
+          <p className={`leading-relaxed ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineText(block.text)}</p>
         </div>
       );
     case 'answer':
       return (
         <p key={key} className={`font-semibold text-base ${dark ? 'text-emerald-300' : 'text-emerald-800'}`}>
-          Answer: <span className="font-mono font-bold">{block.text}</span>
+          Answer: <span className="font-mono font-bold">{renderInlineText(block.text)}</span>
         </p>
       );
     case 'step':

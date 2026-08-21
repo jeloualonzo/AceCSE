@@ -54,6 +54,29 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(container.querySelectorAll('[data-testid="structured-explanation"]')).toHaveLength(1);
   });
 
+  it('renders reusable inline bold and italic markers without exposing raw markup', () => {
+    render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [
+            { type: 'paragraph', label: 'What to Notice', text: 'Use **double c** with *access*.' },
+            { type: 'rule', text: '*Personnel* means employees, not *personal* belongings.' },
+          ],
+        }}
+        theme="light"
+      />
+    );
+
+    const root = screen.getByTestId('structured-explanation');
+    expect(root.querySelectorAll('strong')).toHaveLength(1);
+    expect(root.querySelector('strong')).toHaveTextContent('double c');
+    expect(root.querySelectorAll('em')).toHaveLength(3);
+    expect(root.querySelector('em')).toHaveTextContent('access');
+    expect(root.textContent).toContain('Use double c with access.');
+    expect(root.textContent).not.toContain('**');
+    expect(root.textContent).not.toContain('*access*');
+  });
+
   it('keeps long expressions inside a horizontally safe scroll container', () => {
     const { container } = render(
       <StructuredExplanationRenderer
