@@ -7,6 +7,7 @@ import type { Question } from '@/types';
 import { loadContentCatalog } from '@/data/questionBank';
 import { getSharedTaskDefinition } from '@/data/taxonomy';
 import { buildSimulationSession, buildSpellingPracticeSession } from '@/lib/examEngine';
+import { SectionRenderer } from '@/components/exam/booklet/SectionRenderer';
 import { QuestionRenderer } from '@/components/exam/booklet/QuestionRenderer';
 import { SpellingInstanceRenderer } from '@/components/exam/SpellingInstanceRenderer';
 
@@ -29,6 +30,57 @@ describe('Spelling task architecture', () => {
     expect(definition?.noErrorOptional).toBe(true);
     expect(definition?.examples).toHaveLength(1);
     expect(JSON.stringify(definition)).not.toMatch(/AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|training rules|authored task/i);
+  });
+
+  it('uses the approved shared direction and keeps the example answer below the choices', () => {
+    const definition = getSharedTaskDefinition('spelling_default');
+    const examples = definition?.examples as Array<{ input?: string; result?: string }>;
+    expect(definition?.directions).toBe('For each item, choose the letter of the word that matches the instruction. Choose the correctly spelled word when asked for the correct spelling, or choose the word containing the error when asked for the misspelled word. An item may include E. No Error when all listed words are correctly spelled.');
+    expect(examples).toEqual([{
+      input: 'A. receive\\nB. separate\\nC. accomodate\\nD. rhythm\\nE. No Error',
+      result: '**Answer:** C — *accomodate* is misspelled; the other four words are correctly spelled.',
+    }]);
+
+    const question: Question = {
+      id: 'spelling-shared-example',
+      examLevel: 'Subprofessional',
+      subject: 'Clerical Ability',
+      topic: 'Spelling',
+      questionType: 'misspelled_word',
+      questionFormat: 'misspelled_word',
+      taskFormat: 'shared_spelling_task',
+      difficulty: 'Easy',
+      question: 'Which word is misspelled?',
+      choices: [
+        { id: 'A', text: 'receive' },
+        { id: 'B', text: 'separate' },
+        { id: 'C', text: 'accomodate' },
+        { id: 'D', text: 'rhythm' },
+        { id: 'E', text: 'No Error' },
+      ],
+      correctOptionId: 'C',
+      explanation: 'The example answer is rendered in the shared task context.',
+      tags: ['spelling'],
+    };
+    render(
+      <SectionRenderer
+        section={{
+          sectionId: 'Clerical Ability',
+          nodes: [{ kind: 'pool', poolId: 'clerical-spelling', questionType: 'spelling', taskFormat: 'shared_spelling_task', questionIds: [question.id] }],
+        }}
+        getGroup={() => undefined}
+        questionIndex={new Map([[question.id, question]])}
+        questionNumbers={new Map([[question.id, 1]])}
+        answers={{}}
+        onSelectOption={() => undefined}
+      />
+    );
+
+    const exampleBlock = screen.getByText('Example').parentElement!;
+    expect(exampleBlock.textContent).toMatch(/E\. No Error\s+Answer:/);
+    expect(exampleBlock.querySelector('strong')).toHaveTextContent('Answer:');
+    expect(exampleBlock.querySelector('em')).toHaveTextContent('accomodate');
+    expect(exampleBlock.textContent).not.toContain('E. No Error —');
   });
 
   it('builds one canonical Spelling practice block with all 14 existing IDs', async () => {

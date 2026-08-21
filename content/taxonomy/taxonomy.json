@@ -240,7 +240,7 @@
       "examples": [
         {
           "input": "A. receive\\nB. separate\\nC. accomodate\\nD. rhythm\\nE. No Error",
-          "result": "C — accomodate is misspelled; the other four words are correctly spelled."
+            "result": "**Answer:** C — *accomodate* is misspelled; the other four words are correctly spelled."
         }
       ],
       "provenance": "Training representation based on the current question bank and observed exam behavior; not official CSC wording or a reproduced official test form."

@@ -114,7 +114,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
                 .map((example) => [example.input, example.result]
                   .filter((part): part is string => typeof part === 'string')
                   .map((part) => normalizeIntendedNewlines(part, 'decode-escaped-newlines'))
-                  .join(' — '))
+                  .join(node.taskFormat === 'shared_spelling_task' ? '\n\n' : ' — '))
                 .filter(Boolean)
                 .join('\n\n')
             : undefined;

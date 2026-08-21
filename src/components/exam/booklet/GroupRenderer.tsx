@@ -1,5 +1,6 @@
 import React from 'react';
 import type { ActiveFocus, NormalizedQuestionGroup, OptionId, Question } from '@/types';
+import { renderInlineRichText } from '@/lib/inlineRichText';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
 import { QuestionRenderer } from './QuestionRenderer';
 
@@ -81,13 +82,13 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
             <h3 className="text-sm font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">{taskContext.title}</h3>
           )}
           {taskContext?.directions && (
-            <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">{taskContext.directions}</p>
+            <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">{renderInlineRichText(taskContext.directions)}</p>
           )}
           {taskContext?.example && (
             <div className="space-y-1">
               <div className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Example</div>
               <p className="text-sm text-slate-600 dark:text-slate-400 whitespace-pre-line">
-                {taskContext.example}
+                {renderInlineRichText(taskContext.example)}
               </p>
             </div>
           )}
