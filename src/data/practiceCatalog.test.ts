@@ -16,7 +16,7 @@ describe('Practice item-set visibility', () => {
     expect(visibleIds.has('grp-spelling-01')).toBe(false);
     expect(visibleIds.has('grp-spelling-02')).toBe(false);
     expect(isCanonicalPoolBackedGroup(QUESTION_MANIFEST.groups.find((group) => group.id === 'grp-spelling-01')!)).toBe(true);
-    expect(getCanonicalPool('clerical-spelling')?.entries).toHaveLength(14);
+    expect(getCanonicalPool('clerical-spelling')?.entries).toHaveLength(12);
     expect(visibleIds.has('grp-rc-public-trust')).toBe(true);
   });
 

@@ -117,7 +117,7 @@ describe('Content Bank / QA Practice page', () => {
 
     render(<ContentBankPage />);
     expect(screen.getByTestId('qa-count-filing-alphabetizing')).toHaveTextContent('26 questions');
-    expect(screen.getByTestId('qa-count-spelling')).toHaveTextContent('14 questions');
+    expect(screen.getByTestId('qa-count-spelling')).toHaveTextContent('12 questions');
     expect(screen.getByTestId('qa-count-number-series')).toHaveTextContent('11 questions');
     expect(screen.getByTestId('qa-count-grammar-sentence-correction')).toHaveTextContent('4 questions');
   });

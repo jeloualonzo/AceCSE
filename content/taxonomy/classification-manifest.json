@@ -1,7 +1,7 @@
 {
   "version": 1,
   "taxonomyVersion": 1,
-  "questionCount": 688,
+  "questionCount": 686,
   "questions": [
     {
       "questionId": "ana-0079",
@@ -2992,24 +2992,6 @@
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },
     {
-      "questionId": "cler-0034",
-      "subject": "Clerical Ability",
-      "examLevel": "Subprofessional",
-      "topic": "Spelling",
-      "subtopic": "Suffix Vowel Error — -ance",
-      "questionType": "correctly_spelled_word",
-      "questionFormat": "correctly_spelled_word",
-      "taskFormat": "shared_spelling_task",
-      "storageMode": "pool",
-      "poolId": "clerical-spelling",
-      "fixedGroupId": null,
-      "embeddedStimulus": false,
-      "sharedDirectionsRef": "spelling_default",
-      "sourceFile": "content/questions/clerical/core.json",
-      "confidence": "high",
-      "notes": "No Error is not added unless present in authored options."
-    },
-    {
       "questionId": "cler-0035",
       "subject": "Clerical Ability",
       "examLevel": "Subprofessional",
@@ -3044,24 +3026,6 @@
       "sourceFile": "content/questions/clerical/core.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
-    },
-    {
-      "questionId": "seed-cler-002",
-      "subject": "Clerical Ability",
-      "examLevel": "Subprofessional",
-      "topic": "Spelling",
-      "subtopic": "Double Consonants — CC and MM",
-      "questionType": "correctly_spelled_word",
-      "questionFormat": "correctly_spelled_word",
-      "taskFormat": "shared_spelling_task",
-      "storageMode": "pool",
-      "poolId": "clerical-spelling",
-      "fixedGroupId": null,
-      "embeddedStimulus": false,
-      "sharedDirectionsRef": "spelling_default",
-      "sourceFile": "content/questions/clerical/core.json",
-      "confidence": "high",
-      "notes": "No Error is not added unless present in authored options."
     },
     {
       "questionId": "seed-cler-003",

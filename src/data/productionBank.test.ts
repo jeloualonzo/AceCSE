@@ -24,7 +24,7 @@ const cleanedSpellingIds = new Set([
 describe('production bank — five-choice migration', () => {
   it('every production question has exactly five contiguous choices and a valid key', async () => {
     const catalog = await loadContentCatalog(allSubjects);
-    expect(catalog.questions.size).toBeGreaterThanOrEqual(688);
+    expect(catalog.questions.size).toBeGreaterThanOrEqual(686);
     for (const q of catalog.questions.values()) {
       expect(q.choices).toHaveLength(5);
       expect(q.choices.map((c) => c.id)).toEqual(['A', 'B', 'C', 'D', 'E']);
@@ -78,12 +78,12 @@ describe('production bank — five-choice migration', () => {
 });
 
 describe('production bank — explicit item sets', () => {
-  it('loads 33 production groups covering 217 questions, all members resolvable', async () => {
+  it('loads 33 production groups covering 215 questions, all members resolvable', async () => {
     const catalog = await loadContentCatalog(allSubjects);
     const explicit = [...catalog.groups.values()].filter((g) => !g.isImplicitSingleton);
     expect(explicit.length).toBe(33);
     const memberIds = new Set(explicit.flatMap((g) => g.questionIds));
-    expect(memberIds.size).toBe(217);
+    expect(memberIds.size).toBe(215);
     for (const g of explicit) {
       expect(g.questionIds.length).toBeGreaterThanOrEqual(2);
       expect(g.directions?.length ?? 0).toBeGreaterThanOrEqual(20);

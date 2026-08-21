@@ -29,10 +29,10 @@ const fixedIds = [
 ];
 
 describe('canonical taxonomy', () => {
-  it('classifies exactly 688 unique questions', () => {
+  it('classifies exactly 686 unique questions', () => {
     const records = allClassifications();
-    expect(records).toHaveLength(688);
-    expect(new Set(records.map((record) => record.questionId)).size).toBe(688);
+    expect(records).toHaveLength(686);
+    expect(new Set(records.map((record) => record.questionId)).size).toBe(686);
     expect(records.every((record) => record.sourceFile.startsWith('content/questions/'))).toBe(true);
   });
 

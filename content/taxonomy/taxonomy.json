@@ -1056,7 +1056,7 @@
       ],
       "selectionPolicy": "without-replacement",
       "contiguity": "one contiguous task block per selected pool",
-      "questionCount": 14,
+      "questionCount": 12,
       "indexPath": "content/taxonomy/pools/clerical-spelling.json"
     },
     {

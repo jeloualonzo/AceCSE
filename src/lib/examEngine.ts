@@ -726,7 +726,7 @@ export async function buildPracticeSession(
 
 /**
  * Build a Spelling task-format practice session from the canonical Spelling pool.
- * All 14 existing Spelling questions remain individually answerable; the session
+ * All 12 active Spelling questions remain individually answerable; the session
  * carries one semantic Spelling block so shared directions are not represented
  * as historical Set 1/2 boundaries.
  */

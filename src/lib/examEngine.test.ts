@@ -432,7 +432,7 @@ describe('group integrity under variable allocation', () => {
 describe('production and fixture verification', () => {
   it('loads the production bank and generates a valid simulation from it', async () => {
     const catalog = await loadContentCatalog(allSubjects);
-    expect(catalog.questions.size).toBeGreaterThanOrEqual(688);
+    expect(catalog.questions.size).toBeGreaterThanOrEqual(686);
     const session = await buildSimulationSession('Professional', 20, { seed: 'production', catalog });
     expect(session.questionIds).toHaveLength(20);
     expect(new Set(session.questionIds).size).toBe(20);

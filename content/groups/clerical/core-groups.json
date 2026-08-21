@@ -121,12 +121,10 @@
     "directions": "DIRECTIONS: Each item tests the standard spelling of words commonly used in office and government correspondence. Read the item carefully — it will ask either for the correctly spelled word or for the misspelled one.",
     "questionIds": [
       "cler-0019",
-      "cler-0034",
       "cler-0046",
       "cler-0047",
       "cler-0048",
-      "cler-0055",
-      "seed-cler-002"
+      "cler-0055"
     ],
     "selectionPolicy": "splittable",
     "orderPolicy": "shuffle-questions",

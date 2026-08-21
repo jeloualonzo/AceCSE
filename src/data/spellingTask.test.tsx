@@ -15,7 +15,7 @@ afterEach(() => cleanup());
 
 const spellingIds = [
   'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015', 'cler-0016', 'cler-0017', 'cler-0018',
-  'cler-0019', 'cler-0034', 'seed-cler-002', 'cler-0046', 'cler-0047', 'cler-0048', 'cler-0055',
+  'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048', 'cler-0055',
 ];
 
 const subjects = ['Clerical Ability'] as const;
@@ -83,10 +83,10 @@ describe('Spelling task architecture', () => {
     expect(exampleBlock.textContent).not.toContain('E. No Error —');
   });
 
-  it('builds one canonical Spelling practice block with all 14 existing IDs', async () => {
+  it('builds one canonical Spelling practice block with all 12 active IDs', async () => {
     const session = await buildSpellingPracticeSession('Subprofessional');
-    expect(session.questionIds).toHaveLength(14);
-    expect(new Set(session.questionIds).size).toBe(14);
+    expect(session.questionIds).toHaveLength(12);
+    expect(new Set(session.questionIds).size).toBe(12);
     expect(session.config.taskFormat).toBe('shared_spelling_task');
     expect(session.items).toEqual([
       expect.objectContaining({ kind: 'pool', poolId: 'clerical-spelling', taskFormat: 'shared_spelling_task', questionIds: session.questionIds }),
@@ -97,8 +97,8 @@ describe('Spelling task architecture', () => {
   it('keeps all authored words, variants, answer keys, and compact metadata intact', async () => {
     const catalog = await loadContentCatalog(subjects);
     const spelling = catalog.getQuestionsForSubject('Clerical Ability', 'Subprofessional').filter((question) => question.topic === 'Spelling');
-    expect(spelling).toHaveLength(14);
-    expect(spelling.filter((question) => question.taskInstance?.payload?.instanceFormat === 'compact')).toHaveLength(14);
+    expect(spelling).toHaveLength(12);
+    expect(spelling.filter((question) => question.taskInstance?.payload?.instanceFormat === 'compact')).toHaveLength(12);
     expect(spelling.filter((question) => question.taskInstance?.payload?.instanceFormat === 'legacy_full_prompt')).toHaveLength(0);
     expect(new Set(spelling.map((question) => question.id))).toEqual(new Set(spellingIds));
     for (const question of spelling) {

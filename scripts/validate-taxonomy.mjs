@@ -55,9 +55,9 @@ const missingManifestIds = questionIds.filter((id) => !manifestSet.has(id));
 const extraManifestIds = manifestIds.filter((id) => !questionSet.has(id));
 
 if (taxonomy.version !== 1) fail('taxonomy version must be 1');
-if (manifest.questionCount !== 688) fail(`manifest.questionCount must be 688, got ${manifest.questionCount}`);
-if (questions.size !== 688 || questionIds.length !== 688) fail(`question source must contain 688 records, got ${questionIds.length} records / ${questions.size} unique`);
-if (classifications.length !== 688) fail(`manifest must contain 688 rows, got ${classifications.length}`);
+if (manifest.questionCount !== 686) fail(`manifest.questionCount must be 686, got ${manifest.questionCount}`);
+if (questions.size !== 686 || questionIds.length !== 686) fail(`question source must contain 686 records, got ${questionIds.length} records / ${questions.size} unique`);
+if (classifications.length !== 686) fail(`manifest must contain 686 rows, got ${classifications.length}`);
 if (duplicateManifestIds.length) fail(`duplicate manifest IDs: ${duplicateManifestIds.join(', ')}`);
 if (missingManifestIds.length) fail(`missing manifest IDs: ${missingManifestIds.join(', ')}`);
 if (extraManifestIds.length) fail(`manifest IDs not in question source: ${extraManifestIds.join(', ')}`);

@@ -253,7 +253,7 @@ describe('structured-only Spelling admission exception', () => {
   });
 
   it('keeps the exception scoped to the approved id, subject, and topic', () => {
-    expect(isValidQuestion(structuredOnlySpelling({ id: 'cler-0034' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlySpelling({ id: 'cler-not-canonical' }))).toBe(false);
     expect(isValidQuestion(structuredOnlySpelling({ subject: 'Verbal Ability' }))).toBe(false);
     expect(isValidQuestion(structuredOnlySpelling({ topic: 'Grammar' }))).toBe(false);
   });

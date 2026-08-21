@@ -63,12 +63,6 @@
       "taskFormat": "shared_spelling_task"
     },
     {
-      "questionId": "cler-0034",
-      "questionType": "correctly_spelled_word",
-      "questionFormat": "correctly_spelled_word",
-      "taskFormat": "shared_spelling_task"
-    },
-    {
       "questionId": "cler-0046",
       "questionType": "correctly_spelled_word",
       "questionFormat": "correctly_spelled_word",
@@ -88,12 +82,6 @@
     },
     {
       "questionId": "cler-0055",
-      "questionType": "correctly_spelled_word",
-      "questionFormat": "correctly_spelled_word",
-      "taskFormat": "shared_spelling_task"
-    },
-    {
-      "questionId": "seed-cler-002",
       "questionType": "correctly_spelled_word",
       "questionFormat": "correctly_spelled_word",
       "taskFormat": "shared_spelling_task"
