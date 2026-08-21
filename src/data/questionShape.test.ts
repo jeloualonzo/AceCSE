@@ -67,25 +67,31 @@ describe('choice-set validation (4-/5-choice migration contract)', () => {
     expect(isValidQuestion(q)).toBe(true);
   });
 
-  it('accepts a canonical structured-only Spelling question without legacy explanation', () => {
-    const q = {
-      ...base({
-        id: 'cler-0012',
-        subject: 'Clerical Ability',
-        topic: 'Spelling',
-        choices: [
-          { id: 'A' as const, text: 'accomodate' },
-          { id: 'B' as const, text: 'acommodate' },
-          { id: 'C' as const, text: 'acomodate' },
-          { id: 'D' as const, text: 'accommodate' },
-          { id: 'E' as const, text: 'accommadate' },
-        ],
-        correctOptionId: 'D',
-        structuredExplanation: { blocks: [{ type: 'paragraph' as const, label: 'Correct Spelling', text: 'accommodate' }] },
-      }),
-    } as Record<string, unknown>;
-    delete q.explanation;
-    expect(isValidQuestion(q)).toBe(true);
+  it('accepts every canonical structured-only Spelling ID without legacy explanation', () => {
+    const canonicalIds = [
+      'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
+      'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
+    ];
+    for (const id of canonicalIds) {
+      const q = {
+        ...base({
+          id,
+          subject: 'Clerical Ability',
+          topic: 'Spelling',
+          choices: [
+            { id: 'A' as const, text: 'accomodate' },
+            { id: 'B' as const, text: 'acommodate' },
+            { id: 'C' as const, text: 'acomodate' },
+            { id: 'D' as const, text: 'accommodate' },
+            { id: 'E' as const, text: 'accommadate' },
+          ],
+          correctOptionId: 'D',
+          structuredExplanation: { blocks: [{ type: 'paragraph' as const, label: 'Correct Spelling', text: 'accommodate' }] },
+        }),
+      } as Record<string, unknown>;
+      delete q.explanation;
+      expect(isValidQuestion(q), id).toBe(true);
+    }
   });
 
   it('rejects a structured-only question without explanation outside the canonical Spelling IDs', () => {

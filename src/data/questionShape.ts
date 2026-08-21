@@ -18,6 +18,7 @@ export const MAX_CHOICES = 5;
 
 const CANONICAL_STRUCTURED_SPELLING_IDS = new Set([
   'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
+  'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
 ]);
 
 /**

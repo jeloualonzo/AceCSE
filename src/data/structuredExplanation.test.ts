@@ -6,7 +6,10 @@ const FROZEN_PILOT_IDS = ['num-0019', 'num-0020', 'num-0021'] as const;
 const BATCH2_IDS = ['num-0022', 'num-0023', 'num-0024'] as const;
 const BATCH3_IDS = ['num-0025', 'num-0026'] as const;
 const BATCH4_IDS = ['num-0108', 'num-0137', 'num-0147'] as const;
-const SPELLING_PILOT_IDS = ['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015'] as const;
+const SPELLING_PILOT_IDS = [
+  'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
+  'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
+] as const;
 const ALL_NUMBER_SERIES_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS, ...BATCH4_IDS];
 const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...SPELLING_PILOT_IDS];
 const ALL_SUBJECTS = [

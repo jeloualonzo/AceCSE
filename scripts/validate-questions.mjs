@@ -13,10 +13,10 @@
  *   - explanation is real teaching prose (≥ 100 chars)
  *   - worked steps (≥ 2) for computational items (Numerical; non-analogy Analytical)
  *   - distractor explanations for all three incorrect options (≥ 20 chars), except
- *     the eleven frozen Number Series records and five canonical Spelling pilot
+ *     the eleven frozen Number Series records and twelve canonical Spelling
  *     records whose obsolete fields were removed
- *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the five canonical
- *     Spelling pilot records that use structuredExplanation as their sole aid
+ *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the twelve canonical
+ *     Spelling records that use structuredExplanation as their sole aid
  *
  * Also prints supply, difficulty, and answer-letter reports.
  */
@@ -45,7 +45,10 @@ const CANONICAL_NUMBER_SERIES_IDS = new Set([
   'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
 ]);
 const CANONICAL_SPELLING_FILE = 'clerical/spelling.json';
-const CANONICAL_SPELLING_IDS = new Set(['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015']);
+const CANONICAL_SPELLING_IDS = new Set([
+  'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
+  'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
+]);
 
 /**
  * Directory convention (mirrors src/data/questionShape.ts): every dataset file

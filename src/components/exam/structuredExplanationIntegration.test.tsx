@@ -417,11 +417,17 @@ describe('structured explanation Practice/Results integration V3', () => {
     }
   });
 
-  it('renders the five approved Spelling explanations through Practice and Results without Number Series sections', async () => {
+  it('renders the 12 approved Spelling explanations through Practice and Results without Number Series sections', async () => {
     const user = userEvent.setup();
     const catalog = await loadContentCatalog(['Clerical Ability']);
-    const spellingIds = ['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015'];
-    const memoryAidIds = new Set(['cler-0012', 'cler-0013', 'cler-0015']);
+    const spellingIds = [
+      'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
+      'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
+    ];
+    const memoryAidIds = new Set([
+      'cler-0012', 'cler-0013', 'cler-0015',
+      'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
+    ]);
 
     for (const id of spellingIds) {
       const question = catalog.questions.get(id)!;
@@ -453,6 +459,7 @@ describe('structured explanation Practice/Results integration V3', () => {
       expect(practiceRoots.every((root) => root.querySelector('strong, em') !== null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Pattern/) === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
+      expect(practiceRoots.every((root) => within(root).queryByText(/Other Choices|corrected alternatives/i) === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByRole('button', { name: /Memory Aid/ }) === null)).toBe(true);
       if (memoryAidIds.has(id)) {
         if (memoryAidText === undefined) throw new Error(`${id}: visible Memory Aid paragraph is missing`);

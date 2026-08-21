@@ -42,14 +42,28 @@ const expectedIds = [
 const expected = new Set(expectedIds);
 const actual = new Set(spelling.map((question) => question.id));
 const canonicalIds = canonicalSpelling.map((question) => question.id);
-const approvedStructuredIds = new Set(['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015']);
+const approvedStructuredIds = new Set([
+  'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
+  'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
+]);
 const approvedCorrectSpellings = {
   'cler-0055': 'Personnel',
   'cler-0012': 'accommodate',
   'cler-0013': 'separate',
   'cler-0014': 'embarrass',
   'cler-0015': 'privilege',
+  'cler-0016': 'maintenance',
+  'cler-0017': 'conscientious',
+  'cler-0018': 'perseverance',
+  'cler-0019': 'supersede',
+  'cler-0046': 'achieve',
+  'cler-0047': 'affidavit',
+  'cler-0048': 'inoculate',
 };
+const visibleMemoryAidIds = new Set([
+  'cler-0012', 'cler-0013', 'cler-0015',
+  'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
+]);
 const forbidden = /AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|training rules|authored task/i;
 const expectedCorrect = {
   'cler-0012': 'D', 'cler-0013': 'E', 'cler-0014': 'D', 'cler-0015': 'D', 'cler-0016': 'A',
@@ -59,7 +73,7 @@ const expectedCorrect = {
 
 if (spelling.length !== expectedIds.length) fail(`expected ${expectedIds.length} Spelling questions, got ${spelling.length}`);
 if (actual.size !== spelling.length || [...actual].some((id) => !expected.has(id))) fail('Spelling IDs do not match the frozen 14-question inventory');
-if (canonicalSpelling.length !== approvedStructuredIds.size || JSON.stringify(canonicalIds) !== JSON.stringify([...approvedStructuredIds])) fail('canonical spelling.json must contain exactly the five approved IDs in order');
+if (canonicalSpelling.length !== approvedStructuredIds.size || JSON.stringify(canonicalIds) !== JSON.stringify([...approvedStructuredIds])) fail('canonical spelling.json must contain exactly the 12 approved IDs in order');
 if (canonicalSpelling.some((question) => question.subject !== 'Clerical Ability' || question.topic !== 'Spelling')) fail('canonical spelling.json contains a non-Clerical Spelling record');
 if (!task || task.title !== 'Spelling') fail('spelling_default task definition is missing or has the wrong title');
 if (typeof task.directions !== 'string' || task.directions.length < 40) fail('spelling_default directions are missing or too short');
@@ -70,7 +84,7 @@ if (task.noErrorOptional !== true) fail('spelling_default must explicitly mark N
 if (!Array.isArray(task.examples) || task.examples.length < 1) fail('spelling_default must include an original shared example');
 if (pool.poolId !== 'clerical-spelling' || JSON.stringify(pool.entries.map((entry) => entry.questionId).sort()) !== JSON.stringify(expectedIds.slice().sort())) fail('clerical-spelling pool does not contain exactly the 14 Spelling IDs');
 const structuredIds = spelling.filter((question) => question.structuredExplanation).map((question) => question.id);
-if (structuredIds.length !== approvedStructuredIds.size || structuredIds.some((id) => !approvedStructuredIds.has(id))) fail('structuredExplanation must exist for exactly the five approved Spelling pilot IDs');
+if (structuredIds.length !== approvedStructuredIds.size || structuredIds.some((id) => !approvedStructuredIds.has(id))) fail('structuredExplanation must exist for exactly the 12 approved canonical Spelling IDs');
 
 for (const question of spelling) {
   const row = spellingRows.get(question.id);
@@ -110,10 +124,13 @@ for (const question of spelling) {
     if (stripInlineFormatting(correctSpellingBlock?.text ?? '') !== approvedCorrectSpellings[question.id]) fail(`${question.id}: approved Correct Spelling block is missing or incorrect`);
     const memoryAidBlocks = question.structuredExplanation?.blocks?.filter((block) => block.type === 'paragraph' && block.label === 'Memory Aid') ?? [];
     const alternativeMemoryAids = question.structuredExplanation?.blocks?.filter((block) => block.type === 'alternative_solution' && block.title === 'Memory Aid') ?? [];
-    if (['cler-0012', 'cler-0013', 'cler-0015'].includes(question.id)) {
+    if (visibleMemoryAidIds.has(question.id)) {
       if (memoryAidBlocks.length !== 1 || alternativeMemoryAids.length !== 0) fail(`${question.id}: Memory Aid must be a visible labeled paragraph, not a collapsible alternative`);
     } else if (memoryAidBlocks.length !== 0 || alternativeMemoryAids.length !== 0) {
       fail(`${question.id}: unexpected Memory Aid block`);
+    }
+    if (question.structuredExplanation?.blocks?.some((block) => block.type === 'alternative_solution' && /other choices|corrected alternatives/i.test(block.title ?? ''))) {
+      fail(`${question.id}: Other Choices/corrected alternatives are not approved for canonical Spelling`);
     }
   }
   if (question.id === 'cler-0014') {

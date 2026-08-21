@@ -16,7 +16,10 @@ const migratedNumberSeriesIds = new Set([
   'num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024',
   'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
 ]);
-const cleanedSpellingIds = new Set(['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015']);
+const cleanedSpellingIds = new Set([
+  'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
+  'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
+]);
 
 describe('production bank — five-choice migration', () => {
   it('every production question has exactly five contiguous choices and a valid key', async () => {
