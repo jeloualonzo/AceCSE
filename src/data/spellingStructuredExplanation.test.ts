@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { loadContentCatalog } from '@/data/questionBank';
+import { isValidQuestion } from '@/data/questionShape';
+import { isValidStructuredExplanation } from '@/data/structuredExplanation';
 
 const APPROVED_IDS = ['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015'] as const;
 
@@ -100,5 +102,36 @@ describe('Spelling structured explanation pilot', () => {
       expect(question.structuredExplanation?.blocks).toEqual(EXPECTED_BLOCKS[id]);
       expect(JSON.stringify(question.structuredExplanation)).not.toMatch(/distractor|Option [A-E]|Latin|etymolog/i);
     }
+  });
+
+  it('admits every approved record through the same structural bar the renderer applies', async () => {
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+
+    for (const id of APPROVED_IDS) {
+      const question = catalog.questions.get(id);
+      // Presence alone proves admission — the loader drops whatever
+      // isValidQuestion rejects — but assert the gate directly so a regression
+      // names the cause instead of surfacing as a missing question.
+      expect(question, id).toBeTruthy();
+      expect(isValidQuestion(question), id).toBe(true);
+      expect(isValidStructuredExplanation(question!.structuredExplanation), id).toBe(true);
+    }
+  });
+
+  it('rejects a malformed clone of an approved record, so an empty explanation can never reach a learner', async () => {
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+    const approved = catalog.questions.get('cler-0012')!;
+
+    expect(approved.explanation).toBeUndefined();
+    expect(isValidQuestion(approved)).toBe(true);
+    expect(isValidQuestion({ ...approved, structuredExplanation: { blocks: [] } })).toBe(false);
+    expect(isValidQuestion({
+      ...approved,
+      structuredExplanation: { blocks: [{ type: 'unsupported', text: 'accommodate' }] },
+    })).toBe(false);
+    expect(isValidQuestion({
+      ...approved,
+      structuredExplanation: { blocks: [{ type: 'paragraph', label: 'Correct Spelling', text: '' }] },
+    })).toBe(false);
   });
 });

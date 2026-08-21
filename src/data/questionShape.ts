@@ -4,10 +4,15 @@
  *  - the browser (defensive validation when a lazy question chunk loads), and
  *  - Node at build time (the manifest Vite plugin in `scripts/`).
  *
- * Keep this file dependency-free and framework-free.
+ * Keep this file dependency-free and framework-free — sibling pure modules in
+ * this layer (e.g. `./structuredExplanation`) are the only allowed imports.
  */
 
 import type { Question, Subject } from '@/types';
+// Relative, not `@/data/...`: this module is also bundled into vite.config.ts
+// through the manifest plugin, where bare specifiers are externalized. The
+// `@/types` import above survives only because `import type` is erased.
+import { isValidStructuredExplanation } from './structuredExplanation';
 
 export const OPTION_IDS = ['A', 'B', 'C', 'D', 'E'] as const;
 const OPTION_ID_SET: ReadonlySet<string> = new Set(OPTION_IDS);
@@ -19,6 +24,25 @@ export const MAX_CHOICES = 5;
 const CANONICAL_STRUCTURED_SPELLING_IDS = new Set([
   'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
 ]);
+
+/**
+ * Narrow migration exception: the five approved Spelling records whose legacy
+ * `explanation`/`steps`/`distractorExplanations`/`tip` were removed, so their
+ * `structuredExplanation` IS the learner-facing explanation.
+ *
+ * Because there is no legacy prose to fall back on, the structured payload must
+ * clear the SAME bar the renderer applies (`isValidStructuredExplanation`) —
+ * a shallow `Array.isArray(blocks)` check would admit a record that the
+ * renderer later rejects, leaving the learner with no explanation at all.
+ */
+function hasApprovedStructuredOnlyExplanation(question: Record<string, unknown>): boolean {
+  return (
+    CANONICAL_STRUCTURED_SPELLING_IDS.has(question.id as string) &&
+    question.subject === 'Clerical Ability' &&
+    question.topic === 'Spelling' &&
+    isValidStructuredExplanation(question.structuredExplanation)
+  );
+}
 
 /**
  * Choice ids must be a contiguous prefix of A–E in order (A,B,C,D or
@@ -63,14 +87,8 @@ export function isValidQuestion(q: unknown): q is Question {
     question.id.length > 0 &&
     typeof question.question === 'string' &&
     question.question.length > 0 &&
-    (typeof question.explanation === 'string' || (
-      CANONICAL_STRUCTURED_SPELLING_IDS.has(question.id as string) &&
-      question.subject === 'Clerical Ability' &&
-      question.topic === 'Spelling' &&
-      typeof question.structuredExplanation === 'object' &&
-      question.structuredExplanation !== null &&
-      Array.isArray((question.structuredExplanation as { blocks?: unknown }).blocks)
-    )) &&
+    (typeof question.explanation === 'string' ||
+      hasApprovedStructuredOnlyExplanation(question)) &&
 
     typeof question.subject === 'string' &&
     typeof question.topic === 'string' &&

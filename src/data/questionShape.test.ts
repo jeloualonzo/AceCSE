@@ -29,6 +29,38 @@ function base(overrides: Partial<Question> = {}): Question {
   };
 }
 
+/**
+ * A canonical structured-only Spelling record: one of the five approved ids,
+ * with every legacy explanation field removed, so `structuredExplanation` is
+ * the only learner-facing explanation the record has.
+ */
+function structuredOnlySpelling(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  const q = {
+    ...base({
+      id: 'cler-0012',
+      subject: 'Clerical Ability',
+      topic: 'Spelling',
+      choices: [
+        { id: 'A', text: 'accomodate' },
+        { id: 'B', text: 'acommodate' },
+        { id: 'C', text: 'acomodate' },
+        { id: 'D', text: 'accommodate' },
+        { id: 'E', text: 'accommadate' },
+      ],
+      correctOptionId: 'D',
+      structuredExplanation: {
+        blocks: [{ type: 'paragraph', label: 'Correct Spelling', text: 'accommodate' }],
+      },
+    }),
+    ...overrides,
+  } as Record<string, unknown>;
+  delete q.explanation;
+  delete q.steps;
+  delete q.distractorExplanations;
+  delete q.tip;
+  return q;
+}
+
 describe('question-directory manifest mappings', () => {
   it('keeps every canonical subject directory mapped for Vite manifest generation', () => {
     expect(SUBJECT_BY_DIR).toEqual({
@@ -65,33 +97,6 @@ describe('choice-set validation (4-/5-choice migration contract)', () => {
       correctOptionId: 'E',
     });
     expect(isValidQuestion(q)).toBe(true);
-  });
-
-  it('accepts a canonical structured-only Spelling question without legacy explanation', () => {
-    const q = {
-      ...base({
-        id: 'cler-0012',
-        subject: 'Clerical Ability',
-        topic: 'Spelling',
-        choices: [
-          { id: 'A' as const, text: 'accomodate' },
-          { id: 'B' as const, text: 'acommodate' },
-          { id: 'C' as const, text: 'acomodate' },
-          { id: 'D' as const, text: 'accommodate' },
-          { id: 'E' as const, text: 'accommadate' },
-        ],
-        correctOptionId: 'D',
-        structuredExplanation: { blocks: [{ type: 'paragraph' as const, label: 'Correct Spelling', text: 'accommodate' }] },
-      }),
-    } as Record<string, unknown>;
-    delete q.explanation;
-    expect(isValidQuestion(q)).toBe(true);
-  });
-
-  it('rejects a structured-only question without explanation outside the canonical Spelling IDs', () => {
-    const q = { ...base({ structuredExplanation: { blocks: [{ type: 'paragraph' as const, text: 'Not canonical' }] } }) } as Record<string, unknown>;
-    delete q.explanation;
-    expect(isValidQuestion(q)).toBe(false);
   });
 
   it('rejects fewer than four choices', () => {
@@ -152,5 +157,94 @@ describe('choice-set validation (4-/5-choice migration contract)', () => {
 
   it('rejects a correct answer that is not among the choices (E key on a 4-choice item)', () => {
     expect(isValidQuestion(base({ correctOptionId: 'E' }))).toBe(false);
+  });
+});
+
+/**
+ * `isValidQuestion` is the sole admission gate into the catalog (the runtime
+ * loader in questionBank.ts and the build-time manifest plugin both call it).
+ * For the five approved Spelling records there is no legacy prose to fall back
+ * on, so the gate must apply the SAME bar the renderer applies — otherwise a
+ * record the renderer rejects still reaches a learner with no explanation.
+ */
+describe('structured-only Spelling admission exception', () => {
+  it('accepts a canonical structured-only Spelling question without legacy explanation', () => {
+    expect(isValidQuestion(structuredOnlySpelling())).toBe(true);
+  });
+
+  it('rejects a structured-only question without explanation outside the canonical Spelling IDs', () => {
+    const q = { ...base({ structuredExplanation: { blocks: [{ type: 'paragraph' as const, text: 'Not canonical' }] } }) } as Record<string, unknown>;
+    delete q.explanation;
+    expect(isValidQuestion(q)).toBe(false);
+  });
+
+  it('rejects a structured-only record whose blocks use an unsupported type', () => {
+    expect(isValidQuestion(structuredOnlySpelling({
+      structuredExplanation: { blocks: [{ type: 'unsupported', text: 'accommodate' }] },
+    }))).toBe(false);
+  });
+
+  it('rejects a structured-only record with an empty blocks array', () => {
+    expect(isValidQuestion(structuredOnlySpelling({
+      structuredExplanation: { blocks: [] },
+    }))).toBe(false);
+  });
+
+  it('rejects a structured-only record whose block is missing its required text', () => {
+    expect(isValidQuestion(structuredOnlySpelling({
+      structuredExplanation: { blocks: [{ type: 'paragraph', label: 'Correct Spelling', text: '   ' }] },
+    }))).toBe(false);
+  });
+
+  it('rejects a structured-only record whose nested block is malformed', () => {
+    expect(isValidQuestion(structuredOnlySpelling({
+      structuredExplanation: {
+        blocks: [
+          { type: 'heading', text: 'Solution' },
+          { type: 'alternative_solution', title: 'Memory Aid', blocks: [{ type: 'paragraph', text: '' }] },
+        ],
+      },
+    }))).toBe(false);
+  });
+
+  it('rejects a structured-only record with a non-array blocks field', () => {
+    expect(isValidQuestion(structuredOnlySpelling({
+      structuredExplanation: { blocks: { type: 'paragraph', text: 'accommodate' } },
+    }))).toBe(false);
+  });
+
+  it('rejects a structured-only record with no structuredExplanation at all', () => {
+    const q = structuredOnlySpelling();
+    delete q.structuredExplanation;
+    expect(isValidQuestion(q)).toBe(false);
+  });
+
+  it('keeps the exception scoped to the approved id, subject, and topic', () => {
+    expect(isValidQuestion(structuredOnlySpelling({ id: 'cler-0016' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlySpelling({ subject: 'Verbal Ability' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlySpelling({ topic: 'Grammar' }))).toBe(false);
+  });
+
+  it('accepts all five approved ids on the structured-only path', () => {
+    for (const id of ['cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015']) {
+      expect(isValidQuestion(structuredOnlySpelling({ id })), id).toBe(true);
+    }
+  });
+
+  it('leaves legacy questions that carry a malformed structuredExplanation admissible', () => {
+    // Legacy prose is still present, so the renderer falls back to it safely.
+    // This path must behave exactly as it did before the gate was tightened.
+    expect(
+      isValidQuestion(base({
+        // @ts-expect-error deliberately malformed pilot payload on a legacy record
+        structuredExplanation: { blocks: [{ type: 'unsupported', text: 'bad' }] },
+      }))
+    ).toBe(true);
+  });
+
+  it('still rejects an unrelated question that is missing its legacy explanation', () => {
+    const q = { ...base() } as Record<string, unknown>;
+    delete q.explanation;
+    expect(isValidQuestion(q)).toBe(false);
   });
 });
