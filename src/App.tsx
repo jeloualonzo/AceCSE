@@ -35,6 +35,9 @@ const ExamPage = lazy(() => import('@/pages/ExamPage').then((m) => ({ default: m
 const ContentBankPage = lazy(() =>
   import('@/pages/ContentBankPage').then((m) => ({ default: m.ContentBankPage }))
 );
+const ContentBankWorkspacePage = lazy(() =>
+  import('@/pages/ContentBankWorkspacePage').then((m) => ({ default: m.default }))
+);
 
 export const CONTENT_BANK_ROUTE = '/app/content-bank';
 
@@ -98,6 +101,7 @@ export default function App() {
                 <Route path="history" element={<HistoryPage />} />
                 <Route path="settings" element={<SettingsPage />} />
                 <Route path="content-bank" element={<ContentBankPage />} />
+                <Route path="content-bank/:subjectSlug" element={<ContentBankWorkspacePage />} />
               </Route>
 
               <Route path="*" element={<Navigate to="/" replace />} />

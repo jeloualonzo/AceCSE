@@ -1,23 +1,28 @@
-import { ChevronDown, Filter, PlayCircle, Search } from 'lucide-react';
-import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { ArrowRight, ClipboardList, Layers3, ListChecks, Search, ShieldCheck } from 'lucide-react';
+import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { SUBJECTS_BY_LEVEL } from '@/config/exam';
-import { QUESTION_MANIFEST, subjectAvailability } from '@/data/questionBank';
-import { allClassifications, taskFormatLabel } from '@/data/taxonomy';
-import { getRefinementBatches, type RefinementBatch } from '@/data/refinementBatches';
-import { RefinementBatchSection } from '@/components/contentBank/RefinementBatchSection';
-import { useAppContext } from '@/components/shell/AppLayout';
-import type { ExamLaunchRequest } from '@/pages/ExamPage';
-import type { ExamLevel, Subject } from '@/types';
+import { allClassifications } from '@/data/taxonomy';
+import {
+  buildSubjectDashboardSummaries,
+  CONTENT_BANK_SUBJECTS,
+  getWorkspaceRefinementBatches,
+  slugForSubject,
+  workspaceStatusLabel,
+  type SubjectDashboardSummary,
+} from '@/data/contentBankWorkspace';
+import type { Subject } from '@/types';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { useAppContext } from '@/components/shell/AppLayout';
+import { CONTENT_BANK_ROUTE } from '@/App';
 
-type QAGroupStatus = 'Frozen' | 'Pilot' | 'Active' | 'Standard' | 'Fixed Context';
+export type QAGroupStatus = 'Frozen' | 'Pilot' | 'Active' | 'Standard' | 'Fixed Context';
 
-const INVENTORY_SUBJECTS: Subject[] = [...new Set([
-  ...SUBJECTS_BY_LEVEL.Professional,
-  ...SUBJECTS_BY_LEVEL.Subprofessional,
-])];
-
+/**
+ * Kept as a compatibility export for the existing QA focus catalog. Subject
+ * Workspaces are now the primary route, but these canonical predicates remain
+ * useful to tests and internal callers that need the existing task groups.
+ */
 export interface QAFocusGroupConfig {
   id: string;
   label: string;
@@ -29,11 +34,6 @@ export interface QAFocusGroupConfig {
   matches: (record: ReturnType<typeof allClassifications>[number]) => boolean;
 }
 
-/**
- * Internal QA focus groups. Membership remains canonical: this configuration
- * describes the supported pool/task predicates, but never stores question IDs
- * or counts. Adding another completed task family only requires one entry.
- */
 export const QA_FOCUS_GROUPS: readonly QAFocusGroupConfig[] = [
   {
     id: 'grammar-sentence-correction',
@@ -93,7 +93,7 @@ export interface QAFocusGroup {
 }
 
 export function getQAFocusGroups(
-  configs: readonly QAFocusGroupConfig[] = QA_FOCUS_GROUPS
+  configs: readonly QAFocusGroupConfig[] = QA_FOCUS_GROUPS,
 ): QAFocusGroup[] {
   const classifications = allClassifications();
   return [...configs].sort((left, right) => left.sortOrder - right.sortOrder).map((config) => {
@@ -102,315 +102,150 @@ export function getQAFocusGroups(
   });
 }
 
-function totalSubjectCount(subject: Subject): number {
-  const supply = QUESTION_MANIFEST.subjects[subject];
-  return supply ? supply.professional + supply.subprofessional + supply.both : 0;
-}
-
 function formatCount(count: number): string {
   return count.toLocaleString('en-US');
 }
 
-function statusClass(status: QAGroupStatus): string {
-  if (status === 'Pilot') {
-    return 'bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:text-amber-300';
-  }
-  return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300';
+function statusClass(status: SubjectDashboardSummary['status']): string {
+  if (status === 'Complete') return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300';
+  if (status === 'Almost Complete') return 'bg-blue-100 text-blue-800 dark:bg-blue-950/50 dark:text-blue-300';
+  if (status === 'In Progress') return 'bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:text-amber-300';
+  return 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300';
 }
 
-interface SubjectBreakdownRow {
-  subject: Subject;
-  topic: string;
-  taskFormat: string;
-  poolId: string | null;
-  count: number;
+function familySummary(summary: SubjectDashboardSummary): string[] {
+  return summary.families.slice(0, 3).map((family) =>
+    `${family.family}: ${family.activeQuestionIds.length} active · ${family.frozenQuestionIds.length} frozen · ${family.remainingQuestionIds.length} remaining`
+  );
 }
 
-function subjectBreakdown(): SubjectBreakdownRow[] {
-  const rows = new Map<string, SubjectBreakdownRow>();
-  for (const record of allClassifications()) {
-    const key = [record.subject, record.topic, record.taskFormat, record.poolId ?? '—'].join('|');
-    const row = rows.get(key);
-    if (row) {
-      row.count += 1;
-    } else {
-      rows.set(key, {
-        subject: record.subject,
-        topic: record.topic,
-        taskFormat: taskFormatLabel(record.questionType, record.taskFormat),
-        poolId: record.poolId,
-        count: 1,
-      });
-    }
-  }
-  return [...rows.values()].sort((left, right) => {
-    const subjectOrder = SUBJECTS_BY_LEVEL.Professional.indexOf(left.subject) - SUBJECTS_BY_LEVEL.Professional.indexOf(right.subject);
-    if (subjectOrder !== 0) return subjectOrder;
-    return left.topic.localeCompare(right.topic) || left.taskFormat.localeCompare(right.taskFormat);
-  });
-}
-
-function activeAvailability(level: ExamLevel, subject: Subject): number {
-  return subjectAvailability(level)[subject] ?? 0;
-}
-
-interface QAFocusSectionProps {
-  groups: QAFocusGroup[];
-  expandedGroups: Set<string>;
-  examLevel: ExamLevel;
-  onLaunch: (group: QAFocusGroup) => void;
-  onToggle: (groupId: string) => void;
-}
-
-function QAFocusSection({ groups, expandedGroups, examLevel, onLaunch, onToggle }: QAFocusSectionProps) {
+function SubjectCard({ summary }: { summary: SubjectDashboardSummary }) {
+  const frozenRatio = summary.activeQuestionCount === 0
+    ? 0
+    : Math.round((summary.frozenQuestionCount / summary.activeQuestionCount) * 100);
   return (
-    <section aria-labelledby="qa-focus-heading" className="space-y-3">
-      <div className="flex items-end justify-between gap-3">
-        <div>
-          <h2 id="qa-focus-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">QA focus groups</h2>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Practice uses only the canonical group selected below.</p>
+    <Link
+      to={`${CONTENT_BANK_ROUTE}/${slugForSubject(summary.subject)}`}
+      data-testid={`subject-card-${summary.subject}`}
+      className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-emerald-700"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex min-w-0 items-start gap-3">
+          <span className="mt-0.5 rounded-xl bg-emerald-50 p-2.5 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
+            <Layers3 className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <div className="min-w-0">
+            <h2 className="text-base font-extrabold text-slate-900 dark:text-white">{summary.subject}</h2>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+              {formatCount(summary.activeQuestionCount)} active questions · {summary.familyCount} families
+            </p>
+          </div>
         </div>
-        <span className="text-xs text-slate-500 dark:text-slate-400">{groups.length} groups</span>
+        <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-1 group-hover:text-emerald-600" aria-hidden="true" />
       </div>
-      <div className="grid grid-cols-1 gap-3 xl:grid-cols-2">
-        {groups.map((group) => {
-          const { config } = group;
-          const expanded = expandedGroups.has(config.id);
-          return (
-            <article key={config.id} data-qa-group={config.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">{config.label}</h3>
-                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${statusClass(config.status)}`}>{config.status}</span>
-                  </div>
-                  <p data-testid={`qa-count-${config.id}`} className="mt-1 text-xs text-slate-500 dark:text-slate-400">{config.subject} · {formatCount(group.count)} questions</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => onLaunch(group)}
-                  className="inline-flex min-h-[40px] shrink-0 items-center justify-center gap-1.5 rounded-lg bg-emerald-600 px-3 text-xs font-bold text-white transition-colors hover:bg-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
-                  aria-label={`Practice ${config.label}`}
-                >
-                  <PlayCircle className="h-4 w-4" aria-hidden="true" />
-                  <span>Practice</span>
-                </button>
-              </div>
-              <dl className="mt-4 grid grid-cols-1 gap-2 border-t border-slate-100 pt-3 text-xs dark:border-slate-800 sm:grid-cols-3">
-                <div><dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Task format</dt><dd className="mt-0.5 break-words font-mono text-[11px] text-slate-700 dark:text-slate-300">{config.taskFormat}</dd></div>
-                <div><dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Pool</dt><dd className="mt-0.5 break-words font-mono text-[11px] text-slate-700 dark:text-slate-300">{config.poolId}</dd></div>
-                <div><dt className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Active-level supply</dt><dd className="mt-0.5 font-semibold text-slate-700 dark:text-slate-300">{formatCount(activeAvailability(examLevel, config.subject))}</dd></div>
-              </dl>
-              <button
-                type="button"
-                onClick={() => onToggle(config.id)}
-                className="mt-3 inline-flex min-h-[32px] items-center gap-1 text-xs font-semibold text-slate-600 transition-colors hover:text-emerald-700 dark:text-slate-400 dark:hover:text-emerald-400"
-                aria-expanded={expanded}
-                aria-controls={`${config.id}-members`}
-              >
-                <ChevronDown className={`h-4 w-4 transition-transform ${expanded ? 'rotate-180' : ''}`} aria-hidden="true" />
-                {expanded ? 'Hide' : 'Show'} question IDs ({formatCount(group.count)})
-              </button>
-              {expanded && (
-                <div id={`${config.id}-members`} className="mt-2 max-h-44 overflow-y-auto rounded-lg bg-slate-50 p-2 dark:bg-slate-950">
-                  <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-[11px] font-mono text-slate-600 dark:text-slate-400 sm:grid-cols-3">
-                    {group.questionIds.map((questionId) => <li key={questionId}>{questionId}</li>)}
-                  </ul>
-                </div>
-              )}
-            </article>
-          );
-        })}
+      <div className="mt-5 flex items-center justify-between gap-3">
+        <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${statusClass(summary.status)}`}>
+          {workspaceStatusLabel(summary.status)}
+        </span>
+        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">{frozenRatio}% frozen</span>
       </div>
-      {groups.length === 0 && <p className="rounded-xl border border-dashed border-slate-300 px-4 py-8 text-center text-xs text-slate-500 dark:border-slate-700 dark:text-slate-400">No matching QA focus groups.</p>}
-    </section>
+      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800" aria-label={`${frozenRatio}% frozen`}>
+        <div className="h-full rounded-full bg-emerald-500 transition-all" style={{ width: `${frozenRatio}%` }} />
+      </div>
+      <ul className="mt-4 space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
+        {familySummary(summary).map((line) => <li key={line} className="truncate">{line}</li>)}
+        {summary.families.length > 3 && <li className="font-semibold text-slate-400">+ {summary.families.length - 3} more families</li>}
+      </ul>
+      <div className="mt-5 text-xs font-bold text-emerald-700 dark:text-emerald-400">Open Subject Workspace</div>
+    </Link>
   );
 }
 
 export const ContentBankPage: React.FC = () => {
   useDocumentTitle('Content Bank');
-  const navigate = useNavigate();
   const { examLevel } = useAppContext();
-  const [query, setQuery] = useState('');
-  const [subjectFilter, setSubjectFilter] = useState<'All' | Subject>('All');
-  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
-
-  const groups = useMemo(() => getQAFocusGroups(), []);
-  const refinementBatches = useMemo(() => getRefinementBatches(), []);
-  const breakdown = useMemo(() => subjectBreakdown(), []);
-  const subjects = INVENTORY_SUBJECTS;
-  const availability = useMemo(() => subjectAvailability(examLevel), [examLevel]);
-  const normalizedQuery = query.trim().toLowerCase();
-
-  const filteredRows = breakdown.filter((row) => {
-    if (subjectFilter !== 'All' && row.subject !== subjectFilter) return false;
-    if (!normalizedQuery) return true;
-    return [row.subject, row.topic, row.taskFormat, row.poolId ?? ''].some((value) =>
-      value.toLowerCase().includes(normalizedQuery)
-    );
-  });
-
-  const filteredGroups = groups.filter(({ config }) => {
-    if (subjectFilter !== 'All' && config.subject !== subjectFilter) return false;
-    if (!normalizedQuery) return true;
-    return [config.label, config.subject, config.poolId, config.taskFormat, config.status].some((value) =>
-      value.toLowerCase().includes(normalizedQuery)
-    );
-  });
-
-  const launchGroup = (group: QAFocusGroup) => {
-    const launch: ExamLaunchRequest = {
-      kind: 'practice',
-      examLevel,
-      questionCount: 0,
-      subjects: [group.config.subject],
-      taskFormat: group.config.taskFormat,
-    };
-    navigate('/app/exam', { state: { launch } });
-  };
-
-  const launchRefinementBatch = (batch: RefinementBatch) => {
-    const launch: ExamLaunchRequest = {
-      kind: 'practice',
-      examLevel,
-      questionCount: batch.questionIds.length,
-      questionIds: [...batch.questionIds],
-    };
-    navigate('/app/exam', { state: { launch } });
-  };
-
-  const toggleGroup = (groupId: string) => {
-    setExpandedGroups((current) => {
-      const next = new Set(current);
-      if (next.has(groupId)) next.delete(groupId);
-      else next.add(groupId);
-      return next;
-    });
-  };
+  const batches = useMemo(() => getWorkspaceRefinementBatches(), []);
+  const summaries = useMemo(() => buildSubjectDashboardSummaries(batches), [batches]);
+  const currentSubjects = useMemo(() => [...new Set([
+    ...SUBJECTS_BY_LEVEL.Professional,
+    ...SUBJECTS_BY_LEVEL.Subprofessional,
+  ])], []);
+  const recentBatches = batches.slice(0, 5);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-7 space-y-6">
-      <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+    <div className="mx-auto max-w-7xl space-y-7 px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
+      <header className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-end sm:justify-between dark:border-slate-800 dark:bg-slate-900">
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
-            Internal QA utility
-          </p>
-          <h1 className="mt-1 text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Content Bank</h1>
-          <p className="mt-1 max-w-2xl text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-            Inspect canonical inventory and launch the real Practice flow for one controlled question family.
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">Internal content workflow</p>
+          <h1 className="mt-1 text-2xl font-extrabold text-slate-900 dark:text-white">Content Bank</h1>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
+            Choose a subject to inspect its families, see what is frozen or ready for QA, select the next questions, and prepare a review batch.
           </p>
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-right shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-right dark:border-slate-700 dark:bg-slate-950">
           <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Active level</div>
-          <div className="text-sm font-bold text-slate-900 dark:text-white">{examLevel}</div>
+          <div className="mt-1 text-sm font-bold text-slate-900 dark:text-white">{examLevel}</div>
         </div>
       </header>
 
-      <section aria-labelledby="inventory-summary-heading" className="space-y-3">
-        <div className="flex items-center justify-between gap-3">
-          <h2 id="inventory-summary-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Inventory summary
-          </h2>
-          <span className="text-xs text-slate-500 dark:text-slate-400">Canonical build-time manifest</span>
-        </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          <article className="col-span-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 dark:border-emerald-500/30 dark:bg-emerald-950/30 sm:col-span-1">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Total questions</div>
-            <div data-testid="content-bank-total" className="mt-1 text-2xl font-extrabold text-emerald-900 dark:text-emerald-200">
-              {formatCount(QUESTION_MANIFEST.totalQuestions)}
-            </div>
-          </article>
-          {subjects.map((subject) => (
-            <article key={subject} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{subject}</div>
-              <div data-testid={`subject-total-${subject}`} className="mt-1 text-xl font-extrabold text-slate-900 dark:text-white">
-                {formatCount(totalSubjectCount(subject))}
-              </div>
-              <div className="mt-1 text-[10px] text-slate-500 dark:text-slate-400">
-                {formatCount(availability[subject] ?? 0)} available at {examLevel}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <QAFocusSection
-        groups={filteredGroups}
-        expandedGroups={expandedGroups}
-        examLevel={examLevel}
-        onLaunch={launchGroup}
-        onToggle={toggleGroup}
-      />
-
-      <RefinementBatchSection batches={refinementBatches} onLaunch={launchRefinementBatch} />
-
-      <section aria-labelledby="content-filter-heading" className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            <Filter className="h-4 w-4" aria-hidden="true" />
-            <h2 id="content-filter-heading">Filter inventory</h2>
-          </div>
-          <label className="relative min-w-0 flex-1">
-            <span className="sr-only">Search subjects, topics, tasks, or pools</span>
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" aria-hidden="true" />
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search subjects, topics, tasks, or pools"
-              className="min-h-[40px] w-full rounded-lg border border-slate-200 bg-slate-50 pl-9 pr-3 text-sm text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
-            />
-          </label>
-          <label className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-            <span className="sr-only">Filter by subject</span>
-            <select
-              value={subjectFilter}
-              onChange={(event) => setSubjectFilter(event.target.value as 'All' | Subject)}
-              className="min-h-[40px] rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200"
-            >
-              <option value="All">All subjects</option>
-              {subjects.map((subject) => <option key={subject} value={subject}>{subject}</option>)}
-            </select>
-          </label>
-        </div>
-      </section>
-
-      <section aria-labelledby="subject-breakdown-heading" className="space-y-3">
-        <div className="flex items-center justify-between gap-3">
+      <section aria-labelledby="subject-selector-heading" className="space-y-3">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 id="subject-breakdown-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Subject breakdown</h2>
-            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Topic, task format, pool, and count from the classification manifest.</p>
+            <h2 id="subject-selector-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Subject Workspaces</h2>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Progress is derived from the active catalog and the separate QA refinement registry.</p>
           </div>
-          <span className="text-xs text-slate-500 dark:text-slate-400">{filteredRows.length} rows</span>
+          <span data-testid="content-bank-subject-count" className="text-xs text-slate-500 dark:text-slate-400">{currentSubjects.length} subjects · {formatCount(summaries.reduce((total, summary) => total + summary.activeQuestionCount, 0))} active questions</span>
         </div>
-        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-          <div className="overflow-x-auto">
-            <table className="min-w-full text-left text-xs">
-              <thead className="border-b border-slate-200 bg-slate-50 text-[10px] uppercase tracking-wider text-slate-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400">
-                <tr>
-                  <th className="px-3 py-2.5 font-bold">Subject</th>
-                  <th className="px-3 py-2.5 font-bold">Topic</th>
-                  <th className="px-3 py-2.5 font-bold">Task format</th>
-                  <th className="px-3 py-2.5 font-bold">Pool</th>
-                  <th className="px-3 py-2.5 text-right font-bold">Count</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                {filteredRows.map((row) => (
-                  <tr key={[row.subject, row.topic, row.taskFormat, row.poolId].join('|')} className="text-slate-700 dark:text-slate-300">
-                    <td className="whitespace-nowrap px-3 py-2.5 font-semibold">{row.subject}</td>
-                    <td className="px-3 py-2.5">{row.topic}</td>
-                    <td className="whitespace-nowrap px-3 py-2.5">{row.taskFormat}</td>
-                    <td className="whitespace-nowrap px-3 py-2.5 font-mono text-[11px] text-slate-500 dark:text-slate-400">{row.poolId ?? '—'}</td>
-                    <td className="px-3 py-2.5 text-right font-bold">{formatCount(row.count)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          {filteredRows.length === 0 && <p className="px-3 py-6 text-center text-xs text-slate-500 dark:text-slate-400">No matching inventory rows.</p>}
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {summaries.map((summary) => <SubjectCard key={summary.subject} summary={summary} />)}
         </div>
       </section>
 
+      <section aria-labelledby="workflow-overview-heading" className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <ClipboardList className="h-5 w-5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+          <h2 id="workflow-overview-heading" className="mt-3 text-sm font-bold text-slate-900 dark:text-white">Derived progress</h2>
+          <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Frozen membership marks completed work. Ready for QA remains visible separately, and duplicate batch references count once.</p>
+        </article>
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <ListChecks className="h-5 w-5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+          <h2 className="mt-3 text-sm font-bold text-slate-900 dark:text-white">Next-question picker</h2>
+          <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Select unresolved active questions by family, difficulty, structure, or search instead of hunting through JSON.</p>
+        </article>
+        <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <ShieldCheck className="h-5 w-5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+          <h2 className="mt-3 text-sm font-bold text-slate-900 dark:text-white">Review-ready exports</h2>
+          <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Copy synchronized learner and authoring Markdown, or the exact production question JSON, in batch order.</p>
+        </article>
+      </section>
+
+      <section aria-labelledby="recent-batches-heading" className="space-y-3">
+        <div className="flex items-end justify-between gap-3">
+          <div>
+            <h2 id="recent-batches-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Recent QA batches</h2>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Open a subject workspace to inspect exact IDs, practice, and copy review exports.</p>
+          </div>
+          <Search className="h-4 w-4 text-slate-400" aria-hidden="true" />
+        </div>
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          {recentBatches.map((batch) => {
+            const batchSubject = CONTENT_BANK_SUBJECTS.find((subject) => summaries.find((summary) => summary.subject === subject)?.families.some((family) => family.activeQuestionIds.some((id) => batch.questionIds.includes(id))));
+            return (
+              <div key={batch.id} data-refinement-batch={batch.id} className="flex flex-col gap-3 border-b border-slate-100 px-4 py-4 last:border-b-0 sm:flex-row sm:items-center sm:justify-between dark:border-slate-800">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">{batch.title}</h3>
+                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${batch.status === 'frozen' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300' : 'bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:text-amber-300'}`}>{batch.status === 'frozen' ? 'Frozen' : 'Ready for QA'}</span>
+                  </div>
+                  <p data-testid={`refinement-count-${batch.id}`} className="mt-1 text-xs text-slate-500 dark:text-slate-400">{batch.questionIds.length} questions · {batchSubject ?? batch.family}</p>
+                </div>
+                {batchSubject && <Link to={`${CONTENT_BANK_ROUTE}/${slugForSubject(batchSubject)}?batch=${encodeURIComponent(batch.id)}`} className="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-lg border border-slate-200 px-3 text-xs font-bold text-slate-700 transition hover:border-emerald-400 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:text-slate-200 dark:hover:text-emerald-400">Open Workspace</Link>}
+              </div>
+            );
+          })}
+          {recentBatches.length === 0 && <p className="px-4 py-8 text-center text-xs text-slate-500 dark:text-slate-400">No refinement batches registered.</p>}
+        </div>
+      </section>
     </div>
   );
 };
