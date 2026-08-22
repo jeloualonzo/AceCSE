@@ -14,9 +14,9 @@
  *   - worked steps (≥ 2) for computational items (Numerical; non-analogy Analytical)
  *   - distractor explanations for all three incorrect options (≥ 20 chars), except
  *     the eleven frozen Number Series records, twelve canonical Spelling records,
- *     and ten canonical Filing records whose obsolete fields were removed
+ *     and twenty-four canonical Filing records whose obsolete fields were removed
  *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the twelve canonical
- *     Spelling records and ten canonical Filing records that use structuredExplanation
+ *     Spelling records and twenty-four canonical Filing records that use structuredExplanation
  *     as their sole aid
  *
  * Also prints supply, difficulty, and answer-letter reports.
@@ -54,6 +54,9 @@ const CANONICAL_FILING_FILE = 'clerical/filing.json';
 const CANONICAL_FILING_IDS = new Set([
   'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
   'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
+  'cler-0006', 'cler-0007', 'cler-0008', 'cler-0009', 'cler-0010', 'cler-0011',
+  'cler-0031', 'cler-0032', 'cler-0033', 'seed-cler-001', 'cler-0036', 'cler-0037',
+  'cler-0038', 'cler-0039',
 ]);
 
 /**

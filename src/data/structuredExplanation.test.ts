@@ -14,8 +14,13 @@ const FILING_BATCH1_IDS = [
   'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
   'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
 ] as const;
+const FILING_BATCH2_IDS = [
+  'cler-0006', 'cler-0007', 'cler-0008', 'cler-0009', 'cler-0010', 'cler-0011',
+  'cler-0031', 'cler-0032', 'cler-0033', 'seed-cler-001', 'cler-0036', 'cler-0037',
+  'cler-0038', 'cler-0039',
+] as const;
 const ALL_NUMBER_SERIES_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS, ...BATCH4_IDS];
-const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS];
+const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',

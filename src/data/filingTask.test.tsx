@@ -38,12 +38,12 @@ describe('Filing task architecture', () => {
     expect(session.questionIds.some((id) => id === 'cler-0001')).toBe(true);
   });
 
-  it('keeps 13 compact instances and 13 legacy prompts in the live bank', async () => {
+  it('keeps 21 compact instances and 5 legacy prompts in the live bank', async () => {
     const catalog = await loadContentCatalog(subjects);
     const filing = catalog.getQuestionsForSubject('Clerical Ability', 'Subprofessional').filter((question) => question.topic === 'Filing & Alphabetizing');
     expect(filing).toHaveLength(26);
-    expect(filing.filter((question) => question.taskInstance?.payload?.instanceFormat === 'compact')).toHaveLength(13);
-    expect(filing.filter((question) => question.taskInstance?.payload?.instanceFormat === 'legacy_full_prompt')).toHaveLength(13);
+    expect(filing.filter((question) => question.taskInstance?.payload?.instanceFormat === 'compact')).toHaveLength(21);
+    expect(filing.filter((question) => question.taskInstance?.payload?.instanceFormat === 'legacy_full_prompt')).toHaveLength(5);
     expect(filing.every((question) => question.id && question.choices.length >= 4 && question.choices.some((choice) => choice.id === question.correctOptionId))).toBe(true);
   });
 
@@ -53,7 +53,7 @@ describe('Filing task architecture', () => {
       'cler-0001': 'D', 'cler-0004': 'A', 'cler-0006': 'C', 'cler-0007': 'A',
       'cler-0008': 'A', 'cler-0010': 'B', 'cler-0011': 'D',
     };
-    const candidateEntryIds = ['cler-0059', 'cler-0060', 'seed-cler-001'];
+    const candidateEntryIds = ['cler-0059', 'cler-0060', 'cler-0009', 'cler-0031', 'cler-0032', 'cler-0033', 'cler-0036', 'cler-0037', 'cler-0038', 'cler-0039', 'seed-cler-001'];
     for (const [id, correct] of Object.entries(expectedCorrect)) {
       const question = catalog.getQuestion(id);
       expect(question?.choices.every((choice) => /^\d(?:-\d){3}$/.test(choice.text))).toBe(true);
@@ -64,7 +64,7 @@ describe('Filing task architecture', () => {
       const entries = question?.taskInstance?.payload?.entries;
       expect(question?.choices.some((choice) => /[A-Za-z]/.test(choice.text))).toBe(true);
       expect(question?.choices.every((choice) => !/^\d(?:-\d){3}$/.test(choice.text))).toBe(true);
-      if (id === 'seed-cler-001') {
+      if (id === 'seed-cler-001' || id === 'cler-0009') {
         expect(entries).toHaveLength(4);
         expect((entries as string[]).every((entry) => question?.choices.some((choice) => choice.text === entry))).toBe(true);
         expect(question?.choices.filter((choice) => !(entries as string[]).includes(choice.text))).toHaveLength(1);
@@ -78,13 +78,14 @@ describe('Filing task architecture', () => {
     expect(visible).not.toMatch(/AceCSE|simulator|training platform/i);
   });
 
-  it('covers the suffix convention, cleaned explanations, and low-priority stem wording', async () => {
+  it('covers the suffix convention, canonical structured cleanup, and low-priority stem wording', async () => {
     const catalog = await loadContentCatalog(subjects);
     const suffix = catalog.getQuestion('cler-0010');
     expect(suffix?.taskInstance?.payload?.itemNote).toMatch(/unsuffixed name first.*Jr\., Sr\., and III/i);
-    const cleanedIds = ['cler-0006', 'cler-0007', 'cler-0036', 'cler-0038', 'cler-0039', 'cler-0040', 'cler-0041'];
-    for (const id of cleanedIds) {
-      expect(catalog.getQuestion(id)?.explanation).not.toMatch(/wait|let me recheck|actually|correcting|keyed answer|let me correct/i);
+    const structuredIds = ['cler-0006', 'cler-0007', 'cler-0008', 'cler-0009', 'cler-0010', 'cler-0011', 'cler-0031', 'cler-0032', 'cler-0033', 'cler-0036', 'cler-0037', 'cler-0038', 'cler-0039'];
+    for (const id of structuredIds) {
+      expect(catalog.getQuestion(id)?.structuredExplanation).toBeTruthy();
+      expect(catalog.getQuestion(id)?.explanation).toBeUndefined();
     }
     expect(catalog.getQuestion('cler-0002')?.question).not.toMatch(/four names/i);
     expect(catalog.getQuestion('cler-0003')?.question).toMatch(/following/i);
@@ -92,8 +93,9 @@ describe('Filing task architecture', () => {
     expect(seed?.correctOptionId).toBe('C');
     expect(seed?.choices.find((choice) => choice.id === 'C')?.text).toBe('Del Fierro, Ana');
     expect(seed?.taskInstance?.payload?.entries).toEqual(['De La Cruz, Juan', 'Del Rosario, Maria', 'De Castro, Pedro', 'Del Fierro, Ana']);
-    expect(seed?.explanation).toMatch(/Del Fierro.*third|third.*Del Fierro/i);
-    expect(seed?.steps?.join(' ')).not.toMatch(/De la Rama|hypothetical|actually|wait/i);
+    expect(seed?.structuredExplanation?.blocks.filter((block) => 'text' in block).map((block) => block.text).join(' ')).toMatch(/Del Fierro.*third|third.*Del Fierro/i);
+    expect(seed?.explanation).toBeUndefined();
+    expect(seed?.steps).toBeUndefined();
   });
 
   it('uses one canonical Filing block across multiple real-bank simulation seeds', async () => {

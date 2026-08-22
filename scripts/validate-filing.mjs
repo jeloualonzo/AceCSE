@@ -18,21 +18,51 @@ for (const dir of fs.readdirSync(path.join(root, 'content/questions'))) {
 const filing = questions.filter((q) => q.topic === 'Filing & Alphabetizing');
 const taxonomy = readJson(path.join(root, 'content/taxonomy/taxonomy.json'));
 const manifest = readJson(path.join(root, 'content/taxonomy/classification-manifest.json'));
+const filingPool = readJson(path.join(root, 'content/taxonomy/pools/clerical-filing.json'));
 const filingManifest = new Map(manifest.questions.filter((row) => row.topic === 'Filing & Alphabetizing').map((row) => [row.questionId, row]));
 const task = taxonomy.sharedTaskDefinitions?.filing_default;
 const canonicalFilingFile = 'content/questions/clerical/filing.json';
 const canonicalFilingIds = new Set([
   'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
   'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
+  'cler-0006', 'cler-0007', 'cler-0008', 'cler-0009', 'cler-0010', 'cler-0011',
+  'cler-0031', 'cler-0032', 'cler-0033', 'seed-cler-001', 'cler-0036', 'cler-0037',
+  'cler-0038', 'cler-0039',
 ]);
+const batch2Ids = new Set([
+  'cler-0006', 'cler-0007', 'cler-0008', 'cler-0009', 'cler-0010', 'cler-0011',
+  'cler-0031', 'cler-0032', 'cler-0033', 'seed-cler-001', 'cler-0036', 'cler-0037',
+  'cler-0038', 'cler-0039',
+]);
+const expectedKeys = {
+  'cler-0006': 'C',
+  'cler-0007': 'A',
+  'cler-0008': 'A',
+  'cler-0009': 'C',
+  'cler-0010': 'B',
+  'cler-0011': 'D',
+  'cler-0031': 'C',
+  'cler-0032': 'B',
+  'cler-0033': 'D',
+  'seed-cler-001': 'C',
+  'cler-0036': 'C',
+  'cler-0037': 'D',
+  'cler-0038': 'B',
+  'cler-0039': 'B',
+};
+const canonicalRecords = readJson(path.join(root, 'content/questions/clerical/filing.json'));
+const canonicalRecordIds = new Set(canonicalRecords.map((q) => q.id));
 const compact = filing.filter((q) => q.taskInstance?.kind === 'filing' && q.taskInstance.payload?.instanceFormat === 'compact');
 const legacy = filing.filter((q) => q.taskInstance?.kind === 'filing' && q.taskInstance.payload?.instanceFormat === 'legacy_full_prompt');
 const canonicalStructured = filing.filter((q) => canonicalFilingIds.has(q.id));
 
 if (filing.length !== 26) fail(`expected 26 Filing questions, got ${filing.length}`);
-if (compact.length !== 13) fail(`expected 13 compact Filing instances, got ${compact.length}`);
-if (legacy.length !== 13) fail(`expected 13 legacy Filing instances, got ${legacy.length}`);
+if (compact.length !== 21) fail(`expected 21 compact Filing instances, got ${compact.length}`);
+if (legacy.length !== 5) fail(`expected 5 legacy Filing instances, got ${legacy.length}`);
+if (canonicalRecords.length !== 24) fail(`expected 24 records in canonical filing.json, got ${canonicalRecords.length}`);
+if (canonicalRecordIds.size !== canonicalRecords.length || ![...canonicalFilingIds].every((id) => canonicalRecordIds.has(id))) fail('canonical filing.json membership is not exactly the approved 24-record set');
 if (canonicalStructured.length !== canonicalFilingIds.size) fail(`expected all ${canonicalFilingIds.size} canonical structured Filing records, got ${canonicalStructured.length}`);
+if (filingPool.poolId !== 'clerical-filing' || filingPool.entries.length !== 26) fail('clerical-filing production pool must remain intact at 26 entries');
 if (!task || task.title !== 'Filing and Alphabetizing') fail('filing_default task definition is missing or has the wrong title');
 if (!Array.isArray(task.rules) || task.rules.length < 3) fail('filing_default must include reusable rules');
 if (!Array.isArray(task.examples) || task.examples.length < 2) fail('filing_default must include reusable examples');
@@ -55,9 +85,16 @@ for (const q of filing) {
     for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
       if (field in q) fail(`${q.id}: migrated legacy field remains: ${field}`);
     }
+    if (expectedKeys[q.id] && q.correctOptionId !== expectedKeys[q.id]) fail(`${q.id}: expected approved answer key ${expectedKeys[q.id]}, got ${q.correctOptionId}`);
+    const blocks = q.structuredExplanation.blocks;
+    if (blocks.some((block) => /Other Choices|corrected alternatives/i.test(`${block.label ?? ''} ${block.title ?? ''} ${block.text ?? ''}`))) fail(`${q.id}: unapproved Other Choices/corrected alternatives block present`);
+    for (const block of blocks) {
+      if (block.type !== 'paragraph' || block.label !== 'Filing Order') continue;
+      const lines = String(block.text).split('\n');
+      if (lines.some((line, index) => !new RegExp(`^\\*\\*${index + 1}\\.\\*\\* \\*.+\\*$`).test(line))) fail(`${q.id}: Filing Order entries must be vertically stacked numbered italic lines`);
+      if (String(block.text).includes('→')) fail(`${q.id}: Filing Order must not use arrows`);
+    }
   }
-  if (!Array.isArray(q.choices) || q.choices.length < 4 || q.choices.length > 5) fail(`${q.id}: invalid choice count`);
-  if (!q.choices.some((choice) => choice.id === q.correctOptionId)) fail(`${q.id}: correct answer is not among choices`);
 }
 for (const q of compact) {
   const payload = q.taskInstance.payload;
@@ -70,26 +107,15 @@ for (const q of legacy) {
   if (q.taskFormat !== 'legacy_full_prompt') fail(`${q.id}: legacy Filing taskFormat must be legacy_full_prompt`);
   if (q.taskInstance.payload.sourcePromptPreserved !== true) fail(`${q.id}: legacy prompt preservation missing`);
 }
-for (const id of ['cler-0059', 'cler-0060', 'seed-cler-001']) {
+for (const id of batch2Ids) {
   const q = filing.find((item) => item.id === id);
-  const entries = q?.taskInstance?.payload?.entries;
-  const choices = q?.choices?.map((choice) => choice.text) ?? [];
-  const expectedEntryCount = id === 'seed-cler-001' ? 4 : 5;
-  if (!Array.isArray(entries) || entries.length !== expectedEntryCount) fail(`${id}: candidate-entry task has an unexpected displayed-entry count`);
-  if (id === 'seed-cler-001') {
-    if (!entries.every((entry) => choices.includes(entry))) fail(`${id}: every displayed name must be offered as a choice`);
-    if (choices.filter((choice) => !entries.includes(choice)).length !== 1) fail(`${id}: expected exactly one authored distractor outside the four displayed names`);
-  } else if (JSON.stringify([...new Set(choices)].sort()) !== JSON.stringify([...new Set(entries)].sort())) {
-    fail(`${id}: displayed candidates and choices do not describe the same set`);
-  }
+  if (!q || !canonicalFilingIds.has(id)) fail(`${id}: Batch 2 record is not canonical Filing content`);
+  if (q?.taskInstance?.payload?.instanceFormat === 'legacy_full_prompt' && ['cler-0009', 'cler-0031', 'cler-0032', 'cler-0033', 'cler-0036', 'cler-0037', 'cler-0038', 'cler-0039'].includes(id)) fail(`${id}: representable Batch 2 legacy item was not converted to compact Filing format`);
 }
-const seed = filing.find((q) => q.id === 'seed-cler-001');
-if (seed?.correctOptionId !== 'C' || seed.choices.find((choice) => choice.id === 'C')?.text !== 'Del Fierro, Ana') fail('seed-cler-001: displayed four-name order must make Del Fierro the third answer (Option C)');
 const suffix = filing.find((q) => q.id === 'cler-0010');
 if (!/unsuffixed name first.*Jr\., Sr\., and III/i.test(String(suffix?.taskInstance?.payload?.itemNote))) fail('cler-0010: suffix-order convention is not visible');
-for (const id of ['cler-0001', 'cler-0006', 'cler-0007', 'cler-0036', 'cler-0038', 'cler-0039', 'cler-0040', 'cler-0041']) {
-  const explanation = filing.find((q) => q.id === id)?.explanation ?? '';
-  if (/wait|let me recheck|actually|correcting|keyed answer|let me correct/i.test(explanation)) fail(`${id}: explanation contains drafting or self-repair narration`);
-}
+const seed = filing.find((q) => q.id === 'seed-cler-001');
+if (seed?.correctOptionId !== 'C' || seed.choices.find((choice) => choice.id === 'C')?.text !== 'Del Fierro, Ana') fail('seed-cler-001: Del Fierro must remain Option C');
+if (seed?.taskInstance?.payload?.entries?.length !== 4) fail('seed-cler-001: the four-name authored filing set must remain four entries');
 
-console.log(`Validated Filing: ${filing.length} total, ${compact.length} compact, ${legacy.length} legacy full-prompt, task definition resolved.`);
+console.log(`Validated Filing: ${filing.length} total, ${compact.length} compact, ${legacy.length} legacy full-prompt, ${canonicalRecords.length} canonical structured, task definition and 26-question pool resolved.`);

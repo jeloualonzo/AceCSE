@@ -23,6 +23,9 @@ const cleanedSpellingIds = new Set([
 const structuredFilingIds = new Set([
   'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
   'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
+  'cler-0006', 'cler-0007', 'cler-0008', 'cler-0009', 'cler-0010', 'cler-0011',
+  'cler-0031', 'cler-0032', 'cler-0033', 'seed-cler-001', 'cler-0036', 'cler-0037',
+  'cler-0038', 'cler-0039',
 ]);
 
 describe('production bank — five-choice migration', () => {

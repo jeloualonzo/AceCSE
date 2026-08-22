@@ -518,12 +518,15 @@ describe('structured explanation Practice/Results integration V3', () => {
     }
   });
 
-  it('renders all 10 approved Filing explanations through Practice and Results in one card', async () => {
+  it('renders all 24 approved Filing explanations through Practice and Results in one card', async () => {
     const user = userEvent.setup();
     const catalog = await loadContentCatalog(['Clerical Ability']);
     const filingIds = [
       'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
       'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
+      'cler-0006', 'cler-0007', 'cler-0008', 'cler-0009', 'cler-0010', 'cler-0011',
+      'cler-0031', 'cler-0032', 'cler-0033', 'seed-cler-001', 'cler-0036', 'cler-0037',
+      'cler-0038', 'cler-0039',
     ];
     const filingOrderExamples: Record<string, string> = {
       'cler-0053': 'Abad, Bernardo S.',
@@ -534,6 +537,20 @@ describe('structured explanation Practice/Results integration V3', () => {
       'cler-0003': 'A.',
       'cler-0004': 'Fajardo',
       'cler-0005': 'Villalobos',
+      'cler-0006': 'Lacsina, Myrna',
+      'cler-0007': 'De la Cruz, Maria',
+      'cler-0008': 'Salazar, Mila',
+      'cler-0009': 'Garces, Tony',
+      'cler-0010': 'Mendoza, Roberto (no suffix)',
+      'cler-0011': 'De Jesus, Mario',
+      'cler-0031': 'Banzon, Felipe',
+      'cler-0032': 'Samson, Rafael',
+      'cler-0033': 'Villa, Carmen',
+      'seed-cler-001': 'De Castro, Pedro',
+      'cler-0036': 'San Pedro, Lito',
+      'cler-0037': 'Bureau of Customs',
+      'cler-0038': 'Navarro, Cecile',
+      'cler-0039': 'Ace Hardware Philippines',
     };
 
     for (const id of filingIds) {

@@ -850,5 +850,1295 @@
         }
       ]
     }
+  },
+  {
+    "id": "cler-0006",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Deep Letter-by-Letter Comparison",
+    "difficulty": "Easy",
+    "question": "Select the correct filing order.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1-2-3-4"
+      },
+      {
+        "id": "B",
+        "text": "3-2-1-4"
+      },
+      {
+        "id": "C",
+        "text": "2-1-3-4"
+      },
+      {
+        "id": "D",
+        "text": "1-2-4-3"
+      },
+      {
+        "id": "E",
+        "text": "3-4-2-1"
+      }
+    ],
+    "correctOptionId": "C",
+    "reference": "ARMA International Filing Rules, Rule 1.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "nothing-before-something",
+      "letter-by-letter"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Lacson, Iris",
+          "Lacsina, Myrna",
+          "Lagman, Pio",
+          "Laguna, Rene"
+        ],
+        "itemPrompt": "Select the correct filing order.",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — 2-1-3-4"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Compare each **surname from left to right** and stop at the first differing letter."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Lacsina, Myrna*\n**2.** *Lacson, Iris*\n**3.** *Lagman, Pio*\n**4.** *Laguna, Rene*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "In *Lacsina* and *Lacson*, **i** comes before **o**. In *Lagman* and *Laguna*, **m** comes before **u**. Therefore the order is **2-1-3-4**."
+        },
+        {
+          "type": "rule",
+          "text": "Use the first differing letter to resolve each surname comparison; do not rely on name length when an earlier letter decides the order."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0007",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Prefixes — De la / Dela",
+    "difficulty": "Medium",
+    "question": "Select the correct filing order.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1-2-3-4"
+      },
+      {
+        "id": "B",
+        "text": "2-1-4-3"
+      },
+      {
+        "id": "C",
+        "text": "3-4-1-2"
+      },
+      {
+        "id": "D",
+        "text": "1-3-2-4"
+      },
+      {
+        "id": "E",
+        "text": "1-2-4-3"
+      }
+    ],
+    "correctOptionId": "A",
+    "reference": "CSC Records Management Guidelines; ARMA Rule 5 (Prefixes).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "prefixes",
+      "De la",
+      "Dela",
+      "Filipino-surnames"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "De la Cruz, Maria",
+          "Dela Torre, Jose",
+          "Dimaculangan, Risa",
+          "Dionisio, Pao"
+        ],
+        "itemPrompt": "Select the correct filing order.",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — 1-2-3-4"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Treat **De la** and **Dela** as part of the surname filing unit and compare the normalized surname continuously."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *De la Cruz, Maria*\n**2.** *Dela Torre, Jose*\n**3.** *Dimaculangan, Risa*\n**4.** *Dionisio, Pao*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "*delacruz* comes before *delatorre* because **c < t**. Both *dela...* names precede *dima...* and *dio...*; between those last two, **m < o**."
+        },
+        {
+          "type": "rule",
+          "text": "Keep a surname prefix such as **De la** or **Dela** with the surname and compare the resulting filing unit from left to right."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0008",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Prefixes — San",
+    "difficulty": "Medium",
+    "question": "Select the correct filing order.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1-2-3-4"
+      },
+      {
+        "id": "B",
+        "text": "2-3-4-1"
+      },
+      {
+        "id": "C",
+        "text": "1-3-2-4"
+      },
+      {
+        "id": "D",
+        "text": "2-1-4-3"
+      },
+      {
+        "id": "E",
+        "text": "2-1-3-4"
+      }
+    ],
+    "correctOptionId": "A",
+    "reference": "CSC Records Management Guidelines; ARMA Rule 5.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "prefixes",
+      "San",
+      "Filipino-surnames"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Salazar, Mila",
+          "San Juan, Pedro",
+          "Santiago, Rosa",
+          "Santos, Celia"
+        ],
+        "itemPrompt": "Select the correct filing order.",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — 1-2-3-4"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Treat **San** as part of the surname filing unit and compare the names from the beginning."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Salazar, Mila*\n**2.** *San Juan, Pedro*\n**3.** *Santiago, Rosa*\n**4.** *Santos, Celia*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "*Salazar* comes before the *San...* names because **l < n**. *San Juan* comes before *Santiago* and *Santos* because **j < t**; *Santiago* comes before *Santos* because **i < o**."
+        },
+        {
+          "type": "rule",
+          "text": "When a prefix such as **San** is part of the surname, compare it as part of the complete filing unit."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0009",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Hyphenated Surnames",
+    "difficulty": "Medium",
+    "question": "Which name is filed THIRD when these four names are arranged in alphabetical order?\n\n  Garces, Tony\n  Garcia-Lopez, Alma\n  Garcia, Zoe\n  Garrido, Lara",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Garrido, Lara"
+      },
+      {
+        "id": "B",
+        "text": "Garcia, Zoe"
+      },
+      {
+        "id": "C",
+        "text": "Garcia-Lopez, Alma"
+      },
+      {
+        "id": "D",
+        "text": "Garces, Tony"
+      },
+      {
+        "id": "E",
+        "text": "Garciatorres, Nena"
+      }
+    ],
+    "correctOptionId": "C",
+    "reference": "ARMA Rule 7 (Hyphens in Personal Names).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "hyphenated-names",
+      "nothing-before-something"
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "shared_filing_task",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Garces, Tony",
+          "Garcia, Zoe",
+          "Garcia-Lopez, Alma",
+          "Garrido, Lara"
+        ],
+        "itemPrompt": "Which name is filed THIRD when these four names are arranged in alphabetical order?\n\n  Garces, Tony\n  Garcia-Lopez, Alma\n  Garcia, Zoe\n  Garrido, Lara",
+        "answerStructure": "candidate_name",
+        "entityType": "personal_name",
+        "orderingMode": "alphabetical_filing",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — *Garcia-Lopez, Alma*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "A hyphenated surname is one continuous filing unit for this item. The four names being arranged are *Garces*, *Garcia*, *Garcia-Lopez*, and *Garrido*."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Garces, Tony*\n**2.** *Garcia, Zoe*\n**3.** *Garcia-Lopez, Alma*\n**4.** *Garrido, Lara*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "**e < i** puts *Garces* before the two *Garcia...* names. *Garcia* ends before *Garcia-Lopez* continues, so the shorter matching string comes first. **r > c** puts *Garrido* after the *Garc...* names."
+        },
+        {
+          "type": "rule",
+          "text": "Treat a hyphenated surname as one continuous unit and apply **nothing-before-something** when one matching string ends before the other continues."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0010",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Suffixes (Jr., Sr., III)",
+    "difficulty": "Hard",
+    "question": "Select the correct order for these folders.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2-3-1-4"
+      },
+      {
+        "id": "B",
+        "text": "1-2-3-4"
+      },
+      {
+        "id": "C",
+        "text": "3-2-4-1"
+      },
+      {
+        "id": "D",
+        "text": "1-3-2-4"
+      },
+      {
+        "id": "E",
+        "text": "1-4-2-3"
+      }
+    ],
+    "correctOptionId": "B",
+    "reference": "CSC Records Management Manual; ARMA Rule 6 (Suffixes).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "suffixes",
+      "Jr",
+      "Sr",
+      "nothing-before-something"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Mendoza, Roberto (no suffix)",
+          "Mendoza, Roberto Jr.",
+          "Mendoza, Roberto Sr.",
+          "Mendoza, Roberto III"
+        ],
+        "itemPrompt": "Select the correct order for these folders.",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation",
+        "itemNote": "For this item, file the unsuffixed name first, followed by Jr., Sr., and III. This is the convention used by this practice item."
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "B — 1-2-3-4"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The surname and given name are identical, so the **suffix becomes the deciding filing unit**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Mendoza, Roberto (no suffix)*\n**2.** *Mendoza, Roberto Jr.*\n**3.** *Mendoza, Roberto Sr.*\n**4.** *Mendoza, Roberto III*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "The unsuffixed form comes first because **nothing comes before something**. Under the convention stated for this practice item, the remaining suffixes follow as **Jr.**, **Sr.**, then **III**."
+        },
+        {
+          "type": "rule",
+          "text": "For this item, apply the established suffix convention shown in its task note. Do not explain the order as family-generation history."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0011",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Prefixes — De, Del, Delos",
+    "difficulty": "Hard",
+    "question": "Select the correct filing order.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4-1-3-2"
+      },
+      {
+        "id": "B",
+        "text": "2-3-1-4"
+      },
+      {
+        "id": "C",
+        "text": "1-3-2-4"
+      },
+      {
+        "id": "D",
+        "text": "1-2-3-4"
+      },
+      {
+        "id": "E",
+        "text": "4-2-3-1"
+      }
+    ],
+    "correctOptionId": "D",
+    "reference": "CSC Records Management Guidelines; ARMA Rule 5.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "prefixes",
+      "De",
+      "Del",
+      "Delos",
+      "Filipino-surnames"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "De Jesus, Mario",
+          "Del Mundo, Carla",
+          "Delos Reyes, Tina",
+          "De Vera, Luis"
+        ],
+        "itemPrompt": "Select the correct filing order.",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "D — 1-2-3-4"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Treat **De**, **Del**, and **Delos** as part of each surname filing unit and compare the normalized strings."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *De Jesus, Mario*\n**2.** *Del Mundo, Carla*\n**3.** *Delos Reyes, Tina*\n**4.** *De Vera, Luis*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "At the decisive position, **j < l < v**, so *De Jesus* comes first and *De Vera* comes last. Among the two *Del...* names, **m < o**, so *Del Mundo* precedes *Delos Reyes*."
+        },
+        {
+          "type": "rule",
+          "text": "Keep compound surname prefixes with the surname and compare the next differing letter."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0031",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Letter-by-Letter Comparison — Ba- Surnames",
+    "difficulty": "Easy",
+    "question": "Which of the following names should be filed FIRST in alphabetical order?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Bautista, Armando"
+      },
+      {
+        "id": "B",
+        "text": "Basilio, Corazon"
+      },
+      {
+        "id": "C",
+        "text": "Banzon, Felipe"
+      },
+      {
+        "id": "D",
+        "text": "Bayani, Dolores"
+      },
+      {
+        "id": "E",
+        "text": "Bermudez, Silvia"
+      }
+    ],
+    "correctOptionId": "C",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "letter-by-letter",
+      "Ba-surnames"
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "shared_filing_task",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Bautista, Armando",
+          "Basilio, Corazon",
+          "Banzon, Felipe",
+          "Bayani, Dolores",
+          "Bermudez, Silvia"
+        ],
+        "itemPrompt": "Which of the following names should be filed FIRST in alphabetical order?",
+        "answerStructure": "candidate_name",
+        "entityType": "personal_name",
+        "orderingMode": "alphabetical_filing",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — *Banzon, Felipe*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "All four **Ba...** surnames share the first two letters, so compare the third letter. *Bermudez* begins **Be** and follows every **Ba...** surname."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Banzon, Felipe*\n**2.** *Basilio, Corazon*\n**3.** *Bautista, Armando*\n**4.** *Bayani, Dolores*\n**5.** *Bermudez, Silvia*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "The decisive third letters are **n < s < u < y**. Therefore *Banzon, Felipe* is filed first."
+        },
+        {
+          "type": "rule",
+          "text": "When several surnames share a prefix, compare the first letter at which they differ."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0032",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Prefixes — San (Nothing-Before-Something)",
+    "difficulty": "Medium",
+    "question": "Which of the following names should be filed LAST in alphabetical order?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "San Jose, Pedro"
+      },
+      {
+        "id": "B",
+        "text": "Santos, Maria"
+      },
+      {
+        "id": "C",
+        "text": "Samson, Rafael"
+      },
+      {
+        "id": "D",
+        "text": "Santiago, Luz"
+      },
+      {
+        "id": "E",
+        "text": "Santillan, Jose"
+      }
+    ],
+    "correctOptionId": "B",
+    "reference": "ARMA Rule 5; CSC Records Management Guidelines.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "prefixes",
+      "San",
+      "nothing-before-something",
+      "Filipino-surnames"
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "shared_filing_task",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "San Jose, Pedro",
+          "Santos, Maria",
+          "Samson, Rafael",
+          "Santiago, Luz",
+          "Santillan, Jose"
+        ],
+        "itemPrompt": "Which of the following names should be filed LAST in alphabetical order?",
+        "answerStructure": "candidate_name",
+        "entityType": "personal_name",
+        "orderingMode": "alphabetical_filing",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "B — *Santos, Maria*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "All five names must be included. Treat **San** as part of the surname and compare the complete filing units."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Samson, Rafael*\n**2.** *San Jose, Pedro*\n**3.** *Santiago, Luz*\n**4.** *Santillan, Jose*\n**5.** *Santos, Maria*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "*Samson* comes first because **m < n** after **Sa**. *San Jose* comes next because **j < t**. Among the remaining **Sant...** names, **i < o**, then **a < l**, so *Santiago* precedes *Santillan*, and both precede *Santos*. Thus *Santos* is last."
+        },
+        {
+          "type": "rule",
+          "text": "Compare all five surnames letter by letter; do not stop after ordering only the names that share the same visible prefix."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0033",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Nothing-Before-Something — Villa- Surnames",
+    "difficulty": "Medium",
+    "question": "Which of the following names should be filed SECOND in alphabetical order?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Villanueva, Jose"
+      },
+      {
+        "id": "B",
+        "text": "Villar, Ana"
+      },
+      {
+        "id": "C",
+        "text": "Villa, Carmen"
+      },
+      {
+        "id": "D",
+        "text": "Villamor, Ben"
+      },
+      {
+        "id": "E",
+        "text": "Villareal, Tomas"
+      }
+    ],
+    "correctOptionId": "D",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "nothing-before-something",
+      "Villa-surnames"
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "shared_filing_task",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Villanueva, Jose",
+          "Villar, Ana",
+          "Villa, Carmen",
+          "Villamor, Ben",
+          "Villareal, Tomas"
+        ],
+        "itemPrompt": "Which of the following names should be filed SECOND in alphabetical order?",
+        "answerStructure": "candidate_name",
+        "entityType": "personal_name",
+        "orderingMode": "alphabetical_filing",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "D — *Villamor, Ben*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "All five choices must be accounted for. *Villa* ends before the other matching names continue, so nothing-before-something puts it first."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Villa, Carmen*\n**2.** *Villamor, Ben*\n**3.** *Villanueva, Jose*\n**4.** *Villar, Ana*\n**5.** *Villareal, Tomas*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "After *Villa*, compare the next differing letters: **m < n < r**. Between *Villar* and *Villareal*, the shorter *Villar* ends first. Therefore *Villamor* is second."
+        },
+        {
+          "type": "rule",
+          "text": "Use nothing-before-something when a surname ends at a shared prefix, then continue letter-by-letter for the remaining names."
+        }
+      ]
+    }
+  },
+  {
+    "id": "seed-cler-001",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Prefixes — De, De La, Del",
+    "difficulty": "Easy",
+    "question": "Which name comes third?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "De Castro, Pedro"
+      },
+      {
+        "id": "B",
+        "text": "De La Cruz, Juan"
+      },
+      {
+        "id": "C",
+        "text": "Del Fierro, Ana"
+      },
+      {
+        "id": "D",
+        "text": "Del Rosario, Maria"
+      },
+      {
+        "id": "E",
+        "text": "De la Rama, Pilar"
+      }
+    ],
+    "correctOptionId": "C",
+    "reference": "ARMA Rule 5; CSC Records Management Guidelines.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "prefixes",
+      "De",
+      "De La",
+      "Del",
+      "Filipino-surnames"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "De La Cruz, Juan",
+          "Del Rosario, Maria",
+          "De Castro, Pedro",
+          "Del Fierro, Ana"
+        ],
+        "itemPrompt": "Which name comes third?",
+        "answerStructure": "candidate_name",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — *Del Fierro, Ana*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Four names being arranged",
+          "text": "The filing set contains exactly four names:"
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *De Castro, Pedro*\n**2.** *De La Cruz, Juan*\n**3.** *Del Fierro, Ana*\n**4.** *Del Rosario, Maria*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "*De Castro* comes first because **c < l** after **de**. Among the *del...* names, **a < f < r**, so *Del Fierro, Ana* is third. *De la Rama, Pilar* is an answer choice and distractor, not part of the four-name filing set."
+        },
+        {
+          "type": "rule",
+          "text": "Order only the four authored filing entries; distinguish the displayed answer choices from the entries being arranged."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0036",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Filipino Surnames — Sta. / St. Abbreviations",
+    "difficulty": "Medium",
+    "question": "A file clerk must arrange the following names in correct alphabetical order. Which name should be filed FIRST?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Sta. Maria, Rosario"
+      },
+      {
+        "id": "B",
+        "text": "Santos, Domingo"
+      },
+      {
+        "id": "C",
+        "text": "San Pedro, Lito"
+      },
+      {
+        "id": "D",
+        "text": "Santa Cruz, Elia"
+      },
+      {
+        "id": "E",
+        "text": "Serrano, Lorna"
+      }
+    ],
+    "correctOptionId": "C",
+    "reference": "ARMA Rule 5; CSC Records Management Guidelines on Abbreviations.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "Sta.",
+      "Santa",
+      "Filipino-surnames",
+      "abbreviations"
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "shared_filing_task",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Sta. Maria, Rosario",
+          "Santos, Domingo",
+          "San Pedro, Lito",
+          "Santa Cruz, Elia",
+          "Serrano, Lorna"
+        ],
+        "itemPrompt": "A file clerk must arrange the following names in correct alphabetical order. Which name should be filed FIRST?",
+        "answerStructure": "candidate_name",
+        "entityType": "personal_name",
+        "orderingMode": "alphabetical_filing",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — *San Pedro, Lito*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "For this item, interpret **Sta.** as **Santa** before comparing the filing units."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *San Pedro, Lito*\n**2.** *Santa Cruz, Elia*\n**3.** *Sta. Maria, Rosario*\n**4.** *Santos, Domingo*\n**5.** *Serrano, Lorna*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "*San Pedro* precedes the **Santa...** names. Between the Santa entries, **c < m**; *Santos* follows them, and *Serrano* follows every **Sa...** entry."
+        },
+        {
+          "type": "rule",
+          "text": "Apply the item’s abbreviation convention consistently: read **Sta.** as **Santa** for comparison, while preserving the authored entry as displayed."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0037",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Government Office Names",
+    "difficulty": "Medium",
+    "question": "A clerk is filing records for four government offices. Which office name should be filed LAST in alphabetical order?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Bureau of Internal Revenue"
+      },
+      {
+        "id": "B",
+        "text": "Bureau of Immigration"
+      },
+      {
+        "id": "C",
+        "text": "Bureau of Customs"
+      },
+      {
+        "id": "D",
+        "text": "Bureau of Local Government Finance"
+      },
+      {
+        "id": "E",
+        "text": "Bureau of Land Management"
+      }
+    ],
+    "correctOptionId": "D",
+    "reference": "ARMA Rule 11 (Government Names); CSC Records Management Guidelines.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "government-offices",
+      "business-names"
+    ],
+    "questionFormat": "business_or_office_filing",
+    "taskFormat": "shared_filing_task",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Bureau of Internal Revenue",
+          "Bureau of Immigration",
+          "Bureau of Customs",
+          "Bureau of Local Government Finance",
+          "Bureau of Land Management"
+        ],
+        "itemPrompt": "A clerk is filing records for four government offices. Which office name should be filed LAST in alphabetical order?",
+        "answerStructure": "candidate_name",
+        "entityType": "government_office",
+        "orderingMode": "alphabetical_filing",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "D — *Bureau of Local Government Finance*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "There are five choices, and all five office names must be compared. The shared prefix is **Bureau of**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Bureau of Customs*\n**2.** *Bureau of Immigration*\n**3.** *Bureau of Internal Revenue*\n**4.** *Bureau of Land Management*\n**5.** *Bureau of Local Government Finance*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "Compare the next meaningful word: **C**, **I**, **I**, **L**, **L**. *Immigration* precedes *Internal* because **m < n**. Between *Land* and *Local*, **a < o**, so *Bureau of Local Government Finance* is last."
+        },
+        {
+          "type": "rule",
+          "text": "Keep government office names in their authored form and compare the first meaningful word after a shared prefix."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0038",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Tricky Filipino Surnames — Ng, Ngo",
+    "difficulty": "Hard",
+    "question": "A records clerk must file the following names in alphabetical order. Which name is filed SECOND?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Ngo, Alfonso"
+      },
+      {
+        "id": "B",
+        "text": "Ng, Bernard"
+      },
+      {
+        "id": "C",
+        "text": "Navarro, Cecile"
+      },
+      {
+        "id": "D",
+        "text": "Nieto, Diana"
+      },
+      {
+        "id": "E",
+        "text": "Nolasco, Elena"
+      }
+    ],
+    "correctOptionId": "B",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "Filipino-surnames",
+      "Ng",
+      "Ngo",
+      "nothing-before-something"
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "shared_filing_task",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Ngo, Alfonso",
+          "Ng, Bernard",
+          "Navarro, Cecile",
+          "Nieto, Diana",
+          "Nolasco, Elena"
+        ],
+        "itemPrompt": "A records clerk must file the following names in alphabetical order. Which name is filed SECOND?",
+        "answerStructure": "candidate_name",
+        "entityType": "personal_name",
+        "orderingMode": "alphabetical_filing",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "B — *Ng, Bernard*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Compare the surnames letter by letter, including the short **Ng** entry and the longer **Ngo** entry."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Navarro, Cecile*\n**2.** *Ng, Bernard*\n**3.** *Ngo, Alfonso*\n**4.** *Nieto, Diana*\n**5.** *Nolasco, Elena*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "*Navarro* begins **Na** and comes first. *Ng* ends after the second letter, so nothing-before-something places it before *Ngo*. The **Ni...** name follows the **Ng...** names, and **i < o** places *Nieto* before *Nolasco*."
+        },
+        {
+          "type": "rule",
+          "text": "When one surname ends while another continues after the same prefix, the shorter entry files first."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0039",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Business Names — Numeric and Abbreviated Starters",
+    "difficulty": "Hard",
+    "question": "A clerk is filing records for the following business names. Under standard business-name filing rules, which is filed FIRST?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "7-Eleven Convenience Store"
+      },
+      {
+        "id": "B",
+        "text": "Ace Hardware Philippines"
+      },
+      {
+        "id": "C",
+        "text": "3M Philippines, Inc."
+      },
+      {
+        "id": "D",
+        "text": "A.G. Reyes & Associates"
+      },
+      {
+        "id": "E",
+        "text": "Alpha Business Solutions"
+      }
+    ],
+    "correctOptionId": "B",
+    "reference": "ARMA Rule 10 (Numbers in Business Names).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "business-names",
+      "numbers-spelled-out",
+      "ARMA-rules"
+    ],
+    "questionFormat": "business_or_office_filing",
+    "taskFormat": "shared_filing_task",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "7-Eleven Convenience Store",
+          "Ace Hardware Philippines",
+          "3M Philippines, Inc.",
+          "A.G. Reyes & Associates",
+          "Alpha Business Solutions"
+        ],
+        "itemPrompt": "A clerk is filing records for the following business names. Under standard business-name filing rules, which is filed FIRST?",
+        "answerStructure": "candidate_name",
+        "entityType": "business_name",
+        "orderingMode": "alphabetical_filing",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "B — *Ace Hardware Philippines*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Account for all five business names. Under the repository’s business-name convention, compare numeric starters in their spelled-out form, treat **A.G.** letter by letter, and ignore punctuation as a separator."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Ace Hardware Philippines*\n**2.** *A.G. Reyes & Associates*\n**3.** *7-Eleven Convenience Store*\n**4.** *3M Philippines, Inc.*\n**5.** *Alpha Business Solutions*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "The leading forms compare as *Ace*, *A.G.*, *Seven*, *Three*, and *Alpha*. *Ace* comes before *A.G.* because **c < g**, and both **A...** names precede **Seven** and **Three**. Therefore *Ace Hardware Philippines* is first."
+        },
+        {
+          "type": "rule",
+          "text": "Use the established business-name comparison: normalize numeric starters for alphabetizing, compare abbreviations letter by letter, and retain the complete authored name."
+        }
+      ]
+    }
   }
 ]
