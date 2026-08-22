@@ -38,12 +38,12 @@ describe('Filing task architecture', () => {
     expect(session.questionIds.some((id) => id === 'cler-0001')).toBe(true);
   });
 
-  it('keeps 11 compact instances and 15 legacy prompts in the live bank', async () => {
+  it('keeps 13 compact instances and 13 legacy prompts in the live bank', async () => {
     const catalog = await loadContentCatalog(subjects);
     const filing = catalog.getQuestionsForSubject('Clerical Ability', 'Subprofessional').filter((question) => question.topic === 'Filing & Alphabetizing');
     expect(filing).toHaveLength(26);
-    expect(filing.filter((question) => question.taskInstance?.payload?.instanceFormat === 'compact')).toHaveLength(11);
-    expect(filing.filter((question) => question.taskInstance?.payload?.instanceFormat === 'legacy_full_prompt')).toHaveLength(15);
+    expect(filing.filter((question) => question.taskInstance?.payload?.instanceFormat === 'compact')).toHaveLength(13);
+    expect(filing.filter((question) => question.taskInstance?.payload?.instanceFormat === 'legacy_full_prompt')).toHaveLength(13);
     expect(filing.every((question) => question.id && question.choices.length >= 4 && question.choices.some((choice) => choice.id === question.correctOptionId))).toBe(true);
   });
 
@@ -82,7 +82,7 @@ describe('Filing task architecture', () => {
     const catalog = await loadContentCatalog(subjects);
     const suffix = catalog.getQuestion('cler-0010');
     expect(suffix?.taskInstance?.payload?.itemNote).toMatch(/unsuffixed name first.*Jr\., Sr\., and III/i);
-    const cleanedIds = ['cler-0001', 'cler-0006', 'cler-0007', 'cler-0036', 'cler-0038', 'cler-0039', 'cler-0040', 'cler-0041'];
+    const cleanedIds = ['cler-0006', 'cler-0007', 'cler-0036', 'cler-0038', 'cler-0039', 'cler-0040', 'cler-0041'];
     for (const id of cleanedIds) {
       expect(catalog.getQuestion(id)?.explanation).not.toMatch(/wait|let me recheck|actually|correcting|keyed answer|let me correct/i);
     }

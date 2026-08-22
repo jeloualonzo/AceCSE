@@ -145,6 +145,32 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(container.querySelectorAll('[data-testid="structured-explanation"]')).toHaveLength(1);
   });
 
+  it('renders Filing Order as stacked numbered entries with shared inline rich text', () => {
+    render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [
+            { type: 'heading', text: 'Solution' },
+            { type: 'paragraph', label: 'Filing Order', text: '**1.** *Abad, Bernardo S.*\n**2.** *Abad, Fernando C.*\n**3.** *Abad, Fernando M.*\n**4.** *Abadilla, Teresa G.*' },
+          ],
+        }}
+        theme="light"
+      />
+    );
+
+    const root = screen.getByTestId('structured-explanation');
+    const orderParagraph = Array.from(root.querySelectorAll('p')).find((node) => node.textContent?.includes('Abad, Bernardo S.'));
+    expect(orderParagraph).toBeDefined();
+    expect(orderParagraph).toHaveClass('whitespace-pre-line');
+    expect(orderParagraph).toHaveTextContent('1. Abad, Bernardo S.');
+    expect(orderParagraph).toHaveTextContent('2. Abad, Fernando C.');
+    expect(orderParagraph).toHaveTextContent('3. Abad, Fernando M.');
+    expect(orderParagraph).toHaveTextContent('4. Abadilla, Teresa G.');
+    expect(orderParagraph?.textContent).not.toContain('→');
+    expect(orderParagraph?.querySelectorAll('strong')).toHaveLength(4);
+    expect(orderParagraph?.querySelectorAll('em')).toHaveLength(4);
+  });
+
   it('keeps Alternative Method collapsed by default and expands vertically inside the same card', async () => {
     const user = userEvent.setup();
     const { container } = render(

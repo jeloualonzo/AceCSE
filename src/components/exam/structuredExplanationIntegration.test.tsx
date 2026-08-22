@@ -518,6 +518,92 @@ describe('structured explanation Practice/Results integration V3', () => {
     }
   });
 
+  it('renders all 10 approved Filing explanations through Practice and Results in one card', async () => {
+    const user = userEvent.setup();
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+    const filingIds = [
+      'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
+      'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
+    ];
+    const filingOrderExamples: Record<string, string> = {
+      'cler-0053': 'Abad, Bernardo S.',
+      'cler-0059': 'Banal',
+      'cler-0060': 'Dimaculangan',
+      'cler-0001': 'Bartolome',
+      'cler-0002': 'Albert',
+      'cler-0003': 'A.',
+      'cler-0004': 'Fajardo',
+      'cler-0005': 'Villalobos',
+    };
+
+    for (const id of filingIds) {
+      const question = catalog.questions.get(id)!;
+      renderWithTheme(
+        <QuestionCard
+          question={question}
+          selectedOptionId={question.correctOptionId}
+          onSelectOption={vi.fn()}
+          instantFeedback
+        />
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
+      const practiceRoots = screen.getAllByTestId('structured-explanation');
+      expect(practiceRoots.length).toBeGreaterThan(0);
+      expect(practiceRoots.every((root) => root.textContent?.includes('Correct Answer:'))).toBe(true);
+      expect(practiceRoots.every((root) => root.querySelector('strong, em') !== null)).toBe(true);
+      expect(practiceRoots.every((root) => within(root).queryByText(/Other Choices|corrected alternatives/i) === null)).toBe(true);
+      if (filingOrderExamples[id]) {
+        expect(practiceRoots.every((root) => within(root).getByText('Filing Order'))).toBe(true);
+        expect(practiceRoots.every((root) => root.textContent?.includes(filingOrderExamples[id]))).toBe(true);
+      }
+
+      cleanup();
+      const attempt: Attempt = {
+        id: `filing-structured-results-${id}`,
+        mode: 'practice',
+        examLevel: 'Subprofessional',
+        questionCount: 1,
+        correctCount: 1,
+        answeredCount: 1,
+        unansweredCount: 0,
+        percentage: 100,
+        passed: false,
+        durationSeconds: 12,
+        startedAt: 1,
+        completedAt: 12_001,
+        subjects: [{ subject: 'Clerical Ability', total: 1, correct: 1, answered: 1, unanswered: 0, percentage: 100 }],
+        items: [{
+          questionId: question.id,
+          subject: question.subject,
+          topic: question.topic,
+          selected: question.correctOptionId,
+          correct: question.correctOptionId,
+          isCorrect: true,
+        }],
+      };
+
+      renderWithTheme(
+        <ResultsScreen
+          attempt={attempt}
+          questionIndex={new Map([[question.id, question]])}
+          onRetake={vi.fn()}
+          onReturnToDashboard={vi.fn()}
+        />
+      );
+      await user.click(screen.getByRole('button', { name: 'Expand question details' }));
+      const resultsRoot = screen.getByTestId('structured-explanation');
+      expect(resultsRoot.textContent).toContain('Correct Answer:');
+      expect(resultsRoot.querySelector('strong, em')).not.toBeNull();
+      expect(within(resultsRoot).queryByText(/Other Choices|corrected alternatives/i)).toBeNull();
+      if (filingOrderExamples[id]) {
+        expect(within(resultsRoot).getByText('Filing Order')).toBeInTheDocument();
+        expect(resultsRoot.textContent).toContain(filingOrderExamples[id]);
+      }
+      cleanup();
+    }
+  });
+
   it('keeps num-0024 primary and alternative methods in one Results explanation card', async () => {
     const attempt: Attempt = {
       id: 'structured-results-alternative',

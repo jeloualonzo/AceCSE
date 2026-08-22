@@ -30,9 +30,8 @@ function base(overrides: Partial<Question> = {}): Question {
 }
 
 /**
- * A canonical structured-only Spelling record: one of the five approved ids,
- * with every legacy explanation field removed, so `structuredExplanation` is
- * the only learner-facing explanation the record has.
+ * A canonical structured-only Spelling record with every legacy explanation
+ * field removed, so `structuredExplanation` is the only learner-facing aid.
  */
 function structuredOnlySpelling(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   const q = {
@@ -50,6 +49,33 @@ function structuredOnlySpelling(overrides: Record<string, unknown> = {}): Record
       correctOptionId: 'D',
       structuredExplanation: {
         blocks: [{ type: 'paragraph', label: 'Correct Spelling', text: 'accommodate' }],
+      },
+    }),
+    ...overrides,
+  } as Record<string, unknown>;
+  delete q.explanation;
+  delete q.steps;
+  delete q.distractorExplanations;
+  delete q.tip;
+  return q;
+}
+
+function structuredOnlyFiling(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  const q = {
+    ...base({
+      id: 'cler-0053',
+      subject: 'Clerical Ability',
+      topic: 'Filing & Alphabetizing',
+      choices: [
+        { id: 'A', text: 'Folder 3 (Abad, Bernardo S.)' },
+        { id: 'B', text: 'Folder 1 (Abad, Fernando C.)' },
+        { id: 'C', text: 'Folder 2 (Abad, Fernando M.)' },
+        { id: 'D', text: 'Folder 4 (Abadilla, Teresa G.)' },
+        { id: 'E', text: 'Folders 1 and 2' },
+      ],
+      correctOptionId: 'A',
+      structuredExplanation: {
+        blocks: [{ type: 'paragraph', label: 'Filing Order', text: '**1.** *Abad, Bernardo S.*' }],
       },
     }),
     ...overrides,
@@ -196,8 +222,8 @@ describe('choice-set validation (4-/5-choice migration contract)', () => {
 /**
  * `isValidQuestion` is the sole admission gate into the catalog (the runtime
  * loader in questionBank.ts and the build-time manifest plugin both call it).
- * For the five approved Spelling records there is no legacy prose to fall back
- * on, so the gate must apply the SAME bar the renderer applies — otherwise a
+ * For approved canonical Spelling and Filing records there is no legacy prose
+ * to fall back on, so the gate must apply the SAME bar the renderer applies — otherwise a
  * record the renderer rejects still reaches a learner with no explanation.
  */
 describe('structured-only Spelling admission exception', () => {
@@ -258,12 +284,21 @@ describe('structured-only Spelling admission exception', () => {
     expect(isValidQuestion(structuredOnlySpelling({ topic: 'Grammar' }))).toBe(false);
   });
 
-  it('accepts all 12 approved ids on the structured-only path', () => {
+  it('accepts all 12 approved Spelling ids on the structured-only path', () => {
     for (const id of [
       'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
       'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
     ]) {
       expect(isValidQuestion(structuredOnlySpelling({ id })), id).toBe(true);
+    }
+  });
+
+  it('accepts all 10 approved Filing ids on the structured-only path', () => {
+    for (const id of [
+      'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
+      'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
+    ]) {
+      expect(isValidQuestion(structuredOnlyFiling({ id })), id).toBe(true);
     }
   });
 

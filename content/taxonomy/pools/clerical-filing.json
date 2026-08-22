@@ -146,13 +146,13 @@
       "questionId": "cler-0054",
       "questionType": "business_or_office_filing",
       "questionFormat": "business_or_office_filing",
-      "taskFormat": "legacy_full_prompt"
+      "taskFormat": "shared_filing_task"
     },
     {
       "questionId": "cler-0058",
       "questionType": "subject_or_office_filing",
       "questionFormat": "subject_or_office_filing",
-      "taskFormat": "legacy_full_prompt"
+      "taskFormat": "shared_filing_task"
     },
     {
       "questionId": "cler-0059",

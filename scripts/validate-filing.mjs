@@ -20,12 +20,19 @@ const taxonomy = readJson(path.join(root, 'content/taxonomy/taxonomy.json'));
 const manifest = readJson(path.join(root, 'content/taxonomy/classification-manifest.json'));
 const filingManifest = new Map(manifest.questions.filter((row) => row.topic === 'Filing & Alphabetizing').map((row) => [row.questionId, row]));
 const task = taxonomy.sharedTaskDefinitions?.filing_default;
+const canonicalFilingFile = 'content/questions/clerical/filing.json';
+const canonicalFilingIds = new Set([
+  'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
+  'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
+]);
 const compact = filing.filter((q) => q.taskInstance?.kind === 'filing' && q.taskInstance.payload?.instanceFormat === 'compact');
 const legacy = filing.filter((q) => q.taskInstance?.kind === 'filing' && q.taskInstance.payload?.instanceFormat === 'legacy_full_prompt');
+const canonicalStructured = filing.filter((q) => canonicalFilingIds.has(q.id));
 
 if (filing.length !== 26) fail(`expected 26 Filing questions, got ${filing.length}`);
-if (compact.length !== 11) fail(`expected 11 compact Filing instances, got ${compact.length}`);
-if (legacy.length !== 15) fail(`expected 15 legacy Filing instances, got ${legacy.length}`);
+if (compact.length !== 13) fail(`expected 13 compact Filing instances, got ${compact.length}`);
+if (legacy.length !== 13) fail(`expected 13 legacy Filing instances, got ${legacy.length}`);
+if (canonicalStructured.length !== canonicalFilingIds.size) fail(`expected all ${canonicalFilingIds.size} canonical structured Filing records, got ${canonicalStructured.length}`);
 if (!task || task.title !== 'Filing and Alphabetizing') fail('filing_default task definition is missing or has the wrong title');
 if (!Array.isArray(task.rules) || task.rules.length < 3) fail('filing_default must include reusable rules');
 if (!Array.isArray(task.examples) || task.examples.length < 2) fail('filing_default must include reusable examples');
@@ -42,6 +49,13 @@ for (const q of filing) {
   if (q.taskFormat !== row?.taskFormat) fail(`${q.id}: taskFormat does not match manifest`);
   if (q.taskInstance?.kind !== 'filing') fail(`${q.id}: missing additive Filing taskInstance`);
   if (q.taskInstance?.payload?.sourcePromptPreserved !== true) fail(`${q.id}: sourcePromptPreserved must be true`);
+  if (canonicalFilingIds.has(q.id) && row?.sourceFile !== canonicalFilingFile) fail(`${q.id}: canonical Filing sourceFile must be ${canonicalFilingFile}`);
+  if (canonicalFilingIds.has(q.id)) {
+    if (!q.structuredExplanation?.blocks?.length) fail(`${q.id}: canonical Filing structuredExplanation is missing`);
+    for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+      if (field in q) fail(`${q.id}: migrated legacy field remains: ${field}`);
+    }
+  }
   if (!Array.isArray(q.choices) || q.choices.length < 4 || q.choices.length > 5) fail(`${q.id}: invalid choice count`);
   if (!q.choices.some((choice) => choice.id === q.correctOptionId)) fail(`${q.id}: correct answer is not among choices`);
 }

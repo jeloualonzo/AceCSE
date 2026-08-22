@@ -13,10 +13,11 @@
  *   - explanation is real teaching prose (≥ 100 chars)
  *   - worked steps (≥ 2) for computational items (Numerical; non-analogy Analytical)
  *   - distractor explanations for all three incorrect options (≥ 20 chars), except
- *     the eleven frozen Number Series records and twelve canonical Spelling
- *     records whose obsolete fields were removed
+ *     the eleven frozen Number Series records, twelve canonical Spelling records,
+ *     and ten canonical Filing records whose obsolete fields were removed
  *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the twelve canonical
- *     Spelling records that use structuredExplanation as their sole aid
+ *     Spelling records and ten canonical Filing records that use structuredExplanation
+ *     as their sole aid
  *
  * Also prints supply, difficulty, and answer-letter reports.
  */
@@ -48,6 +49,11 @@ const CANONICAL_SPELLING_FILE = 'clerical/spelling.json';
 const CANONICAL_SPELLING_IDS = new Set([
   'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
   'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
+]);
+const CANONICAL_FILING_FILE = 'clerical/filing.json';
+const CANONICAL_FILING_IDS = new Set([
+  'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
+  'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
 ]);
 
 /**
@@ -157,7 +163,9 @@ for (const path of jsonFiles(questionsDir)) {
 
     // ---- teaching-quality gates -------------------------------------------
     const canonicalStructuredSpelling = file === CANONICAL_SPELLING_FILE && CANONICAL_SPELLING_IDS.has(q.id);
-    if (!canonicalStructuredSpelling && (typeof q.explanation !== 'string' || q.explanation.length < 100)) {
+    const canonicalStructuredFiling = file === CANONICAL_FILING_FILE && CANONICAL_FILING_IDS.has(q.id);
+    const canonicalStructured = canonicalStructuredSpelling || canonicalStructuredFiling;
+    if (!canonicalStructured && (typeof q.explanation !== 'string' || q.explanation.length < 100)) {
       errors.push(`${where}: explanation must teach (≥ 100 chars), got ${q.explanation?.length ?? 0}`);
     }
 
@@ -177,7 +185,7 @@ for (const path of jsonFiles(questionsDir)) {
     const distractors = q.distractorExplanations;
     const canonicalNumberSeries = file === CANONICAL_NUMBER_SERIES_FILE && CANONICAL_NUMBER_SERIES_IDS.has(q.id);
     if (typeof distractors !== 'object' || distractors === null) {
-      if (!canonicalNumberSeries && !canonicalStructuredSpelling) errors.push(`${where}: missing distractorExplanations`);
+      if (!canonicalNumberSeries && !canonicalStructured) errors.push(`${where}: missing distractorExplanations`);
 
     } else {
       for (const option of wrongOptions) {
@@ -196,7 +204,7 @@ for (const path of jsonFiles(questionsDir)) {
       }
     }
 
-    if (!canonicalStructuredSpelling && (
+    if (!canonicalStructured && (
       typeof q.tip !== 'object' ||
       q.tip === null ||
       typeof q.tip.label !== 'string' ||

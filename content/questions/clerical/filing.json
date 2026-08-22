@@ -1,0 +1,854 @@
+[
+  {
+    "id": "cler-0053",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Detecting Out-of-Order Entries — First-Name Tie-Breaking",
+    "difficulty": "Medium",
+    "question": "Which numbered folder is out of order?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Folder 3 (Abad, Bernardo S.)"
+      },
+      {
+        "id": "B",
+        "text": "Folder 1 (Abad, Fernando C.)"
+      },
+      {
+        "id": "C",
+        "text": "Folder 2 (Abad, Fernando M.)"
+      },
+      {
+        "id": "D",
+        "text": "Folder 4 (Abadilla, Teresa G.)"
+      },
+      {
+        "id": "E",
+        "text": "Folders 1 and 2"
+      }
+    ],
+    "correctOptionId": "A",
+    "reference": "ARMA International Filing Rules, Rule 2 (Same Surnames); Rule 4 (Nothing Before Something).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "tie-breaking",
+      "first-name",
+      "nothing-before-something",
+      "error-detection"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Abad, Fernando C.",
+          "Abad, Fernando M.",
+          "Abad, Bernardo S.",
+          "Abadilla, Teresa G."
+        ],
+        "itemPrompt": "Which numbered folder is out of order?",
+        "answerStructure": "folder_reference",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — Folder 3"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "File names by **surname**, then **given name**, then **middle initial** when needed."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Abad, Bernardo S.*\n**2.** *Abad, Fernando C.*\n**3.** *Abad, Fernando M.*\n**4.** *Abadilla, Teresa G.*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "**Bernardo** comes before **Fernando**. Between the two *Fernando* entries, **C** comes before **M**."
+        },
+        {
+          "type": "rule",
+          "text": "Compare filing units from left to right: **surname → given name → middle name or initial**."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0054",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Article 'The' in Business Name Indexing",
+    "difficulty": "Medium",
+    "question": "In standard alphabetical filing of business names, how should 'The San Juan Development Corporation' be indexed?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The San Juan Development Corporation"
+      },
+      {
+        "id": "B",
+        "text": "Development Corporation, San Juan (The)"
+      },
+      {
+        "id": "C",
+        "text": "Juan Development Corporation, San"
+      },
+      {
+        "id": "D",
+        "text": "San Juan Development Corporation (The)"
+      },
+      {
+        "id": "E",
+        "text": "San Juan (The) Development Corporation"
+      }
+    ],
+    "correctOptionId": "D",
+    "reference": "ARMA International Filing Rules, Rule 1 (Letter-by-Letter); ARMA Rule 5 (Articles in Business Names).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "business-names",
+      "article-The",
+      "ARMA-rules"
+    ],
+    "questionFormat": "business_or_office_filing",
+    "taskFormat": "shared_filing_task",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "The San Juan Development Corporation"
+        ],
+        "itemPrompt": "In standard alphabetical filing of business names, how should 'The San Juan Development Corporation' be indexed?",
+        "answerStructure": "indexed_business_name",
+        "entityType": "business_name",
+        "orderingMode": "alphabetical_filing",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "D — *San Juan Development Corporation (The)*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "A leading article such as **The**, **A**, or **An** is moved to the end in parentheses."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "*The San Juan Development Corporation*\n→\n*San Juan Development Corporation (The)*\n\nThe filing position is determined by **San**."
+        },
+        {
+          "type": "rule",
+          "text": "Ignore a leading business-name article when alphabetizing it; place the article at the end in parentheses."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0058",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Subject Filing Method vs Other Filing Systems",
+    "difficulty": "Easy",
+    "question": "A government office groups its records by operational function — for example, 'PERSONNEL — Leave Applications', 'PERSONNEL — Appointments', 'SUPPLIES — Procurement'. Which filing method is being used?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Geographic filing"
+      },
+      {
+        "id": "B",
+        "text": "Subject filing"
+      },
+      {
+        "id": "C",
+        "text": "Chronological filing"
+      },
+      {
+        "id": "D",
+        "text": "Straight numerical filing"
+      },
+      {
+        "id": "E",
+        "text": "Functional-alphabetical filing"
+      }
+    ],
+    "correctOptionId": "B",
+    "tags": [
+      "filing",
+      "filing-systems",
+      "subject-filing",
+      "records-management"
+    ],
+    "questionFormat": "subject_or_office_filing",
+    "taskFormat": "shared_filing_task",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "PERSONNEL — Leave Applications",
+          "PERSONNEL — Appointments",
+          "SUPPLIES — Procurement"
+        ],
+        "itemPrompt": "A government office groups its records by operational function — for example, 'PERSONNEL — Leave Applications', 'PERSONNEL — Appointments', 'SUPPLIES — Procurement'. Which filing method is being used?",
+        "answerStructure": "filing_method",
+        "entityType": "subject_or_function",
+        "orderingMode": "subject_or_function",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "B — *Subject filing*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The records are grouped by their **main subject or function**."
+        },
+        {
+          "type": "paragraph",
+          "text": "*PERSONNEL* → Leave Applications, Appointments\n*SUPPLIES* → Procurement"
+        },
+        {
+          "type": "rule",
+          "text": "**Subject filing** organizes records by **topic or function**."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0059",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Personal Titles Disregarded in Indexing",
+    "difficulty": "Medium",
+    "question": "Which folder comes first?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Gen. Renato Villamor"
+      },
+      {
+        "id": "B",
+        "text": "Atty. Crisanto Banal"
+      },
+      {
+        "id": "C",
+        "text": "Dr. Leonora Quizon"
+      },
+      {
+        "id": "D",
+        "text": "Col. Primo Santos"
+      },
+      {
+        "id": "E",
+        "text": "Engr. Rodolfo Zamora"
+      }
+    ],
+    "correctOptionId": "B",
+    "reference": "ARMA International Filing Rules, Rule 6 (Titles and Suffixes in Personal Names).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "personal-titles",
+      "titles-disregarded",
+      "ARMA-rules"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Gen. Renato Villamor",
+          "Atty. Crisanto Banal",
+          "Dr. Leonora Quizon",
+          "Col. Primo Santos",
+          "Engr. Rodolfo Zamora"
+        ],
+        "itemPrompt": "Which folder comes first?",
+        "answerStructure": "candidate_name",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "B — *Atty. Crisanto Banal*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Personal titles such as **Atty.**, **Dr.**, **Gen.**, **Col.**, and **Engr.** are disregarded when filing."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Banal*\n**2.** *Quizon*\n**3.** *Santos*\n**4.** *Villamor*\n**5.** *Zamora*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "**Banal** comes first alphabetically, so *Atty. Crisanto Banal* is the first folder."
+        },
+        {
+          "type": "rule",
+          "text": "Ignore the **title** and file the name by **surname**."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0060",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Personal Titles Disregarded in Indexing — Mixed Honorifics",
+    "difficulty": "Medium",
+    "question": "Which folder comes third?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Judge Erlinda Manalastas"
+      },
+      {
+        "id": "B",
+        "text": "Sec. Arturo Dimaculangan"
+      },
+      {
+        "id": "C",
+        "text": "Prof. Nicanor Tagalog"
+      },
+      {
+        "id": "D",
+        "text": "Atty. Melinda Ferrer"
+      },
+      {
+        "id": "E",
+        "text": "Dr. Marisol Urbano"
+      }
+    ],
+    "correctOptionId": "A",
+    "reference": "ARMA International Filing Rules, Rule 6 (Titles and Suffixes in Personal Names).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "personal-titles",
+      "titles-disregarded",
+      "ARMA-rules"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Judge Erlinda Manalastas",
+          "Sec. Arturo Dimaculangan",
+          "Prof. Nicanor Tagalog",
+          "Atty. Melinda Ferrer",
+          "Dr. Marisol Urbano"
+        ],
+        "itemPrompt": "Which folder comes third?",
+        "answerStructure": "candidate_name",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — *Judge Erlinda Manalastas*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Ignore the titles and compare the **surnames**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Dimaculangan*\n**2.** *Ferrer*\n**3.** *Manalastas*\n**4.** *Tagalog*\n**5.** *Urbano*"
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "**Manalastas** is third in alphabetical order."
+        },
+        {
+          "type": "rule",
+          "text": "Ignore personal **titles** and file by **surname**."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0001",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Letter-by-Letter Comparison",
+    "difficulty": "Easy",
+    "question": "Select the correct filing order.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1-2-3-4"
+      },
+      {
+        "id": "B",
+        "text": "3-1-2-4"
+      },
+      {
+        "id": "C",
+        "text": "2-1-3-4"
+      },
+      {
+        "id": "D",
+        "text": "1-3-2-4"
+      },
+      {
+        "id": "E",
+        "text": "3-1-4-2"
+      }
+    ],
+    "correctOptionId": "D",
+    "reference": "ARMA International Filing Rules, Rule 1 (Letter-by-Letter).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "surnames",
+      "letter-by-letter"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Bartolome, Leo A.",
+          "Bondoc, Nina R.",
+          "Bautista, Rina M.",
+          "Buenaventura, Carlo S."
+        ],
+        "itemPrompt": "Select the correct filing order.",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "D — 1-3-2-4"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Compare surnames **from left to right**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Bartolome*\n**2.** *Bautista*\n**3.** *Bondoc*\n**4.** *Buenaventura*"
+        },
+        {
+          "type": "paragraph",
+          "text": "Among the two **Ba** names, **r** comes before **u**."
+        },
+        {
+          "type": "rule",
+          "text": "When surnames share the same beginning, continue comparing letter by letter until a difference appears."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0002",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Tie-Breaking by Given Name",
+    "difficulty": "Easy",
+    "question": "Which name would be filed FIRST among the following names?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Reyes, Antonio"
+      },
+      {
+        "id": "B",
+        "text": "Reyes, Ana"
+      },
+      {
+        "id": "C",
+        "text": "Reyes, Amelia"
+      },
+      {
+        "id": "D",
+        "text": "Reyes, Albert"
+      },
+      {
+        "id": "E",
+        "text": "Reyes, Alma"
+      }
+    ],
+    "correctOptionId": "D",
+    "reference": "ARMA International Filing Rules, Rule 2 (Same Surnames).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "tie-breaking",
+      "first-name"
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "D — *Reyes, Albert*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The surnames are identical, so compare the **given names letter by letter**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Albert*\n**2.** *Alma*\n**3.** *Amelia*\n**4.** *Ana*\n**5.** *Antonio*"
+        },
+        {
+          "type": "paragraph",
+          "text": "At the second letter:\n\n**l** < **m** < **n**\n\nSo *Albert* comes first."
+        },
+        {
+          "type": "rule",
+          "text": "When surnames are identical, compare given names **character by character**, not by length."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0003",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Nothing-Before-Something (Initials vs Full Names)",
+    "difficulty": "Easy",
+    "question": "Under standard filing rules, which of the following is filed FIRST?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Santos, Ana"
+      },
+      {
+        "id": "B",
+        "text": "Santos, Bernardo"
+      },
+      {
+        "id": "C",
+        "text": "Santos, A."
+      },
+      {
+        "id": "D",
+        "text": "Santos, B."
+      },
+      {
+        "id": "E",
+        "text": "Santos, Anna"
+      }
+    ],
+    "correctOptionId": "C",
+    "reference": "ARMA International Filing Rules, Rule 4 (Nothing Before Something).",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "nothing-before-something",
+      "initials"
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — *Santos, A.*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "All surnames are the same, so compare the given names. **A.** and **Ana** begin with the same letter, but **A.** ends first."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *A.*\n**2.** *Ana*\n**3.** *Anna*\n**4.** *B.*\n**5.** *Bernardo*"
+        },
+        {
+          "type": "rule",
+          "text": "Under **nothing-before-something**, a shorter entry comes before a longer entry beginning with the same letters."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0004",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Letter-by-Letter Comparison",
+    "difficulty": "Easy",
+    "question": "Select the correct filing order.",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3-2-1-4"
+      },
+      {
+        "id": "B",
+        "text": "3-1-2-4"
+      },
+      {
+        "id": "C",
+        "text": "2-3-1-4"
+      },
+      {
+        "id": "D",
+        "text": "2-1-3-4"
+      },
+      {
+        "id": "E",
+        "text": "4-3-2-1"
+      }
+    ],
+    "correctOptionId": "A",
+    "reference": "ARMA International Filing Rules, Rule 1.",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "letter-by-letter"
+    ],
+    "taskFormat": "shared_filing_task",
+    "questionFormat": "personal_name_filing",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "compact",
+        "entries": [
+          "Flores, Carmen",
+          "Ferrer, Diego",
+          "Fajardo, Lora",
+          "Fungo, Noel"
+        ],
+        "itemPrompt": "Select the correct filing order.",
+        "answerStructure": "order_code",
+        "migrationStatus": "safe_compact_conversion",
+        "sourcePromptPreserved": true,
+        "choiceEncoding": "index_permutation"
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — 3-2-1-4"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "All surnames begin with **F**, so compare the next letter."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Fajardo*\n**2.** *Ferrer*\n**3.** *Flores*\n**4.** *Fungo*"
+        },
+        {
+          "type": "paragraph",
+          "text": "The second letters are:\n\n**a** → **e** → **l** → **u**"
+        },
+        {
+          "type": "rule",
+          "text": "When entries share a prefix, compare the **next differing letter**."
+        }
+      ]
+    }
+  },
+  {
+    "id": "cler-0005",
+    "examLevel": "Subprofessional",
+    "subject": "Clerical Ability",
+    "topic": "Filing & Alphabetizing",
+    "subtopic": "Letter-by-Letter Comparison (Deep Comparison)",
+    "difficulty": "Easy",
+    "question": "Which name is filed LAST in the group below?",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Villanueva, Gemma"
+      },
+      {
+        "id": "B",
+        "text": "Villareal, Boyet"
+      },
+      {
+        "id": "C",
+        "text": "Villalobos, Riza"
+      },
+      {
+        "id": "D",
+        "text": "Villarin, Cesar"
+      },
+      {
+        "id": "E",
+        "text": "Villaranda, Cora"
+      }
+    ],
+    "correctOptionId": "D",
+    "tags": [
+      "filing",
+      "alphabetizing",
+      "letter-by-letter",
+      "Villa-surnames"
+    ],
+    "questionFormat": "personal_name_filing",
+    "taskFormat": "legacy_full_prompt",
+    "taskInstance": {
+      "kind": "filing",
+      "payload": {
+        "taskDefinitionId": "filing_default",
+        "instanceFormat": "legacy_full_prompt",
+        "migrationStatus": "manual_review_required",
+        "sourcePromptPreserved": true
+      }
+    },
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "D — *Villarin, Cesar*"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "All five surnames begin with **Villa**. Compare the first letter that differs."
+        },
+        {
+          "type": "paragraph",
+          "label": "Filing Order",
+          "text": "**1.** *Villalobos*\n**2.** *Villanueva*\n**3.** *Villaranda*\n**4.** *Villareal*\n**5.** *Villarin*"
+        },
+        {
+          "type": "paragraph",
+          "text": "Among the **Villar** names:\n\n**a** < **e** < **i**\n\nSo *Villarin* comes last."
+        },
+        {
+          "type": "rule",
+          "text": "When surnames share a long prefix, skip the common letters and compare the **first differing letter**."
+        }
+      ]
+    }
+  }
+]

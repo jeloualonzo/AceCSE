@@ -2267,7 +2267,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "filing_default",
-      "sourceFile": "content/questions/clerical/2026-08-06-2300-gemini-draft-import.json",
+      "sourceFile": "content/questions/clerical/filing.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },
@@ -2279,13 +2279,13 @@
       "subtopic": "Article 'The' in Business Name Indexing",
       "questionType": "business_or_office_filing",
       "questionFormat": "business_or_office_filing",
-      "taskFormat": "legacy_full_prompt",
+      "taskFormat": "shared_filing_task",
       "storageMode": "pool",
       "poolId": "clerical-filing",
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "filing_default",
-      "sourceFile": "content/questions/clerical/2026-08-06-2300-gemini-draft-import.json",
+      "sourceFile": "content/questions/clerical/filing.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },
@@ -2351,13 +2351,13 @@
       "subtopic": "Subject Filing Method vs Other Filing Systems",
       "questionType": "subject_or_office_filing",
       "questionFormat": "subject_or_office_filing",
-      "taskFormat": "legacy_full_prompt",
+      "taskFormat": "shared_filing_task",
       "storageMode": "pool",
       "poolId": "clerical-filing",
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "filing_default",
-      "sourceFile": "content/questions/clerical/2026-08-06-2300-gemini-draft-import.json",
+      "sourceFile": "content/questions/clerical/filing.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },
@@ -2375,7 +2375,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "filing_default",
-      "sourceFile": "content/questions/clerical/2026-08-07-0030-web-export-w1.json",
+      "sourceFile": "content/questions/clerical/filing.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },
@@ -2393,7 +2393,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "filing_default",
-      "sourceFile": "content/questions/clerical/2026-08-07-0030-web-export-w1.json",
+      "sourceFile": "content/questions/clerical/filing.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },
@@ -2411,7 +2411,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "filing_default",
-      "sourceFile": "content/questions/clerical/core.json",
+      "sourceFile": "content/questions/clerical/filing.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },
@@ -2429,7 +2429,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "filing_default",
-      "sourceFile": "content/questions/clerical/core.json",
+      "sourceFile": "content/questions/clerical/filing.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },
@@ -2447,7 +2447,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "filing_default",
-      "sourceFile": "content/questions/clerical/core.json",
+      "sourceFile": "content/questions/clerical/filing.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },
@@ -2465,7 +2465,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "filing_default",
-      "sourceFile": "content/questions/clerical/core.json",
+      "sourceFile": "content/questions/clerical/filing.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },
@@ -2483,7 +2483,7 @@
       "fixedGroupId": null,
       "embeddedStimulus": false,
       "sharedDirectionsRef": "filing_default",
-      "sourceFile": "content/questions/clerical/core.json",
+      "sourceFile": "content/questions/clerical/filing.json",
       "confidence": "high",
       "notes": "Filing task uses shared directions; entity type is inferred from the item."
     },

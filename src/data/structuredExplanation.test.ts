@@ -10,8 +10,12 @@ const SPELLING_PILOT_IDS = [
   'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
   'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
 ] as const;
+const FILING_BATCH1_IDS = [
+  'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
+  'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
+] as const;
 const ALL_NUMBER_SERIES_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS, ...BATCH4_IDS];
-const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...SPELLING_PILOT_IDS];
+const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -310,7 +314,7 @@ describe('Number Series structured explanation Batch 4', () => {
     expect(catalog.questions.get('num-0147')?.structuredExplanation).toBeTruthy();
   });
 
-  it('does not add structured explanations outside the approved Number Series and Spelling pilots', async () => {
+  it('does not add structured explanations outside the approved Number Series, Spelling, and Filing sets', async () => {
     const catalog = await loadContentCatalog(ALL_SUBJECTS);
     const structuredIds = [...catalog.questions.values()]
       .filter((question) => question.structuredExplanation)

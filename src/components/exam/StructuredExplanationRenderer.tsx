@@ -103,7 +103,7 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       return (
         <div key={key} className="space-y-1">
           {block.label && <SectionLabel dark={dark}>{block.label}</SectionLabel>}
-          <p className={`leading-relaxed ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
+          <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
         </div>
       );
     case 'pattern':
@@ -132,14 +132,14 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       return (
         <div key={key} className="space-y-1">
           <SectionLabel dark={dark}>Rule</SectionLabel>
-          <p className={`leading-relaxed ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
+          <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
         </div>
       );
     case 'common_trap':
       return (
         <div key={key} className="space-y-1">
           <SectionLabel dark={dark}>Common Trap</SectionLabel>
-          <p className={`leading-relaxed ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
+          <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
         </div>
       );
     case 'answer':
