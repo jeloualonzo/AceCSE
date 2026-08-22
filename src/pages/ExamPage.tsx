@@ -9,6 +9,7 @@ import {
   buildGrammarPilotPracticeSession,
   buildPracticeSession,
   buildProgressivePracticeSession,
+  buildQuestionIdsPracticeSession,
   appendProgressivePracticeBatch,
   hasMoreProgressivePractice,
   buildSimulationSession,
@@ -50,6 +51,8 @@ export interface ExamLaunchRequest {
   taskFormat?: string;
   /** Start a learner-facing Practice session with append-only batches. */
   progressive?: boolean;
+  /** Internal Content Bank only: practice exactly these IDs. */
+  questionIds?: string[];
 }
 
 type QuestionIndex = ReadonlyMap<string, Question>;
@@ -67,6 +70,9 @@ function buildFromRequest(request: ExamLaunchRequest): Promise<ExamSession> {
   }
   if (request.progressive) {
     return buildProgressivePracticeSession(request.examLevel, request.subjects ?? []);
+  }
+  if (request.questionIds?.length) {
+    return buildQuestionIdsPracticeSession(request.examLevel, request.questionIds);
   }
   if (request.groupId) {
     return buildGroupPracticeSession(request.examLevel, request.groupId);
@@ -108,6 +114,7 @@ function launchFromSession(session: ExamSession): ExamLaunchRequest {
     taskFormat: session.config.taskFormat,
     progressive: Boolean(session.practiceProgress),
   };
+  if (session.config.exactQuestionIds) launch.questionIds = [...session.config.exactQuestionIds];
   if (session.config.mode === 'simulation') launch.timed = session.config.timed;
   return launch;
 }

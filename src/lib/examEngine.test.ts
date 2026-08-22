@@ -5,6 +5,7 @@ import {
   allocateScoredSubjects,
   buildSimulationSession,
   buildPracticeSession,
+  buildQuestionIdsPracticeSession,
   buildProgressivePracticeSession,
   appendProgressivePracticeBatch,
   hasMoreProgressivePractice,
@@ -463,6 +464,28 @@ describe('production and fixture verification', () => {
       }
     }
     expect(found).toBe(true);
+  });
+});
+
+describe('exact refinement-batch Practice sessions', () => {
+  it('builds a session from exactly the requested question IDs and persists that exact set for retakes', async () => {
+    const batchIds = [
+      'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
+      'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
+    ];
+    const session = await buildQuestionIdsPracticeSession('Subprofessional', batchIds);
+    const itemIds = (session.items ?? []).flatMap((item) => {
+      if (item.kind === 'question') return [item.questionId];
+      if (item.kind === 'group' || item.kind === 'pool') return item.questionIds;
+      return [];
+    });
+
+    expect(new Set(session.questionIds)).toEqual(new Set(batchIds));
+    expect(session.questionIds).toHaveLength(batchIds.length);
+    expect(new Set(itemIds)).toEqual(new Set(batchIds));
+    expect(session.config.exactQuestionIds).toEqual(session.questionIds);
+    expect(session.config.subjects).toEqual(['Clerical Ability']);
+    expect(session.config.mode).toBe('practice');
   });
 });
 

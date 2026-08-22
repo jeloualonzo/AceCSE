@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { SUBJECTS_BY_LEVEL } from '@/config/exam';
 import { QUESTION_MANIFEST, subjectAvailability } from '@/data/questionBank';
 import { allClassifications, taskFormatLabel } from '@/data/taxonomy';
+import { getRefinementBatches, type RefinementBatch } from '@/data/refinementBatches';
+import { RefinementBatchSection } from '@/components/contentBank/RefinementBatchSection';
 import { useAppContext } from '@/components/shell/AppLayout';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
 import type { ExamLevel, Subject } from '@/types';
@@ -234,6 +236,7 @@ export const ContentBankPage: React.FC = () => {
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
 
   const groups = useMemo(() => getQAFocusGroups(), []);
+  const refinementBatches = useMemo(() => getRefinementBatches(), []);
   const breakdown = useMemo(() => subjectBreakdown(), []);
   const subjects = INVENTORY_SUBJECTS;
   const availability = useMemo(() => subjectAvailability(examLevel), [examLevel]);
@@ -262,6 +265,16 @@ export const ContentBankPage: React.FC = () => {
       questionCount: 0,
       subjects: [group.config.subject],
       taskFormat: group.config.taskFormat,
+    };
+    navigate('/app/exam', { state: { launch } });
+  };
+
+  const launchRefinementBatch = (batch: RefinementBatch) => {
+    const launch: ExamLaunchRequest = {
+      kind: 'practice',
+      examLevel,
+      questionCount: batch.questionIds.length,
+      questionIds: [...batch.questionIds],
     };
     navigate('/app/exam', { state: { launch } });
   };
@@ -328,6 +341,8 @@ export const ContentBankPage: React.FC = () => {
         onLaunch={launchGroup}
         onToggle={toggleGroup}
       />
+
+      <RefinementBatchSection batches={refinementBatches} onLaunch={launchRefinementBatch} />
 
       <section aria-labelledby="content-filter-heading" className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">

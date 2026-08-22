@@ -7,6 +7,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { SUBJECTS_BY_LEVEL } from '@/config/exam';
 import { QUESTION_MANIFEST } from '@/data/questionBank';
 import { allClassifications } from '@/data/taxonomy';
+import { getRefinementBatches } from '@/data/refinementBatches';
 import { buildFilingPracticeSession, buildGrammarPilotPracticeSession, buildNumberSeriesPracticeSession, buildSpellingPracticeSession } from '@/lib/examEngine';
 import { NAV_ITEMS } from '@/navigation/navConfig';
 import { CONTENT_BANK_ROUTE } from '@/App';
@@ -120,6 +121,41 @@ describe('Content Bank / QA Practice page', () => {
     expect(screen.getByTestId('qa-count-spelling')).toHaveTextContent('12 questions');
     expect(screen.getByTestId('qa-count-number-series')).toHaveTextContent('11 questions');
     expect(screen.getByTestId('qa-count-grammar-sentence-correction')).toHaveTextContent('4 questions');
+  });
+
+  it('renders Refinement Batches directly below QA Focus Groups in deterministic newest-first order', () => {
+    const { container } = render(<ContentBankPage />);
+    const qaFocus = container.querySelector('[aria-labelledby="qa-focus-heading"]')!;
+    const refinementSection = container.querySelector('[aria-labelledby="refinement-batches-heading"]')!;
+    expect(qaFocus.compareDocumentPosition(refinementSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+
+    const expected = getRefinementBatches();
+    expect([...container.querySelectorAll<HTMLElement>('[data-refinement-batch]')].map((card) => card.dataset.refinementBatch))
+      .toEqual(expected.map((batch) => batch.id));
+    for (const batch of expected) {
+      expect(screen.getByTestId(`refinement-count-${batch.id}`)).toHaveTextContent(`${batch.questionIds.length} questions`);
+      expect(screen.getByTestId(`refinement-count-${batch.id}`)).toHaveTextContent(batch.status === 'frozen' ? 'Frozen' : 'Ready for QA');
+    }
+  });
+
+  it('launches each refinement batch through the real Practice route with exactly its IDs', async () => {
+    const user = userEvent.setup();
+    render(<ContentBankPage />);
+
+    for (const batch of getRefinementBatches()) {
+      navigateMock.mockReset();
+      await user.click(screen.getByRole('button', { name: `Practice batch ${batch.title}` }));
+      expect(navigateMock).toHaveBeenCalledWith('/app/exam', {
+        state: {
+          launch: {
+            kind: 'practice',
+            examLevel: 'Subprofessional',
+            questionCount: batch.questionIds.length,
+            questionIds: batch.questionIds,
+          },
+        },
+      });
+    }
   });
 
   it('launches each QA group through the real Practice route with its canonical task format', async () => {

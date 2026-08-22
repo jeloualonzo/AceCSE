@@ -308,6 +308,8 @@ export interface SessionConfig {
   subjects?: Subject[];
   /** Optional semantic task-format practice marker. */
   taskFormat?: string;
+  /** Practice-only exact question IDs, used by internal refinement batches. */
+  exactQuestionIds?: string[];
   timed: boolean;
   /** Total allotted seconds when timed; null when untimed. */
   durationSeconds: number | null;

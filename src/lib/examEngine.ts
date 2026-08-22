@@ -725,6 +725,53 @@ export async function buildPracticeSession(
 
 
 /**
+ * Build a Practice session for an explicit ordered list of question IDs.
+ * This is used by internal QA refinement batches; generic Practice remains
+ * sampled and unchanged. Missing or duplicate IDs fail closed rather than
+ * silently widening the requested batch.
+ */
+export async function buildQuestionIdsPracticeSession(
+  level: ExamLevel,
+  questionIds: readonly string[],
+): Promise<ExamSession> {
+  if (questionIds.length === 0 || new Set(questionIds).size !== questionIds.length) {
+    throw new InsufficientBankError(SUBJECTS_BY_LEVEL[level]);
+  }
+
+  // Internal QA batches may target a subject omitted from the current learner
+  // level (for example, Clerical Ability on a Professional selection), so load
+  // the complete catalog while retaining the requested session level.
+  const allSubjects = [...new Set([...SUBJECTS_BY_LEVEL.Professional, ...SUBJECTS_BY_LEVEL.Subprofessional])];
+  const catalog = await loadContentCatalog(allSubjects);
+  const questionsById = catalog.questions;
+  const selectedQuestions = questionIds.map((questionId) => questionsById.get(questionId));
+  if (selectedQuestions.some((question): question is undefined => question === undefined)) {
+    throw new InsufficientBankError(SUBJECTS_BY_LEVEL[level]);
+  }
+
+  const selected = selectedQuestions as Question[];
+  const structured = buildPracticeItems(selected, catalog);
+  const startedAt = Date.now();
+  return {
+    id: newSessionId(),
+    config: {
+      mode: 'practice',
+      examLevel: level,
+      questionCount: structured.questionIds.length,
+      subjects: [...new Set(selected.map((question) => question.subject))],
+      exactQuestionIds: [...structured.questionIds],
+      timed: false,
+      durationSeconds: null,
+    },
+    questionIds: structured.questionIds,
+    items: structured.items,
+    startedAt,
+    deadlineAt: null,
+    answers: {},
+  };
+}
+
+/**
  * Build a Spelling task-format practice session from the canonical Spelling pool.
  * All 12 active Spelling questions remain individually answerable; the session
  * carries one semantic Spelling block so shared directions are not represented

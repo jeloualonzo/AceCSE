@@ -1,0 +1,98 @@
+[
+  {
+    "id": "filing-batch-01",
+    "title": "Filing & Alphabetizing — Batch 1",
+    "family": "Filing & Alphabetizing",
+    "status": "ready-for-qa",
+    "createdAt": "2026-08-22T12:00:00+08:00",
+    "questionIds": [
+      "cler-0053",
+      "cler-0054",
+      "cler-0058",
+      "cler-0059",
+      "cler-0060",
+      "cler-0001",
+      "cler-0002",
+      "cler-0003",
+      "cler-0004",
+      "cler-0005"
+    ]
+  },
+  {
+    "id": "spelling-batch-02",
+    "title": "Spelling — Batch 2",
+    "family": "Spelling",
+    "status": "frozen",
+    "createdAt": "2026-08-21T12:00:00+08:00",
+    "questionIds": [
+      "cler-0016",
+      "cler-0017",
+      "cler-0018",
+      "cler-0019",
+      "cler-0046",
+      "cler-0047",
+      "cler-0048"
+    ]
+  },
+  {
+    "id": "spelling-batch-01",
+    "title": "Spelling — Batch 1",
+    "family": "Spelling",
+    "status": "frozen",
+    "createdAt": "2026-08-20T12:00:00+08:00",
+    "questionIds": [
+      "cler-0055",
+      "cler-0012",
+      "cler-0013",
+      "cler-0014",
+      "cler-0015"
+    ]
+  },
+  {
+    "id": "number-series-batch-04",
+    "title": "Number Series — Batch 4",
+    "family": "Number Series",
+    "status": "frozen",
+    "createdAt": "2026-08-19T12:00:00+08:00",
+    "questionIds": [
+      "num-0108",
+      "num-0137",
+      "num-0147"
+    ]
+  },
+  {
+    "id": "number-series-batch-03",
+    "title": "Number Series — Batch 3",
+    "family": "Number Series",
+    "status": "frozen",
+    "createdAt": "2026-08-18T12:00:00+08:00",
+    "questionIds": [
+      "num-0025",
+      "num-0026"
+    ]
+  },
+  {
+    "id": "number-series-batch-02",
+    "title": "Number Series — Batch 2",
+    "family": "Number Series",
+    "status": "frozen",
+    "createdAt": "2026-08-17T12:00:00+08:00",
+    "questionIds": [
+      "num-0022",
+      "num-0023",
+      "num-0024"
+    ]
+  },
+  {
+    "id": "number-series-batch-01",
+    "title": "Number Series — Batch 1",
+    "family": "Number Series",
+    "status": "frozen",
+    "createdAt": "2026-08-16T12:00:00+08:00",
+    "questionIds": [
+      "num-0019",
+      "num-0020",
+      "num-0021"
+    ]
+  }
+]
