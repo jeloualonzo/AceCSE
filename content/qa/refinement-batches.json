@@ -3,7 +3,7 @@
     "id": "filing-batch-01",
     "title": "Filing & Alphabetizing — Batch 1",
     "family": "Filing & Alphabetizing",
-    "status": "ready-for-qa",
+    "status": "frozen",
     "createdAt": "2026-08-22T12:00:00+08:00",
     "questionIds": [
       "cler-0053",
@@ -99,7 +99,7 @@
     "id": "filing-batch-02",
     "title": "Filing & Alphabetizing — Batch 2",
     "family": "Filing & Alphabetizing",
-    "status": "ready-for-qa",
+    "status": "frozen",
     "createdAt": "2026-08-22T13:00:00+08:00",
     "questionIds": [
       "cler-0006",

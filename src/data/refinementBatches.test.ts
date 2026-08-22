@@ -17,8 +17,8 @@ const ALL_SUBJECTS = [
 ] as const;
 
 const EXPECTED_BATCHES = [
-  { id: 'filing-batch-02', title: 'Filing & Alphabetizing — Batch 2', status: 'ready-for-qa', count: 14, ids: ['cler-0006','cler-0007','cler-0008','cler-0009','cler-0010','cler-0011','cler-0031','cler-0032','cler-0033','seed-cler-001','cler-0036','cler-0037','cler-0038','cler-0039'] },
-  { id: 'filing-batch-01', title: 'Filing & Alphabetizing — Batch 1', status: 'ready-for-qa', count: 10, ids: ['cler-0053','cler-0054','cler-0058','cler-0059','cler-0060','cler-0001','cler-0002','cler-0003','cler-0004','cler-0005'] },
+  { id: 'filing-batch-02', title: 'Filing & Alphabetizing — Batch 2', status: 'frozen', count: 14, ids: ['cler-0006','cler-0007','cler-0008','cler-0009','cler-0010','cler-0011','cler-0031','cler-0032','cler-0033','seed-cler-001','cler-0036','cler-0037','cler-0038','cler-0039'] },
+  { id: 'filing-batch-01', title: 'Filing & Alphabetizing — Batch 1', status: 'frozen', count: 10, ids: ['cler-0053','cler-0054','cler-0058','cler-0059','cler-0060','cler-0001','cler-0002','cler-0003','cler-0004','cler-0005'] },
   { id: 'spelling-batch-02', title: 'Spelling — Batch 2', status: 'frozen', count: 7, ids: ['cler-0016','cler-0017','cler-0018','cler-0019','cler-0046','cler-0047','cler-0048'] },
   { id: 'spelling-batch-01', title: 'Spelling — Batch 1', status: 'frozen', count: 5, ids: ['cler-0055','cler-0012','cler-0013','cler-0014','cler-0015'] },
   { id: 'number-series-batch-04', title: 'Number Series — Batch 4', status: 'frozen', count: 3, ids: ['num-0108','num-0137','num-0147'] },
