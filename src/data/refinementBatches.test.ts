@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { loadContentCatalog } from './questionBank';
+import { loadContentCatalog, loadQuestionIndex } from './questionBank';
 import {
   getRefinementBatches,
   REFINEMENT_BATCHES,
   refinementStatusLabel,
   validateRefinementBatches,
+  validateRefinementBatchesAgainstCatalog,
 } from './refinementBatches';
 
 const ALL_SUBJECTS = [
@@ -76,5 +77,106 @@ describe('refinement batch registry', () => {
     expect(errors.some((error) => error.includes('questionIds contains duplicates'))).toBe(true);
     expect(errors.some((error) => error.includes('status is invalid'))).toBe(true);
     expect(errors.some((error) => error.includes('createdAt'))).toBe(true);
+  });
+});
+
+/**
+ * The registry validator itself — not the Practice engine downstream — must
+ * reject a nonexistent question ID, so a broken Practice Batch button can never
+ * be exposed in the first place. Resolution runs against the active production
+ * catalog through the production loader's own `loadQuestionIndex`.
+ */
+describe('refinement batch question-ID resolution', () => {
+  /** The exact malformed entry independent QA reported as passing validation. */
+  const QA_REPORTED_BATCH = {
+    id: 'test-batch',
+    title: 'Test Batch',
+    family: 'Filing & Alphabetizing',
+    status: 'ready-for-qa',
+    createdAt: '2026-08-22T20:00:00+08:00',
+    questionIds: ['cler-0053', 'cler-9999'],
+  };
+
+  async function activeQuestionIds(): Promise<Set<string>> {
+    return new Set((await loadQuestionIndex(ALL_SUBJECTS)).keys());
+  }
+
+  it('accepts the seven-batch registry against the active production catalog', async () => {
+    expect(await validateRefinementBatchesAgainstCatalog()).toEqual([]);
+    expect(await validateRefinementBatchesAgainstCatalog(REFINEMENT_BATCHES)).toEqual([]);
+  });
+
+  it('rejects a structurally valid batch whose question ID does not exist', async () => {
+    // Structure alone is clean — which is exactly why the old gate let it pass.
+    expect(validateRefinementBatches([QA_REPORTED_BATCH])).toEqual([]);
+
+    const errors = validateRefinementBatches([QA_REPORTED_BATCH], await activeQuestionIds());
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toContain('batch[0].questionIds');
+    expect(errors[0]).toContain('cler-9999');
+    expect(await validateRefinementBatchesAgainstCatalog([QA_REPORTED_BATCH])).toEqual(errors);
+  });
+
+  it('accepts the same batch once every ID resolves to an active question', async () => {
+    const repaired = { ...QA_REPORTED_BATCH, questionIds: ['cler-0053', 'cler-0054'] };
+    expect(validateRefinementBatches([repaired], await activeQuestionIds())).toEqual([]);
+    expect(await validateRefinementBatchesAgainstCatalog([repaired])).toEqual([]);
+  });
+
+  it('reports every unresolved ID rather than stopping at the first', async () => {
+    const errors = validateRefinementBatches(
+      [{ ...QA_REPORTED_BATCH, questionIds: ['cler-9998', 'cler-0053', 'num-9999'] }],
+      await activeQuestionIds(),
+    );
+    expect(errors).toHaveLength(2);
+    expect(errors.some((error) => error.includes('cler-9998'))).toBe(true);
+    expect(errors.some((error) => error.includes('num-9999'))).toBe(true);
+    expect(errors.some((error) => error.includes('cler-0053'))).toBe(false);
+  });
+
+  it('keeps every structural rule intact when catalog resolution is enabled', async () => {
+    const knownQuestionIds = await activeQuestionIds();
+    const errors = validateRefinementBatches([{
+      id: 'duplicate',
+      title: 'Duplicate',
+      family: 'Test',
+      status: 'frozen',
+      createdAt: '2026-08-22T00:00:00Z',
+      questionIds: ['cler-0053', 'cler-0053'],
+    }, {
+      id: 'duplicate',
+      title: '',
+      family: 'Test',
+      status: 'unknown',
+      createdAt: 'not-a-date',
+      questionIds: [],
+    }], knownQuestionIds);
+
+    expect(errors.some((error) => error.includes('duplicated'))).toBe(true);
+    expect(errors.some((error) => error.includes('questionIds contains duplicates'))).toBe(true);
+    expect(errors.some((error) => error.includes('status is invalid'))).toBe(true);
+    expect(errors.some((error) => error.includes('createdAt'))).toBe(true);
+    expect(errors.some((error) => error.includes('title must be non-empty'))).toBe(true);
+    expect(errors.some((error) => error.includes('questionIds must contain at least one ID'))).toBe(true);
+    // Resolution never fires for structurally rejected id lists.
+    expect(errors.some((error) => error.includes('active production catalog'))).toBe(false);
+    expect(validateRefinementBatches(['not-an-object'], knownQuestionIds)).toEqual(['batch[0] must be an object']);
+    expect(validateRefinementBatches('not-an-array', knownQuestionIds)).toEqual(['refinement batch data must be an array']);
+  });
+
+  it('reports blank and non-string IDs structurally instead of as unresolved', async () => {
+    const errors = validateRefinementBatches(
+      [{ ...QA_REPORTED_BATCH, questionIds: ['cler-0053', '   ', 42] }],
+      await activeQuestionIds(),
+    );
+    expect(errors).toEqual(['batch[0].questionIds must contain only non-empty strings']);
+  });
+
+  it('omitting the catalog set leaves validation exactly as strict as before', () => {
+    // The synchronous module-load gate calls it this way; it must stay unchanged.
+    expect(validateRefinementBatches(REFINEMENT_BATCHES)).toEqual([]);
+    expect(validateRefinementBatches(REFINEMENT_BATCHES, undefined)).toEqual([]);
+    expect(validateRefinementBatches([{ ...QA_REPORTED_BATCH, questionIds: [] }]))
+      .toEqual(['batch[0].questionIds must contain at least one ID']);
   });
 });
