@@ -52,7 +52,7 @@ const EXPECTED_BLOCKS = {
     { type: 'correct_answer', text: 'B — 1-2-3-4' },
     { type: 'paragraph', label: 'What to Notice', text: 'The surname and given name are identical, so the **suffix becomes the deciding filing unit**.' },
     filingOrder(['Mendoza, Roberto (no suffix)', 'Mendoza, Roberto Jr.', 'Mendoza, Roberto Sr.', 'Mendoza, Roberto III']),
-    { type: 'paragraph', label: 'Apply the Rule', text: 'The unsuffixed form comes first because **nothing comes before something**. Under the convention stated for this practice item, the remaining suffixes follow as **Jr.**, **Sr.**, then **III**.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'The surname and given name are identical, so compare the **suffix as the final filing unit**. The unsuffixed form ends first, so **nothing comes before something** and it is filed before the suffixed forms. Among the suffix labels in this filing set, the order is **Jr.**, **Sr.**, then **III**, giving **no suffix → Jr. → Sr. → III**.' },
     { type: 'rule', text: 'For this item, apply the established suffix convention shown in its task note. Do not explain the order as family-generation history.' },
   ],
   'cler-0011': [
@@ -123,8 +123,8 @@ const EXPECTED_BLOCKS = {
     { type: 'heading', text: 'Solution' },
     { type: 'correct_answer', text: 'B — *Ace Hardware Philippines*' },
     { type: 'paragraph', label: 'What to Notice', text: 'Account for all five business names. Under the repository’s business-name convention, compare numeric starters in their spelled-out form, treat **A.G.** letter by letter, and ignore punctuation as a separator.' },
-    filingOrder(['Ace Hardware Philippines', 'A.G. Reyes & Associates', '7-Eleven Convenience Store', '3M Philippines, Inc.', 'Alpha Business Solutions']),
-    { type: 'paragraph', label: 'Apply the Rule', text: 'The leading forms compare as *Ace*, *A.G.*, *Seven*, *Three*, and *Alpha*. *Ace* comes before *A.G.* because **c < g**, and both **A...** names precede **Seven** and **Three**. Therefore *Ace Hardware Philippines* is first.' },
+    filingOrder(['Ace Hardware Philippines', 'A.G. Reyes & Associates', 'Alpha Business Solutions', '7-Eleven Convenience Store', '3M Philippines, Inc.']),
+    { type: 'paragraph', label: 'Apply the Rule', text: 'The leading forms compare as *Ace*, *A.G.*, *Alpha*, *Seven*, and *Three*. *Ace* comes before *A.G.* because **c < g**, and *A.G.* comes before *Alpha* because **g < l** at the second letter. The **A...** entries therefore precede *Seven* and *Three* under the established numeric-starter convention, so *Ace Hardware Philippines* remains first.' },
     { type: 'rule', text: 'Use the established business-name comparison: normalize numeric starters for alphabetizing, compare abbreviations letter by letter, and retain the complete authored name.' },
   ],
 } as const;
@@ -141,7 +141,7 @@ const EXPECTED_QUESTIONS = {
   'cler-0033': { question: 'Which of the following names should be filed SECOND in alphabetical order?', choices: ['Villanueva, Jose', 'Villar, Ana', 'Villa, Carmen', 'Villamor, Ben', 'Villareal, Tomas'], correctOptionId: 'D', taskFormat: 'shared_filing_task' },
   'seed-cler-001': { question: 'Which name comes third?', choices: ['De Castro, Pedro', 'De La Cruz, Juan', 'Del Fierro, Ana', 'Del Rosario, Maria', 'De la Rama, Pilar'], correctOptionId: 'C', taskFormat: 'shared_filing_task' },
   'cler-0036': { question: 'A file clerk must arrange the following names in correct alphabetical order. Which name should be filed FIRST?', choices: ['Sta. Maria, Rosario', 'Santos, Domingo', 'San Pedro, Lito', 'Santa Cruz, Elia', 'Serrano, Lorna'], correctOptionId: 'C', taskFormat: 'shared_filing_task' },
-  'cler-0037': { question: 'A clerk is filing records for four government offices. Which office name should be filed LAST in alphabetical order?', choices: ['Bureau of Internal Revenue', 'Bureau of Immigration', 'Bureau of Customs', 'Bureau of Local Government Finance', 'Bureau of Land Management'], correctOptionId: 'D', taskFormat: 'shared_filing_task' },
+  'cler-0037': { question: 'A clerk is filing records for the following government offices. Which office name should be filed LAST in alphabetical order?', choices: ['Bureau of Internal Revenue', 'Bureau of Immigration', 'Bureau of Customs', 'Bureau of Local Government Finance', 'Bureau of Land Management'], correctOptionId: 'D', taskFormat: 'shared_filing_task' },
   'cler-0038': { question: 'A records clerk must file the following names in alphabetical order. Which name is filed SECOND?', choices: ['Ngo, Alfonso', 'Ng, Bernard', 'Navarro, Cecile', 'Nieto, Diana', 'Nolasco, Elena'], correctOptionId: 'B', taskFormat: 'shared_filing_task' },
   'cler-0039': { question: 'A clerk is filing records for the following business names. Under standard business-name filing rules, which is filed FIRST?', choices: ['7-Eleven Convenience Store', 'Ace Hardware Philippines', '3M Philippines, Inc.', 'A.G. Reyes & Associates', 'Alpha Business Solutions'], correctOptionId: 'B', taskFormat: 'shared_filing_task' },
 } as const;

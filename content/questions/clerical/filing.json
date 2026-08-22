@@ -1299,7 +1299,7 @@
         {
           "type": "paragraph",
           "label": "Apply the Rule",
-          "text": "The unsuffixed form comes first because **nothing comes before something**. Under the convention stated for this practice item, the remaining suffixes follow as **Jr.**, **Sr.**, then **III**."
+          "text": "The surname and given name are identical, so compare the **suffix as the final filing unit**. The unsuffixed form ends first, so **nothing comes before something** and it is filed before the suffixed forms. Among the suffix labels in this filing set, the order is **Jr.**, **Sr.**, then **III**, giving **no suffix → Jr. → Sr. → III**."
         },
         {
           "type": "rule",
@@ -1870,7 +1870,7 @@
     "topic": "Filing & Alphabetizing",
     "subtopic": "Government Office Names",
     "difficulty": "Medium",
-    "question": "A clerk is filing records for four government offices. Which office name should be filed LAST in alphabetical order?",
+    "question": "A clerk is filing records for the following government offices. Which office name should be filed LAST in alphabetical order?",
     "choices": [
       {
         "id": "A",
@@ -1915,7 +1915,7 @@
           "Bureau of Local Government Finance",
           "Bureau of Land Management"
         ],
-        "itemPrompt": "A clerk is filing records for four government offices. Which office name should be filed LAST in alphabetical order?",
+        "itemPrompt": "A clerk is filing records for the following government offices. Which office name should be filed LAST in alphabetical order?",
         "answerStructure": "candidate_name",
         "entityType": "government_office",
         "orderingMode": "alphabetical_filing",
@@ -2127,12 +2127,12 @@
         {
           "type": "paragraph",
           "label": "Filing Order",
-          "text": "**1.** *Ace Hardware Philippines*\n**2.** *A.G. Reyes & Associates*\n**3.** *7-Eleven Convenience Store*\n**4.** *3M Philippines, Inc.*\n**5.** *Alpha Business Solutions*"
+          "text": "**1.** *Ace Hardware Philippines*\n**2.** *A.G. Reyes & Associates*\n**3.** *Alpha Business Solutions*\n**4.** *7-Eleven Convenience Store*\n**5.** *3M Philippines, Inc.*"
         },
         {
           "type": "paragraph",
           "label": "Apply the Rule",
-          "text": "The leading forms compare as *Ace*, *A.G.*, *Seven*, *Three*, and *Alpha*. *Ace* comes before *A.G.* because **c < g**, and both **A...** names precede **Seven** and **Three**. Therefore *Ace Hardware Philippines* is first."
+          "text": "The leading forms compare as *Ace*, *A.G.*, *Alpha*, *Seven*, and *Three*. *Ace* comes before *A.G.* because **c < g**, and *A.G.* comes before *Alpha* because **g < l** at the second letter. The **A...** entries therefore precede *Seven* and *Three* under the established numeric-starter convention, so *Ace Hardware Philippines* remains first."
         },
         {
           "type": "rule",
