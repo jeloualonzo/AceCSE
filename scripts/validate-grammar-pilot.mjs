@@ -26,6 +26,7 @@ const expectedStructuredBlocks = {
     { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
     { type: 'paragraph', label: 'What to Notice', text: 'The question sets a formal American-English convention that treats *panel* as one collective unit. That convention requires a singular verb and a singular pronoun.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'The panel of judges **has** announced **its** decision.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choices A and D use plural **have**, which conflicts with treating *panel* as one unit. Choice B uses singular **has** but plural **their**, so the verb and pronoun do not agree under the stated convention. Choice E also uses singular **has** with plural **their**; the phrase **individual verdicts** foregrounds the members, which conflicts with the required single-unit reading.' },
     { type: 'rule', text: 'When a collective noun is treated as one unit under the stated formal convention, use a singular verb and singular pronoun. Collective nouns may take plural agreement in other contexts when their members are foregrounded; that is not the convention used here.' },
   ],
   'verb-0060': [

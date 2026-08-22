@@ -135,7 +135,7 @@ describe('Grammar pilot content corrections', () => {
     for (const question of questions) {
       expect(question?.structuredExplanation).toBeDefined();
       expect(isValidStructuredExplanation(question?.structuredExplanation)).toBe(true);
-      expect(question?.structuredExplanation?.blocks).toHaveLength(5);
+      expect(question?.structuredExplanation?.blocks).toHaveLength(question?.id === 'verb-0059' ? 6 : 5);
       for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
         expect(Object.hasOwn(question ?? {}, field), `${question?.id}:${field}`).toBe(false);
       }
@@ -147,6 +147,9 @@ describe('Grammar pilot content corrections', () => {
     const parallelText = JSON.stringify(catalog.getQuestion('verb-0062')?.structuredExplanation);
     expect(panelText).toMatch(/formal American-English.*collective unit/i);
     expect(panelText).toMatch(/plural agreement.*other contexts/i);
+    expect(panelText).toMatch(/A and D.*plural.*have.*one unit/i);
+    expect(panelText).toMatch(/B.*singular.*has.*plural.*their.*do not agree/i);
+    expect(panelText).toMatch(/E.*plural.*their.*individual verdicts.*single-unit/i);
     expect(causalText).toMatch(/subordinating conjunction.*complete causal clause/i);
     expect(causalText).toMatch(/being she was late.*defective/i);
     expect(causalText).toMatch(/since of.*conjunction.*preposition/i);
