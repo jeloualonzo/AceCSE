@@ -87,6 +87,33 @@ function structuredOnlyFiling(overrides: Record<string, unknown> = {}): Record<s
   return q;
 }
 
+function structuredOnlyGrammar(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  const q = {
+    ...base({
+      id: 'verb-0059',
+      subject: 'Verbal Ability',
+      topic: 'Grammar & Usage',
+      choices: [
+        { id: 'A', text: 'The panel of judges have announced their decision.' },
+        { id: 'B', text: 'The panel of judges has announced their decision.' },
+        { id: 'C', text: 'The panel of judges has announced its decision.' },
+        { id: 'D', text: 'The panel of judges have announced its decision.' },
+        { id: 'E', text: 'The panel of judges has announced their individual verdicts.' },
+      ],
+      correctOptionId: 'C',
+      structuredExplanation: {
+        blocks: [{ type: 'paragraph', label: 'Rule', text: 'A singular collective unit takes a singular verb and pronoun.' }],
+      },
+    }),
+    ...overrides,
+  } as Record<string, unknown>;
+  delete q.explanation;
+  delete q.steps;
+  delete q.distractorExplanations;
+  delete q.tip;
+  return q;
+}
+
 describe('question-directory manifest mappings', () => {
   it('keeps every canonical subject directory mapped for Vite manifest generation', () => {
     expect(SUBJECT_BY_DIR).toEqual({
@@ -222,11 +249,11 @@ describe('choice-set validation (4-/5-choice migration contract)', () => {
 /**
  * `isValidQuestion` is the sole admission gate into the catalog (the runtime
  * loader in questionBank.ts and the build-time manifest plugin both call it).
- * For approved canonical Spelling and Filing records there is no legacy prose
- * to fall back on, so the gate must apply the SAME bar the renderer applies — otherwise a
- * record the renderer rejects still reaches a learner with no explanation.
+ * For approved canonical Spelling, Filing, and Grammar records there is no legacy
+ * prose to fall back on, so the gate must apply the SAME bar the renderer applies
+ * — otherwise a record the renderer rejects still reaches a learner with no explanation.
  */
-describe('structured-only Spelling admission exception', () => {
+describe('structured-only Spelling and Filing admission exceptions', () => {
   it('accepts a canonical structured-only Spelling question without legacy explanation', () => {
     expect(isValidQuestion(structuredOnlySpelling())).toBe(true);
   });
@@ -304,7 +331,47 @@ describe('structured-only Spelling admission exception', () => {
       expect(isValidQuestion(structuredOnlyFiling({ id })), id).toBe(true);
     }
   });
+});
 
+describe('structured-only Grammar admission exception', () => {
+  const grammarIds = ['verb-0059', 'verb-0060', 'verb-0061', 'verb-0062'];
+
+  it('accepts exactly the four canonical Grammar IDs without legacy explanation fields', () => {
+    for (const id of grammarIds) {
+      const question = structuredOnlyGrammar({ id });
+      expect(isValidQuestion(question), id).toBe(true);
+      expect(Object.hasOwn(question, 'explanation'), id).toBe(false);
+      expect(Object.hasOwn(question, 'steps'), id).toBe(false);
+      expect(Object.hasOwn(question, 'distractorExplanations'), id).toBe(false);
+      expect(Object.hasOwn(question, 'tip'), id).toBe(false);
+    }
+  });
+
+  it('rejects malformed Grammar structured explanations', () => {
+    expect(isValidQuestion(structuredOnlyGrammar({ structuredExplanation: { blocks: [] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyGrammar({ structuredExplanation: { blocks: [{ type: 'unsupported', text: 'bad' }] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyGrammar({ structuredExplanation: { blocks: [{ type: 'paragraph', text: '   ' }] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyGrammar({ structuredExplanation: { blocks: [{ type: 'alternative_solution', title: 'Other Choices', blocks: [] }] } }))).toBe(false);
+  });
+
+  it('rejects a Grammar structured-only record without structuredExplanation', () => {
+    const question = structuredOnlyGrammar();
+    delete question.structuredExplanation;
+    expect(isValidQuestion(question)).toBe(false);
+  });
+
+  it('keeps the Grammar exception scoped to the approved ID, subject, and topic', () => {
+    expect(isValidQuestion(structuredOnlyGrammar({ id: 'verb-0063' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyGrammar({ subject: 'Clerical Ability' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyGrammar({ topic: 'Vocabulary' }))).toBe(false);
+  });
+
+  it('does not admit an unrelated structured-only Grammar-like record', () => {
+    expect(isValidQuestion(structuredOnlyGrammar({ id: 'verb-unrelated' }))).toBe(false);
+  });
+});
+
+describe('legacy structured explanation fallback', () => {
   it('leaves legacy questions that carry a malformed structuredExplanation admissible', () => {
     // Legacy prose is still present, so the renderer falls back to it safely.
     // This path must behave exactly as it did before the gate was tightened.

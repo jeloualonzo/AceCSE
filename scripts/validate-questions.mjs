@@ -14,10 +14,11 @@
  *   - worked steps (≥ 2) for computational items (Numerical; non-analogy Analytical)
  *   - distractor explanations for all three incorrect options (≥ 20 chars), except
  *     the eleven frozen Number Series records, twelve canonical Spelling records,
- *     and twenty-four canonical Filing records whose obsolete fields were removed
+ *     twenty-four canonical Filing records, and four canonical Grammar records whose
+ *     obsolete fields were removed
  *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the twelve canonical
- *     Spelling records and twenty-four canonical Filing records that use structuredExplanation
- *     as their sole aid
+ *     Spelling records, twenty-four canonical Filing records, and four canonical
+ *     Grammar records that use structuredExplanation as their sole aid
  *
  * Also prints supply, difficulty, and answer-letter reports.
  */
@@ -57,6 +58,10 @@ const CANONICAL_FILING_IDS = new Set([
   'cler-0006', 'cler-0007', 'cler-0008', 'cler-0009', 'cler-0010', 'cler-0011',
   'cler-0031', 'cler-0032', 'cler-0033', 'seed-cler-001', 'cler-0036', 'cler-0037',
   'cler-0038', 'cler-0039',
+]);
+const CANONICAL_GRAMMAR_FILE = 'verbal/core.json';
+const CANONICAL_GRAMMAR_IDS = new Set([
+  'verb-0059', 'verb-0060', 'verb-0061', 'verb-0062',
 ]);
 
 /**
@@ -167,7 +172,8 @@ for (const path of jsonFiles(questionsDir)) {
     // ---- teaching-quality gates -------------------------------------------
     const canonicalStructuredSpelling = file === CANONICAL_SPELLING_FILE && CANONICAL_SPELLING_IDS.has(q.id);
     const canonicalStructuredFiling = file === CANONICAL_FILING_FILE && CANONICAL_FILING_IDS.has(q.id);
-    const canonicalStructured = canonicalStructuredSpelling || canonicalStructuredFiling;
+    const canonicalStructuredGrammar = file === CANONICAL_GRAMMAR_FILE && CANONICAL_GRAMMAR_IDS.has(q.id);
+    const canonicalStructured = canonicalStructuredSpelling || canonicalStructuredFiling || canonicalStructuredGrammar;
     if (!canonicalStructured && (typeof q.explanation !== 'string' || q.explanation.length < 100)) {
       errors.push(`${where}: explanation must teach (≥ 100 chars), got ${q.explanation?.length ?? 0}`);
     }

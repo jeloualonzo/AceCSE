@@ -117,5 +117,18 @@
       "cler-0038",
       "cler-0039"
     ]
+  },
+  {
+    "id": "grammar-pilot-01",
+    "title": "Grammar & Usage — Pilot",
+    "family": "Grammar & Usage",
+    "status": "ready-for-qa",
+    "createdAt": "2026-08-22T14:55:00+08:00",
+    "questionIds": [
+      "verb-0059",
+      "verb-0060",
+      "verb-0061",
+      "verb-0062"
+    ]
   }
 ]

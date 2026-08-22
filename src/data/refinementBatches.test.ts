@@ -17,6 +17,7 @@ const ALL_SUBJECTS = [
 ] as const;
 
 const EXPECTED_BATCHES = [
+  { id: 'grammar-pilot-01', title: 'Grammar & Usage — Pilot', status: 'ready-for-qa', count: 4, ids: ['verb-0059','verb-0060','verb-0061','verb-0062'] },
   { id: 'filing-batch-02', title: 'Filing & Alphabetizing — Batch 2', status: 'frozen', count: 14, ids: ['cler-0006','cler-0007','cler-0008','cler-0009','cler-0010','cler-0011','cler-0031','cler-0032','cler-0033','seed-cler-001','cler-0036','cler-0037','cler-0038','cler-0039'] },
   { id: 'filing-batch-01', title: 'Filing & Alphabetizing — Batch 1', status: 'frozen', count: 10, ids: ['cler-0053','cler-0054','cler-0058','cler-0059','cler-0060','cler-0001','cler-0002','cler-0003','cler-0004','cler-0005'] },
   { id: 'spelling-batch-02', title: 'Spelling — Batch 2', status: 'frozen', count: 7, ids: ['cler-0016','cler-0017','cler-0018','cler-0019','cler-0046','cler-0047','cler-0048'] },
@@ -28,9 +29,9 @@ const EXPECTED_BATCHES = [
 ] as const;
 
 describe('refinement batch registry', () => {
-  it('loads exactly the eight approved batches with valid schema and status labels', () => {
+  it('loads exactly the nine approved batches with valid schema and status labels', () => {
     expect(validateRefinementBatches(REFINEMENT_BATCHES)).toEqual([]);
-    expect(REFINEMENT_BATCHES).toHaveLength(8);
+    expect(REFINEMENT_BATCHES).toHaveLength(9);
     for (const [index, expected] of EXPECTED_BATCHES.entries()) {
       const batch = getRefinementBatches()[index];
       expect(batch).toMatchObject({ id: expected.id, title: expected.title, status: expected.status });
@@ -102,7 +103,7 @@ describe('refinement batch question-ID resolution', () => {
     return new Set((await loadQuestionIndex(ALL_SUBJECTS)).keys());
   }
 
-  it('accepts the seven-batch registry against the active production catalog', async () => {
+  it('accepts the nine-batch registry against the active production catalog', async () => {
     expect(await validateRefinementBatchesAgainstCatalog()).toEqual([]);
     expect(await validateRefinementBatchesAgainstCatalog(REFINEMENT_BATCHES)).toEqual([]);
   });

@@ -417,6 +417,87 @@ describe('structured explanation Practice/Results integration V3', () => {
     }
   });
 
+  it('renders all four Grammar pilot explanations through Practice and Results in the shared renderer', async () => {
+    const user = userEvent.setup();
+    const catalog = await loadContentCatalog(['Verbal Ability']);
+    const grammarIds = ['verb-0059', 'verb-0060', 'verb-0061', 'verb-0062'];
+    const answerTexts: Record<string, string> = {
+      'verb-0059': 'The panel of judges has announced its decision.',
+      'verb-0060': 'Because she arrived late, her application was disqualified.',
+      'verb-0061': 'The reason the memorandum was delayed is that the signatory was absent.',
+      'verb-0062': 'The commission not only reviewed the budget but also scrutinized the disbursements.',
+    };
+
+    for (const id of grammarIds) {
+      const question = catalog.questions.get(id)!;
+      renderWithTheme(
+        <QuestionCard
+          question={question}
+          selectedOptionId={question.correctOptionId}
+          onSelectOption={vi.fn()}
+          instantFeedback
+        />
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
+      const practiceRoots = screen.getAllByTestId('structured-explanation');
+      expect(practiceRoots).toHaveLength(2);
+      expect(practiceRoots.every((root) => root.textContent?.includes('Correct Answer:'))).toBe(true);
+      expect(practiceRoots.every((root) => root.textContent?.includes(answerTexts[id]))).toBe(true);
+      expect(practiceRoots.every((root) => within(root).getByText('What to Notice'))).toBe(true);
+      expect(practiceRoots.every((root) => within(root).getByText('Apply the Rule'))).toBe(true);
+      expect(practiceRoots.every((root) => within(root).getByText('Rule'))).toBe(true);
+      expect(practiceRoots.every((root) => root.querySelector('strong, em') !== null)).toBe(true);
+      expect(practiceRoots.every((root) => within(root).queryByText(/^Pattern(?: — .+)?$/) === null)).toBe(true);
+      expect(practiceRoots.every((root) => within(root).queryByText(/Other Choices|corrected alternatives/i) === null)).toBe(true);
+
+      cleanup();
+      const attempt: Attempt = {
+        id: `grammar-structured-results-${id}`,
+        mode: 'practice',
+        examLevel: 'Professional',
+        questionCount: 1,
+        correctCount: 1,
+        answeredCount: 1,
+        unansweredCount: 0,
+        percentage: 100,
+        passed: false,
+        durationSeconds: 12,
+        startedAt: 1,
+        completedAt: 12_001,
+        subjects: [{ subject: 'Verbal Ability', total: 1, correct: 1, answered: 1, unanswered: 0, percentage: 100 }],
+        items: [{
+          questionId: question.id,
+          subject: question.subject,
+          topic: question.topic,
+          selected: question.correctOptionId,
+          correct: question.correctOptionId,
+          isCorrect: true,
+        }],
+      };
+
+      renderWithTheme(
+        <ResultsScreen
+          attempt={attempt}
+          questionIndex={new Map([[question.id, question]])}
+          onRetake={vi.fn()}
+          onReturnToDashboard={vi.fn()}
+        />
+      );
+      await user.click(screen.getByRole('button', { name: 'Expand question details' }));
+      const resultsRoot = screen.getByTestId('structured-explanation');
+      expect(resultsRoot.textContent).toContain('Correct Answer:');
+      expect(resultsRoot.textContent).toContain(answerTexts[id]);
+      expect(within(resultsRoot).getByText('What to Notice')).toBeInTheDocument();
+      expect(within(resultsRoot).getByText('Apply the Rule')).toBeInTheDocument();
+      expect(within(resultsRoot).getByText('Rule')).toBeInTheDocument();
+      expect(resultsRoot.querySelector('strong, em')).not.toBeNull();
+      expect(within(resultsRoot).queryByText(/^Pattern(?: — .+)?$/)).toBeNull();
+      expect(within(resultsRoot).queryByText(/Other Choices|corrected alternatives/i)).toBeNull();
+      cleanup();
+    }
+  });
+
   it('renders the 12 approved Spelling explanations through Practice and Results without Number Series sections', async () => {
     const user = userEvent.setup();
     const catalog = await loadContentCatalog(['Clerical Ability']);

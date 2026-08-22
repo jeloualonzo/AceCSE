@@ -20,15 +20,52 @@ const expectedAnswers = {
   'verb-0061': 'B',
   'verb-0062': 'B',
 };
-const forbidden = /AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|authored task/i;
+const expectedStructuredBlocks = {
+  'verb-0059': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The question sets a formal American-English convention that treats *panel* as one collective unit. That convention requires a singular verb and a singular pronoun.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'The panel of judges **has** announced **its** decision.' },
+    { type: 'rule', text: 'When a collective noun is treated as one unit under the stated formal convention, use a singular verb and singular pronoun. Collective nouns may take plural agreement in other contexts when their members are foregrounded; that is not the convention used here.' },
+  ],
+  'verb-0060': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'C — Because she arrived late, her application was disqualified.' },
+    { type: 'paragraph', label: 'What to Notice', text: '*Because* is a subordinating conjunction that can introduce a complete causal clause: **because + subject + verb**. In choice C, *she arrived late* supplies that complete clause.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: '**Because** she arrived late, her application was disqualified.' },
+    { type: 'rule', text: 'Use *because* to connect a cause expressed as a complete clause. In choice A, *Being she was late* is defective; a preposition such as *due to* or *on account of* normally takes a noun or gerund phrase, not a finite clause, as in choices B and D. *Since* can introduce a clause, but *since of* in choice E improperly combines a conjunction with a preposition.' },
+  ],
+  'verb-0061': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'B — The reason the memorandum was delayed is that the signatory was absent.' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The question sets a formal-edited-English convention: use *the reason ... is that ...* rather than *the reason ... is because ...*. Choice B follows that target pattern.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'The reason the memorandum was delayed **is that** the signatory was absent.' },
+    { type: 'rule', text: 'Under the formal-edited-English convention stated here, pair *the reason ...* with *is that ...*. Choices A and E use *the reason ... is because*, a wording that occurs in ordinary contemporary English but is not the construction selected here; choice C compounds *reason why* with *is because*, while choice D is syntactically defective.' },
+  ],
+  'verb-0062': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'B — The commission not only reviewed the budget but also scrutinized the disbursements.' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The correlative pair *not only ... but also* should connect parallel grammatical elements. Here, **reviewed** and **scrutinized** are both past-tense verb phrases.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'The commission not only **reviewed** the budget but also **scrutinized** the disbursements.' },
+    { type: 'rule', text: 'With *not only ... but also*, keep the two coordinated elements grammatically parallel. The distractors break that pattern by inserting *it*, pairing an object phrase with a verb phrase, using faulty inversion and singular *was* with plural *disbursements*, or using *scrutinizing* instead of the past-tense *scrutinized*.' },
+  ],
+};
+const forbidden = /AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|authored task|former recognized|competing answer|authoring|process commentary/i;
 const forbiddenPayloadKeys = new Set(['question', 'prompt', 'stem', 'itemPrompt', 'sourcePrompt']);
 
 const questions = [];
+const sourceOccurrences = new Map();
 for (const dir of fs.readdirSync(path.join(root, 'content/questions'))) {
   const subjectDir = path.join(root, 'content/questions', dir);
   if (!fs.statSync(subjectDir).isDirectory()) continue;
   for (const file of fs.readdirSync(subjectDir).filter((name) => name.endsWith('.json'))) {
-    questions.push(...readJson(path.join('content/questions', dir, file)));
+    const sourceFile = `content/questions/${dir}/${file}`;
+    for (const question of readJson(sourceFile)) {
+      questions.push(question);
+      const occurrences = sourceOccurrences.get(question.id) ?? [];
+      occurrences.push(sourceFile);
+      sourceOccurrences.set(question.id, occurrences);
+    }
   }
 }
 const byId = new Map(questions.map((question) => [question.id, question]));
@@ -82,9 +119,23 @@ for (const id of pilotIds) {
   } else if (Object.hasOwn(payload, 'itemNote')) {
     fail(`${id}: no itemNote is allowed for this pilot item`);
   }
+  const occurrences = sourceOccurrences.get(id) ?? [];
+  if (occurrences.length !== 1 || occurrences[0] !== 'content/questions/verbal/core.json') fail(`${id}: must occur exactly once in canonical verbal/core.json`);
   if (question.choices.length !== 5 || JSON.stringify(question.choices.map((choice) => choice.id)) !== JSON.stringify(['A', 'B', 'C', 'D', 'E'])) fail(`${id}: pilot must retain exactly five A–E choices`);
   if (question.correctOptionId !== expectedAnswers[id]) fail(`${id}: corrected answer key changed`);
-  if (forbidden.test(JSON.stringify({ question: question.question, choices: question.choices, explanation: question.explanation, reference: question.reference, taskInstance: question.taskInstance }))) fail(`${id}: user-visible pilot content contains forbidden app or generation language`);
+  for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+    if (Object.hasOwn(question, field)) fail(`${id}: legacy field ${field} must be removed from the migrated record`);
+  }
+  if (JSON.stringify(question.structuredExplanation?.blocks) !== JSON.stringify(expectedStructuredBlocks[id])) fail(`${id}: structured explanation does not match the approved learner-facing teaching blocks`);
+  if (question.structuredExplanation?.blocks?.some((block) => block.type === 'alternative_solution')) fail(`${id}: alternative/Other Choices sections are not approved for the Grammar pilot`);
+  if (forbidden.test(JSON.stringify({ question: question.question, choices: question.choices, structuredExplanation: question.structuredExplanation, reference: question.reference, taskInstance: question.taskInstance }))) fail(`${id}: user-visible pilot content contains forbidden app, generation, or authoring language`);
+}
+
+const structuredGrammarIds = questions
+  .filter((question) => question.topic === 'Grammar & Usage' && question.structuredExplanation)
+  .map((question) => question.id);
+if (structuredGrammarIds.length !== pilotIds.length || structuredGrammarIds.some((id) => !pilotSet.has(id))) {
+  fail(`structured Grammar explanations must exist for exactly ${pilotIds.length} pilot IDs, got ${structuredGrammarIds.join(', ') || 'none'}`);
 }
 
 const nonPilotGrammar = questions.filter((question) => question.topic === 'Grammar & Usage' && !pilotSet.has(question.id));

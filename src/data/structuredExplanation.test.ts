@@ -19,8 +19,9 @@ const FILING_BATCH2_IDS = [
   'cler-0031', 'cler-0032', 'cler-0033', 'seed-cler-001', 'cler-0036', 'cler-0037',
   'cler-0038', 'cler-0039',
 ] as const;
+const GRAMMAR_PILOT_IDS = ['verb-0059', 'verb-0060', 'verb-0061', 'verb-0062'] as const;
 const ALL_NUMBER_SERIES_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS, ...BATCH4_IDS];
-const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS];
+const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -169,6 +170,57 @@ const EXPECTED_BATCH4_BLOCKS = {
     { type: 'rule', text: 'When signs alternate, check whether the absolute values follow a familiar sequence such as Fibonacci.' },
   ],
 } as const;
+
+const EXPECTED_GRAMMAR_BLOCKS = {
+  'verb-0059': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The question sets a formal American-English convention that treats *panel* as one collective unit. That convention requires a singular verb and a singular pronoun.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'The panel of judges **has** announced **its** decision.' },
+    { type: 'rule', text: 'When a collective noun is treated as one unit under the stated formal convention, use a singular verb and singular pronoun. Collective nouns may take plural agreement in other contexts when their members are foregrounded; that is not the convention used here.' },
+  ],
+  'verb-0060': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'C — Because she arrived late, her application was disqualified.' },
+    { type: 'paragraph', label: 'What to Notice', text: '*Because* is a subordinating conjunction that can introduce a complete causal clause: **because + subject + verb**. In choice C, *she arrived late* supplies that complete clause.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: '**Because** she arrived late, her application was disqualified.' },
+    { type: 'rule', text: 'Use *because* to connect a cause expressed as a complete clause. In choice A, *Being she was late* is defective; a preposition such as *due to* or *on account of* normally takes a noun or gerund phrase, not a finite clause, as in choices B and D. *Since* can introduce a clause, but *since of* in choice E improperly combines a conjunction with a preposition.' },
+  ],
+  'verb-0061': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'B — The reason the memorandum was delayed is that the signatory was absent.' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The question sets a formal-edited-English convention: use *the reason ... is that ...* rather than *the reason ... is because ...*. Choice B follows that target pattern.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'The reason the memorandum was delayed **is that** the signatory was absent.' },
+    { type: 'rule', text: 'Under the formal-edited-English convention stated here, pair *the reason ...* with *is that ...*. Choices A and E use *the reason ... is because*, a wording that occurs in ordinary contemporary English but is not the construction selected here; choice C compounds *reason why* with *is because*, while choice D is syntactically defective.' },
+  ],
+  'verb-0062': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'B — The commission not only reviewed the budget but also scrutinized the disbursements.' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The correlative pair *not only ... but also* should connect parallel grammatical elements. Here, **reviewed** and **scrutinized** are both past-tense verb phrases.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'The commission not only **reviewed** the budget but also **scrutinized** the disbursements.' },
+    { type: 'rule', text: 'With *not only ... but also*, keep the two coordinated elements grammatically parallel. The distractors break that pattern by inserting *it*, pairing an object phrase with a verb phrase, using faulty inversion and singular *was* with plural *disbursements*, or using *scrutinizing* instead of the past-tense *scrutinized*.' },
+  ],
+} as const;
+
+describe('Grammar structured explanation final pilot', () => {
+  it('contains exactly the approved blocks and no legacy learner fields for the four IDs', async () => {
+    const catalog = await loadContentCatalog(['Verbal Ability']);
+    for (const id of GRAMMAR_PILOT_IDS) {
+      const question = catalog.questions.get(id);
+      expect(question).toBeTruthy();
+      expect(question?.structuredExplanation?.blocks).toEqual(EXPECTED_GRAMMAR_BLOCKS[id]);
+      expect(isValidStructuredExplanation(question?.structuredExplanation), id).toBe(true);
+      expect(question?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution'), id).toBe(false);
+      for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+        expect(Object.hasOwn(question ?? {}, field), `${id}:${field}`).toBe(false);
+      }
+    }
+    const grammarStructuredIds = [...catalog.questions.values()]
+      .filter((question) => question.topic === 'Grammar & Usage' && question.structuredExplanation)
+      .map((question) => question.id);
+    expect(grammarStructuredIds.sort()).toEqual([...GRAMMAR_PILOT_IDS].sort());
+  });
+});
 
 describe('Number Series structured explanation Batch 4', () => {
   it('contains exactly the approved semantic content for num-0025 and num-0026', async () => {
@@ -319,7 +371,7 @@ describe('Number Series structured explanation Batch 4', () => {
     expect(catalog.questions.get('num-0147')?.structuredExplanation).toBeTruthy();
   });
 
-  it('does not add structured explanations outside the approved Number Series, Spelling, and Filing sets', async () => {
+  it('does not add structured explanations outside the approved Number Series, Spelling, Filing, and Grammar sets', async () => {
     const catalog = await loadContentCatalog(ALL_SUBJECTS);
     const structuredIds = [...catalog.questions.values()]
       .filter((question) => question.structuredExplanation)

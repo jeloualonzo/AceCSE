@@ -11,6 +11,7 @@ import { GroupRenderer } from '@/components/exam/booklet/GroupRenderer';
 import { QuestionRenderer } from '@/components/exam/booklet/QuestionRenderer';
 import { SectionRenderer } from '@/components/exam/booklet/SectionRenderer';
 import { normalizeIntendedNewlines } from '@/lib/text';
+import { isValidStructuredExplanation } from '@/data/structuredExplanation';
 
 const pilotIds = ['verb-0059', 'verb-0060', 'verb-0061', 'verb-0062'] as const;
 const subjects = ['Verbal Ability'] as const;
@@ -127,22 +128,34 @@ describe('Grammar pilot content corrections', () => {
     expect(strictParallelMatches.map((choice) => choice.id)).toEqual(['B']);
   });
 
-  it('keeps explanations aligned with the repaired criteria and rejects the old ambiguity claims', async () => {
+  it('keeps structured explanations aligned with the repaired criteria and removes legacy learner fields', async () => {
     const catalog = await loadContentCatalog(subjects);
-    const panel = catalog.getQuestion('verb-0059');
-    const causal = catalog.getQuestion('verb-0060');
-    const reason = catalog.getQuestion('verb-0061');
-    const parallel = catalog.getQuestion('verb-0062');
+    const questions = pilotIds.map((id) => catalog.getQuestion(id));
 
-    expect(panel?.explanation).toMatch(/formal American-English.*one unit/i);
-    expect(panel?.explanation).toMatch(/individual verdicts.*conflicts/i);
-    expect(causal?.explanation).toMatch(/only grammatically correct causal construction/i);
-    expect(causal?.explanation).toMatch(/“since” with “of”/i);
-    expect(reason?.explanation).toMatch(/formal-editing convention/i);
-    expect(reason?.explanation).toMatch(/not.*every contemporary use/i);
-    expect(parallel?.explanation).toMatch(/strict parallelism convention/i);
-    expect(parallel?.explanation).toMatch(/scrutinizing.*does not parallel/i);
-    expect(JSON.stringify([panel, causal, reason, parallel])).not.toMatch(/AI drafting residue|generated question|authored task/i);
+    for (const question of questions) {
+      expect(question?.structuredExplanation).toBeDefined();
+      expect(isValidStructuredExplanation(question?.structuredExplanation)).toBe(true);
+      expect(question?.structuredExplanation?.blocks).toHaveLength(5);
+      for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+        expect(Object.hasOwn(question ?? {}, field), `${question?.id}:${field}`).toBe(false);
+      }
+    }
+
+    const panelText = JSON.stringify(catalog.getQuestion('verb-0059')?.structuredExplanation);
+    const causalText = JSON.stringify(catalog.getQuestion('verb-0060')?.structuredExplanation);
+    const reasonText = JSON.stringify(catalog.getQuestion('verb-0061')?.structuredExplanation);
+    const parallelText = JSON.stringify(catalog.getQuestion('verb-0062')?.structuredExplanation);
+    expect(panelText).toMatch(/formal American-English.*collective unit/i);
+    expect(panelText).toMatch(/plural agreement.*other contexts/i);
+    expect(causalText).toMatch(/subordinating conjunction.*complete causal clause/i);
+    expect(causalText).toMatch(/being she was late.*defective/i);
+    expect(causalText).toMatch(/since of.*conjunction.*preposition/i);
+    expect(reasonText).toMatch(/formal-edited-English convention/i);
+    expect(reasonText).toMatch(/choices A and E.*is because/i);
+    expect(reasonText).toMatch(/ordinary contemporary English/i);
+    expect(parallelText).toMatch(/parallel grammatical elements/i);
+    expect(parallelText).toMatch(/scrutinizing.*past-tense.*scrutinized/i);
+    expect(JSON.stringify(questions)).not.toMatch(/former recognized|competing answer|AI drafting residue|generated question|authored task/i);
   });
 });
 
