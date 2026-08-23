@@ -20,6 +20,71 @@ service cloud.firestore {
       return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
     }
 
+    // Admin authority comes from a custom claim minted server-side by
+    // scripts/set-admin-claim.mjs and carried in the signed ID token. A client
+    // cannot set it. Keep this in exact lockstep with isAdminClaim() in
+    // src/lib/adminClaim.ts — both require a literal boolean true.
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.admin == true;
+    }
+
+    // ---- QA refinement batches (admin-only) ----------------------------
+    // Batches hold question IDs and workflow state ONLY. Production question
+    // content stays in content/questions/**.json and is never copied here, so
+    // this collection can never become a second source of truth for questions.
+    match /refinementBatches/{batchId} {
+      function isValidBatchPayload() {
+        return request.resource.data.keys().hasOnly(
+             ['id', 'title', 'family', 'subject', 'status', 'sequence',
+              'questionIds', 'createdAt', 'updatedAt', 'createdBy', 'updatedBy'])
+        && request.resource.data.id == batchId
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.title.size() <= 200
+        && request.resource.data.family is string
+        && request.resource.data.family.size() > 0
+        && request.resource.data.family.size() <= 200
+        && request.resource.data.status in
+             ['needs-content', 'builder', 'ready-for-qa', 'frozen']
+        && request.resource.data.createdAt is string
+        && request.resource.data.createdAt.size() <= 40
+        && request.resource.data.questionIds is list
+        && request.resource.data.questionIds.size() > 0
+        && request.resource.data.questionIds.size() <= 200
+        && (!('subject' in request.resource.data)
+            || request.resource.data.subject in
+                 ['Numerical Reasoning', 'Analytical Reasoning', 'Verbal Ability',
+                  'Clerical Ability', 'General Information'])
+        && (!('sequence' in request.resource.data)
+            || (request.resource.data.sequence is int
+                && request.resource.data.sequence > 0))
+        && (!('updatedAt' in request.resource.data)
+            || (request.resource.data.updatedAt is string
+                && request.resource.data.updatedAt.size() <= 40))
+        && (!('createdBy' in request.resource.data)
+            || request.resource.data.createdBy == null
+            || (request.resource.data.createdBy is string
+                && request.resource.data.createdBy.size() <= 128))
+        && (!('updatedBy' in request.resource.data)
+            || request.resource.data.updatedBy == null
+            || (request.resource.data.updatedBy is string
+                && request.resource.data.updatedBy.size() <= 128));
+      }
+
+      allow read: if isAdmin();
+      allow create: if isAdmin()
+        && isValidId(batchId)
+        && isValidBatchPayload();
+      // The batch identity and its creation record are fixed once written;
+      // status, membership, and title are what the workflow edits.
+      allow update: if isAdmin()
+        && isValidId(batchId)
+        && isValidBatchPayload()
+        && request.resource.data.id == resource.data.id
+        && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isAdmin();
+    }
+
     // ---- Feedback (bug reports / feature requests) ---------------------
     // Create-only for signed-in users; nobody can read, edit, or delete
     // through the client. Review happens in the Firebase console.

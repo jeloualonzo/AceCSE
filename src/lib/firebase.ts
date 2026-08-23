@@ -1,5 +1,5 @@
 import { initializeApp, getApp, getApps } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { connectAuthEmulator, getAuth } from 'firebase/auth';
 
 /**
  * Firebase app + Auth only. Firestore is intentionally NOT initialized here —
@@ -30,3 +30,17 @@ const firebaseConfig = {
 export const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+
+/**
+ * Local Auth emulator, opt-in via `VITE_FIREBASE_AUTH_EMULATOR_HOST` in
+ * `.env.local` (e.g. `127.0.0.1:9099`).
+ *
+ * Exists so the admin-claim bootstrap can be rehearsed end to end without
+ * touching a real project or a real account — see docs/admin/ADMIN_ACCESS.md.
+ * Gated on `import.meta.env.DEV` as well as the variable, so a production build
+ * can never be pointed at an emulator by configuration alone.
+ */
+const authEmulatorHost = import.meta.env.VITE_FIREBASE_AUTH_EMULATOR_HOST as string | undefined;
+if (import.meta.env.DEV && authEmulatorHost) {
+  connectAuthEmulator(auth, `http://${authEmulatorHost}`, { disableWarnings: false });
+}

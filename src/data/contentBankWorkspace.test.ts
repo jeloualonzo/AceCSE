@@ -4,14 +4,19 @@ import {
   buildSubjectDashboardSummary,
   buildSubjectWorkspaceData,
   createRawBatchJson,
+  createRawJsonExport,
+  createReviewExport,
   createReviewMarkdown,
   createWorkspaceRefinementBatch,
   getNextRemainingQuestionIds,
   getBatchQuestions,
+  REVIEW_MARKDOWN_FORMAT,
   slugForSubject,
   subjectFromSlug,
   validateWorkspaceBatch,
+  workspaceStateLabel,
 } from './contentBankWorkspace';
+import { exportDocumentIntegrityErrors } from '@/lib/exportText';
 import type { ClassificationRecord } from './taxonomy';
 import type { Question, Subject } from '@/types';
 
@@ -106,6 +111,16 @@ const readyBatch = {
   questionIds: ['cler-test-002'],
 };
 
+/** A batch that has been claimed but not yet written — the pre-QA half. */
+const draftBatch = {
+  id: 'test-draft',
+  title: 'Test Draft',
+  family: 'Spelling',
+  status: 'needs-content' as const,
+  createdAt: '2026-08-22T12:00:00+08:00',
+  questionIds: ['cler-test-003'],
+};
+
 describe('Content Bank workspace data', () => {
   it('maps every active subject to a stable workspace slug and back', () => {
     expect(subjects.map(slugForSubject)).toEqual(['clerical', 'verbal', 'numerical', 'analytical', 'general-information']);
@@ -146,9 +161,81 @@ describe('Content Bank workspace data', () => {
     });
   });
 
+  it('treats a pre-QA batch as In Progress rather than Ready for QA, and stops re-offering its questions', () => {
+    const catalog = testCatalog();
+    const workspace = buildSubjectWorkspaceData('Clerical Ability', catalog, [frozenBatch, readyBatch, draftBatch]);
+
+    // The point of the new state: a needs-content batch must not claim to have
+    // reached QA merely by existing.
+    expect(workspace.inProgressQuestionIds).toEqual(['cler-test-003']);
+    expect(workspace.readyForQaQuestionIds).toEqual(['cler-test-002']);
+    expect(workspace.remainingQuestionIds).toEqual([]);
+    expect(workspace.questions.find((item) => item.question.id === 'cler-test-003')?.state).toBe('in-progress');
+    expect(workspaceStateLabel('in-progress')).toBe('In Progress');
+    // A claimed question is never offered up for a second batch.
+    expect(getNextRemainingQuestionIds(workspace, 10)).toEqual([]);
+
+    // `builder` is the same claim one step later, so it reads the same way.
+    const inBuilder = buildSubjectWorkspaceData('Clerical Ability', catalog, [{ ...draftBatch, status: 'builder' }]);
+    expect(inBuilder.inProgressQuestionIds).toEqual(['cler-test-003']);
+    expect(inBuilder.readyForQaQuestionIds).toEqual([]);
+    expect(inBuilder.remainingQuestionIds).toEqual(['cler-test-001', 'cler-test-002']);
+  });
+
+  it('reports the furthest state an overlapping question reached, counting it exactly once', () => {
+    const catalog = testCatalog();
+    const overlapping = [
+      { ...draftBatch, id: 'draft-overlap', questionIds: ['cler-test-001', 'cler-test-002', 'cler-test-003'] },
+      readyBatch, // cler-test-002 has also reached QA
+      frozenBatch, // cler-test-001 is already frozen
+    ];
+    const workspace = buildSubjectWorkspaceData('Clerical Ability', catalog, overlapping);
+
+    expect(workspace.frozenQuestionIds).toEqual(['cler-test-001']);
+    expect(workspace.readyForQaQuestionIds).toEqual(['cler-test-002']);
+    expect(workspace.inProgressQuestionIds).toEqual(['cler-test-003']);
+    const counted = [
+      ...workspace.frozenQuestionIds,
+      ...workspace.readyForQaQuestionIds,
+      ...workspace.inProgressQuestionIds,
+      ...workspace.remainingQuestionIds,
+    ];
+    expect(counted).toHaveLength(workspace.activeQuestionCount);
+    expect(new Set(counted).size).toBe(counted.length);
+
+    // The dashboard summary derives from the same resolver, so it must agree.
+    expect(buildSubjectDashboardSummary('Clerical Ability', overlapping, [
+      classification('cler-test-001', 'Filing & Alphabetizing'),
+      classification('cler-test-002', 'Filing & Alphabetizing'),
+      classification('cler-test-003', 'Spelling'),
+    ])).toMatchObject({
+      frozenQuestionCount: 1,
+      readyForQaQuestionCount: 1,
+      inProgressQuestionCount: 1,
+      remainingQuestionCount: 0,
+    });
+  });
+
+  it('does not let an untouched draft batch make a family look nearly finished', () => {
+    const bulk = Array.from({ length: 10 }, (_, index) => question(`cler-bulk-${index}`, 'Bulk Family'));
+    const catalog = createNormalizedCatalog(bulk, [], bulk.map((item) => classification(item.id, item.topic)));
+    const workspace = buildSubjectWorkspaceData('Clerical Ability', catalog, [{
+      ...draftBatch,
+      family: 'Bulk Family',
+      questionIds: bulk.slice(0, 9).map((item) => item.id),
+    }]);
+
+    expect(workspace.inProgressQuestionIds).toHaveLength(9);
+    expect(workspace.remainingQuestionIds).toHaveLength(1);
+    // Claiming nine of ten questions is not the same as having finished nine —
+    // but it is not "Not Started" either, because someone has picked them up.
+    expect(workspace.status).toBe('In Progress');
+    expect(workspace.families[0]?.status).toBe('In Progress');
+    expect(buildSubjectWorkspaceData('Clerical Ability', catalog, []).status).toBe('Not Started');
+  });
+
   it('rejects invalid batch definitions and creates exact selected IDs without changing questions', () => {
-    const known = new Set(['cler-test-001', 'cler-test-002', 'cler-test-003']);
-    const existing = [frozenBatch];
+    const known = new Set(['cler-test-001', 'cler-test-002', 'cler-test-003']);    const existing = [frozenBatch];
     expect(validateWorkspaceBatch({ ...frozenBatch, id: '', questionIds: [] }, known, existing)).toEqual(expect.arrayContaining(['Enter a batch ID.', 'Select at least one remaining question.']));
     expect(validateWorkspaceBatch({ ...frozenBatch, id: 'new', questionIds: ['cler-test-001', 'cler-test-001'] }, known, existing)).toContain('A batch cannot contain duplicate question IDs.');
     expect(validateWorkspaceBatch({ ...frozenBatch, id: 'new', questionIds: ['cler-missing'] }, known, existing)).toContain('Question cler-missing is not in the active production catalog.');
@@ -193,6 +280,81 @@ describe('Content Bank workspace data', () => {
     expect(raw.map((item) => item.id)).toEqual(['cler-test-003', 'cler-test-002']);
     expect(raw[0]).toEqual(questions[0]);
     expect(JSON.stringify(raw)).not.toContain('test-ready');
+  });
+
+  it('carries the batch and review metadata a reviewer needs to act without the app', () => {
+    const catalog = testCatalog();
+    const batch = { ...readyBatch, questionIds: ['cler-test-003', 'cler-test-002'] };
+    const questions = batch.questionIds.map((id) => catalog.getQuestion(id)!);
+    const markdown = createReviewMarkdown(batch, questions, {
+      classifications: questions.map((item) => classification(item.id, item.topic)),
+    });
+
+    expect(markdown).toContain('- Family: Filing & Alphabetizing');
+    expect(markdown).toContain('- Status: Ready for QA');
+    expect(markdown).toContain('- Created: 2026-08-22T11:00:00+08:00');
+    expect(markdown).toContain('- Question IDs (batch order): cler-test-003, cler-test-002');
+    expect(markdown).toContain(`- Export format: ${REVIEW_MARKDOWN_FORMAT}`);
+
+    // Fields the previous layout dropped entirely.
+    expect(markdown).toContain('| Exam level | Both |');
+    expect(markdown).toContain('| Tags | test |');
+    expect(markdown).toContain('| Choice count | 5 |');
+    expect(markdown).toContain('| Pool | spelling-pool |');
+    expect(markdown).toContain('| Subtopic | Spelling subtopic |');
+    // A reviewer must be able to tell which explanation source they are reading.
+    expect(markdown).toContain('| Explanation source | structured |');
+    expect(markdown).toContain('| Explanation source | legacy prose |');
+    // Absent optional fields read as an explicit dash, never as a blank cell.
+    expect(markdown).toContain('| Reference | — |');
+    expect(markdown).not.toMatch(/\|\s+\|\s*$/m);
+  });
+
+  it('reports the family the workspace grouped by, not just the raw question topic', () => {
+    const catalog = testCatalog();
+    const batch = { ...readyBatch, questionIds: ['cler-test-002'] };
+    const questions = [catalog.getQuestion('cler-test-002')!];
+    // The manifest is authoritative for family grouping; when the two disagree
+    // the export must show both rather than silently contradict the workspace.
+    const markdown = createReviewMarkdown(batch, questions, {
+      classifications: [classification('cler-test-002', 'Alphabetic Indexing')],
+    });
+    expect(markdown).toContain('| Topic / family | Alphabetic Indexing |');
+    expect(markdown).toContain('| Question topic | Filing & Alphabetizing |');
+  });
+
+  it('builds one exact string for counting, chunking, and copying', () => {
+    const catalog = testCatalog();
+    const batch = { ...readyBatch, questionIds: ['cler-test-003', 'cler-test-002'] };
+    const questions = batch.questionIds.map((id) => catalog.getQuestion(id)!);
+    const classifications = questions.map((item) => classification(item.id, item.topic));
+
+    const review = createReviewExport(batch, questions, { classifications });
+    expect(exportDocumentIntegrityErrors(review)).toEqual([]);
+    expect(review.characterCount).toBe(review.text.length);
+    expect(review.chunks.map((chunk) => chunk.text).join('')).toBe(review.text);
+    expect(review.lineEnding).toBe('LF');
+    // LF throughout: the counted string is the generated string, character for
+    // character, with nothing added for the clipboard to have to undo.
+    expect(review.text).not.toContain('\r');
+    expect(review.text).toBe(createReviewMarkdown(batch, questions, { classifications }));
+    // Authored markers survive normalization and chunking.
+    expect(review.text).toContain('**bold**');
+    expect(review.text).toContain('*italic*');
+
+    const rawJson = createRawJsonExport(batch, questions);
+    expect(exportDocumentIntegrityErrors(rawJson)).toEqual([]);
+    expect(rawJson.text).not.toContain('\r');
+    expect(JSON.parse(rawJson.text)).toEqual(questions);
+
+    // A small limit must not change the underlying string, only where it splits.
+    const chunked = createReviewExport(batch, questions, { classifications, chunkCharacterLimit: 500 });
+    expect(chunked.text).toBe(review.text);
+    expect(chunked.chunks.length).toBeGreaterThan(review.chunks.length);
+    expect(chunked.chunks.every((chunk) => chunk.characterCount <= 500)).toBe(true);
+    expect(chunked.chunks.map((chunk) => chunk.text).join('')).toBe(review.text);
+    expect(chunked.chunks.reduce((total, chunk) => total + chunk.characterCount, 0)).toBe(review.characterCount);
+    expect(chunked.chunks.every((chunk) => chunk.characterCount === chunk.text.length)).toBe(true);
   });
 
   it('surfaces invalid QA registry references for fail-closed workspace handling', () => {

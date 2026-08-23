@@ -6,3 +6,12 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Firebase service account keys — used only by scripts/set-admin-claim.mjs and
+# never by the frontend. Keep them outside the repo when you can; these patterns
+# are the backstop for when you cannot. A committed key compromises the project.
+*serviceAccount*.json
+*service-account*.json
+*-adminsdk-*.json
+firebase-admin-key*.json
+.firebase/

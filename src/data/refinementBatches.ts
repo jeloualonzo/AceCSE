@@ -2,7 +2,25 @@ import refinementBatchesJson from '../../content/qa/refinement-batches.json';
 import { SUBJECTS_BY_LEVEL } from '@/config/exam';
 import type { Subject } from '@/types';
 
-export type RefinementBatchStatus = 'ready-for-qa' | 'frozen';
+/**
+ * The controlled refinement workflow, in order.
+ *
+ * A batch only ever moves along this sequence through the transition map below —
+ * never by free text. `needs-content` and `builder` were added after the first
+ * nine batches shipped, so every value the seed registry already uses stays
+ * valid and no existing entry has to be rewritten.
+ */
+export const REFINEMENT_STATUS_SEQUENCE = [
+  'needs-content',
+  'builder',
+  'ready-for-qa',
+  'frozen',
+] as const;
+
+export type RefinementBatchStatus = (typeof REFINEMENT_STATUS_SEQUENCE)[number];
+
+/** Where a newly created batch starts: claimed, but not yet written. */
+export const DEFAULT_REFINEMENT_STATUS: RefinementBatchStatus = 'needs-content';
 
 export interface RefinementBatch {
   id: string;
@@ -11,13 +29,74 @@ export interface RefinementBatch {
   status: RefinementBatchStatus;
   createdAt: string;
   questionIds: string[];
+  /**
+   * Optional persistence metadata. Absent in the shipped seed registry and
+   * populated by the Firestore store, which is why every field is optional —
+   * the seed file must keep validating unchanged.
+   */
+  subject?: string;
+  sequence?: number;
+  updatedAt?: string;
 }
 
-const VALID_STATUSES = new Set<RefinementBatchStatus>(['ready-for-qa', 'frozen']);
+const VALID_STATUSES = new Set<string>(REFINEMENT_STATUS_SEQUENCE);
 const STATUS_LABELS: Record<RefinementBatchStatus, string> = {
+  'needs-content': 'Needs Content',
+  builder: 'Builder',
   'ready-for-qa': 'Ready for QA',
   frozen: 'Frozen',
 };
+
+/**
+ * Which moves the workflow permits, as an explicit map rather than "one step
+ * along the sequence".
+ *
+ * Forward moves advance the batch. Backward moves exist because QA genuinely
+ * sends work back — a batch that fails review returns to Builder, and a frozen
+ * batch can be reopened when a defect is found later. What is deliberately
+ * absent is skipping: a batch cannot jump from `needs-content` straight to
+ * `frozen`, so "frozen" always means it passed through QA.
+ */
+export const ALLOWED_STATUS_TRANSITIONS: Record<RefinementBatchStatus, readonly RefinementBatchStatus[]> = {
+  'needs-content': ['builder'],
+  builder: ['ready-for-qa', 'needs-content'],
+  'ready-for-qa': ['frozen', 'builder'],
+  frozen: ['ready-for-qa'],
+};
+
+export function isRefinementBatchStatus(value: unknown): value is RefinementBatchStatus {
+  return typeof value === 'string' && VALID_STATUSES.has(value);
+}
+
+/** The statuses a controlled UI may offer for a batch currently at `from`. */
+export function allowedNextRefinementStatuses(
+  from: RefinementBatchStatus,
+): readonly RefinementBatchStatus[] {
+  return ALLOWED_STATUS_TRANSITIONS[from];
+}
+
+export function canTransitionRefinementStatus(
+  from: RefinementBatchStatus,
+  to: RefinementBatchStatus,
+): boolean {
+  return ALLOWED_STATUS_TRANSITIONS[from].includes(to);
+}
+
+/**
+ * Why a transition is refused, or `null` when it is allowed. Phrased for the
+ * admin who attempted it, since this is what the UI shows.
+ */
+export function refinementTransitionError(
+  from: RefinementBatchStatus,
+  to: RefinementBatchStatus,
+): string | null {
+  if (from === to) return `This batch is already ${STATUS_LABELS[to]}.`;
+  if (canTransitionRefinementStatus(from, to)) return null;
+  const allowed = allowedNextRefinementStatuses(from).map((status) => STATUS_LABELS[status]);
+  return allowed.length === 0
+    ? `${STATUS_LABELS[from]} is a terminal status.`
+    : `${STATUS_LABELS[from]} can only move to ${allowed.join(' or ')}.`;
+}
 
 function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null;
@@ -65,7 +144,7 @@ export function validateRefinementBatches(
     else batchIds.add(batch.id);
     if (typeof batch.title !== 'string' || batch.title.trim() === '') errors.push(`${where}.title must be non-empty`);
     if (typeof batch.family !== 'string' || batch.family.trim() === '') errors.push(`${where}.family must be non-empty`);
-    if (typeof batch.status !== 'string' || !VALID_STATUSES.has(batch.status as RefinementBatchStatus)) {
+    if (typeof batch.status !== 'string' || !VALID_STATUSES.has(batch.status)) {
       errors.push(`${where}.status is invalid: ${String(batch.status)}`);
     }
     if (typeof batch.createdAt !== 'string' || !batch.createdAt.trim() || !Number.isFinite(Date.parse(batch.createdAt))) {
@@ -140,4 +219,73 @@ export function getRefinementBatches(
 
 export function refinementStatusLabel(status: RefinementBatchStatus): string {
   return STATUS_LABELS[status];
+}
+
+/**
+ * `Filing & Alphabetizing` → `filing-alphabetizing`.
+ *
+ * Ampersands become nothing rather than "and", so the slug reads the way the
+ * shipped ids do. Empty input yields `family`, which keeps the generated id
+ * well-formed instead of producing a leading dash.
+ */
+export function refinementFamilySlug(family: string): string {
+  const slug = family
+    .toLowerCase()
+    .replace(/&/g, ' ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return slug || 'family';
+}
+
+/** The trailing number in `Spelling — Batch 2` or `spelling-batch-02`. */
+function parseSequence(batch: RefinementBatch): number {
+  const fromTitle = /batch\s+(\d+)\s*$/i.exec(batch.title.trim());
+  if (fromTitle) return Number.parseInt(fromTitle[1], 10);
+  const fromId = /-(\d+)$/.exec(batch.id.trim());
+  return fromId ? Number.parseInt(fromId[1], 10) : 0;
+}
+
+/**
+ * The next batch number for a family.
+ *
+ * Takes the larger of the highest number already used and the count of batches
+ * in the family, so a family whose existing batch carries no number (the shipped
+ * `Grammar & Usage — Pilot`) still advances instead of minting a second "1".
+ */
+export function nextRefinementSequence(
+  family: string,
+  existingBatches: readonly RefinementBatch[],
+): number {
+  const key = refinementFamilySlug(family);
+  const siblings = existingBatches.filter((batch) => refinementFamilySlug(batch.family) === key);
+  const highest = siblings.reduce((max, batch) => Math.max(max, parseSequence(batch)), 0);
+  return Math.max(highest, siblings.length) + 1;
+}
+
+export interface GeneratedRefinementName {
+  id: string;
+  title: string;
+  sequence: number;
+}
+
+/**
+ * Derives the id, title, and number for a new batch from its family alone.
+ *
+ * The admin never types an id: numbering is automatic and collision-free
+ * (the sequence advances until the id is unused), so two admins creating a
+ * batch in the same family cannot mint the same id from stale local state.
+ */
+export function generateRefinementBatchName(
+  family: string,
+  existingBatches: readonly RefinementBatch[],
+): GeneratedRefinementName {
+  const slug = refinementFamilySlug(family);
+  const taken = new Set(existingBatches.map((batch) => batch.id));
+  let sequence = nextRefinementSequence(family, existingBatches);
+  let id = `${slug}-batch-${String(sequence).padStart(2, '0')}`;
+  while (taken.has(id)) {
+    sequence += 1;
+    id = `${slug}-batch-${String(sequence).padStart(2, '0')}`;
+  }
+  return { id, title: `${family.trim()} — Batch ${sequence}`, sequence };
 }

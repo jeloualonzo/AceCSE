@@ -20,7 +20,9 @@
     "test:engine": "vitest run src/lib/examEngine.test.ts",
     "test:booklet": "vitest run src/lib/examViewModel.test.ts src/components/shell/BookletExamLayout.test.tsx",
     "test": "vitest run",
-    "audit:content": "node scripts/audit-content.mjs"
+    "audit:content": "node scripts/audit-content.mjs",
+    "admin:grant": "node scripts/set-admin-claim.mjs",
+    "admin:revoke": "node scripts/set-admin-claim.mjs --revoke"
   },
   "dependencies": {
     "firebase": "^12.17.0",

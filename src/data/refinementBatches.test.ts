@@ -1,11 +1,23 @@
 import { describe, expect, it } from 'vitest';
 import { loadContentCatalog, loadQuestionIndex } from './questionBank';
 import {
+  allowedNextRefinementStatuses,
+  ALLOWED_STATUS_TRANSITIONS,
+  canTransitionRefinementStatus,
+  DEFAULT_REFINEMENT_STATUS,
+  generateRefinementBatchName,
   getRefinementBatches,
+  isRefinementBatchStatus,
+  nextRefinementSequence,
   REFINEMENT_BATCHES,
+  REFINEMENT_STATUS_SEQUENCE,
+  refinementFamilySlug,
   refinementStatusLabel,
+  refinementTransitionError,
   validateRefinementBatches,
   validateRefinementBatchesAgainstCatalog,
+  type RefinementBatch,
+  type RefinementBatchStatus,
 } from './refinementBatches';
 
 const ALL_SUBJECTS = [
@@ -180,5 +192,141 @@ describe('refinement batch question-ID resolution', () => {
     expect(validateRefinementBatches(REFINEMENT_BATCHES, undefined)).toEqual([]);
     expect(validateRefinementBatches([{ ...QA_REPORTED_BATCH, questionIds: [] }]))
       .toEqual(['batch[0].questionIds must contain at least one ID']);
+  });
+});
+
+describe('controlled refinement workflow statuses', () => {
+  /** Structurally valid and fully resolvable, so only `status` is under test. */
+  const CANDIDATE = {
+    id: 'status-candidate',
+    title: 'Status Candidate',
+    family: 'Filing & Alphabetizing',
+    createdAt: '2026-08-23T12:00:00+08:00',
+    questionIds: ['cler-0053'],
+  };
+
+  it('runs Needs Content → Builder → Ready for QA → Frozen and labels each step', () => {
+    expect([...REFINEMENT_STATUS_SEQUENCE]).toEqual(['needs-content', 'builder', 'ready-for-qa', 'frozen']);
+    expect(REFINEMENT_STATUS_SEQUENCE.map(refinementStatusLabel)).toEqual([
+      'Needs Content', 'Builder', 'Ready for QA', 'Frozen',
+    ]);
+    expect(DEFAULT_REFINEMENT_STATUS).toBe('needs-content');
+    for (const status of REFINEMENT_STATUS_SEQUENCE) expect(isRefinementBatchStatus(status)).toBe(true);
+    for (const rejected of ['Frozen', 'in-review', '', null, undefined, 7]) {
+      expect(isRefinementBatchStatus(rejected)).toBe(false);
+    }
+  });
+
+  it('accepts the two statuses the shipped seed registry already uses', () => {
+    // The seed file predates this workflow; widening must not invalidate it.
+    expect(validateRefinementBatches(REFINEMENT_BATCHES)).toEqual([]);
+    expect(new Set(REFINEMENT_BATCHES.map((batch) => batch.status))).toEqual(new Set(['frozen', 'ready-for-qa']));
+    for (const status of REFINEMENT_STATUS_SEQUENCE) {
+      expect(validateRefinementBatches([{ ...CANDIDATE, status }])).toEqual([]);
+    }
+  });
+
+  it('permits only adjacent moves, so Frozen always means it passed QA', () => {
+    expect(ALLOWED_STATUS_TRANSITIONS).toEqual({
+      'needs-content': ['builder'],
+      builder: ['ready-for-qa', 'needs-content'],
+      'ready-for-qa': ['frozen', 'builder'],
+      frozen: ['ready-for-qa'],
+    });
+    // Forward one step, and the backward path QA actually needs.
+    expect(canTransitionRefinementStatus('needs-content', 'builder')).toBe(true);
+    expect(canTransitionRefinementStatus('builder', 'ready-for-qa')).toBe(true);
+    expect(canTransitionRefinementStatus('ready-for-qa', 'frozen')).toBe(true);
+    expect(canTransitionRefinementStatus('ready-for-qa', 'builder')).toBe(true);
+    expect(canTransitionRefinementStatus('frozen', 'ready-for-qa')).toBe(true);
+    // Skipping a step is refused in both directions.
+    expect(canTransitionRefinementStatus('needs-content', 'frozen')).toBe(false);
+    expect(canTransitionRefinementStatus('needs-content', 'ready-for-qa')).toBe(false);
+    expect(canTransitionRefinementStatus('builder', 'frozen')).toBe(false);
+    expect(canTransitionRefinementStatus('frozen', 'needs-content')).toBe(false);
+    for (const status of REFINEMENT_STATUS_SEQUENCE) {
+      expect(canTransitionRefinementStatus(status, status)).toBe(false);
+      expect(allowedNextRefinementStatuses(status).every(isRefinementBatchStatus)).toBe(true);
+      expect(allowedNextRefinementStatuses(status)).not.toContain(status);
+    }
+  });
+
+  it('explains a refused move instead of failing silently', () => {
+    expect(refinementTransitionError('needs-content', 'builder')).toBeNull();
+    expect(refinementTransitionError('frozen', 'frozen')).toBe('This batch is already Frozen.');
+    expect(refinementTransitionError('needs-content', 'frozen')).toBe('Needs Content can only move to Builder.');
+    expect(refinementTransitionError('builder', 'frozen')).toBe('Builder can only move to Ready for QA or Needs Content.');
+  });
+});
+
+describe('automatic refinement batch numbering and titles', () => {
+  function batch(id: string, title: string, family: string): RefinementBatch {
+    return { id, title, family, status: 'frozen', createdAt: '2026-08-20T12:00:00+08:00', questionIds: ['cler-0001'] };
+  }
+
+  it('slugs a family name for use in an id', () => {
+    expect(refinementFamilySlug('Filing & Alphabetizing')).toBe('filing-alphabetizing');
+    expect(refinementFamilySlug('Number Series')).toBe('number-series');
+    expect(refinementFamilySlug('Grammar & Usage')).toBe('grammar-usage');
+    expect(refinementFamilySlug('  Reading   Comprehension  ')).toBe('reading-comprehension');
+    // A family that slugs away entirely still yields a well-formed id fragment.
+    expect(refinementFamilySlug('&&&')).toBe('family');
+  });
+
+  it('numbers the next batch from the highest number the family already used', () => {
+    const existing = [
+      batch('spelling-batch-01', 'Spelling — Batch 1', 'Spelling'),
+      batch('spelling-batch-02', 'Spelling — Batch 2', 'Spelling'),
+    ];
+    expect(nextRefinementSequence('Spelling', existing)).toBe(3);
+    expect(nextRefinementSequence('Number Series', existing)).toBe(1);
+    expect(generateRefinementBatchName('Spelling', existing)).toEqual({
+      id: 'spelling-batch-03',
+      title: 'Spelling — Batch 3',
+      sequence: 3,
+    });
+  });
+
+  it('advances past an unnumbered batch rather than minting a second Batch 1', () => {
+    // The shipped `Grammar & Usage — Pilot` carries no number in its title.
+    const existing = [batch('grammar-pilot-01', 'Grammar & Usage — Pilot', 'Grammar & Usage')];
+    expect(nextRefinementSequence('Grammar & Usage', existing)).toBe(2);
+    expect(generateRefinementBatchName('Grammar & Usage', existing)).toMatchObject({
+      id: 'grammar-usage-batch-02',
+      title: 'Grammar & Usage — Batch 2',
+    });
+  });
+
+  it('never generates an id that already exists', () => {
+    const existing = [
+      batch('spelling-batch-03', 'Spelling — Batch 1', 'Spelling'),
+      batch('spelling-batch-04', 'Spelling — Batch 2', 'Spelling'),
+    ];
+    const generated = generateRefinementBatchName('Spelling', existing);
+    expect(existing.map((item) => item.id)).not.toContain(generated.id);
+    expect(generated).toEqual({ id: 'spelling-batch-05', title: 'Spelling — Batch 5', sequence: 5 });
+  });
+
+  it('generates a batch the registry validator accepts, for every family it ships', () => {
+    const families = [...new Set(REFINEMENT_BATCHES.map((item) => item.family))];
+    const seen = new Set(REFINEMENT_BATCHES.map((item) => item.id));
+    for (const family of families) {
+      const generated = generateRefinementBatchName(family, REFINEMENT_BATCHES);
+      expect(seen.has(generated.id)).toBe(false);
+      const status: RefinementBatchStatus = DEFAULT_REFINEMENT_STATUS;
+      expect(validateRefinementBatches([{
+        id: generated.id,
+        title: generated.title,
+        family,
+        status,
+        createdAt: '2026-08-23T12:00:00+08:00',
+        questionIds: ['cler-0001'],
+      }])).toEqual([]);
+    }
+    // Numbering continues the shipped sequences rather than restarting them.
+    expect(generateRefinementBatchName('Filing & Alphabetizing', REFINEMENT_BATCHES).title)
+      .toBe('Filing & Alphabetizing — Batch 3');
+    expect(generateRefinementBatchName('Number Series', REFINEMENT_BATCHES).title)
+      .toBe('Number Series — Batch 5');
   });
 });

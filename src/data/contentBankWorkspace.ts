@@ -5,11 +5,17 @@ import {
 } from '@/data/taxonomy';
 import {
   getRefinementBatches,
+  refinementFamilySlug,
   refinementStatusLabel,
   validateRefinementBatches,
   type RefinementBatch,
   type RefinementBatchStatus,
 } from '@/data/refinementBatches';
+import {
+  buildExportDocument,
+  type BuildExportDocumentOptions,
+  type ExportDocument,
+} from '@/lib/exportText';
 import type { Difficulty, Question, Subject } from '@/types';
 
 export const CONTENT_BANK_SUBJECTS: readonly Subject[] = [
@@ -36,7 +42,38 @@ export function subjectFromSlug(slug: string): Subject | undefined {
   return CONTENT_BANK_SUBJECTS.find((subject) => SUBJECT_SLUGS[subject] === slug);
 }
 
-export type WorkspaceQuestionState = 'frozen' | 'ready-for-qa' | 'remaining';
+/**
+ * URL slug for a family (taxonomy topic).
+ *
+ * Families are open-ended — they come from the taxonomy, not a fixed list — so
+ * there is no reverse table. `findFamilyBySlug` scans the subject's own families
+ * instead, which also means a stale bookmark fails loudly with a "not in this
+ * subject" message rather than resolving to the wrong family.
+ *
+ * Shares `refinementFamilySlug` with batch id generation on purpose: a family's
+ * URL and its batch ids are then the same string, so `filing-alphabetizing`
+ * appears in both places and cannot drift apart.
+ */
+export function slugForFamily(family: string): string {
+  return refinementFamilySlug(family);
+}
+
+export function findFamilyBySlug(
+  families: readonly WorkspaceFamilyProgress[],
+  slug: string,
+): WorkspaceFamilyProgress | undefined {
+  return families.find((family) => slugForFamily(family.family) === slug);
+}
+
+/**
+ * What the refinement workflow has claimed a question for.
+ *
+ * `in-progress` covers the two pre-QA statuses (`needs-content`, `builder`):
+ * the question belongs to a batch someone is working on, so it is neither
+ * finished nor free to be picked up again. `remaining` means exactly "no batch
+ * has claimed this yet", which is what the Next Questions selection needs.
+ */
+export type WorkspaceQuestionState = 'frozen' | 'ready-for-qa' | 'in-progress' | 'remaining';
 export type WorkspaceProgressStatus = 'Not Started' | 'In Progress' | 'Almost Complete' | 'Complete';
 
 export interface WorkspaceQuestion {
@@ -56,6 +93,7 @@ export interface WorkspaceFamilyProgress {
   activeQuestionIds: string[];
   frozenQuestionIds: string[];
   readyForQaQuestionIds: string[];
+  inProgressQuestionIds: string[];
   remainingQuestionIds: string[];
   status: WorkspaceProgressStatus;
 }
@@ -70,6 +108,7 @@ export interface SubjectWorkspaceData {
   activeQuestionCount: number;
   frozenQuestionIds: string[];
   readyForQaQuestionIds: string[];
+  inProgressQuestionIds: string[];
   remainingQuestionIds: string[];
   status: WorkspaceProgressStatus;
   families: WorkspaceFamilyProgress[];
@@ -84,6 +123,7 @@ export interface SubjectDashboardSummary {
   familyCount: number;
   frozenQuestionCount: number;
   readyForQaQuestionCount: number;
+  inProgressQuestionCount: number;
   remainingQuestionCount: number;
   status: WorkspaceProgressStatus;
   families: WorkspaceFamilyProgress[];
@@ -115,18 +155,137 @@ function classificationFor(
   return classifications.get(question.id) ?? allClassifications().find((record) => record.questionId === question.id);
 }
 
-function statusForCounts(active: number, frozen: number, readyForQa: number, remaining: number): WorkspaceProgressStatus {
+interface WorkspaceProgressCounts {
+  active: number;
+  frozen: number;
+  readyForQa: number;
+  inProgress: number;
+  remaining: number;
+}
+
+/**
+ * Progress must not read as further along than the work actually is.
+ *
+ * `Almost Complete` is measured against everything that has NOT reached QA yet
+ * — `remaining + inProgress` — so a freshly created draft batch cannot make a
+ * family look nearly finished merely by claiming its last few questions. A
+ * claimed-but-undrafted batch does move a family off `Not Started`, because
+ * someone has started on it.
+ */
+function statusForCounts(counts: WorkspaceProgressCounts): WorkspaceProgressStatus {
+  const { active, frozen, readyForQa, inProgress, remaining } = counts;
   if (active === 0 || frozen === active) return 'Complete';
-  if (frozen === 0 && readyForQa === 0) return 'Not Started';
-  if (remaining <= Math.max(2, Math.ceil(active * 0.1)) || frozen / active >= 0.75) return 'Almost Complete';
+  if (frozen === 0 && readyForQa === 0 && inProgress === 0) return 'Not Started';
+  const notYetInQa = remaining + inProgress;
+  if (notYetInQa <= Math.max(2, Math.ceil(active * 0.1)) || frozen / active >= 0.75) return 'Almost Complete';
   return 'In Progress';
+}
+
+function emptyFamilyProgress(
+  key: string,
+  topic: string,
+  poolId: string | null,
+  taskFormat: string,
+): WorkspaceFamilyProgress {
+  return {
+    key,
+    family: topic,
+    topic,
+    poolId,
+    taskFormat,
+    activeQuestionIds: [],
+    frozenQuestionIds: [],
+    readyForQaQuestionIds: [],
+    inProgressQuestionIds: [],
+    remainingQuestionIds: [],
+    status: 'Not Started',
+  };
+}
+
+function recordFamilyQuestion(family: WorkspaceFamilyProgress, questionId: string, state: WorkspaceQuestionState): void {
+  family.activeQuestionIds.push(questionId);
+  if (state === 'frozen') family.frozenQuestionIds.push(questionId);
+  else if (state === 'ready-for-qa') family.readyForQaQuestionIds.push(questionId);
+  else if (state === 'in-progress') family.inProgressQuestionIds.push(questionId);
+  else family.remainingQuestionIds.push(questionId);
+  family.status = statusForCounts({
+    active: family.activeQuestionIds.length,
+    frozen: family.frozenQuestionIds.length,
+    readyForQa: family.readyForQaQuestionIds.length,
+    inProgress: family.inProgressQuestionIds.length,
+    remaining: family.remainingQuestionIds.length,
+  });
+}
+
+/**
+ * Which workspace state a batch confers on the questions it holds.
+ *
+ * The two pre-QA statuses both mean "someone is working on this", so they
+ * collapse to `in-progress`. `remaining` is deliberately not reachable here,
+ * because it means the opposite: no batch claimed the question at all.
+ */
+function stateForBatchStatus(status: RefinementBatchStatus): Exclude<WorkspaceQuestionState, 'remaining'> {
+  switch (status) {
+    case 'frozen':
+      return 'frozen';
+    case 'ready-for-qa':
+      return 'ready-for-qa';
+    case 'builder':
+    case 'needs-content':
+      return 'in-progress';
+  }
+}
+
+/** Furthest state wins when a question is claimed by more than one batch. */
+const STATE_PRECEDENCE: Record<WorkspaceQuestionState, number> = {
+  frozen: 3,
+  'ready-for-qa': 2,
+  'in-progress': 1,
+  remaining: 0,
+};
+
+/**
+ * Resolves each active question's workflow state from the batches claiming it.
+ *
+ * Shared by the workspace and the dashboard so the two can never disagree about
+ * what "frozen" or "remaining" means. Batch IDs outside `activeQuestionIds` are
+ * ignored here — {@link buildSubjectWorkspaceData} reports those separately as
+ * invalid references rather than letting them vanish.
+ */
+function resolveQuestionStates(
+  batches: readonly RefinementBatch[],
+  activeQuestionIds: ReadonlySet<string>,
+): { states: Map<string, WorkspaceQuestionState>; batchIdsByQuestion: Map<string, string[]> } {
+  const states = new Map<string, WorkspaceQuestionState>();
+  const batchIdsByQuestion = new Map<string, string[]>();
+  for (const batch of batches) {
+    const state = stateForBatchStatus(batch.status);
+    for (const questionId of batch.questionIds) {
+      if (!activeQuestionIds.has(questionId)) continue;
+      const ids = batchIdsByQuestion.get(questionId) ?? [];
+      ids.push(batch.id);
+      batchIdsByQuestion.set(questionId, ids);
+      const current = states.get(questionId);
+      if (!current || STATE_PRECEDENCE[state] > STATE_PRECEDENCE[current]) states.set(questionId, state);
+    }
+  }
+  return { states, batchIdsByQuestion };
 }
 
 function questionOrder(left: WorkspaceQuestion, right: WorkspaceQuestion): number {
   return left.family.localeCompare(right.family) || left.question.id.localeCompare(right.question.id);
 }
 
-function readWorkspaceBatches(): RefinementBatch[] {
+/**
+ * Batches this browser has stored locally.
+ *
+ * Exported so the source resolver can offer them to Firestore for migration —
+ * a batch drafted while the database was unreachable should not be stranded.
+ * A blob that fails validation is discarded wholesale rather than partially
+ * trusted, because a half-read batch would silently under-report what is
+ * already claimed.
+ */
+export function readLocalRefinementBatches(): RefinementBatch[] {
   if (typeof window === 'undefined') return [];
   try {
     const raw = window.localStorage.getItem(WORKSPACE_BATCHES_STORAGE_KEY);
@@ -136,6 +295,30 @@ function readWorkspaceBatches(): RefinementBatch[] {
     return parsed as RefinementBatch[];
   } catch {
     return [];
+  }
+}
+
+function readWorkspaceBatches(): RefinementBatch[] {
+  return readLocalRefinementBatches();
+}
+
+/**
+ * Write the local batch list back, replacing any entry with the same id.
+ *
+ * Upsert rather than append so a status transition made while Firestore is
+ * unreachable is not stored twice under one id — which would make the same
+ * batch resolve to two different statuses depending on read order.
+ */
+export function persistLocalRefinementBatch(batch: RefinementBatch): string[] {
+  if (typeof window === 'undefined') {
+    return ['Batch changes are available only in the Content Bank browser session.'];
+  }
+  try {
+    const local = readLocalRefinementBatches().filter((candidate) => candidate.id !== batch.id);
+    window.localStorage.setItem(WORKSPACE_BATCHES_STORAGE_KEY, JSON.stringify([...local, batch]));
+    return [];
+  } catch {
+    return ['Could not save the batch in this browser.'];
   }
 }
 
@@ -155,14 +338,7 @@ export function persistWorkspaceRefinementBatch(
   const existing = getWorkspaceRefinementBatches();
   const errors = validateWorkspaceBatch(batch, knownQuestionIds, existing);
   if (errors.length > 0) return errors;
-  if (typeof window === 'undefined') return ['Batch creation is available only in the Content Bank browser session.'];
-  try {
-    const local = readWorkspaceBatches();
-    window.localStorage.setItem(WORKSPACE_BATCHES_STORAGE_KEY, JSON.stringify([...local, batch]));
-    return [];
-  } catch {
-    return ['Could not save the QA batch in this browser.'];
-  }
+  return persistLocalRefinementBatch(batch);
 }
 
 export function validateWorkspaceBatch(
@@ -226,35 +402,16 @@ export function buildSubjectWorkspaceData(
   const invalidBatchReferences = batches
     .map((batch) => ({ batchId: batch.id, missingQuestionIds: batch.questionIds.filter((questionId) => !activeProductionQuestionIds.has(questionId)) }))
     .filter((entry) => entry.missingQuestionIds.length > 0);
-  const frozenQuestionIds = new Set<string>();
-  const readyForQaQuestionIds = new Set<string>();
-  const batchIdsByQuestion = new Map<string, string[]>();
-
-  for (const batch of batches) {
-    for (const questionId of batch.questionIds) {
-      if (!activeQuestionIds.has(questionId)) continue;
-      const ids = batchIdsByQuestion.get(questionId) ?? [];
-      ids.push(batch.id);
-      batchIdsByQuestion.set(questionId, ids);
-      if (batch.status === 'frozen') frozenQuestionIds.add(questionId);
-      else if (!frozenQuestionIds.has(questionId)) readyForQaQuestionIds.add(questionId);
-    }
-  }
-  for (const questionId of frozenQuestionIds) readyForQaQuestionIds.delete(questionId);
+  const { states, batchIdsByQuestion } = resolveQuestionStates(batches, activeQuestionIds);
 
   const questions: WorkspaceQuestion[] = activeQuestions.map((question) => {
     const classification = classificationFor(question, catalog.classifications);
     const family = classification?.topic ?? question.topic;
-    const state: WorkspaceQuestionState = frozenQuestionIds.has(question.id)
-      ? 'frozen'
-      : readyForQaQuestionIds.has(question.id)
-        ? 'ready-for-qa'
-        : 'remaining';
     return {
       question,
       classification,
       family,
-      state,
+      state: states.get(question.id) ?? 'remaining',
       batchIds: batchIdsByQuestion.get(question.id) ?? [],
     };
   }).sort(questionOrder);
@@ -266,42 +423,32 @@ export function buildSubjectWorkspaceData(
     const poolId = record?.poolId ?? null;
     const taskFormat = record?.taskFormat ?? item.question.taskFormat ?? 'legacy';
     const key = familyKey(topic, poolId, taskFormat);
-    const family = familyMap.get(key) ?? {
-      key,
-      family: topic,
-      topic,
-      poolId,
-      taskFormat,
-      activeQuestionIds: [],
-      frozenQuestionIds: [],
-      readyForQaQuestionIds: [],
-      remainingQuestionIds: [],
-      status: 'Not Started' as WorkspaceProgressStatus,
-    };
-    family.activeQuestionIds.push(item.question.id);
-    if (item.state === 'frozen') family.frozenQuestionIds.push(item.question.id);
-    else if (item.state === 'ready-for-qa') family.readyForQaQuestionIds.push(item.question.id);
-    else family.remainingQuestionIds.push(item.question.id);
-    family.status = statusForCounts(
-      family.activeQuestionIds.length,
-      family.frozenQuestionIds.length,
-      family.readyForQaQuestionIds.length,
-      family.remainingQuestionIds.length,
-    );
+    const family = familyMap.get(key) ?? emptyFamilyProgress(key, topic, poolId, taskFormat);
+    recordFamilyQuestion(family, item.question.id, item.state);
     familyMap.set(key, family);
   }
 
   const families = [...familyMap.values()].sort((left, right) => left.family.localeCompare(right.family) || left.taskFormat.localeCompare(right.taskFormat));
-  const remainingQuestionIds = questions.filter((item) => item.state === 'remaining').map((item) => item.question.id);
-  const readyIds = questions.filter((item) => item.state === 'ready-for-qa').map((item) => item.question.id);
-  const frozenIds = questions.filter((item) => item.state === 'frozen').map((item) => item.question.id);
+  const idsInState = (state: WorkspaceQuestionState): string[] =>
+    questions.filter((item) => item.state === state).map((item) => item.question.id);
+  const frozenIds = idsInState('frozen');
+  const readyIds = idsInState('ready-for-qa');
+  const inProgressIds = idsInState('in-progress');
+  const remainingQuestionIds = idsInState('remaining');
   return {
     subject,
     activeQuestionCount: questions.length,
     frozenQuestionIds: frozenIds,
     readyForQaQuestionIds: readyIds,
+    inProgressQuestionIds: inProgressIds,
     remainingQuestionIds,
-    status: statusForCounts(questions.length, frozenIds.length, readyIds.length, remainingQuestionIds.length),
+    status: statusForCounts({
+      active: questions.length,
+      frozen: frozenIds.length,
+      readyForQa: readyIds.length,
+      inProgress: inProgressIds.length,
+      remaining: remainingQuestionIds.length,
+    }),
     families,
     questions,
     batches: getRefinementBatches(batches),
@@ -315,54 +462,39 @@ export function buildSubjectDashboardSummary(
   classifications: readonly ClassificationRecord[] = allClassifications(),
 ): SubjectDashboardSummary {
   const records = classifications.filter((record) => record.subject === subject);
-  const frozen = new Set<string>();
-  const readyForQa = new Set<string>();
   const activeIds = new Set(records.map((record) => record.questionId));
-  for (const batch of batches) {
-    for (const id of batch.questionIds) {
-      if (!activeIds.has(id)) continue;
-      if (batch.status === 'frozen') frozen.add(id);
-      else if (!frozen.has(id)) readyForQa.add(id);
-    }
-  }
-  for (const id of frozen) readyForQa.delete(id);
+  const { states } = resolveQuestionStates(batches, activeIds);
   const familyMap = new Map<string, WorkspaceFamilyProgress>();
+  const counts: Record<WorkspaceQuestionState, number> = {
+    frozen: 0,
+    'ready-for-qa': 0,
+    'in-progress': 0,
+    remaining: 0,
+  };
   for (const record of records) {
     const key = familyKey(record.topic, record.poolId, record.taskFormat);
-    const family = familyMap.get(key) ?? {
-      key,
-      family: record.topic,
-      topic: record.topic,
-      poolId: record.poolId,
-      taskFormat: record.taskFormat,
-      activeQuestionIds: [],
-      frozenQuestionIds: [],
-      readyForQaQuestionIds: [],
-      remainingQuestionIds: [],
-      status: 'Not Started' as WorkspaceProgressStatus,
-    };
-    family.activeQuestionIds.push(record.questionId);
-    if (frozen.has(record.questionId)) family.frozenQuestionIds.push(record.questionId);
-    else if (readyForQa.has(record.questionId)) family.readyForQaQuestionIds.push(record.questionId);
-    else family.remainingQuestionIds.push(record.questionId);
-    family.status = statusForCounts(
-      family.activeQuestionIds.length,
-      family.frozenQuestionIds.length,
-      family.readyForQaQuestionIds.length,
-      family.remainingQuestionIds.length,
-    );
+    const family = familyMap.get(key) ?? emptyFamilyProgress(key, record.topic, record.poolId, record.taskFormat);
+    const state = states.get(record.questionId) ?? 'remaining';
+    counts[state] += 1;
+    recordFamilyQuestion(family, record.questionId, state);
     familyMap.set(key, family);
   }
   const families = [...familyMap.values()].sort((left, right) => left.family.localeCompare(right.family) || left.taskFormat.localeCompare(right.taskFormat));
-  const remaining = records.filter((record) => !frozen.has(record.questionId) && !readyForQa.has(record.questionId)).map((record) => record.questionId);
   return {
     subject,
     activeQuestionCount: records.length,
     familyCount: families.length,
-    frozenQuestionCount: frozen.size,
-    readyForQaQuestionCount: readyForQa.size,
-    remainingQuestionCount: remaining.length,
-    status: statusForCounts(records.length, frozen.size, readyForQa.size, remaining.length),
+    frozenQuestionCount: counts.frozen,
+    readyForQaQuestionCount: counts['ready-for-qa'],
+    inProgressQuestionCount: counts['in-progress'],
+    remainingQuestionCount: counts.remaining,
+    status: statusForCounts({
+      active: records.length,
+      frozen: counts.frozen,
+      readyForQa: counts['ready-for-qa'],
+      inProgress: counts['in-progress'],
+      remaining: counts.remaining,
+    }),
     families,
   };
 }
@@ -469,13 +601,80 @@ function renderSupportingQuestionContent(question: Question): string {
   return sections.join('\n\n');
 }
 
+/** Bumped whenever the review Markdown layout changes, so a reviewer can tell. */
+export const REVIEW_MARKDOWN_FORMAT = 'AceCSE Review Markdown v2';
+
+export interface ReviewMarkdownOptions {
+  /**
+   * Classification records used to resolve each question's family. Defaults to
+   * the full manifest, and matters because the workspace groups families by
+   * `classification.topic` — reading `question.topic` here instead would let
+   * the export disagree with the workspace it was generated from.
+   */
+  classifications?: readonly ClassificationRecord[];
+}
+
+function buildClassificationIndex(
+  records: readonly ClassificationRecord[],
+): Map<string, ClassificationRecord> {
+  return new Map(records.map((record) => [record.questionId, record]));
+}
+
+/**
+ * A Markdown table cell must stay on one line, so internal whitespace is
+ * collapsed and pipes escaped. This applies to metadata cells ONLY — the
+ * Question, Learner View, and Authoring View sections carry authored text
+ * verbatim, line breaks and `**bold**`/`*italic*` markers intact.
+ */
+function metadataCell(value: string): string {
+  const collapsed = value.replace(/\s+/g, ' ').trim().replaceAll('|', '\\|');
+  return collapsed === '' ? '—' : collapsed;
+}
+
+function renderQuestionMetadata(
+  question: Question,
+  classification: ClassificationRecord | undefined,
+): string {
+  const group = question.groupId
+    ? question.groupPosition === undefined
+      ? question.groupId
+      : `${question.groupId} (position ${question.groupPosition})`
+    : '—';
+  const rows: Array<[string, string]> = [
+    ['ID', question.id],
+    ['Subject', question.subject],
+    ['Exam level', question.examLevel],
+    ['Topic / family', classification?.topic ?? question.topic],
+    ['Question topic', question.topic],
+    ['Subtopic', question.subtopic ?? '—'],
+    ['Difficulty', question.difficulty],
+    ['Correct option', question.correctOptionId],
+    ['Choice count', String(question.choices.length)],
+    ['Question type', question.questionType ?? classification?.questionType ?? '—'],
+    ['Question format', question.questionFormat ?? classification?.questionFormat ?? '—'],
+    ['Task format', question.taskFormat ?? classification?.taskFormat ?? '—'],
+    ['Pool', classification?.poolId ?? '—'],
+    ['Storage mode', classification?.storageMode ?? '—'],
+    ['Group', group],
+    ['Tags', question.tags.length > 0 ? question.tags.join(', ') : '—'],
+    ['Reference', question.reference ?? '—'],
+    ['Source', question.source ?? '—'],
+    ['Content version', question.contentVersion === undefined ? '—' : String(question.contentVersion)],
+    ['Content status', question.status ?? '—'],
+    ['Explanation source', question.structuredExplanation ? 'structured' : 'legacy prose'],
+  ];
+  return rows.map(([field, value]) => `| ${field} | ${metadataCell(value)} |`).join('\n');
+}
+
 export function createReviewMarkdown(
   batch: RefinementBatch,
   questions: readonly Question[],
+  options: ReviewMarkdownOptions = {},
 ): string {
   const questionById = new Map(questions.map((question) => [question.id, question]));
   const missing = batch.questionIds.filter((questionId) => !questionById.has(questionId));
   if (missing.length) throw new Error(`Could not export batch: question ${missing[0]} is not in the active production catalog.`);
+  const classificationIndex = buildClassificationIndex(options.classifications ?? allClassifications());
   const body = batch.questionIds.map((questionId, index) => {
     const question = questionById.get(questionId)!;
     const correctChoice = question.choices.find((choice) => choice.id === question.correctOptionId);
@@ -487,19 +686,23 @@ export function createReviewMarkdown(
       : renderLegacyAuthoring(question);
     const supportingContent = renderSupportingQuestionContent(question);
     const choices = question.choices.map((choice) => `- **${choice.id}.** ${choice.text}`).join('\n');
-    const metadata = [
-      ['ID', question.id],
-      ['Subject', question.subject],
-      ['Topic / family', question.topic],
-      ['Subtopic', question.subtopic ?? '—'],
-      ['Difficulty', question.difficulty],
-      ['Correct option', question.correctOptionId],
-      ['Task format', question.taskFormat ?? '—'],
-      ['Question format', question.questionFormat ?? '—'],
-    ].map(([key, value]) => `| ${key} | ${value.replaceAll('|', '\\|')} |`).join('\n');
+    const metadata = renderQuestionMetadata(question, classificationIndex.get(questionId));
     return `## ${index + 1}. ${question.id}\n\n### Metadata\n\n| Field | Value |\n|---|---|\n${metadata}\n\n### Question\n\n${question.question}${supportingContent ? `\n\n${supportingContent}` : ''}\n\n### Choices\n\n${choices}\n\n### Correct Answer\n\n**${question.correctOptionId}.** ${correctChoice?.text ?? 'Unavailable'}\n\n### Learner View\n\n${structured}\n\n### Authoring View\n\n${authoring}`;
   }).join('\n\n---\n\n');
-  return `# ${batch.title}\n\n- Batch ID: ${batch.id}\n- Status: ${refinementStatusLabel(batch.status)}\n- Question count: ${batch.questionIds.length}\n- Created: ${batch.createdAt}\n\n${body}\n`;
+  // Deliberately no character count in the header: the count depends on the
+  // finished string, so embedding it would be self-referential and never settle.
+  const header = [
+    `# ${batch.title}`,
+    '',
+    `- Batch ID: ${batch.id}`,
+    `- Family: ${batch.family}`,
+    `- Status: ${refinementStatusLabel(batch.status)}`,
+    `- Question count: ${batch.questionIds.length}`,
+    `- Created: ${batch.createdAt}`,
+    `- Question IDs (batch order): ${batch.questionIds.join(', ')}`,
+    `- Export format: ${REVIEW_MARKDOWN_FORMAT}`,
+  ].join('\n');
+  return `${header}\n\n${body}\n`;
 }
 
 export function createRawBatchJson(
@@ -515,8 +718,49 @@ export function createRawBatchJson(
   return JSON.stringify(ordered, null, 2);
 }
 
+export type ReviewExportOptions = ReviewMarkdownOptions & BuildExportDocumentOptions;
+
+/**
+ * The review Markdown as a countable, chunkable document.
+ *
+ * Everything downstream — the displayed character count, the chunk boundaries,
+ * and each clipboard write — reads `document.text`, so the number shown and the
+ * text copied can never drift apart. Throws, rather than omitting a question,
+ * when any batch ID is unresolved.
+ */
+export function createReviewExport(
+  batch: RefinementBatch,
+  questions: readonly Question[],
+  options: ReviewExportOptions = {},
+): ExportDocument {
+  return buildExportDocument(createReviewMarkdown(batch, questions, options), options);
+}
+
+/**
+ * The exact production JSON as a countable, chunkable document.
+ *
+ * Same fail-closed contract as {@link createRawBatchJson}: exact records, exact
+ * batch order, no batch metadata injected into any question object.
+ */
+export function createRawJsonExport(
+  batch: RefinementBatch,
+  questions: readonly Question[],
+  options: BuildExportDocumentOptions = {},
+): ExportDocument {
+  return buildExportDocument(createRawBatchJson(batch, questions), options);
+}
+
 export function workspaceStateLabel(state: WorkspaceQuestionState): string {
-  return state === 'frozen' ? 'Frozen' : state === 'ready-for-qa' ? 'Ready for QA' : 'Remaining';
+  switch (state) {
+    case 'frozen':
+      return 'Frozen';
+    case 'ready-for-qa':
+      return 'Ready for QA';
+    case 'in-progress':
+      return 'In Progress';
+    case 'remaining':
+      return 'Remaining';
+  }
 }
 
 export function workspaceStatusLabel(status: WorkspaceProgressStatus): string {
