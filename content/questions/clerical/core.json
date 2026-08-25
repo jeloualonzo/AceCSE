@@ -30,23 +30,43 @@
       }
     ],
     "correctOptionId": "E",
-    "explanation": "In clerical checking, an exact match means every character — letter, number, punctuation, and space — is identical. Pair D differs at the middle initial: the left entry shows 'L.' and the right shows 'I.' These are two distinct letters ('L' vs 'I' can be visually similar, especially in handwriting or certain fonts, making this a classic proofreading trap). Pairs A, B, and C are character-for-character identical. Even a single-character discrepancy disqualifies an exact match — this has real consequences for personnel records, payroll, and legal documents.",
-    "distractorExplanations": {
-      "A": "Both entries read 'BARANGAY HALL 101' with the same spacing and number. This is a perfect match and not the answer.",
-      "B": "Both phone numbers are '09171234567' — eleven identical digits. This is a perfect match.",
-      "C": "Both entries read 'Quezon City, 1100' including the comma and ZIP code. This is a perfect match.",
-      "D": "An exact-match pair added as a fifth option; test-takers must still select option D (the lone mismatch) after verifying all five pairs, not stop at the first match they encounter."
-    },
-    "tip": {
-      "label": "Common Mistake",
-      "text": "The letters 'I' and 'L' look nearly identical in many fonts and in handwriting. Always compare letter shapes carefully when checking names — a wrong initial on a government form can cause significant processing errors."
-    },
     "tags": [
       "clerical-operations",
       "name-checking",
       "exact-match",
       "attention-to-detail"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "E — Reyes, Maria L. — Reyes, Maria I."
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "An exact match requires every character to be the same, including letters, numbers, punctuation, and spaces."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "Pairs **A**, **B**, **C**, and **D** are identical. Pair **E** differs in the middle initial: **L** versus **I**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choices **A**, **B**, **C**, and **D** are exact matches. Choice **E** is the only mismatch because one character changes from **L** to **I**."
+        },
+        {
+          "type": "rule",
+          "text": "Compare entries character by character. One different letter, number, punctuation mark, or space means the pair is not an exact match."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0021",
@@ -67,7 +87,7 @@
       },
       {
         "id": "C",
-        "text": "November 14, 2025  —  November 41, 2025"
+        "text": "November 14, 2025  —  November 14, 2026"
       },
       {
         "id": "D",
@@ -79,23 +99,43 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "Option A — 'Dela Rosa, Benigno T.' paired with itself — is a perfect match in every character: surname, given name, middle initial, comma, and period are all identical. Option B has a transposition in the last three digits (187 vs 178). Option C transposes the day digits (14 vs 41 — an impossible date). Option D swaps two middle digits in the payroll number (5566 vs 5656). Transpositions are one of the most common clerical errors precisely because the same digits or letters are present — just in the wrong order — making them easy to overlook at a glance.",
-    "distractorExplanations": {
-      "B": "Options B's CSC numbers differ in the last three digits: '00187' vs '00178'. The '8' and '7' are transposed — a common data-entry error.",
-      "C": "Option C shows '14' vs '41' in the day field. This transposition also produces an impossible date (no month has 41 days), making it easily detectable — but only if you read carefully.",
-      "D": "Option D shows '5566' vs '5656'. The third and fourth digits are swapped: 6-6 becomes 6-5-6. This is a classic digit-transposition error.",
-      "E": "The second entry has an extra 5 (0555 versus 0055) — digit-count differences buried mid-code are among the easiest discrepancies to skim past."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "When checking number pairs, don't just verify that the same digits appear — verify they appear in the same ORDER. Transpositions (like 187↔178) are designed to trick fast readers."
-    },
     "tags": [
       "clerical-operations",
       "exact-match",
       "transposition",
       "attention-to-detail"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — Dela Rosa, Benigno T. — Dela Rosa, Benigno T."
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Exact matching depends on character-by-character comparison and the order of those characters. Similar-looking entries are not enough."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "Choice **A** repeats the same name, including the comma, spaces, middle initial, and period. It is the only pair with every character in the same position."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **B** changes the final digits from **00187** to **00178**. Choice **C** changes the year from **2025** to **2026**. Choice **D** changes **5566** to **5656**; the middle digits are **56** in the first entry and **65** in the second. Choice **E** changes **0055** to **0555**, so a digit position and value differ."
+        },
+        {
+          "type": "rule",
+          "text": "For an exact match, compare each character from left to right and verify its position. Having the same characters in a different order is still a mismatch."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0022",
@@ -128,30 +168,43 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "Check each pair methodically. Pair 1: 'Burgos, Alfred C.' — both sides are identical. Match. Pair 2: TIN 245-876-003-001 on both sides — identical digit groups and hyphens. Match. Pair 3: 'San Jose, Bulacan' on both sides — identical. Match. Pair 4: Left = '33-5512781-8', Right = '33-5512871-8'. Compare the middle segment: '5512781' vs '5512871'. At position 5 of the middle segment: '7' vs '8' — the '7' and '8' are transposed. Not a match. Three pairs match, one does not. Answer = 3 = Option B.",
-    "steps": [
-      "Pair 1: Burgos, Alfred C. = Burgos, Alfred C. → MATCH",
-      "Pair 2: TIN 245-876-003-001 = TIN 245-876-003-001 → MATCH",
-      "Pair 3: San Jose, Bulacan = San Jose, Bulacan → MATCH",
-      "Pair 4: 33-5512781-8 vs 33-5512871-8 → middle segment: 5512781 vs 5512871. Position 5: '7' vs '8'. MISMATCH.",
-      "Count of matches = 3 → Option B."
-    ],
-    "distractorExplanations": {
-      "A": "Choosing 4 assumes all pairs match, but Pair 4 contains a transposition in the SSS number (781 vs 871). Read every digit, not just the first and last.",
-      "C": "Choosing 2 would mean two pairs mismatch. Only Pair 4 mismatches; the other three are exact.",
-      "D": "Choosing 1 would mean three pairs mismatch — a gross over-count. Only the SSS number in Pair 4 differs.",
-      "E": "Claiming no pairs are exact matches; a careless or overly critical examiner might dismiss every pair, but three of the four presented pairs are exact matches (count = 3)."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "In multi-pair matching questions, work systematically — one pair at a time, one character at a time. Never count all pairs as correct without checking each one individually."
-    },
     "tags": [
       "clerical-operations",
       "number-checking",
       "exact-match",
       "counting"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "B — 3"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Check each pair separately. A pair counts only when every character on the left matches the character in the same position on the right."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "Pairs **1**, **2**, and **3** match. Pair **4** does not: **5512781** differs from **5512871** because the **7** and **8** are transposed. Therefore, **3** pairs are exact matches."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **A** counts Pair 4 as a match even though the **7** and **8** are in the wrong order. Choices **C**, **D**, and **E** undercount the matches; Pairs **1**, **2**, and **3** are identical."
+        },
+        {
+          "type": "rule",
+          "text": "In a multi-pair comparison, inspect one pair at a time and count only exact matches. A transposition makes the entire pair incorrect."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0023",
@@ -184,29 +237,38 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "September is the ninth calendar month. The coding scheme assigns one letter per month in sequence starting with A=January. Counting: A=Jan(1), B=Feb(2), C=Mar(3), D=Apr(4), E=May(5), F=Jun(6), G=Jul(7), H=Aug(8), I=Sep(9), J=Oct(10), K=Nov(11), L=Dec(12). The ninth letter of the alphabet is 'I', so September → 'I'. A document dated 15 September 2025 is coded as 15-I-2025 = Option A. This type of question tests whether clerks can apply a defined lookup table without errors, especially for months near mid-year where the letter is less intuitive.",
-    "steps": [
-      "Step 1 — Identify the month: September = 9th month.",
-      "Step 2 — Count letters: A(1)=Jan, B(2)=Feb, C(3)=Mar, D(4)=Apr, E(5)=May, F(6)=Jun, G(7)=Jul, H(8)=Aug, I(9)=Sep.",
-      "Step 3 — September = letter I.",
-      "Step 4 — Code = 15-I-2025 = Option A."
-    ],
-    "distractorExplanations": {
-      "B": "Option H corresponds to August (8th month), not September (9th month). Off by one — a common off-by-one error when counting month codes.",
-      "C": "Option J corresponds to October (10th month). This is the next month after September — a forward off-by-one error.",
-      "D": "Option G corresponds to July (7th month). This is two months before September — perhaps confused with a 7-month count.",
-      "E": "Off-by-one error in the day field: the document date is the 15th, not the 16th; the month letter I (September) is correct, making this a realistic transcription slip."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "For month-letter codes, write out A-B-C-D-E-F-G-H-I-J-K-L and count across: A=1=Jan, up to L=12=Dec. September is always the 9th letter = 'I'. Do not guess — count deliberately."
-    },
     "tags": [
       "clerical-operations",
       "coding",
       "date-coding",
       "month-codes"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — 15-I-2025"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The supplied lookup assigns **A** to January and advances one letter per month. September is the ninth month, so its code is **I**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "The day and year remain **15** and **2025**. Replacing September with its lookup code gives **15-I-2025**."
+        },
+        {
+          "type": "rule",
+          "text": "Use the lookup scheme provided in the question directly: September is month 9, which corresponds to the ninth letter, **I**."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0024",
@@ -239,23 +301,43 @@
       }
     ],
     "correctOptionId": "E",
-    "explanation": "Filing codes are assigned based on the TYPE (nature) of the document being filed, not on the subject matter it discusses or references. The document in question is physically a Notice — it just happens to reference Memo No. 31 in its title label 'Memo-2025-31'. Because the document type is Notice, it receives code 5. Misapplying the label's prefix 'Memo-' to assign code 1 (Memorandum) is a common error; the label is merely a reference identifier, not a document-type classifier. This principle ensures consistent retrieval: all notices are under code 5, regardless of what they refer to.",
-    "distractorExplanations": {
-      "A": "Code 1 applies to Memoranda. The label 'Memo-2025-31' is a reference number identifying what the notice is ABOUT, not the type of the document itself. The document type is Notice, not Memorandum.",
-      "B": "Code 2 applies to Letters. There is no indication this document is a letter; it is a Notice.",
-      "C": "Confusing the Safety Report category with code 3 (e.g., Circular) from the adjacent row in the coding table; the correct code for a Safety Report is 5.",
-      "D": "Code 4 applies to Forms. A Notice is a written issuance announcing or informing, not a form to be filled out."
-    },
-    "tip": {
-      "label": "Remember",
-      "text": "Always classify a document by its TYPE, not by its subject line or reference numbers. A Notice that discusses a memorandum is still a Notice — file it under code 5, not code 1."
-    },
     "tags": [
       "clerical-operations",
       "coding",
       "document-classification",
       "records-management"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "E — 5"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Classify the document by its actual document type. The reference number or subject mentioned in its label does not change that type."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "The document is a **Notice** about Memo No. 31. The table assigns **Notice = 5**, so the correct code is **5**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **A** treats the reference word “Memo” as the document type, but code **1** is for a Memorandum. Choice **B** is Letter, choice **C** is Report, and choice **D** is Form. None matches the document’s actual type, Notice."
+        },
+        {
+          "type": "rule",
+          "text": "Use the document’s actual type when assigning a classification code. A reference number or subject does not replace the type of document being filed."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0025",
@@ -264,7 +346,7 @@
     "topic": "Clerical Operations",
     "subtopic": "Payroll Form Checking",
     "difficulty": "Hard",
-    "question": "Four employee payroll entries are shown. Which entry contains an error in the net pay computation (Gross Pay minus Total Deductions = Net Pay)?\n\n  Entry A: Gross P18,500 / Deductions P3,200 / Net P15,300\n  Entry B: Gross P22,000 / Deductions P4,750 / Net P17,250\n  Entry C: Gross P16,800 / Deductions P2,900 / Net P13,900\n  Entry D: Gross P25,500 / Deductions P5,100 / Net P20,400",
+    "question": "Four employee payroll entries are shown. Which entry contains an error in the net pay computation (Gross Pay minus Total Deductions = Net Pay)?\n\n  Entry A: Gross P18,500 / Deductions P3,200 / Net P15,300\n  Entry B: Gross P22,000 / Deductions P4,750 / Net P17,430\n  Entry C: Gross P16,800 / Deductions P2,900 / Net P13,900\n  Entry D: Gross P25,500 / Deductions P5,100 / Net P20,400",
     "choices": [
       {
         "id": "A",
@@ -288,24 +370,44 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "Verify each entry by subtracting deductions from gross pay. Entry A: 18,500 − 3,200 = 15,300 ✓. Entry B: 22,000 − 4,750 = 17,250. Computing carefully: 22,000 − 4,000 = 18,000; 18,000 − 750 = 17,250. The listed net is also P17,250, which appears correct arithmetically. However, the deduction figure P4,750 is a transposition of P4,570 — if the correct deduction is P4,570, then the correct net is 22,000 − 4,570 = 17,430, not P17,250. Entry C: 16,800 − 2,900 = 13,900 ✓. Entry D: 25,500 − 5,100 = 20,400 ✓. Entry B contains the error because the deduction was recorded as P4,750 (transposed from P4,570), producing an incorrect net pay of P17,250 instead of the correct P17,430.",
-    "distractorExplanations": {
-      "A": "Entry A computes correctly: 18,500 − 3,200 = 15,300. No error here.",
-      "B": "Entry C computes correctly: 16,800 − 2,900 = 13,900. No error here.",
-      "D": "Entry D computes correctly: 25,500 − 5,100 = 20,400. No error here.",
-      "E": "Misidentifying a rounding difference in Entry D as a second error; only Entry B contains an actual arithmetic error in the net-pay computation."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "In payroll checking questions, always recompute each subtraction independently before looking at the listed net. Transposition errors (4,750 vs 4,570) affect the deduction figure but may produce a plausible-looking net that conceals the error."
-    },
     "tags": [
       "clerical-operations",
       "form-checking",
       "arithmetic",
       "payroll",
       "transposition"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — Entry B"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Recompute net pay for every entry using **Gross Pay − Total Deductions = Net Pay**. Compare the result with the listed net pay."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "**Entry A:** 18,500 − 3,200 = 15,300, correct.\n**Entry B:** 22,000 − 4,750 = 17,250, not 17,430, incorrect.\n**Entry C:** 16,800 − 2,900 = 13,900, correct.\n**Entry D:** 25,500 − 5,100 = 20,400, correct.\nTherefore, **Entry B** is the only incorrect entry."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **A** selects Entry A, but its subtraction is correct. Choice **B** selects Entry C, which also computes correctly. Choice **D** selects Entry D, whose net pay is correct. Choice **E** claims that Entries B and D are wrong, but Entry D is accurate."
+        },
+        {
+          "type": "rule",
+          "text": "For a payroll check, subtract the listed deductions from the listed gross pay and compare the result with the listed net. Do not infer an unseen amount."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0026",
@@ -844,30 +946,44 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "From the passage: Clerk II = code 2; NCR = letter code F. The format stated is position code followed by region letter suffix, giving 2-F. Option B reverses the order (F-2), which does not match the specified format. Option C uses region code E (Region V), not F (NCR). Option D uses position code 1 (Clerk I), not 2 (Clerk II). The correct code is 2-F = Option A.",
-    "steps": [
-      "Step 1 — Look up position level: Clerk II = 2.",
-      "Step 2 — Look up region: NCR = F.",
-      "Step 3 — Format: position code + region suffix = 2-F.",
-      "Answer = Option A."
-    ],
-    "distractorExplanations": {
-      "B": "Option B (F-2) reverses the specified format. The passage states the region code is a suffix (appended after), making the position code always first.",
-      "C": "Option C (2-E) uses region code E (Region V), not F (NCR). Always match the region to the table exactly.",
-      "D": "Option D (1-F) uses position code 1 (Clerk I), not 2 (Clerk II). Read the table carefully — Clerk I and Clerk II are adjacent codes.",
-      "E": "Off-by-one region letter: using 'G' instead of 'F' for the correct region; the position component '2' (Clerk II) is right but the region code must be 'F', yielding 2-F."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "In coding questions with passage tables, always look up BOTH the position AND the region code directly from the table — never guess. Then apply the format exactly as specified (prefix or suffix order matters)."
-    },
     "tags": [
       "clerical-operations",
       "coding",
       "position-codes",
       "region-codes",
       "table-lookup"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — 2-F"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The position code and region code come from separate lookups: **Clerk II = 2** and **NCR = F**. The region code is a suffix."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "Combine the position code with the region suffix: **2-F**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **B** reverses the required order. Choice **C** uses **E**, which is Region V, not NCR. Choice **D** uses **1**, the code for Clerk I. Choice **E** uses **G**, which is not the NCR code in the table."
+        },
+        {
+          "type": "rule",
+          "text": "For a two-part code, look up each component separately and apply the stated order: position code first, region suffix second."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0043",
@@ -901,30 +1017,44 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "From the passage, the code records events in chronological sequence. The document's history is: (1) Received = R, (2) Processed = P, (3) Disapproved = D, (4) Filed = F. Combining in order: R-P-D-F = Option C. Option A (R-P-F-D) reverses the last two steps — the document was filed after being disapproved, not before. Option B (R-A-D-F) inserts 'A' (Approved) which never occurred. Option D (P-R-D-F) starts with Processing before Receipt, which is impossible.",
-    "steps": [
-      "Step 1 — Map each action: Received=R, Processed=P, Disapproved=D, Filed=F.",
-      "Step 2 — Sequence: R (1st) → P (2nd) → D (3rd) → F (4th).",
-      "Step 3 — Combine in order: R-P-D-F.",
-      "Answer = Option C."
-    ],
-    "distractorExplanations": {
-      "A": "R-P-F-D reverses steps 3 and 4. Filing (F) cannot precede Disapproval (D) since the document was disapproved before it was filed.",
-      "B": "R-A-D-F includes 'A' (Approved), but the document was Disapproved — it was never Approved. Only events that actually occurred appear in the code.",
-      "D": "P-R-D-F places Processing before Receipt. A document cannot be processed before it is received.",
-      "E": "Closing the sequence with 'R' (Received) instead of 'F' (Filed); a document is Filed at the end of processing, not returned to 'Received' status."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "In status-code questions, write out the events in order before encoding. Then match each event to its letter — do not encode from memory."
-    },
     "tags": [
       "clerical-operations",
       "coding",
       "document-status",
       "sequence-codes",
       "table-lookup"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — R-P-D-F"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The status code records the document’s events in the order they occurred: Received, Processed, Disapproved, then Filed."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "**Received = R**, **Processed = P**, **Disapproved = D**, and **Filed = F**. The stated sequence is therefore **R-P-D-F**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **A** places Filed before Disapproved. Choice **B** inserts Approved, an event that did not occur. Choice **D** places Processed before Received. Choice **E** ends with Received instead of the final Filed event."
+        },
+        {
+          "type": "rule",
+          "text": "Map each stated event to its code, then preserve the events’ chronological order when combining the codes."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0044",
@@ -958,30 +1088,44 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "From the passage: Legal Department = LG; Contract = 05. The filing code format is [Department Code]-[Document Type Code], giving LG-05. Option B (LG-03) correctly identifies the department but assigns the Report code (03) instead of Contract (05). Option C (AD-05) correctly identifies the Contract type code but assigns the Administrative Department code (AD) instead of Legal (LG). Option D (LG-02) correctly identifies the department but assigns the Letter code (02). The correct code is LG-05 = Option A.",
-    "steps": [
-      "Step 1 — Look up department: Legal = LG.",
-      "Step 2 — Look up document type: Contract = 05.",
-      "Step 3 — Apply format: [Department]-[Type] = LG-05.",
-      "Answer = Option A."
-    ],
-    "distractorExplanations": {
-      "B": "LG-03 uses the correct department (LG) but the wrong document code (03 = Report, not Contract). Contract = 05.",
-      "C": "AD-05 uses the correct document code (05 = Contract) but the wrong department (AD = Administrative). Legal = LG.",
-      "D": "LG-02 uses the correct department (LG) but the wrong document code (02 = Letter, not Contract). Contract = 05.",
-      "E": "Off-by-one document type code: selecting 04 instead of 05 for Contract; this confuses Contract with the adjacent category (e.g., Agreement coded 04) in the coding table."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "Two-part codes require two lookups. Do them separately: first the department, then the document type. Never combine from memory — always verify each part against the table."
-    },
     "tags": [
       "clerical-operations",
       "coding",
       "department-codes",
       "document-type",
       "two-part-codes"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — LG-05"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The code requires two lookups: first the department, then the document type. The required order is **[Department Code]-[Document Type Code]**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "Legal Department = **LG**. Contract = **05**. Combining the two codes gives **LG-05**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **B** uses the Report code **03** instead of Contract **05**. Choice **C** uses Administrative **AD** instead of Legal **LG**. Choice **D** uses the Letter code **02**. Choice **E** uses **04**, which the table assigns to Request Form, not Contract."
+        },
+        {
+          "type": "rule",
+          "text": "Solve two-part codes in order: identify the department, identify the document type, and then join their codes with the required separator."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0045",
@@ -990,7 +1134,7 @@
     "topic": "Clerical Operations",
     "subtopic": "Clerical Coding — Alphanumeric Date-Document Code",
     "difficulty": "Hard",
-    "passage": "A government office uses the following alphanumeric coding system for outgoing documents:\n\n  Year (last 2 digits) — Month Code — Day — Series Number\n\nMonth Codes:\n  Jan=01  Feb=02  Mar=03  Apr=04  May=05  Jun=06\n  Jul=07  Aug=08  Sep=09  Oct=10  Nov=11  Dec=12\n\nSeries Number: a sequential 3-digit number starting at 001 each year.\n\nExample: A letter sent on March 15, 2025, as the 23rd document of the year is coded: 25-03-15-023",
+    "passage": "A government office uses the following alphanumeric coding system for outgoing documents:\n\n  Year (last 2 digits) — Month Code — Day — Series Number\n\nFormat details:\n  Year: last 2 digits\n  Month Code: 2 digits\n  Day: 2 digits, zero-padded when necessary\n  Series Number: 3 digits, zero-padded when necessary\n\nMonth Codes:\n  Jan=01  Feb=02  Mar=03  Apr=04  May=05  Jun=06\n  Jul=07  Aug=08  Sep=09  Oct=10  Nov=11  Dec=12\n\nSeries Number: a sequential number starting at 001 each year; write it as 3 digits, zero-padded when necessary.\n\nExample: A letter sent on March 15, 2025, as the 23rd document of the year is coded: 25-03-15-023",
     "question": "Using the coding system in the passage, what is the correct code for the 7th document sent on November 3, 2026?",
     "choices": [
       {
@@ -1015,31 +1159,44 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "From the passage, the format is: Year (last 2 digits) — Month Code — Day — Series Number. Year 2026 → last 2 digits = 26. November → Month Code = 11. Day = 03 (zero-padded to 2 digits as shown in the example). Series Number 7 → padded to 3 digits = 007. Combining: 26-11-03-007 = Option A. Option B uses the full 4-digit year (2026), not the last 2 digits. Option C reverses the month and day positions (03-11 instead of 11-03). Option D omits the leading zero in the day (writes '3' instead of '03'), inconsistent with the 2-digit day shown in the example.",
-    "steps": [
-      "Year: 2026 → last 2 digits = 26.",
-      "Month: November = 11.",
-      "Day: 3 → zero-padded = 03.",
-      "Series: 7th document → 007.",
-      "Code: 26-11-03-007 = Option A."
-    ],
-    "distractorExplanations": {
-      "B": "Option B uses '2026' (4 digits) for the year. The system specifies only the LAST 2 digits of the year, as shown in the example (2025 → 25).",
-      "C": "Option C writes '26-03-11-007', swapping the month (11) and day (03). The format is Year-Month-Day-Series, not Year-Day-Month-Series.",
-      "D": "Option D writes the day as '3' without zero-padding. The example shows 2-digit days ('15' in the example), so '3' must be written as '03'.",
-      "E": "Dropping the leading zero from the sequence number: '07' instead of '007'; the coding system requires a three-digit zero-padded sequence number, making '007' the correct format."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "When applying coding formats, follow the example exactly — including zero-padding, digit count, and field order. Even one deviation (like '3' instead of '03') makes the code non-standard."
-    },
     "tags": [
       "clerical-operations",
       "coding",
       "alphanumeric-codes",
       "date-coding",
       "series-number"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "A — 26-11-03-007"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The code has four fields with fixed lengths and order: last two digits of the year, a two-digit month code, a two-digit day, and a three-digit series number."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "2026 → **26**; November → **11**; day 3 → **03**; seventh document → **007**. The complete code is **26-11-03-007**."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **B** uses the full year instead of the last two digits. Choice **C** reverses the month and day fields. Choice **D** omits the leading zero required for a two-digit day. Choice **E** writes the series as two digits instead of the required three."
+        },
+        {
+          "type": "rule",
+          "text": "Apply each field’s specified length and position. Zero-pad the day and series number when necessary, and do not change the field order."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0049",

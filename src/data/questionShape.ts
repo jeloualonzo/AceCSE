@@ -35,10 +35,14 @@ const CANONICAL_STRUCTURED_FILING_IDS = new Set([
 const CANONICAL_STRUCTURED_GRAMMAR_IDS = new Set([
   'verb-0059', 'verb-0060', 'verb-0061', 'verb-0062',
 ]);
+const CANONICAL_STRUCTURED_CLERICAL_OPERATIONS_IDS = new Set([
+  'cler-0020', 'cler-0021', 'cler-0022', 'cler-0023', 'cler-0024',
+  'cler-0025', 'cler-0042', 'cler-0043', 'cler-0044', 'cler-0045',
+]);
 
 /**
- * Narrow migration exceptions: approved canonical Spelling, Filing, and Grammar
- * records whose legacy `explanation`/`steps`/`distractorExplanations`/`tip` were
+ * Narrow migration exceptions: approved canonical Spelling, Filing, Grammar, and
+ * Clerical Operations records whose legacy `explanation`/`steps`/`distractorExplanations`/`tip` were
  * removed, so their `structuredExplanation` IS the learner-facing explanation.
  *
  * Because there is no legacy prose to fall back on, the structured payload must
@@ -53,7 +57,9 @@ function hasApprovedStructuredOnlyExplanation(question: Record<string, unknown>)
     CANONICAL_STRUCTURED_FILING_IDS.has(question.id as string) && question.topic === 'Filing & Alphabetizing';
   const isCanonicalGrammar =
     CANONICAL_STRUCTURED_GRAMMAR_IDS.has(question.id as string) && question.topic === 'Grammar & Usage';
-  const isClericalCanonical = isCanonicalSpelling || isCanonicalFiling;
+  const isCanonicalClericalOperations =
+    CANONICAL_STRUCTURED_CLERICAL_OPERATIONS_IDS.has(question.id as string) && question.topic === 'Clerical Operations';
+  const isClericalCanonical = isCanonicalSpelling || isCanonicalFiling || isCanonicalClericalOperations;
   const hasCanonicalSubject = isClericalCanonical
     ? question.subject === 'Clerical Ability'
     : isCanonicalGrammar && question.subject === 'Verbal Ability';

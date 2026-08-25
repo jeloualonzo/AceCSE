@@ -1,0 +1,204 @@
+import { describe, expect, it } from 'vitest';
+import { loadContentCatalog } from './questionBank';
+import { isValidStructuredExplanation } from './structuredExplanation';
+
+const CLERICAL_OPERATIONS_BATCH1_IDS = [
+  'cler-0020', 'cler-0021', 'cler-0022', 'cler-0023', 'cler-0024',
+  'cler-0025', 'cler-0042', 'cler-0043', 'cler-0044', 'cler-0045',
+] as const;
+
+type TargetId = typeof CLERICAL_OPERATIONS_BATCH1_IDS[number];
+
+const EXPECTED_QUESTIONS: Record<TargetId, {
+  question: string;
+  choices: string[];
+  correctOptionId: string;
+}> = {
+  'cler-0020': {
+    question: 'A clerk is asked to check whether each pair of entries is an EXACT match. Which pair is NOT an exact match?',
+    choices: [
+      'BARANGAY HALL 101  —  BARANGAY HALL 101',
+      '09171234567  —  09171234567',
+      'Quezon City, 1100  —  Quezon City, 1100',
+      'Employee No. 2024-0881  —  Employee No. 2024-0881',
+      'Reyes, Maria L.  —  Reyes, Maria I.',
+    ],
+    correctOptionId: 'E',
+  },
+  'cler-0021': {
+    question: 'Examine the following pairs. Which pair contains entries that are EXACTLY the same?',
+    choices: [
+      'Dela Rosa, Benigno T.  —  Dela Rosa, Benigno T.',
+      '2024-CSC-00187  —  2024-CSC-00178',
+      'November 14, 2025  —  November 14, 2026',
+      'Payroll No. 5566  —  Payroll No. 5656',
+      'Reference No. MO-2024-0055  —  Reference No. MO-2024-0555',
+    ],
+    correctOptionId: 'A',
+  },
+  'cler-0022': {
+    question: 'How many of the following pairs are EXACT matches?\n\n  Pair 1: Burgos, Alfred C.     —  Burgos, Alfred C.\n  Pair 2: TIN 245-876-003-001   —  TIN 245-876-003-001\n  Pair 3: San Jose, Bulacan     —  San Jose, Bulacan\n  Pair 4: SSS No. 33-5512781-8  —  SSS No. 33-5512871-8',
+    choices: ['4', '3', '2', '1', '0'],
+    correctOptionId: 'B',
+  },
+  'cler-0023': {
+    question: 'A coding sheet assigns letters to months: A=Jan, B=Feb, C=Mar, D=Apr, E=May, F=Jun, G=Jul, H=Aug, I=Sep, J=Oct, K=Nov, L=Dec. A document dated 15 September 2025 should be coded as:',
+    choices: ['15-I-2025', '15-H-2025', '15-J-2025', '15-G-2025', '16-I-2025'],
+    correctOptionId: 'A',
+  },
+  'cler-0024': {
+    question: "A clerk uses this numeric code for document categories: 1=Memorandum, 2=Letter, 3=Report, 4=Form, 5=Notice. A document labeled 'Memo-2025-31' that is a Notice about Memo No. 31 of 2025 should be stored under code:",
+    choices: ['1', '2', '3', '4', '5'],
+    correctOptionId: 'E',
+  },
+  'cler-0025': {
+    question: 'Four employee payroll entries are shown. Which entry contains an error in the net pay computation (Gross Pay minus Total Deductions = Net Pay)?\n\n  Entry A: Gross P18,500 / Deductions P3,200 / Net P15,300\n  Entry B: Gross P22,000 / Deductions P4,750 / Net P17,430\n  Entry C: Gross P16,800 / Deductions P2,900 / Net P13,900\n  Entry D: Gross P25,500 / Deductions P5,100 / Net P20,400',
+    choices: ['Entry A', 'Entry C', 'Entry B', 'Entry D', 'Entries B and D'],
+    correctOptionId: 'C',
+  },
+  'cler-0042': {
+    question: 'Using the code table in the passage, what is the correct code for a Clerk II position in NCR?',
+    choices: ['2-F', 'F-2', '2-E', '1-F', '2-G'],
+    correctOptionId: 'A',
+  },
+  'cler-0043': {
+    question: "A document was Received, Processed, then Disapproved, and finally Filed. What is the correct status code for this document?",
+    choices: ['R-P-F-D', 'R-A-D-F', 'R-P-D-F', 'P-R-D-F', 'R-P-D-R'],
+    correctOptionId: 'C',
+  },
+  'cler-0044': {
+    question: 'A clerk receives a Contract document from the Legal Department. What is the correct filing code?',
+    choices: ['LG-05', 'LG-03', 'AD-05', 'LG-02', 'LG-04'],
+    correctOptionId: 'A',
+  },
+  'cler-0045': {
+    question: 'Using the coding system in the passage, what is the correct code for the 7th document sent on November 3, 2026?',
+    choices: ['26-11-03-007', '2026-11-03-007', '26-03-11-007', '26-11-3-007', '26-11-03-07'],
+    correctOptionId: 'A',
+  },
+};
+
+const EXPECTED_BLOCKS: Record<TargetId, readonly Record<string, string | undefined>[]> = {
+  'cler-0020': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'E — Reyes, Maria L. — Reyes, Maria I.' },
+    { type: 'paragraph', label: 'What to Notice', text: 'An exact match requires every character to be the same, including letters, numbers, punctuation, and spaces.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'Pairs **A**, **B**, **C**, and **D** are identical. Pair **E** differs in the middle initial: **L** versus **I**.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choices **A**, **B**, **C**, and **D** are exact matches. Choice **E** is the only mismatch because one character changes from **L** to **I**.' },
+    { type: 'rule', text: 'Compare entries character by character. One different letter, number, punctuation mark, or space means the pair is not an exact match.' },
+  ],
+  'cler-0021': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'A — Dela Rosa, Benigno T. — Dela Rosa, Benigno T.' },
+    { type: 'paragraph', label: 'What to Notice', text: 'Exact matching depends on character-by-character comparison and the order of those characters. Similar-looking entries are not enough.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'Choice **A** repeats the same name, including the comma, spaces, middle initial, and period. It is the only pair with every character in the same position.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** changes the final digits from **00187** to **00178**. Choice **C** changes the year from **2025** to **2026**. Choice **D** changes **5566** to **5656**; the middle digits are **56** in the first entry and **65** in the second. Choice **E** changes **0055** to **0555**, so a digit position and value differ.' },
+    { type: 'rule', text: 'For an exact match, compare each character from left to right and verify its position. Having the same characters in a different order is still a mismatch.' },
+  ],
+  'cler-0022': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'B — 3' },
+    { type: 'paragraph', label: 'What to Notice', text: 'Check each pair separately. A pair counts only when every character on the left matches the character in the same position on the right.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'Pairs **1**, **2**, and **3** match. Pair **4** does not: **5512781** differs from **5512871** because the **7** and **8** are transposed. Therefore, **3** pairs are exact matches.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** counts Pair 4 as a match even though the **7** and **8** are in the wrong order. Choices **C**, **D**, and **E** undercount the matches; Pairs **1**, **2**, and **3** are identical.' },
+    { type: 'rule', text: 'In a multi-pair comparison, inspect one pair at a time and count only exact matches. A transposition makes the entire pair incorrect.' },
+  ],
+  'cler-0023': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'A — 15-I-2025' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The supplied lookup assigns **A** to January and advances one letter per month. September is the ninth month, so its code is **I**.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'The day and year remain **15** and **2025**. Replacing September with its lookup code gives **15-I-2025**.' },
+    { type: 'rule', text: 'Use the lookup scheme provided in the question directly: September is month 9, which corresponds to the ninth letter, **I**.' },
+  ],
+  'cler-0024': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'E — 5' },
+    { type: 'paragraph', label: 'What to Notice', text: 'Classify the document by its actual document type. The reference number or subject mentioned in its label does not change that type.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'The document is a **Notice** about Memo No. 31. The table assigns **Notice = 5**, so the correct code is **5**.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** treats the reference word “Memo” as the document type, but code **1** is for a Memorandum. Choice **B** is Letter, choice **C** is Report, and choice **D** is Form. None matches the document’s actual type, Notice.' },
+    { type: 'rule', text: 'Use the document’s actual type when assigning a classification code. A reference number or subject does not replace the type of document being filed.' },
+  ],
+  'cler-0025': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'C — Entry B' },
+    { type: 'paragraph', label: 'What to Notice', text: 'Recompute net pay for every entry using **Gross Pay − Total Deductions = Net Pay**. Compare the result with the listed net pay.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: '**Entry A:** 18,500 − 3,200 = 15,300, correct.\n**Entry B:** 22,000 − 4,750 = 17,250, not 17,430, incorrect.\n**Entry C:** 16,800 − 2,900 = 13,900, correct.\n**Entry D:** 25,500 − 5,100 = 20,400, correct.\nTherefore, **Entry B** is the only incorrect entry.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** selects Entry A, but its subtraction is correct. Choice **B** selects Entry C, which also computes correctly. Choice **D** selects Entry D, whose net pay is correct. Choice **E** claims that Entries B and D are wrong, but Entry D is accurate.' },
+    { type: 'rule', text: 'For a payroll check, subtract the listed deductions from the listed gross pay and compare the result with the listed net. Do not infer an unseen amount.' },
+  ],
+  'cler-0042': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'A — 2-F' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The position code and region code come from separate lookups: **Clerk II = 2** and **NCR = F**. The region code is a suffix.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'Combine the position code with the region suffix: **2-F**.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** reverses the required order. Choice **C** uses **E**, which is Region V, not NCR. Choice **D** uses **1**, the code for Clerk I. Choice **E** uses **G**, which is not the NCR code in the table.' },
+    { type: 'rule', text: 'For a two-part code, look up each component separately and apply the stated order: position code first, region suffix second.' },
+  ],
+  'cler-0043': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'C — R-P-D-F' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The status code records the document’s events in the order they occurred: Received, Processed, Disapproved, then Filed.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: '**Received = R**, **Processed = P**, **Disapproved = D**, and **Filed = F**. The stated sequence is therefore **R-P-D-F**.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** places Filed before Disapproved. Choice **B** inserts Approved, an event that did not occur. Choice **D** places Processed before Received. Choice **E** ends with Received instead of the final Filed event.' },
+    { type: 'rule', text: 'Map each stated event to its code, then preserve the events’ chronological order when combining the codes.' },
+  ],
+  'cler-0044': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'A — LG-05' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The code requires two lookups: first the department, then the document type. The required order is **[Department Code]-[Document Type Code]**.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: 'Legal Department = **LG**. Contract = **05**. Combining the two codes gives **LG-05**.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** uses the Report code **03** instead of Contract **05**. Choice **C** uses Administrative **AD** instead of Legal **LG**. Choice **D** uses the Letter code **02**. Choice **E** uses **04**, which the table assigns to Request Form, not Contract.' },
+    { type: 'rule', text: 'Solve two-part codes in order: identify the department, identify the document type, and then join their codes with the required separator.' },
+  ],
+  'cler-0045': [
+    { type: 'heading', text: 'Solution' },
+    { type: 'correct_answer', text: 'A — 26-11-03-007' },
+    { type: 'paragraph', label: 'What to Notice', text: 'The code has four fields with fixed lengths and order: last two digits of the year, a two-digit month code, a two-digit day, and a three-digit series number.' },
+    { type: 'paragraph', label: 'Apply the Rule', text: '2026 → **26**; November → **11**; day 3 → **03**; seventh document → **007**. The complete code is **26-11-03-007**.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** uses the full year instead of the last two digits. Choice **C** reverses the month and day fields. Choice **D** omits the leading zero required for a two-digit day. Choice **E** writes the series as two digits instead of the required three.' },
+    { type: 'rule', text: 'Apply each field’s specified length and position. Zero-pad the day and series number when necessary, and do not change the field order.' },
+  ],
+};
+
+describe('Clerical Operations Batch 1 structured explanations', () => {
+  it('contains exactly the approved content, answer keys, and structured-only cleanup for all ten IDs', async () => {
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+
+    for (const id of CLERICAL_OPERATIONS_BATCH1_IDS) {
+      const question = catalog.questions.get(id);
+      const expected = EXPECTED_QUESTIONS[id];
+      expect(question, id).toBeTruthy();
+      expect(question?.subject, id).toBe('Clerical Ability');
+      expect(question?.topic, id).toBe('Clerical Operations');
+      expect(question?.question, id).toBe(expected.question);
+      expect(question?.choices.map((choice) => choice.text), id).toEqual(expected.choices);
+      expect(question?.correctOptionId, id).toBe(expected.correctOptionId);
+      expect(question?.structuredExplanation?.blocks, id).toEqual(EXPECTED_BLOCKS[id]);
+      expect(isValidStructuredExplanation(question?.structuredExplanation), id).toBe(true);
+      expect(question?.explanation, id).toBeUndefined();
+      expect(question?.steps, id).toBeUndefined();
+      expect(question?.distractorExplanations, id).toBeUndefined();
+      expect(question?.tip, id).toBeUndefined();
+      expect(question?.structuredExplanation?.blocks.some((block) => block.type === 'step'), id).toBe(false);
+      expect(question?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution'), id).toBe(false);
+    }
+  });
+
+  it('keeps the approved question-data corrections explicit and excludes invented facts', async () => {
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+    const question0021 = catalog.questions.get('cler-0021')!;
+    const question0025 = catalog.questions.get('cler-0025')!;
+    const question0045 = catalog.questions.get('cler-0045')!;
+
+    expect(question0021.choices.find((choice) => choice.id === 'C')?.text).toBe('November 14, 2025  —  November 14, 2026');
+    expect(question0021.structuredExplanation?.blocks.map((block) => JSON.stringify(block)).join(' ')).not.toContain('impossible date');
+
+    expect(question0025.question).toContain('Net P17,430');
+    expect(JSON.stringify(question0025)).not.toContain('P4,570');
+    expect(question0025.structuredExplanation?.blocks.map((block) => JSON.stringify(block)).join(' ')).toContain('22,000 − 4,750 = 17,250, not 17,430');
+
+    expect(question0045.passage).toContain('Day: 2 digits, zero-padded when necessary');
+    expect(question0045.passage).toContain('Series Number: 3 digits, zero-padded when necessary');
+    expect(question0045.structuredExplanation?.blocks.map((block) => JSON.stringify(block)).join(' ')).not.toContain('adjacent');
+  });
+});

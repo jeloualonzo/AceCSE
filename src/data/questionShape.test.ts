@@ -87,6 +87,33 @@ function structuredOnlyFiling(overrides: Record<string, unknown> = {}): Record<s
   return q;
 }
 
+function structuredOnlyClericalOperations(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  const q = {
+    ...base({
+      id: 'cler-0020',
+      subject: 'Clerical Ability',
+      topic: 'Clerical Operations',
+      choices: [
+        { id: 'A', text: 'exact match' },
+        { id: 'B', text: 'different code' },
+        { id: 'C', text: 'different date' },
+        { id: 'D', text: 'different number' },
+        { id: 'E', text: 'different type' },
+      ],
+      correctOptionId: 'A',
+      structuredExplanation: {
+        blocks: [{ type: 'paragraph', label: 'Rule', text: 'Compare each displayed field using the rule stated in the question.' }],
+      },
+    }),
+    ...overrides,
+  } as Record<string, unknown>;
+  delete q.explanation;
+  delete q.steps;
+  delete q.distractorExplanations;
+  delete q.tip;
+  return q;
+}
+
 function structuredOnlyGrammar(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   const q = {
     ...base({
@@ -330,6 +357,42 @@ describe('structured-only Spelling and Filing admission exceptions', () => {
     ]) {
       expect(isValidQuestion(structuredOnlyFiling({ id })), id).toBe(true);
     }
+  });
+});
+
+describe('structured-only Clerical Operations admission exception', () => {
+  const clericalOperationsIds = [
+    'cler-0020', 'cler-0021', 'cler-0022', 'cler-0023', 'cler-0024',
+    'cler-0025', 'cler-0042', 'cler-0043', 'cler-0044', 'cler-0045',
+  ];
+
+  it('accepts exactly the ten canonical Clerical Operations IDs without legacy explanation fields', () => {
+    for (const id of clericalOperationsIds) {
+      const question = structuredOnlyClericalOperations({ id });
+      expect(isValidQuestion(question), id).toBe(true);
+      expect(Object.hasOwn(question, 'explanation'), id).toBe(false);
+      expect(Object.hasOwn(question, 'steps'), id).toBe(false);
+      expect(Object.hasOwn(question, 'distractorExplanations'), id).toBe(false);
+      expect(Object.hasOwn(question, 'tip'), id).toBe(false);
+    }
+  });
+
+  it('rejects malformed Clerical Operations structured explanations', () => {
+    expect(isValidQuestion(structuredOnlyClericalOperations({ structuredExplanation: { blocks: [] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyClericalOperations({ structuredExplanation: { blocks: [{ type: 'unsupported', text: 'bad' }] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyClericalOperations({ structuredExplanation: { blocks: [{ type: 'paragraph', text: '   ' }] } }))).toBe(false);
+  });
+
+  it('rejects a Clerical Operations structured-only record without structuredExplanation', () => {
+    const question = structuredOnlyClericalOperations();
+    delete question.structuredExplanation;
+    expect(isValidQuestion(question)).toBe(false);
+  });
+
+  it('keeps the Clerical Operations exception scoped to approved ID, subject, and topic', () => {
+    expect(isValidQuestion(structuredOnlyClericalOperations({ id: 'cler-0026' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyClericalOperations({ subject: 'Verbal Ability' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyClericalOperations({ topic: 'Office Procedures & Correspondence' }))).toBe(false);
   });
 });
 
