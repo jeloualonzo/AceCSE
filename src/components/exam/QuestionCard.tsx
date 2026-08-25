@@ -7,6 +7,7 @@ import { NumberSeriesInstanceRenderer, hasCompactNumberSeriesInstance } from './
 import { GrammarInstanceRenderer, hasCompactGrammarInstance } from './GrammarInstanceRenderer';
 import { useTheme } from '@/context/ThemeContext';
 import { ExplanationPanel } from './ExplanationPanel';
+import { QuestionStimulusRenderer } from './QuestionStimulusRenderer';
 
 export interface QuestionCardProps {
   question: Question;
@@ -107,10 +108,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           </div>
         )}
 
-        {question.passage && !hasCompactFilingInstance(question) && !hasCompactSpellingInstance(question) && !hasCompactNumberSeriesInstance(question) && !hasCompactGrammarInstance(question) && (
-          <div className="border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-black dark:text-slate-300 whitespace-pre-line">
-            {question.passage}
-          </div>
+        {!hasCompactFilingInstance(question) && !hasCompactSpellingInstance(question) && !hasCompactNumberSeriesInstance(question) && !hasCompactGrammarInstance(question) && (
+          <QuestionStimulusRenderer question={question} />
         )}
 
         {hasCompactFilingInstance(question) ? (

@@ -67,7 +67,7 @@ const EXPECTED_QUESTIONS: Record<TargetId, {
     correctOptionId: 'C',
   },
   'cler-0044': {
-    question: 'A clerk receives a Contract document from the Legal Department. What is the correct filing code?',
+    question: 'A clerk receives a contract from the Legal Department. What is the correct filing code?',
     choices: ['LG-05', 'LG-03', 'AD-05', 'LG-02', 'LG-04'],
     correctOptionId: 'A',
   },
@@ -184,6 +184,79 @@ describe('Clerical Operations Batch 1 structured explanations', () => {
     }
   });
 
+  it('preserves the exact semantic table stimuli for the affected questions', async () => {
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+
+    expect(catalog.questions.get('cler-0042')?.passage).toBeUndefined();
+    expect(catalog.questions.get('cler-0042')?.contentBlocks).toEqual([
+      { kind: 'text', id: 'cler-0042-intro', body: 'The following code table is used by a regional office to classify position levels:' },
+      {
+        kind: 'table',
+        id: 'cler-0042-position-levels',
+        title: 'Position Level Codes',
+        columns: ['Code', 'Position Level'],
+        rows: [['1', 'Clerk I'], ['2', 'Clerk II'], ['3', 'Administrative Aide'], ['4', 'Administrative Assistant'], ['5', 'Senior Administrative Assistant']],
+      },
+      { kind: 'text', id: 'cler-0042-region-note', body: 'Region codes are appended as a letter suffix:' },
+      {
+        kind: 'table',
+        id: 'cler-0042-region-codes',
+        title: 'Region Codes',
+        columns: ['Code', 'Region'],
+        rows: [['A', 'Region I'], ['B', 'Region II'], ['C', 'Region III'], ['D', 'Region IV'], ['E', 'Region V'], ['F', 'NCR']],
+      },
+    ]);
+
+    expect(catalog.questions.get('cler-0044')?.passage).toBeUndefined();
+    expect(catalog.questions.get('cler-0044')?.contentBlocks).toEqual([
+      { kind: 'text', id: 'cler-0044-intro', body: 'An agency uses a two-part filing code: [Department Code]-[Document Type Code].' },
+      {
+        kind: 'table',
+        id: 'cler-0044-department-codes',
+        title: 'Department Codes',
+        columns: ['Code', 'Department'],
+        rows: [['HR', 'Human Resources'], ['FN', 'Finance'], ['AD', 'Administrative'], ['IT', 'Information Technology'], ['LG', 'Legal']],
+      },
+      {
+        kind: 'table',
+        id: 'cler-0044-document-types',
+        title: 'Document Type Codes',
+        columns: ['Code', 'Document Type'],
+        rows: [['01', 'Memorandum'], ['02', 'Letter'], ['03', 'Report'], ['04', 'Request Form'], ['05', 'Contract']],
+      },
+      { kind: 'text', id: 'cler-0044-example', body: 'Example: FN-03 = Finance Department Report.' },
+    ]);
+
+    expect(catalog.questions.get('cler-0045')?.passage).toBeUndefined();
+    expect(catalog.questions.get('cler-0045')?.contentBlocks).toEqual([
+      {
+        kind: 'text',
+        id: 'cler-0045-intro',
+        body: 'A government office uses the following alphanumeric coding system for outgoing documents:\n\nCode order: Year (last 2 digits) — Month Code — Day — Series Number.',
+      },
+      {
+        kind: 'table',
+        id: 'cler-0045-format-details',
+        title: 'Format Details',
+        columns: ['Field', 'Specification'],
+        rows: [
+          ['Year', 'Last 2 digits'],
+          ['Month Code', '2 digits'],
+          ['Day', '2 digits, zero-padded when necessary'],
+          ['Series Number', '3 digits, zero-padded when necessary; sequential, starting at 001 each year'],
+        ],
+      },
+      {
+        kind: 'table',
+        id: 'cler-0045-month-codes',
+        title: 'Month Codes',
+        columns: ['Month', 'Code'],
+        rows: [['Jan', '01'], ['Feb', '02'], ['Mar', '03'], ['Apr', '04'], ['May', '05'], ['Jun', '06'], ['Jul', '07'], ['Aug', '08'], ['Sep', '09'], ['Oct', '10'], ['Nov', '11'], ['Dec', '12']],
+      },
+      { kind: 'text', id: 'cler-0045-example', body: 'Example: A letter sent on March 15, 2025, as the 23rd document of the year is coded: 25-03-15-023' },
+    ]);
+  });
+
   it('keeps the approved question-data corrections explicit and excludes invented facts', async () => {
     const catalog = await loadContentCatalog(['Clerical Ability']);
     const question0021 = catalog.questions.get('cler-0021')!;
@@ -197,8 +270,9 @@ describe('Clerical Operations Batch 1 structured explanations', () => {
     expect(JSON.stringify(question0025)).not.toContain('P4,570');
     expect(question0025.structuredExplanation?.blocks.map((block) => JSON.stringify(block)).join(' ')).toContain('22,000 − 4,750 = 17,250, not 17,430');
 
-    expect(question0045.passage).toContain('Day: 2 digits, zero-padded when necessary');
-    expect(question0045.passage).toContain('Series Number: 3 digits, zero-padded when necessary');
+    expect(question0045.passage).toBeUndefined();
+    expect(JSON.stringify(question0045.contentBlocks)).toContain('"Day","2 digits, zero-padded when necessary"');
+    expect(JSON.stringify(question0045.contentBlocks)).toContain('"Series Number","3 digits, zero-padded when necessary; sequential, starting at 001 each year"');
     expect(question0045.structuredExplanation?.blocks.map((block) => JSON.stringify(block)).join(' ')).not.toContain('adjacent');
   });
 });

@@ -14,6 +14,7 @@ import { ExplanationPanel } from './ExplanationPanel';
 import { PASSING_PERCENTAGE } from '@/config/exam';
 import { formatDuration, formatElapsedMs } from '@/lib/time';
 import { useTheme } from '@/context/ThemeContext';
+import { QuestionStimulusRenderer } from './QuestionStimulusRenderer';
 
 interface ResultsScreenProps {
   /** Administrative EDQ items presented in the session (never scored). */
@@ -395,11 +396,10 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
 
                     {isExpanded && (
                       <>
-                        {question.passage && (
-                          <div className="mb-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 text-xs sm:text-sm text-black dark:text-slate-300 whitespace-pre-line">
-                            {question.passage}
-                          </div>
-                        )}
+                        <QuestionStimulusRenderer
+                          question={question}
+                          className="mb-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 text-xs sm:text-sm"
+                        />
                         <div className="space-y-2 mb-4">
                           {question.choices.map((option) => {
                             const isUserPick = item.selected === option.id;

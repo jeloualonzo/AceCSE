@@ -7,6 +7,7 @@ import { SpellingInstanceRenderer, hasCompactSpellingInstance } from '../Spellin
 import { NumberSeriesInstanceRenderer, hasCompactNumberSeriesInstance } from '../NumberSeriesInstanceRenderer';
 import { GrammarInstanceRenderer, hasCompactGrammarInstance } from '../GrammarInstanceRenderer';
 import { ExplanationPanel } from '../ExplanationPanel';
+import { QuestionStimulusRenderer } from '../QuestionStimulusRenderer';
 
 export interface QuestionRendererProps {
   question: Question;
@@ -91,10 +92,8 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
         </span>
       </div>
 
-      {question.passage && !suppressPassage && !hasCompactFilingInstance(question) && !hasCompactSpellingInstance(question) && !hasCompactNumberSeriesInstance(question) && !hasCompactGrammarInstance(question) && (
-        <div className="border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-black dark:text-slate-300 whitespace-pre-line mb-3">
-          {question.passage}
-        </div>
+      {!suppressPassage && !hasCompactFilingInstance(question) && !hasCompactSpellingInstance(question) && !hasCompactNumberSeriesInstance(question) && !hasCompactGrammarInstance(question) && (
+        <QuestionStimulusRenderer question={question} className="mb-3" />
       )}
 
       {hasCompactFilingInstance(question) ? (

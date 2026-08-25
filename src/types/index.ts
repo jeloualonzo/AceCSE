@@ -180,8 +180,10 @@ export interface Question {
   subtopic?: string;
   difficulty: Difficulty;
   question: string;
-  /** Optional stimulus text (reading passage, data table description, puzzle setup). */
+  /** Optional legacy stimulus text (reading passage, data table description, puzzle setup). */
   passage?: string;
+  /** Optional semantic stimulus blocks, reusing the shared group content-block union. */
+  contentBlocks?: ContentBlock[];
   choices: QuestionChoice[];
   correctOptionId: OptionId;
   /**

@@ -921,7 +921,6 @@
     "topic": "Clerical Operations",
     "subtopic": "Clerical Coding — Position/Region Codes",
     "difficulty": "Medium",
-    "passage": "The following code table is used by a regional office to classify position levels:\n\nCode | Position Level\n  1  | Clerk I\n  2  | Clerk II\n  3  | Administrative Aide\n  4  | Administrative Assistant\n  5  | Senior Administrative Assistant\n\nRegion codes are appended as a letter suffix:\n  A = Region I    B = Region II   C = Region III\n  D = Region IV   E = Region V    F = NCR",
     "question": "Using the code table in the passage, what is the correct code for a Clerk II position in NCR?",
     "choices": [
       {
@@ -983,7 +982,85 @@
           "text": "For a two-part code, look up each component separately and apply the stated order: position code first, region suffix second."
         }
       ]
-    }
+    },
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "cler-0042-intro",
+        "body": "The following code table is used by a regional office to classify position levels:"
+      },
+      {
+        "kind": "table",
+        "id": "cler-0042-position-levels",
+        "title": "Position Level Codes",
+        "columns": [
+          "Code",
+          "Position Level"
+        ],
+        "rows": [
+          [
+            "1",
+            "Clerk I"
+          ],
+          [
+            "2",
+            "Clerk II"
+          ],
+          [
+            "3",
+            "Administrative Aide"
+          ],
+          [
+            "4",
+            "Administrative Assistant"
+          ],
+          [
+            "5",
+            "Senior Administrative Assistant"
+          ]
+        ]
+      },
+      {
+        "kind": "text",
+        "id": "cler-0042-region-note",
+        "body": "Region codes are appended as a letter suffix:"
+      },
+      {
+        "kind": "table",
+        "id": "cler-0042-region-codes",
+        "title": "Region Codes",
+        "columns": [
+          "Code",
+          "Region"
+        ],
+        "rows": [
+          [
+            "A",
+            "Region I"
+          ],
+          [
+            "B",
+            "Region II"
+          ],
+          [
+            "C",
+            "Region III"
+          ],
+          [
+            "D",
+            "Region IV"
+          ],
+          [
+            "E",
+            "Region V"
+          ],
+          [
+            "F",
+            "NCR"
+          ]
+        ]
+      }
+    ]
   },
   {
     "id": "cler-0043",
@@ -1063,8 +1140,7 @@
     "topic": "Clerical Operations",
     "subtopic": "Clerical Coding — Department and Document Type",
     "difficulty": "Hard",
-    "passage": "An agency uses a two-part filing code: [Department Code]-[Document Type Code].\n\nDepartment Codes:\n  HR  = Human Resources\n  FN  = Finance\n  AD  = Administrative\n  IT  = Information Technology\n  LG  = Legal\n\nDocument Type Codes:\n  01 = Memorandum\n  02 = Letter\n  03 = Report\n  04 = Request Form\n  05 = Contract\n\nExample: FN-03 = Finance Department Report.",
-    "question": "A clerk receives a Contract document from the Legal Department. What is the correct filing code?",
+    "question": "A clerk receives a contract from the Legal Department. What is the correct filing code?",
     "choices": [
       {
         "id": "A",
@@ -1125,7 +1201,81 @@
           "text": "Solve two-part codes in order: identify the department, identify the document type, and then join their codes with the required separator."
         }
       ]
-    }
+    },
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "cler-0044-intro",
+        "body": "An agency uses a two-part filing code: [Department Code]-[Document Type Code]."
+      },
+      {
+        "kind": "table",
+        "id": "cler-0044-department-codes",
+        "title": "Department Codes",
+        "columns": [
+          "Code",
+          "Department"
+        ],
+        "rows": [
+          [
+            "HR",
+            "Human Resources"
+          ],
+          [
+            "FN",
+            "Finance"
+          ],
+          [
+            "AD",
+            "Administrative"
+          ],
+          [
+            "IT",
+            "Information Technology"
+          ],
+          [
+            "LG",
+            "Legal"
+          ]
+        ]
+      },
+      {
+        "kind": "table",
+        "id": "cler-0044-document-types",
+        "title": "Document Type Codes",
+        "columns": [
+          "Code",
+          "Document Type"
+        ],
+        "rows": [
+          [
+            "01",
+            "Memorandum"
+          ],
+          [
+            "02",
+            "Letter"
+          ],
+          [
+            "03",
+            "Report"
+          ],
+          [
+            "04",
+            "Request Form"
+          ],
+          [
+            "05",
+            "Contract"
+          ]
+        ]
+      },
+      {
+        "kind": "text",
+        "id": "cler-0044-example",
+        "body": "Example: FN-03 = Finance Department Report."
+      }
+    ]
   },
   {
     "id": "cler-0045",
@@ -1134,7 +1284,6 @@
     "topic": "Clerical Operations",
     "subtopic": "Clerical Coding — Alphanumeric Date-Document Code",
     "difficulty": "Hard",
-    "passage": "A government office uses the following alphanumeric coding system for outgoing documents:\n\n  Year (last 2 digits) — Month Code — Day — Series Number\n\nFormat details:\n  Year: last 2 digits\n  Month Code: 2 digits\n  Day: 2 digits, zero-padded when necessary\n  Series Number: 3 digits, zero-padded when necessary\n\nMonth Codes:\n  Jan=01  Feb=02  Mar=03  Apr=04  May=05  Jun=06\n  Jul=07  Aug=08  Sep=09  Oct=10  Nov=11  Dec=12\n\nSeries Number: a sequential number starting at 001 each year; write it as 3 digits, zero-padded when necessary.\n\nExample: A letter sent on March 15, 2025, as the 23rd document of the year is coded: 25-03-15-023",
     "question": "Using the coding system in the passage, what is the correct code for the 7th document sent on November 3, 2026?",
     "choices": [
       {
@@ -1196,7 +1345,105 @@
           "text": "Apply each field’s specified length and position. Zero-pad the day and series number when necessary, and do not change the field order."
         }
       ]
-    }
+    },
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "cler-0045-intro",
+        "body": "A government office uses the following alphanumeric coding system for outgoing documents:\n\nCode order: Year (last 2 digits) — Month Code — Day — Series Number."
+      },
+      {
+        "kind": "table",
+        "id": "cler-0045-format-details",
+        "title": "Format Details",
+        "columns": [
+          "Field",
+          "Specification"
+        ],
+        "rows": [
+          [
+            "Year",
+            "Last 2 digits"
+          ],
+          [
+            "Month Code",
+            "2 digits"
+          ],
+          [
+            "Day",
+            "2 digits, zero-padded when necessary"
+          ],
+          [
+            "Series Number",
+            "3 digits, zero-padded when necessary; sequential, starting at 001 each year"
+          ]
+        ]
+      },
+      {
+        "kind": "table",
+        "id": "cler-0045-month-codes",
+        "title": "Month Codes",
+        "columns": [
+          "Month",
+          "Code"
+        ],
+        "rows": [
+          [
+            "Jan",
+            "01"
+          ],
+          [
+            "Feb",
+            "02"
+          ],
+          [
+            "Mar",
+            "03"
+          ],
+          [
+            "Apr",
+            "04"
+          ],
+          [
+            "May",
+            "05"
+          ],
+          [
+            "Jun",
+            "06"
+          ],
+          [
+            "Jul",
+            "07"
+          ],
+          [
+            "Aug",
+            "08"
+          ],
+          [
+            "Sep",
+            "09"
+          ],
+          [
+            "Oct",
+            "10"
+          ],
+          [
+            "Nov",
+            "11"
+          ],
+          [
+            "Dec",
+            "12"
+          ]
+        ]
+      },
+      {
+        "kind": "text",
+        "id": "cler-0045-example",
+        "body": "Example: A letter sent on March 15, 2025, as the 23rd document of the year is coded: 25-03-15-023"
+      }
+    ]
   },
   {
     "id": "cler-0049",

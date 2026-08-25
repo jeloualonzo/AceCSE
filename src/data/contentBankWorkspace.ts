@@ -18,6 +18,7 @@ import {
   type ExportDocument,
 } from '@/lib/exportText';
 import type { Difficulty, Question, Subject } from '@/types';
+import { renderContentBlockMarkdown } from '@/lib/contentBlockMarkdown';
 
 export const CONTENT_BANK_SUBJECTS: readonly Subject[] = [
   'Clerical Ability',
@@ -657,6 +658,9 @@ function renderLegacyAuthoring(question: Question): string {
 function renderSupportingQuestionContent(question: Question): string {
   const sections: string[] = [];
   if (question.passage) sections.push(`### Passage / Stimulus\n\n${question.passage}`);
+  if (question.contentBlocks?.length) {
+    sections.push(`### Structured Stimulus\n\n${question.contentBlocks.map(renderContentBlockMarkdown).join('\n\n')}`);
+  }
   if (question.numberSeries) sections.push(`### Number-Series Data\n\n${renderCodeBlock(JSON.stringify(question.numberSeries, null, 2))}`);
   if (question.taskInstance) {
     sections.push(`### Task Instance\n\n- kind: ${question.taskInstance.kind}\n- payload:\n${indentText(JSON.stringify(question.taskInstance.payload, null, 2), 2)}`);

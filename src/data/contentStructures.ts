@@ -12,6 +12,7 @@ import {
 } from '@/data/sharedTaskContext';
 import type { NormalizedContentCatalog } from '@/data/contentCatalog';
 import type { ContentBlock, NormalizedQuestionGroup, Subject } from '@/types';
+import { renderContentBlockMarkdown } from '@/lib/contentBlockMarkdown';
 
 /**
  * Read-only management view over the two authored structure sources:
@@ -309,22 +310,6 @@ function metadataCell(value: string): string {
   return collapsed === '' ? '—' : collapsed;
 }
 
-function renderContentBlock(block: ContentBlock): string {
-  if (block.kind === 'image') {
-    const heading = `**${block.caption ?? block.id}** (image)`;
-    return `${heading}\n\n![${block.alt}](${block.src})`;
-  }
-  const heading = `**${block.title ?? block.id}** (${block.kind})`;
-  if (block.kind === 'text') return `${heading}\n\n${block.body}`;
-  if (block.kind === 'table') {
-    const header = `| ${block.columns.map(metadataCell).join(' | ')} |`;
-    const rule = `|${block.columns.map(() => '---').join('|')}|`;
-    const rows = block.rows.map((row) => `| ${row.map(metadataCell).join(' | ')} |`);
-    return [heading, '', header, rule, ...rows].join('\n');
-  }
-  return `${heading}\n\n\`\`\`json\n${JSON.stringify(block.data, null, 2)}\n\`\`\``;
-}
-
 function renderStructureSection(structure: ContentStructure, index: number): string {
   const metadata = structure.metadata
     .map(([field, value]) => `| ${field} | ${metadataCell(value)} |`)
@@ -348,7 +333,7 @@ function renderStructureSection(structure: ContentStructure, index: number): str
   if (structure.title) learner.push(`**Title**\n\n${structure.title}`);
   if (structure.directions) learner.push(`**Directions**\n\n${structure.directions}`);
   if (structure.example) learner.push(`**Example**\n\n${structure.example}`);
-  for (const block of structure.contentBlocks) learner.push(renderContentBlock(block));
+  for (const block of structure.contentBlocks) learner.push(renderContentBlockMarkdown(block));
   const body = [...parts.filter(Boolean), ...learner].join('\n\n');
   return body;
 }

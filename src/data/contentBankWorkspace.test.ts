@@ -302,6 +302,33 @@ describe('Content Bank workspace data', () => {
     expect(JSON.stringify(raw)).not.toContain('test-ready');
   });
 
+  it('exports question-level semantic tables as structured Markdown and raw JSON', () => {
+    const tableQuestion: Question = {
+      ...question('cler-table-001', 'Clerical Operations'),
+      contentBlocks: [
+        {
+          kind: 'table',
+          id: 'cler-table-001-codes',
+          title: 'Codes',
+          columns: ['Code', 'Meaning'],
+          rows: [['A', 'Alpha'], ['B', 'Beta']],
+        },
+      ],
+    };
+    const catalog = createNormalizedCatalog([tableQuestion], [], [classification(tableQuestion.id, tableQuestion.topic)]);
+    const batch = { ...readyBatch, questionIds: [tableQuestion.id] };
+    const markdown = createReviewMarkdown(batch, [catalog.getQuestion(tableQuestion.id)!]);
+
+    expect(markdown).toContain('### Structured Stimulus');
+    expect(markdown).toContain('**Codes** (table)');
+    expect(markdown).toContain('| Code | Meaning |\n|---|---|\n| A | Alpha |\n| B | Beta |');
+    expect(markdown).not.toContain('### Passage / Stimulus');
+
+    const raw = JSON.parse(createRawBatchJson(batch, [tableQuestion])) as Question[];
+    expect(raw[0]?.contentBlocks).toEqual(tableQuestion.contentBlocks);
+    expect(raw[0]?.passage).toBeUndefined();
+  });
+
   it('carries the batch and review metadata a reviewer needs to act without the app', () => {
     const catalog = testCatalog();
     const batch = { ...readyBatch, questionIds: ['cler-test-003', 'cler-test-002'] };

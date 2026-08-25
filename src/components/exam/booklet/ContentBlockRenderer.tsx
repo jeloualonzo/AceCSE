@@ -15,6 +15,7 @@ const blockTitle = (title: string | undefined) =>
 interface TableShape {
   columns: string[];
   rows: string[][];
+  caption?: string;
 }
 
 /**
@@ -44,9 +45,10 @@ export function parsePipeDelimitedTable(body: string): TableShape | null {
   return { columns: rows[0], rows: rows.slice(1) };
 }
 
-const SemanticTable: React.FC<TableShape> = ({ columns, rows }) => (
+const SemanticTable: React.FC<TableShape> = ({ columns, rows, caption }) => (
   <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
     <table className="min-w-full text-sm" data-semantic-table="true">
+      {caption && <caption className="sr-only">{caption}</caption>}
       <thead className="bg-slate-100 dark:bg-slate-800/80">
         <tr>
           {columns.map((column, index) => (
@@ -89,7 +91,7 @@ export const ContentBlockRenderer: React.FC<ContentBlockRendererProps> = ({ bloc
         return (
           <div className="space-y-1.5">
             {blockTitle(block.title)}
-            <SemanticTable {...pipeTable} />
+            <SemanticTable {...pipeTable} caption={block.title ?? block.id} />
           </div>
         );
       }
@@ -107,7 +109,7 @@ export const ContentBlockRenderer: React.FC<ContentBlockRendererProps> = ({ bloc
       return (
         <div className="space-y-1.5">
           {blockTitle(block.title)}
-          <SemanticTable columns={block.columns} rows={block.rows} />
+          <SemanticTable columns={block.columns} rows={block.rows} caption={block.title ?? block.id} />
         </div>
       );
 
@@ -131,7 +133,7 @@ export const ContentBlockRenderer: React.FC<ContentBlockRendererProps> = ({ bloc
       return (
         <div className="space-y-1.5">
           {blockTitle(block.title)}
-          <SemanticTable columns={columns} rows={rows} />
+          <SemanticTable columns={columns} rows={rows} caption={block.title ?? block.id} />
         </div>
       );
     }
