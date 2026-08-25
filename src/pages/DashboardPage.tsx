@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   BookOpen,
@@ -13,12 +13,10 @@ import {
 } from 'lucide-react';
 import { useAttempts } from '@/hooks/useAttempts';
 import { computeStats } from '@/lib/analytics';
-import { simulationOptions } from '@/lib/examEngine';
 import { loadActiveSession } from '@/lib/sessionStorage';
+import { SESSION_EXAM_LEVELS } from '@/lib/practiceLevels';
 import { formatDate, formatDuration } from '@/lib/time';
-import { useAppContext } from '@/components/shell/AppLayout';
-import { ExamLevelSwitch } from '@/components/shell/ExamLevelSwitch';
-import type { ExamLaunchRequest } from '@/pages/ExamPage';
+import { LEARNER_PRACTICE_ROUTE, LEARNER_SIMULATION_ROUTE, EXAM_ROUTE, LEARNER_HISTORY_ROUTE } from '@/navigation/appRoutes';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 const StatCard: React.FC<{
@@ -39,38 +37,40 @@ const StatCard: React.FC<{
   </div>
 );
 
+const LevelFigure: React.FC<{ label: string; value: string }> = ({ label, value }) => (
+  <div className="min-w-0">
+    <dt className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{label}</dt>
+    <dd className="mt-0.5 text-base font-extrabold text-slate-900 dark:text-white">{value}</dd>
+  </div>
+);
+
+/**
+ * Dashboard — every attempt the learner has, both examination levels together.
+ *
+ * Nothing here is filtered by a chosen level. Where mixing the two would make a
+ * number misleading (an average over a 150-item Professional exam and a
+ * 145-item Subprofessional one), the per-level figures are shown as their own
+ * section instead of quietly replacing the total.
+ */
 export const DashboardPage: React.FC = () => {
   useDocumentTitle('Dashboard');
-  const navigate = useNavigate();
-  const { examLevel, setExamLevel } = useAppContext();
-  const { attempts: allAttempts, loading } = useAttempts();
-  // Dashboard numbers reflect the level currently SELECTED in the switch
-  // above (a per-activity choice — both levels stay one click away; nothing
-  // app-wide is hidden or filtered permanently).
-  const attempts = useMemo(
-    () => allAttempts.filter((a) => a.examLevel === examLevel),
-    [allAttempts, examLevel]
-  );
+  const { attempts, loading } = useAttempts();
   const stats = useMemo(() => computeStats(attempts), [attempts]);
   const activeSession = useMemo(() => {
     const saved = loadActiveSession();
     return saved && (saved.deadlineAt === null || saved.deadlineAt > Date.now()) ? saved : null;
   }, []);
 
-  const bestSimulation = useMemo(
-    () => simulationOptions(examLevel).filter((o) => o.available).pop() ?? null,
-    [examLevel]
+  // Only levels the learner has actually sat. A level with no attempts is
+  // absent rather than shown as zeroes.
+  const levelStats = useMemo(
+    () =>
+      SESSION_EXAM_LEVELS.map((level) => ({
+        level,
+        stats: computeStats(attempts.filter((attempt) => attempt.examLevel === level)),
+      })).filter((entry) => entry.stats.totalAttempts > 0),
+    [attempts]
   );
-
-  const launchSimulation = () => {
-    if (!bestSimulation) return;
-    const launch: ExamLaunchRequest = {
-      kind: 'simulation',
-      examLevel,
-      questionCount: bestSimulation.scoredCount,
-    };
-    navigate('/app/exam', { state: { launch } });
-  };
 
   const recentAttempts = attempts.slice(0, 5);
   const hasData = attempts.length > 0;
@@ -79,12 +79,11 @@ export const DashboardPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
       <div className="flex items-center gap-3 flex-wrap">
         <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Dashboard</h1>
-        <ExamLevelSwitch value={examLevel} onChange={setExamLevel} />
       </div>
 
       {activeSession && (
         <Link
-          to="/app/exam"
+          to={EXAM_ROUTE}
           className="block bg-slate-900 dark:bg-slate-800/80 dark:border dark:border-slate-700 text-white rounded-xl p-4 sm:p-5 hover:bg-slate-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
         >
           <div className="flex items-center justify-between gap-4">
@@ -105,31 +104,30 @@ export const DashboardPage: React.FC = () => {
         </Link>
       )}
 
-      {/* Two products, two doors */}
+      {/* Two products, two doors. Both lead to their own page, where the
+          examination or the subject is chosen — this screen no longer holds a
+          level, so it cannot pick one on the learner's behalf. */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <button
-          onClick={launchSimulation}
-          disabled={!bestSimulation}
-          className="text-left bg-slate-900 dark:bg-slate-800/80 dark:border dark:border-slate-700 hover:bg-slate-800 disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-xl p-5 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
+        <Link
+          to={LEARNER_SIMULATION_ROUTE}
+          className="block bg-slate-900 dark:bg-slate-800/80 dark:border dark:border-slate-700 hover:bg-slate-800 text-white rounded-xl p-5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
         >
           <ClipboardList className="w-6 h-6 mb-3 text-emerald-400" aria-hidden="true" />
           <p className="font-bold text-sm sm:text-base">Exam Simulation</p>
           <p className="text-xs text-slate-400 mt-1">
             Real conditions. Timed, no feedback until the end.
           </p>
-          {bestSimulation && (
-            <div className="flex items-center gap-2 mt-3">
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-200">
-                {bestSimulation.scoredCount} Scored + {bestSimulation.edqCount} EDQ
-              </span>
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-200">
-                {formatDuration(bestSimulation.durationSeconds)}
-              </span>
-            </div>
-          )}
-        </button>
+          <div className="flex items-center gap-2 mt-3">
+            <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-200">
+              Timed
+            </span>
+            <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-200">
+              Official Length
+            </span>
+          </div>
+        </Link>
         <Link
-          to="/app/practice"
+          to={LEARNER_PRACTICE_ROUTE}
           className="bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl p-5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
         >
           <BookOpen className="w-6 h-6 mb-3 text-emerald-600" aria-hidden="true" />
@@ -185,6 +183,39 @@ export const DashboardPage: React.FC = () => {
             />
           </div>
 
+          {/* Only once both examinations are represented: with one level the
+              totals above already are that level's figures, and repeating them
+              would suggest a comparison that does not exist. */}
+          {levelStats.length > 1 && (
+            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 space-y-4">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                By Examination Level
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {levelStats.map(({ level, stats: levelStat }) => (
+                  <div
+                    key={level}
+                    data-level-stats={level}
+                    className="rounded-lg border border-slate-200 dark:border-slate-800 p-4"
+                  >
+                    <p className="text-sm font-bold text-slate-900 dark:text-white">{level}</p>
+                    <dl className="mt-3 grid grid-cols-3 gap-3">
+                      <LevelFigure label="Attempts" value={String(levelStat.totalAttempts)} />
+                      <LevelFigure
+                        label="Average"
+                        value={levelStat.averagePercentage !== null ? `${levelStat.averagePercentage}%` : '—'}
+                      />
+                      <LevelFigure
+                        label="Readiness"
+                        value={levelStat.readinessEstimate !== null ? `${levelStat.readinessEstimate}%` : '—'}
+                      />
+                    </dl>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {stats.subjectMastery.length > 0 && (
             <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 space-y-4">
               <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -236,7 +267,7 @@ export const DashboardPage: React.FC = () => {
                 Recent Attempts
               </h2>
               <Link
-                to="/app/history"
+                to={LEARNER_HISTORY_ROUTE}
                 className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 focus:outline-none focus-visible:underline"
               >
                 View all
@@ -250,6 +281,8 @@ export const DashboardPage: React.FC = () => {
                       {attempt.mode === 'simulation' ? 'Exam Simulation' : 'Practice'}
                     </p>
                     <div className="flex items-center gap-x-3 flex-wrap text-xs text-slate-500 dark:text-slate-400">
+                      {/* Both levels are listed together, so each row says which. */}
+                      <span>{attempt.examLevel}</span>
                       <span>{formatDate(attempt.completedAt)}</span>
                       <span>
                         {attempt.mode === 'practice'
@@ -278,7 +311,7 @@ export const DashboardPage: React.FC = () => {
       ) : (
         <div className="bg-white dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 p-8 sm:p-12 text-center">
           <Target className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-4" aria-hidden="true" />
-          <h2 className="text-base font-bold text-slate-900 dark:text-white mb-1">No {examLevel} exam history yet</h2>
+          <h2 className="text-base font-bold text-slate-900 dark:text-white mb-1">No exam history yet</h2>
           <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
             Your scores, subject mastery, and readiness estimate appear here after your first
             simulation or practice session.

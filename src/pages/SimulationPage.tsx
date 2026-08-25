@@ -1,39 +1,46 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Clock, ListChecks, Lock, PlayCircle, ShieldCheck, Target } from 'lucide-react';
-import { PASSING_PERCENTAGE } from '@/config/exam';
-import { simulationOptions } from '@/lib/examEngine';
+import { PASSING_PERCENTAGE, SUBJECTS_BY_LEVEL } from '@/config/exam';
+import { fullSimulationOption, type SimulationOption } from '@/lib/examEngine';
 import { formatDuration } from '@/lib/time';
-import { useAppContext } from '@/components/shell/AppLayout';
-import { ExamLevelSwitch } from '@/components/shell/ExamLevelSwitch';
+import { SESSION_EXAM_LEVELS } from '@/lib/practiceLevels';
+import { EXAM_ROUTE } from '@/navigation/appRoutes';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import type { ExamLevel } from '@/types';
+
+/**
+ * The two examinations, resolved once. Availability comes from the build-time
+ * manifest, so nothing here depends on a selected level or on loaded content.
+ */
+const EXAMS: readonly { level: ExamLevel; option: SimulationOption }[] = SESSION_EXAM_LEVELS.map(
+  (level) => ({ level, option: fullSimulationOption(level) })
+);
 
 /**
  * Exam Simulation — the real thing. Timed, official proportions, no feedback
  * until the final results page. This screen sets that expectation before the
  * user ever starts.
+ *
+ * There are exactly two choices, because the CSC gives exactly two
+ * examinations. Both are on the page at once: no level switch decides which one
+ * the learner is allowed to see, and there are no shortened practice-length
+ * simulations — a simulation that is not the real length is not a simulation.
  */
 export const SimulationPage: React.FC = () => {
   useDocumentTitle('Exam Simulation');
   const navigate = useNavigate();
-  const { examLevel, setExamLevel } = useAppContext();
-  const options = useMemo(() => {
-    const all = simulationOptions(examLevel);
-    // The full exam is the primary feature — surface it first.
-    return [...all.filter((o) => o.isFullExam), ...all.filter((o) => !o.isFullExam)];
-  }, [examLevel]);
 
-  const launch = (questionCount: number) => {
-    const request: ExamLaunchRequest = { kind: 'simulation', examLevel, questionCount };
-    navigate('/app/exam', { state: { launch: request } });
+  const launch = (level: ExamLevel, questionCount: number) => {
+    const request: ExamLaunchRequest = { kind: 'simulation', examLevel: level, questionCount };
+    navigate(EXAM_ROUTE, { state: { launch: request } });
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
       <div className="flex items-center gap-3 flex-wrap">
         <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Exam Simulation</h1>
-        <ExamLevelSwitch value={examLevel} onChange={setExamLevel} />
       </div>
 
       {/* What simulation means — set the contract once, clearly */}
@@ -58,23 +65,20 @@ export const SimulationPage: React.FC = () => {
         </ul>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {options.map((option) => (
-          <div
-            key={option.scoredCount}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {EXAMS.map(({ level, option }) => (
+          <article
+            key={level}
+            data-simulation-exam={level}
             className={`rounded-xl border p-5 flex flex-col ${
               option.available
                 ? 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800'
                 : 'bg-slate-50 dark:bg-slate-800/60 border-dashed border-slate-300 dark:border-slate-700'
             }`}
           >
-            {option.isFullExam && (
-              <span className="self-start text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 px-2 py-0.5 rounded-full mb-3">
-                Full Exam
-              </span>
-            )}
+            <h2 className="text-base font-extrabold text-slate-900 dark:text-white">{level} Exam</h2>
 
-            <dl className="space-y-3 mb-5">
+            <dl className="mt-4 space-y-3 mb-5">
               <div>
                 <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Scored Questions</dt>
                 <dd className="text-2xl font-extrabold text-slate-900 dark:text-white">{option.scoredCount}</dd>
@@ -88,12 +92,20 @@ export const SimulationPage: React.FC = () => {
                   {formatDuration(option.durationSeconds)}
                 </dd>
               </div>
+              <div>
+                <dt className="text-xs font-semibold text-slate-500 dark:text-slate-400">Subjects</dt>
+                <dd className="text-xs font-semibold text-slate-700 dark:text-slate-300 leading-relaxed">
+                  {SUBJECTS_BY_LEVEL[level].join(', ')}
+                </dd>
+              </div>
             </dl>
 
             {option.available ? (
               <button
-                onClick={() => launch(option.scoredCount)}
-                className="mt-auto inline-flex items-center justify-center gap-1.5 min-h-[44px] rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                type="button"
+                onClick={() => launch(level, option.scoredCount)}
+                className="mt-auto inline-flex items-center justify-center gap-1.5 min-h-[44px] rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 dark:bg-slate-800 dark:hover:bg-slate-700"
+                aria-label={`Start ${level} Exam Simulation`}
               >
                 <PlayCircle className="w-4 h-4" aria-hidden="true" />
                 Start Simulation
@@ -109,7 +121,7 @@ export const SimulationPage: React.FC = () => {
                 </p>
               </div>
             )}
-          </div>
+          </article>
         ))}
       </div>
     </div>

@@ -21,10 +21,10 @@ describe('Content Bank route builders', () => {
   });
 
   /**
-   * `/app/content-bank/batch/:batchId` and `/app/content-bank/:subjectSlug` are
-   * both two segments deep. React Router prefers the static segment, but that
-   * only matters if no subject actually slugs to `batch` — otherwise a real
-   * subject would become unreachable behind the batch route.
+   * `/admin/content-bank/batch/:batchId` and `/admin/content-bank/:subjectSlug`
+   * are both two segments deep under the base. React Router prefers the static
+   * segment, but that only matters if no subject actually slugs to `batch` —
+   * otherwise a real subject would become unreachable behind the batch route.
    */
   it('never produces a subject slug that collides with the batch segment', () => {
     for (const subject of ALL_SUBJECTS) {
@@ -38,9 +38,29 @@ describe('Content Bank route builders', () => {
     }
   });
 
+  /**
+   * The Content Bank is an admin surface, so every path it builds must sit in the
+   * admin tree. A path that leaked back under `/app` would render inside the
+   * learner shell — where `RequireAdmin` does not sit, and where learners would
+   * see Content Bank chrome.
+   */
+  it('builds every path inside the admin tree, never the learner tree', () => {
+    const paths = [
+      CONTENT_BANK_BASE,
+      contentBankSubjectPath('Clerical Ability'),
+      contentBankFamilyPath('Clerical Ability', 'Filing & Alphabetizing'),
+      contentBankBatchPath('filing-batch-02'),
+      contentBankBatchReviewPath('filing-batch-02'),
+    ];
+    for (const path of paths) {
+      expect(path.startsWith('/admin/')).toBe(true);
+      expect(path.startsWith('/app/')).toBe(false);
+    }
+  });
+
   it('builds subject paths under the base', () => {
-    expect(contentBankSubjectPath('Clerical Ability')).toBe('/app/content-bank/clerical');
-    expect(contentBankSubjectPath('General Information')).toBe('/app/content-bank/general-information');
+    expect(contentBankSubjectPath('Clerical Ability')).toBe('/admin/content-bank/clerical');
+    expect(contentBankSubjectPath('General Information')).toBe('/admin/content-bank/general-information');
     for (const subject of ALL_SUBJECTS) {
       expect(contentBankSubjectPath(subject).startsWith(`${CONTENT_BANK_BASE}/`)).toBe(true);
     }
@@ -49,7 +69,7 @@ describe('Content Bank route builders', () => {
   it('builds family paths that nest inside their subject', () => {
     const path = contentBankFamilyPath('Clerical Ability', 'Filing & Alphabetizing');
     expect(path.startsWith(`${contentBankSubjectPath('Clerical Ability')}/`)).toBe(true);
-    expect(path).toBe('/app/content-bank/clerical/filing-alphabetizing');
+    expect(path).toBe('/admin/content-bank/clerical/filing-alphabetizing');
   });
 
   /**
@@ -72,14 +92,14 @@ describe('Content Bank route builders', () => {
 
   it('escapes characters in a batch id that would change the path shape', () => {
     expect(contentBankBatchPath('spelling batch/01')).toBe(
-      '/app/content-bank/batch/spelling%20batch%2F01',
+      '/admin/content-bank/batch/spelling%20batch%2F01',
     );
   });
 
   it('builds batch and review paths', () => {
-    expect(contentBankBatchPath('filing-batch-02')).toBe('/app/content-bank/batch/filing-batch-02');
+    expect(contentBankBatchPath('filing-batch-02')).toBe('/admin/content-bank/batch/filing-batch-02');
     expect(contentBankBatchReviewPath('filing-batch-02')).toBe(
-      '/app/content-bank/batch/filing-batch-02/review',
+      '/admin/content-bank/batch/filing-batch-02/review',
     );
   });
 

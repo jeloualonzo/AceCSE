@@ -36,6 +36,11 @@ import { BookletExamLayout } from '@/components/shell/BookletExamLayout';
 import { PreExamScreen } from '@/components/exam/PreExamScreen';
 import { ResultsScreen } from '@/components/exam/ResultsScreen';
 import { SubmitConfirmDialog } from '@/components/exam/SubmitConfirmDialog';
+import {
+  LEARNER_HOME_ROUTE,
+  LEARNER_PRACTICE_ROUTE,
+  LEARNER_SIMULATION_ROUTE,
+} from '@/navigation/appRoutes';
 
 /** Launch request passed via router state from Dashboard / Practice pages. */
 export interface ExamLaunchRequest {
@@ -53,6 +58,12 @@ export interface ExamLaunchRequest {
   progressive?: boolean;
   /** Internal Content Bank only: practice exactly these IDs. */
   questionIds?: string[];
+  /**
+   * Internal Content Bank review run. Set only when reviewing a refinement
+   * batch: the engine, the questions, and the exam UI are identical, but the
+   * graded result is not written to attempt history or analytics.
+   */
+  internalReview?: boolean;
 }
 
 type QuestionIndex = ReadonlyMap<string, Question>;
@@ -116,6 +127,8 @@ function launchFromSession(session: ExamSession): ExamLaunchRequest {
   };
   if (session.config.exactQuestionIds) launch.questionIds = [...session.config.exactQuestionIds];
   if (session.config.mode === 'simulation') launch.timed = session.config.timed;
+  // Retaking a review run stays a review run, so it still records nothing.
+  if (session.internalReview) launch.internalReview = true;
   return launch;
 }
 
@@ -195,7 +208,9 @@ export const ExamPage: React.FC = () => {
       clearActiveSession();
       setIsSubmitModalOpen(false);
       setStage({ name: 'results', attempt, launch: launchFromSession(completedSession), edqCount });
-      if (user) {
+      // A Content Bank review run is graded and reviewable but never recorded:
+      // that is the admin checking content, not a learner sitting an exam.
+      if (user && !completedSession.internalReview) {
         void saveAttempt(user.uid, attempt).catch(() => setSaveError(true));
       }
     },
@@ -231,13 +246,16 @@ export const ExamPage: React.FC = () => {
       setStage(null);
       setSaveError(false);
       try {
-        const session = await buildFromRequest(request);
+        const built = await buildFromRequest(request);
+        // Carried on the session, not just the request, so a refresh keeps it.
+        const session = request.internalReview ? { ...built, internalReview: true } : built;
         await activateSession(session, request.kind === 'simulation' ? 'pre' : 'active');
       } catch (error) {
         if (error instanceof InsufficientBankError) {
-          navigate(request.kind === 'simulation' ? '/app/simulation' : '/app/practice', {
-            replace: true,
-          });
+          navigate(
+            request.kind === 'simulation' ? LEARNER_SIMULATION_ROUTE : LEARNER_PRACTICE_ROUTE,
+            { replace: true }
+          );
           return;
         }
         setStage({ name: 'error' });
@@ -265,7 +283,7 @@ export const ExamPage: React.FC = () => {
 
     const saved = loadActiveSession();
     if (!saved) {
-      navigate('/app/dashboard', { replace: true });
+      navigate(LEARNER_HOME_ROUTE, { replace: true });
       return;
     }
     if (saved.deadlineAt !== null && saved.deadlineAt <= Date.now()) {
@@ -386,7 +404,7 @@ export const ExamPage: React.FC = () => {
     // The session is persisted; exiting never destroys progress. Flush the
     // current passive segment before leaving so resume starts with no lost time.
     if (activeSessionForTiming) passiveTiming.stop();
-    navigate('/app/dashboard');
+    navigate(LEARNER_HOME_ROUTE);
   }, [activeSessionForTiming, navigate, passiveTiming]);
 
   const handleRetake = useCallback(
@@ -415,7 +433,7 @@ export const ExamPage: React.FC = () => {
             try again — any in-progress session stays saved on this device.
           </p>
           <button
-            onClick={() => navigate('/app/dashboard', { replace: true })}
+            onClick={() => navigate(LEARNER_HOME_ROUTE, { replace: true })}
             className="w-full min-h-[48px] rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
           >
             Back to Dashboard
@@ -481,7 +499,7 @@ export const ExamPage: React.FC = () => {
             distribution={questionIndex ? distributionOf(stage.session, questionIndex) : {}}
             isFullExam={false}
             onStartExam={startSimulation}
-            onBack={() => navigate('/app/simulation')}
+            onBack={() => navigate(LEARNER_SIMULATION_ROUTE)}
           />
         </main>
       </div>
@@ -505,7 +523,7 @@ export const ExamPage: React.FC = () => {
           questionIndex={questionIndex ?? new Map()}
           edqPresented={stage.edqCount}
           onRetake={() => handleRetake(stage.launch)}
-          onReturnToDashboard={() => navigate('/app/dashboard')}
+          onReturnToDashboard={() => navigate(LEARNER_HOME_ROUTE)}
         />
       </>
     );

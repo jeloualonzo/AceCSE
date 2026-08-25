@@ -15,7 +15,7 @@ import { ContentBankBreadcrumbs } from '@/components/contentBank/ContentBankBrea
 import { BatchCard } from '@/components/contentBank/BatchCard';
 import { CreateBatchPanel } from '@/components/contentBank/CreateBatchPanel';
 import { FamilyQuestionPicker } from '@/components/contentBank/FamilyQuestionPicker';
-import { StoreSourceNotice } from '@/components/contentBank/StoreSourceNotice';
+import { StoreDegradedNotice } from '@/components/contentBank/StoreDegradedNotice';
 import { FrozenProgressBar, ProgressBadge, StatFigure } from '@/components/contentBank/badges';
 import {
   CONTENT_BANK_BASE,
@@ -32,12 +32,18 @@ import type { Subject } from '@/types';
  * records a family and nothing narrower. If a family spans more than one task
  * format, all of it appears here and the formats are listed, so the page cannot
  * quietly show a subset of what a batch created here would cover.
+ *
+ * Ordered top to bottom by what the admin came here to do: progress, then the
+ * selection and the create action, then the batches that already exist. The
+ * batch list used to sit above the picker, which buried the one actionable step
+ * on the page below a grid that grows every time the workflow is used.
  */
 function FamilyWorkspace({ subject, familySlug }: { subject: Subject; familySlug: string }) {
   const navigate = useNavigate();
   const { catalog, error, loading } = useContentCatalog([subject]);
   const batchState = useRefinementBatches();
-  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  // Ordered, not a set: this is the order the batch stores, exports, and runs in.
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
   const workspace = useMemo(
     () => (catalog ? buildSubjectWorkspaceData(subject, catalog, batchState.batches) : null),
@@ -122,7 +128,7 @@ function FamilyWorkspace({ subject, familySlug }: { subject: Subject; familySlug
   const status = familyGroups.length === 1 ? familyGroups[0].status : undefined;
 
   const onCreated = (batch: RefinementBatch) => {
-    setSelectedIds(new Set());
+    setSelectedIds([]);
     navigate(contentBankBatchPath(batch.id));
   };
 
@@ -173,7 +179,7 @@ function FamilyWorkspace({ subject, familySlug }: { subject: Subject; familySlug
         </div>
       </header>
 
-      {!batchState.loading && <StoreSourceNotice state={batchState} />}
+      {!batchState.loading && <StoreDegradedNotice state={batchState} />}
 
       {batchState.error && (
         <p
@@ -183,28 +189,6 @@ function FamilyWorkspace({ subject, familySlug }: { subject: Subject; familySlug
           {batchState.error}
         </p>
       )}
-
-      <section aria-labelledby="family-batches-heading" className="space-y-3">
-        <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-          <h2 id="family-batches-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Batches in this family
-          </h2>
-          <span className="text-xs text-slate-500 dark:text-slate-400">
-            {familyBatches.length} {familyBatches.length === 1 ? 'batch' : 'batches'}
-          </span>
-        </div>
-        {familyBatches.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-slate-300 px-4 py-8 text-center text-xs text-slate-500 dark:border-slate-700 dark:text-slate-400">
-            No batches in this family yet.
-          </p>
-        ) : (
-          <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
-            {familyBatches.map((batch) => (
-              <BatchCard key={batch.id} batch={batch} source={batchState.sourceById[batch.id]} showFamily={false} />
-            ))}
-          </div>
-        )}
-      </section>
 
       <FamilyQuestionPicker
         questions={familyQuestions}
@@ -222,6 +206,28 @@ function FamilyWorkspace({ subject, familySlug }: { subject: Subject; familySlug
         onCreate={batchState.createBatch}
         onCreated={onCreated}
       />
+
+      <section aria-labelledby="family-batches-heading" className="space-y-3">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+          <h2 id="family-batches-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Batches in this family
+          </h2>
+          <span className="text-xs text-slate-500 dark:text-slate-400">
+            {familyBatches.length} {familyBatches.length === 1 ? 'batch' : 'batches'}
+          </span>
+        </div>
+        {familyBatches.length === 0 ? (
+          <p className="rounded-xl border border-dashed border-slate-300 px-4 py-8 text-center text-xs text-slate-500 dark:border-slate-700 dark:text-slate-400">
+            No batches in this family yet.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+            {familyBatches.map((batch) => (
+              <BatchCard key={batch.id} batch={batch} showFamily={false} />
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }

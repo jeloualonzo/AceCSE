@@ -3,11 +3,22 @@ import { Link, Navigate, useLocation } from 'react-router-dom';
 import { ShieldAlert } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { FullScreenLoader } from '@/components/FullScreenLoader';
+import { LEARNER_HOME_ROUTE } from '@/navigation/appRoutes';
+
+interface RequireAdminProps {
+  children: React.ReactNode;
+  /**
+   * Where an unauthenticated visitor is sent. The admin tree points this at the
+   * dedicated admin sign-in so a bookmarked `/admin/...` URL never drops someone
+   * into the learner sign-up flow.
+   */
+  signInPath?: string;
+}
 
 /**
- * Route guard for admin-only surfaces (the Content Bank).
+ * Route guard for the admin app.
  *
- * Three-way decision, in this order: not signed in → the auth flow; claim not
+ * Three-way decision, in this order: not signed in → the sign-in flow; claim not
  * read yet → wait; claim absent → an honest "no access" screen. The middle case
  * matters — treating "not yet known" as "not an admin" would bounce a real admin
  * on every reload.
@@ -16,7 +27,7 @@ import { FullScreenLoader } from '@/components/FullScreenLoader';
  * `firestore.rules`, which checks the same `admin` claim on the same signed
  * token, so nothing here has to be trusted for the data to be safe.
  */
-export const RequireAdmin: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const RequireAdmin: React.FC<RequireAdminProps> = ({ children, signInPath = '/auth' }) => {
   const { user, initializing, isAdmin, adminResolved } = useAuth();
   const location = useLocation();
 
@@ -25,7 +36,7 @@ export const RequireAdmin: React.FC<{ children: React.ReactNode }> = ({ children
   }
 
   if (!user) {
-    return <Navigate to="/auth" replace state={{ from: location.pathname }} />;
+    return <Navigate to={signInPath} replace state={{ from: location.pathname }} />;
   }
 
   if (!isAdmin) {
@@ -62,7 +73,7 @@ const AdminAccessDenied: React.FC = () => {
         </span>
         <h1 className="mt-5 text-xl font-semibold text-slate-900 dark:text-slate-100">Admin access required</h1>
         <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-          The Content Bank is limited to accounts that carry the AceCSE admin claim. Your practice
+          The AceCSE admin app is limited to accounts that carry the admin claim. Your practice
           history, simulations, and settings are unaffected.
         </p>
         <dl className="mt-6 space-y-3 text-sm">
@@ -88,7 +99,7 @@ const AdminAccessDenied: React.FC = () => {
             {checking ? 'Checking…' : 'Check again'}
           </button>
           <Link
-            to="/app"
+            to={LEARNER_HOME_ROUTE}
             className="inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-300 px-4 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
           >
             Back to Dashboard

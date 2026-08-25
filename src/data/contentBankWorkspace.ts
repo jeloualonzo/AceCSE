@@ -11,6 +11,7 @@ import {
   type RefinementBatch,
   type RefinementBatchStatus,
 } from '@/data/refinementBatches';
+import { isRetiredRefinementBatchId } from '@/data/retiredRefinementBatches';
 import {
   buildExportDocument,
   type BuildExportDocumentOptions,
@@ -277,6 +278,36 @@ function questionOrder(left: WorkspaceQuestion, right: WorkspaceQuestion): numbe
 }
 
 /**
+ * Is this stored row one of the retired ids?
+ *
+ * Works on `unknown` because it runs before validation, where a row is still
+ * whatever JSON.parse produced.
+ */
+function isRetiredStoredBatch(candidate: unknown): boolean {
+  if (typeof candidate !== 'object' || candidate === null) return false;
+  const id = (candidate as { id?: unknown }).id;
+  return typeof id === 'string' && isRetiredRefinementBatchId(id);
+}
+
+/**
+ * Rewrite the stored list without the retired rows, so they physically leave
+ * this browser instead of being filtered out on every future read.
+ *
+ * Silent on failure: quota limits and locked-down storage modes are real, and
+ * the filter in `readLocalRefinementBatches` already keeps a retired batch out
+ * of everything the app can see. Failing the read here would turn a cosmetic
+ * cleanup into a broken Content Bank.
+ */
+function forgetRetiredLocalBatches(kept: readonly unknown[]): void {
+  try {
+    if (kept.length === 0) window.localStorage.removeItem(WORKSPACE_BATCHES_STORAGE_KEY);
+    else window.localStorage.setItem(WORKSPACE_BATCHES_STORAGE_KEY, JSON.stringify(kept));
+  } catch {
+    /* Non-fatal — see above. */
+  }
+}
+
+/**
  * Batches this browser has stored locally.
  *
  * Exported so the source resolver can offer them to Firestore for migration —
@@ -284,6 +315,13 @@ function questionOrder(left: WorkspaceQuestion, right: WorkspaceQuestion): numbe
  * A blob that fails validation is discarded wholesale rather than partially
  * trusted, because a half-read batch would silently under-report what is
  * already claimed.
+ *
+ * Retired ids are dropped here, at the point of reading, so no caller has to
+ * remember to filter them. That ordering matters: they are removed *before*
+ * validation, because a retired batch that is also malformed would otherwise
+ * trip the wholesale discard and take every legitimate local batch down with
+ * it — and, since the discard returns early, never get rewritten away either,
+ * so it would still be sitting in storage on the next read.
  */
 export function readLocalRefinementBatches(): RefinementBatch[] {
   if (typeof window === 'undefined') return [];
@@ -291,8 +329,11 @@ export function readLocalRefinementBatches(): RefinementBatch[] {
     const raw = window.localStorage.getItem(WORKSPACE_BATCHES_STORAGE_KEY);
     if (!raw) return [];
     const parsed: unknown = JSON.parse(raw);
-    if (!Array.isArray(parsed) || validateRefinementBatches(parsed).length > 0) return [];
-    return parsed as RefinementBatch[];
+    if (!Array.isArray(parsed)) return [];
+    const kept = parsed.filter((candidate) => !isRetiredStoredBatch(candidate));
+    if (kept.length !== parsed.length) forgetRetiredLocalBatches(kept);
+    if (validateRefinementBatches(kept).length > 0) return [];
+    return kept as RefinementBatch[];
   } catch {
     return [];
   }
@@ -502,6 +543,28 @@ export function buildSubjectDashboardSummary(
 export function getQuestionPreview(question: Question, maxLength = 132): string {
   const normalized = question.question.replace(/\s+/g, ' ').trim();
   return normalized.length > maxLength ? `${normalized.slice(0, maxLength - 1)}…` : normalized;
+}
+
+/**
+ * Puts a selection back into the order the questions are listed in.
+ *
+ * A batch's `questionIds` order is not cosmetic — it is the order the review
+ * export renders, and the order the exact-ID Practice session runs. Holding the
+ * selection in a `Set` made that order depend on which checkbox was clicked
+ * first, so two admins picking the same questions produced two different
+ * batches. Resolving against the listed questions instead makes the batch a
+ * function of *what* was picked and nothing else.
+ *
+ * Ids absent from `questions` are dropped rather than appended: the only list
+ * passed here is one family's questions, and a selection that outlived the
+ * family it was made in is not a selection worth keeping.
+ */
+export function orderQuestionSelection(
+  questions: readonly WorkspaceQuestion[],
+  selectedIds: Iterable<string>,
+): string[] {
+  const wanted = new Set(selectedIds);
+  return questions.filter((item) => wanted.has(item.question.id)).map((item) => item.question.id);
 }
 
 export function getNextRemainingQuestionIds(

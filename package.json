@@ -21,6 +21,7 @@
     "test:booklet": "vitest run src/lib/examViewModel.test.ts src/components/shell/BookletExamLayout.test.tsx",
     "test": "vitest run",
     "audit:content": "node scripts/audit-content.mjs",
+    "admin:create": "node scripts/set-admin-claim.mjs --create",
     "admin:grant": "node scripts/set-admin-claim.mjs",
     "admin:revoke": "node scripts/set-admin-claim.mjs --revoke"
   },

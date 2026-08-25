@@ -10,6 +10,7 @@ import {
   createWorkspaceRefinementBatch,
   getNextRemainingQuestionIds,
   getBatchQuestions,
+  orderQuestionSelection,
   REVIEW_MARKDOWN_FORMAT,
   slugForSubject,
   subjectFromSlug,
@@ -159,6 +160,25 @@ describe('Content Bank workspace data', () => {
       readyForQaQuestionCount: 1,
       remainingQuestionCount: 1,
     });
+  });
+
+  it('resolves a selection into listed order, so a batch is a function of what was picked and not of click order', () => {
+    const catalog = testCatalog();
+    const workspace = buildSubjectWorkspaceData('Clerical Ability', catalog, []);
+    const listed = workspace.questions.map((item) => item.question.id);
+
+    // Whatever order the boxes were ticked in, the batch comes out the same:
+    // `questionIds` order drives the review export and the exact-ID Practice run,
+    // so it must not depend on the admin's mouse path.
+    expect(orderQuestionSelection(workspace.questions, listed)).toEqual(listed);
+    expect(orderQuestionSelection(workspace.questions, [...listed].reverse())).toEqual(listed);
+    expect(orderQuestionSelection(workspace.questions, new Set(['cler-test-003', 'cler-test-001']))).toEqual([
+      'cler-test-001',
+      'cler-test-003',
+    ]);
+    // A selection that outlived the family it was made in is dropped, not appended.
+    expect(orderQuestionSelection(workspace.questions, ['cler-missing', 'cler-test-002'])).toEqual(['cler-test-002']);
+    expect(orderQuestionSelection(workspace.questions, [])).toEqual([]);
   });
 
   it('treats a pre-QA batch as In Progress rather than Ready for QA, and stops re-offering its questions', () => {

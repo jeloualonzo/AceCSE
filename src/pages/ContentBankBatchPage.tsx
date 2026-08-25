@@ -1,18 +1,17 @@
 import { useMemo } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
-import { FileText, Loader2, PlayCircle, Timer } from 'lucide-react';
+import { FileText, Loader2, PlayCircle } from 'lucide-react';
 import { SUBJECTS_BY_LEVEL } from '@/config/exam';
-import { getQuestionPreview, slugForFamily } from '@/data/contentBankWorkspace';
+import { getQuestionPreview } from '@/data/contentBankWorkspace';
 import type { RefinementBatch } from '@/data/refinementBatches';
-import type { RefinementBatchSourceKind } from '@/data/refinementBatchSource';
 import { useContentCatalog } from '@/hooks/useContentCatalog';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { useRefinementBatches, type RefinementBatchesState } from '@/hooks/useRefinementBatches';
-import { useAppContext } from '@/components/shell/AppLayout';
 import { ContentBankBreadcrumbs } from '@/components/contentBank/ContentBankBreadcrumbs';
-import { StoreSourceNotice } from '@/components/contentBank/StoreSourceNotice';
+import { StoreDegradedNotice } from '@/components/contentBank/StoreDegradedNotice';
 import { WorkflowStatusControl } from '@/components/contentBank/WorkflowStatusControl';
 import { WorkflowBadge } from '@/components/contentBank/badges';
+import { EXAM_ROUTE } from '@/navigation/appRoutes';
 import {
   CONTENT_BANK_BASE,
   contentBankBatchReviewPath,
@@ -20,22 +19,39 @@ import {
   contentBankSubjectPath,
 } from '@/navigation/contentBankRoutes';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
-import type { Question, Subject } from '@/types';
+import type { ExamLevel, Question, Subject } from '@/types';
 
 /**
- * Every subject, because a batch is addressed by id alone and its questions may
- * belong to a subject the active exam level omits. Module-level so the catalog
- * hook sees a stable list.
+ * Every subject, because a batch is addressed by id alone and the admin app has
+ * no exam level of its own — a batch's questions may belong to either level.
+ * Module-level so the catalog hook sees a stable list.
  */
 const ALL_SUBJECTS: readonly Subject[] = [
   ...new Set([...SUBJECTS_BY_LEVEL.Professional, ...SUBJECTS_BY_LEVEL.Subprofessional]),
 ];
 
-const SOURCE_LABELS: Record<RefinementBatchSourceKind, string> = {
-  firestore: 'Firestore',
-  seed: 'Shipped registry — not yet in Firestore',
-  local: 'This browser only',
-};
+/**
+ * The level to record an exact-ID review run as, derived from the batch itself.
+ *
+ * Level is pure session metadata here: `buildQuestionIdsPracticeSession` loads
+ * every subject regardless, because the run is defined by its ids. Deriving it
+ * from the batch's own questions is what lets the admin app carry no selected
+ * level at all while still labelling the session honestly.
+ */
+function levelForQuestions(questions: readonly Question[]): ExamLevel {
+  const subjects = new Set(questions.map((question) => question.subject));
+  // A subject that exists at only one level pins the run to that level.
+  if ([...subjects].some((subject) => !SUBJECTS_BY_LEVEL.Subprofessional.includes(subject))) {
+    return 'Professional';
+  }
+  if ([...subjects].some((subject) => !SUBJECTS_BY_LEVEL.Professional.includes(subject))) {
+    return 'Subprofessional';
+  }
+  // Shared subjects: fall back to the questions' own level metadata.
+  return questions.some((question) => question.examLevel === 'Professional')
+    ? 'Professional'
+    : 'Subprofessional';
+}
 
 function formatTimestamp(value: string): string {
   const timestamp = Date.parse(value);
@@ -62,7 +78,6 @@ function Fact({ label, children }: { label: string; children: React.ReactNode })
  */
 function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: RefinementBatchesState }) {
   const navigate = useNavigate();
-  const { examLevel } = useAppContext();
   const { catalog, error, loading } = useContentCatalog(ALL_SUBJECTS);
 
   useDocumentTitle(batch.title);
@@ -88,17 +103,17 @@ function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: Refin
     [resolvedQuestions],
   );
   const familySubject = subjects.length === 1 ? subjects[0] : null;
-  const source = state.sourceById[batch.id];
   const exportsReady = Boolean(catalog) && missingIds.length === 0 && resolvedQuestions.length > 0;
 
   const practice = () => {
     const launch: ExamLaunchRequest = {
       kind: 'practice',
-      examLevel,
+      examLevel: levelForQuestions(resolvedQuestions),
       questionCount: batch.questionIds.length,
       questionIds: [...batch.questionIds],
+      internalReview: true,
     };
-    navigate('/app/exam', { state: { launch } });
+    navigate(EXAM_ROUTE, { state: { launch } });
   };
 
   return (
@@ -121,7 +136,7 @@ function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: Refin
           <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white">{batch.title}</h1>
           <WorkflowBadge status={batch.status} />
         </div>
-        <dl className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        <dl className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           <Fact label="Batch ID">
             <span className="font-mono text-xs">{batch.id}</span>
           </Fact>
@@ -129,6 +144,7 @@ function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: Refin
             {familySubject ? (
               <Link
                 to={contentBankFamilyPath(familySubject, batch.family)}
+                data-testid="batch-family-link"
                 className="rounded text-emerald-700 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:text-emerald-400"
               >
                 {batch.family}
@@ -142,7 +158,6 @@ function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: Refin
             {subjects.length > 0 ? subjects.join(', ') : (batch.subject ?? 'Unresolved')}
           </Fact>
           <Fact label="Created">{formatTimestamp(batch.createdAt)}</Fact>
-          <Fact label="Stored in">{source ? SOURCE_LABELS[source] : 'Unknown'}</Fact>
         </dl>
         {batch.updatedAt && (
           <p className="mt-4 text-xs text-slate-500 dark:text-slate-400">
@@ -151,7 +166,7 @@ function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: Refin
         )}
       </header>
 
-      {!state.loading && <StoreSourceNotice state={state} />}
+      {!state.loading && <StoreDegradedNotice state={state} />}
 
       {state.error && (
         <p
@@ -309,46 +324,11 @@ function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: Refin
                   Review &amp; export
                 </span>
               )}
-              <Link
-                to="/app/simulation"
-                className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-lg border border-slate-300 px-4 text-xs font-bold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
-              >
-                <Timer className="h-4 w-4" aria-hidden="true" />
-                Open Simulation
-              </Link>
             </div>
 
-            <p className="mt-4 text-xs leading-5 text-slate-500 dark:text-slate-400">
-              Practice runs the learner Practice engine on exactly these IDs, in this order, untimed and with
-              explanations. Simulation is the learner simulator unchanged — it samples the CSC blueprint and cannot be
-              narrowed to one batch, so it is a link rather than a batch action. Neither run edits question JSON.
+            <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+              Not recorded in history or analytics.
             </p>
-          </section>
-
-          <section
-            aria-labelledby="batch-family-heading"
-            className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900"
-          >
-            <h2
-              id="batch-family-heading"
-              className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
-            >
-              Family
-            </h2>
-            <p className="mt-3 text-xs leading-5 text-slate-500 dark:text-slate-400">
-              This batch belongs to {batch.family}. New batches for the same family are created from its workspace, which
-              numbers them automatically.
-            </p>
-            {familySubject && (
-              <Link
-                to={contentBankFamilyPath(familySubject, batch.family)}
-                data-testid="batch-family-link"
-                data-family-slug={slugForFamily(batch.family)}
-                className="mt-4 inline-flex min-h-11 items-center rounded-lg border border-slate-300 px-4 text-xs font-bold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
-              >
-                Open {batch.family} workspace
-              </Link>
-            )}
           </section>
         </div>
       </div>

@@ -175,6 +175,19 @@ export function simulationOptions(level: ExamLevel): SimulationOption[] {
   });
 }
 
+/**
+ * The full official examination for a level — the one simulation AceCSE offers.
+ *
+ * `simulationOptions` always contains it, because its size comes straight from
+ * `EXAM_FRAMEWORK`; the throw is a guard against that invariant being broken
+ * later, not a case a caller has to handle.
+ */
+export function fullSimulationOption(level: ExamLevel): SimulationOption {
+  const full = simulationOptions(level).find((option) => option.isFullExam);
+  if (!full) throw new Error(`No full examination is defined for ${level}.`);
+  return full;
+}
+
 /** Fisher–Yates shuffle (non-mutating). */
 function shuffled<T>(items: readonly T[], random = Math.random): T[] {
   const copy = [...items];

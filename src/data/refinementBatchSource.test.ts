@@ -112,6 +112,32 @@ describe('refinement batch source precedence', () => {
     expect(resolved.batches).toHaveLength(1);
     expect(resolved.unseededIds).toEqual([]);
   });
+
+  it('drops a retired batch from every layer, including Firestore', () => {
+    const resolved = mergeRefinementBatchSources({
+      firestore: [batch({ id: 'batch2' }), batch({ id: 'stored-01' })],
+      seed: [batch({ id: 'batch2' })],
+      local: [batch({ id: 'batch2' })],
+    });
+
+    // Filtering only the local layer would stop the migration re-creating the
+    // document but would still show one that is already stored.
+    expect(resolved.batches.map((entry) => entry.id)).toEqual(['stored-01']);
+    expect(resolved.sourceById['batch2']).toBeUndefined();
+  });
+
+  it('never queues a retired batch for migration', () => {
+    const resolved = mergeRefinementBatchSources({
+      firestore: [],
+      seed: [],
+      local: [batch({ id: 'batch2' }), batch({ id: 'local-only-01' })],
+    });
+
+    // This is the loop that resurrected batch2: a browser copy Firestore does
+    // not have looks unseeded, and the create-only migration writes it back on
+    // the next admin page mount. The legitimate local batch must still migrate.
+    expect(resolved.unseededIds).toEqual(['local-only-01']);
+  });
 });
 
 describe('refinement batch loading falls back honestly', () => {

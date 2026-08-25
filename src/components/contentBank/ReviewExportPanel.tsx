@@ -6,7 +6,6 @@ import {
 } from '@/data/contentBankWorkspace';
 import type { RefinementBatch } from '@/data/refinementBatches';
 import {
-  characterCountCountingBreaksAsTwo,
   exportDocumentIntegrityErrors,
   type ExportDocument,
 } from '@/lib/exportText';
@@ -223,23 +222,11 @@ export function ReviewExportPanel({
 
       {document && (
         <>
-          <dl className="grid grid-cols-2 gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:grid-cols-4 dark:border-slate-700 dark:bg-slate-950">
+          <dl className="grid grid-cols-2 gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:grid-cols-3 dark:border-slate-700 dark:bg-slate-950">
             <Figure label="Total characters" value={formatCount(document.characterCount)} />
             <Figure label="Chunks" value={formatCount(document.chunks.length)} hint={`${formatCount(document.chunkCharacterLimit)} max each`} />
-            <Figure label="Line breaks" value={formatCount(document.lineBreakCount)} hint={document.lineEnding === 'CRLF' ? 'CRLF, 2 characters each' : 'LF, 1 character each'} />
-            <Figure
-              label="On the clipboard"
-              value={formatCount(characterCountCountingBreaksAsTwo(document))}
-              hint="Windows adds a CR per line"
-            />
+            <Figure label="Line breaks" value={formatCount(document.lineBreakCount)} />
           </dl>
-
-          <p className="text-[11px] leading-5 text-slate-500 dark:text-slate-400">
-            Counted as {document.lineEnding}, one character per line break — the convention Notepad and the paste target
-            report. Windows expands each break to CRLF on the clipboard and the destination collapses it again, so the
-            total above is what you will see after pasting. Copy with the buttons below; hand-selecting from a preview
-            copies the browser&apos;s own rendering, which may not match these counts.
-          </p>
 
           {status && <StatusMessage tone={status.tone} message={status.message} />}
 

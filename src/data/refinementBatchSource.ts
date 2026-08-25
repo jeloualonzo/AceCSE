@@ -5,6 +5,7 @@ import {
   type RefinementBatchStatus,
 } from '@/data/refinementBatches';
 import { persistLocalRefinementBatch, readLocalRefinementBatches } from '@/data/contentBankWorkspace';
+import { withoutRetiredRefinementBatches } from '@/data/retiredRefinementBatches';
 import {
   createRefinementBatch,
   fetchRefinementBatches,
@@ -77,11 +78,24 @@ export function mergeRefinementBatchSources(input: RefinementBatchSourceInput): 
   const resolved = new Map<string, RefinementBatch>();
   const sourceById: Record<string, RefinementBatchSourceKind> = {};
 
+  // Retired ids leave every layer here, Firestore included. Filtering only the
+  // local layer would be enough to stop the migration re-creating a retired
+  // document, but not to stop one that is *already* stored — or one another
+  // machine seeded before it picked up this build — from showing in the batch
+  // list. Doing it once, at the merge, means a single rule covers all three
+  // stores and nothing downstream can reintroduce them: `unseededIds` is
+  // derived from these same filtered layers, so migration never queues one.
+  const seed = withoutRetiredRefinementBatches(input.seed);
+  const local = withoutRetiredRefinementBatches(input.local);
+  // `null` means Firestore was never reached, which is not the same as empty and
+  // must survive the filter — `unseededIds` depends on the distinction.
+  const firestore = input.firestore === null ? null : withoutRetiredRefinementBatches(input.firestore);
+
   // Lowest precedence first; later stores overwrite earlier ones.
   const layers: { kind: RefinementBatchSourceKind; batches: readonly RefinementBatch[] }[] = [
-    { kind: 'seed', batches: input.seed },
-    { kind: 'local', batches: input.local },
-    { kind: 'firestore', batches: input.firestore ?? [] },
+    { kind: 'seed', batches: seed },
+    { kind: 'local', batches: local },
+    { kind: 'firestore', batches: firestore ?? [] },
   ];
   for (const layer of layers) {
     for (const batch of layer.batches) {
@@ -90,10 +104,10 @@ export function mergeRefinementBatchSources(input: RefinementBatchSourceInput): 
     }
   }
 
-  const stored = new Set((input.firestore ?? []).map((batch) => batch.id));
-  const unseededIds = input.firestore === null
+  const stored = new Set((firestore ?? []).map((batch) => batch.id));
+  const unseededIds = firestore === null
     ? []
-    : [...new Set([...input.seed, ...input.local].map((batch) => batch.id))].filter((id) => !stored.has(id));
+    : [...new Set([...seed, ...local].map((batch) => batch.id))].filter((id) => !stored.has(id));
 
   return { batches: getRefinementBatches([...resolved.values()]), sourceById, unseededIds };
 }

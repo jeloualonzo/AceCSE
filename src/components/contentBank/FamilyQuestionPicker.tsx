@@ -3,6 +3,7 @@ import { Check, Search, X } from 'lucide-react';
 import {
   getNextRemainingQuestionIds,
   getQuestionPreview,
+  orderQuestionSelection,
   type WorkspaceQuestion,
   type WorkspaceQuestionState,
 } from '@/data/contentBankWorkspace';
@@ -19,6 +20,10 @@ import { Link } from 'react-router-dom';
  * into one batch. Only `remaining` questions are selectable — a question already
  * claimed by a batch shows which batch has it instead, so the answer to "why
  * can't I pick this one" is on screen rather than implied by a disabled control.
+ *
+ * The selection is an ordered list, not a set: every control writes it back
+ * through {@link orderQuestionSelection}, so the batch that comes out is the
+ * same whichever order the boxes were ticked in.
  */
 
 const ALL = 'All';
@@ -62,8 +67,8 @@ export function FamilyQuestionPicker({
   onChangeSelection,
 }: {
   questions: readonly WorkspaceQuestion[];
-  selectedIds: ReadonlySet<string>;
-  onChangeSelection: (ids: Set<string>) => void;
+  selectedIds: readonly string[];
+  onChangeSelection: (ids: string[]) => void;
 }) {
   const [query, setQuery] = useState('');
   const [difficulty, setDifficulty] = useState<DifficultyFilter>(ALL);
@@ -71,6 +76,7 @@ export function FamilyQuestionPicker({
   const [state, setState] = useState<StateFilter>('remaining');
   const [nextCount, setNextCount] = useState('10');
   const normalizedQuery = query.trim().toLowerCase();
+  const selected = useMemo(() => new Set(selectedIds), [selectedIds]);
 
   const visibleQuestions = useMemo(
     () =>
@@ -88,17 +94,20 @@ export function FamilyQuestionPicker({
   const visibleRemaining = visibleQuestions.filter((item) => item.state === 'remaining');
   const allRemaining = questions.filter((item) => item.state === 'remaining');
 
+  /** Single write path, so no control can leave the selection out of order. */
+  const select = (ids: Iterable<string>) => onChangeSelection(orderQuestionSelection(questions, ids));
+
   const toggle = (item: WorkspaceQuestion) => {
     if (item.state !== 'remaining') return;
-    const next = new Set(selectedIds);
+    const next = new Set(selected);
     if (next.has(item.question.id)) next.delete(item.question.id);
     else next.add(item.question.id);
-    onChangeSelection(next);
+    select(next);
   };
   const selectNext = () => {
     const count = Number.parseInt(nextCount, 10);
     if (!Number.isFinite(count) || count <= 0) return;
-    onChangeSelection(new Set(getNextRemainingQuestionIds({ questions: visibleQuestions }, count)));
+    select(getNextRemainingQuestionIds({ questions: visibleQuestions }, count));
   };
 
   return (
@@ -106,11 +115,12 @@ export function FamilyQuestionPicker({
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h2 id="question-picker-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Questions in this family
+            Select questions for the next batch
           </h2>
           <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-            Remaining means no refinement batch has claimed the question yet. Only remaining questions can be added to a new
-            batch.
+            {allRemaining.length === 0
+              ? 'Every question in this family has been claimed by a batch. Nothing is left to select.'
+              : `${allRemaining.length} ${allRemaining.length === 1 ? 'question is' : 'questions are'} still unclaimed. Only unclaimed questions can go into a new batch; the rest show which batch already has them.`}
           </p>
         </div>
         <div className="flex gap-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
@@ -122,7 +132,7 @@ export function FamilyQuestionPicker({
           </span>
           <span>
             <span data-testid="selected-question-count" className="text-slate-900 dark:text-white">
-              {selectedIds.size}
+              {selectedIds.length}
             </span>{' '}
             selected
           </span>
@@ -163,7 +173,7 @@ export function FamilyQuestionPicker({
         <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-slate-100 pt-4 dark:border-slate-800">
           <button
             type="button"
-            onClick={() => onChangeSelection(new Set(allRemaining.map((item) => item.question.id)))}
+            onClick={() => select(allRemaining.map((item) => item.question.id))}
             disabled={allRemaining.length === 0}
             className={CHIP_CLASS}
           >
@@ -172,7 +182,7 @@ export function FamilyQuestionPicker({
           </button>
           <button
             type="button"
-            onClick={() => onChangeSelection(new Set(visibleRemaining.map((item) => item.question.id)))}
+            onClick={() => select(visibleRemaining.map((item) => item.question.id))}
             disabled={visibleRemaining.length === 0}
             className={CHIP_CLASS}
           >
@@ -197,8 +207,8 @@ export function FamilyQuestionPicker({
           </button>
           <button
             type="button"
-            onClick={() => onChangeSelection(new Set())}
-            disabled={selectedIds.size === 0}
+            onClick={() => onChangeSelection([])}
+            disabled={selectedIds.length === 0}
             className="inline-flex min-h-[38px] items-center gap-1.5 rounded-lg border border-slate-200 px-3 text-xs font-bold text-slate-500 transition hover:text-red-700 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:text-slate-400 dark:hover:text-red-400"
           >
             <X className="h-3.5 w-3.5" aria-hidden="true" />
@@ -208,9 +218,15 @@ export function FamilyQuestionPicker({
       </div>
 
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-        <div className="overflow-x-auto">
+        {/*
+          Height-capped on purpose. A family can hold ninety unclaimed questions,
+          and letting the table run its full length pushed the Create action so
+          far down the page that the workflow read as missing. The header row
+          sticks so the columns stay identified while scrolling.
+        */}
+        <div className="max-h-[30rem] overflow-auto">
           <table className="min-w-[760px] w-full text-left text-xs">
-            <thead className="border-b border-slate-200 bg-slate-50 text-[10px] uppercase tracking-wider text-slate-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400">
+            <thead className="sticky top-0 z-10 border-b border-slate-200 bg-slate-50 text-[10px] uppercase tracking-wider text-slate-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400">
               <tr>
                 <th scope="col" className="w-10 px-3 py-3">
                   <span className="sr-only">Select</span>
@@ -245,7 +261,7 @@ export function FamilyQuestionPicker({
                       <input
                         type="checkbox"
                         aria-label={`Select ${item.question.id}`}
-                        checked={selectedIds.has(item.question.id)}
+                        checked={selected.has(item.question.id)}
                         disabled={!canSelect}
                         onChange={() => toggle(item)}
                         className="mt-0.5 h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"

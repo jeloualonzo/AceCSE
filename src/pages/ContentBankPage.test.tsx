@@ -21,6 +21,7 @@ import {
 } from '@/lib/examEngine';
 import { EXPORT_CHUNK_CHARACTER_LIMIT } from '@/lib/exportText';
 import { NAV_ITEMS } from '@/navigation/navConfig';
+import { EXAM_ROUTE } from '@/navigation/appRoutes';
 import {
   CONTENT_BANK_BASE,
   CONTENT_BANK_BATCH_SEGMENT,
@@ -74,13 +75,11 @@ vi.mock('@/services/refinementBatchStore', () => {
   };
 });
 
-vi.mock('@/components/shell/AppLayout', () => ({
-  useAppContext: () => ({
-    examLevel: 'Subprofessional',
-    setExamLevel: vi.fn(),
-  }),
-}));
-
+/**
+ * No shell-context mock: no Content Bank page reads the outlet context. The
+ * admin app carries no selected exam level, so a batch's own questions decide
+ * what level an exact-ID review run is recorded under — asserted below.
+ */
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
   return { ...actual, useNavigate: () => navigateMock };
@@ -159,7 +158,7 @@ describe('Content Bank dashboard', () => {
   it('renders all current subjects as reusable workspace entry points', () => {
     renderRoute(CONTENT_BANK_ROUTE);
 
-    expect(CONTENT_BANK_ROUTE).toBe('/app/content-bank');
+    expect(CONTENT_BANK_ROUTE).toBe('/admin/content-bank');
     expect(screen.getByRole('heading', { name: 'Content Bank', level: 1 })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Subject Workspaces' })).toBeInTheDocument();
     expect(screen.getByTestId('content-bank-subject-count')).toHaveTextContent('5 subjects');
@@ -225,7 +224,7 @@ describe('Content Bank dashboard', () => {
     }
   });
 
-  it('shows recent refinement batches newest first, labelled with the store they came from', async () => {
+  it('shows recent refinement batches newest first, with facts and no store labels', async () => {
     const registry = getRefinementBatches();
     expect(registry.length).toBeGreaterThan(6);
     renderRoute(CONTENT_BANK_ROUTE);
@@ -233,9 +232,55 @@ describe('Content Bank dashboard', () => {
     await waitFor(() => expect(batchIdsInOrder()).toEqual(registry.slice(0, 6).map((batch) => batch.id)));
     expect(screen.getByTestId('refinement-count-grammar-pilot-01')).toHaveTextContent('4');
     expect(document.querySelector('[data-refinement-batch="grammar-pilot-01"]')).toHaveTextContent('Grammar & Usage');
-    // Firestore is refused here, so a shipped batch must say so rather than
-    // imply it is stored and shared.
-    expect(screen.getByTestId('refinement-source-grammar-pilot-01')).toHaveTextContent('Shipped registry');
+    // Which store a batch came from is not narrated per row. The one case that
+    // changes what a batch means — writes falling back to this browser — is said
+    // once for the page by StoreDegradedNotice, asserted below.
+    expect(screen.queryByText(/Stored in|Shipped registry/)).not.toBeInTheDocument();
+    expect(screen.getByText('Saving to this browser only')).toBeInTheDocument();
+  });
+
+  it('never lists the retired batch2, and clears it out of this browser', async () => {
+    // Exactly the shape the pre-Firestore Content Bank left behind: ten
+    // arbitrary Clerical Ability ids under a real family. Dated newest of all,
+    // so an unfiltered list would put it first — the assertion cannot pass by
+    // the row simply falling off the end of the six shown.
+    const legitimate = {
+      id: 'clerical-ops-check-01',
+      title: 'Clerical Ops Check 1',
+      family: 'Filing & Alphabetizing',
+      status: 'builder',
+      createdAt: '2026-08-23T15:00:00+08:00',
+      questionIds: ['cler-0056'],
+    };
+    localStorage.setItem(WORKSPACE_BATCHES_STORAGE_KEY, JSON.stringify([
+      {
+        id: 'batch2',
+        title: 'Batch 2',
+        family: 'Clerical Operations',
+        status: 'needs-content',
+        createdAt: '2026-08-23T16:00:00+08:00',
+        questionIds: Array.from({ length: 10 }, (_, index) => `cler-${String(index + 1).padStart(4, '0')}`),
+      },
+      legitimate,
+    ]));
+    renderRoute(CONTENT_BANK_ROUTE);
+    await batchesLoaded();
+
+    // The batch list an admin actually sees: the legitimate local batch, then the
+    // shipped registry. No batch2 anywhere in it.
+    await waitFor(() =>
+      expect(batchIdsInOrder()).toEqual([
+        legitimate.id,
+        ...getRefinementBatches().slice(0, 5).map((batch) => batch.id),
+      ])
+    );
+    expect(document.querySelector('[data-refinement-batch="batch2"]')).toBeNull();
+    expect(screen.queryByTestId('refinement-count-batch2')).not.toBeInTheDocument();
+
+    // And it is gone from storage, so the next session has nothing to resurrect
+    // and nothing to migrate into Firestore. Filtering the render alone would
+    // leave the row sitting here.
+    expect(JSON.parse(localStorage.getItem(WORKSPACE_BATCHES_STORAGE_KEY) ?? '[]')).toEqual([legitimate]);
   });
 });
 
@@ -253,11 +298,20 @@ describe('Content Bank workspaces', () => {
       workspace.families.map((family) => slugForFamily(family.family))
     );
     rows.forEach((row, index) => {
-      // One link per row, resolved from that row's own family, so a family that
-      // spans two task formats cannot borrow another row's link.
-      expect(within(row).getByRole('link')).toHaveAttribute(
-        'href',
-        contentBankFamilyPath('Clerical Ability', workspace.families[index].family)
+      const family = workspace.families[index];
+      const href = contentBankFamilyPath('Clerical Ability', family.family);
+      // Every link in the row resolves from that row's own family, so a family
+      // that spans two task formats cannot borrow another row's destination.
+      const links = within(row).getAllByRole('link');
+      expect(links).not.toHaveLength(0);
+      links.forEach((link) => expect(link).toHaveAttribute('href', href));
+      // A row that highlights on hover has to be openable by more than its name:
+      // the last column names the next step, and it is a real link so the
+      // keyboard reaches it too.
+      expect(links.at(-1)).toHaveAccessibleName(
+        family.remainingQuestionIds.length > 0
+          ? `Select questions in ${family.family} (${family.remainingQuestionIds.length} remaining)`
+          : `Review ${family.family}`
       );
     });
     // Batches belong to exactly one family, so they are created a level deeper.
@@ -290,18 +344,20 @@ describe('Content Bank workspaces', () => {
       'href',
       contentBankBatchReviewPath(batch.id)
     );
-    // Simulation is the learner simulator, reached unchanged — not a second
-    // engine narrowed to this batch.
-    expect(screen.getByRole('link', { name: 'Open Simulation' })).toHaveAttribute('href', '/app/simulation');
 
     await user.click(screen.getByRole('button', { name: `Practice these ${batch.questionIds.length} questions` }));
-    expect(navigateMock).toHaveBeenCalledWith('/app/exam', {
+    // The exact IDs, in order, through the learner exam route. `internalReview`
+    // is what keeps this graded and reviewable but never written as an attempt.
+    // The level is derived from the batch itself — Clerical Ability exists only
+    // at Subprofessional — because the admin app has no selected level to read.
+    expect(navigateMock).toHaveBeenCalledWith(EXAM_ROUTE, {
       state: {
         launch: {
           kind: 'practice',
           examLevel: 'Subprofessional',
           questionCount: batch.questionIds.length,
           questionIds: batch.questionIds,
+          internalReview: true,
         },
       },
     });
@@ -377,7 +433,18 @@ describe('Content Bank workspaces', () => {
     await user.click(screen.getByRole('button', { name: 'Select next N' }));
     expect(screen.getByTestId('selected-question-count')).toHaveTextContent('3');
 
-    await user.click(screen.getByRole('button', { name: 'Create batch' }));
+    // The selection is explicit and ordered on screen before anything is saved:
+    // this order is what the batch stores, what the review export renders, and
+    // what the exact-ID Practice run plays.
+    expect(
+      [...within(createPanel).getByTestId('selected-question-ids').querySelectorAll('li')].map((item) =>
+        item.textContent?.replace(/^\d+\.\s*/, '')
+      )
+    ).toEqual(remaining.slice(0, 3));
+
+    // The action names the batch it will create, counted — nothing is created
+    // that was not read first.
+    await user.click(screen.getByRole('button', { name: `Create ${expectedName.title} (3 questions)` }));
 
     await waitFor(() => expect(navigateMock).toHaveBeenCalledWith(contentBankBatchPath(expectedName.id)));
     const stored = JSON.parse(localStorage.getItem(WORKSPACE_BATCHES_STORAGE_KEY) ?? '[]') as Array<{
@@ -396,9 +463,87 @@ describe('Content Bank workspaces', () => {
     });
     // Exactly the questions that were selected, in the order shown.
     expect(stored[0].questionIds).toEqual(remaining.slice(0, 3));
+    // The batch is on the page as a row with its facts — and the browser-only
+    // fallback is stated once for the page rather than on the row itself.
     await waitFor(() =>
-      expect(screen.getByTestId(`refinement-source-${expectedName.id}`)).toHaveTextContent('This browser only')
+      expect(document.querySelector(`[data-refinement-batch="${expectedName.id}"]`)).not.toBeNull()
     );
+    expect(screen.getByText('Saving to this browser only')).toBeInTheDocument();
+  }, SLOW);
+
+  it('opens a family from its row, scopes the picker to that family, and orders the selection independently of click order', async () => {
+    const user = userEvent.setup();
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+    const workspace = buildSubjectWorkspaceData('Clerical Ability', catalog, getRefinementBatches());
+    const { family, slug, remaining } = await familyWithRemaining('Clerical Ability', 3);
+    // Everything in the family, in workspace order — the picker's own order.
+    const familyQuestionIds = workspace.questions
+      .filter((item) => slugForFamily(item.family) === slug)
+      .map((item) => item.question.id);
+    const outsideFamily = workspace.questions
+      .filter((item) => slugForFamily(item.family) !== slug)
+      .map((item) => item.question.id);
+    expect(outsideFamily.length).toBeGreaterThan(0);
+
+    renderRoute(contentBankSubjectPath('Clerical Ability'));
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'Clerical Ability', level: 1 })).toBeInTheDocument(), {
+      timeout: SLOW,
+    });
+
+    // The click an admin actually makes: the row's action, not a bare page URL.
+    await user.click(
+      screen.getByRole('link', { name: `Select questions in ${family} (${remaining.length} remaining)` })
+    );
+    await waitFor(() => expect(screen.getByRole('heading', { name: family, level: 1 })).toBeInTheDocument(), {
+      timeout: SLOW,
+    });
+    await batchesLoaded();
+
+    // The selection workflow leads the page and the existing batches sit below
+    // it: the actionable step is not buried under a grid that grows every time
+    // the workflow is used.
+    expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)).toEqual([
+      'Select questions for the next batch',
+      'Create refinement batch',
+      'Batches in this family',
+    ]);
+
+    const rowIds = () =>
+      [...document.querySelectorAll<HTMLElement>('[data-question-row]')].map((node) => node.dataset.questionRow);
+    // Unclaimed only by default — the questions a new batch can actually take.
+    expect(rowIds()).toEqual(remaining);
+    // With the state filter opened up: this family entire, and nothing else in
+    // the subject. Mixing two families into one batch is not reachable from here.
+    await user.selectOptions(screen.getByLabelText('Refinement state'), 'All');
+    expect(rowIds()).toEqual(familyQuestionIds);
+    expect(rowIds().filter((id) => outsideFamily.includes(id!))).toEqual([]);
+
+    // Ticked back to front. The stored order still follows the family listing,
+    // so the same three questions produce the same batch whoever picks them.
+    const reversed = [...remaining.slice(0, 3)].reverse();
+    for (const questionId of reversed) {
+      await user.click(screen.getByRole('checkbox', { name: `Select ${questionId}` }));
+    }
+    expect(screen.getByTestId('selected-question-count')).toHaveTextContent('3');
+    expect(
+      [...screen.getByTestId('selected-question-ids').querySelectorAll('li')].map((item) =>
+        item.textContent?.replace(/^\d+\.\s*/, '')
+      )
+    ).toEqual(remaining.slice(0, 3));
+
+    await user.click(
+      screen.getByRole('button', {
+        name: `Create ${generateRefinementBatchName(family, getRefinementBatches()).title} (3 questions)`,
+      })
+    );
+    const storedBatches = () =>
+      JSON.parse(localStorage.getItem(WORKSPACE_BATCHES_STORAGE_KEY) ?? '[]') as Array<{
+        family: string;
+        questionIds: string[];
+      }>;
+    await waitFor(() => expect(storedBatches()).toHaveLength(1));
+    expect(storedBatches()[0].family).toBe(family);
+    expect(storedBatches()[0].questionIds).toEqual(remaining.slice(0, 3));
   }, SLOW);
 
   it('blocks Practice and export for a batch whose IDs no longer resolve instead of quietly shrinking it', async () => {
@@ -415,7 +560,10 @@ describe('Content Bank workspaces', () => {
     await waitFor(() => expect(screen.getByRole('heading', { name: 'UI Broken Batch', level: 1 })).toBeInTheDocument(), {
       timeout: SLOW,
     });
-    const alert = await waitFor(() => screen.getByRole('alert'));
+    // Scoped to the actions section: the store is also degraded in this test
+    // (batches came from localStorage), and that notice is an alert of its own.
+    const actions = screen.getByRole('region', { name: 'Run and review' });
+    const alert = await waitFor(() => within(actions).getByRole('alert'));
     expect(alert).toHaveTextContent('Practice and export are unavailable.');
     expect(alert).toHaveTextContent('cler-9999');
     expect(screen.getByRole('button', { name: 'Practice these 2 questions' })).toBeDisabled();

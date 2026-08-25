@@ -16,21 +16,46 @@ lie to the user**. No fake data, no inflated question counts, no fabricated prog
   provider linking so a Google user can add a password to the same uid (Settings → Account).
   Firestore profiles + attempt history with offline persistence, plus a create-only
   `feedback` collection, least-privilege rules in `firestore.rules`.
-- Both examination levels are live. The active level is a first-class user setting
-  (`useExamLevel`: localStorage for instant load + `preferredExamLevel` on the Firestore
-  profile for cross-device sync), selected in Settings and provided to every page via the
-  AppLayout outlet context. Dashboard/analytics filter attempts to the active level.
+- Both examination levels are live, and there is **no app-wide "active level"**: every screen
+  shows all applicable content. Simulation offers the two examinations as two cards; Practice
+  derives its per-level options from `SUBJECTS_BY_LEVEL` + build-time supply
+  (`src/lib/practiceLevels.ts`); Dashboard and History show every attempt and label each one
+  with its own `examLevel`. A level belongs to a session, a question, or an attempt — never to
+  the application.
+- Two application experiences, one sign-in: the **learner app** (`/app/*`) and a genuinely
+  separate **admin app** (`/admin/*`) with its own login, layout, sidebar, dashboard, and
+  navigation — Content Bank and the refinement workspaces.
+  Admin authority is the Firebase custom claim `admin: true`; accounts are created with
+  `npm run admin:create` (interactive password prompt, never a flag or a file). See
+  docs/admin/ADMIN_ACCESS.md.
 
 ## Architecture
 
+Two applications behind one sign-in. Post-login routing is role-aware.
+
 ```
-Landing (/) → Auth (/auth) → App shell (/app/*) → Exam focus mode (/app/exam)
+Landing (/) → Auth (/auth) → Learner shell (/app/*) → Exam focus mode (/app/exam)
+Admin login (/admin/login) → Admin shell (/admin/*) → Exam focus mode (/app/exam)
 ```
 
 - **Route guards:** `RequireAuth` protects `/app/*` (guests → `/auth` with a `from` deep link);
-  `RedirectWhenAuthed` makes `/` and `/auth` guest-only (signed-in users → dashboard). Sign-out
-  uses the `signingOut` flag in AuthContext so the landing page renders during the transition
-  without bouncing back into the app.
+  `RequireAdmin` protects the whole `/admin` tree (guests → `/admin/login`, signed-in non-admins →
+  an honest refusal screen, never a redirect); `RedirectWhenAuthed` makes `/`, `/auth`, and
+  `/admin/login` guest-only. Guards are on the parent route, so a page added later cannot ship
+  ungated by omission. Both guards **wait** on `adminResolved` rather than reading "not yet known"
+  as "not an admin" — the claim is read asynchronously off the ID token. Sign-out uses the
+  `signingOut` flag in AuthContext so the landing page renders during the transition without
+  bouncing back into the app.
+- **Learner vs admin:** `AppLayout` (learner) and `AdminLayout` share `shellContext.ts` but nothing
+  else — separate header, sidebar, nav config (`navConfig.ts` vs `adminNavConfig.ts`), and
+  dashboard. Content Bank and the refinement workspaces are admin-only and must never appear in
+  learner navigation. `src/navigation/appRoutes.ts` is the single source of route constants for
+  both trees; `appRoutes.test.ts` asserts the two navigations share no path.
+- **Content review runs:** the Batch Workspace launches the real learner `PracticePage`/`ExamPage`
+  on an exact list of question ids — no second engine. `ExamSession.internalReview` (set from
+  `ExamLaunchRequest.internalReview`) is the ONLY flag that suppresses the Firestore write in
+  `ExamPage`'s `finishWith`, so the run is graded and reviewable but never enters learner History
+  or analytics. Nothing else sets it. See docs/admin/ADMIN_ACCESS.md.
 - **Code splitting:** every page is a `React.lazy` route chunk. Firestore is only reached through
   dynamic imports in `src/services/*` (facade + `*Impl.ts`) and lives in its own chunk — never
   import `src/lib/firestore.ts` statically.
@@ -45,9 +70,11 @@ Landing (/) → Auth (/auth) → App shell (/app/*) → Exam focus mode (/app/ex
 - **`src/lib/examEngine.ts`** — honest session generation. Samples WITHOUT replacement,
   never relabels subjects, throws `InsufficientBankError` instead of repeating questions.
   Simulation tiers are offered only when every subject has enough unique supply
-  (`simulationOptions`, synchronous via the build-time manifest). Session builders are
-  async — they lazy-load only the subjects the session needs. Largest-remainder method
-  scales distributions.
+  (`simulationOptions`, synchronous via the build-time manifest); the UI now surfaces only the
+  full examination for each level, via `fullSimulationOption(level)`. The shortened 20/50/100
+  tiers remain in the configuration and are deliberately unreachable — a shortened run is not a
+  simulation. Session builders are async — they lazy-load only the subjects the session needs.
+  Largest-remainder method scales distributions.
 - **`src/lib/grading.ts`** — pure `gradeSession(session, index) → Attempt`.
 - **`src/lib/analytics.ts`** — all dashboard stats derive from real attempts; fields are
   `null` (rendered as honest empty states) when no data exists.
@@ -56,7 +83,9 @@ Landing (/) → Auth (/auth) → App shell (/app/*) → Exam focus mode (/app/ex
 - **`src/lib/sessionStorage.ts`** — active session persists to localStorage on every answer;
   `ExamPage` resumes it after refresh/crash. Expired timed sessions grade as-is at deadline.
 - **`src/pages/ExamPage.tsx`** — owns the session state machine: `pre → active → results`.
-  Launches come from router state (`ExamLaunchRequest`); resume comes from localStorage.
+  Launches come from router state (`ExamLaunchRequest`); resume comes from localStorage. The
+  `internalReview` flag rides on `ExamSession` (not `SessionConfig`), so it survives a refresh and
+  still cannot reach Firestore — `gradeSession` builds the Attempt from an explicit field whitelist.
 - **`src/context/AuthContext.tsx`** — Google popup + email/password (sign-in, sign-up with
   display name, password reset) and `linkEmailPassword` provider linking. Unauthenticated
   visitors never reach the app shell (RequireAuth).
@@ -64,7 +93,7 @@ Landing (/) → Auth (/auth) → App shell (/app/*) → Exam focus mode (/app/ex
 ## Firestore
 
 ```
-users/{uid}                    profile (displayName, email, isAnonymous, preferredExamLevel, timestamps)
+users/{uid}                    profile (displayName, email, isAnonymous, timestamps)
 users/{uid}/attempts/{id}      immutable Attempt records (mode, level, counts, percentage,
                                passed, durations, subjects[], items[] ≤ 200)
 feedback/{id}                  create-only user feedback (uid, email, category, message,
@@ -72,7 +101,9 @@ feedback/{id}                  create-only user feedback (uid, email, category, 
 ```
 
 Rules: default-deny, owner-only access, attempts immutable after create, field validation on
-writes, `createdAt` immutable on profile updates. Questions ship as static JSON (no Firestore
+writes, `createdAt` immutable on profile updates. `preferredExamLevel` is still an *optional*
+allowed key in the profile rules — the client no longer writes it, and the key was deliberately
+left in place so legacy documents stay writable. Questions ship as static JSON (no Firestore
 reads) as lazy per-file chunks, so bank growth no longer affects the initial payload; migrate to
 a `questions` collection only if moderation/hotfix speed or non-engineer authorship demands it
 (see docs/content/CONTENT_PIPELINE.md, "Firestore migration path").
@@ -106,14 +137,31 @@ a `questions` collection only if moderation/hotfix speed or non-engineer authors
 ## Known Limitations / Next Steps
 
 - (resolved 2026-08) Subprofessional full exam unlocked — Clerical Ability supply is 53 ≥ 35.
-- No tests yet — the engine (`examEngine`, `grading`, `analytics`) is pure and highly testable;
-  add Vitest when test infra lands.
+- Vitest is in place (`npm test`). Coverage is deepest where correctness is load-bearing: the pure
+  engine (`examEngine`, `grading`, `analytics`), route/nav separation, the admin guards, the
+  Markdown export/chunking, the Practice level derivation (`practiceLevels`), and both directions
+  of the attempt-persistence gate (`src/pages/attemptPersistence.test.tsx`). Simulation, Dashboard,
+  and History now have page tests too; most other page components are still untested.
 - Attempt review stores question ids; if a question is removed from the bank, grading skips it
   and ResultsScreen hides it gracefully. Prefer deactivating over deleting bank questions.
 - Bookmarks, notes, admin moderation, PWA — see README roadmap. (Google↔password provider linking shipped.)
 
 ## Product Rules (owner-set — do not "improve" without asking)
 
+- **Learner and admin are two experiences, not one experience with extra pages.** The admin app
+  gets its own layout, sidebar, dashboard, and navigation hierarchy inside AceCSE's design
+  language. Never build it as the learner shell with Content Bank bolted on, and never surface an
+  admin destination in learner navigation. Admins reach the learner app only through the explicit
+  **View Learner App** action, which uses the real learner engine — never a copy.
+- **Admin authority is the `admin: true` custom claim, enforced in `firestore.rules`.** Client
+  guards are UX. Never authorize on a Firestore profile field, an email allowlist, or any
+  client-only flag, and never weaken the rules to make a screen work.
+- **Content review runs are not learner data.** A Batch Workspace review run must never write an
+  attempt, and the UI must say plainly that it is not recorded.
+- **There is no global active exam level.** Never reintroduce an app-wide level selector, switch,
+  or "current level" state, and never filter a screen by one. Levels are metadata on a session, a
+  question, or an attempt; where a level genuinely changes what a launch would draw, derive the
+  options from `src/config/exam.ts` plus real supply rather than hard-coding them.
 - **Simulation and Practice are two different products.** Simulation = pressure and realism:
   timed, no feedback, no explanations, one final results page. Practice = learning: untimed by
   default, instant explanations, answers changeable, skip and restart freely. Never merge their

@@ -6,6 +6,7 @@ import {
   type RefinementBatch,
   type RefinementBatchStatus,
 } from '@/data/refinementBatches';
+import { isRetiredRefinementBatchId } from '@/data/retiredRefinementBatches';
 
 /**
  * Firestore-touching implementation, reached only via the dynamic imports in
@@ -136,6 +137,8 @@ export interface SeedResult {
   createdIds: string[];
   /** Ids already present; left exactly as they were. */
   skippedIds: string[];
+  /** Ids refused because they are retired; never written. */
+  retiredIds: string[];
   /** Ids that could not be written, with the reason. */
   failures: { id: string; message: string }[];
 }
@@ -149,13 +152,24 @@ export interface SeedResult {
  * running this twice cannot revert a status transition someone made in the app.
  * Writes are attempted individually rather than in a `writeBatch` so one
  * rejected document does not discard the rest.
+ *
+ * Retired ids are refused at this boundary as well as filtered upstream. This is
+ * the write itself, so it is the only check that makes "a retired batch cannot
+ * be re-created" true regardless of what any caller passes in — including a
+ * caller written later that reads localStorage without going through the merge.
+ * They are reported separately rather than folded into `skippedIds`, which means
+ * "already present, left as it was" — the opposite of what happened here.
  */
 export async function seedRefinementBatches(
   batches: readonly RefinementBatch[],
   uid: string | null,
 ): Promise<SeedResult> {
-  const result: SeedResult = { createdIds: [], skippedIds: [], failures: [] };
+  const result: SeedResult = { createdIds: [], skippedIds: [], retiredIds: [], failures: [] };
   for (const batch of batches) {
+    if (isRetiredRefinementBatchId(batch.id)) {
+      result.retiredIds.push(batch.id);
+      continue;
+    }
     try {
       const ref = batchRef(batch.id);
       if ((await getDoc(ref)).exists()) {

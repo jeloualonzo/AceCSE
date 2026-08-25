@@ -9,9 +9,8 @@ import {
 } from '@/data/contentBankWorkspace';
 import type { Subject } from '@/types';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { useAppContext } from '@/components/shell/AppLayout';
 import { useRefinementBatches } from '@/hooks/useRefinementBatches';
-import { StoreSourceNotice } from '@/components/contentBank/StoreSourceNotice';
+import { StoreDegradedNotice } from '@/components/contentBank/StoreDegradedNotice';
 import { BatchCard } from '@/components/contentBank/BatchCard';
 import { FrozenProgressBar, ProgressBadge } from '@/components/contentBank/badges';
 import { contentBankSubjectPath } from '@/navigation/contentBankRoutes';
@@ -182,7 +181,6 @@ function SubjectCard({ summary }: { summary: SubjectDashboardSummary }) {
 
 export const ContentBankPage: React.FC = () => {
   useDocumentTitle('Content Bank');
-  const { examLevel } = useAppContext();
   const state = useRefinementBatches();
   const summaries = useMemo(() => buildSubjectDashboardSummaries(state.batches), [state.batches]);
   const subjectCount = useMemo(
@@ -195,17 +193,10 @@ export const ContentBankPage: React.FC = () => {
   return (
     <div className="mx-auto max-w-7xl space-y-7 px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
       <header className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-end sm:justify-between dark:border-slate-800 dark:bg-slate-900">
-        <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
-            Admin only
-          </p>
-          <h1 className="mt-1 text-2xl font-extrabold text-slate-900 dark:text-white">Content Bank</h1>
-        </div>
+        {/* No "Admin only" eyebrow: this page now lives inside the admin shell,
+            whose header and navigation already say where you are. */}
+        <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white">Content Bank</h1>
         <dl className="flex flex-wrap gap-x-8 gap-y-3">
-          <div>
-            <dt className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Active level</dt>
-            <dd className="mt-1 text-sm font-bold text-slate-900 dark:text-white">{examLevel}</dd>
-          </div>
           <div>
             <dt className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               Refinement batches
@@ -217,7 +208,7 @@ export const ContentBankPage: React.FC = () => {
         </dl>
       </header>
 
-      {!state.loading && <StoreSourceNotice state={state} />}
+      {!state.loading && <StoreDegradedNotice state={state} />}
 
       {state.error && (
         <p
@@ -270,7 +261,7 @@ export const ContentBankPage: React.FC = () => {
         ) : (
           <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
             {recentBatches.map((batch) => (
-              <BatchCard key={batch.id} batch={batch} source={state.sourceById[batch.id]} />
+              <BatchCard key={batch.id} batch={batch} />
             ))}
           </div>
         )}

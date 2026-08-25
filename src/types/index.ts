@@ -322,6 +322,15 @@ export interface SessionConfig {
 export interface ExamSession {
   id: string;
   config: SessionConfig;
+  /**
+   * An internal Content Bank review run: the real Practice engine on an exact
+   * id list, graded and reviewable, but never written as an Attempt. Persisted
+   * with the session on purpose — a refreshed review run must still be one, or
+   * it would quietly be saved as a real learner attempt.
+   *
+   * Absent on every learner run, so a stored session keeps its exact shape.
+   */
+  internalReview?: boolean;
   /** Ordered question ids drawn from the bank (no repeats, ever). */
   questionIds: string[];
   /** Optional structured ordering; legacy sessions use questionIds only. */
@@ -415,7 +424,6 @@ export interface UserProfile {
   displayName: string | null;
   email: string | null;
   isAnonymous: boolean;
-  preferredExamLevel: ExamLevel;
   createdAt: number;
   updatedAt: number;
 }

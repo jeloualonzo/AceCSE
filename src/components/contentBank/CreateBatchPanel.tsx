@@ -1,9 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Check, Loader2, Plus } from 'lucide-react';
-import {
-  createWorkspaceRefinementBatch,
-  slugForFamily,
-} from '@/data/contentBankWorkspace';
+import { createWorkspaceRefinementBatch } from '@/data/contentBankWorkspace';
 import {
   DEFAULT_REFINEMENT_STATUS,
   generateRefinementBatchName,
@@ -25,8 +22,10 @@ import type { Subject } from '@/types';
  * - the status is always the first step of the workflow, because a batch that
  *   has not been written yet cannot honestly start at "Ready for QA".
  *
- * The generated id is shown before saving rather than after, so the batch that
- * gets created is the one that was on screen.
+ * All of it is shown before saving rather than after — the generated id, the
+ * title, and the question ids in the exact order they will be stored — and the
+ * button repeats the whole thing ("Create Filing & Alphabetizing — Batch 3
+ * (2 questions)"), so the batch that gets created is the one that was on screen.
  */
 export function CreateBatchPanel({
   subject,
@@ -40,7 +39,8 @@ export function CreateBatchPanel({
 }: {
   subject: Subject;
   family: string;
-  selectedIds: ReadonlySet<string>;
+  /** Ordered, and stored in this order — see `orderQuestionSelection`. */
+  selectedIds: readonly string[];
   knownQuestionIds: ReadonlySet<string>;
   existingBatches: readonly RefinementBatch[];
   writeTarget: 'firestore' | 'local';
@@ -50,10 +50,11 @@ export function CreateBatchPanel({
   const [errors, setErrors] = useState<string[]>([]);
   const [saving, setSaving] = useState(false);
   const generated = useMemo(() => generateRefinementBatchName(family, existingBatches), [existingBatches, family]);
-  const familyBatchCount = useMemo(
-    () => existingBatches.filter((batch) => slugForFamily(batch.family) === slugForFamily(family)).length,
-    [existingBatches, family],
-  );
+  const count = selectedIds.length;
+  const questionLabel = `${count} ${count === 1 ? 'question' : 'questions'}`;
+  // Requirement of the workflow, not decoration: the action names the batch it
+  // will create, so nothing is created that was not read first.
+  const createLabel = count === 0 ? `Create ${generated.title}` : `Create ${generated.title} (${questionLabel})`;
 
   const save = async () => {
     const result = createWorkspaceRefinementBatch(
@@ -62,7 +63,7 @@ export function CreateBatchPanel({
         title: generated.title,
         family,
         status: DEFAULT_REFINEMENT_STATUS,
-        questionIds: [...selectedIds],
+        questionIds: selectedIds,
       },
       knownQuestionIds,
       existingBatches,
@@ -116,35 +117,50 @@ export function CreateBatchPanel({
         </div>
       </dl>
 
-      <p className="mt-4 text-xs leading-5 text-slate-500 dark:text-slate-400">
-        The ID, title, and number are generated from the family — {familyBatchCount}{' '}
-        {familyBatchCount === 1 ? 'batch exists' : 'batches exist'} here already. Every batch starts at{' '}
-        {refinementStatusLabel(DEFAULT_REFINEMENT_STATUS)} and is advanced from its own workspace. Creating a batch records
-        question IDs only; production question JSON is never edited.
-      </p>
+      <div className="mt-4">
+        <h3 className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          Question IDs to be recorded ({questionLabel})
+        </h3>
+        {count === 0 ? (
+          <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">
+            Nothing selected yet. Pick questions above and they appear here in the order they will be stored.
+          </p>
+        ) : (
+          // Listed in full, in batch order, because this order is what the review
+          // export renders and what the exact-ID Practice session runs.
+          <ol
+            data-testid="selected-question-ids"
+            className="mt-1.5 flex max-h-24 flex-wrap gap-x-2 gap-y-1 overflow-y-auto rounded-lg border border-slate-200 bg-slate-50 p-2.5 font-mono text-[11px] font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300"
+          >
+            {selectedIds.map((questionId, index) => (
+              <li key={questionId}>
+                <span className="text-slate-400 dark:text-slate-500">{index + 1}.</span> {questionId}
+              </li>
+            ))}
+          </ol>
+        )}
+      </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4 dark:border-slate-800">
         <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">
-          {selectedIds.size === 0
+          {count === 0
             ? 'Select at least one remaining question above.'
-            : `${selectedIds.size} ${selectedIds.size === 1 ? 'question' : 'questions'} selected${
-                writeTarget === 'local' ? ' — will be saved in this browser only' : ''
-              }.`}
+            : `${questionLabel} selected${writeTarget === 'local' ? ' — will be saved in this browser only' : ''}.`}
         </p>
         <button
           type="button"
           onClick={() => void save()}
-          disabled={selectedIds.size === 0 || saving}
-          className="inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-emerald-600 px-4 text-xs font-bold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          disabled={count === 0 || saving}
+          className="inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-emerald-600 px-4 text-left text-xs font-bold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
         >
           {saving ? (
-            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-          ) : selectedIds.size === 0 ? (
-            <Plus className="h-4 w-4" aria-hidden="true" />
+            <Loader2 className="h-4 w-4 shrink-0 animate-spin" aria-hidden="true" />
+          ) : count === 0 ? (
+            <Plus className="h-4 w-4 shrink-0" aria-hidden="true" />
           ) : (
-            <Check className="h-4 w-4" aria-hidden="true" />
+            <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
           )}
-          Create batch
+          {createLabel}
         </button>
       </div>
 

@@ -1,4 +1,5 @@
 import { slugForFamily, slugForSubject } from '@/data/contentBankWorkspace';
+import { ADMIN_BASE, CONTENT_BANK_SEGMENT } from '@/navigation/appRoutes';
 import type { Subject } from '@/types';
 
 /**
@@ -8,8 +9,12 @@ import type { Subject } from '@/types';
  * pages is how a broken link ships. Builders also keep the escaping consistent:
  * batch ids and family slugs are generated, but they are still interpolated into
  * a path, so they go through `encodeURIComponent`.
+ *
+ * The base is composed from `ADMIN_BASE` rather than spelled out, because the
+ * Content Bank lives in the admin experience — it is not a learner surface and
+ * never appears in learner navigation.
  */
-export const CONTENT_BANK_BASE = '/app/content-bank';
+export const CONTENT_BANK_BASE = `${ADMIN_BASE}/${CONTENT_BANK_SEGMENT}`;
 
 /**
  * The literal segment that introduces a batch URL.

@@ -116,7 +116,7 @@ function SubjectWorkspace({ subject }: { subject: Subject }) {
         </div>
         <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <div className="overflow-x-auto">
-            <table className="min-w-[760px] w-full text-left text-xs">
+            <table className="min-w-[900px] w-full text-left text-xs">
               <caption className="sr-only">Refinement progress by family for {subject}</caption>
               <thead className="border-b border-slate-200 bg-slate-50 text-[10px] uppercase tracking-wider text-slate-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400">
                 <tr>
@@ -141,40 +141,65 @@ function SubjectWorkspace({ subject }: { subject: Subject }) {
                   <th scope="col" className="px-4 py-3 text-right font-bold">
                     Status
                   </th>
+                  <th scope="col" className="px-4 py-3 text-right font-bold">
+                    <span className="sr-only">Open family workspace</span>
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                {workspace.families.map((family) => (
-                  <tr
-                    key={family.key}
-                    data-family-row={slugForFamily(family.family)}
-                    className="text-slate-700 hover:bg-emerald-50/40 dark:text-slate-300 dark:hover:bg-emerald-950/20"
-                  >
-                    <th scope="row" className="px-4 py-3 text-left font-normal">
-                      <Link
-                        to={contentBankFamilyPath(subject, family.family)}
-                        className="rounded font-semibold text-emerald-700 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:text-emerald-400"
-                      >
-                        {family.family}
-                      </Link>
-                      <div className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-400">{family.taskFormat}</div>
-                    </th>
-                    <td className="px-3 py-3 text-right font-semibold">{family.activeQuestionIds.length}</td>
-                    <td className="px-3 py-3 text-right font-semibold text-emerald-700 dark:text-emerald-400">
-                      {family.frozenQuestionIds.length}
-                    </td>
-                    <td className="px-3 py-3 text-right font-semibold text-blue-700 dark:text-blue-400">
-                      {family.readyForQaQuestionIds.length}
-                    </td>
-                    <td className="px-3 py-3 text-right font-semibold text-amber-700 dark:text-amber-400">
-                      {family.inProgressQuestionIds.length}
-                    </td>
-                    <td className="px-3 py-3 text-right font-semibold">{family.remainingQuestionIds.length}</td>
-                    <td className="px-4 py-3 text-right">
-                      <ProgressBadge status={family.status} />
-                    </td>
-                  </tr>
-                ))}
+                {workspace.families.map((family) => {
+                  const familyPath = contentBankFamilyPath(subject, family.family);
+                  const hasRemaining = family.remainingQuestionIds.length > 0;
+                  // The row highlights on hover, so every part of it that looks
+                  // clickable is clickable: the name cell is a block link, and the
+                  // last column names what opening the family lets you do next.
+                  // A bare onClick on the <tr> would look the same and be
+                  // unreachable by keyboard, so both remain real links.
+                  return (
+                    <tr
+                      key={family.key}
+                      data-family-row={slugForFamily(family.family)}
+                      className="text-slate-700 hover:bg-emerald-50/40 dark:text-slate-300 dark:hover:bg-emerald-950/20"
+                    >
+                      <th scope="row" className="p-0 text-left font-normal">
+                        <Link
+                          to={familyPath}
+                          className="block rounded px-4 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-500"
+                        >
+                          <span className="font-semibold text-emerald-700 dark:text-emerald-400">{family.family}</span>
+                          <span className="mt-0.5 block text-[11px] text-slate-500 dark:text-slate-400">{family.taskFormat}</span>
+                        </Link>
+                      </th>
+                      <td className="px-3 py-3 text-right font-semibold">{family.activeQuestionIds.length}</td>
+                      <td className="px-3 py-3 text-right font-semibold text-emerald-700 dark:text-emerald-400">
+                        {family.frozenQuestionIds.length}
+                      </td>
+                      <td className="px-3 py-3 text-right font-semibold text-blue-700 dark:text-blue-400">
+                        {family.readyForQaQuestionIds.length}
+                      </td>
+                      <td className="px-3 py-3 text-right font-semibold text-amber-700 dark:text-amber-400">
+                        {family.inProgressQuestionIds.length}
+                      </td>
+                      <td className="px-3 py-3 text-right font-semibold">{family.remainingQuestionIds.length}</td>
+                      <td className="px-4 py-3 text-right">
+                        <ProgressBadge status={family.status} />
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        <Link
+                          to={familyPath}
+                          aria-label={
+                            hasRemaining
+                              ? `Select questions in ${family.family} (${family.remainingQuestionIds.length} remaining)`
+                              : `Review ${family.family}`
+                          }
+                          className="inline-flex min-h-11 items-center whitespace-nowrap rounded-lg border border-slate-300 px-3 text-[11px] font-bold text-slate-700 transition hover:border-emerald-400 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:text-slate-200 dark:hover:text-emerald-400"
+                        >
+                          {hasRemaining ? `Select questions (${family.remainingQuestionIds.length})` : 'Review family'}
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -205,7 +230,7 @@ function SubjectWorkspace({ subject }: { subject: Subject }) {
         ) : (
           <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
             {subjectBatches.map((batch) => (
-              <BatchCard key={batch.id} batch={batch} source={batchState.sourceById[batch.id]} />
+              <BatchCard key={batch.id} batch={batch} />
             ))}
           </div>
         )}

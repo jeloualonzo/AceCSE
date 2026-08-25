@@ -1,24 +1,18 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import type { RefinementBatch } from '@/data/refinementBatches';
-import type { RefinementBatchSourceKind } from '@/data/refinementBatchSource';
 import { WorkflowBadge } from '@/components/contentBank/badges';
 import { contentBankBatchPath } from '@/navigation/contentBankRoutes';
 
 /**
  * One refinement batch, as a link into its own workspace.
  *
- * Reports which store the batch came from, because it changes what the batch
- * means: `local` is visible in this browser only, `seed` is the shipped registry
- * not yet in the database, `firestore` is shared. Facts are stacked
- * label-over-value rather than run together with separators.
+ * Facts only — title, id, status, questions, family, created — stacked
+ * label-over-value rather than run together with separators. Which store a batch
+ * physically came from is not on the card: when it matters, because writes are
+ * falling back to this browser, `StoreDegradedNotice` says so once for the whole
+ * page instead of repeating it on every row.
  */
-
-const SOURCE_LABELS: Record<RefinementBatchSourceKind, string> = {
-  firestore: 'Firestore',
-  seed: 'Shipped registry',
-  local: 'This browser only',
-};
 
 function formatCreatedAt(value: string): string {
   const timestamp = Date.parse(value);
@@ -27,11 +21,9 @@ function formatCreatedAt(value: string): string {
 
 export function BatchCard({
   batch,
-  source,
   showFamily = true,
 }: {
   batch: RefinementBatch;
-  source?: RefinementBatchSourceKind;
   showFamily?: boolean;
 }) {
   return (
@@ -54,7 +46,7 @@ export function BatchCard({
         </div>
       </div>
 
-      <dl className="mt-4 grid grid-cols-2 gap-3 text-xs sm:grid-cols-4">
+      <dl className="mt-4 grid grid-cols-2 gap-3 text-xs sm:grid-cols-3">
         <div>
           <dt className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Questions</dt>
           <dd data-testid={`refinement-count-${batch.id}`} className="mt-0.5 font-bold text-slate-900 dark:text-white">
@@ -71,14 +63,6 @@ export function BatchCard({
           <dt className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Created</dt>
           <dd className="mt-0.5 font-semibold text-slate-700 dark:text-slate-200">{formatCreatedAt(batch.createdAt)}</dd>
         </div>
-        {source && (
-          <div>
-            <dt className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Stored in</dt>
-            <dd data-testid={`refinement-source-${batch.id}`} className="mt-0.5 font-semibold text-slate-700 dark:text-slate-200">
-              {SOURCE_LABELS[source]}
-            </dd>
-          </div>
-        )}
       </dl>
     </Link>
   );

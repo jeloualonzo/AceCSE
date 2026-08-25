@@ -1,11 +1,14 @@
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import type { User } from 'firebase/auth';
 import { db } from '@/lib/firestore';
-import type { ExamLevel, UserProfile } from '@/types';
 
 /**
  * Firestore-touching implementation, reached only via the dynamic imports in
  * `profile.ts` so the Firestore SDK stays out of the initial bundle.
+ *
+ * The profile stores identity only. It holds no examination level: both
+ * examinations are always available to every account, and the level of a run is
+ * recorded on the attempt it belongs to.
  */
 
 function profileRef(uid: string) {
@@ -34,26 +37,7 @@ export async function ensureProfile(user: User): Promise<void> {
     displayName: user.displayName ?? null,
     email: user.email ?? null,
     isAnonymous: user.isAnonymous,
-    preferredExamLevel: 'Subprofessional',
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   });
-}
-
-/** The account's saved examination level, or null when unset/invalid. */
-export async function fetchPreferredExamLevel(uid: string): Promise<ExamLevel | null> {
-  const snapshot = await getDoc(profileRef(uid));
-  const value = snapshot.exists() ? snapshot.get('preferredExamLevel') : null;
-  return value === 'Professional' || value === 'Subprofessional' ? value : null;
-}
-
-export async function updateProfileFields(
-  uid: string,
-  fields: Partial<Pick<UserProfile, 'displayName' | 'preferredExamLevel'>>
-): Promise<void> {
-  await setDoc(profileRef(uid), { ...fields, updatedAt: serverTimestamp() }, { merge: true });
-}
-
-export async function savePreferredExamLevel(uid: string, level: ExamLevel): Promise<void> {
-  await updateProfileFields(uid, { preferredExamLevel: level });
 }

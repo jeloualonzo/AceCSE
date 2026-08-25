@@ -3,7 +3,7 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import '@testing-library/jest-dom/vitest';
 
 /**
@@ -31,6 +31,8 @@ vi.mock('@/context/AuthContext', () => ({
 }));
 
 const { RequireAdmin } = await import('./RequireAdmin');
+const { ADMIN_LOGIN_ROUTE } = await import('@/navigation/appRoutes');
+const { CONTENT_BANK_BASE } = await import('@/navigation/contentBankRoutes');
 
 function setAuth(overrides: Partial<AuthState> = {}) {
   authState.current = {
@@ -43,15 +45,36 @@ function setAuth(overrides: Partial<AuthState> = {}) {
   };
 }
 
-function renderGuard(path = '/app/content-bank') {
+/** Echoes the deep link the guard captured, so the redirect can be checked end to end. */
+function AdminSignInStub() {
+  const { state } = useLocation();
+  const from = (state as { from?: string } | null)?.from;
+  return (
+    <div>
+      <p>Admin sign in</p>
+      <p>from: {from ?? 'none'}</p>
+    </div>
+  );
+}
+
+/**
+ * Mounted at the real Content Bank path, under the admin tree. `signInPath`
+ * mirrors how `App.tsx` wires the guard onto `/admin`; the default is exercised
+ * separately below.
+ */
+function renderGuard({
+  path = CONTENT_BANK_BASE,
+  signInPath = ADMIN_LOGIN_ROUTE,
+}: { path?: string; signInPath?: string } = {}) {
   return render(
     <MemoryRouter initialEntries={[path]}>
       <Routes>
-        <Route path="/auth" element={<p>Auth page</p>} />
+        <Route path="/auth" element={<p>Learner auth page</p>} />
+        <Route path={ADMIN_LOGIN_ROUTE} element={<AdminSignInStub />} />
         <Route
-          path="/app/content-bank"
+          path={CONTENT_BANK_BASE}
           element={
-            <RequireAdmin>
+            <RequireAdmin signInPath={signInPath}>
               <p>Content Bank</p>
             </RequireAdmin>
           }
@@ -94,16 +117,55 @@ describe('RequireAdmin', () => {
 
     expect(screen.getByText('Admin access required')).toBeInTheDocument();
     expect(screen.queryByText('Content Bank')).not.toBeInTheDocument();
-    expect(screen.queryByText('Auth page')).not.toBeInTheDocument();
+    expect(screen.queryByText('Admin sign in')).not.toBeInTheDocument();
     expect(screen.getByText('someone@example.com')).toBeInTheDocument();
   });
 
-  it('sends a guest to the auth flow rather than the refusal screen', () => {
+  /**
+   * A bookmarked `/admin/...` URL belongs to the admin sign-in page. Sending a
+   * guest to `/auth` instead would offer them Google sign-in and sign-up for an
+   * app they are trying to administer.
+   */
+  it('sends a guest to the admin sign-in, not the learner auth flow', () => {
     setAuth({ user: null, adminResolved: false });
     renderGuard();
 
-    expect(screen.getByText('Auth page')).toBeInTheDocument();
+    expect(screen.getByText('Admin sign in')).toBeInTheDocument();
+    expect(screen.queryByText('Learner auth page')).not.toBeInTheDocument();
     expect(screen.queryByText('Admin access required')).not.toBeInTheDocument();
+  });
+
+  /** The captured path is what `RedirectWhenAuthed` later returns the admin to. */
+  it('captures the admin path it turned away, so sign-in can return there', () => {
+    setAuth({ user: null, adminResolved: false });
+    renderGuard();
+
+    expect(screen.getByText(`from: ${CONTENT_BANK_BASE}`)).toBeInTheDocument();
+  });
+
+  /**
+   * Without `signInPath` the guard still behaves as it did before the admin tree
+   * existed, so a guarded learner-tree route keeps working.
+   */
+  it('falls back to the learner auth flow when no sign-in path is given', () => {
+    setAuth({ user: null, adminResolved: false });
+    render(
+      <MemoryRouter initialEntries={[CONTENT_BANK_BASE]}>
+        <Routes>
+          <Route path="/auth" element={<p>Learner auth page</p>} />
+          <Route
+            path={CONTENT_BANK_BASE}
+            element={
+              <RequireAdmin>
+                <p>Content Bank</p>
+              </RequireAdmin>
+            }
+          />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText('Learner auth page')).toBeInTheDocument();
   });
 
   it('re-reads the token on demand and reports honestly when nothing changed', async () => {

@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { KeyRound, LogOut, MessageSquare, Monitor, Moon, Sun } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import type { ExamLevel } from '@/types';
-import { EXAM_BLUEPRINT, SUBJECTS_BY_LEVEL } from '@/config/exam';
-import { formatDuration } from '@/lib/time';
 import { useAuth } from '@/context/AuthContext';
 import { useTheme, type ThemeMode } from '@/context/ThemeContext';
-import { useAppContext } from '@/components/shell/AppLayout';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import {
   FEEDBACK_CATEGORIES,
@@ -14,8 +10,6 @@ import {
   submitFeedback,
   type FeedbackCategory,
 } from '@/services/feedback';
-
-const EXAM_LEVELS: ExamLevel[] = ['Subprofessional', 'Professional'];
 
 const THEME_OPTIONS: { mode: ThemeMode; label: string; icon: typeof Sun }[] = [
   { mode: 'light', label: 'Light', icon: Sun },
@@ -297,7 +291,6 @@ export const SettingsPage: React.FC = () => {
   useDocumentTitle('Settings');
   const { user, signOutUser } = useAuth();
   const { mode, setMode } = useTheme();
-  const { examLevel, setExamLevel } = useAppContext();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -345,52 +338,6 @@ export const SettingsPage: React.FC = () => {
             </p>
           </div>
         </div>
-      </section>
-
-      {/* Exam level */}
-      <section className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6" aria-labelledby="exam-heading">
-        <h2 id="exam-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
-          Examination
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" role="radiogroup" aria-label="Default examination level">
-          {EXAM_LEVELS.map((level) => {
-            const isActive = examLevel === level;
-            const blueprint = EXAM_BLUEPRINT[level];
-            return (
-              <button
-                key={level}
-                role="radio"
-                aria-checked={isActive}
-                onClick={() => setExamLevel(level)}
-                className={`text-left rounded-xl border p-4 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                  isActive
-                    ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 dark:border-emerald-500/30 border-2'
-                    : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-600'
-                }`}
-              >
-                <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <span className="text-sm font-bold text-slate-900 dark:text-white">{level} Level</span>
-                  {isActive && (
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white shrink-0">
-                      Active
-                    </span>
-                  )}
-                </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                  {blueprint.totalItems} items in {formatDuration(blueprint.durationMinutes * 60)}
-                </p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mt-1">
-                  {SUBJECTS_BY_LEVEL[level].join(', ')}
-                </p>
-              </button>
-            );
-          })}
-        </div>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-3">
-          This sets your DEFAULT level only, as a convenience. Both levels are always available —
-          you can switch levels directly on the Dashboard, Simulation, and Practice pages before
-          starting any activity, and a session that has already started keeps its own level.
-        </p>
       </section>
 
       {/* Appearance */}
