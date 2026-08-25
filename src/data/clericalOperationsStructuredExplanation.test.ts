@@ -28,7 +28,7 @@ const EXPECTED_QUESTIONS: Record<TargetId, {
     correctOptionId: 'E',
   },
   'cler-0021': {
-    question: 'Examine the following pairs. Which pair contains entries that are EXACTLY the same?',
+    question: 'Examine the following pairs. Which pair contains entries that match exactly?',
     choices: [
       'Dela Rosa, Benigno T.  —  Dela Rosa, Benigno T.',
       '2024-CSC-00187  —  2024-CSC-00178',
@@ -49,7 +49,7 @@ const EXPECTED_QUESTIONS: Record<TargetId, {
     correctOptionId: 'A',
   },
   'cler-0024': {
-    question: "A clerk uses this numeric code for document categories: 1=Memorandum, 2=Letter, 3=Report, 4=Form, 5=Notice. A document labeled 'Memo-2025-31' that is a Notice about Memo No. 31 of 2025 should be stored under code:",
+    question: "A clerk uses the following numeric codes for document categories: 1 = Memorandum, 2 = Letter, 3 = Report, 4 = Form, and 5 = Notice. A document is labeled 'Memo-2025-31,' but its document type is Notice. Under this classification system, what code should be used to file it?",
     choices: ['1', '2', '3', '4', '5'],
     correctOptionId: 'E',
   },
