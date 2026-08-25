@@ -5,15 +5,11 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { SUBJECTS_BY_LEVEL } from '@/config/exam';
-import { PracticePage, PRACTICE_ALL_SUBJECTS } from './PracticePage';
+import { PracticePage, PRACTICE_ALL_SUBJECTS, PRACTICE_SUBJECT_DESCRIPTORS } from './PracticePage';
+import type { Subject } from '@/types';
 
 const navigateMock = vi.hoisted(() => vi.fn());
 
-/**
- * No shell-context mock: `PracticePage` reads no app-wide examination level.
- * Every card derives its own level(s) from the subject/level configuration and
- * the build-time supply, so the page can be mounted and asserted directly.
- */
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
   return { ...actual, useNavigate: () => navigateMock };
@@ -22,97 +18,89 @@ vi.mock('react-router-dom', async () => {
 afterEach(() => cleanup());
 beforeEach(() => navigateMock.mockReset());
 
-describe('Practice progressive landing page', () => {
-  it('puts the mixed card first and keeps each card to a title and bottom-aligned icon-bearing Start buttons', () => {
+const expectedOrder: Subject[] = [
+  'Verbal Ability',
+  'Numerical Reasoning',
+  'General Information',
+  'Clerical Ability',
+  'Analytical Reasoning',
+];
+
+const sharedSubjects: Subject[] = ['Verbal Ability', 'Numerical Reasoning', 'General Information'];
+
+function card(container: HTMLElement, subject: Subject): HTMLElement {
+  return container.querySelector<HTMLElement>(`[data-practice-card="${subject}"]`)!;
+}
+
+describe('Practice subject landing page', () => {
+  it('shows only the five actual subjects in the requested order with exact descriptors', () => {
     const { container } = render(<PracticePage />);
 
-    expect(container.querySelector('.max-w-7xl')).not.toBeNull();
-    const cardLabels = [...container.querySelectorAll<HTMLElement>('[data-practice-card]')]
-      .map((card) => card.dataset.practiceCard);
-    expect(cardLabels).toEqual([
-      'Mixed Practice',
-      'Numerical Reasoning',
-      'Analytical Reasoning',
-      'Verbal Ability',
-      'Clerical Ability',
-      'General Information',
-    ]);
-
-    const cards = [...container.querySelectorAll<HTMLElement>('[data-practice-card]')];
-    expect(cards).toHaveLength(6);
-    for (const card of cards) {
-      expect(card).toHaveClass('flex', 'flex-col');
-      const buttons = within(card).getAllByRole('button');
-      expect(buttons.length).toBeGreaterThan(0);
-      for (const button of buttons) {
-        expect(button.querySelector('svg')).not.toBeNull();
-        expect(button.parentElement).toHaveClass('mt-auto', 'pt-6');
-      }
-    }
-    for (const svg of container.querySelectorAll('[data-practice-card] svg')) {
-      expect(svg.closest('button')).not.toBeNull();
-    }
-
+    expect(PRACTICE_ALL_SUBJECTS).toEqual(expectedOrder);
+    expect([...container.querySelectorAll<HTMLElement>('[data-practice-card]')].map((item) => item.dataset.practiceCard)).toEqual(expectedOrder);
+    expect(container.querySelectorAll('[data-practice-card]')).toHaveLength(5);
+    expect(screen.queryByText('Mixed Practice')).not.toBeInTheDocument();
+    expect(screen.queryByText('Start Mixed Practice')).not.toBeInTheDocument();
+    expect(screen.queryByText('Choose a subject, or mix the subject areas of one examination level.')).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Practice' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Start Practice' })).toBeInTheDocument();
-    expect(
-      screen.getByText('Choose a subject, or mix the subject areas of one examination level.')
-    ).toBeInTheDocument();
-    expect(screen.getByText('Learning Mode')).toBeInTheDocument();
-    expect(screen.getByText(/Practice at your own pace\. Answer, skip, revisit, and reveal explanations as you learn\./i)).toBeInTheDocument();
-    for (const description of [
-      'Mix all five subject areas for a broader learning session.',
-      'Build speed with operations, word problems, ratios, data, and series.',
-      'Practice logic, syllogisms, patterns, and structured problem solving.',
-      'Strengthen vocabulary, grammar, reading comprehension, and organization.',
-      'Review filing, spelling, coding, and practical office procedures.',
-      'Review constitutional, legal, environmental, and civic knowledge.',
-    ]) {
-      expect(screen.queryByText(description)).not.toBeInTheDocument();
+
+    for (const subject of expectedOrder) {
+      const subjectCard = card(container, subject);
+      const descriptor = within(subjectCard).getByTestId(`practice-descriptor-${subject}`);
+      expect(descriptor).toHaveTextContent(PRACTICE_SUBJECT_DESCRIPTORS[subject]);
+      expect(descriptor.tagName).toBe('DIV');
+      expect(descriptor).toHaveClass('text-xs', 'text-slate-500');
+      expect(within(subjectCard).getByRole('button')).toBeInTheDocument();
     }
-    expect(screen.queryByText(/Timed|Untimed/i)).not.toBeInTheDocument();
-    expect(document.body.textContent).not.toMatch(/question bank|fixed session|select size|question count|available questions|task|pool|category|inventory|description/i);
   });
 
-  /**
-   * The whole point of removing the global level switch: nothing on this page
-   * may be a level *selector*. Practice shows every subject at once, and a
-   * level appears only where the configuration makes it a real distinction.
-   */
-  it('has no exam-level switch and offers a level only where the content differs', () => {
+  it('keeps descriptors visually subordinate and does not reintroduce long card copy', () => {
+    const { container } = render(<PracticePage />);
+
+    const cards = [...container.querySelectorAll<HTMLElement>('[data-practice-card]')];
+    for (const subjectCard of cards) {
+      const descriptor = within(subjectCard).getByTestId(`practice-descriptor-${subjectCard.dataset.practiceCard}`);
+      expect(descriptor).not.toHaveClass('text-sm', 'text-base', 'font-bold');
+      expect(within(subjectCard).queryByRole('tooltip')).not.toBeInTheDocument();
+      expect(subjectCard.querySelectorAll('p')).toHaveLength(0);
+    }
+    expect(document.body.textContent).not.toMatch(/question bank|fixed session|select size|question count|available questions|inventory|broader learning session/i);
+    expect(screen.getByText(/Practice at your own pace\. Answer, skip, revisit, and reveal explanations as you learn\./i)).toBeInTheDocument();
+  });
+
+  it('derives subject-level actions from current configuration without a global level selector', () => {
     const { container } = render(<PracticePage />);
 
     expect(screen.queryByRole('radiogroup')).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /switch|change.*level|active level/i })).not.toBeInTheDocument();
-    expect(document.body.textContent).not.toMatch(/active level|current level/i);
+    expect(document.body.textContent).not.toMatch(/active level|current selected level|professional\/subprofessional global/i);
 
-    const card = (label: string) =>
-      container.querySelector<HTMLElement>(`[data-practice-card="${label}"]`)!;
-
-    // Tested at both levels, but every question is authored for both, so the
-    // two levels would draw the same pool: one action, and no level named.
-    for (const shared of ['Numerical Reasoning', 'Verbal Ability', 'General Information']) {
-      const scope = within(card(shared));
+    // Shared subjects use one pool authored for both levels, so a single action
+    // is shown and no artificial level label is presented.
+    for (const subject of sharedSubjects) {
+      const scope = within(card(container, subject));
       expect(scope.getAllByRole('button')).toHaveLength(1);
-      expect(scope.getByRole('button', { name: `Start ${shared} Practice` })).toBeInTheDocument();
-      expect(card(shared).textContent).not.toMatch(/Professional/);
+      expect(scope.getByRole('button', { name: `Start ${subject} Practice` })).toBeInTheDocument();
+      expect(card(container, subject).textContent).not.toMatch(/Professional|Subprofessional/);
     }
 
-    // Tested at one level only: one action, and the level shown as a fact.
-    const analytical = within(card('Analytical Reasoning'));
+    // These subjects genuinely exist at one level only in SUBJECTS_BY_LEVEL;
+    // the level is shown as a fact, while the action remains a single Start.
+    const analytical = within(card(container, 'Analytical Reasoning'));
     expect(analytical.getAllByRole('button')).toHaveLength(1);
     expect(analytical.getByText('Professional')).toBeInTheDocument();
-    const clerical = within(card('Clerical Ability'));
+    expect(SUBJECTS_BY_LEVEL.Professional).toContain('Analytical Reasoning');
+    expect(SUBJECTS_BY_LEVEL.Subprofessional).not.toContain('Analytical Reasoning');
+
+    const clerical = within(card(container, 'Clerical Ability'));
     expect(clerical.getAllByRole('button')).toHaveLength(1);
     expect(clerical.getByText('Subprofessional')).toBeInTheDocument();
-
-    // The levels genuinely test different subject sets, so the mix has two.
-    const mixed = within(card('Mixed Practice'));
-    expect(mixed.getAllByRole('button')).toHaveLength(2);
-    expect(mixed.getByRole('button', { name: 'Start Professional Mixed Practice' })).toBeInTheDocument();
-    expect(mixed.getByRole('button', { name: 'Start Subprofessional Mixed Practice' })).toBeInTheDocument();
+    expect(SUBJECTS_BY_LEVEL.Subprofessional).toContain('Clerical Ability');
+    expect(SUBJECTS_BY_LEVEL.Professional).not.toContain('Clerical Ability');
   });
 
-  it('launches a single subject with progressive metadata and no Practice timing mode', async () => {
+  it('launches a shared subject with progressive metadata and no Practice timing mode', async () => {
     const user = userEvent.setup();
     render(<PracticePage />);
 
@@ -131,13 +119,7 @@ describe('Practice progressive landing page', () => {
     });
   });
 
-  /**
-   * Clerical Ability is a Subprofessional subject. Under a global level switch
-   * set to Professional, its card launched a Professional session and the
-   * engine then filtered every Clerical question out of the pool. Deriving the
-   * level from the subject is what makes the card mean what it says.
-   */
-  it('launches a single-level subject at its own level, not a selected one', async () => {
+  it('launches a single-level subject at its configured level', async () => {
     const user = userEvent.setup();
     render(<PracticePage />);
 
@@ -156,40 +138,19 @@ describe('Practice progressive landing page', () => {
     });
   });
 
-  it('launches each mixed option with exactly the subjects that level tests', async () => {
+  it('keeps all five subjects reachable without creating mixed-subject launch options', async () => {
     const user = userEvent.setup();
     render(<PracticePage />);
 
-    await user.click(screen.getByRole('button', { name: 'Start Professional Mixed Practice' }));
-    expect(navigateMock).toHaveBeenLastCalledWith('/app/exam', {
-      state: {
-        launch: {
-          kind: 'practice',
-          examLevel: 'Professional',
-          questionCount: 0,
-          subjects: [...SUBJECTS_BY_LEVEL.Professional],
-          progressive: true,
-        },
-      },
-    });
+    for (const subject of expectedOrder) {
+      await user.click(screen.getByRole('button', { name: `Start ${subject} Practice` }));
+    }
 
-    await user.click(screen.getByRole('button', { name: 'Start Subprofessional Mixed Practice' }));
-    expect(navigateMock).toHaveBeenLastCalledWith('/app/exam', {
-      state: {
-        launch: {
-          kind: 'practice',
-          examLevel: 'Subprofessional',
-          questionCount: 0,
-          subjects: [...SUBJECTS_BY_LEVEL.Subprofessional],
-          progressive: true,
-        },
-      },
-    });
-
-    // Every subject identity is still reachable from this page — the union of
-    // the two mixes is all five, even though neither level contains all five.
-    expect(
-      new Set([...SUBJECTS_BY_LEVEL.Professional, ...SUBJECTS_BY_LEVEL.Subprofessional])
-    ).toEqual(new Set(PRACTICE_ALL_SUBJECTS));
+    expect(navigateMock).toHaveBeenCalledTimes(5);
+    expect(navigateMock.mock.calls.map(([path]) => path)).toEqual(expectedOrder.map(() => '/app/exam'));
+    expect(navigateMock.mock.calls.every(([, options]) => {
+      const subjects = (options as { state: { launch: { subjects: Subject[] } } }).state.launch.subjects;
+      return subjects.length === 1 && expectedOrder.includes(subjects[0]);
+    })).toBe(true);
   });
 });

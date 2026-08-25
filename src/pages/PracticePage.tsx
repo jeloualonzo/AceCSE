@@ -7,95 +7,81 @@ import { EXAM_ROUTE } from '@/navigation/appRoutes';
 import type { ExamLaunchRequest } from '@/pages/ExamPage';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
-/** All five subject identities remain available in mixed Practice. */
+/** The learner-facing Practice subject order. Level actions remain data-derived. */
 export const PRACTICE_ALL_SUBJECTS: Subject[] = [
-  'Numerical Reasoning',
-  'Analytical Reasoning',
   'Verbal Ability',
-  'Clerical Ability',
+  'Numerical Reasoning',
   'General Information',
+  'Clerical Ability',
+  'Analytical Reasoning',
 ];
 
-/** The mixed card's label. Not "All Subjects": no single examination level
- * contains all five, so one mixed run is the four subjects of its level. */
-const MIXED_LABEL = 'Mixed Practice';
+export const PRACTICE_SUBJECT_DESCRIPTORS: Readonly<Record<Subject, string>> = {
+  'Verbal Ability': 'Language & Communication',
+  'Numerical Reasoning': 'Numbers & Problem Solving',
+  'General Information': 'Philippine & General Knowledge',
+  'Clerical Ability': 'Office & Records Skills',
+  'Analytical Reasoning': 'Logic & Critical Thinking',
+};
 
-/**
- * One card per selection, resolved once at module load.
- *
- * The manifest is build-time data and `practiceLevelOptions` is pure, so the
- * level choices a card offers cannot change while the app is running — and
- * there is no selected level to recompute against. A subject tested at one
- * level gets one action; a subject whose two levels would draw the same pool
- * gets one action too; the mixed card gets two, because the levels genuinely
- * test different subject sets.
- */
+/** One reusable card per actual subject; no mixed-subject card exists. */
 const PRACTICE_CARDS: readonly {
-  label: string;
-  mixed: boolean;
+  label: Subject;
+  descriptor: string;
   options: PracticeLevelOption[];
-}[] = [
-  {
-    label: MIXED_LABEL,
-    mixed: true,
-    options: practiceLevelOptions(PRACTICE_ALL_SUBJECTS, QUESTION_MANIFEST.subjects),
-  },
-  ...PRACTICE_ALL_SUBJECTS.map((subject) => ({
-    label: subject,
-    mixed: false,
-    options: practiceLevelOptions([subject], QUESTION_MANIFEST.subjects),
-  })),
-];
+}[] = PRACTICE_ALL_SUBJECTS.map((subject) => ({
+  label: subject,
+  descriptor: PRACTICE_SUBJECT_DESCRIPTORS[subject],
+  options: practiceLevelOptions([subject], QUESTION_MANIFEST.subjects),
+}));
 
 interface PracticeLaunchCardProps {
-  subjectLabel: string;
-  mixed?: boolean;
+  subjectLabel: Subject;
+  descriptor: string;
   options: readonly PracticeLevelOption[];
   onStart: (option: PracticeLevelOption) => void;
 }
 
 const PracticeLaunchCard: React.FC<PracticeLaunchCardProps> = ({
   subjectLabel,
-  mixed = false,
+  descriptor,
   options,
   onStart,
 }) => {
   const only = options.length === 1 ? options[0] : null;
-  const subject = mixed ? 'Mixed' : subjectLabel;
 
   return (
     <article
       data-practice-card={subjectLabel}
-      className={`flex flex-col rounded-xl border p-4 sm:p-5 shadow-sm ${
-        mixed
-          ? 'border-emerald-300 dark:border-emerald-500/50 bg-emerald-50 dark:bg-emerald-950/30'
-          : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900'
-      }`}
+      className="flex flex-col rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5 dark:border-slate-800 dark:bg-slate-900"
     >
       <div>
-        <h3 className={`text-sm font-bold ${mixed ? 'text-emerald-900 dark:text-emerald-200' : 'text-slate-900 dark:text-white'}`}>
-          {subjectLabel}
-        </h3>
-        {/* The level only when it is a fact about the subject, not a choice.
-            A subject authored for both levels draws one shared pool, so naming
-            a level there would invent a distinction. */}
+        <h3 className="text-sm font-bold text-slate-900 dark:text-white">{subjectLabel}</h3>
+        <div
+          data-practice-descriptor={subjectLabel}
+          data-testid={`practice-descriptor-${subjectLabel}`}
+          className="mt-1 text-xs text-slate-500 dark:text-slate-400"
+        >
+          {descriptor}
+        </div>
+        {/* Show a level only when it is a factual single-level distinction. */}
         {only && !only.levelIsLabelOnly && (
-          <p className="mt-1 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          <div className="mt-2 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             {only.level}
-          </p>
+          </div>
         )}
       </div>
-      <div className="mt-auto pt-6 flex flex-col gap-2">
+      <div className="mt-auto flex flex-col gap-2 pt-6">
         {options.map((option) => (
           <button
             key={option.level}
             type="button"
             onClick={() => onStart(option)}
-            className="inline-flex w-full sm:w-auto items-center justify-center gap-1.5 min-h-[40px] px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
-            aria-label={only ? `Start ${subject} Practice` : `Start ${option.level} ${subject} Practice`}
+            className="inline-flex min-h-[40px] w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-emerald-600 px-3 text-xs font-bold text-white transition-colors hover:bg-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 sm:w-auto"
+            aria-label={only ? `Start ${subjectLabel} Practice` : `Start ${option.level} ${subjectLabel} Practice`}
           >
-            <PlayCircle className="w-4 h-4" aria-hidden="true" />
-            <span>{only ? (mixed ? 'Start Mixed Practice' : 'Start Practice') : option.level}</span>
+            <PlayCircle className="h-4 w-4" aria-hidden="true" />
+            <span>{only ? 'Start Practice' : option.level}</span>
           </button>
         ))}
       </div>
@@ -130,17 +116,17 @@ export const PracticePage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
-      <div className="flex items-center gap-3 flex-wrap">
-        <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Practice</h1>
+    <div className="mx-auto max-w-7xl space-y-6 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <div className="flex flex-wrap items-center gap-3">
+        <h1 className="text-xl font-extrabold text-slate-900 dark:text-white sm:text-2xl">Practice</h1>
       </div>
 
-      <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 rounded-2xl p-5 sm:p-6">
-        <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-2">
-          <BookOpen className="w-4 h-4" aria-hidden="true" />
+      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 dark:border-emerald-500/30 dark:bg-emerald-950/40 sm:p-6">
+        <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
+          <BookOpen className="h-4 w-4" aria-hidden="true" />
           <span>Learning Mode</span>
         </div>
-        <p className="text-xs sm:text-sm text-emerald-900 dark:text-emerald-300 leading-relaxed">
+        <p className="text-xs leading-relaxed text-emerald-900 dark:text-emerald-300 sm:text-sm">
           Practice at your own pace. Answer, skip, revisit, and reveal explanations as you learn.
           Start with any subject and show more questions whenever you are ready. The session stopwatch starts automatically.
         </p>
@@ -150,16 +136,13 @@ export const PracticePage: React.FC = () => {
           <h2 id="practice-start-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             Start Practice
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Choose a subject, or mix the subject areas of one examination level.
-          </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {PRACTICE_CARDS.map((card) => (
             <PracticeLaunchCard
               key={card.label}
               subjectLabel={card.label}
-              mixed={card.mixed}
+              descriptor={card.descriptor}
               options={card.options}
               onStart={startPractice}
             />
