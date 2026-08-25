@@ -99,6 +99,77 @@ function singleSubjectPracticeFixture(count: number) {
   };
 }
 
+/** Id prefixes for the multi-subject Practice fixture, in booklet order. */
+const PRACTICE_SUBJECTS: ReadonlyArray<readonly [Question['subject'], string]> = [
+  ['Verbal Ability', 'V'],
+  ['Numerical Reasoning', 'N'],
+  ['Clerical Ability', 'C'],
+];
+
+/**
+ * A Practice session spanning several subjects with a DIFFERENT number of items
+ * in each — the shape subject-local numbering has to get right, and the shape a
+ * single-subject fixture cannot distinguish from global numbering.
+ *
+ * `counts[i]` items are authored for `PRACTICE_SUBJECTS[i]`, ids `<prefix><n>`,
+ * so growing an earlier subject's count models an append-only Show More batch.
+ * Fewer than five subjects deliberately: this must not be an All Subjects run.
+ */
+function multiSubjectPracticeFixture(counts: readonly number[]) {
+  const subjects = PRACTICE_SUBJECTS.slice(0, counts.length);
+  const items: SessionItem[] = [];
+  const questionIndex = new Map<string, Question>();
+  subjects.forEach(([subject, prefix], subjectIndex) => {
+    for (let n = 1; n <= counts[subjectIndex]; n += 1) {
+      const id = `${prefix}${n}`;
+      items.push({ kind: 'question', questionId: id, sectionId: subject });
+      questionIndex.set(id, makeQuestion(id, subject));
+    }
+  });
+  const questionIds = [...questionIndex.keys()];
+  return {
+    session: baseSession({
+      config: {
+        mode: 'practice',
+        examLevel: 'Professional',
+        questionCount: questionIds.length,
+        timed: false,
+        durationSeconds: null,
+        subjects: subjects.map(([subject]) => subject),
+      },
+      questionIds,
+      items,
+    }),
+    questionIndex,
+  };
+}
+
+/**
+ * The numeric labels in one subject's navigator grid, in DOM order.
+ *
+ * Matches the subject heading by prefix because Simulation appends the item
+ * range to it ("Verbal Ability 1–2") while Practice shows the bare subject, and
+ * takes the heading's next element sibling — which is the subject's one grid.
+ */
+function gridFor(dialog: HTMLElement, subject: string): HTMLElement {
+  const heading = within(dialog)
+    .getAllByRole('heading', { level: 3 })
+    .find((node) => (node.textContent ?? '').replace(/\s+/g, ' ').trim().startsWith(subject));
+  if (!heading) throw new Error(`No navigator heading for ${subject}`);
+  return heading.nextElementSibling as HTMLElement;
+}
+
+function gridLabelsFor(dialog: HTMLElement, subject: string): string[] {
+  return [...gridFor(dialog, subject).querySelectorAll('button')].map(
+    (button) => button.textContent?.trim() ?? ''
+  );
+}
+
+/** ['1', '2', … , String(count)] — the labels a subject of `count` items shows. */
+function countingTo(count: number): string[] {
+  return Array.from({ length: count }, (_, index) => String(index + 1));
+}
+
 function renderLayout(props: Partial<React.ComponentProps<typeof BookletExamLayout>> = {}) {
   const onSelectOption = vi.fn();
   const onSubmitExam = vi.fn();
@@ -606,8 +677,11 @@ describe('BookletExamLayout — All Subjects Practice navigator labels and subje
     for (const subject of ['Numerical Reasoning', 'Analytical Reasoning', 'Verbal Ability', 'Clerical Ability', 'General Information']) {
       expect(within(subjectGrid as HTMLElement).getByRole('button', { name: subject })).toBeInTheDocument();
     }
+    // Practice numbers each subject from 1, so the single encountered item in
+    // each of these two subjects is that subject's question 1.
     expect(within(dialog).getByRole('button', { name: /go to Numerical Reasoning question 1/i })).toBeInTheDocument();
-    expect(within(dialog).getByRole('button', { name: /go to Verbal Ability question 2/i })).toBeInTheDocument();
+    expect(within(dialog).getByRole('button', { name: /go to Verbal Ability question 1/i })).toBeInTheDocument();
+    expect(within(dialog).queryByRole('button', { name: /question 2/i })).not.toBeInTheDocument();
     expect(within(dialog).queryByRole('button', { name: /go to Clerical Ability question [A-Z]1/i })).not.toBeInTheDocument();
     expect(within(dialog).queryByRole('button', { name: /question [NVA CG]\d/i })).not.toBeInTheDocument();
   });
@@ -656,6 +730,185 @@ describe('BookletExamLayout — Practice numeric navigator grid', () => {
     dialog = screen.getByRole('dialog', { name: 'Question navigation' });
     grid = within(dialog).getByRole('heading', { name: 'Verbal Ability' }).nextElementSibling as HTMLElement;
     expect([...grid.querySelectorAll('button')].map((button) => button.textContent?.trim())).toEqual(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']);
+  });
+});
+
+describe('BookletExamLayout — Practice numbers every subject from 1', () => {
+  it('restarts at 1 in each subject instead of continuing the session sequence', async () => {
+    const user = userEvent.setup();
+    const fixture = multiSubjectPracticeFixture([6, 3, 2]);
+    renderLayout({ session: fixture.session, questionIndex: fixture.questionIndex });
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+
+    expect(gridLabelsFor(dialog, 'Verbal Ability')).toEqual(countingTo(6));
+    expect(gridLabelsFor(dialog, 'Numerical Reasoning')).toEqual(countingTo(3));
+    expect(gridLabelsFor(dialog, 'Clerical Ability')).toEqual(countingTo(2));
+    // Under the old session-wide map Numerical ran 7–9 and Clerical 10–11.
+    for (const stale of [7, 8, 9, 10, 11]) {
+      expect(within(dialog).queryByRole('button', { name: new RegExp(`question ${stale}\\b`, 'i') })).not.toBeInTheDocument();
+    }
+  });
+
+  /**
+   * The numbers are a display projection, so the thing that must not change is
+   * which question each one reaches. Numerical's "2" is N2, not the session's
+   * eighth item, and choosing it leaves the Verbal run untouched.
+   */
+  it('sends a subject-local number to that subject’s own question', async () => {
+    const user = userEvent.setup();
+    const fixture = multiSubjectPracticeFixture([6, 3]);
+    renderLayout({ session: fixture.session, questionIndex: fixture.questionIndex });
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+
+    await user.click(within(dialog).getByRole('button', { name: /go to Numerical Reasoning question 2/i }));
+
+    expect(screen.getByText('Question text for N2')).toBeInTheDocument();
+    expect(screen.queryByText('Question text for V2')).not.toBeInTheDocument();
+    expect(fixture.session.questionIds).toEqual(['V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'N1', 'N2', 'N3']);
+  });
+
+  /**
+   * Show More appends to the subject being practised. Verbal growing 4 → 7 must
+   * not renumber Numerical (which a session-wide map would push 5–7 → 8–12), and
+   * the numbers already on screen must not move.
+   */
+  it('keeps numbering subject-local and stable when Show More appends a batch', async () => {
+    const user = userEvent.setup();
+    const onLoadMore = vi.fn();
+    const initial = multiSubjectPracticeFixture([4, 3]);
+    const { rerender } = renderLayout({
+      session: initial.session,
+      questionIndex: initial.questionIndex,
+      onLoadMore,
+      hasMorePractice: true,
+    });
+    await openNavigator(user);
+    let dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    expect(gridLabelsFor(dialog, 'Verbal Ability')).toEqual(countingTo(4));
+    expect(gridLabelsFor(dialog, 'Numerical Reasoning')).toEqual(countingTo(3));
+
+    await user.click(screen.getByRole('button', { name: /show more/i }));
+    expect(onLoadMore).toHaveBeenCalledTimes(1);
+
+    const extended = multiSubjectPracticeFixture([7, 3]);
+    rerender(
+      <BookletExamLayout
+        examLevel="Professional"
+        timeRemainingFormatted="Untimed"
+        onExitExam={vi.fn()}
+        onSubmitExam={vi.fn()}
+        session={extended.session}
+        getGroup={() => undefined}
+        questionIndex={extended.questionIndex}
+        onSelectOption={vi.fn()}
+        onLoadMore={onLoadMore}
+        hasMorePractice
+      />
+    );
+
+    dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    expect(gridLabelsFor(dialog, 'Verbal Ability')).toEqual(countingTo(7));
+    expect(gridLabelsFor(dialog, 'Numerical Reasoning')).toEqual(countingTo(3));
+    expect(within(dialog).getByRole('button', { name: /go to Numerical Reasoning question 1/i })).toBeInTheDocument();
+  });
+
+  it('keeps the Q label format, with no session total, and resets it per subject', async () => {
+    const user = userEvent.setup();
+    const fixture = multiSubjectPracticeFixture([6, 3]);
+    renderLayout({ session: fixture.session, questionIndex: fixture.questionIndex });
+
+    const label = () =>
+      screen.getAllByRole('button', { name: /open question navigation/i })[0].textContent?.replace(/\s+/g, ' ').trim();
+    expect(label()).toBe('Q 1');
+
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    await user.click(getSubjectSwitchButton(dialog, 'Numerical Reasoning'));
+
+    // Not "Q 7": the header reads the same subject-local map as the grid.
+    expect(label()).toBe('Q 1');
+  });
+
+  it('leaves Simulation numbering continuous across subjects', async () => {
+    const user = userEvent.setup();
+    renderLayout();
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+
+    expect(gridLabelsFor(dialog, 'Verbal Ability')).toEqual(['1', '2']);
+    expect(gridLabelsFor(dialog, 'Numerical Reasoning')).toEqual(['3', '4']);
+  });
+});
+
+describe('BookletExamLayout — navigator grid is a deterministic five columns', () => {
+  /**
+   * A section whose items are split across plain runs and two real
+   * multi-question groups: 5 plain, a pair, 3 plain, then four.
+   *
+   * This is the shape that wrapped 5 / 2 / 3 / 4 — every navigator block opened
+   * its own nested grid, so a block of two ended the row after two cells.
+   */
+  function groupedSimulationFixture() {
+    const plain = (n: number): SessionItem => ({
+      kind: 'question',
+      questionId: `V${n}`,
+      sectionId: 'Verbal Ability',
+    });
+    const items: SessionItem[] = [
+      plain(1), plain(2), plain(3), plain(4), plain(5),
+      { kind: 'group', groupId: 'g-pair', sectionId: 'Verbal Ability', questionIds: ['V6', 'V7'] },
+      plain(8), plain(9), plain(10),
+      { kind: 'group', groupId: 'g-quad', sectionId: 'Verbal Ability', questionIds: ['V11', 'V12', 'V13', 'V14'] },
+    ];
+    const ids = Array.from({ length: 14 }, (_, index) => `V${index + 1}`);
+    return {
+      session: baseSession({ questionIds: ids, items }),
+      questionIndex: new Map(ids.map((id) => [id, makeQuestion(id, 'Verbal Ability')])),
+    };
+  }
+
+  it('flows a whole subject through one five-column grid, groups included', async () => {
+    const user = userEvent.setup();
+    const fixture = groupedSimulationFixture();
+    renderLayout({ session: fixture.session, questionIndex: fixture.questionIndex });
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const grid = gridFor(dialog, 'Verbal Ability');
+
+    expect(grid).toHaveClass('grid-cols-5');
+    // One grid, and every item is a direct cell of it — a nested grid is what
+    // broke the row rhythm, so its absence is the regression guard.
+    expect(grid.querySelectorAll('.grid')).toHaveLength(0);
+    expect([...grid.children].map((child) => child.tagName)).toEqual(Array(14).fill('BUTTON'));
+    expect([...grid.children].map((child) => child.textContent?.trim())).toEqual(countingTo(14));
+  });
+
+  it('still navigates from a grid cell inside a group', async () => {
+    const user = userEvent.setup();
+    const fixture = groupedSimulationFixture();
+    renderLayout({ session: fixture.session, questionIndex: fixture.questionIndex });
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+
+    await user.click(within(dialog).getByRole('button', { name: /go to item 12 in Verbal Ability/i }));
+    expect(Element.prototype.scrollIntoView).toHaveBeenCalled();
+  });
+
+  it('uses the same single five-column grid in Practice', async () => {
+    const user = userEvent.setup();
+    const fixture = multiSubjectPracticeFixture([6, 3]);
+    renderLayout({ session: fixture.session, questionIndex: fixture.questionIndex });
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+
+    for (const [subject, count] of [['Verbal Ability', 6], ['Numerical Reasoning', 3]] as const) {
+      const grid = gridFor(dialog, subject);
+      expect(grid).toHaveClass('grid-cols-5');
+      expect(grid.querySelectorAll('.grid')).toHaveLength(0);
+      expect([...grid.children].map((child) => child.tagName)).toEqual(Array(count).fill('BUTTON'));
+    }
   });
 });
 

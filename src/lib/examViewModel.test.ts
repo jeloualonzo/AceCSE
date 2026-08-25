@@ -12,6 +12,7 @@ import {
   sectionItemOrder,
   sectionQuestionOrder,
   sectionTitle,
+  subjectNumberMap,
 } from './examViewModel';
 import type { ExamSession, SessionItem } from '@/types';
 
@@ -194,6 +195,82 @@ describe('sessionNumberMap — session-based booklet numbering', () => {
       { ids: ['edq-01', 'edq-02', 'edq-03'], administrative: true },
       { ids: ['Q1'] },
     ]);
+  });
+});
+
+describe('subjectNumberMap — subject-local booklet numbering (Practice)', () => {
+  it('restarts at 1 in every section and never continues across a boundary', () => {
+    const items: SessionItem[] = [
+      { kind: 'question', questionId: 'V1', sectionId: 'Verbal Ability' },
+      { kind: 'question', questionId: 'V2', sectionId: 'Verbal Ability' },
+      { kind: 'question', questionId: 'V3', sectionId: 'Verbal Ability' },
+      { kind: 'question', questionId: 'N1', sectionId: 'Numerical Reasoning' },
+      { kind: 'group', groupId: 'g1', sectionId: 'Numerical Reasoning', questionIds: ['N2', 'N3'] },
+      { kind: 'question', questionId: 'C1', sectionId: 'Clerical Ability' },
+    ];
+    const sections = buildBooklet(
+      session({ items, questionIds: ['V1', 'V2', 'V3', 'N1', 'N2', 'N3', 'C1'] })
+    );
+    const numbers = subjectNumberMap(sections);
+
+    expect([numbers.get('V1'), numbers.get('V2'), numbers.get('V3')]).toEqual([1, 2, 3]);
+    // Numerical starts over at 1 — session-wide it would have been 4–6.
+    expect([numbers.get('N1'), numbers.get('N2'), numbers.get('N3')]).toEqual([1, 2, 3]);
+    expect(numbers.get('C1')).toBe(1);
+    expect(numbers.size).toBe(7);
+  });
+
+  it('numbers administrative items within their own section, like sectionItemOrder', () => {
+    const items: SessionItem[] = [
+      { kind: 'administrative', id: 'edq-01', sectionId: 'EDQ' },
+      { kind: 'administrative', id: 'edq-02', sectionId: 'EDQ' },
+      { kind: 'question', questionId: 'V1', sectionId: 'Verbal Ability' },
+    ];
+    const sections = buildBooklet(session({ items, questionIds: ['V1'] }));
+    const numbers = subjectNumberMap(sections);
+
+    expect([numbers.get('edq-01'), numbers.get('edq-02')]).toEqual([1, 2]);
+    // Session-wide this would be 3; Practice presents subjects independently.
+    expect(numbers.get('V1')).toBe(1);
+  });
+
+  /**
+   * Appending a progressive Practice batch may only extend a subject's own run,
+   * so nothing already numbered can move — the property "Show More must not
+   * change the numbering" reduces to exactly this.
+   */
+  it('leaves every existing number untouched when a later batch is appended', () => {
+    const base: SessionItem[] = [
+      { kind: 'question', questionId: 'V1', sectionId: 'Verbal Ability' },
+      { kind: 'question', questionId: 'V2', sectionId: 'Verbal Ability' },
+      { kind: 'question', questionId: 'N1', sectionId: 'Numerical Reasoning' },
+    ];
+    const before = subjectNumberMap(buildBooklet(session({ items: base, questionIds: ['V1', 'V2', 'N1'] })));
+    const grown: SessionItem[] = [
+      ...base.slice(0, 2),
+      { kind: 'question', questionId: 'V3', sectionId: 'Verbal Ability' },
+      base[2],
+      { kind: 'question', questionId: 'N2', sectionId: 'Numerical Reasoning' },
+    ];
+    const after = subjectNumberMap(
+      buildBooklet(session({ items: grown, questionIds: ['V1', 'V2', 'V3', 'N1', 'N2'] }))
+    );
+
+    for (const [id, number] of before) expect(after.get(id)).toBe(number);
+    expect(after.get('V3')).toBe(3);
+    expect(after.get('N2')).toBe(2);
+  });
+
+  it('is unchanged from sessionNumberMap for a single-section booklet', () => {
+    const questionIds = Array.from({ length: 12 }, (_, index) => `V${index + 1}`);
+    const items: SessionItem[] = questionIds.map((questionId) => ({
+      kind: 'question',
+      questionId,
+      sectionId: 'Verbal Ability',
+    }));
+    const sections = buildBooklet(session({ items, questionIds }));
+
+    expect([...subjectNumberMap(sections)]).toEqual([...sessionNumberMap(sections)]);
   });
 });
 

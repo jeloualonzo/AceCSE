@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
+import { Layers, Loader2 } from 'lucide-react';
 import {
   buildSubjectWorkspaceData,
   slugForFamily,
@@ -15,6 +15,7 @@ import { FrozenProgressBar, ProgressBadge, StatFigure } from '@/components/conte
 import {
   CONTENT_BANK_BASE,
   contentBankFamilyPath,
+  contentBankStructuresPath,
 } from '@/navigation/contentBankRoutes';
 import type { Subject } from '@/types';
 
@@ -86,6 +87,13 @@ function SubjectWorkspace({ subject }: { subject: Subject }) {
         <div className="mt-4">
           <FrozenProgressBar frozen={workspace.frozenQuestionIds.length} active={workspace.activeQuestionCount} />
         </div>
+        <Link
+          to={contentBankStructuresPath(subject)}
+          className="mt-5 inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-slate-300 px-4 text-xs font-bold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+        >
+          <Layers className="h-3.5 w-3.5" aria-hidden="true" />
+          Groups, directions &amp; instructions
+        </Link>
       </header>
 
       {workspace.invalidBatchReferences.length > 0 && (

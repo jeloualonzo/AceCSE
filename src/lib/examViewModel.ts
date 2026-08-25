@@ -122,6 +122,10 @@ export function bookletItemOrder(sections: readonly BookletSection[]): string[] 
  * whole generated booklet. Administrative EDQ items occupy 1–20, the first
  * scored question is 21, and numbering NEVER resets between subjects.
  * Content ids stay permanent — these numbers exist only for this session.
+ *
+ * This is Simulation's numbering, because a real CSC booklet is one continuous
+ * document. Practice presents one subject at a time and numbers each subject
+ * from 1 — see {@link subjectNumberMap}.
  */
 export function sessionNumberMap(sections: readonly BookletSection[]): Map<string, number> {
   const order = bookletItemOrder(sections);
@@ -199,6 +203,29 @@ export function sectionItemOrder(section: BookletSection): string[] {
     else ids.push(node.id);
   }
   return ids;
+}
+
+/**
+ * SUBJECT-LOCAL display numbers: every section restarts at 1.
+ *
+ * This is Practice's numbering. A Practice run is a set of per-subject drills
+ * the learner opens one subject at a time, so "Verbal 1, 2, 3 / Numerical 1, 2"
+ * is what the screen actually shows; continuing Numerical at 11 would number
+ * the learner's position in a booklet that is never presented as one.
+ * Simulation keeps {@link sessionNumberMap} — a real booklet is continuous.
+ *
+ * Assigned from `sectionItemOrder`, so administrative items are numbered
+ * alongside scored ones within their own section, and the sequence follows the
+ * session's existing item order. Appending a progressive Practice batch can
+ * therefore only extend a subject's run: numbers already on screen never move.
+ * Content ids stay permanent — these numbers exist only for this session.
+ */
+export function subjectNumberMap(sections: readonly BookletSection[]): Map<string, number> {
+  const numbers = new Map<string, number>();
+  for (const section of sections) {
+    sectionItemOrder(section).forEach((id, index) => numbers.set(id, index + 1));
+  }
+  return numbers;
 }
 
 /** Answered/unanswered counts scoped to one section — powers the subject tab badges. */

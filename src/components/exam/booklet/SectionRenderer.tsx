@@ -2,11 +2,10 @@ import React from 'react';
 import type { ActiveFocus, NormalizedQuestionGroup, OptionId, Question } from '@/types';
 import type { EdqItem } from '@/data/edq';
 import type { BookletSection } from '@/lib/examViewModel';
-import { getSharedTaskDefinitionForTaskFormat, taskFormatLabel } from '@/data/taxonomy';
+import { resolveSharedTaskContext } from '@/data/sharedTaskContext';
 import { AdministrativeItemRenderer } from './AdministrativeItemRenderer';
 import { GroupRenderer } from './GroupRenderer';
 import { QuestionRenderer } from './QuestionRenderer';
-import { normalizeIntendedNewlines } from '@/lib/text';
 
 /** Everything the booklet needs to render optional, local-only EDQ items. */
 export interface EdqRenderContext {
@@ -103,26 +102,13 @@ export const SectionRenderer: React.FC<SectionRendererProps> = React.memo(functi
           );
         }
         if (node.kind === 'pool') {
-          const shared = getSharedTaskDefinitionForTaskFormat(node.taskFormat);
-          const definition = shared?.[1];
-          const directionsSource = definition && typeof definition.directionsSource === 'string'
-            ? getGroup(definition.directionsSource)
-            : undefined;
-          const examples = Array.isArray(definition?.examples)
-            ? definition.examples
-                .filter((example): example is Record<string, unknown> => Boolean(example) && typeof example === 'object')
-                .map((example) => [example.input, example.result]
-                  .filter((part): part is string => typeof part === 'string')
-                  .map((part) => normalizeIntendedNewlines(part, 'decode-escaped-newlines'))
-                  .join(node.taskFormat === 'shared_spelling_task' ? '\n\n' : ' — '))
-                .filter(Boolean)
-                .join('\n\n')
-            : undefined;
-          const sharedContext = {
-            title: typeof definition?.title === 'string' ? definition.title : taskFormatLabel(node.questionType, node.taskFormat),
-            directions: typeof definition?.directions === 'string' ? definition.directions : directionsSource?.directions,
-            example: examples || directionsSource?.example,
-          };
+          // Shared with the admin structures workspace so its "learner-facing"
+          // column is literally this, not a second rendering of the same source.
+          const sharedContext = resolveSharedTaskContext({
+            questionType: node.questionType,
+            taskFormat: node.taskFormat,
+            getGroup,
+          });
           return (
             <GroupRenderer
               key={`pool-${node.poolId}-${index}`}

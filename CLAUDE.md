@@ -56,6 +56,21 @@ Admin login (/admin/login) → Admin shell (/admin/*) → Exam focus mode (/app/
   `ExamLaunchRequest.internalReview`) is the ONLY flag that suppresses the Firestore write in
   `ExamPage`'s `finishWith`, so the run is graded and reviewable but never enters learner History
   or analytics. Nothing else sets it. See docs/admin/ADMIN_ACCESS.md.
+- **Structure management foundation (groups / directions / instructions):** `src/data/contentStructures.ts`
+  builds a **read-only** normalized view of the two authored structure sources —
+  `content/groups/<subject>/core-groups.json` and `sharedTaskDefinitions` in
+  `content/taxonomy/taxonomy.json` — and projects each one into Review Markdown or its exact
+  authored JSON. `/admin/content-bank/structures/:subjectSlug` (`ContentBankStructuresPage`)
+  renders it and is marked read-only tooling; editing is deliberately not built yet. Two rules
+  hold it honest: `buildSubjectStructures` filters out the `singleton:<id>` pseudo-groups
+  `normalizeContent` invents, and the learner-facing column comes from `resolveSharedTaskContext`
+  in `src/data/sharedTaskContext.ts` — the same derivation the booklet's `SectionRenderer` uses, so
+  the screen cannot drift from what an examinee reads. Nothing here writes anywhere; structure
+  content stays source-controlled.
+- **One export surface:** `src/components/contentBank/ExportDocumentPanel.tsx` is the ONLY
+  implementation of character counting, 8,000-character chunk display, Copy Chunk, and the
+  integrity gate. Callers pass `sources` that each `build()` an `ExportDocument`;
+  `ReviewExportPanel` (batch review) and the structures workspace are both thin adapters over it.
 - **Code splitting:** every page is a `React.lazy` route chunk. Firestore is only reached through
   dynamic imports in `src/services/*` (facade + `*Impl.ts`) and lives in its own chunk — never
   import `src/lib/firestore.ts` statically.

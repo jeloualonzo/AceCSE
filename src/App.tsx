@@ -14,7 +14,11 @@ import {
   CONTENT_BANK_SEGMENT,
   LEARNER_HOME_ROUTE,
 } from '@/navigation/appRoutes';
-import { CONTENT_BANK_BASE, CONTENT_BANK_BATCH_SEGMENT } from '@/navigation/contentBankRoutes';
+import {
+  CONTENT_BANK_BASE,
+  CONTENT_BANK_BATCH_SEGMENT,
+  CONTENT_BANK_STRUCTURES_SEGMENT,
+} from '@/navigation/contentBankRoutes';
 
 /**
  * Route-level code splitting: each surface is its own chunk, so a visitor
@@ -52,6 +56,7 @@ const ContentBankSubjectPage = lazy(() => import('@/pages/ContentBankSubjectPage
 const ContentBankFamilyPage = lazy(() => import('@/pages/ContentBankFamilyPage'));
 const ContentBankBatchPage = lazy(() => import('@/pages/ContentBankBatchPage'));
 const ContentBankReviewPage = lazy(() => import('@/pages/ContentBankReviewPage'));
+const ContentBankStructuresPage = lazy(() => import('@/pages/ContentBankStructuresPage'));
 
 /**
  * Kept as the long-standing name for the Content Bank entry point. The path
@@ -186,6 +191,10 @@ export default function App() {
                   <Route
                     path={`${CONTENT_BANK_BATCH_SEGMENT}/:batchId/review`}
                     element={<ContentBankReviewPage />}
+                  />
+                  <Route
+                    path={`${CONTENT_BANK_STRUCTURES_SEGMENT}/:subjectSlug`}
+                    element={<ContentBankStructuresPage />}
                   />
                   <Route path=":subjectSlug" element={<ContentBankSubjectPage />} />
                   <Route path=":subjectSlug/:familySlug" element={<ContentBankFamilyPage />} />

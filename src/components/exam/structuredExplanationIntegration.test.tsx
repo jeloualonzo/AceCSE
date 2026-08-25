@@ -1,13 +1,14 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { Attempt, OptionId, Question } from '@/types';
+import type { Attempt, ExamLevel, OptionId, Question, StructuredExplanationBlock } from '@/types';
 import { loadContentCatalog } from '@/data/questionBank';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { QuestionCard } from './QuestionCard';
 import { ResultsScreen } from './ResultsScreen';
+import { StructuredExplanationRenderer } from './StructuredExplanationRenderer';
 
 const stripInlineFormatting = (text: string) => text
   .replace(/\*\*([^*]+)\*\*/g, '$1')
@@ -177,6 +178,115 @@ const batch4Questions: Question[] = [
 
 function renderWithTheme(element: React.ReactElement) {
   return render(<ThemeProvider>{element}</ThemeProvider>);
+}
+
+/**
+ * Every section heading the shared renderer emitted, as plain text.
+ *
+ * All labelled blocks route their heading through the one `SectionLabel`
+ * component, so sweeping <h5> yields exactly the card's section headings. That
+ * distinction is the whole point: a text search over the card cannot tell a
+ * heading from a sentence, and one approved Grammar paragraph is *about* the
+ * other choices.
+ */
+function sectionHeadings(root: HTMLElement): string[] {
+  return [...root.querySelectorAll('h5')].map((node) => node.textContent?.trim() ?? '');
+}
+
+/**
+ * The Grammar pilot's prohibition as `scripts/validate-grammar-pilot.mjs` states
+ * it: no `alternative_solution` block, i.e. no dedicated "Other Choices" or
+ * "corrected alternatives" section. `alternative_solution` is the only block the
+ * renderer turns into a disclosure tagged `structured-alternative-method`, so
+ * its absence is the exact assertion, and no section heading may carry one of
+ * those titles either — which is what `validate-spelling.mjs` guards on title.
+ */
+function noAlternativeSection(root: HTMLElement): boolean {
+  return (
+    within(root).queryByTestId('structured-alternative-method') === null &&
+    sectionHeadings(root).every((heading) => !/^(other choices|corrected alternatives)$/i.test(heading))
+  );
+}
+
+/** The one distractor-paragraph label approved for the Grammar pilot. */
+const DISTRACTOR_LABEL = 'Why the other choices fail';
+
+/** The rendered block for {@link DISTRACTOR_LABEL}: its heading plus its prose. */
+function distractorParagraph(root: HTMLElement): HTMLElement | null {
+  const heading = within(root).queryByText(DISTRACTOR_LABEL);
+  return heading === null ? null : (heading.parentElement as HTMLElement | null);
+}
+
+/** Distinct choices a distractor paragraph rules out by letter. */
+function choicesRuledOut(paragraph: HTMLElement): Set<string> {
+  // Read the prose element, not the wrapper: `textContent` on the wrapper glues
+  // the section heading onto the first word of the sentence, which destroys the
+  // leading word boundary this pattern depends on.
+  const prose = paragraph.querySelector('p')?.textContent ?? '';
+  return new Set([...prose.matchAll(/\bChoices?\s+([A-E])\b/g)].map((match) => match[1]));
+}
+
+/**
+ * One Attempt covering a whole set of questions, so a bulk test can mount a
+ * single Results screen instead of rebuilding the score header, subject table
+ * and filter bar once per question.
+ *
+ * The items are recorded as answered-and-wrong deliberately. ResultsScreen
+ * expands an item's review card by default exactly when it was answered
+ * incorrectly (`expanded[id] ?? !item.isCorrect`), so every explanation is on
+ * screen after a single render pass with no event simulation at all — whereas
+ * clicking N disclosures on one mounted list would re-render the whole list N
+ * times, which is slower than the per-question mounts this replaces. What a card
+ * shows comes from `question.structuredExplanation` and does not depend on which
+ * choice the learner picked; the disclosure click itself stays covered by 'uses
+ * the same structured renderer in Results item review' below.
+ */
+function attemptOver(id: string, examLevel: ExamLevel, questions: Question[]): Attempt {
+  return {
+    id,
+    mode: 'practice',
+    examLevel,
+    questionCount: questions.length,
+    correctCount: 0,
+    answeredCount: questions.length,
+    unansweredCount: 0,
+    percentage: 0,
+    passed: false,
+    durationSeconds: 12 * questions.length,
+    startedAt: 1,
+    completedAt: 1 + 12_000 * questions.length,
+    subjects: [{
+      subject: questions[0].subject,
+      total: questions.length,
+      correct: 0,
+      answered: questions.length,
+      unanswered: 0,
+      percentage: 0,
+    }],
+    items: questions.map((question) => ({
+      questionId: question.id,
+      subject: question.subject,
+      topic: question.topic,
+      selected: question.choices.find((choice) => choice.id !== question.correctOptionId)!.id,
+      correct: question.correctOptionId,
+      isCorrect: false,
+    })),
+  };
+}
+
+/**
+ * The explanation card belonging to each id on a mounted Results screen.
+ *
+ * `filteredItems` maps `attempt.items` in order under the default ALL filter and
+ * each item renders exactly one explanation card, so the Nth card is the Nth id.
+ * The length check keeps that pairing honest — it fails if any authored
+ * explanation goes missing — and the per-id assertions that follow re-prove it
+ * against text unique to each question.
+ */
+function resultsExplanationCards(ids: string[]): Map<string, HTMLElement> {
+  const cards = screen.getAllByTestId('structured-explanation');
+  expect(cards).toHaveLength(ids.length);
+  return new Map(ids.map((id, index) => [id, cards[index]]));
 }
 
 beforeEach(() => {
@@ -449,7 +559,21 @@ describe('structured explanation Practice/Results integration V3', () => {
       expect(practiceRoots.every((root) => within(root).getByText('Rule'))).toBe(true);
       expect(practiceRoots.every((root) => root.querySelector('strong, em') !== null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/^Pattern(?: — .+)?$/) === null)).toBe(true);
-      expect(practiceRoots.every((root) => within(root).queryByText(/Other Choices|corrected alternatives/i) === null)).toBe(true);
+
+      // What the pilot forbids is a *section*, not the word "choices". verb-0059's
+      // approved blocks include a "Why the other choices fail" paragraph — the
+      // validator ships that exact text as the reference explanation — so assert
+      // the real rule, then assert the card carries precisely the distractor
+      // paragraph the authored blocks declare, with per-choice reasoning in it.
+      expect(practiceRoots.every((root) => noAlternativeSection(root))).toBe(true);
+      const authoredDistractor = question.structuredExplanation?.blocks.some(
+        (block) => block.type === 'paragraph' && block.label === DISTRACTOR_LABEL
+      ) ?? false;
+      expect(authoredDistractor).toBe(id === 'verb-0059');
+      expect(practiceRoots.every((root) => (distractorParagraph(root) !== null) === authoredDistractor)).toBe(true);
+      if (authoredDistractor) {
+        expect(practiceRoots.every((root) => choicesRuledOut(distractorParagraph(root)!).size >= 2)).toBe(true);
+      }
 
       cleanup();
       const attempt: Attempt = {
@@ -493,13 +617,54 @@ describe('structured explanation Practice/Results integration V3', () => {
       expect(within(resultsRoot).getByText('Rule')).toBeInTheDocument();
       expect(resultsRoot.querySelector('strong, em')).not.toBeNull();
       expect(within(resultsRoot).queryByText(/^Pattern(?: — .+)?$/)).toBeNull();
-      expect(within(resultsRoot).queryByText(/Other Choices|corrected alternatives/i)).toBeNull();
+      expect(noAlternativeSection(resultsRoot)).toBe(true);
+      expect(distractorParagraph(resultsRoot) !== null).toBe(authoredDistractor);
+      if (authoredDistractor) {
+        expect(choicesRuledOut(distractorParagraph(resultsRoot)!).size).toBeGreaterThanOrEqual(2);
+      }
       cleanup();
     }
   });
 
+  /**
+   * Proof that the Grammar guard above still bites.
+   *
+   * The blunt text search it replaced also rejected verb-0059's *approved*
+   * distractor paragraph, so the guard had to get more precise — which is only
+   * worth anything if it still rejects what the pilot actually prohibits. Both
+   * prohibited shapes the validators name are asserted here, against synthetic
+   * blocks, so no production content is involved.
+   */
+  it('still rejects a dedicated Other Choices section, not the approved distractor paragraph', () => {
+    const approvedParagraph: StructuredExplanationBlock = {
+      type: 'paragraph',
+      label: DISTRACTOR_LABEL,
+      text: 'Choices A and D use plural **have**. Choice B pairs singular **has** with plural **their**.',
+    };
+    const firstRoot = () => screen.getAllByTestId('structured-explanation')[0];
+    const renderBlocks = (blocks: StructuredExplanationBlock[]) =>
+      renderWithTheme(<StructuredExplanationRenderer explanation={{ blocks }} />);
+
+    // The approved paragraph passes, and reads as substantive.
+    renderBlocks([approvedParagraph]);
+    expect(noAlternativeSection(firstRoot())).toBe(true);
+    expect(choicesRuledOut(distractorParagraph(firstRoot())!).size).toBeGreaterThanOrEqual(2);
+    cleanup();
+
+    // `alternative_solution` — the block validate-grammar-pilot.mjs fails on.
+    renderBlocks([
+      approvedParagraph,
+      { type: 'alternative_solution', title: 'Other Choices', blocks: [{ type: 'paragraph', text: 'A is wrong.' }] },
+    ]);
+    expect(noAlternativeSection(firstRoot())).toBe(false);
+    cleanup();
+
+    // A prohibited section *heading*, in the other wording the validators name.
+    renderBlocks([{ type: 'paragraph', label: 'Corrected Alternatives', text: 'A becomes B.' }]);
+    expect(noAlternativeSection(firstRoot())).toBe(false);
+  });
+
   it('renders the 12 approved Spelling explanations through Practice and Results without Number Series sections', async () => {
-    const user = userEvent.setup();
     const catalog = await loadContentCatalog(['Clerical Ability']);
     const spellingIds = [
       'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
@@ -509,18 +674,29 @@ describe('structured explanation Practice/Results integration V3', () => {
       'cler-0012', 'cler-0013', 'cler-0015',
       'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
     ]);
+    const questions = spellingIds.map((id) => catalog.questions.get(id)!);
+    const correctSpellingText = new Map<string, string>();
+    const memoryAidText = new Map<string, string>();
 
-    for (const id of spellingIds) {
-      const question = catalog.questions.get(id)!;
+    for (const question of questions) {
+      const id = question.id;
       const correctSpellingBlock = question.structuredExplanation?.blocks.find(
         (block) => block.type === 'paragraph' && block.label === 'Correct Spelling'
       );
       const memoryAidBlock = question.structuredExplanation?.blocks.find(
         (block) => block.type === 'paragraph' && block.label === 'Memory Aid'
       );
-      const memoryAidText = memoryAidBlock?.type === 'paragraph' ? memoryAidBlock.text : undefined;
       if (!correctSpellingBlock || correctSpellingBlock.type !== 'paragraph') {
         throw new Error(`${id}: Correct Spelling paragraph is missing`);
+      }
+      correctSpellingText.set(id, correctSpellingBlock.text);
+      if (memoryAidIds.has(id)) {
+        if (memoryAidBlock?.type !== 'paragraph') {
+          throw new Error(`${id}: visible Memory Aid paragraph is missing`);
+        }
+        memoryAidText.set(id, memoryAidBlock.text);
+      } else {
+        expect(memoryAidBlock).toBeUndefined();
       }
 
       renderWithTheme(
@@ -532,75 +708,51 @@ describe('structured explanation Practice/Results integration V3', () => {
         />
       );
 
-      await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Show Explanation' }));
       const practiceRoots = screen.getAllByTestId('structured-explanation');
       expect(practiceRoots).toHaveLength(2);
       expect(practiceRoots.every((root) => within(root).getByText('Correct Spelling'))).toBe(true);
-      expect(practiceRoots.every((root) => root.textContent?.includes(stripInlineFormatting(correctSpellingBlock!.text)))).toBe(true);
+      expect(practiceRoots.every((root) => root.textContent?.includes(stripInlineFormatting(correctSpellingBlock.text)))).toBe(true);
       expect(practiceRoots.every((root) => root.querySelector('strong, em') !== null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Pattern/) === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Other Choices|corrected alternatives/i) === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByRole('button', { name: /Memory Aid/ }) === null)).toBe(true);
-      if (memoryAidIds.has(id)) {
-        if (memoryAidText === undefined) throw new Error(`${id}: visible Memory Aid paragraph is missing`);
+      const aid = memoryAidText.get(id);
+      if (aid !== undefined) {
         expect(practiceRoots.every((root) => within(root).getByText('Memory Aid'))).toBe(true);
-        expect(practiceRoots.every((root) => root.textContent?.includes(stripInlineFormatting(memoryAidText)))).toBe(true);
-      } else {
-        expect(memoryAidBlock).toBeUndefined();
+        expect(practiceRoots.every((root) => root.textContent?.includes(stripInlineFormatting(aid)))).toBe(true);
       }
-
       cleanup();
-      const attempt: Attempt = {
-        id: `spelling-structured-results-${id}`,
-        mode: 'practice',
-        examLevel: 'Subprofessional',
-        questionCount: 1,
-        correctCount: 1,
-        answeredCount: 1,
-        unansweredCount: 0,
-        percentage: 100,
-        passed: false,
-        durationSeconds: 12,
-        startedAt: 1,
-        completedAt: 12_001,
-        subjects: [{ subject: 'Clerical Ability', total: 1, correct: 1, answered: 1, unanswered: 0, percentage: 100 }],
-        items: [{
-          questionId: question.id,
-          subject: question.subject,
-          topic: question.topic,
-          selected: question.correctOptionId,
-          correct: question.correctOptionId,
-          isCorrect: true,
-        }],
-      };
+    }
 
-      renderWithTheme(
-        <ResultsScreen
-          attempt={attempt}
-          questionIndex={new Map([[question.id, question]])}
-          onRetake={vi.fn()}
-          onReturnToDashboard={vi.fn()}
-        />
-      );
-      await user.click(screen.getByRole('button', { name: 'Expand question details' }));
-      const resultsRoot = screen.getByTestId('structured-explanation');
+    // One Results screen over the whole approved set — see `attemptOver`.
+    renderWithTheme(
+      <ResultsScreen
+        attempt={attemptOver('spelling-structured-results', 'Subprofessional', questions)}
+        questionIndex={new Map(questions.map((question) => [question.id, question]))}
+        onRetake={vi.fn()}
+        onReturnToDashboard={vi.fn()}
+      />
+    );
+    const resultsCards = resultsExplanationCards(spellingIds);
+
+    for (const id of spellingIds) {
+      const resultsRoot = resultsCards.get(id)!;
       expect(within(resultsRoot).getByText('Correct Spelling')).toBeInTheDocument();
-      expect(resultsRoot.textContent).toContain(stripInlineFormatting(correctSpellingBlock!.text));
+      expect(resultsRoot.textContent).toContain(stripInlineFormatting(correctSpellingText.get(id)!));
       expect(resultsRoot.querySelector('strong, em')).not.toBeNull();
       expect(within(resultsRoot).queryByText(/Pattern/)).not.toBeInTheDocument();
       expect(within(resultsRoot).queryByRole('button', { name: /Memory Aid/ })).toBeNull();
-      if (memoryAidIds.has(id)) {
+      const aid = memoryAidText.get(id);
+      if (aid !== undefined) {
         expect(within(resultsRoot).getByText('Memory Aid')).toBeInTheDocument();
-        expect(memoryAidText).toBeDefined();
-        expect(resultsRoot.textContent).toContain(stripInlineFormatting(memoryAidText!));
+        expect(resultsRoot.textContent).toContain(stripInlineFormatting(aid));
       }
-      cleanup();
     }
   });
 
   it('renders all 24 approved Filing explanations through Practice and Results in one card', async () => {
-    const user = userEvent.setup();
     const catalog = await loadContentCatalog(['Clerical Ability']);
     const filingIds = [
       'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
@@ -634,8 +786,9 @@ describe('structured explanation Practice/Results integration V3', () => {
       'cler-0039': 'Ace Hardware Philippines',
     };
 
-    for (const id of filingIds) {
-      const question = catalog.questions.get(id)!;
+    const questions = filingIds.map((id) => catalog.questions.get(id)!);
+
+    for (const question of questions) {
       renderWithTheme(
         <QuestionCard
           question={question}
@@ -645,52 +798,33 @@ describe('structured explanation Practice/Results integration V3', () => {
         />
       );
 
-      await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Show Explanation' }));
       const practiceRoots = screen.getAllByTestId('structured-explanation');
       expect(practiceRoots.length).toBeGreaterThan(0);
       expect(practiceRoots.every((root) => root.textContent?.includes('Correct Answer:'))).toBe(true);
       expect(practiceRoots.every((root) => root.querySelector('strong, em') !== null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Other Choices|corrected alternatives/i) === null)).toBe(true);
-      if (filingOrderExamples[id]) {
+      if (filingOrderExamples[question.id]) {
         expect(practiceRoots.every((root) => within(root).getByText('Filing Order'))).toBe(true);
-        expect(practiceRoots.every((root) => root.textContent?.includes(filingOrderExamples[id]))).toBe(true);
+        expect(practiceRoots.every((root) => root.textContent?.includes(filingOrderExamples[question.id]))).toBe(true);
       }
-
       cleanup();
-      const attempt: Attempt = {
-        id: `filing-structured-results-${id}`,
-        mode: 'practice',
-        examLevel: 'Subprofessional',
-        questionCount: 1,
-        correctCount: 1,
-        answeredCount: 1,
-        unansweredCount: 0,
-        percentage: 100,
-        passed: false,
-        durationSeconds: 12,
-        startedAt: 1,
-        completedAt: 12_001,
-        subjects: [{ subject: 'Clerical Ability', total: 1, correct: 1, answered: 1, unanswered: 0, percentage: 100 }],
-        items: [{
-          questionId: question.id,
-          subject: question.subject,
-          topic: question.topic,
-          selected: question.correctOptionId,
-          correct: question.correctOptionId,
-          isCorrect: true,
-        }],
-      };
+    }
 
-      renderWithTheme(
-        <ResultsScreen
-          attempt={attempt}
-          questionIndex={new Map([[question.id, question]])}
-          onRetake={vi.fn()}
-          onReturnToDashboard={vi.fn()}
-        />
-      );
-      await user.click(screen.getByRole('button', { name: 'Expand question details' }));
-      const resultsRoot = screen.getByTestId('structured-explanation');
+    // One Results screen over the whole approved set, instead of 24 rebuilds of
+    // the same score header and filter bar around a single item.
+    renderWithTheme(
+      <ResultsScreen
+        attempt={attemptOver('filing-structured-results', 'Subprofessional', questions)}
+        questionIndex={new Map(questions.map((question) => [question.id, question]))}
+        onRetake={vi.fn()}
+        onReturnToDashboard={vi.fn()}
+      />
+    );
+    const resultsCards = resultsExplanationCards(filingIds);
+
+    for (const id of filingIds) {
+      const resultsRoot = resultsCards.get(id)!;
       expect(resultsRoot.textContent).toContain('Correct Answer:');
       expect(resultsRoot.querySelector('strong, em')).not.toBeNull();
       expect(within(resultsRoot).queryByText(/Other Choices|corrected alternatives/i)).toBeNull();
@@ -698,7 +832,6 @@ describe('structured explanation Practice/Results integration V3', () => {
         expect(within(resultsRoot).getByText('Filing Order')).toBeInTheDocument();
         expect(resultsRoot.textContent).toContain(filingOrderExamples[id]);
       }
-      cleanup();
     }
   });
 

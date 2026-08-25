@@ -28,8 +28,23 @@ export const CONTENT_BANK_BASE = `${ADMIN_BASE}/${CONTENT_BANK_SEGMENT}`;
  */
 export const CONTENT_BANK_BATCH_SEGMENT = 'batch';
 
+/**
+ * The literal segment that introduces the structures (groups, directions,
+ * instructions) workspace for one subject.
+ *
+ * Static-first for the same reason as `batch`: `structures/:subjectSlug` (13)
+ * outranks `:subjectSlug/:familySlug` (6), so it cannot be mistaken for a
+ * subject/family pair. No subject slug is `structures`;
+ * `contentBankRoutes.test.ts` holds that true.
+ */
+export const CONTENT_BANK_STRUCTURES_SEGMENT = 'structures';
+
 export function contentBankSubjectPath(subject: Subject): string {
   return `${CONTENT_BANK_BASE}/${slugForSubject(subject)}`;
+}
+
+export function contentBankStructuresPath(subject: Subject): string {
+  return `${CONTENT_BANK_BASE}/${CONTENT_BANK_STRUCTURES_SEGMENT}/${slugForSubject(subject)}`;
 }
 
 export function contentBankFamilyPath(subject: Subject, family: string): string {

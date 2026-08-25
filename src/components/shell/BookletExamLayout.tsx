@@ -12,6 +12,7 @@ import {
   sectionShortTitle,
   sectionTitle,
   sessionNumberMap,
+  subjectNumberMap,
   type BookletSection,
 } from '@/lib/examViewModel';
 import { EDQ_SECTION_ID } from '@/data/edq';
@@ -151,10 +152,22 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   );
 
   const localOrder = useMemo(() => (activeSection ? sectionItemOrder(activeSection) : []), [activeSection]);
-  // One session-wide numeric map is the learner-facing contract in both
-  // Practice and Simulation. It remains stable because it follows the
-  // session's existing item order; changing subject does not restart at 1.
-  const displayNumbers = useMemo(() => sessionNumberMap(sections), [sections]);
+  // DISPLAY numbers only — never ids, never session order, never grading.
+  //
+  // Practice numbers each subject independently from 1: a Practice run is a set
+  // of per-subject drills opened one subject at a time, so the screen never
+  // presents the single continuous booklet that a global sequence would be
+  // numbering. Simulation keeps that continuous 1..N sequence (EDQ 1–20, first
+  // scored item 21) because a real CSC booklet is one document.
+  //
+  // Both maps are derived from the session's existing item order, so appending a
+  // progressive Practice batch only extends a subject's run — numbers already on
+  // screen never move, and expanding or collapsing nothing about the navigator
+  // can change them.
+  const displayNumbers = useMemo(
+    () => (isPractice ? subjectNumberMap(sections) : sessionNumberMap(sections)),
+    [isPractice, sections]
+  );
   const displayLabels = useMemo(
     () => new Map([...displayNumbers].map(([id, number]) => [id, String(number)])),
     [displayNumbers]
@@ -594,67 +607,47 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                         )}
                       </h3>
                     )}
-                    {isPractice ? (
-                      <div className="grid grid-cols-5 gap-2">
-                        {blocks.flatMap((block) => block.ids.map((id) => {
-                          const num = displayLabels.get(id) ?? '0';
-                          const isCurrent = section.sectionId === activeSectionId && id === currentQuestionId;
-                          const isAnswered = block.administrative
-                            ? Boolean((session.edqAnswers ?? {})[id])
-                            : Boolean(session.answers[id]);
-                          return (
-                            <button
-                              key={id}
-                              onClick={() => jumpToQuestion(section.sectionId, id)}
-                              aria-current={isCurrent ? 'true' : undefined}
-                              className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                                isCurrent
-                                  ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
-                                  : isAnswered
-                                    ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
-                                    : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
-                              }`}
-                              aria-label={`Go to ${sectionTitle(section.sectionId)} question ${num}${block.administrative ? ', administrative, not scored' : isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
-                            >
-                              {num}
-                            </button>
-                          );
-                        }))}
-                      </div>
-                    ) : (
-                      <div className="space-y-2">
-                        {blocks.map((block, blockIndex) => (
-                          <div key={block.groupId ?? block.poolId ?? `${section.sectionId}-block-${blockIndex}`}>
-                            <div className="grid grid-cols-5 gap-2">
-                              {block.ids.map((id) => {
-                                const num = displayLabels.get(id) ?? '0';
-                                const isCurrent = section.sectionId === activeSectionId && id === currentQuestionId;
-                                const isAnswered = block.administrative
-                                  ? Boolean((session.edqAnswers ?? {})[id])
-                                  : Boolean(session.answers[id]);
-                                return (
-                                  <button
-                                    key={id}
-                                    onClick={() => jumpToQuestion(section.sectionId, id)}
-                                    aria-current={isCurrent ? 'true' : undefined}
-                                    className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                                      isCurrent
-                                        ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
-                                        : isAnswered
-                                          ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
-                                          : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
-                                    }`}
-                                    aria-label={`Go to item ${num} in ${sectionTitle(section.sectionId)}${block.administrative ? ', administrative, not scored' : isAnswered ? ', answered' : ', unanswered'}${isCurrent ? ', current' : ''}`}
-                                  >
-                                    {num}
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                    {/* ONE grid per subject, always exactly five columns.
+                        `grid-cols-5` resolves to repeat(5, minmax(0, 1fr)), so a
+                        long label cannot widen a track and force a reflow, and
+                        every item is flattened into that single grid: a real
+                        multi-question group used to open its own nested grid,
+                        which ended the row early and made the drawer wrap 5 / 2 /
+                        3 / 4 instead of filling rows. Order, per-item state
+                        styling, and click behaviour are unchanged. */}
+                    <div className="grid grid-cols-5 gap-2">
+                      {blocks.flatMap((block) => block.ids.map((id) => {
+                        const num = displayLabels.get(id) ?? '0';
+                        const isCurrent = section.sectionId === activeSectionId && id === currentQuestionId;
+                        const isAnswered = block.administrative
+                          ? Boolean((session.edqAnswers ?? {})[id])
+                          : Boolean(session.answers[id]);
+                        const state = block.administrative
+                          ? ', administrative, not scored'
+                          : isAnswered ? ', answered' : ', unanswered';
+                        return (
+                          <button
+                            key={id}
+                            onClick={() => jumpToQuestion(section.sectionId, id)}
+                            aria-current={isCurrent ? 'true' : undefined}
+                            className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
+                              isCurrent
+                                ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
+                                : isAnswered
+                                  ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
+                                  : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
+                            }`}
+                            aria-label={`${
+                              isPractice
+                                ? `Go to ${sectionTitle(section.sectionId)} question ${num}`
+                                : `Go to item ${num} in ${sectionTitle(section.sectionId)}`
+                            }${state}${isCurrent ? ', current' : ''}`}
+                          >
+                            {num}
+                          </button>
+                        );
+                      }))}
+                    </div>
                   </div>
                 );
               })}

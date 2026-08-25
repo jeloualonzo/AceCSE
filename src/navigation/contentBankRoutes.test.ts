@@ -4,9 +4,11 @@ import { slugForFamily, slugForSubject, subjectFromSlug } from '@/data/contentBa
 import {
   CONTENT_BANK_BASE,
   CONTENT_BANK_BATCH_SEGMENT,
+  CONTENT_BANK_STRUCTURES_SEGMENT,
   contentBankBatchPath,
   contentBankBatchReviewPath,
   contentBankFamilyPath,
+  contentBankStructuresPath,
   contentBankSubjectPath,
 } from '@/navigation/contentBankRoutes';
 import type { Subject } from '@/types';
@@ -32,6 +34,46 @@ describe('Content Bank route builders', () => {
     }
   });
 
+  /**
+   * Same guarantee for the structures workspace. `structures/:subjectSlug` and
+   * `:subjectSlug/:familySlug` match the same two-segment shape, so the only way
+   * they can collide is a subject slugging to `structures` — which would hide a
+   * real subject workspace behind the structures route.
+   */
+  it('never produces a subject slug that collides with the structures segment', () => {
+    for (const subject of ALL_SUBJECTS) {
+      expect(slugForSubject(subject)).not.toBe(CONTENT_BANK_STRUCTURES_SEGMENT);
+    }
+  });
+
+  it('keeps the batch and structures segments distinct from each other', () => {
+    expect(CONTENT_BANK_STRUCTURES_SEGMENT).not.toBe(CONTENT_BANK_BATCH_SEGMENT);
+  });
+
+  /**
+   * The structures path is one segment deeper than a subject path and puts the
+   * static segment first, so it can never be read as a subject/family pair.
+   */
+  it('builds structures paths as structures/<subject slug>', () => {
+    expect(contentBankStructuresPath('Clerical Ability')).toBe(
+      '/admin/content-bank/structures/clerical',
+    );
+    expect(contentBankStructuresPath('General Information')).toBe(
+      '/admin/content-bank/structures/general-information',
+    );
+    for (const subject of ALL_SUBJECTS) {
+      const path = contentBankStructuresPath(subject);
+      expect(path.startsWith(`${CONTENT_BANK_BASE}/${CONTENT_BANK_STRUCTURES_SEGMENT}/`)).toBe(true);
+      // The final segment must round-trip, since the page reads it back.
+      expect(subjectFromSlug(path.split('/').pop() ?? '')).toBe(subject);
+    }
+  });
+
+  it('never builds the same path for two different subjects', () => {
+    const paths = ALL_SUBJECTS.map((subject) => contentBankStructuresPath(subject));
+    expect(new Set(paths).size).toBe(ALL_SUBJECTS.length);
+  });
+
   it('round-trips every subject slug back to its subject', () => {
     for (const subject of ALL_SUBJECTS) {
       expect(subjectFromSlug(slugForSubject(subject))).toBe(subject);
@@ -51,6 +93,7 @@ describe('Content Bank route builders', () => {
       contentBankFamilyPath('Clerical Ability', 'Filing & Alphabetizing'),
       contentBankBatchPath('filing-batch-02'),
       contentBankBatchReviewPath('filing-batch-02'),
+      contentBankStructuresPath('Clerical Ability'),
     ];
     for (const path of paths) {
       expect(path.startsWith('/admin/')).toBe(true);

@@ -1,6 +1,7 @@
 import React from 'react';
 import type { ActiveFocus, NormalizedQuestionGroup, OptionId, Question } from '@/types';
 import { renderInlineRichText } from '@/lib/inlineRichText';
+import { hasSharedTaskContent } from '@/data/sharedTaskContext';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
 import { QuestionRenderer } from './QuestionRenderer';
 
@@ -51,9 +52,7 @@ export const GroupRenderer: React.FC<GroupRendererProps> = React.memo(function G
   practiceMode = false,
 }) {
   const taskContext = sharedContext ?? group;
-  const hasSharedContent = Boolean(
-    taskContext?.directions || taskContext?.example || group?.contentBlocks?.length
-  );
+  const hasSharedContent = hasSharedTaskContent(taskContext, group?.contentBlocks?.length ?? 0);
   const resolvedTaskId = taskId ?? (group ? `group:${group.id}` : undefined);
   const activeQuestion = activeFocus
     ? activeFocus.type === 'question' ? activeFocus.questionId : null

@@ -76,6 +76,19 @@ async function loadGroups(subjects: readonly Subject[]): Promise<QuestionGroup[]
   return datasets.flat().filter((group) => Array.isArray(group?.questionIds));
 }
 
+/**
+ * The repository files a subject's authored groups come from, as repo-relative
+ * POSIX paths — `[]` for a subject with no groups directory at all.
+ *
+ * Read by the admin structures workspace so it can name its own source instead
+ * of hard-coding a path convention that only this module actually enforces.
+ */
+export function groupSourceFilesForSubject(subject: Subject): string[] {
+  return (groupPathsByDir.get(DIR_BY_SUBJECT[subject]) ?? []).map((path) =>
+    path.replace(/^(\.\.\/)+/, '')
+  );
+}
+
 export const QUESTION_MANIFEST: QuestionManifest = manifest;
 
 /** Unique-question supply per subject for a level — synchronous, no fetch. */
