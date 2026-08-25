@@ -59,7 +59,7 @@
         {
           "type": "paragraph",
           "label": "Why the other choices fail",
-          "text": "Choices **A**, **B**, **C**, and **D** are exact matches. Choice **E** is the only mismatch because one character changes from **L** to **I**."
+          "text": "Choices **A**, **B**, **C**, and **D** are distractors because they satisfy the exact-match condition; selecting one reverses the question’s **NOT**. Choice **E** differs at one position—middle initial **L** versus **I**—so it is the only non-match."
         },
         {
           "type": "rule",
@@ -1069,7 +1069,6 @@
     "topic": "Clerical Operations",
     "subtopic": "Clerical Coding — Document Status Codes",
     "difficulty": "Medium",
-    "passage": "A document management system uses the following code structure:\n\nAction Code | Meaning\n    R       | Received\n    P       | Processed\n    A       | Approved\n    D       | Disapproved\n    F       | Filed\n\nStatus codes are combined in sequence to describe a document's history. For example, 'R-P-A-F' means the document was Received, then Processed, then Approved, then Filed.",
     "question": "A document was Received, Processed, then Disapproved, and finally Filed. What is the correct status code for this document?",
     "choices": [
       {
@@ -1131,7 +1130,50 @@
           "text": "Map each stated event to its code, then preserve the events’ chronological order when combining the codes."
         }
       ]
-    }
+    },
+    "contentBlocks": [
+      {
+        "kind": "text",
+        "id": "cler-0043-intro",
+        "body": "A document management system uses the following code structure:"
+      },
+      {
+        "kind": "table",
+        "id": "cler-0043-action-codes",
+        "title": "Action Codes",
+        "columns": [
+          "Action Code",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "R",
+            "Received"
+          ],
+          [
+            "P",
+            "Processed"
+          ],
+          [
+            "A",
+            "Approved"
+          ],
+          [
+            "D",
+            "Disapproved"
+          ],
+          [
+            "F",
+            "Filed"
+          ]
+        ]
+      },
+      {
+        "kind": "text",
+        "id": "cler-0043-sequence-note",
+        "body": "Status codes are combined in sequence to describe a document's history. For example, 'R-P-A-F' means the document was Received, then Processed, then Approved, then Filed."
+      }
+    ]
   },
   {
     "id": "cler-0044",

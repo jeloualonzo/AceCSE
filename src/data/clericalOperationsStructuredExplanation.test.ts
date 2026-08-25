@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { loadContentCatalog } from './questionBank';
+import { createRawBatchJson, createReviewMarkdown } from './contentBankWorkspace';
 import { isValidStructuredExplanation } from './structuredExplanation';
+import type { RefinementBatch } from './refinementBatches';
 
 const CLERICAL_OPERATIONS_BATCH1_IDS = [
   'cler-0020', 'cler-0021', 'cler-0022', 'cler-0023', 'cler-0024',
@@ -84,7 +86,7 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly Record<string, string | undefin
     { type: 'correct_answer', text: 'E — Reyes, Maria L. — Reyes, Maria I.' },
     { type: 'paragraph', label: 'What to Notice', text: 'An exact match requires every character to be the same, including letters, numbers, punctuation, and spaces.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'Pairs **A**, **B**, **C**, and **D** are identical. Pair **E** differs in the middle initial: **L** versus **I**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choices **A**, **B**, **C**, and **D** are exact matches. Choice **E** is the only mismatch because one character changes from **L** to **I**.' },
+    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choices **A**, **B**, **C**, and **D** are distractors because they satisfy the exact-match condition; selecting one reverses the question’s **NOT**. Choice **E** differs at one position—middle initial **L** versus **I**—so it is the only non-match.' },
     { type: 'rule', text: 'Compare entries character by character. One different letter, number, punctuation mark, or space means the pair is not an exact match.' },
   ],
   'cler-0021': [
@@ -227,6 +229,23 @@ describe('Clerical Operations Batch 1 structured explanations', () => {
       { kind: 'text', id: 'cler-0044-example', body: 'Example: FN-03 = Finance Department Report.' },
     ]);
 
+    expect(catalog.questions.get('cler-0043')?.passage).toBeUndefined();
+    expect(catalog.questions.get('cler-0043')?.contentBlocks).toEqual([
+      { kind: 'text', id: 'cler-0043-intro', body: 'A document management system uses the following code structure:' },
+      {
+        kind: 'table',
+        id: 'cler-0043-action-codes',
+        title: 'Action Codes',
+        columns: ['Action Code', 'Meaning'],
+        rows: [['R', 'Received'], ['P', 'Processed'], ['A', 'Approved'], ['D', 'Disapproved'], ['F', 'Filed']],
+      },
+      {
+        kind: 'text',
+        id: 'cler-0043-sequence-note',
+        body: "Status codes are combined in sequence to describe a document's history. For example, 'R-P-A-F' means the document was Received, then Processed, then Approved, then Filed.",
+      },
+    ]);
+
     expect(catalog.questions.get('cler-0045')?.passage).toBeUndefined();
     expect(catalog.questions.get('cler-0045')?.contentBlocks).toEqual([
       {
@@ -255,6 +274,27 @@ describe('Clerical Operations Batch 1 structured explanations', () => {
       },
       { kind: 'text', id: 'cler-0045-example', body: 'Example: A letter sent on March 15, 2025, as the 23rd document of the year is coded: 25-03-15-023' },
     ]);
+  });
+
+  it('preserves cler-0043’s semantic table in Review Markdown and Raw JSON', async () => {
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+    const question = catalog.questions.get('cler-0043')!;
+    const batch: RefinementBatch = {
+      id: 'clerical-operations-batch-01',
+      title: 'Clerical Operations — Batch 1',
+      family: 'Clerical Operations',
+      status: 'ready-for-qa',
+      createdAt: '2026-08-25T13:00:00+08:00',
+      questionIds: ['cler-0043'],
+    };
+
+    const markdown = createReviewMarkdown(batch, [question]);
+    expect(markdown).toContain('### Structured Stimulus');
+    expect(markdown).toContain('**Action Codes** (table)\n\n| Action Code | Meaning |\n|---|---|\n| R | Received |\n| P | Processed |\n| A | Approved |\n| D | Disapproved |\n| F | Filed |');
+
+    const raw = JSON.parse(createRawBatchJson(batch, [question])) as Array<Record<string, unknown>>;
+    expect(raw[0]?.passage).toBeUndefined();
+    expect(raw[0]?.contentBlocks).toEqual(question.contentBlocks);
   });
 
   it('keeps the approved question-data corrections explicit and excludes invented facts', async () => {

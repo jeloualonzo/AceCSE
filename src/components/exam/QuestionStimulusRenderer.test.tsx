@@ -45,6 +45,21 @@ describe('QuestionStimulusRenderer semantic Clerical tables', () => {
     expect(screen.getAllByRole('table').every((table) => !table.textContent?.includes('|'))).toBe(true);
   });
 
+  it('renders cler-0043 action codes as one semantic table with exact row order', async () => {
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+    const question = catalog.questions.get('cler-0043')!;
+    render(<QuestionStimulusRenderer question={question} />);
+
+    const actionTable = screen.getByRole('table', { name: 'Action Codes' });
+    expect(within(actionTable).getAllByRole('columnheader').map((cell) => cell.textContent)).toEqual(['Action Code', 'Meaning']);
+    expect(within(actionTable).getAllByRole('row')).toHaveLength(6);
+    expect(within(actionTable).getAllByRole('cell').map((cell) => cell.textContent)).toEqual([
+      'R', 'Received', 'P', 'Processed', 'A', 'Approved', 'D', 'Disapproved', 'F', 'Filed',
+    ]);
+    expect(screen.getByText(/Status codes are combined in sequence/)).toBeInTheDocument();
+    expect(screen.getAllByRole('table').every((table) => !table.textContent?.includes('|'))).toBe(true);
+  });
+
   it('renders cler-0045 format and month tables with exact order and zero-padding values', async () => {
     const catalog = await loadContentCatalog(['Clerical Ability']);
     const question = catalog.questions.get('cler-0045')!;

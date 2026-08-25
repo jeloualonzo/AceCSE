@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
-import { FileText, Loader2, PlayCircle } from 'lucide-react';
+import { Loader2, PlayCircle } from 'lucide-react';
 import { SUBJECTS_BY_LEVEL } from '@/config/exam';
 import { getQuestionPreview } from '@/data/contentBankWorkspace';
 import type { RefinementBatch } from '@/data/refinementBatches';
@@ -11,10 +11,10 @@ import { ContentBankBreadcrumbs } from '@/components/contentBank/ContentBankBrea
 import { StoreDegradedNotice } from '@/components/contentBank/StoreDegradedNotice';
 import { WorkflowStatusControl } from '@/components/contentBank/WorkflowStatusControl';
 import { WorkflowBadge } from '@/components/contentBank/badges';
+import { ReviewExportPanel } from '@/components/contentBank/ReviewExportPanel';
 import { EXAM_ROUTE } from '@/navigation/appRoutes';
 import {
   CONTENT_BANK_BASE,
-  contentBankBatchReviewPath,
   contentBankFamilyPath,
   contentBankSubjectPath,
 } from '@/navigation/contentBankRoutes';
@@ -310,20 +310,6 @@ function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: Refin
                 <PlayCircle className="h-4 w-4" aria-hidden="true" />
                 Practice these {batch.questionIds.length} questions
               </button>
-              {exportsReady ? (
-                <Link
-                  to={contentBankBatchReviewPath(batch.id)}
-                  className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-lg border border-slate-300 px-4 text-xs font-bold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
-                >
-                  <FileText className="h-4 w-4" aria-hidden="true" />
-                  Review &amp; export
-                </Link>
-              ) : (
-                <span className="inline-flex min-h-11 cursor-not-allowed items-center justify-center gap-1.5 rounded-lg border border-slate-200 px-4 text-xs font-bold text-slate-400 dark:border-slate-800 dark:text-slate-600">
-                  <FileText className="h-4 w-4" aria-hidden="true" />
-                  Review &amp; export
-                </span>
-              )}
             </div>
 
             <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
@@ -332,6 +318,32 @@ function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: Refin
           </section>
         </div>
       </div>
+
+      {catalog && missingIds.length === 0 && resolvedQuestions.length > 0 ? (
+        <ReviewExportPanel key={batch.id} batch={batch} questions={resolvedQuestions} />
+      ) : (
+        <section
+          aria-labelledby="review-export-heading"
+          className="space-y-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+        >
+          <h2 id="review-export-heading" className="text-base font-extrabold text-slate-900 dark:text-white">
+            Review &amp; Export
+          </h2>
+          {loading && !error ? (
+            <p role="status" className="text-xs text-slate-500 dark:text-slate-400">Loading export data…</p>
+          ) : error ? (
+            <p role="alert" className="text-xs font-semibold text-red-700 dark:text-red-300">{error}</p>
+          ) : (
+            <p
+              role="alert"
+              className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-800 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300"
+            >
+              <strong>Review Markdown and Raw JSON are unavailable.</strong> These IDs are not in the active question bank:{' '}
+              <span className="font-mono">{missingIds.join(', ')}</span>. A partial export is blocked to preserve the exact batch.
+            </p>
+          )}
+        </section>
+      )}
     </div>
   );
 }

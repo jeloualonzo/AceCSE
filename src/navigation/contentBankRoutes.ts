@@ -55,6 +55,10 @@ export function contentBankBatchPath(batchId: string): string {
   return `${CONTENT_BANK_BASE}/${CONTENT_BANK_BATCH_SEGMENT}/${encodeURIComponent(batchId)}`;
 }
 
+/**
+ * Legacy review URL retained for old bookmarks; the route redirects to the
+ * Batch Workspace, where the single Review & Export implementation now lives.
+ */
 export function contentBankBatchReviewPath(batchId: string): string {
   return `${contentBankBatchPath(batchId)}/review`;
 }

@@ -121,6 +121,10 @@ function batchesLoaded() {
   return waitFor(() => expect(screen.getByText('Saving to this browser only')).toBeInTheDocument());
 }
 
+function reviewPanelLoaded() {
+  return waitFor(() => expect(screen.getByRole('button', { name: 'Review Markdown' })).toBeInTheDocument(), { timeout: SLOW });
+}
+
 function batchIdsInOrder(): (string | undefined)[] {
   return [...document.querySelectorAll<HTMLElement>('[data-refinement-batch]')].map(
     (node) => node.dataset.refinementBatch
@@ -340,10 +344,9 @@ describe('Content Bank workspaces', () => {
       'href',
       contentBankFamilyPath('Clerical Ability', batch.family)
     );
-    expect(screen.getByRole('link', { name: 'Review & export' })).toHaveAttribute(
-      'href',
-      contentBankBatchReviewPath(batch.id)
-    );
+    const reviewPanel = screen.getByRole('region', { name: 'Review & Export' });
+    expect(within(reviewPanel).getByRole('button', { name: 'Review Markdown' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.queryByRole('link', { name: 'Review & export' })).not.toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: `Practice these ${batch.questionIds.length} questions` }));
     // The exact IDs, in order, through the learner exam route. `internalReview`
@@ -569,6 +572,7 @@ describe('Content Bank workspaces', () => {
     expect(screen.getByRole('button', { name: 'Practice these 2 questions' })).toBeDisabled();
     // The review link is withheld, not left live against a partial batch.
     expect(screen.queryByRole('link', { name: 'Review & export' })).not.toBeInTheDocument();
+    expect(screen.getByRole('region', { name: 'Review & Export' })).toHaveTextContent('Review Markdown and Raw JSON are unavailable.');
     // Both IDs are still listed, so the batch is not silently rewritten.
     expect(
       [...document.querySelectorAll<HTMLElement>('[data-batch-question]')].map((node) => node.dataset.batchQuestion)
@@ -576,15 +580,32 @@ describe('Content Bank workspaces', () => {
   }, SLOW);
 });
 
-describe('Review & Export page', () => {
+describe('Batch Workspace Review & Export', () => {
+  it('redirects old review URLs to the Batch Workspace’s embedded panel', async () => {
+    localStorage.setItem(WORKSPACE_BATCHES_STORAGE_KEY, JSON.stringify([{
+      id: 'ui-legacy-review',
+      title: 'UI Legacy Review',
+      family: 'Filing & Alphabetizing',
+      status: 'ready-for-qa',
+      createdAt: '2026-08-22T15:00:00+08:00',
+      questionIds: ['cler-0056'],
+    }]));
+    renderRoute(contentBankBatchReviewPath('ui-legacy-review'));
+
+    await waitFor(() => expect(screen.getByRole('heading', { name: 'UI Legacy Review', level: 1 })).toBeInTheDocument(), { timeout: SLOW });
+    expect(screen.getByRole('region', { name: 'Review & Export' })).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Back to batch workspace' })).not.toBeInTheDocument();
+  }, SLOW);
+
   it('copies the exact chunk it displayed, byte for byte, and reports the same count', async () => {
     const user = userEvent.setup();
     const writeText = vi.fn().mockResolvedValue(undefined);
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
     // filing-batch-02 is the largest shipped batch — the real multi-chunk case.
-    renderRoute(contentBankBatchReviewPath('filing-batch-02'));
+    renderRoute(contentBankBatchPath('filing-batch-02'));
 
     await waitFor(() => expect(screen.getByRole('heading', { name: 'Filing & Alphabetizing — Batch 2', level: 1 })).toBeInTheDocument(), { timeout: SLOW });
+    await reviewPanelLoaded();
     const panel = screen.getByRole('region', { name: 'Review & Export' });
 
     // The count the UI shows must be the count of the string it hands over.
@@ -642,9 +663,10 @@ describe('Review & Export page', () => {
     }]));
     const writeText = vi.fn().mockResolvedValue(undefined);
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
-    renderRoute(contentBankBatchReviewPath('ui-json-batch'));
+    renderRoute(contentBankBatchPath('ui-json-batch'));
 
     await waitFor(() => expect(screen.getByRole('heading', { name: 'UI JSON Batch', level: 1 })).toBeInTheDocument(), { timeout: SLOW });
+    await reviewPanelLoaded();
     await user.click(screen.getByRole('button', { name: 'Raw JSON', pressed: false }));
     await user.click(screen.getByRole('button', { name: /^Copy whole Raw JSON/ }));
 
@@ -668,13 +690,15 @@ describe('Review & Export page', () => {
       questionIds: ['cler-0056'],
     }]));
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: undefined });
-    renderRoute(contentBankBatchReviewPath('ui-clipboardless-batch'));
+    renderRoute(contentBankBatchPath('ui-clipboardless-batch'));
 
     await waitFor(() => expect(screen.getByRole('heading', { name: 'UI Clipboardless Batch', level: 1 })).toBeInTheDocument(), { timeout: SLOW });
+    await reviewPanelLoaded();
     await user.click(screen.getAllByRole('button', { name: 'Copy Chunk' })[0]);
 
     // A failed copy must read as a failure, not as an emerald success message.
-    const alert = await waitFor(() => screen.getByRole('alert'));
+    const reviewPanel = screen.getByRole('region', { name: 'Review & Export' });
+    const alert = await waitFor(() => within(reviewPanel).getByRole('alert'));
     expect(alert).toHaveTextContent('Clipboard access is unavailable');
     expect(alert.className).toContain('red');
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
@@ -690,8 +714,9 @@ describe('Review & Export page', () => {
       createdAt: '2026-08-22T15:00:00+08:00',
       questionIds: ['cler-0056'],
     }]));
-    renderRoute(contentBankBatchReviewPath('ui-inspect-batch'));
+    renderRoute(contentBankBatchPath('ui-inspect-batch'));
     await waitFor(() => expect(screen.getByRole('heading', { name: 'UI Inspect Batch', level: 1 })).toBeInTheDocument(), { timeout: SLOW });
+    await reviewPanelLoaded();
 
     const show = screen.getAllByRole('button', { name: 'Show' })[0];
     expect(show).toHaveAttribute('aria-expanded', 'false');
