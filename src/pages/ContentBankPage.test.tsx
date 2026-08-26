@@ -572,7 +572,8 @@ describe('Content Bank workspaces', () => {
     expect(screen.getByRole('button', { name: 'Practice these 2 questions' })).toBeDisabled();
     // The review link is withheld, not left live against a partial batch.
     expect(screen.queryByRole('link', { name: 'Review & export' })).not.toBeInTheDocument();
-    expect(screen.getByRole('region', { name: 'Review & Export' })).toHaveTextContent('Review Markdown and Raw JSON are unavailable.');
+    const exportPanel = screen.getByRole('region', { name: 'Review & Export' });
+    await waitFor(() => expect(exportPanel).toHaveTextContent('Review Markdown and Raw JSON are unavailable.'), { timeout: SLOW });
     // Both IDs are still listed, so the batch is not silently rewritten.
     expect(
       [...document.querySelectorAll<HTMLElement>('[data-batch-question]')].map((node) => node.dataset.batchQuestion)

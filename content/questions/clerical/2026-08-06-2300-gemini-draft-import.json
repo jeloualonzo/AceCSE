@@ -30,30 +30,43 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "Add the four line amounts step by step: ₱1,450 + ₱2,875 = ₱4,325; ₱4,325 + ₱625 = ₱4,950; ₱4,950 + ₱3,150 = ₱8,100. The summary reports ₱8,070, which is ₱30 short of the correct total — the summary is understated, not overstated. A common error is reversing the direction of the discrepancy: the actual sum exceeds the reported total, so the reported total is understated. Tax percentages are irrelevant to verifying the arithmetic sum of the listed line items.",
-    "steps": [
-      "Step 1 — Add Items A and B: ₱1,450 + ₱2,875 = ₱4,325.",
-      "Step 2 — Add Item C: ₱4,325 + ₱625 = ₱4,950.",
-      "Step 3 — Add Item D: ₱4,950 + ₱3,150 = ₱8,100.",
-      "Step 4 — Compare to reported total: ₱8,100 − ₱8,070 = ₱30. The reported total is ₱30 understated.",
-      "Step 5 — The correct statement is Option C: understated by ₱30, actual sum ₱8,100."
-    ],
-    "distractorExplanations": {
-      "A": "This reverses the direction of error. The actual sum (₱8,100) is higher than the reported total (₱8,070), so the report is understated — not overstated. ₱8,040 is also arithmetically wrong.",
-      "B": "₱1,450 + ₱2,875 + ₱625 + ₱3,150 equals ₱8,100, not ₱8,070. The summary total is incorrect by ₱30.",
-      "D": "Line items are summed directly at face value; no tax rate is needed to verify the arithmetic total of the amounts already listed.",
-      "E": "Arithmetic error of ₱100 instead of ₱30: adding the four line items incorrectly to reach ₱8,170 rather than ₱8,100; the actual discrepancy between the stated total and the correct sum is exactly ₱30."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "In line-item verification questions, compute the actual total first, then subtract it from the reported total. A negative result means the report is overstated; a positive result means the report is understated."
-    },
     "tags": [
       "clerical-operations",
       "arithmetic-checking",
       "invoice-verification",
       "discrepancy-detection"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "C — The summary total is understated by ₱30.00 because the actual sum is ₱8,100.00."
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "Compare the actual sum of the line items with the reported total. The actual total is ₱8,100.00, while the report lists ₱8,070.00."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "Add the line items: ₱1,450 + ₱2,875 + ₱625 + ₱3,150 = ₱8,100. The reported total is ₱30.00 lower, so it is understated by ₱30.00."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **A** reverses the direction of the discrepancy and gives the wrong actual sum. Because ₱8,100.00 is higher than ₱8,070.00, the report is understated, not overstated. Choice **B** treats the reported total as correct, but the line items add to ₱8,100.00, not ₱8,070.00. Choice **D** introduces tax even though the question asks only for the sum of the listed amounts; no tax percentage is needed. Choice **E** gives the wrong actual sum and discrepancy. The correct actual total is ₱8,100.00, which is ₱30.00 above the report."
+        },
+        {
+          "type": "rule",
+          "text": "Compute the actual total first, then compare it with the reported total. If the actual total is higher, the reported total is understated; if it is lower, the reported total is overstated."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0052",
@@ -189,29 +202,43 @@
       }
     ],
     "correctOptionId": "E",
-    "explanation": "Entry 1 shows ₱14,582.00 and Entry 2 shows ₱14,852.00. The account number (#8492015) is identical in both entries. Comparing the amounts digit by digit: 1-4-5-8-2 versus 1-4-8-5-2. The third and fourth digits differ — '5' and '8' have been swapped. This is a classic transposition error: the same digits are present, but in the wrong order. A useful check: the difference between a transposed and original amount is always divisible by 9 (₱14,852 − ₱14,582 = ₱270; 270 ÷ 9 = 30). This divisibility test quickly flags transposition errors in numerical checking tasks.",
-    "steps": [
-      "Step 1 — Compare account numbers: #8492015 = #8492015. No error here.",
-      "Step 2 — Compare amounts digit by digit: 1-4-[5]-[8]-2 vs 1-4-[8]-[5]-2. Digits at positions 3 and 4 differ.",
-      "Step 3 — Identify the error type: the digits '5' and '8' are swapped. This is a transposition error.",
-      "Step 4 — Verify with the divisibility test: ₱14,852 − ₱14,582 = ₱270; 270 ÷ 9 = 30. The result is a whole number, confirming a transposition."
-    ],
-    "distractorExplanations": {
-      "A": "The account numbers are identical in both entries (#8492015). No omission or error exists in the account number field.",
-      "B": "This item compares two individual line amounts, not a column total. There is no addition operation being evaluated here.",
-      "C": "The amounts differ: ₱14,582 ≠ ₱14,852. The digits '5' and '8' are reversed in Entry 2, making the entries non-matching.",
-      "D": "Misidentifying the error type as digit repetition; the actual discrepancy is a transposition where the digits '5' and '8' have been swapped, not a repeated digit."
-    },
-    "tip": {
-      "label": "Common Mistake",
-      "text": "Transposition errors are easy to miss because the same digits are present — just in the wrong order. Always compare amounts digit by digit, left to right. Quick check: if the difference between two amounts is divisible by 9, a transposition error is likely."
-    },
     "tags": [
       "clerical-operations",
       "transposition-error",
       "ledger-checking",
       "number-verification",
       "attention-to-detail"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "E — A transposition error — the digits '5' and '8' were swapped in the amount."
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The account numbers match, but the amounts differ at the third and fourth digits: 14-5-8-2 versus 14-8-5-2."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "Compare the amounts digit by digit. The third and fourth digits change from 5-8 to 8-5, so the digits 5 and 8 have been transposed."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **A** is incorrect because the account number is identical in both entries, so no account-number omission occurred. Choice **B** is incorrect because the question compares two individual amounts, not a column total. Choice **C** is incorrect because ₱14,582.00 and ₱14,852.00 differ. Choice **D** is incorrect because the amount does not contain a repeated 4; the actual error is that 5 and 8 were swapped."
+        },
+        {
+          "type": "rule",
+          "text": "Compare numerical entries from left to right. A transposition occurs when the same digits appear in a different order."
+        }
+      ]
+    }
   }
 ]

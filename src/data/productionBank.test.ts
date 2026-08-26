@@ -31,6 +31,7 @@ const structuredGrammarIds = new Set(['verb-0059', 'verb-0060', 'verb-0061', 've
 const structuredClericalOperationsIds = new Set([
   'cler-0020', 'cler-0021', 'cler-0022', 'cler-0023', 'cler-0024',
   'cler-0025', 'cler-0042', 'cler-0043', 'cler-0044', 'cler-0045',
+  'cler-0051', 'cler-0057', 'seed-cler-003',
 ]);
 
 describe('production bank — five-choice migration', () => {

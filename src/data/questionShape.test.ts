@@ -364,9 +364,10 @@ describe('structured-only Clerical Operations admission exception', () => {
   const clericalOperationsIds = [
     'cler-0020', 'cler-0021', 'cler-0022', 'cler-0023', 'cler-0024',
     'cler-0025', 'cler-0042', 'cler-0043', 'cler-0044', 'cler-0045',
+    'cler-0051', 'cler-0057', 'seed-cler-003',
   ];
 
-  it('accepts exactly the ten canonical Clerical Operations IDs without legacy explanation fields', () => {
+  it('accepts exactly the thirteen canonical Clerical Operations IDs without legacy explanation fields', () => {
     for (const id of clericalOperationsIds) {
       const question = structuredOnlyClericalOperations({ id });
       expect(isValidQuestion(question), id).toBe(true);

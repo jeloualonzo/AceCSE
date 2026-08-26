@@ -38,6 +38,7 @@ const CANONICAL_STRUCTURED_GRAMMAR_IDS = new Set([
 const CANONICAL_STRUCTURED_CLERICAL_OPERATIONS_IDS = new Set([
   'cler-0020', 'cler-0021', 'cler-0022', 'cler-0023', 'cler-0024',
   'cler-0025', 'cler-0042', 'cler-0043', 'cler-0044', 'cler-0045',
+  'cler-0051', 'cler-0057', 'seed-cler-003',
 ]);
 
 /**

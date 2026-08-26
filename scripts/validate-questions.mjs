@@ -15,10 +15,10 @@
  *   - distractor explanations for all three incorrect options (≥ 20 chars), except
  *     the eleven frozen Number Series records, twelve canonical Spelling records,
  *     twenty-four canonical Filing records, four canonical Grammar records, and
- *     ten canonical Clerical Operations records whose obsolete fields were removed
+ *     thirteen canonical Clerical Operations records whose obsolete fields were removed
  *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the twelve canonical
  *     Spelling records, twenty-four canonical Filing records, four canonical Grammar
- *     records, and ten canonical Clerical Operations records that use
+ *     records, and thirteen canonical Clerical Operations records that use
  *     structuredExplanation as their sole aid
  *
  * Also prints supply, difficulty, and answer-letter reports.
@@ -64,10 +64,14 @@ const CANONICAL_GRAMMAR_FILE = 'verbal/core.json';
 const CANONICAL_GRAMMAR_IDS = new Set([
   'verb-0059', 'verb-0060', 'verb-0061', 'verb-0062',
 ]);
-const CANONICAL_CLERICAL_OPERATIONS_FILE = 'clerical/core.json';
+const CANONICAL_CLERICAL_OPERATIONS_FILES = new Set([
+  'clerical/core.json',
+  'clerical/2026-08-06-2300-gemini-draft-import.json',
+]);
 const CANONICAL_CLERICAL_OPERATIONS_IDS = new Set([
   'cler-0020', 'cler-0021', 'cler-0022', 'cler-0023', 'cler-0024',
   'cler-0025', 'cler-0042', 'cler-0043', 'cler-0044', 'cler-0045',
+  'cler-0051', 'cler-0057', 'seed-cler-003',
 ]);
 
 /**
@@ -179,7 +183,7 @@ for (const path of jsonFiles(questionsDir)) {
     const canonicalStructuredSpelling = file === CANONICAL_SPELLING_FILE && CANONICAL_SPELLING_IDS.has(q.id);
     const canonicalStructuredFiling = file === CANONICAL_FILING_FILE && CANONICAL_FILING_IDS.has(q.id);
     const canonicalStructuredGrammar = file === CANONICAL_GRAMMAR_FILE && CANONICAL_GRAMMAR_IDS.has(q.id);
-    const canonicalStructuredClericalOperations = file === CANONICAL_CLERICAL_OPERATIONS_FILE && CANONICAL_CLERICAL_OPERATIONS_IDS.has(q.id);
+    const canonicalStructuredClericalOperations = CANONICAL_CLERICAL_OPERATIONS_FILES.has(file) && CANONICAL_CLERICAL_OPERATIONS_IDS.has(q.id);
     const canonicalStructured = canonicalStructuredSpelling || canonicalStructuredFiling || canonicalStructuredGrammar || canonicalStructuredClericalOperations;
     if (!canonicalStructured && (typeof q.explanation !== 'string' || q.explanation.length < 100)) {
       errors.push(`${where}: explanation must teach (≥ 100 chars), got ${q.explanation?.length ?? 0}`);

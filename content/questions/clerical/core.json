@@ -751,32 +751,44 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "Comparing the two codes segment by segment: 'CSC' = 'CSC' ✓; '2026' = '2026' ✓; 'PH' = 'PH' ✓; '89014' vs '89041' — the first three digits '890' are the same, but the last two differ: '14' in the original vs '41' in the transcription. The digits '1' and '4' have been transposed — a classic data-entry error where two adjacent digits are swapped. The final letter 'X' is identical. The letter prefix 'CSC-2026-PH' is unchanged, and all hyphens are present in both versions. The sole error is the digit transposition in the numeric segment.",
-    "steps": [
-      "Segment 1: CSC = CSC ✓",
-      "Segment 2: 2026 = 2026 ✓",
-      "Segment 3: PH = PH ✓",
-      "Segment 4: 89014 vs 89041 — 890 matches; 14 vs 41 → TRANSPOSITION",
-      "Segment 5: X = X ✓",
-      "Conclusion: Transcribed code differs due to transposed digits 14↔41 = Option B."
-    ],
-    "distractorExplanations": {
-      "A": "The codes are not identical — the numeric segment '89014' was transcribed as '89041'. Segment-by-segment comparison reveals the transposition.",
-      "C": "The letter prefixes ('CSC', 'PH') are identical in both codes. No prefix error exists.",
-      "D": "All four hyphens are present in both the original and transcribed codes. No hyphen is missing.",
-      "E": "Misidentifying a repetition error instead of the actual transposition; the discrepancy between the original and transcribed code is a digit-swap (14↔41), not a repeated digit."
-    },
-    "tip": {
-      "label": "Common Mistake",
-      "text": "Transposed digits (like 14↔41) are among the hardest errors to catch because all the correct digits are present — just in the wrong order. Always read numeric segments left-to-right, one digit at a time."
-    },
     "tags": [
       "clerical-operations",
       "coding",
       "code-verification",
       "transposition",
       "attention-to-detail"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Solution"
+        },
+        {
+          "type": "correct_answer",
+          "text": "B — Different due to transposed numbers (14 vs 41)"
+        },
+        {
+          "type": "paragraph",
+          "label": "What to Notice",
+          "text": "The prefixes, year, and final letter match. Only the last two digits of the numeric segment change from 14 to 41."
+        },
+        {
+          "type": "paragraph",
+          "label": "Apply the Rule",
+          "text": "Compare the code segment by segment: CSC = CSC, 2026 = 2026, PH = PH, 89014 versus 89041, and X = X. The digits 1 and 4 have changed order, so the transcribed code contains a transposition."
+        },
+        {
+          "type": "paragraph",
+          "label": "Why the other choices fail",
+          "text": "Choice **A** is incorrect because the codes are not identical: 89014 was transcribed as 89041. Choice **C** is incorrect because the letter prefixes CSC and PH match in both codes. Choice **D** is incorrect because all hyphens appear in both codes. Choice **E** is incorrect because the issue is not repetition; the digits 1 and 4 were swapped from 14 to 41."
+        },
+        {
+          "type": "rule",
+          "text": "Compare each code segment from left to right. A transposition occurs when the same digits appear in a different order."
+        }
+      ]
+    }
   },
   {
     "id": "cler-0040",

@@ -185,8 +185,9 @@ describe('Filing Batch 2 structured explanations', () => {
     for (const id of ['cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060', 'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005']) {
       expect(catalog.questions.get(id)?.structuredExplanation).toBeTruthy();
     }
-    for (const id of ['cler-0056', 'cler-0057']) {
-      expect(catalog.questions.get(id)?.structuredExplanation).toBeUndefined();
-    }
+    expect(catalog.questions.get('cler-0056')?.structuredExplanation).toBeUndefined();
+    expect(catalog.questions.get('cler-0057')?.structuredExplanation).toBeTruthy();
+    expect(catalog.questions.get('cler-0056')?.taskFormat).not.toBe('shared_filing_task');
+    expect(catalog.questions.get('cler-0057')?.taskFormat).not.toBe('shared_filing_task');
   });
 });

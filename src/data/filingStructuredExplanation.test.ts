@@ -149,11 +149,13 @@ describe('Filing Batch 1 structured explanations', () => {
 
   it('keeps cler-0056 and cler-0057 outside the structured Filing batch', async () => {
     const catalog = await loadContentCatalog(['Clerical Ability']);
-    for (const id of ['cler-0056', 'cler-0057']) {
-      const question = catalog.questions.get(id);
-      expect(question).toBeTruthy();
-      expect(question?.structuredExplanation).toBeUndefined();
-      expect(question?.taskFormat).not.toBe('shared_filing_task');
-    }
+    const question0056 = catalog.questions.get('cler-0056');
+    const question0057 = catalog.questions.get('cler-0057');
+    expect(question0056).toBeTruthy();
+    expect(question0057).toBeTruthy();
+    expect(question0056?.structuredExplanation).toBeUndefined();
+    expect(question0057?.structuredExplanation).toBeTruthy();
+    expect(question0056?.taskFormat).not.toBe('shared_filing_task');
+    expect(question0057?.taskFormat).not.toBe('shared_filing_task');
   });
 });
