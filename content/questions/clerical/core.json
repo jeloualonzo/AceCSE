@@ -71,23 +71,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Choice **A** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **B** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **C** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **D** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **E** differs at one position—middle initial **L** versus **I**—so it is the only non-match."
+              "text": "A, B, C, and D are exact matches. Because the question asks for the pair that is NOT an exact match, none of these choices satisfies the question."
             }
           ]
         },
@@ -161,19 +145,19 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Choice **B** changes the final digits from **00187** to **00178**."
+              "text": "B. The final digits change from 00187 to 00178, so the entries do not match."
             },
             {
               "type": "paragraph",
-              "text": "Choice **C** changes the year from **2025** to **2026**."
+              "text": "C. The year changes from 2025 to 2026, so the entries do not match."
             },
             {
               "type": "paragraph",
-              "text": "Choice **D** changes **5566** to **5656**; the middle digits are **56** in the first entry and **65** in the second."
+              "text": "D. The middle digits change from 56 to 65, so 5566 and 5656 are different."
             },
             {
               "type": "paragraph",
-              "text": "Choice **E** changes **0055** to **0555**, so a digit position and value differ."
+              "text": "E. The sequence changes from 0055 to 0555, so a digit position and value differ."
             }
           ]
         },
@@ -256,19 +240,11 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Choice **A** counts Pair 4 as a match even though the **7** and **8** are in the wrong order."
+              "text": "A. Counts Pair 4 as a match, but Pair 4 contains a transposition."
             },
             {
               "type": "paragraph",
-              "text": "Choice **C** undercounts the matches; Pairs **1**, **2**, and **3** are identical."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **D** undercounts the matches; Pairs **1**, **2**, and **3** are identical."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **E** undercounts the matches; Pairs **1**, **2**, and **3** are identical."
+              "text": "C, D, and E. Undercount the exact matches; Pairs 1, 2, and 3 are identical, so the correct count is 3."
             }
           ]
         },
@@ -406,19 +382,11 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Choice **A** treats the reference word “Memo” as the document type, but code **1** is for a Memorandum."
+              "text": "A. Treats the reference word “Memo” as the document type, but code 1 is for a Memorandum."
             },
             {
               "type": "paragraph",
-              "text": "Choice **B** is Letter."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **C** is Report."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **D** is Form. None matches the document’s actual type, Notice."
+              "text": "B, C, and D. Use the codes for Letter, Report, and Form, respectively; none matches the required Notice code 5."
             }
           ]
         },
@@ -488,7 +456,7 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Recompute each entry using **Gross Pay − Total Deductions = Net Pay**."
+              "text": "Recompute the four entries and compare each result with the listed net pay."
             },
             {
               "type": "paragraph",
@@ -518,19 +486,11 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Choice **A** selects Entry A, but its subtraction is correct."
+              "text": "A, B, and D. Select entries whose subtraction is correct: Entry A, Entry C, and Entry D, respectively."
             },
             {
               "type": "paragraph",
-              "text": "Choice **B** selects Entry C, which also computes correctly."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **D** selects Entry D, whose net pay is correct."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **E** claims that Entries B and D are wrong, but Entry D is accurate."
+              "text": "E. Claims that Entries B and D are wrong, but Entry D is accurate."
             }
           ]
         },
@@ -929,19 +889,19 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Choice **A** is incorrect because the codes are not identical: 89014 was transcribed as 89041."
+              "text": "A. The numeric segment changes from 89014 to 89041, so the codes are not identical."
             },
             {
               "type": "paragraph",
-              "text": "Choice **C** is incorrect because the letter prefixes CSC and PH match in both codes."
+              "text": "C. The prefixes CSC and PH match in both codes."
             },
             {
               "type": "paragraph",
-              "text": "Choice **D** is incorrect because all hyphens appear in both codes."
+              "text": "D. All hyphens are present in both codes."
             },
             {
               "type": "paragraph",
-              "text": "Choice **E** is incorrect because the issue is not repetition; the digits 1 and 4 were swapped from 14 to 41."
+              "text": "E. The issue is not repetition; the digits 1 and 4 change order from 14 to 41."
             }
           ]
         },
@@ -1152,19 +1112,19 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Choice **B** reverses the required order."
+              "text": "B. Reverses the required order by placing the region code before the position code."
             },
             {
               "type": "paragraph",
-              "text": "Choice **C** uses **E**, which is Region V, not NCR."
+              "text": "C. Uses E, which the table assigns to Region V, not NCR."
             },
             {
               "type": "paragraph",
-              "text": "Choice **D** uses **1**, the code for Clerk I."
+              "text": "D. Uses 1, the code for Clerk I, not Clerk II."
             },
             {
               "type": "paragraph",
-              "text": "Choice **E** uses **G**, which is not the NCR code in the table."
+              "text": "E. Uses G, which the table does not assign to NCR."
             }
           ]
         },
@@ -1317,19 +1277,11 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Choice **A** places Filed before Disapproved."
+              "text": "A, D, and E. Change the chronological order: A places Filed before Disapproved, D places Processed before Received, and E ends with Received instead of the final Filed event."
             },
             {
               "type": "paragraph",
-              "text": "Choice **B** inserts Approved, an event that did not occur."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **D** places Processed before Received."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **E** ends with Received instead of the final Filed event."
+              "text": "B. Inserts Approved, an event that did not occur."
             }
           ]
         },
@@ -1447,19 +1399,11 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Choice **B** uses the Report code **03** instead of Contract **05**."
+              "text": "B, D, and E. Use the wrong document-type code: 03 is Report, 02 is Letter, and 04 is Request Form, not Contract 05."
             },
             {
               "type": "paragraph",
-              "text": "Choice **C** uses Administrative **AD** instead of Legal **LG**."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **D** uses the Letter code **02**."
-            },
-            {
-              "type": "paragraph",
-              "text": "Choice **E** uses **04**, which the table assigns to Request Form, not Contract."
+              "text": "C. Uses Administrative AD instead of Legal LG."
             }
           ]
         },
@@ -1608,19 +1552,19 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Choice **B** uses the full year instead of the last two digits."
+              "text": "B. Uses the full year instead of the last two digits."
             },
             {
               "type": "paragraph",
-              "text": "Choice **C** reverses the month and day fields."
+              "text": "C. Reverses the month and day fields."
             },
             {
               "type": "paragraph",
-              "text": "Choice **D** omits the leading zero required for a two-digit day."
+              "text": "D. Omits the leading zero required for a two-digit day."
             },
             {
               "type": "paragraph",
-              "text": "Choice **E** writes the series as two digits instead of the required three."
+              "text": "E. Writes the series as two digits instead of the required three."
             }
           ]
         },

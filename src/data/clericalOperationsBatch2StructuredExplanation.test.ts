@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { loadContentCatalog } from './questionBank';
-import { createReviewMarkdown } from './contentBankWorkspace';
+import { createRawBatchJson, createReviewMarkdown } from './contentBankWorkspace';
 import { isValidStructuredExplanation } from './structuredExplanation';
 import type { RefinementBatch } from './refinementBatches';
 
@@ -25,10 +25,9 @@ const TARGETS = {
         { type: 'paragraph', text: 'The reported total is ₱30.00 lower, so it is understated by ₱30.00.' },
       ] },
       { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-        { type: 'paragraph', text: 'Choice **A** reverses the direction of the discrepancy and gives the wrong actual sum. Because ₱8,100.00 is higher than ₱8,070.00, the report is understated, not overstated.' },
-        { type: 'paragraph', text: 'Choice **B** treats the reported total as correct, but the line items add to ₱8,100.00, not ₱8,070.00.' },
-        { type: 'paragraph', text: 'Choice **D** introduces tax even though the question asks only for the sum of the listed amounts; no tax percentage is needed.' },
-        { type: 'paragraph', text: 'Choice **E** gives the wrong actual sum and discrepancy. The correct actual total is ₱8,100.00, which is ₱30.00 above the report.' },
+        { type: 'paragraph', text: 'A and E. Use incorrect actual sums: the line items total ₱8,100.00, not ₱8,040.00 or ₱8,170.00.' },
+        { type: 'paragraph', text: 'B. Treats the reported total as correct, although the line items add to ₱8,100.00.' },
+        { type: 'paragraph', text: 'D. Introduces tax even though the question asks only for the sum of the listed amounts; no tax percentage is needed.' },
       ] },
       { type: 'rule', text: 'Compute the actual total first, then compare it with the reported total. If the actual total is higher, the reported total is understated; if it is lower, the reported total is overstated.' },
     ],
@@ -52,10 +51,8 @@ const TARGETS = {
         { type: 'paragraph', text: 'The third and fourth digits change from 5-8 to 8-5, so the digits 5 and 8 have been transposed.' },
       ] },
       { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-        { type: 'paragraph', text: 'Choice **A** is incorrect because the account number is identical in both entries, so no account-number omission occurred.' },
-        { type: 'paragraph', text: 'Choice **B** is incorrect because the question compares two individual amounts, not a column total.' },
-        { type: 'paragraph', text: 'Choice **C** is incorrect because ₱14,582.00 and ₱14,852.00 differ.' },
-        { type: 'paragraph', text: "Choice **D** is incorrect because the amount does not contain a repeated 4; the actual error is that 5 and 8 were swapped." },
+        { type: 'paragraph', text: 'A, B, and D. Identify the wrong type of error: the account numbers match, the entries are not being totaled, and no digit is repeated. The actual error is that 5 and 8 were transposed.' },
+        { type: 'paragraph', text: 'C. Says there is no error, but ₱14,582.00 and ₱14,852.00 differ.' },
       ] },
       { type: 'rule', text: 'Compare numerical entries from left to right. A transposition occurs when the same digits appear in a different order.' },
     ],
@@ -80,10 +77,10 @@ const TARGETS = {
         { type: 'paragraph', text: 'The digits 1 and 4 have changed order, so the transcribed code contains a transposition.' },
       ] },
       { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-        { type: 'paragraph', text: 'Choice **A** is incorrect because the codes are not identical: 89014 was transcribed as 89041.' },
-        { type: 'paragraph', text: 'Choice **C** is incorrect because the letter prefixes CSC and PH match in both codes.' },
-        { type: 'paragraph', text: 'Choice **D** is incorrect because all hyphens appear in both codes.' },
-        { type: 'paragraph', text: "Choice **E** is incorrect because the issue is not repetition; the digits 1 and 4 were swapped from 14 to 41." },
+        { type: 'paragraph', text: 'A. The numeric segment changes from 89014 to 89041, so the codes are not identical.' },
+        { type: 'paragraph', text: 'C. The prefixes CSC and PH match in both codes.' },
+        { type: 'paragraph', text: 'D. All hyphens are present in both codes.' },
+        { type: 'paragraph', text: 'E. The issue is not repetition; the digits 1 and 4 change order from 14 to 41.' },
       ] },
       { type: 'rule', text: 'Compare each code segment from left to right. A transposition occurs when the same digits appear in a different order.' },
     ],
@@ -101,6 +98,14 @@ describe('Clerical Operations Batch 2 structured explanations', () => {
       expect(question?.choices.map((choice) => choice.text), id).toEqual(expected.choices);
       expect(question?.correctOptionId, id).toBe(expected.correctOptionId);
       expect(question?.structuredExplanation?.blocks, id).toEqual(expected.blocks);
+      const distractorSection = question?.structuredExplanation?.blocks.find((block) => block.type === 'distractor_section');
+      if (distractorSection?.type === 'distractor_section') {
+        expect(distractorSection.blocks.every((child) => {
+          const choicePrefix = child.text.split('.')[0];
+          const choiceTokens: string[] = choicePrefix.match(/\b[A-E]\b/g) ?? [];
+          return !choiceTokens.includes(expected.correctOptionId);
+        }), id).toBe(true);
+      }
       expect(isValidStructuredExplanation(question?.structuredExplanation), id).toBe(true);
       expect(question?.explanation, id).toBeUndefined();
       expect(question?.steps, id).toBeUndefined();
@@ -123,6 +128,8 @@ describe('Clerical Operations Batch 2 structured explanations', () => {
     };
 
     const markdown = createReviewMarkdown(batch, questions);
+    const raw = JSON.parse(createRawBatchJson(batch, questions)) as Array<{ id: string; correctOptionId: string; structuredExplanation: { blocks: Array<{ type: string; title?: string; blocks?: Array<{ type: string; label?: string }> }> } }>;
+    const rawGroups = raw.map((question) => question.structuredExplanation.blocks.filter((block) => block.type === 'distractor_section'));
     const learnerDistractors = markdown.match(/\*\*Why the other choices fail\*\*/g) ?? [];
     const authoringSections = markdown.match(/- type: distractor_section\n  title: Why the other choices fail/g) ?? [];
     const groupedAuthoringChildren = [...markdown.matchAll(/- type: distractor_section\n  title: Why the other choices fail\n  blocks:\n([\s\S]*?)(?=\n- type: [a-z_]+|$)/g)].map((match) => match[1]);
@@ -130,7 +137,10 @@ describe('Clerical Operations Batch 2 structured explanations', () => {
     expect(learnerDistractors).toHaveLength(3);
     expect(authoringSections).toHaveLength(3);
     expect(groupedAuthoringChildren).toHaveLength(3);
-    expect(groupedAuthoringChildren.every((section) => (section.match(/type: paragraph\n\s+label: \(none\)/g) ?? []).length === 4)).toBe(true);
+    expect(groupedAuthoringChildren.map((section) => (section.match(/type: paragraph\n\s+label: \(none\)/g) ?? []).length)).toEqual([3, 2, 4]);
+    expect(rawGroups).toHaveLength(3);
+    expect(rawGroups.every((groups) => groups.length === 1 && groups[0].title === 'Why the other choices fail')).toBe(true);
+    expect(rawGroups.every((groups) => groups[0].blocks?.every((child) => child.type === 'paragraph' && child.label === undefined))).toBe(true);
     expect(markdown.match(/- type: step\n  title: Apply the Rule/g) ?? []).toHaveLength(3);
     expect(markdown).toContain('The reported total is ₱30.00 lower, so it is understated by ₱30.00.');
     expect(markdown).toContain('The third and fourth digits change from 5-8 to 8-5, so the digits 5 and 8 have been transposed.');

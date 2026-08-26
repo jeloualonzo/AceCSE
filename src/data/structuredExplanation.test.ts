@@ -387,6 +387,29 @@ describe('Number Series structured explanation Batch 4', () => {
     expect([...catalog.questions.values()].filter((question) => question.structuredExplanation && !ALL_STRUCTURED_IDS.some((id) => id === question.id)).length).toBe(0);
   });
 
+  it('accepts grouped distractor sections and rejects labeled or empty children', () => {
+    expect(isValidStructuredExplanation({
+      blocks: [{
+        type: 'distractor_section',
+        title: 'Why the other choices fail',
+        blocks: [
+          { type: 'paragraph', text: 'A. Uses the wrong order.' },
+          { type: 'paragraph', text: 'B and C. Use the wrong code.' },
+        ],
+      }],
+    })).toBe(true);
+    expect(isValidStructuredExplanation({
+      blocks: [{
+        type: 'distractor_section',
+        title: 'Why the other choices fail',
+        blocks: [{ type: 'paragraph', label: 'Repeated', text: 'A. Wrong.' }],
+      }],
+    })).toBe(false);
+    expect(isValidStructuredExplanation({
+      blocks: [{ type: 'distractor_section', title: 'Why the other choices fail', blocks: [] }],
+    })).toBe(false);
+  });
+
   it('rejects malformed or unsupported structured blocks so callers can fall back safely', () => {
     expect(isValidStructuredExplanation({ blocks: [{ type: 'pattern', expression: '' }] })).toBe(false);
     expect(isValidStructuredExplanation({ blocks: [{ type: 'alternative_solution', title: 'Alternative Method', blocks: [] }] })).toBe(false);

@@ -90,11 +90,9 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
       { type: 'paragraph', text: 'Pairs **A**, **B**, **C**, and **D** are identical.' },
       { type: 'paragraph', text: 'Pair **E** differs in the middle initial: **L** versus **I**.' },
     ] },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **E** differs at one position—middle initial **L** versus **I**—so it is the only non-match.' },
+    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+      { type: 'paragraph', text: 'A, B, C, and D are exact matches. Because the question asks for the pair that is NOT an exact match, none of these choices satisfies the question.' },
+    ] },
     { type: 'rule', text: 'Compare entries character by character. One different letter, number, punctuation mark, or space means the pair is not an exact match.' },
   ],
   'cler-0021': [
@@ -102,10 +100,12 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'correct_answer', text: 'A — Dela Rosa, Benigno T. — Dela Rosa, Benigno T.' },
     { type: 'paragraph', label: 'What to Notice', text: 'Exact matching depends on character-by-character comparison and the order of those characters. Similar-looking entries are not enough.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'Choice **A** repeats the same name, including the comma, spaces, middle initial, and period. It is the only pair with every character in the same position.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** changes the final digits from **00187** to **00178**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** changes the year from **2025** to **2026**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** changes **5566** to **5656**; the middle digits are **56** in the first entry and **65** in the second.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **E** changes **0055** to **0555**, so a digit position and value differ.' },
+    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+      { type: 'paragraph', text: 'B. The final digits change from 00187 to 00178, so the entries do not match.' },
+      { type: 'paragraph', text: 'C. The year changes from 2025 to 2026, so the entries do not match.' },
+      { type: 'paragraph', text: 'D. The middle digits change from 56 to 65, so 5566 and 5656 are different.' },
+      { type: 'paragraph', text: 'E. The sequence changes from 0055 to 0555, so a digit position and value differ.' },
+    ] },
     { type: 'rule', text: 'For an exact match, compare each character from left to right and verify its position. Having the same characters in a different order is still a mismatch.' },
   ],
   'cler-0022': [
@@ -116,10 +116,10 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
       { type: 'paragraph', text: 'Pairs **1**, **2**, and **3** match.' },
       { type: 'paragraph', text: 'Pair **4** does not: **5512781** differs from **5512871** because the **7** and **8** are transposed. Therefore, **3** pairs are exact matches.' },
     ] },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** counts Pair 4 as a match even though the **7** and **8** are in the wrong order.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** undercounts the matches; Pairs **1**, **2**, and **3** are identical.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** undercounts the matches; Pairs **1**, **2**, and **3** are identical.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **E** undercounts the matches; Pairs **1**, **2**, and **3** are identical.' },
+    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+      { type: 'paragraph', text: 'A. Counts Pair 4 as a match, but Pair 4 contains a transposition.' },
+      { type: 'paragraph', text: 'C, D, and E. Undercount the exact matches; Pairs 1, 2, and 3 are identical, so the correct count is 3.' },
+    ] },
     { type: 'rule', text: 'In a multi-pair comparison, inspect one pair at a time and count only exact matches. A transposition makes the entire pair incorrect.' },
   ],
   'cler-0023': [
@@ -134,10 +134,10 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'correct_answer', text: 'E — 5' },
     { type: 'paragraph', label: 'What to Notice', text: 'Classify the document by its actual document type. The reference number or subject mentioned in its label does not change that type.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'The document is a **Notice** about Memo No. 31. The table assigns **Notice = 5**, so the correct code is **5**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** treats the reference word “Memo” as the document type, but code **1** is for a Memorandum.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** is Letter.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** is Report.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** is Form. None matches the document’s actual type, Notice.' },
+    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+      { type: 'paragraph', text: 'A. Treats the reference word “Memo” as the document type, but code 1 is for a Memorandum.' },
+      { type: 'paragraph', text: 'B, C, and D. Use the codes for Letter, Report, and Form, respectively; none matches the required Notice code 5.' },
+    ] },
     { type: 'rule', text: 'Use the document’s actual type when assigning a classification code. A reference number or subject does not replace the type of document being filed.' },
   ],
   'cler-0025': [
@@ -145,17 +145,17 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'correct_answer', text: 'C — Entry B' },
     { type: 'paragraph', label: 'What to Notice', text: 'Recompute net pay for every entry using **Gross Pay − Total Deductions = Net Pay**. Compare the result with the listed net pay.' },
     { type: 'step', title: 'Apply the Rule', blocks: [
-      { type: 'paragraph', text: 'Recompute each entry using **Gross Pay − Total Deductions = Net Pay**.' },
+      { type: 'paragraph', text: 'Recompute the four entries and compare each result with the listed net pay.' },
       { type: 'paragraph', text: '**Entry A:** 18,500 − 3,200 = 15,300, correct.' },
       { type: 'paragraph', text: '**Entry B:** 22,000 − 4,750 = 17,250, not 17,430, incorrect.' },
       { type: 'paragraph', text: '**Entry C:** 16,800 − 2,900 = 13,900, correct.' },
       { type: 'paragraph', text: '**Entry D:** 25,500 − 5,100 = 20,400, correct.' },
       { type: 'paragraph', text: 'Therefore, **Entry B** is the only incorrect entry.' },
     ] },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** selects Entry A, but its subtraction is correct.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** selects Entry C, which also computes correctly.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** selects Entry D, whose net pay is correct.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **E** claims that Entries B and D are wrong, but Entry D is accurate.' },
+    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+      { type: 'paragraph', text: 'A, B, and D. Select entries whose subtraction is correct: Entry A, Entry C, and Entry D, respectively.' },
+      { type: 'paragraph', text: 'E. Claims that Entries B and D are wrong, but Entry D is accurate.' },
+    ] },
     { type: 'rule', text: 'For a payroll check, subtract the listed deductions from the listed gross pay and compare the result with the listed net. Do not infer an unseen amount.' },
   ],
   'cler-0042': [
@@ -163,10 +163,12 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'correct_answer', text: 'A — 2-F' },
     { type: 'paragraph', label: 'What to Notice', text: 'The position code and region code come from separate lookups: **Clerk II = 2** and **NCR = F**. The region code is a suffix.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'Combine the position code with the region suffix: **2-F**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** reverses the required order.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** uses **E**, which is Region V, not NCR.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** uses **1**, the code for Clerk I.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **E** uses **G**, which is not the NCR code in the table.' },
+    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+      { type: 'paragraph', text: 'B. Reverses the required order by placing the region code before the position code.' },
+      { type: 'paragraph', text: 'C. Uses E, which the table assigns to Region V, not NCR.' },
+      { type: 'paragraph', text: 'D. Uses 1, the code for Clerk I, not Clerk II.' },
+      { type: 'paragraph', text: 'E. Uses G, which the table does not assign to NCR.' },
+    ] },
     { type: 'rule', text: 'For a two-part code, look up each component separately and apply the stated order: position code first, region suffix second.' },
   ],
   'cler-0043': [
@@ -174,10 +176,10 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'correct_answer', text: 'C — R-P-D-F' },
     { type: 'paragraph', label: 'What to Notice', text: 'The status code records the document’s events in the order they occurred: Received, Processed, Disapproved, then Filed.' },
     { type: 'paragraph', label: 'Apply the Rule', text: '**Received = R**, **Processed = P**, **Disapproved = D**, and **Filed = F**. The stated sequence is therefore **R-P-D-F**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** places Filed before Disapproved.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** inserts Approved, an event that did not occur.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** places Processed before Received.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **E** ends with Received instead of the final Filed event.' },
+    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+      { type: 'paragraph', text: 'A, D, and E. Change the chronological order: A places Filed before Disapproved, D places Processed before Received, and E ends with Received instead of the final Filed event.' },
+      { type: 'paragraph', text: 'B. Inserts Approved, an event that did not occur.' },
+    ] },
     { type: 'rule', text: 'Map each stated event to its code, then preserve the events’ chronological order when combining the codes.' },
   ],
   'cler-0044': [
@@ -185,10 +187,10 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'correct_answer', text: 'A — LG-05' },
     { type: 'paragraph', label: 'What to Notice', text: 'The code requires two lookups: first the department, then the document type. The required order is **[Department Code]-[Document Type Code]**.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'Legal Department = **LG**. Contract = **05**. Combining the two codes gives **LG-05**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** uses the Report code **03** instead of Contract **05**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** uses Administrative **AD** instead of Legal **LG**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** uses the Letter code **02**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **E** uses **04**, which the table assigns to Request Form, not Contract.' },
+    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+      { type: 'paragraph', text: 'B, D, and E. Use the wrong document-type code: 03 is Report, 02 is Letter, and 04 is Request Form, not Contract 05.' },
+      { type: 'paragraph', text: 'C. Uses Administrative AD instead of Legal LG.' },
+    ] },
     { type: 'rule', text: 'Solve two-part codes in order: identify the department, identify the document type, and then join their codes with the required separator.' },
   ],
   'cler-0045': [
@@ -196,35 +198,15 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'correct_answer', text: 'A — 26-11-03-007' },
     { type: 'paragraph', label: 'What to Notice', text: 'The code has four fields with fixed lengths and order: last two digits of the year, a two-digit month code, a two-digit day, and a three-digit series number.' },
     { type: 'paragraph', label: 'Apply the Rule', text: '2026 → **26**; November → **11**; day 3 → **03**; seventh document → **007**. The complete code is **26-11-03-007**.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** uses the full year instead of the last two digits.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** reverses the month and day fields.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** omits the leading zero required for a two-digit day.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **E** writes the series as two digits instead of the required three.' },
+    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+      { type: 'paragraph', text: 'B. Uses the full year instead of the last two digits.' },
+      { type: 'paragraph', text: 'C. Reverses the month and day fields.' },
+      { type: 'paragraph', text: 'D. Omits the leading zero required for a two-digit day.' },
+      { type: 'paragraph', text: 'E. Writes the series as two digits instead of the required three.' },
+    ] },
     { type: 'rule', text: 'Apply each field’s specified length and position. Zero-pad the day and series number when necessary, and do not change the field order.' },
   ],
 };
-
-function groupExpectedDistractors(blocks: readonly StructuredExplanationBlock[]): StructuredExplanationBlock[] {
-  const result: StructuredExplanationBlock[] = [];
-  let index = 0;
-  while (index < blocks.length) {
-    const block = blocks[index];
-    if (block.type !== 'paragraph' || block.label !== 'Why the other choices fail') {
-      result.push(block);
-      index += 1;
-      continue;
-    }
-    const children: Array<{ type: 'paragraph'; text: string }> = [];
-    while (index < blocks.length) {
-      const candidate = blocks[index];
-      if (candidate.type !== 'paragraph' || candidate.label !== 'Why the other choices fail') break;
-      children.push({ type: 'paragraph', text: candidate.text });
-      index += 1;
-    }
-    result.push({ type: 'distractor_section', title: 'Why the other choices fail', blocks: children });
-  }
-  return result;
-}
 
 describe('Clerical Operations Batch 1 structured explanations', () => {
   it('contains exactly the approved content, answer keys, and structured-only cleanup for all ten IDs', async () => {
@@ -239,7 +221,15 @@ describe('Clerical Operations Batch 1 structured explanations', () => {
       expect(question?.question, id).toBe(expected.question);
       expect(question?.choices.map((choice) => choice.text), id).toEqual(expected.choices);
       expect(question?.correctOptionId, id).toBe(expected.correctOptionId);
-      expect(question?.structuredExplanation?.blocks, id).toEqual(groupExpectedDistractors(EXPECTED_BLOCKS[id]));
+      expect(question?.structuredExplanation?.blocks, id).toEqual(EXPECTED_BLOCKS[id]);
+      const distractorSection = question?.structuredExplanation?.blocks.find((block) => block.type === 'distractor_section');
+      if (distractorSection?.type === 'distractor_section') {
+        expect(distractorSection.blocks.every((child) => {
+          const choicePrefix = child.text.split('.')[0];
+          const choiceTokens: string[] = choicePrefix.match(/\b[A-E]\b/g) ?? [];
+          return !choiceTokens.includes(expected.correctOptionId);
+        }), id).toBe(true);
+      }
       expect(isValidStructuredExplanation(question?.structuredExplanation), id).toBe(true);
       expect(question?.explanation, id).toBeUndefined();
       expect(question?.steps, id).toBeUndefined();
