@@ -486,11 +486,11 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "A, B, and D. Select entries whose subtraction is correct: Entry A, Entry C, and Entry D, respectively."
+              "text": "Choices A, B, and D select Entries A, C, and D, respectively; all three have correct net-pay calculations."
             },
             {
               "type": "paragraph",
-              "text": "E. Claims that Entries B and D are wrong, but Entry D is accurate."
+              "text": "Choice E claims that Entries B and D are both incorrect, but Entry D is correct."
             }
           ]
         },

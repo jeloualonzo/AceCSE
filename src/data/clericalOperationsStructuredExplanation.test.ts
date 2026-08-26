@@ -153,8 +153,8 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
       { type: 'paragraph', text: 'Therefore, **Entry B** is the only incorrect entry.' },
     ] },
     { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-      { type: 'paragraph', text: 'A, B, and D. Select entries whose subtraction is correct: Entry A, Entry C, and Entry D, respectively.' },
-      { type: 'paragraph', text: 'E. Claims that Entries B and D are wrong, but Entry D is accurate.' },
+      { type: 'paragraph', text: 'Choices A, B, and D select Entries A, C, and D, respectively; all three have correct net-pay calculations.' },
+      { type: 'paragraph', text: 'Choice E claims that Entries B and D are both incorrect, but Entry D is correct.' },
     ] },
     { type: 'rule', text: 'For a payroll check, subtract the listed deductions from the listed gross pay and compare the result with the listed net. Do not infer an unseen amount.' },
   ],
@@ -225,8 +225,8 @@ describe('Clerical Operations Batch 1 structured explanations', () => {
       const distractorSection = question?.structuredExplanation?.blocks.find((block) => block.type === 'distractor_section');
       if (distractorSection?.type === 'distractor_section') {
         expect(distractorSection.blocks.every((child) => {
-          const choicePrefix = child.text.split('.')[0];
-          const choiceTokens: string[] = choicePrefix.match(/\b[A-E]\b/g) ?? [];
+          const choicePrefix = child.text.match(/^(?:Choices?\s+)?([A-E](?:\s*,\s*[A-E])*(?:\s*,?\s*and\s+[A-E])?)(?=\s|\.|$)/)?.[1] ?? '';
+          const choiceTokens: string[] = choicePrefix.match(/[A-E]/g) ?? [];
           return !choiceTokens.includes(expected.correctOptionId);
         }), id).toBe(true);
       }

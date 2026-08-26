@@ -270,11 +270,11 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "A, B, and D. Identify the wrong type of error: the account numbers match, the entries are not being totaled, and no digit is repeated. The actual error is that 5 and 8 were transposed."
+              "text": "Choices A, B, and D identify the wrong type of clerical error. The account numbers match, no column total is being checked, and no digit is repeated. The actual error is the transposition of 5 and 8."
             },
             {
               "type": "paragraph",
-              "text": "C. Says there is no error, but ₱14,582.00 and ₱14,852.00 differ."
+              "text": "Choice C claims there is no error, but ₱14,582.00 and ₱14,852.00 are different."
             }
           ]
         },

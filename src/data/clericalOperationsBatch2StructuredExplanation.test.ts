@@ -51,8 +51,8 @@ const TARGETS = {
         { type: 'paragraph', text: 'The third and fourth digits change from 5-8 to 8-5, so the digits 5 and 8 have been transposed.' },
       ] },
       { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-        { type: 'paragraph', text: 'A, B, and D. Identify the wrong type of error: the account numbers match, the entries are not being totaled, and no digit is repeated. The actual error is that 5 and 8 were transposed.' },
-        { type: 'paragraph', text: 'C. Says there is no error, but ₱14,582.00 and ₱14,852.00 differ.' },
+        { type: 'paragraph', text: 'Choices A, B, and D identify the wrong type of clerical error. The account numbers match, no column total is being checked, and no digit is repeated. The actual error is the transposition of 5 and 8.' },
+        { type: 'paragraph', text: 'Choice C claims there is no error, but ₱14,582.00 and ₱14,852.00 are different.' },
       ] },
       { type: 'rule', text: 'Compare numerical entries from left to right. A transposition occurs when the same digits appear in a different order.' },
     ],
@@ -101,8 +101,8 @@ describe('Clerical Operations Batch 2 structured explanations', () => {
       const distractorSection = question?.structuredExplanation?.blocks.find((block) => block.type === 'distractor_section');
       if (distractorSection?.type === 'distractor_section') {
         expect(distractorSection.blocks.every((child) => {
-          const choicePrefix = child.text.split('.')[0];
-          const choiceTokens: string[] = choicePrefix.match(/\b[A-E]\b/g) ?? [];
+          const choicePrefix = child.text.match(/^(?:Choices?\s+)?([A-E](?:\s*,\s*[A-E])*(?:\s*,?\s*and\s+[A-E])?)(?=\s|\.|$)/)?.[1] ?? '';
+          const choiceTokens: string[] = choicePrefix.match(/[A-E]/g) ?? [];
           return !choiceTokens.includes(expected.correctOptionId);
         }), id).toBe(true);
       }
