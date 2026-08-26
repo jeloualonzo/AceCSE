@@ -755,8 +755,14 @@ describe('structured explanation Practice/Results integration V3', () => {
       'cler-0031', 'cler-0032', 'cler-0033', 'seed-cler-001', 'cler-0036', 'cler-0037',
       'cler-0038', 'cler-0039',
     ];
-    const filingOrderExamples: Record<string, string> = {
+    const redesignedFilingIds = new Set([
+      'cler-0053', 'cler-0054', 'cler-0058', 'cler-0059', 'cler-0060',
+      'cler-0001', 'cler-0002', 'cler-0003', 'cler-0004', 'cler-0005',
+    ]);
+    const filingRationaleExamples: Record<string, string> = {
       'cler-0053': 'Abad, Bernardo S.',
+      'cler-0054': 'San Juan Development Corporation (The)',
+      'cler-0058': 'PERSONNEL',
       'cler-0059': 'Banal',
       'cler-0060': 'Dimaculangan',
       'cler-0001': 'Bartolome',
@@ -764,6 +770,8 @@ describe('structured explanation Practice/Results integration V3', () => {
       'cler-0003': 'A.',
       'cler-0004': 'Fajardo',
       'cler-0005': 'Villalobos',
+    };
+    const filingOrderExamples: Record<string, string> = {
       'cler-0006': 'Lacsina, Myrna',
       'cler-0007': 'De la Cruz, Maria',
       'cler-0008': 'Salazar, Mila',
@@ -798,7 +806,11 @@ describe('structured explanation Practice/Results integration V3', () => {
       expect(practiceRoots.every((root) => root.textContent?.includes('Correct Answer:'))).toBe(true);
       expect(practiceRoots.every((root) => root.querySelector('strong, em') !== null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Other Choices|corrected alternatives/i) === null)).toBe(true);
-      if (filingOrderExamples[question.id]) {
+      if (redesignedFilingIds.has(question.id)) {
+        expect(practiceRoots.every((root) => within(root).getByText('Rationale'))).toBe(true);
+        expect(practiceRoots.every((root) => within(root).queryByText('Filing Order') === null)).toBe(true);
+        expect(practiceRoots.every((root) => root.textContent?.includes(filingRationaleExamples[question.id]))).toBe(true);
+      } else if (filingOrderExamples[question.id]) {
         expect(practiceRoots.every((root) => within(root).getByText('Filing Order'))).toBe(true);
         expect(practiceRoots.every((root) => root.textContent?.includes(filingOrderExamples[question.id]))).toBe(true);
       }
@@ -822,7 +834,11 @@ describe('structured explanation Practice/Results integration V3', () => {
       expect(resultsRoot.textContent).toContain('Correct Answer:');
       expect(resultsRoot.querySelector('strong, em')).not.toBeNull();
       expect(within(resultsRoot).queryByText(/Other Choices|corrected alternatives/i)).toBeNull();
-      if (filingOrderExamples[id]) {
+      if (redesignedFilingIds.has(id)) {
+        expect(within(resultsRoot).getByText('Rationale')).toBeInTheDocument();
+        expect(within(resultsRoot).queryByText('Filing Order')).toBeNull();
+        expect(resultsRoot.textContent).toContain(filingRationaleExamples[id]);
+      } else if (filingOrderExamples[id]) {
         expect(within(resultsRoot).getByText('Filing Order')).toBeInTheDocument();
         expect(resultsRoot.textContent).toContain(filingOrderExamples[id]);
       }
