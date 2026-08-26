@@ -173,7 +173,7 @@ After the math.`,
     const paragraphs = [...root.querySelectorAll('p')];
     expect(paragraphs.map((paragraph) => paragraph.textContent)).toEqual(['Before the math:', 'After the math.']);
     const mathStack = screen.getByTestId('structured-latex-math');
-    expect(mathStack).toHaveClass('space-y-0.5', 'py-0');
+    expect(mathStack).toHaveClass('space-y-1', 'py-0');
     expect(mathStack.querySelectorAll('[data-testid="structured-latex-equation"]')).toHaveLength(2);
     expect([...mathStack.querySelectorAll('[data-testid="structured-latex-equation"]')].every((equation) => equation.className.includes('py-0'))).toBe(true);
     expect(root.textContent).not.toContain('\\[');

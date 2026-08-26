@@ -15,6 +15,8 @@ import { PASSING_PERCENTAGE } from '@/config/exam';
 import { formatDuration, formatElapsedMs } from '@/lib/time';
 import { useTheme } from '@/context/ThemeContext';
 import { QuestionStimulusRenderer } from './QuestionStimulusRenderer';
+import { MathValue } from './MathValue';
+import { NumberSeriesInstanceRenderer, hasCompactNumberSeriesInstance } from './NumberSeriesInstanceRenderer';
 
 interface ResultsScreenProps {
   /** Administrative EDQ items presented in the session (never scored). */
@@ -390,9 +392,13 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                       </button>
                     </div>
 
-                    <div className="text-sm sm:text-base font-medium text-black dark:text-slate-100 mb-4 whitespace-pre-line leading-relaxed">
-                      {question.question}
-                    </div>
+                    {hasCompactNumberSeriesInstance(question) ? (
+                      <NumberSeriesInstanceRenderer question={question} />
+                    ) : (
+                      <div className="text-sm sm:text-base font-medium text-black dark:text-slate-100 mb-4 whitespace-pre-line leading-relaxed">
+                        {question.question}
+                      </div>
+                    )}
 
                     {isExpanded && (
                       <>
@@ -421,7 +427,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                                   <span className="w-6 h-6 rounded text-xs font-bold font-mono flex items-center justify-center shrink-0 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200">
                                     {option.id}
                                   </span>
-                                  <span>{option.text}</span>
+                                  <span><MathValue value={option.text} /></span>
                                 </div>
                                 <div className="flex items-center gap-2 shrink-0 text-[11px] font-bold">
                                   {isCorrectOption && (

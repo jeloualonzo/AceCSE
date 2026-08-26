@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Question } from '@/types';
+import { MathValue } from './MathValue';
 
 interface NumberSeriesPayload {
   instanceFormat?: unknown;
@@ -35,7 +36,7 @@ export const NumberSeriesInstanceRenderer: React.FC<{ question: Question }> = ({
               data-sequence-position={index + 1}
               aria-label={term === null ? `Missing term at position ${index + 1}` : undefined}
             >
-              {term === null ? '___' : String(term)}
+              {term === null ? '___' : <MathValue value={String(term)} />}
             </span>
           </React.Fragment>
         ))}

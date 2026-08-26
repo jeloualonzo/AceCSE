@@ -196,7 +196,7 @@ function LatexMathDisplay({ expression, dark }: { expression: string; dark: bool
   return (
     <div
       data-testid="structured-latex-math"
-      className={`w-full overflow-hidden space-y-0.5 px-1 py-0 text-center ${dark ? 'text-slate-100' : 'text-slate-900'}`}
+      className={`w-full overflow-hidden space-y-1 px-1 py-0 text-center ${dark ? 'text-slate-100' : 'text-slate-900'}`}
     >
       {lines.map((line, index) => (
         <div
@@ -272,7 +272,7 @@ function MathDisplay({ expression, dark, label }: { expression: string; dark: bo
     <div
       role="math"
       aria-label={label ? `${label}: ${lines.join('; ')}` : lines.join('; ')}
-      className={`w-full overflow-hidden px-1 py-0 text-center font-mono text-sm sm:text-base tracking-wide whitespace-nowrap ${
+      className={`w-full overflow-hidden space-y-1 px-1 py-0 text-center font-mono text-sm sm:text-base tracking-wide whitespace-nowrap ${
         dark ? 'text-slate-100' : 'text-slate-900'
       }`}
     >

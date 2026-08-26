@@ -8,6 +8,7 @@ import { GrammarInstanceRenderer, hasCompactGrammarInstance } from './GrammarIns
 import { useTheme } from '@/context/ThemeContext';
 import { ExplanationPanel } from './ExplanationPanel';
 import { QuestionStimulusRenderer } from './QuestionStimulusRenderer';
+import { MathValue } from './MathValue';
 
 export interface QuestionCardProps {
   question: Question;
@@ -158,7 +159,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                   >
                     {option.id}
                   </span>
-                  <span className="text-sm sm:text-base leading-snug">{option.text}</span>
+                  <span className="text-sm sm:text-base leading-snug"><MathValue value={option.text} /></span>
                 </div>
                 <div
                   className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 transition-colors ${

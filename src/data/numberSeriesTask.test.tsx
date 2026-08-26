@@ -139,19 +139,42 @@ describe('Number Series task architecture', () => {
     }
   });
 
-  it('preserves exact string notation and does not repeat the long authored stem', () => {
-    const question = makeQuestion(['2/4', '1/2', '−21', null]);
-    const { container } = render(
-      <QuestionRenderer question={question} questionNumber={1} selectedOptionId={null} onSelectOption={() => undefined} />
+  it('renders fractions semantically in the sequence and booklet choices without changing source values', () => {
+    const sequenceQuestion = makeQuestion(['2/4', '1/2', '−21', null]);
+    const { container: sequenceContainer } = render(<NumberSeriesInstanceRenderer question={sequenceQuestion} />);
+    const sequence = sequenceContainer.querySelector('[aria-label="Number series"]');
+    expect(sequence).toBeInTheDocument();
+    expect(sequence?.querySelector('[data-testid="fraction-math-value"][aria-label="2/4"]')?.getAttribute('role')).toBe('math');
+    expect(sequence?.querySelector('[data-testid="fraction-math-value"][aria-label="1/2"]')?.getAttribute('role')).toBe('math');
+    expect(sequence).toHaveTextContent('−21');
+    expect(sequence).toHaveTextContent('___');
+    expect(sequenceContainer.querySelectorAll('[data-testid="fraction-math-value"]')).toHaveLength(2);
+    expect(sequenceContainer.querySelectorAll('mfrac')).toHaveLength(2);
+    cleanup();
+
+    const choiceQuestion: Question = {
+      ...sequenceQuestion,
+      choices: [
+        { id: 'A', text: '1/2' },
+        { id: 'B', text: '2/4' },
+        { id: 'C', text: '3/4' },
+        { id: 'D', text: '4/5' },
+        { id: 'E', text: '5/6' },
+      ],
+      correctOptionId: 'A',
+    };
+    const { container: bookletContainer } = render(
+      <QuestionRenderer question={choiceQuestion} questionNumber={1} selectedOptionId={null} onSelectOption={() => undefined} />
     );
-    expect(screen.getByText('2/4')).toBeInTheDocument();
+    expect(bookletContainer.querySelectorAll('[data-testid="fraction-math-value"]')).toHaveLength(7);
+    expect(bookletContainer.querySelectorAll('mfrac')).toHaveLength(7);
+    expect(bookletContainer.querySelectorAll('[data-testid="fraction-math-value"][aria-label="1/2"]')).toHaveLength(2);
     expect(screen.getByText('−21')).toBeInTheDocument();
     expect(screen.getByText('Choose the missing term.')).toBeInTheDocument();
     expect(screen.queryByText('What is the next number in the series: 4, 9, 14, ___?')).not.toBeInTheDocument();
-    expect(screen.getByText('24')).toBeInTheDocument();
-    expect(container.querySelector('[aria-label="Number series"]')).toHaveTextContent('2/4, 1/2, −21, ___');
-    expect(container.querySelector('[aria-label="Number series"]')?.textContent).not.toContain('?');
-    expect(container.querySelector('[data-sequence-position="4"]')).toHaveTextContent('___');
+    expect(bookletContainer.querySelector('[data-testid="fraction-math-value"][aria-label="5/6"]')?.getAttribute('role')).toBe('math');
+    expect(bookletContainer.querySelector('[aria-label="Number series"]')?.textContent).not.toContain('?');
+    expect(bookletContainer.querySelector('[data-sequence-position="4"]')).toHaveTextContent('___');
   });
 
   it('keeps numeric pool blocks contiguous and excludes letter-series and historical groups in seeded simulations', async () => {

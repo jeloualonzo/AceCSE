@@ -319,6 +319,13 @@ describe('structured explanation Practice/Results integration V3', () => {
       for (const root of screen.getAllByTestId('structured-explanation')) {
         assertProductionMath(root, expectedEquationCount);
       }
+      if (id === 'num-0137') {
+        const fractionValues = screen.getAllByTestId('fraction-math-value');
+        expect(fractionValues).toHaveLength(12);
+        expect(fractionValues.every((value) => value.getAttribute('role') === 'math' && value.querySelector('mfrac'))).toBe(true);
+      } else {
+        expect(screen.queryByTestId('fraction-math-value')).toBeNull();
+      }
 
       cleanup();
       const attempt: Attempt = {
@@ -354,6 +361,13 @@ describe('structured explanation Practice/Results integration V3', () => {
       );
       await user.click(screen.getByRole('button', { name: 'Expand question details' }));
       assertProductionMath(screen.getByTestId('structured-explanation'), expectedEquationCount);
+      if (id === 'num-0137') {
+        const fractionValues = screen.getAllByTestId('fraction-math-value');
+        expect(fractionValues).toHaveLength(12);
+        expect(fractionValues.every((value) => value.getAttribute('role') === 'math' && value.querySelector('mfrac'))).toBe(true);
+      } else {
+        expect(screen.queryByTestId('fraction-math-value')).toBeNull();
+      }
       cleanup();
     }
   });
