@@ -10,6 +10,7 @@ import { getCanonicalPool, getSharedTaskDefinition } from '@/data/taxonomy';
 import { getVisiblePracticeItemSets } from '@/data/practiceCatalog';
 import { buildNumberSeriesPracticeSession, buildSimulationSession } from '@/lib/examEngine';
 import { NumberSeriesInstanceRenderer } from '@/components/exam/NumberSeriesInstanceRenderer';
+import { ExplanationPanel } from '@/components/exam/ExplanationPanel';
 import { QuestionRenderer } from '@/components/exam/booklet/QuestionRenderer';
 
 afterEach(() => cleanup());
@@ -145,6 +146,9 @@ describe('Number Series task architecture', () => {
     const sequence = sequenceContainer.querySelector('[aria-label="Number series"]');
     expect(sequence).toBeInTheDocument();
     expect(sequence?.querySelector('[data-testid="fraction-math-value"][aria-label="2/4"]')?.getAttribute('role')).toBe('math');
+    const firstFraction = sequence?.querySelector('[data-testid="fraction-math-value"][aria-label="2/4"]');
+    expect(firstFraction?.getAttribute('role')).toBe('math');
+    expect(firstFraction?.getAttribute('class')).toContain('text-[1.2em]');
     expect(sequence?.querySelector('[data-testid="fraction-math-value"][aria-label="1/2"]')?.getAttribute('role')).toBe('math');
     expect(sequence).toHaveTextContent('−21');
     expect(sequence).toHaveTextContent('___');
@@ -175,6 +179,25 @@ describe('Number Series task architecture', () => {
     expect(bookletContainer.querySelector('[data-testid="fraction-math-value"][aria-label="5/6"]')?.getAttribute('role')).toBe('math');
     expect(bookletContainer.querySelector('[aria-label="Number series"]')?.textContent).not.toContain('?');
     expect(bookletContainer.querySelector('[data-sequence-position="4"]')).toHaveTextContent('___');
+  });
+
+  it('uses the shared period-separated answer summary and fraction value in the legacy fallback path', () => {
+    const question: Question = {
+      ...makeQuestion(['2/4', '1/2', '2/6', null]),
+      choices: [
+        { id: 'A', text: '1/5' },
+        { id: 'B', text: '1/6' },
+        { id: 'C', text: '2/5' },
+        { id: 'D', text: '3/4' },
+        { id: 'E', text: '4/5' },
+      ],
+      correctOptionId: 'A',
+    };
+    const { container } = render(<ExplanationPanel question={question} theme="light" />);
+    const answer = [...container.querySelectorAll('p')].find((paragraph) => paragraph.textContent?.startsWith('Correct Answer:'));
+    expect(answer?.textContent).toContain('Correct Answer: A.');
+    expect(answer?.textContent).not.toContain('A —');
+    expect(container.querySelector('[data-testid="fraction-math-value"][aria-label="1/5"]')?.getAttribute('role')).toBe('math');
   });
 
   it('keeps numeric pool blocks contiguous and excludes letter-series and historical groups in seeded simulations', async () => {

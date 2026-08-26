@@ -34,7 +34,7 @@ export const MathValue: React.FC<{ value: string; className?: string }> = ({ val
       role: 'math',
       'data-testid': 'fraction-math-value',
       'aria-label': value.replace('-', '−'),
-      className: `inline-block align-middle ${className}`.trim(),
+      className: `inline-block align-middle text-[1.2em] ${className}`.trim(),
       xmlns: 'http://www.w3.org/1998/Math/MathML',
     },
     createElement(

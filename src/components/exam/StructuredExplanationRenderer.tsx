@@ -59,6 +59,13 @@ function renderInlineMathRichText(text: string): React.ReactNode {
   });
 }
 
+function renderCorrectAnswerText(text: string): React.ReactNode {
+  const match = text.match(/^([A-E])\s*[—–-]\s*(.*)$/s);
+  if (!match) return renderInlineMathRichText(text);
+
+  return <><span>{match[1]}.</span>{' '}{renderInlineMathRichText(match[2] ?? '')}</>;
+}
+
 function readLatexGroup(source: string, start: number): { content: string; end: number } | null {
   if (source[start] !== '{') return null;
   let depth = 0;
@@ -398,7 +405,7 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
     case 'correct_answer':
       return (
         <p key={key} className={`font-semibold ${dark ? 'text-emerald-300' : 'text-emerald-800'}`}>
-          Correct Answer: <span className="font-mono font-bold">{renderInlineMathRichText(block.text)}</span>
+          Correct Answer: <span className="font-mono font-bold">{renderCorrectAnswerText(block.text)}</span>
         </p>
       );
     case 'paragraph':

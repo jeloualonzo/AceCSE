@@ -33,7 +33,7 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(sectionHeadings.every((heading) => heading.tagName === 'H5')).toBe(true);
     expect(new Set(sectionHeadings.map((heading) => heading.className))).toHaveLength(1);
     expect(screen.getByText('Correct Answer:')).toBeInTheDocument();
-    expect(screen.getByText('E — 48')).toBeInTheDocument();
+    expect(Array.from(root.querySelectorAll('p')).some((paragraph) => paragraph.textContent === 'Correct Answer: E. 48')).toBe(true);
     expect(screen.getByText('What to Notice')).toBeInTheDocument();
     expect(screen.getByText('Check how each term changes to the next.')).toBeInTheDocument();
     expect(screen.getByText('Pattern')).toBeInTheDocument();

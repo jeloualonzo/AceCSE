@@ -213,7 +213,7 @@ describe('structured explanation Practice/Results integration V3', () => {
     const roots = screen.getAllByTestId('structured-explanation');
     expect(roots).toHaveLength(2);
     expect(roots.every((root) => within(root).getByText('Correct Answer:'))).toBe(true);
-    expect(roots.every((root) => within(root).getByText('B — 24'))).toBe(true);
+    expect(roots.every((root) => Array.from(root.querySelectorAll('p')).some((paragraph) => paragraph.textContent === 'Correct Answer: B. 24'))).toBe(true);
     expect(roots.every((root) => within(root).getByText('What to Notice'))).toBe(true);
     expect(roots.every((root) => within(root).getByText('Pattern'))).toBe(true);
     expect(roots.every((root) => within(root).getByText('Apply the Pattern'))).toBe(true);
@@ -279,7 +279,7 @@ describe('structured explanation Practice/Results integration V3', () => {
     await user.click(screen.getByRole('button', { name: 'Expand question details' }));
     const root = screen.getByTestId('structured-explanation');
     expect(within(root).getByText('Correct Answer:')).toBeInTheDocument();
-    expect(within(root).getByText('B — 24')).toBeInTheDocument();
+    expect(Array.from(root.querySelectorAll('p')).some((paragraph) => paragraph.textContent === 'Correct Answer: B. 24')).toBe(true);
     expect(within(root).getByText('What to Notice')).toBeInTheDocument();
     expect(within(root).getByText('Pattern')).toBeInTheDocument();
     expect(within(root).getByText('Apply the Pattern')).toBeInTheDocument();
@@ -327,8 +327,12 @@ describe('structured explanation Practice/Results integration V3', () => {
         expect(fractionValues).toHaveLength(16);
         expect(fractionValues.filter((value) => value.getAttribute('aria-label') === '1/5')).toHaveLength(5);
         expect(fractionValues.every((value) => value.getAttribute('role') === 'math' && value.querySelector('mfrac'))).toBe(true);
+        expect(fractionValues.every((value) => value.className.includes('text-[1.2em]'))).toBe(true);
       } else {
         expect(screen.queryByTestId('fraction-math-value')).toBeNull();
+      }
+      if (id === 'num-0147') {
+        expect(screen.getAllByTestId('structured-explanation').every((root) => Array.from(root.querySelectorAll('p')).some((paragraph) => paragraph.textContent === 'Correct Answer: D. −144'))).toBe(true);
       }
 
       cleanup();
@@ -370,8 +374,12 @@ describe('structured explanation Practice/Results integration V3', () => {
         expect(fractionValues).toHaveLength(14);
         expect(fractionValues.filter((value) => value.getAttribute('aria-label') === '1/5')).toHaveLength(3);
         expect(fractionValues.every((value) => value.getAttribute('role') === 'math' && value.querySelector('mfrac'))).toBe(true);
+        expect(fractionValues.every((value) => value.className.includes('text-[1.2em]'))).toBe(true);
       } else {
         expect(screen.queryByTestId('fraction-math-value')).toBeNull();
+      }
+      if (id === 'num-0147') {
+        expect(Array.from(screen.getByTestId('structured-explanation').querySelectorAll('p')).some((paragraph) => paragraph.textContent === 'Correct Answer: D. −144')).toBe(true);
       }
       cleanup();
     }
