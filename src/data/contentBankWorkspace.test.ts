@@ -56,8 +56,7 @@ function question(
     ...(structured ? {
       structuredExplanation: {
         blocks: [
-          { type: 'heading' as const, text: 'Solution' },
-          { type: 'correct_answer' as const, text: `B — ${id} B` },
+                    { type: 'correct_answer' as const, text: `B — ${id} B` },
           { type: 'paragraph' as const, label: 'What to Notice', text: 'Notice **bold** and *italic* authored markers.' },
           { type: 'rule' as const, text: 'Apply the rule.' },
         ],
@@ -300,6 +299,31 @@ describe('Content Bank workspace data', () => {
     expect(raw.map((item) => item.id)).toEqual(['cler-test-003', 'cler-test-002']);
     expect(raw[0]).toEqual(questions[0]);
     expect(JSON.stringify(raw)).not.toContain('test-ready');
+  });
+
+  it('omits legacy Solution headings while preserving standard step output in both export views', () => {
+    const legacyHeadingQuestion: Question = {
+      ...question('cler-export-legacy', 'Clerical Operations'),
+      structuredExplanation: {
+        blocks: [
+          {
+            type: 'step',
+            title: 'Apply the Rule',
+            blocks: [
+              { type: 'heading', text: 'Solution' },
+              { type: 'paragraph', text: 'Apply the filing rule.' },
+            ],
+          },
+        ],
+      },
+    };
+    const batch = { ...readyBatch, questionIds: [legacyHeadingQuestion.id] };
+    const markdown = createReviewMarkdown(batch, [legacyHeadingQuestion]);
+
+    expect(markdown).toContain('**Apply the Rule**');
+    expect(markdown).not.toContain('Solution');
+    expect(markdown).toContain('- type: step\n  title: Apply the Rule');
+    expect(markdown).not.toContain('- type: heading');
   });
 
   it('exports question-level semantic tables as structured Markdown and raw JSON', () => {

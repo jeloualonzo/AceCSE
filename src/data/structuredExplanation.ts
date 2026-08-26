@@ -47,6 +47,7 @@ function isBlock(value: unknown): value is StructuredExplanationBlock {
 
   switch (block.type) {
     case 'heading':
+      return isNonEmptyString(block.text) && block.text.trim() !== 'Solution';
     case 'rule':
     case 'common_trap':
       return isNonEmptyString(block.text);

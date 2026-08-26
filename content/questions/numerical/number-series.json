@@ -42,10 +42,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "B — 24"
         },
@@ -156,10 +152,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "E — 48"
@@ -272,10 +264,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "C — 27"
@@ -395,10 +383,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "D — 13"
         },
@@ -510,10 +494,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "E — 47"
         },
@@ -624,10 +604,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "A — 36"
@@ -773,10 +749,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "C — 16"
         },
@@ -902,10 +874,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "B — 31"
         },
@@ -1024,10 +992,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "A — 96"
@@ -1159,10 +1123,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "A — 1/5"
         },
@@ -1283,10 +1243,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "D — −144"

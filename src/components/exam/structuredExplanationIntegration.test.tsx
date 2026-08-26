@@ -34,8 +34,7 @@ const pilotQuestion: Question = {
   tags: ['number-series'],
   structuredExplanation: {
     blocks: [
-      { type: 'heading', text: 'Solution' },
-      { type: 'correct_answer', text: 'B — 24' },
+            { type: 'correct_answer', text: 'B — 24' },
       { type: 'paragraph', label: 'What to Notice', text: 'Check the difference between consecutive terms.' },
       { type: 'pattern', expression: '4 + 5 = 9\n9 + 5 = 14\n14 + 5 = 19' },
       { type: 'paragraph', text: 'The same operation is repeated: +5.' },
@@ -60,8 +59,7 @@ const alternativeQuestion: Question = {
   correctOptionId: 'A',
   structuredExplanation: {
     blocks: [
-      { type: 'heading', text: 'Solution' },
-      { type: 'correct_answer', text: 'A — 36' },
+            { type: 'correct_answer', text: 'A — 36' },
       { type: 'paragraph', label: 'What to Notice', text: 'Check the differences between consecutive terms.' },
       { type: 'pattern', expression: '4 − 1 = 3\n9 − 4 = 5\n16 − 9 = 7\n25 − 16 = 9' },
       { type: 'paragraph', text: 'The differences increase by 2:' },
@@ -98,8 +96,7 @@ const interleavedQuestion: Question = {
   correctOptionId: 'C',
   structuredExplanation: {
     blocks: [
-      { type: 'heading', text: 'Solution' },
-      { type: 'correct_answer', text: 'C — 16' },
+            { type: 'correct_answer', text: 'C — 16' },
       { type: 'paragraph', label: 'What to Notice', text: 'The terms alternate between two sequences.' },
       { type: 'pattern', label: 'Odd positions', expression: '3 → 4 → 5 → 6\n+1, +1, +1' },
       { type: 'pattern', label: 'Even positions', expression: '7 → 10 → 13 → ___\n+3, +3, +3' },
@@ -122,8 +119,7 @@ const batch4Questions: Question[] = [
     choices: makeChoices(['96', '86', '72', '98', '101']),
     structuredExplanation: {
       blocks: [
-        { type: 'heading', text: 'Solution' },
-        { type: 'correct_answer', text: 'A — 96' },
+                { type: 'correct_answer', text: 'A — 96' },
         { type: 'paragraph', label: 'What to Notice', text: 'Check the differences between consecutive terms.' },
         { type: 'pattern', expression: '6 − 5 = 1\n10 − 6 = 4\n19 − 10 = 9\n35 − 19 = 16\n60 − 35 = 25' },
         { type: 'paragraph', text: 'The differences are:' },
@@ -143,8 +139,7 @@ const batch4Questions: Question[] = [
     choices: makeChoices(['1/5', '1/6', '2/5', '3/4', '4/5']),
     structuredExplanation: {
       blocks: [
-        { type: 'heading', text: 'Solution' },
-        { type: 'correct_answer', text: 'A — 1/5' },
+                { type: 'correct_answer', text: 'A — 1/5' },
         { type: 'paragraph', label: 'What to Notice', text: 'The terms form pairs. In each pair, the second fraction is the simplified form of the first.' },
         { type: 'pattern', expression: '2/4 → 1/2\n2/6 → 1/3\n2/8 → 1/4\n2/10 → ___' },
         { type: 'paragraph', text: 'Each second fraction is the simplified form of the first.' },
@@ -161,8 +156,7 @@ const batch4Questions: Question[] = [
     choices: makeChoices(['−95', '104', '−130', '−144', '−109']),
     structuredExplanation: {
       blocks: [
-        { type: 'heading', text: 'Solution' },
-        { type: 'correct_answer', text: 'D — −144' },
+                { type: 'correct_answer', text: 'D — −144' },
         { type: 'paragraph', label: 'What to Notice', text: 'The absolute values follow the Fibonacci pattern, while the signs alternate.' },
         { type: 'pattern', label: 'Absolute values', expression: '13, 21, 34, 55, 89' },
         { type: 'pattern', label: 'Fibonacci relationships', expression: '13 + 21 = 34\n21 + 34 = 55\n34 + 55 = 89' },

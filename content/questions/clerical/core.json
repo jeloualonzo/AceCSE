@@ -39,10 +39,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "E — Reyes, Maria L. — Reyes, Maria I."
         },
@@ -121,10 +117,6 @@
     ],
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "A — Dela Rosa, Benigno T. — Dela Rosa, Benigno T."
@@ -207,10 +199,6 @@
     ],
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "B — 3"
@@ -295,10 +283,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "A — 15-I-2025"
         },
@@ -358,10 +342,6 @@
     ],
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "E — 5"
@@ -437,10 +417,6 @@
     ],
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "C — Entry B"
@@ -853,10 +829,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "B — Different due to transposed numbers (14 vs 41)"
         },
@@ -1089,10 +1061,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "A — 2-F"
         },
@@ -1254,10 +1222,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "C — R-P-D-F"
         },
@@ -1375,10 +1339,6 @@
     ],
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "A — LG-05"
@@ -1528,10 +1488,6 @@
     ],
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "A — 26-11-03-007"

@@ -206,8 +206,8 @@ export async function saveRefinementBatch(
 }
 
 /**
- * Persist a status transition. The caller has already checked the move is legal
- * (`canTransitionRefinementStatus`); this only decides where it is written.
+ * Persist a validated status selection. The store re-validates the known status
+ * value; this helper only decides where the update is written.
  *
  * The local fallback writes the whole batch, because a seed-only batch has no
  * local row to update yet — an upsert is what makes the first transition on a

@@ -39,10 +39,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "C — The summary total is understated by ₱30.00 because the actual sum is ₱8,100.00."
         },
@@ -237,10 +233,6 @@
     ],
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "E — A transposition error — the digits '5' and '8' were swapped in the amount."

@@ -313,8 +313,7 @@ describe('structured-only Spelling and Filing admission exceptions', () => {
     expect(isValidQuestion(structuredOnlySpelling({
       structuredExplanation: {
         blocks: [
-          { type: 'heading', text: 'Solution' },
-          { type: 'alternative_solution', title: 'Memory Aid', blocks: [{ type: 'paragraph', text: '' }] },
+                    { type: 'alternative_solution', title: 'Memory Aid', blocks: [{ type: 'paragraph', text: '' }] },
         ],
       },
     }))).toBe(false);

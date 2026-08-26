@@ -10,8 +10,7 @@ afterEach(() => cleanup());
 
 const explanation: StructuredExplanation = {
   blocks: [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'E — 48' },
+        { type: 'correct_answer', text: 'E — 48' },
     { type: 'paragraph', label: 'What to Notice', text: 'Check how each term changes to the next.' },
     { type: 'pattern', expression: '3 × 2 = 6\n6 × 2 = 12\n12 × 2 = 24' },
     { type: 'paragraph', text: 'The same operation is repeated: ×2.' },
@@ -28,7 +27,11 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     const { container } = render(<StructuredExplanationRenderer explanation={explanation} theme="light" />);
     const root = screen.getByTestId('structured-explanation');
 
-    expect(screen.getByRole('heading', { level: 4, name: 'Solution' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Solution' })).not.toBeInTheDocument();
+    const sectionHeadings = Array.from(root.querySelectorAll('[data-section-heading="true"]'));
+    expect(sectionHeadings).toHaveLength(5);
+    expect(sectionHeadings.every((heading) => heading.tagName === 'H5')).toBe(true);
+    expect(new Set(sectionHeadings.map((heading) => heading.className))).toHaveLength(1);
     expect(screen.getByText('Correct Answer:')).toBeInTheDocument();
     expect(screen.getByText('E — 48')).toBeInTheDocument();
     expect(screen.getByText('What to Notice')).toBeInTheDocument();
@@ -112,8 +115,7 @@ describe('StructuredExplanationRenderer Batch 2', () => {
       <StructuredExplanationRenderer
         explanation={{
           blocks: [
-            { type: 'heading', text: 'Solution' },
-            { type: 'correct_answer', text: 'A — 1/5' },
+                        { type: 'correct_answer', text: 'A — 1/5' },
             { type: 'pattern', expression: '2/4 → 1/2\n2/6 → 1/3\n2/8 → 1/4\n2/10 → ___' },
             { type: 'solution', expression: '2/10 ÷ 2 = 1/5' },
             { type: 'answer', text: '1/5', variant: 'final' },
@@ -150,8 +152,7 @@ describe('StructuredExplanationRenderer Batch 2', () => {
       <StructuredExplanationRenderer
         explanation={{
           blocks: [
-            { type: 'heading', text: 'Solution' },
-            { type: 'step', title: 'Apply the Rule', blocks: [
+                        { type: 'step', title: 'Apply the Rule', blocks: [
               { type: 'paragraph', text: 'First compare the entries.' },
               { type: 'paragraph', text: 'Then identify the differing position.' },
             ] },
@@ -188,8 +189,7 @@ describe('StructuredExplanationRenderer Batch 2', () => {
       <StructuredExplanationRenderer
         explanation={{
           blocks: [
-            { type: 'heading', text: 'Solution' },
-            { type: 'paragraph', label: 'Filing Order', text: '**1.** *Abad, Bernardo S.*\n**2.** *Abad, Fernando C.*\n**3.** *Abad, Fernando M.*\n**4.** *Abadilla, Teresa G.*' },
+                        { type: 'paragraph', label: 'Filing Order', text: '**1.** *Abad, Bernardo S.*\n**2.** *Abad, Fernando C.*\n**3.** *Abad, Fernando M.*\n**4.** *Abadilla, Teresa G.*' },
           ],
         }}
         theme="light"
@@ -215,8 +215,7 @@ describe('StructuredExplanationRenderer Batch 2', () => {
       <StructuredExplanationRenderer
         explanation={{
           blocks: [
-            { type: 'heading', text: 'Solution' },
-            { type: 'correct_answer', text: 'A — 36' },
+                        { type: 'correct_answer', text: 'A — 36' },
             { type: 'solution', expression: '25 + 11 = 36' },
             {
               type: 'alternative_solution',

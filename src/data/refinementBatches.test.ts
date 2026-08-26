@@ -226,36 +226,28 @@ describe('controlled refinement workflow statuses', () => {
     }
   });
 
-  it('permits only adjacent moves, so Frozen always means it passed QA', () => {
+  it('permits every direct move to a different known status', () => {
     expect(ALLOWED_STATUS_TRANSITIONS).toEqual({
-      'needs-content': ['builder'],
-      builder: ['ready-for-qa', 'needs-content'],
-      'ready-for-qa': ['frozen', 'builder'],
-      frozen: ['ready-for-qa'],
+      'needs-content': ['builder', 'ready-for-qa', 'frozen'],
+      builder: ['needs-content', 'ready-for-qa', 'frozen'],
+      'ready-for-qa': ['needs-content', 'builder', 'frozen'],
+      frozen: ['needs-content', 'builder', 'ready-for-qa'],
     });
-    // Forward one step, and the backward path QA actually needs.
-    expect(canTransitionRefinementStatus('needs-content', 'builder')).toBe(true);
-    expect(canTransitionRefinementStatus('builder', 'ready-for-qa')).toBe(true);
-    expect(canTransitionRefinementStatus('ready-for-qa', 'frozen')).toBe(true);
-    expect(canTransitionRefinementStatus('ready-for-qa', 'builder')).toBe(true);
-    expect(canTransitionRefinementStatus('frozen', 'ready-for-qa')).toBe(true);
-    // Skipping a step is refused in both directions.
-    expect(canTransitionRefinementStatus('needs-content', 'frozen')).toBe(false);
-    expect(canTransitionRefinementStatus('needs-content', 'ready-for-qa')).toBe(false);
-    expect(canTransitionRefinementStatus('builder', 'frozen')).toBe(false);
-    expect(canTransitionRefinementStatus('frozen', 'needs-content')).toBe(false);
-    for (const status of REFINEMENT_STATUS_SEQUENCE) {
-      expect(canTransitionRefinementStatus(status, status)).toBe(false);
-      expect(allowedNextRefinementStatuses(status).every(isRefinementBatchStatus)).toBe(true);
-      expect(allowedNextRefinementStatuses(status)).not.toContain(status);
+    for (const from of REFINEMENT_STATUS_SEQUENCE) {
+      for (const to of REFINEMENT_STATUS_SEQUENCE) {
+        expect(canTransitionRefinementStatus(from, to)).toBe(from !== to);
+      }
+      expect(allowedNextRefinementStatuses(from).every(isRefinementBatchStatus)).toBe(true);
+      expect(allowedNextRefinementStatuses(from)).not.toContain(from);
+      expect(allowedNextRefinementStatuses(from)).toHaveLength(REFINEMENT_STATUS_SEQUENCE.length - 1);
     }
   });
 
-  it('explains a refused move instead of failing silently', () => {
+  it('explains no-op selections while allowing direct status changes', () => {
     expect(refinementTransitionError('needs-content', 'builder')).toBeNull();
+    expect(refinementTransitionError('needs-content', 'frozen')).toBeNull();
+    expect(refinementTransitionError('frozen', 'needs-content')).toBeNull();
     expect(refinementTransitionError('frozen', 'frozen')).toBe('This batch is already Frozen.');
-    expect(refinementTransitionError('needs-content', 'frozen')).toBe('Needs Content can only move to Builder.');
-    expect(refinementTransitionError('builder', 'frozen')).toBe('Builder can only move to Ready for QA or Needs Content.');
   });
 });
 

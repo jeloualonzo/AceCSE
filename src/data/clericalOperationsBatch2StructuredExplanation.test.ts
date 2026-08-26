@@ -16,8 +16,7 @@ const TARGETS = {
     ],
     correctOptionId: 'C',
     blocks: [
-      { type: 'heading', text: 'Solution' },
-      { type: 'correct_answer', text: 'C — The summary total is understated by ₱30.00 because the actual sum is ₱8,100.00.' },
+            { type: 'correct_answer', text: 'C — The summary total is understated by ₱30.00 because the actual sum is ₱8,100.00.' },
       { type: 'paragraph', label: 'What to Notice', text: 'Compare the actual sum of the line items with the reported total. The actual total is ₱8,100.00, while the report lists ₱8,070.00.' },
       { type: 'step', title: 'Apply the Rule', blocks: [
         { type: 'paragraph', text: 'Add the line items:' },
@@ -43,8 +42,7 @@ const TARGETS = {
     ],
     correctOptionId: 'E',
     blocks: [
-      { type: 'heading', text: 'Solution' },
-      { type: 'correct_answer', text: "E — A transposition error — the digits '5' and '8' were swapped in the amount." },
+            { type: 'correct_answer', text: "E — A transposition error — the digits '5' and '8' were swapped in the amount." },
       { type: 'paragraph', label: 'What to Notice', text: 'The account numbers match, but the amounts differ at the third and fourth digits: 14-5-8-2 versus 14-8-5-2.' },
       { type: 'step', title: 'Apply the Rule', blocks: [
         { type: 'paragraph', text: 'Compare the amounts digit by digit.' },
@@ -68,8 +66,7 @@ const TARGETS = {
     ],
     correctOptionId: 'B',
     blocks: [
-      { type: 'heading', text: 'Solution' },
-      { type: 'correct_answer', text: 'B — Different due to transposed numbers (14 vs 41)' },
+            { type: 'correct_answer', text: 'B — Different due to transposed numbers (14 vs 41)' },
       { type: 'paragraph', label: 'What to Notice', text: 'The prefixes, year, and final letter match. Only the last two digits of the numeric segment change from 14 to 41.' },
       { type: 'step', title: 'Apply the Rule', blocks: [
         { type: 'paragraph', text: 'Compare the code segment by segment:' },

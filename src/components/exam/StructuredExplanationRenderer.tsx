@@ -41,9 +41,15 @@ function MathDisplay({ expression, dark, label }: { expression: string; dark: bo
   );
 }
 
-function SectionLabel({ children, dark }: { children: React.ReactNode; dark: boolean }) {
+const SECTION_HEADING_CLASS = 'text-[11px] font-bold uppercase tracking-wider';
+
+function SectionHeading({ children, dark, id }: { children: React.ReactNode; dark: boolean; id?: string }) {
   return (
-    <h5 className={`text-[11px] font-bold uppercase tracking-wider ${dark ? 'text-slate-400' : 'text-slate-500'}`}>
+    <h5
+      id={id}
+      data-section-heading="true"
+      className={`${SECTION_HEADING_CLASS} ${dark ? 'text-slate-400' : 'text-slate-500'}`}
+    >
       {children}
     </h5>
   );
@@ -65,12 +71,7 @@ function DistractorSection({
       aria-labelledby={titleId}
       className="space-y-2"
     >
-      <h5
-        id={titleId}
-        className={`text-[11px] font-bold uppercase tracking-wider ${dark ? 'text-slate-400' : 'text-slate-500'}`}
-      >
-        {block.title}
-      </h5>
+      <SectionHeading dark={dark} id={titleId}>{block.title}</SectionHeading>
       <div className="space-y-3">
         {block.blocks.map((child, childIndex) => renderBlock(child, childIndex, dark))}
       </div>
@@ -122,7 +123,7 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
   const key = `${block.type}-${index}`;
   switch (block.type) {
     case 'heading':
-      return <h4 key={key} className={`text-sm font-bold uppercase tracking-wider ${dark ? 'text-slate-100' : 'text-slate-800'}`}>{block.text}</h4>;
+      return <SectionHeading key={key} dark={dark}>{block.text}</SectionHeading>;
     case 'correct_answer':
       return (
         <p key={key} className={`font-semibold ${dark ? 'text-emerald-300' : 'text-emerald-800'}`}>
@@ -131,8 +132,8 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       );
     case 'paragraph':
       return (
-        <div key={key} className="space-y-1">
-          {block.label && <SectionLabel dark={dark}>{block.label}</SectionLabel>}
+        <div key={key} className="space-y-2">
+          {block.label && <SectionHeading dark={dark}>{block.label}</SectionHeading>}
           <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
         </div>
       );
@@ -140,10 +141,10 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       return <DistractorSection key={key} block={block} dark={dark} id={key} />;
     case 'pattern':
       return (
-        <div key={key} className="space-y-1">
-          <SectionLabel dark={dark}>
+        <div key={key} className="space-y-2">
+          <SectionHeading dark={dark}>
             Pattern{block.label ? ` — ${block.label}` : ''}
-          </SectionLabel>
+          </SectionHeading>
           <MathDisplay
             expression={block.expression}
             dark={dark}
@@ -155,22 +156,22 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       return <MathDisplay key={key} expression={block.expression} dark={dark} />;
     case 'solution':
       return (
-        <div key={key} className="space-y-1">
-          <SectionLabel dark={dark}>Apply the Pattern</SectionLabel>
+        <div key={key} className="space-y-2">
+          <SectionHeading dark={dark}>Apply the Pattern</SectionHeading>
           <MathDisplay expression={block.expression} dark={dark} label="Apply the Pattern" />
         </div>
       );
     case 'rule':
       return (
-        <div key={key} className="space-y-1">
-          <SectionLabel dark={dark}>Rule</SectionLabel>
+        <div key={key} className="space-y-2">
+          <SectionHeading dark={dark}>Rule</SectionHeading>
           <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
         </div>
       );
     case 'common_trap':
       return (
-        <div key={key} className="space-y-1">
-          <SectionLabel dark={dark}>Common Trap</SectionLabel>
+        <div key={key} className="space-y-2">
+          <SectionHeading dark={dark}>Common Trap</SectionHeading>
           <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
         </div>
       );
@@ -192,7 +193,7 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
 function renderFutureStep(block: StructuredExplanationStepBlock, key: string, dark: boolean) {
   return (
     <section key={key} aria-labelledby={`${key}-title`} className="space-y-2">
-      <h5 id={`${key}-title`} className={`text-sm font-bold ${dark ? 'text-slate-100' : 'text-slate-800'}`}>{block.title}</h5>
+      <SectionHeading dark={dark} id={`${key}-title`}>{block.title}</SectionHeading>
       <div className="space-y-3">
         {block.blocks.map((child, index) => renderBlock(child, index, dark))}
       </div>

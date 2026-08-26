@@ -48,20 +48,16 @@ const STATUS_LABELS: Record<RefinementBatchStatus, string> = {
 };
 
 /**
- * Which moves the workflow permits, as an explicit map rather than "one step
- * along the sequence".
- *
- * Forward moves advance the batch. Backward moves exist because QA genuinely
- * sends work back — a batch that fails review returns to Builder, and a frozen
- * batch can be reopened when a defect is found later. What is deliberately
- * absent is skipping: a batch cannot jump from `needs-content` straight to
- * `frozen`, so "frozen" always means it passed through QA.
+ * Direct status choices for the controlled admin selector. Every known status
+ * other than the current one is available, so an administrator can reopen a
+ * batch or move it to the state that accurately reflects its present review
+ * condition without clicking through intermediate states.
  */
 export const ALLOWED_STATUS_TRANSITIONS: Record<RefinementBatchStatus, readonly RefinementBatchStatus[]> = {
-  'needs-content': ['builder'],
-  builder: ['ready-for-qa', 'needs-content'],
-  'ready-for-qa': ['frozen', 'builder'],
-  frozen: ['ready-for-qa'],
+  'needs-content': ['builder', 'ready-for-qa', 'frozen'],
+  builder: ['needs-content', 'ready-for-qa', 'frozen'],
+  'ready-for-qa': ['needs-content', 'builder', 'frozen'],
+  frozen: ['needs-content', 'builder', 'ready-for-qa'],
 };
 
 export function isRefinementBatchStatus(value: unknown): value is RefinementBatchStatus {

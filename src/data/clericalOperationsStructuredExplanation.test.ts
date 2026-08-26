@@ -83,8 +83,7 @@ const EXPECTED_QUESTIONS: Record<TargetId, {
 
 const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> = {
   'cler-0020': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'E — Reyes, Maria L. — Reyes, Maria I.' },
+        { type: 'correct_answer', text: 'E — Reyes, Maria L. — Reyes, Maria I.' },
     { type: 'paragraph', label: 'What to Notice', text: 'An exact match requires every character to be the same, including letters, numbers, punctuation, and spaces.' },
     { type: 'step', title: 'Apply the Rule', blocks: [
       { type: 'paragraph', text: 'Pairs **A**, **B**, **C**, and **D** are identical.' },
@@ -96,8 +95,7 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'rule', text: 'Compare entries character by character. One different letter, number, punctuation mark, or space means the pair is not an exact match.' },
   ],
   'cler-0021': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'A — Dela Rosa, Benigno T. — Dela Rosa, Benigno T.' },
+        { type: 'correct_answer', text: 'A — Dela Rosa, Benigno T. — Dela Rosa, Benigno T.' },
     { type: 'paragraph', label: 'What to Notice', text: 'Exact matching depends on character-by-character comparison and the order of those characters. Similar-looking entries are not enough.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'Choice **A** repeats the same name, including the comma, spaces, middle initial, and period. It is the only pair with every character in the same position.' },
     { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
@@ -109,8 +107,7 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'rule', text: 'For an exact match, compare each character from left to right and verify its position. Having the same characters in a different order is still a mismatch.' },
   ],
   'cler-0022': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'B — 3' },
+        { type: 'correct_answer', text: 'B — 3' },
     { type: 'paragraph', label: 'What to Notice', text: 'Check each pair separately. A pair counts only when every character on the left matches the character in the same position on the right.' },
     { type: 'step', title: 'Apply the Rule', blocks: [
       { type: 'paragraph', text: 'Pairs **1**, **2**, and **3** match.' },
@@ -123,15 +120,13 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'rule', text: 'In a multi-pair comparison, inspect one pair at a time and count only exact matches. A transposition makes the entire pair incorrect.' },
   ],
   'cler-0023': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'A — 15-I-2025' },
+        { type: 'correct_answer', text: 'A — 15-I-2025' },
     { type: 'paragraph', label: 'What to Notice', text: 'The supplied lookup assigns **A** to January and advances one letter per month. September is the ninth month, so its code is **I**.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'The day and year remain **15** and **2025**. Replacing September with its lookup code gives **15-I-2025**.' },
     { type: 'rule', text: 'Use the lookup scheme provided in the question directly: September is month 9, which corresponds to the ninth letter, **I**.' },
   ],
   'cler-0024': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'E — 5' },
+        { type: 'correct_answer', text: 'E — 5' },
     { type: 'paragraph', label: 'What to Notice', text: 'Classify the document by its actual document type. The reference number or subject mentioned in its label does not change that type.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'The document is a **Notice** about Memo No. 31. The table assigns **Notice = 5**, so the correct code is **5**.' },
     { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
@@ -141,8 +136,7 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'rule', text: 'Use the document’s actual type when assigning a classification code. A reference number or subject does not replace the type of document being filed.' },
   ],
   'cler-0025': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'C — Entry B' },
+        { type: 'correct_answer', text: 'C — Entry B' },
     { type: 'paragraph', label: 'What to Notice', text: 'Recompute net pay for every entry using **Gross Pay − Total Deductions = Net Pay**. Compare the result with the listed net pay.' },
     { type: 'step', title: 'Apply the Rule', blocks: [
       { type: 'paragraph', text: 'Recompute the four entries and compare each result with the listed net pay.' },
@@ -159,8 +153,7 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'rule', text: 'For a payroll check, subtract the listed deductions from the listed gross pay and compare the result with the listed net. Do not infer an unseen amount.' },
   ],
   'cler-0042': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'A — 2-F' },
+        { type: 'correct_answer', text: 'A — 2-F' },
     { type: 'paragraph', label: 'What to Notice', text: 'The position code and region code come from separate lookups: **Clerk II = 2** and **NCR = F**. The region code is a suffix.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'Combine the position code with the region suffix: **2-F**.' },
     { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
@@ -172,8 +165,7 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'rule', text: 'For a two-part code, look up each component separately and apply the stated order: position code first, region suffix second.' },
   ],
   'cler-0043': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'C — R-P-D-F' },
+        { type: 'correct_answer', text: 'C — R-P-D-F' },
     { type: 'paragraph', label: 'What to Notice', text: 'The status code records the document’s events in the order they occurred: Received, Processed, Disapproved, then Filed.' },
     { type: 'paragraph', label: 'Apply the Rule', text: '**Received = R**, **Processed = P**, **Disapproved = D**, and **Filed = F**. The stated sequence is therefore **R-P-D-F**.' },
     { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
@@ -183,8 +175,7 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'rule', text: 'Map each stated event to its code, then preserve the events’ chronological order when combining the codes.' },
   ],
   'cler-0044': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'A — LG-05' },
+        { type: 'correct_answer', text: 'A — LG-05' },
     { type: 'paragraph', label: 'What to Notice', text: 'The code requires two lookups: first the department, then the document type. The required order is **[Department Code]-[Document Type Code]**.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'Legal Department = **LG**. Contract = **05**. Combining the two codes gives **LG-05**.' },
     { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
@@ -194,8 +185,7 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
     { type: 'rule', text: 'Solve two-part codes in order: identify the department, identify the document type, and then join their codes with the required separator.' },
   ],
   'cler-0045': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'A — 26-11-03-007' },
+        { type: 'correct_answer', text: 'A — 26-11-03-007' },
     { type: 'paragraph', label: 'What to Notice', text: 'The code has four fields with fixed lengths and order: last two digits of the year, a two-digit month code, a two-digit day, and a three-digit series number.' },
     { type: 'paragraph', label: 'Apply the Rule', text: '2026 → **26**; November → **11**; day 3 → **03**; seventh document → **007**. The complete code is **26-11-03-007**.' },
     { type: 'distractor_section', title: 'Why the other choices fail', blocks: [

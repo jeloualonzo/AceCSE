@@ -405,10 +405,8 @@ describe('Content Bank workspaces', () => {
     expect(navigateMock).not.toHaveBeenCalledWith(EXAM_ROUTE, expect.anything());
   }, SLOW);
 
-  it('offers workflow status only as controlled buttons, and a transition survives the next read', async () => {
+  it('offers a direct controlled status selector and persists every direct change without no-op writes', async () => {
     const user = userEvent.setup();
-    // grammar-pilot-01 ships as Ready for QA, so both a forward and a backward
-    // move are legal and neither is invented by the test.
     renderRoute(contentBankBatchPath('grammar-pilot-01'));
     await waitFor(() => expect(screen.getByRole('heading', { name: 'Workflow status' })).toBeInTheDocument(), {
       timeout: SLOW,
@@ -416,32 +414,28 @@ describe('Content Bank workspaces', () => {
     await batchesLoaded();
 
     const workflow = screen.getByRole('heading', { name: 'Workflow status' }).closest('section')!;
-    // Status is never typed: there is no field to put a wrong value into, and the
-    // only affordances are the two legal moves from Ready for QA.
+    const status = within(workflow).getByRole('combobox', { name: 'Batch status' });
+    expect(status).toHaveValue('ready-for-qa');
     expect(within(workflow).queryAllByRole('textbox')).toHaveLength(0);
-    expect(within(workflow).queryAllByRole('combobox')).toHaveLength(0);
-    expect(within(workflow).getAllByRole('button').map((button) => button.textContent?.trim()).sort()).toEqual([
-      'Advance to Frozen',
-      'Send back to Builder',
-    ]);
-    expect(document.querySelector('[aria-current="step"]')).toHaveTextContent('Ready for QA');
+    expect(within(workflow).queryAllByRole('button')).toHaveLength(0);
 
-    await user.click(within(workflow).getByRole('button', { name: 'Advance to Frozen' }));
+    // Choosing the already persisted state does not create a local write.
+    await user.selectOptions(status, 'ready-for-qa');
+    expect(localStorage.getItem(WORKSPACE_BATCHES_STORAGE_KEY)).toBeNull();
 
-    // Frozen is terminal in one direction only, so the button set proves the new
-    // status was re-read rather than only rendered optimistically.
-    await waitFor(() =>
-      expect(screen.getByRole('button', { name: 'Send back to Ready for QA' })).toBeInTheDocument()
-    );
-    expect(document.querySelector('[aria-current="step"]')).toHaveTextContent('Frozen');
-    const stored = JSON.parse(localStorage.getItem(WORKSPACE_BATCHES_STORAGE_KEY) ?? '[]') as Array<{
-      id: string;
-      status: string;
-      updatedAt?: string;
-    }>;
-    expect(stored).toHaveLength(1);
-    expect(stored[0]).toMatchObject({ id: 'grammar-pilot-01', status: 'frozen' });
-    expect(stored[0].updatedAt).toBeTruthy();
+    // The selector permits a direct forward jump and then every direct reopen.
+    for (const nextStatus of ['frozen', 'needs-content', 'builder', 'ready-for-qa'] as const) {
+      await user.selectOptions(status, nextStatus);
+      await waitFor(() => expect(status).toHaveValue(nextStatus));
+      const stored = JSON.parse(localStorage.getItem(WORKSPACE_BATCHES_STORAGE_KEY) ?? '[]') as Array<{
+        id: string;
+        status: string;
+        updatedAt?: string;
+      }>;
+      expect(stored).toHaveLength(1);
+      expect(stored[0]).toMatchObject({ id: 'grammar-pilot-01', status: nextStatus });
+      expect(stored[0].updatedAt).toBeTruthy();
+    }
   }, SLOW);
 
   it('creates a batch from a family with a generated ID, exact selected questions, and no typed status', async () => {

@@ -12,15 +12,13 @@ type ApprovedId = (typeof APPROVED_IDS)[number];
 
 const EXPECTED_BLOCKS = {
   'cler-0055': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'C — *Personnel*' },
+        { type: 'correct_answer', text: 'C — *Personnel*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*Personnel*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The correct spelling has **double n** and a **single l**.' },
     { type: 'rule', text: '*Personnel* means employees or staff, while *personal* means individual or private.' },
   ],
   'cler-0012': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'D — *accommodate*' },
+        { type: 'correct_answer', text: 'D — *accommodate*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*accommodate*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The word has **double c** and **double m**.' },
     { type: 'paragraph', label: 'Double c', text: '*access*, *accident*, *occur*, *occasion*, *occurrence*' },
@@ -28,21 +26,18 @@ const EXPECTED_BLOCKS = {
     { type: 'paragraph', label: 'Memory Aid', text: 'Accommodate has **double c** and **double m**.' },
   ],
   'cler-0013': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'E — *seperate*' },
+        { type: 'correct_answer', text: 'E — *seperate*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*separate*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The correct spelling uses **a**, not **e**, after p:\n\n*sep-a-rate*' },
     { type: 'paragraph', label: 'Memory Aid', text: 'There is a **RAT** in sepa-**RAT**-e.' },
   ],
   'cler-0014': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'D — *embarrass*' },
+        { type: 'correct_answer', text: 'D — *embarrass*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*embarrass*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The word has **double r** and **double s**.' },
   ],
   'cler-0015': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'D — *priviledge*' },
+        { type: 'correct_answer', text: 'D — *priviledge*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*privilege*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The correct ending is **~lege**, not **~ledge**.' },
     { type: 'paragraph', label: '~lege', text: '*privilege*, *college*, *sacrilege*, *allege*' },
@@ -50,8 +45,7 @@ const EXPECTED_BLOCKS = {
     { type: 'paragraph', label: 'Memory Aid', text: 'Privi-**LEGE**.' },
   ],
   'cler-0016': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'A — *maintenance*' },
+        { type: 'correct_answer', text: 'A — *maintenance*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*maintenance*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The middle of the word is **~ten~**, not **~tain~**, and the ending is **~ance**, not **~ence**.' },
     { type: 'paragraph', label: '~ance', text: '*maintenance*, *attendance*, *assistance*, *importance*, *resistance*' },
@@ -59,8 +53,7 @@ const EXPECTED_BLOCKS = {
     { type: 'paragraph', label: 'Memory Aid', text: 'Think *MAIN-ten-ance*, not *MAIN-tain-ance*.' },
   ],
   'cler-0017': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'B — *conscientous*' },
+        { type: 'correct_answer', text: 'B — *conscientous*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*conscientious*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The correct ending contains **~ious**, not **~ous**.' },
     { type: 'paragraph', label: '~ious', text: '*conscientious*, *curious*, *serious*, *delicious*, *gracious*' },
@@ -68,8 +61,7 @@ const EXPECTED_BLOCKS = {
     { type: 'paragraph', label: 'Memory Aid', text: '*Conscientious* contains **~ious**.' },
   ],
   'cler-0018': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'E — *perseverance*' },
+        { type: 'correct_answer', text: 'E — *perseverance*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*perseverance*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The word keeps the root **persever-** and ends in **~ance**.' },
     { type: 'paragraph', label: '~ance', text: '*perseverance*, *appearance*, *endurance*, *attendance*, *resistance*' },
@@ -77,8 +69,7 @@ const EXPECTED_BLOCKS = {
     { type: 'paragraph', label: 'Memory Aid', text: 'Connect *perseverance* with *persevere*: **persever-** + **~ance**.' },
   ],
   'cler-0019': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'E — *supercede*' },
+        { type: 'correct_answer', text: 'E — *supercede*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*supersede*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The correct word ends in **~sede**. Other words in this spelling family use **~cede** or **~ceed**.' },
     { type: 'paragraph', label: '~sede', text: '*supersede*' },
@@ -87,8 +78,7 @@ const EXPECTED_BLOCKS = {
     { type: 'paragraph', label: 'Memory Aid', text: '*Supersede* uses **~sede**.' },
   ],
   'cler-0046': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'C — *achieve*' },
+        { type: 'correct_answer', text: 'C — *achieve*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*achieve*' },
     { type: 'paragraph', label: 'What to Notice', text: '*Achieve* uses **~ie**, while many words use **~ei after c**.' },
     { type: 'paragraph', label: '~ie', text: '*believe*, *achieve*, *friend*, *field*, *piece*' },
@@ -96,16 +86,14 @@ const EXPECTED_BLOCKS = {
     { type: 'paragraph', label: 'Memory Aid', text: 'Check the actual spelling rather than relying on the **“i before e”** rule alone.' },
   ],
   'cler-0047': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'B — *afidavit*' },
+        { type: 'correct_answer', text: 'B — *afidavit*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*affidavit*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The word has **double f**.' },
     { type: 'paragraph', label: 'Double f', text: '*affidavit*, *afford*, *effort*, *difficult*, *official*' },
     { type: 'paragraph', label: 'Memory Aid', text: '*Affidavit* has **double f**.' },
   ],
   'cler-0048': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'D — *inoculate*' },
+        { type: 'correct_answer', text: 'D — *inoculate*' },
     { type: 'paragraph', label: 'Correct Spelling', text: '*inoculate*' },
     { type: 'paragraph', label: 'What to Notice', text: 'The word has **one n** and **one c**.' },
     { type: 'paragraph', label: 'Memory Aid', text: 'Think *i-NOC-u-late*: one **n**, one **c**.' },

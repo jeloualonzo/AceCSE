@@ -17,7 +17,7 @@ import {
   type BuildExportDocumentOptions,
   type ExportDocument,
 } from '@/lib/exportText';
-import type { Difficulty, Question, Subject } from '@/types';
+import type { Difficulty, Question, Subject, StructuredExplanationBlock } from '@/types';
 import { renderContentBlockMarkdown } from '@/lib/contentBlockMarkdown';
 
 export const CONTENT_BANK_SUBJECTS: readonly Subject[] = [
@@ -591,20 +591,33 @@ function renderCodeBlock(expression: string): string {
   return `\n\`\`\`text\n${expression}\n\`\`\``;
 }
 
-function renderLearnerBlock(block: NonNullable<Question['structuredExplanation']>['blocks'][number]): string {
+function isLegacySolutionHeading(block: StructuredExplanationBlock): boolean {
+  return block.type === 'heading' && block.text.trim() === 'Solution';
+}
+
+function renderLearnerBlocks(blocks: readonly StructuredExplanationBlock[]): string {
+  return blocks
+    .filter((block) => !isLegacySolutionHeading(block))
+    .map(renderLearnerBlock)
+    .filter(Boolean)
+    .join('\n\n');
+}
+
+function renderLearnerBlock(block: StructuredExplanationBlock): string {
+  if (isLegacySolutionHeading(block)) return '';
   switch (block.type) {
     case 'heading': return `## ${block.text}`;
     case 'correct_answer': return `**Correct Answer:** ${block.text}`;
     case 'paragraph': return block.label ? `**${block.label}**\n\n${block.text}` : block.text;
-    case 'distractor_section': return `**${block.title}**\n\n${block.blocks.map(renderLearnerBlock).join('\n\n')}`;
+    case 'distractor_section': return `**${block.title}**\n\n${renderLearnerBlocks(block.blocks)}`;
     case 'rule': return `**Rule**\n\n${block.text}`;
     case 'common_trap': return `**Common Trap**\n\n${block.text}`;
     case 'math': return `**Calculation**${renderCodeBlock(block.expression)}`;
     case 'pattern': return `**Pattern${block.label ? ` — ${block.label}` : ''}**${renderCodeBlock(block.expression)}`;
     case 'solution': return `**Apply the Pattern**${renderCodeBlock(block.expression)}`;
     case 'answer': return `**Answer:** ${block.text}`;
-    case 'step': return `### ${block.title}\n\n${block.blocks.map(renderLearnerBlock).join('\n\n')}`;
-    case 'alternative_solution': return `### ${block.title}\n\n${block.blocks.map(renderLearnerBlock).join('\n\n')}`;
+    case 'step': return `**${block.title}**\n\n${renderLearnerBlocks(block.blocks)}`;
+    case 'alternative_solution': return `### ${block.title}\n\n${renderLearnerBlocks(block.blocks)}`;
   }
 }
 
@@ -613,20 +626,29 @@ function indentText(text: string, spaces: number): string {
   return text.split('\n').map((line) => `${prefix}${line}`).join('\n');
 }
 
-function renderAuthoringBlock(block: NonNullable<Question['structuredExplanation']>['blocks'][number]): string {
+function renderAuthoringBlocks(blocks: readonly StructuredExplanationBlock[]): string {
+  return blocks
+    .filter((block) => !isLegacySolutionHeading(block))
+    .map(renderAuthoringBlock)
+    .filter(Boolean)
+    .join('\n');
+}
+
+function renderAuthoringBlock(block: StructuredExplanationBlock): string {
+  if (isLegacySolutionHeading(block)) return '';
   switch (block.type) {
     case 'heading': return `- type: heading\n  text: ${block.text}`;
     case 'correct_answer': return `- type: correct_answer\n  text: ${block.text}`;
     case 'paragraph': return `- type: paragraph\n  label: ${block.label ?? '(none)'}\n  text: |\n${indentText(block.text, 4)}`;
-    case 'distractor_section': return `- type: distractor_section\n  title: ${block.title}\n  blocks:\n${indentText(block.blocks.map(renderAuthoringBlock).join('\n'), 4)}`;
+    case 'distractor_section': return `- type: distractor_section\n  title: ${block.title}\n  blocks:\n${indentText(renderAuthoringBlocks(block.blocks), 4)}`;
     case 'rule': return `- type: rule\n  text: |\n${indentText(block.text, 4)}`;
     case 'common_trap': return `- type: common_trap\n  text: |\n${indentText(block.text, 4)}`;
     case 'math': return `- type: math\n  expression: |\n${indentText(block.expression, 4)}`;
     case 'pattern': return `- type: pattern\n  label: ${block.label ?? '(none)'}\n  expression: |\n${indentText(block.expression, 4)}`;
     case 'solution': return `- type: solution\n  expression: |\n${indentText(block.expression, 4)}`;
     case 'answer': return `- type: answer\n  variant: ${block.variant ?? '(none)'}\n  text: ${block.text}`;
-    case 'step': return `- type: step\n  title: ${block.title}\n  blocks:\n${indentText(block.blocks.map(renderAuthoringBlock).join('\n'), 4)}`;
-    case 'alternative_solution': return `- type: alternative_solution\n  title: ${block.title}\n  blocks:\n${indentText(block.blocks.map(renderAuthoringBlock).join('\n'), 4)}`;
+    case 'step': return `- type: step\n  title: ${block.title}\n  blocks:\n${indentText(renderAuthoringBlocks(block.blocks), 4)}`;
+    case 'alternative_solution': return `- type: alternative_solution\n  title: ${block.title}\n  blocks:\n${indentText(renderAuthoringBlocks(block.blocks), 4)}`;
   }
 }
 
@@ -748,10 +770,10 @@ export function createReviewMarkdown(
     const question = questionById.get(questionId)!;
     const correctChoice = question.choices.find((choice) => choice.id === question.correctOptionId);
     const structured = question.structuredExplanation
-      ? question.structuredExplanation.blocks.map(renderLearnerBlock).join('\n\n')
+      ? renderLearnerBlocks(question.structuredExplanation.blocks)
       : renderLegacyQuestionExplanation(question);
     const authoring = question.structuredExplanation
-      ? question.structuredExplanation.blocks.map(renderAuthoringBlock).join('\n')
+      ? renderAuthoringBlocks(question.structuredExplanation.blocks)
       : renderLegacyAuthoring(question);
     const supportingContent = renderSupportingQuestionContent(question);
     const choices = question.choices.map((choice) => `- **${choice.id}.** ${choice.text}`).join('\n');

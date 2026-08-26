@@ -3116,10 +3116,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "C — The panel of judges has announced its decision."
         },
@@ -3198,10 +3194,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "C — Because she arrived late, her application was disqualified."
         },
@@ -3272,10 +3264,6 @@
     "correctOptionId": "B",
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "B — The reason the memorandum was delayed is that the signatory was absent."
@@ -3348,10 +3336,6 @@
     "correctOptionId": "B",
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "B — The commission not only reviewed the budget but also scrutinized the disbursements."

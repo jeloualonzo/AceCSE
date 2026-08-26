@@ -63,10 +63,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "C — *Personnel*"
         },
@@ -148,10 +144,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "D — *accommodate*"
@@ -247,10 +239,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "E — *seperate*"
         },
@@ -334,10 +322,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "D — *embarrass*"
         },
@@ -416,10 +400,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "D — *priviledge*"
@@ -514,10 +494,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "A — *maintenance*"
@@ -614,10 +590,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "B — *conscientous*"
         },
@@ -711,10 +683,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "E — *perseverance*"
@@ -810,10 +778,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "E — *supercede*"
@@ -915,10 +879,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "C — *achieve*"
         },
@@ -1014,10 +974,6 @@
     "structuredExplanation": {
       "blocks": [
         {
-          "type": "heading",
-          "text": "Solution"
-        },
-        {
           "type": "correct_answer",
           "text": "B — *afidavit*"
         },
@@ -1107,10 +1063,6 @@
     },
     "structuredExplanation": {
       "blocks": [
-        {
-          "type": "heading",
-          "text": "Solution"
-        },
         {
           "type": "correct_answer",
           "text": "D — *inoculate*"

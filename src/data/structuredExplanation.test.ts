@@ -35,10 +35,19 @@ const ALL_SUBJECTS = [
   'Verbal Ability',
 ] as const;
 
+function containsLegacySolutionHeading(value: unknown): boolean {
+  if (!Array.isArray(value)) return false;
+  return value.some((block) => {
+    if (typeof block !== 'object' || block === null) return false;
+    const candidate = block as Record<string, unknown>;
+    if (candidate.type === 'heading' && candidate.text === 'Solution') return true;
+    return containsLegacySolutionHeading(candidate.blocks);
+  });
+}
+
 const EXPECTED_FROZEN_BLOCKS = {
   'num-0019': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'B — 24' },
+        { type: 'correct_answer', text: 'B — 24' },
     { type: 'paragraph', label: 'What to Notice', text: 'Check the difference between consecutive terms.' },
     { type: 'pattern', expression: '4 + 5 = 9\n9 + 5 = 14\n14 + 5 = 19' },
     { type: 'paragraph', text: 'The same operation is repeated: +5.' },
@@ -47,8 +56,7 @@ const EXPECTED_FROZEN_BLOCKS = {
     { type: 'rule', text: 'Arithmetic sequence: consecutive terms have a constant difference.' },
   ],
   'num-0020': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'E — 48' },
+        { type: 'correct_answer', text: 'E — 48' },
     { type: 'paragraph', label: 'What to Notice', text: 'Check how each term changes to the next.' },
     { type: 'pattern', expression: '3 × 2 = 6\n6 × 2 = 12\n12 × 2 = 24' },
     { type: 'paragraph', text: 'The same operation is repeated: ×2.' },
@@ -57,8 +65,7 @@ const EXPECTED_FROZEN_BLOCKS = {
     { type: 'rule', text: 'Geometric sequence: consecutive terms have a constant multiplication ratio.' },
   ],
   'num-0021': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'C — 27' },
+        { type: 'correct_answer', text: 'C — 27' },
     { type: 'paragraph', label: 'What to Notice', text: 'The terms do not increase by the same amount, so check the differences.' },
     { type: 'pattern', expression: '5 − 2 = 3\n9 − 5 = 4\n14 − 9 = 5\n20 − 14 = 6' },
     { type: 'paragraph', text: 'The differences increase by 1:' },
@@ -71,8 +78,7 @@ const EXPECTED_FROZEN_BLOCKS = {
 
 const EXPECTED_BATCH2_BLOCKS = {
   'num-0022': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'D — 13' },
+        { type: 'correct_answer', text: 'D — 13' },
     { type: 'paragraph', label: 'What to Notice', text: 'Each term is the sum of the two preceding terms.' },
     { type: 'pattern', expression: '1 + 1 = 2\n1 + 2 = 3\n2 + 3 = 5\n3 + 5 = 8\n5 + 8 = 13' },
     { type: 'solution', expression: '5 + 8 = 13' },
@@ -80,8 +86,7 @@ const EXPECTED_BATCH2_BLOCKS = {
     { type: 'rule', text: 'Fibonacci sequence: each term is the sum of the two preceding terms.' },
   ],
   'num-0023': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'E — 47' },
+        { type: 'correct_answer', text: 'E — 47' },
     { type: 'paragraph', label: 'What to Notice', text: 'The terms are multiplied by 2, then increased by 1.' },
     { type: 'pattern', expression: '2 × 2 + 1 = 5\n5 × 2 + 1 = 11\n11 × 2 + 1 = 23' },
     { type: 'paragraph', text: 'The same operation is repeated: ×2, then +1.' },
@@ -90,8 +95,7 @@ const EXPECTED_BATCH2_BLOCKS = {
     { type: 'rule', text: 'When simple addition or multiplication does not explain a series, check for a repeated combination of operations.' },
   ],
   'num-0024': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'A — 36' },
+        { type: 'correct_answer', text: 'A — 36' },
     { type: 'paragraph', label: 'What to Notice', text: 'Check the differences between consecutive terms.' },
     { type: 'pattern', expression: '4 − 1 = 3\n9 − 4 = 5\n16 − 9 = 7\n25 − 16 = 9' },
     { type: 'paragraph', text: 'The differences increase by 2:' },
@@ -115,8 +119,7 @@ const EXPECTED_BATCH2_BLOCKS = {
 
 const EXPECTED_BATCH3_BLOCKS = {
   'num-0025': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'C — 16' },
+        { type: 'correct_answer', text: 'C — 16' },
     { type: 'paragraph', label: 'What to Notice', text: 'The terms alternate between two sequences.' },
     { type: 'pattern', label: 'Odd positions', expression: '3 → 4 → 5 → 6\n+1, +1, +1' },
     { type: 'pattern', label: 'Even positions', expression: '7 → 10 → 13 → ___\n+3, +3, +3' },
@@ -126,8 +129,7 @@ const EXPECTED_BATCH3_BLOCKS = {
     { type: 'rule', text: 'When a series does not follow one consistent pattern, separate the odd- and even-position terms and check each sequence independently.' },
   ],
   'num-0026': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'B — 31' },
+        { type: 'correct_answer', text: 'B — 31' },
     { type: 'paragraph', label: 'What to Notice', text: 'The differences between consecutive terms are not constant, so check the differences themselves.' },
     { type: 'pattern', expression: '3 − 1 = 2\n7 − 3 = 4\n13 − 7 = 6\n21 − 13 = 8' },
     { type: 'paragraph', text: 'The differences increase by 2:' },
@@ -140,8 +142,7 @@ const EXPECTED_BATCH3_BLOCKS = {
 
 const EXPECTED_BATCH4_BLOCKS = {
   'num-0108': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'A — 96' },
+        { type: 'correct_answer', text: 'A — 96' },
     { type: 'paragraph', label: 'What to Notice', text: 'Check the differences between consecutive terms.' },
     { type: 'pattern', expression: '6 − 5 = 1\n10 − 6 = 4\n19 − 10 = 9\n35 − 19 = 16\n60 − 35 = 25' },
     { type: 'paragraph', text: 'The differences are:' },
@@ -153,8 +154,7 @@ const EXPECTED_BATCH4_BLOCKS = {
     { type: 'rule', text: 'When the differences are consecutive perfect squares, continue with the next square.' },
   ],
   'num-0137': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'A — 1/5' },
+        { type: 'correct_answer', text: 'A — 1/5' },
     { type: 'paragraph', label: 'What to Notice', text: 'The terms form pairs. In each pair, the second fraction is the simplified form of the first.' },
     { type: 'pattern', expression: '2/4 → 1/2\n2/6 → 1/3\n2/8 → 1/4\n2/10 → ___' },
     { type: 'paragraph', text: 'Each second fraction is the simplified form of the first.' },
@@ -163,8 +163,7 @@ const EXPECTED_BATCH4_BLOCKS = {
     { type: 'rule', text: 'When fractions appear in pairs, check whether the second term is the simplified form of the first.' },
   ],
   'num-0147': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'D — −144' },
+        { type: 'correct_answer', text: 'D — −144' },
     { type: 'paragraph', label: 'What to Notice', text: 'The absolute values follow the Fibonacci pattern, while the signs alternate.' },
     { type: 'pattern', label: 'Absolute values', expression: '13, 21, 34, 55, 89' },
     { type: 'pattern', label: 'Fibonacci relationships', expression: '13 + 21 = 34\n21 + 34 = 55\n34 + 55 = 89' },
@@ -178,30 +177,26 @@ const EXPECTED_BATCH4_BLOCKS = {
 
 const EXPECTED_GRAMMAR_BLOCKS = {
   'verb-0059': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
+        { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
     { type: 'paragraph', label: 'What to Notice', text: 'The question sets a formal American-English convention that treats *panel* as one collective unit. That convention requires a singular verb and a singular pronoun.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'The panel of judges **has** announced **its** decision.' },
     { type: 'paragraph', label: 'Why the other choices fail', text: 'Choices A and D use plural **have**, which conflicts with treating *panel* as one unit. Choice B uses singular **has** but plural **their**, so the verb and pronoun do not agree under the stated convention. Choice E also uses singular **has** with plural **their**; the phrase **individual verdicts** foregrounds the members, which conflicts with the required single-unit reading.' },
     { type: 'rule', text: 'When a collective noun is treated as one unit under the stated formal convention, use a singular verb and singular pronoun. Collective nouns may take plural agreement in other contexts when their members are foregrounded; that is not the convention used here.' },
   ],
   'verb-0060': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'C — Because she arrived late, her application was disqualified.' },
+        { type: 'correct_answer', text: 'C — Because she arrived late, her application was disqualified.' },
     { type: 'paragraph', label: 'What to Notice', text: '*Because* is a subordinating conjunction that can introduce a complete causal clause: **because + subject + verb**. In choice C, *she arrived late* supplies that complete clause.' },
     { type: 'paragraph', label: 'Apply the Rule', text: '**Because** she arrived late, her application was disqualified.' },
     { type: 'rule', text: 'Use *because* to connect a cause expressed as a complete clause. In choice A, *Being she was late* is defective; a preposition such as *due to* or *on account of* normally takes a noun or gerund phrase, not a finite clause, as in choices B and D. *Since* can introduce a clause, but *since of* in choice E improperly combines a conjunction with a preposition.' },
   ],
   'verb-0061': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'B — The reason the memorandum was delayed is that the signatory was absent.' },
+        { type: 'correct_answer', text: 'B — The reason the memorandum was delayed is that the signatory was absent.' },
     { type: 'paragraph', label: 'What to Notice', text: 'The question sets a formal-edited-English convention: use *the reason ... is that ...* rather than *the reason ... is because ...*. Choice B follows that target pattern.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'The reason the memorandum was delayed **is that** the signatory was absent.' },
     { type: 'rule', text: 'Under the formal-edited-English convention stated here, pair *the reason ...* with *is that ...*. Choices A and E use *the reason ... is because*, a wording that occurs in ordinary contemporary English but is not the construction selected here; choice C compounds *reason why* with *is because*, while choice D is syntactically defective.' },
   ],
   'verb-0062': [
-    { type: 'heading', text: 'Solution' },
-    { type: 'correct_answer', text: 'B — The commission not only reviewed the budget but also scrutinized the disbursements.' },
+        { type: 'correct_answer', text: 'B — The commission not only reviewed the budget but also scrutinized the disbursements.' },
     { type: 'paragraph', label: 'What to Notice', text: 'The correlative pair *not only ... but also* should connect parallel grammatical elements. Here, **reviewed** and **scrutinized** are both past-tense verb phrases.' },
     { type: 'paragraph', label: 'Apply the Rule', text: 'The commission not only **reviewed** the budget but also **scrutinized** the disbursements.' },
     { type: 'rule', text: 'With *not only ... but also*, keep the two coordinated elements grammatically parallel. The distractors break that pattern by inserting *it*, pairing an object phrase with a verb phrase, using faulty inversion and singular *was* with plural *disbursements*, or using *scrutinizing* instead of the past-tense *scrutinized*.' },
@@ -377,6 +372,14 @@ describe('Number Series structured explanation Batch 4', () => {
     expect(catalog.questions.get('num-0147')?.structuredExplanation).toBeTruthy();
   });
 
+  it('contains no legacy Solution heading in any production structured explanation', async () => {
+    const catalog = await loadContentCatalog(ALL_SUBJECTS);
+    const offenders = [...catalog.questions.values()]
+      .filter((question) => containsLegacySolutionHeading(question.structuredExplanation?.blocks))
+      .map((question) => question.id);
+    expect(offenders).toEqual([]);
+  });
+
   it('does not add structured explanations outside the approved Number Series, Spelling, Filing, Grammar, and Clerical Operations sets', async () => {
     const catalog = await loadContentCatalog(ALL_SUBJECTS);
     const structuredIds = [...catalog.questions.values()]
@@ -413,8 +416,9 @@ describe('Number Series structured explanation Batch 4', () => {
   it('rejects malformed or unsupported structured blocks so callers can fall back safely', () => {
     expect(isValidStructuredExplanation({ blocks: [{ type: 'pattern', expression: '' }] })).toBe(false);
     expect(isValidStructuredExplanation({ blocks: [{ type: 'alternative_solution', title: 'Alternative Method', blocks: [] }] })).toBe(false);
-    expect(getStructuredExplanation({ blocks: [{ type: 'heading', text: 'Solution' }] })).toEqual({
-      blocks: [{ type: 'heading', text: 'Solution' }],
+    expect(getStructuredExplanation({ blocks: [{ type: 'heading', text: 'Solution' }] })).toBeUndefined();
+    expect(getStructuredExplanation({ blocks: [{ type: 'heading', text: 'Method Overview' }] })).toEqual({
+      blocks: [{ type: 'heading', text: 'Method Overview' }],
     });
     expect(getStructuredExplanation({ blocks: [{ type: 'unsupported', text: 'bad' }] })).toBeUndefined();
   });

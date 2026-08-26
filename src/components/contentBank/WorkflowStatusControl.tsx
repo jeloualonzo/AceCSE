@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { ArrowRight, Check, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import {
-  allowedNextRefinementStatuses,
+  isRefinementBatchStatus,
   refinementStatusLabel,
   REFINEMENT_STATUS_SEQUENCE,
   type RefinementBatch,
@@ -9,18 +9,13 @@ import {
 } from '@/data/refinementBatches';
 
 /**
- * The only way a batch's workflow status changes.
+ * The single workflow-status control for an admin batch.
  *
- * Two rules are enforced here rather than trusted to the operator:
- *
- * - Status is never typed. The controls are buttons generated from
- *   `allowedNextRefinementStatuses`, so an illegal move has no affordance at
- *   all — there is no text field to put a wrong value into.
- * - The whole pipeline stays visible, current step marked, so it is obvious
- *   where a batch sits and what comes next rather than only what is clickable.
- *
- * The transition rules themselves live in `src/data/refinementBatches.ts`; this
- * component renders them and does not decide them.
+ * The select is controlled by the persisted `batch.status`, not by an
+ * optimistic local value. A failed write therefore leaves the old status
+ * selected while the page-level persistence error remains visible. Options
+ * are drawn from the typed status sequence, and the change handler rejects
+ * anything outside that enum before it can reach persistence.
  */
 export function WorkflowStatusControl({
   batch,
@@ -32,87 +27,72 @@ export function WorkflowStatusControl({
   disabled?: boolean;
 }) {
   const [pending, setPending] = useState<RefinementBatchStatus | null>(null);
-  const currentIndex = REFINEMENT_STATUS_SEQUENCE.indexOf(batch.status);
-  const nextStatuses = allowedNextRefinementStatuses(batch.status);
+  const [transitionError, setTransitionError] = useState<string | null>(null);
 
-  const move = async (status: RefinementBatchStatus) => {
-    setPending(status);
+  const changeStatus = async (value: string) => {
+    if (!isRefinementBatchStatus(value) || value === batch.status) return;
+    setTransitionError(null);
+    setPending(value);
     try {
-      await onTransition(batch, status);
+      const saved = await onTransition(batch, value);
+      if (!saved) setTransitionError('Could not save this status. Please try again.');
+    } catch {
+      setTransitionError('Could not save this status. Please try again.');
     } finally {
       setPending(null);
     }
   };
 
   return (
-    <section aria-labelledby="workflow-status-heading" className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <section
+      aria-labelledby="workflow-status-heading"
+      aria-busy={pending !== null}
+      className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+    >
       <h2 id="workflow-status-heading" className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
         Workflow status
       </h2>
+      <p className="mt-3 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+        Select the status that accurately reflects the batch&apos;s current review state. Any of the four known statuses may be selected directly.
+      </p>
 
-      <ol className="mt-4 flex flex-wrap gap-2">
-        {REFINEMENT_STATUS_SEQUENCE.map((status, index) => {
-          const isCurrent = status === batch.status;
-          const isPast = index < currentIndex;
-          return (
-            <li key={status}>
-              <span
-                aria-current={isCurrent ? 'step' : undefined}
-                className={`inline-flex min-h-[34px] items-center gap-1.5 rounded-lg px-3 text-xs font-bold ${
-                  isCurrent
-                    ? 'bg-emerald-600 text-white'
-                    : isPast
-                      ? 'bg-emerald-50 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300'
-                      : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'
-                }`}
-              >
-                {isPast && <Check className="h-3.5 w-3.5" aria-hidden="true" />}
+      <div className="mt-4">
+        <label htmlFor="workflow-status-select" className="text-xs font-bold text-slate-700 dark:text-slate-200">
+          Status
+        </label>
+        <div className="relative mt-2">
+          <select
+            id="workflow-status-select"
+            aria-label="Batch status"
+            value={batch.status}
+            disabled={disabled || pending !== null}
+            onChange={(event) => void changeStatus(event.target.value)}
+            className="min-h-11 w-full appearance-none rounded-lg border border-slate-300 bg-white px-3 pr-10 text-sm font-semibold text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30 disabled:cursor-not-allowed disabled:opacity-60 dark:border-slate-700 dark:bg-slate-950/60 dark:text-slate-100"
+          >
+            {REFINEMENT_STATUS_SEQUENCE.map((status) => (
+              <option key={status} value={status}>
                 {refinementStatusLabel(status)}
-                {isCurrent && <span className="sr-only">(current)</span>}
-              </span>
-            </li>
-          );
-        })}
-      </ol>
-
-      <div className="mt-5 border-t border-slate-100 pt-5 dark:border-slate-800">
-        {nextStatuses.length === 0 ? (
-          <p className="text-xs text-slate-500 dark:text-slate-400">
-            {refinementStatusLabel(batch.status)} is a terminal status. There is nowhere further to move this batch.
-          </p>
-        ) : (
-          <>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              Allowed moves from {refinementStatusLabel(batch.status)}:
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {nextStatuses.map((status) => {
-                const isForward = REFINEMENT_STATUS_SEQUENCE.indexOf(status) > currentIndex;
-                return (
-                  <button
-                    key={status}
-                    type="button"
-                    disabled={disabled || pending !== null}
-                    onClick={() => void move(status)}
-                    className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg px-4 text-xs font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 disabled:cursor-not-allowed disabled:opacity-50 ${
-                      isForward
-                        ? 'bg-emerald-600 text-white hover:bg-emerald-500'
-                        : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200'
-                    }`}
-                  >
-                    {pending === status ? (
-                      <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
-                    ) : (
-                      <ArrowRight className={`h-3.5 w-3.5 ${isForward ? '' : 'rotate-180'}`} aria-hidden="true" />
-                    )}
-                    {isForward ? 'Advance to' : 'Send back to'} {refinementStatusLabel(status)}
-                  </button>
-                );
-              })}
-            </div>
-          </>
-        )}
+              </option>
+            ))}
+          </select>
+          {pending !== null && (
+            <Loader2 className="pointer-events-none absolute right-3 top-3.5 h-4 w-4 animate-spin text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+          )}
+        </div>
       </div>
+
+      {transitionError && (
+        <p role="alert" className="mt-3 text-xs font-semibold text-red-700 dark:text-red-300">
+          {transitionError}
+        </p>
+      )}
+
+      {pending !== null && (
+        <p role="status" className="mt-3 flex items-center gap-2 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+          <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
+          Saving status as {refinementStatusLabel(pending)}…
+        </p>
+      )}
     </section>
   );
 }

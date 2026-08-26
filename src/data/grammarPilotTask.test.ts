@@ -135,7 +135,7 @@ describe('Grammar pilot content corrections', () => {
     for (const question of questions) {
       expect(question?.structuredExplanation).toBeDefined();
       expect(isValidStructuredExplanation(question?.structuredExplanation)).toBe(true);
-      expect(question?.structuredExplanation?.blocks).toHaveLength(question?.id === 'verb-0059' ? 6 : 5);
+      expect(question?.structuredExplanation?.blocks).toHaveLength(question?.id === 'verb-0059' ? 5 : 4);
       for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
         expect(Object.hasOwn(question ?? {}, field), `${question?.id}:${field}`).toBe(false);
       }
