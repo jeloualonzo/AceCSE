@@ -145,6 +145,41 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(root.textContent).not.toContain('\\]');
   });
 
+  it('uses compact controlled spacing around and between stacked display equations', () => {
+    render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [{
+            type: 'paragraph',
+            label: 'Rationale',
+            text: String.raw`Before the math:
+
+\[
+1+1=2
+\]
+
+\[
+2+2=4
+\]
+
+After the math.`,
+          }],
+        }}
+        theme="light"
+      />
+    );
+
+    const root = screen.getByTestId('structured-explanation');
+    const paragraphs = [...root.querySelectorAll('p')];
+    expect(paragraphs.map((paragraph) => paragraph.textContent)).toEqual(['Before the math:', 'After the math.']);
+    const mathStack = screen.getByTestId('structured-latex-math');
+    expect(mathStack).toHaveClass('space-y-0.5', 'py-0');
+    expect(mathStack.querySelectorAll('[data-testid="structured-latex-equation"]')).toHaveLength(2);
+    expect([...mathStack.querySelectorAll('[data-testid="structured-latex-equation"]')].every((equation) => equation.className.includes('py-0'))).toBe(true);
+    expect(root.textContent).not.toContain('\\[');
+    expect(root.textContent).not.toContain('\\]');
+  });
+
   it('keeps long expressions inside a clipped expression container without a scrollbar control', () => {
     const { container } = render(
       <StructuredExplanationRenderer

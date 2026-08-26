@@ -196,7 +196,7 @@ function LatexMathDisplay({ expression, dark }: { expression: string; dark: bool
   return (
     <div
       data-testid="structured-latex-math"
-      className={`w-full overflow-hidden space-y-3 px-1 py-1 text-center ${dark ? 'text-slate-100' : 'text-slate-900'}`}
+      className={`w-full overflow-hidden space-y-0.5 px-1 py-0 text-center ${dark ? 'text-slate-100' : 'text-slate-900'}`}
     >
       {lines.map((line, index) => (
         <div
@@ -204,7 +204,7 @@ function LatexMathDisplay({ expression, dark }: { expression: string; dark: bool
           role="math"
           data-testid="structured-latex-equation"
           aria-label={formatLatexForAria(line)}
-          className="w-full overflow-hidden"
+          className="w-full overflow-hidden py-0"
         >
           {createElement(
             'math',
@@ -225,28 +225,45 @@ function renderParagraphText(text: string, dark: boolean): React.ReactNode {
 
   const parts: React.ReactNode[] = [];
   let cursor = 0;
-  matches.forEach((match, index) => {
+  let pendingMath: string[] = [];
+  let partIndex = 0;
+  const pushMath = () => {
+    if (pendingMath.length === 0) return;
+    parts.push(
+      <LatexMathDisplay
+        key={`math-${partIndex++}`}
+        expression={pendingMath.join('\n')}
+        dark={dark}
+      />,
+    );
+    pendingMath = [];
+  };
+
+  matches.forEach((match) => {
     const start = match.index ?? cursor;
     const before = text.slice(cursor, start);
-    if (before) {
+    if (before.trim()) {
+      pushMath();
       parts.push(
-        <p key={`text-${index}`} className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
-          {renderInlineRichText(before)}
+        <p key={`text-${partIndex++}`} className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
+          {renderInlineRichText(before.trim())}
         </p>,
       );
     }
-    parts.push(<LatexMathDisplay key={`math-${index}`} expression={match[1] ?? ''} dark={dark} />);
+    pendingMath.push(match[1] ?? '');
     cursor = start + match[0].length;
   });
-  const after = text.slice(cursor);
+
+  pushMath();
+  const after = text.slice(cursor).trim();
   if (after) {
     parts.push(
-      <p key="text-after" className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
+      <p key={`text-${partIndex++}`} className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
         {renderInlineRichText(after)}
       </p>,
     );
   }
-  return <div className="space-y-2">{parts}</div>;
+  return <div className="space-y-1">{parts}</div>;
 }
 
 function MathDisplay({ expression, dark, label }: { expression: string; dark: boolean; label?: string }) {
@@ -255,7 +272,7 @@ function MathDisplay({ expression, dark, label }: { expression: string; dark: bo
     <div
       role="math"
       aria-label={label ? `${label}: ${lines.join('; ')}` : lines.join('; ')}
-      className={`w-full overflow-hidden px-1 py-1 text-center font-mono text-sm sm:text-base tracking-wide whitespace-nowrap ${
+      className={`w-full overflow-hidden px-1 py-0 text-center font-mono text-sm sm:text-base tracking-wide whitespace-nowrap ${
         dark ? 'text-slate-100' : 'text-slate-900'
       }`}
     >
