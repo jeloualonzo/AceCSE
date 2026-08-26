@@ -41,7 +41,8 @@ const CANONICAL_STRUCTURED_CLERICAL_OPERATIONS_IDS = new Set([
   'cler-0051', 'cler-0057', 'seed-cler-003',
 ]);
 const CANONICAL_STRUCTURED_NUMBER_SERIES_IDS = new Set([
-  'num-0019', 'num-0020', 'num-0021',
+  'num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024',
+  'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
 ]);
 
 /**

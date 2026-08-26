@@ -82,102 +82,100 @@ const EXPECTED_FROZEN_BLOCKS = {
 } as const;
 
 const EXPECTED_BATCH2_BLOCKS = {
-  'num-0022': [
-        { type: 'correct_answer', text: 'D — 13' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Each term is the sum of the two preceding terms.' },
-    { type: 'pattern', expression: '1 + 1 = 2\n1 + 2 = 3\n2 + 3 = 5\n3 + 5 = 8\n5 + 8 = 13' },
-    { type: 'solution', expression: '5 + 8 = 13' },
-    { type: 'answer', text: '13', variant: 'final' },
-    { type: 'rule', text: 'Fibonacci sequence: each term is the sum of the two preceding terms.' },
-  ],
-  'num-0023': [
-        { type: 'correct_answer', text: 'E — 47' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The terms are multiplied by 2, then increased by 1.' },
-    { type: 'pattern', expression: '2 × 2 + 1 = 5\n5 × 2 + 1 = 11\n11 × 2 + 1 = 23' },
-    { type: 'paragraph', text: 'The same operation is repeated: ×2, then +1.' },
-    { type: 'solution', expression: '23 × 2 + 1 = 47\n46 + 1 = 47' },
-    { type: 'answer', text: '47', variant: 'final' },
-    { type: 'rule', text: 'When simple addition or multiplication does not explain a series, check for a repeated combination of operations.' },
-  ],
-  'num-0024': [
-        { type: 'correct_answer', text: 'A — 36' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Check the differences between consecutive terms.' },
-    { type: 'pattern', expression: '4 − 1 = 3\n9 − 4 = 5\n16 − 9 = 7\n25 − 16 = 9' },
-    { type: 'paragraph', text: 'The differences increase by 2:' },
-    { type: 'math', expression: '+3, +5, +7, +9, +11' },
-    { type: 'solution', expression: '25 + 11 = 36' },
-    { type: 'answer', text: '36', variant: 'final' },
-    { type: 'rule', text: 'The differences between consecutive perfect squares increase by consecutive odd numbers.' },
+  "num-0022": [
     {
-      type: 'alternative_solution',
-      title: 'Alternative Method',
-      blocks: [
-        { type: 'paragraph', text: 'Recognize the perfect squares.' },
-        { type: 'math', expression: '1²\n2²\n3²\n4²\n5²' },
-        { type: 'paragraph', text: 'The next term is:' },
-        { type: 'math', expression: '6² = 36' },
-        { type: 'answer', text: '36', variant: 'final' },
-      ],
+      "type": "correct_answer",
+      "text": "D — 13"
     },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Each term is the sum of the two preceding terms:\n\n\\[\n1+1=2\n\\]\n\\[\n1+2=3\n\\]\n\\[\n2+3=5\n\\]\n\\[\n3+5=8\n\\]\n\nTherefore, the next term is:\n\n\\[\n5+8=13\n\\]\n\nThe missing term is **13**."
+    }
   ],
+  "num-0023": [
+    {
+      "type": "correct_answer",
+      "text": "E — 47"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Each term is multiplied by **2**, then **1** is added:\n\n\\[\n2\\times2+1=5\n\\]\n\\[\n5\\times2+1=11\n\\]\n\\[\n11\\times2+1=23\n\\]\n\nContinuing the same pattern:\n\n\\[\n23\\times2+1=47\n\\]\n\nThe missing term is **47**."
+    }
+  ],
+  "num-0024": [
+    {
+      "type": "correct_answer",
+      "text": "A — 36"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The terms are consecutive perfect squares:\n\n\\[\n1=1^2,\\quad 4=2^2,\\quad 9=3^2,\\quad 16=4^2,\\quad 25=5^2\n\\]\n\nTherefore, the next term is:\n\n\\[\n6^2=36\n\\]\n\nThe missing term is **36**."
+    }
+  ]
 } as const;
 
 const EXPECTED_BATCH3_BLOCKS = {
-  'num-0025': [
-        { type: 'correct_answer', text: 'C — 16' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The terms alternate between two sequences.' },
-    { type: 'pattern', label: 'Odd positions', expression: '3 → 4 → 5 → 6\n+1, +1, +1' },
-    { type: 'pattern', label: 'Even positions', expression: '7 → 10 → 13 → ___\n+3, +3, +3' },
-    { type: 'paragraph', text: 'The missing term is in the 8th position, so it belongs to the even-position sequence.' },
-    { type: 'solution', expression: '13 + 3 = 16' },
-    { type: 'answer', text: '16', variant: 'final' },
-    { type: 'rule', text: 'When a series does not follow one consistent pattern, separate the odd- and even-position terms and check each sequence independently.' },
+  "num-0025": [
+    {
+      "type": "correct_answer",
+      "text": "C — 16"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The series contains two interleaved sequences. The odd-position terms increase by **1**:\n\n\\[\n3,\\ 4,\\ 5,\\ 6\n\\]\n\nThe even-position terms increase by **3**:\n\n\\[\n7,\\ 10,\\ 13,\\ \\_\\_\\_\n\\]\n\nSince the missing term is in the 8th position, continue the even-position pattern:\n\n\\[\n13+3=16\n\\]\n\nThe missing term is **16**."
+    }
   ],
-  'num-0026': [
-        { type: 'correct_answer', text: 'B — 31' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The differences between consecutive terms are not constant, so check the differences themselves.' },
-    { type: 'pattern', expression: '3 − 1 = 2\n7 − 3 = 4\n13 − 7 = 6\n21 − 13 = 8' },
-    { type: 'paragraph', text: 'The differences increase by 2:' },
-    { type: 'math', expression: '+2, +4, +6, +8, +10' },
-    { type: 'solution', expression: '21 + 10 = 31' },
-    { type: 'answer', text: '31', variant: 'final' },
-    { type: 'rule', text: 'When the differences form an arithmetic sequence, continue that pattern to find the next term.' },
-  ],
+  "num-0026": [
+    {
+      "type": "correct_answer",
+      "text": "B — 31"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The differences between consecutive terms are:\n\n\\[\n3-1=2,\\quad 7-3=4,\\quad 13-7=6,\\quad 21-13=8\n\\]\n\nThe differences increase by **2**, so the next difference is **10**:\n\n\\[\n21+10=31\n\\]\n\nThe missing term is **31**."
+    }
+  ]
 } as const;
 
 const EXPECTED_BATCH4_BLOCKS = {
-  'num-0108': [
-        { type: 'correct_answer', text: 'A — 96' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Check the differences between consecutive terms.' },
-    { type: 'pattern', expression: '6 − 5 = 1\n10 − 6 = 4\n19 − 10 = 9\n35 − 19 = 16\n60 − 35 = 25' },
-    { type: 'paragraph', text: 'The differences are:' },
-    { type: 'math', expression: '+1, +4, +9, +16, +25' },
-    { type: 'paragraph', text: 'These are consecutive perfect squares:' },
-    { type: 'math', expression: '1², 2², 3², 4², 5²' },
-    { type: 'solution', expression: '6² = 36\n60 + 36 = 96' },
-    { type: 'answer', text: '96', variant: 'final' },
-    { type: 'rule', text: 'When the differences are consecutive perfect squares, continue with the next square.' },
+  "num-0108": [
+    {
+      "type": "correct_answer",
+      "text": "A — 96"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The differences between consecutive terms are consecutive perfect squares:\n\n\\[\n6-5=1=1^2\n\\]\n\\[\n10-6=4=2^2\n\\]\n\\[\n19-10=9=3^2\n\\]\n\\[\n35-19=16=4^2\n\\]\n\\[\n60-35=25=5^2\n\\]\n\nThe next difference is therefore:\n\n\\[\n6^2=36\n\\]\n\nSo the next term is:\n\n\\[\n60+36=96\n\\]\n\nThe missing term is **96**."
+    }
   ],
-  'num-0137': [
-        { type: 'correct_answer', text: 'A — 1/5' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The terms form pairs. In each pair, the second fraction is the simplified form of the first.' },
-    { type: 'pattern', expression: '2/4 → 1/2\n2/6 → 1/3\n2/8 → 1/4\n2/10 → ___' },
-    { type: 'paragraph', text: 'Each second fraction is the simplified form of the first.' },
-    { type: 'solution', expression: '2/10 ÷ 2 = 1/5' },
-    { type: 'answer', text: '1/5', variant: 'final' },
-    { type: 'rule', text: 'When fractions appear in pairs, check whether the second term is the simplified form of the first.' },
+  "num-0137": [
+    {
+      "type": "correct_answer",
+      "text": "A — 1/5"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The terms form pairs in which the second fraction is the simplified form of the first:\n\n\\[\n\\frac{2}{4}\\rightarrow\\frac{1}{2}\n\\]\n\\[\n\\frac{2}{6}\\rightarrow\\frac{1}{3}\n\\]\n\\[\n\\frac{2}{8}\\rightarrow\\frac{1}{4}\n\\]\n\nTherefore:\n\n\\[\n\\frac{2}{10}\\div2=\\frac{1}{5}\n\\]\n\nThe missing term is **1/5**."
+    }
   ],
-  'num-0147': [
-        { type: 'correct_answer', text: 'D — −144' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The absolute values follow the Fibonacci pattern, while the signs alternate.' },
-    { type: 'pattern', label: 'Absolute values', expression: '13, 21, 34, 55, 89' },
-    { type: 'pattern', label: 'Fibonacci relationships', expression: '13 + 21 = 34\n21 + 34 = 55\n34 + 55 = 89' },
-    { type: 'pattern', label: 'Signs', expression: '+, −, +, −, +' },
-    { type: 'paragraph', text: 'The next sign is negative.' },
-    { type: 'solution', expression: '55 + 89 = 144\n−144' },
-    { type: 'answer', text: '−144', variant: 'final' },
-    { type: 'rule', text: 'When signs alternate, check whether the absolute values follow a familiar sequence such as Fibonacci.' },
-  ],
+  "num-0147": [
+    {
+      "type": "correct_answer",
+      "text": "D — −144"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The absolute values follow the Fibonacci pattern:\n\n\\[\n13+21=34\n\\]\n\\[\n21+34=55\n\\]\n\\[\n34+55=89\n\\]\n\nThe signs alternate:\n\n\\[\n+,\\ -,\\ +,\\ -,\\ +\n\\]\n\nTherefore, the next absolute value is:\n\n\\[\n55+89=144\n\\]\n\nThe next sign is negative, so the missing term is **−144**."
+    }
+  ]
 } as const;
 
 const EXPECTED_GRAMMAR_BLOCKS = {
@@ -259,10 +257,7 @@ describe('Number Series structured explanation Batch 4', () => {
       expect(question?.structuredExplanation?.blocks.some((block) => block.type === 'alternative_solution')).toBe(false);
     }
 
-    const num0147Text = catalog.questions.get('num-0147')?.structuredExplanation?.blocks
-      .filter((block) => block.type === 'pattern' || block.type === 'solution' || block.type === 'answer')
-      .map((block) => JSON.stringify(block))
-      .join(' ');
+    const num0147Text = JSON.stringify(catalog.questions.get('num-0147')?.structuredExplanation?.blocks);
     expect(num0147Text).not.toContain('f(n)');
     expect(num0147Text).toContain('−144');
   });
@@ -283,35 +278,30 @@ describe('Number Series structured explanation Batch 4', () => {
     }
   });
 
-  it('keeps the Batch 2 payloads unchanged', async () => {
+  it('contains the exact Batch 2 Rationale-only payloads without legacy fields', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
     for (const id of BATCH2_IDS) {
-      expect(catalog.questions.get(id)?.structuredExplanation?.blocks).toEqual(EXPECTED_BATCH2_BLOCKS[id]);
+      const question = catalog.questions.get(id);
+      expect(question?.structuredExplanation?.blocks).toEqual(EXPECTED_BATCH2_BLOCKS[id]);
+      expect(question?.explanation).toBeUndefined();
+      expect(question?.steps).toBeUndefined();
+      expect(question?.distractorExplanations).toBeUndefined();
+      expect(question?.tip).toBeUndefined();
     }
   });
 
-  it('preserves stems, choices, answer keys, approved legacy fields, and task metadata after Batch 3 distractor cleanup', async () => {
+  it('preserves stems, choices, answer keys, and task metadata after the Batch 3 Rationale migration', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
     const expected = {
       'num-0025': {
         question: 'What is the missing number: 3, 7, 4, 10, 5, 13, 6, ___?',
         choices: ['7', '14', '16', '15', '17'],
         correctOptionId: 'C',
-        steps: [
-          'Separate by position: odd-position terms = 3, 4, 5, 6 (difference of 1 each); even-position terms = 7, 10, 13, ? (difference of 3 each).',
-          'The blank is the 8th term (even position), so apply the even-position pattern: 13 + 3 = 16.',
-        ],
       },
       'num-0026': {
         question: 'Find the next term: 1, 3, 7, 13, 21, ___',
         choices: ['29', '31', '33', '34', '35'],
         correctOptionId: 'B',
-        steps: [
-          'Compute first differences: 3–1=2, 7–3=4, 13–7=6, 21–13=8.',
-          'Observe the first differences form an arithmetic sequence: 2, 4, 6, 8 (common difference = 2).',
-          'The next first difference = 8 + 2 = 10.',
-          'Add to the last term: 21 + 10 = 31.',
-        ],
       },
     } as const;
 
@@ -320,16 +310,17 @@ describe('Number Series structured explanation Batch 4', () => {
       expect(question.question).toBe(expected[id].question);
       expect(question.choices.map((choice) => choice.text)).toEqual(expected[id].choices);
       expect(question.correctOptionId).toBe(expected[id].correctOptionId);
-      expect(question.explanation.length).toBeGreaterThanOrEqual(100);
-      expect(question.steps).toEqual(expected[id].steps);
+      expect(question.structuredExplanation?.blocks).toEqual(EXPECTED_BATCH3_BLOCKS[id]);
+      expect(question.explanation).toBeUndefined();
+      expect(question.steps).toBeUndefined();
       expect(question.distractorExplanations).toBeUndefined();
-      expect(question.tip).toBeTruthy();
+      expect(question.tip).toBeUndefined();
       expect(question.numberSeries).toBeTruthy();
       expect(question.taskInstance).toBeTruthy();
     }
   });
 
-  it('preserves stems, choices, answer keys, approved legacy fields, and task metadata after Batch 4 distractor cleanup', async () => {
+  it('preserves stems, choices, answer keys, and task metadata after the Batch 4 Rationale migration', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
     const expected = {
       'num-0108': {
@@ -360,10 +351,11 @@ describe('Number Series structured explanation Batch 4', () => {
       expect(question.question).toBe(expected[id].question);
       expect(question.choices.map((choice) => choice.text)).toEqual(expected[id].choices);
       expect(question.correctOptionId).toBe(expected[id].correctOptionId);
-      expect(question.explanation.length).toBeGreaterThanOrEqual(100);
-      expect(question.steps?.length ?? 0).toBeGreaterThan(0);
+      expect(question.structuredExplanation?.blocks).toEqual(EXPECTED_BATCH4_BLOCKS[id]);
+      expect(question.explanation).toBeUndefined();
+      expect(question.steps).toBeUndefined();
       expect(question.distractorExplanations).toBeUndefined();
-      expect(question.tip).toBeTruthy();
+      expect(question.tip).toBeUndefined();
       expect(question.numberSeries?.sequence).toEqual(expected[id].sequence);
       expect(question.numberSeries?.missingPosition).toBe(expected[id].missingPosition);
       expect(question.taskInstance).toBeTruthy();

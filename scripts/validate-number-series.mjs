@@ -46,19 +46,51 @@ const expected = {
   'num-0137': { sequence: ['2/4', '1/2', '2/6', '1/3', '2/8', '1/4', '2/10', null], correct: 'A', choices: ['1/5', '1/6', '2/5', '3/4', '4/5'] },
   'num-0147': { sequence: ['13', '−21', '34', '−55', '89', null], correct: 'D', choices: ['−95', '104', '−130', '−144', '−109'] },
 };
-const approvedPilotExplanations = {
-  'num-0019': {
-    answer: 'B — 24',
-    rationale: 'The difference between each consecutive term is **5**:\n\n\\[\n9-4=5,\\quad 14-9=5,\\quad 19-14=5\n\\]\n\nContinuing the same pattern:\n\n\\[\n19+5=24\n\\]\n\nTherefore, the missing term is **24**.',
+const approvedStructuredExplanations = {
+  "num-0019": {
+    "answer": "B — 24",
+    "rationale": "The difference between each consecutive term is **5**:\n\n\\[\n9-4=5,\\quad 14-9=5,\\quad 19-14=5\n\\]\n\nContinuing the same pattern:\n\n\\[\n19+5=24\n\\]\n\nTherefore, the missing term is **24**."
   },
-  'num-0020': {
-    answer: 'E — 48',
-    rationale: 'Each term is multiplied by **2**:\n\n\\[\n3\\times2=6,\\quad 6\\times2=12,\\quad 12\\times2=24\n\\]\n\nContinuing the same pattern:\n\n\\[\n24\\times2=48\n\\]\n\nTherefore, the missing term is **48**.',
+  "num-0020": {
+    "answer": "E — 48",
+    "rationale": "Each term is multiplied by **2**:\n\n\\[\n3\\times2=6,\\quad 6\\times2=12,\\quad 12\\times2=24\n\\]\n\nContinuing the same pattern:\n\n\\[\n24\\times2=48\n\\]\n\nTherefore, the missing term is **48**."
   },
-  'num-0021': {
-    answer: 'C — 27',
-    rationale: 'The differences increase by **1** each time:\n\n\\[\n5-2=3,\\quad 9-5=4,\\quad 14-9=5,\\quad 20-14=6\n\\]\n\nThe next difference is therefore **7**:\n\n\\[\n20+7=27\n\\]\n\nTherefore, the missing term is **27**.',
+  "num-0021": {
+    "answer": "C — 27",
+    "rationale": "The differences increase by **1** each time:\n\n\\[\n5-2=3,\\quad 9-5=4,\\quad 14-9=5,\\quad 20-14=6\n\\]\n\nThe next difference is therefore **7**:\n\n\\[\n20+7=27\n\\]\n\nTherefore, the missing term is **27**."
   },
+  "num-0022": {
+    "answer": "D — 13",
+    "rationale": "Each term is the sum of the two preceding terms:\n\n\\[\n1+1=2\n\\]\n\\[\n1+2=3\n\\]\n\\[\n2+3=5\n\\]\n\\[\n3+5=8\n\\]\n\nTherefore, the next term is:\n\n\\[\n5+8=13\n\\]\n\nThe missing term is **13**."
+  },
+  "num-0023": {
+    "answer": "E — 47",
+    "rationale": "Each term is multiplied by **2**, then **1** is added:\n\n\\[\n2\\times2+1=5\n\\]\n\\[\n5\\times2+1=11\n\\]\n\\[\n11\\times2+1=23\n\\]\n\nContinuing the same pattern:\n\n\\[\n23\\times2+1=47\n\\]\n\nThe missing term is **47**."
+  },
+  "num-0024": {
+    "answer": "A — 36",
+    "rationale": "The terms are consecutive perfect squares:\n\n\\[\n1=1^2,\\quad 4=2^2,\\quad 9=3^2,\\quad 16=4^2,\\quad 25=5^2\n\\]\n\nTherefore, the next term is:\n\n\\[\n6^2=36\n\\]\n\nThe missing term is **36**."
+  },
+  "num-0025": {
+    "answer": "C — 16",
+    "rationale": "The series contains two interleaved sequences. The odd-position terms increase by **1**:\n\n\\[\n3,\\ 4,\\ 5,\\ 6\n\\]\n\nThe even-position terms increase by **3**:\n\n\\[\n7,\\ 10,\\ 13,\\ \\_\\_\\_\n\\]\n\nSince the missing term is in the 8th position, continue the even-position pattern:\n\n\\[\n13+3=16\n\\]\n\nThe missing term is **16**."
+  },
+  "num-0026": {
+    "answer": "B — 31",
+    "rationale": "The differences between consecutive terms are:\n\n\\[\n3-1=2,\\quad 7-3=4,\\quad 13-7=6,\\quad 21-13=8\n\\]\n\nThe differences increase by **2**, so the next difference is **10**:\n\n\\[\n21+10=31\n\\]\n\nThe missing term is **31**."
+  },
+  "num-0108": {
+    "answer": "A — 96",
+    "rationale": "The differences between consecutive terms are consecutive perfect squares:\n\n\\[\n6-5=1=1^2\n\\]\n\\[\n10-6=4=2^2\n\\]\n\\[\n19-10=9=3^2\n\\]\n\\[\n35-19=16=4^2\n\\]\n\\[\n60-35=25=5^2\n\\]\n\nThe next difference is therefore:\n\n\\[\n6^2=36\n\\]\n\nSo the next term is:\n\n\\[\n60+36=96\n\\]\n\nThe missing term is **96**."
+  },
+  "num-0137": {
+    "answer": "A — 1/5",
+    "rationale": "The terms form pairs in which the second fraction is the simplified form of the first:\n\n\\[\n\\frac{2}{4}\\rightarrow\\frac{1}{2}\n\\]\n\\[\n\\frac{2}{6}\\rightarrow\\frac{1}{3}\n\\]\n\\[\n\\frac{2}{8}\\rightarrow\\frac{1}{4}\n\\]\n\nTherefore:\n\n\\[\n\\frac{2}{10}\\div2=\\frac{1}{5}\n\\]\n\nThe missing term is **1/5**."
+  },
+  "num-0147": {
+    "answer": "D — −144",
+    "rationale": "The absolute values follow the Fibonacci pattern:\n\n\\[\n13+21=34\n\\]\n\\[\n21+34=55\n\\]\n\\[\n34+55=89\n\\]\n\nThe signs alternate:\n\n\\[\n+,\\ -,\\ +,\\ -,\\ +\n\\]\n\nTherefore, the next absolute value is:\n\n\\[\n55+89=144\n\\]\n\nThe next sign is negative, so the missing term is **−144**."
+  }
 };
 const actualSet = new Set(numberSeries.map((question) => question.id));
 const canonicalSource = 'content/questions/numerical/number-series.json';
@@ -75,7 +107,7 @@ for (const id of expectedIds) {
   for (const field of ['structuredExplanation', 'numberSeries', 'taskInstance']) {
     if (!Object.hasOwn(canonicalQuestion, field)) fail(`${id}: required preserved field ${field} is missing from canonical record`);
   }
-  if (!approvedPilotExplanations[id]) {
+  if (!approvedStructuredExplanations[id]) {
     for (const field of ['explanation', 'steps', 'tip']) {
       if (!Object.hasOwn(canonicalQuestion, field)) fail(`${id}: required preserved legacy field ${field} is missing from canonical record`);
     }
@@ -114,12 +146,12 @@ for (const question of numberSeries) {
   if (JSON.stringify(question.choices.map((choice) => choice.text)) !== JSON.stringify(expectedItem.choices)) fail(`${question.id}: authored choice text/order changed`);
   if (new Set(question.choices.map((choice) => choice.text)).size !== question.choices.length) fail(`${question.id}: duplicate choice text is not allowed`);
   if (question.correctOptionId !== expectedItem.correct || !question.choices.some((choice) => choice.id === question.correctOptionId)) fail(`${question.id}: answer key is invalid or changed`);
-  const approvedPilot = approvedPilotExplanations[question.id];
-  if (approvedPilot) {
+  const approvedStructured = approvedStructuredExplanations[question.id];
+  if (approvedStructured) {
     const blocks = question.structuredExplanation?.blocks ?? [];
-    if (blocks.length !== 2) fail(`${question.id}: approved pilot explanation must contain exactly correct_answer plus Rationale`);
-    if (blocks[0]?.type !== 'correct_answer' || blocks[0]?.text !== approvedPilot.answer) fail(`${question.id}: approved pilot correct_answer block is missing or incorrect`);
-    if (blocks[1]?.type !== 'paragraph' || blocks[1]?.label !== 'Rationale' || blocks[1]?.text !== approvedPilot.rationale) fail(`${question.id}: approved pilot Rationale paragraph is missing or incorrect`);
+    if (blocks.length !== 2) fail(`${question.id}: approved structured explanation must contain exactly correct_answer plus Rationale`);
+    if (blocks[0]?.type !== 'correct_answer' || blocks[0]?.text !== approvedStructured.answer) fail(`${question.id}: approved structured correct_answer block is missing or incorrect`);
+    if (blocks[1]?.type !== 'paragraph' || blocks[1]?.label !== 'Rationale' || blocks[1]?.text !== approvedStructured.rationale) fail(`${question.id}: approved structured Rationale paragraph is missing or incorrect`);
     if (blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution'].includes(block.type))) fail(`${question.id}: obsolete Number Series explanation block remains`);
     for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
       if (Object.hasOwn(question, field)) fail(`${question.id}: obsolete legacy explanation field ${field} remains`);

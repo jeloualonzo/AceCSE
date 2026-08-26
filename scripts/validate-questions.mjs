@@ -16,12 +16,11 @@
  *     the eleven frozen Number Series records, twelve canonical Spelling records,
  *     twenty-four canonical Filing records, four canonical Grammar records, and
  *     thirteen canonical Clerical Operations records whose obsolete fields were removed
- *     (the three Rationale-only Number Series pilots also use structured-only content)
+ *     (all 11 canonical Number Series records use structured-only content)
  *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the twelve canonical
  *     Spelling records, twenty-four canonical Filing records, four canonical Grammar
- *     records, and thirteen canonical Clerical Operations records that use
- *     structuredExplanation as their sole aid, plus the three Rationale-only Number
- *     Series pilots
+ *     records, thirteen canonical Clerical Operations records, and eleven canonical
+ *     Number Series records that use structuredExplanation as their sole aid
  *
  * Also prints supply, difficulty, and answer-letter reports.
  */
@@ -49,7 +48,10 @@ const CANONICAL_NUMBER_SERIES_IDS = new Set([
   'num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024',
   'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
 ]);
-const CANONICAL_STRUCTURED_NUMBER_SERIES_IDS = new Set(['num-0019', 'num-0020', 'num-0021']);
+const CANONICAL_STRUCTURED_NUMBER_SERIES_IDS = new Set([
+  'num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024',
+  'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
+]);
 const CANONICAL_SPELLING_FILE = 'clerical/spelling.json';
 const CANONICAL_SPELLING_IDS = new Set([
   'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',

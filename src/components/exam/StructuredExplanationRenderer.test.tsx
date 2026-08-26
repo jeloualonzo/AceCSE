@@ -109,6 +109,42 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(root.textContent).not.toContain('\\]');
   });
 
+  it('preserves authored fractions and renders only explicit division operators', () => {
+    render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [{
+            type: 'paragraph',
+            label: 'Rationale',
+            text: String.raw`\[
+\frac{2}{4}\rightarrow\frac{1}{2}
+\]
+
+\[
+\frac{2}{10}\div2=\frac{1}{5}
+\]`,
+          }],
+        }}
+        theme="light"
+      />
+    );
+
+    const root = screen.getByTestId('structured-explanation');
+    const equations = screen.getAllByTestId('structured-latex-equation');
+    expect(equations).toHaveLength(2);
+    expect(equations[0]).toHaveAttribute('aria-label', '2/4 → 1/2');
+    expect(equations[1]).toHaveAttribute('aria-label', '2/10 ÷ 2=1/5');
+    expect(equations[0].querySelectorAll('mfrac')).toHaveLength(2);
+    expect(equations[1].querySelectorAll('mfrac')).toHaveLength(2);
+    expect(equations[0].querySelector('mo')).toHaveTextContent('→');
+    expect([...equations[1].querySelectorAll('mo')].map((node) => node.textContent)).toContain('÷');
+    expect(root.textContent).not.toContain('\\frac');
+    expect(root.textContent).not.toContain('\\rightarrow');
+    expect(root.textContent).not.toContain('\\div');
+    expect(root.textContent).not.toContain('\\[');
+    expect(root.textContent).not.toContain('\\]');
+  });
+
   it('keeps long expressions inside a clipped expression container without a scrollbar control', () => {
     const { container } = render(
       <StructuredExplanationRenderer
