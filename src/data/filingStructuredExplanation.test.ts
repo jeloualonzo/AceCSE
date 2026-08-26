@@ -80,12 +80,12 @@ const EXPECTED_BLOCKS = {
   ],
   'cler-0003': [
     { type: 'correct_answer', text: 'C — Santos, A.' },
-    { type: 'paragraph', label: 'Rationale', text: 'All surnames are **Santos**, so compare the given-name entries.\n\nThe relevant order is:\n\n**1.** A.\n**2.** Ana\n**3.** Anna\n**4.** B.\n**5.** Bernardo\n\nUnder **nothing-before-something**, an entry that ends after the shared characters comes before a longer entry beginning with those same characters. Therefore, **Santos, A.** is filed first.' },
+    { type: 'paragraph', label: 'Rationale', text: 'All surnames are **Santos**, so compare the given-name entries.\n\nThe relevant order is:\n\n**1.** A.\n**2.** Ana\n**3.** Anna\n**4.** B.\n**5.** Bernardo\n\nUnder **nothing-before-something**, the shorter entry comes before a longer entry when the shorter entry is the complete beginning of the longer one. Therefore, **A.** comes before **Ana**.\n\nThe A-entries come before the B-entries, and **Ana** comes before **Anna** because **Ana** ends first. Therefore, **Santos, A.** is filed first.' },
     { type: 'distractor_section', title: 'Why the others are incorrect', blocks: [
       { type: 'paragraph', text: '**A:** Ana comes after A. because the shorter entry comes first.' },
       { type: 'paragraph', text: '**B:** Bernardo begins with **B** and therefore follows the A-entries.' },
       { type: 'paragraph', text: '**D:** B. comes after all the A-entries.' },
-      { type: 'paragraph', text: '**E:** Anna follows Ana because **Ana** ends before the additional **n**.' },
+      { type: 'paragraph', text: '**E:** Anna follows Ana because **Ana** is a complete beginning of **Anna** and ends first.' },
     ] },
   ],
   'cler-0004': [
