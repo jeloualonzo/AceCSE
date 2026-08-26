@@ -17,7 +17,6 @@ const EXPECTED_BLOCKS = {
       { type: 'paragraph', text: '**D:** Folder 4, Abadilla, Teresa G., correctly follows the Abad entries.' },
       { type: 'paragraph', text: '**E:** Only Folder 3 is misplaced; Folder 1 is not out of order.' },
     ] },
-    { type: 'paragraph', label: 'Filing Rule', text: 'Compare filing units from left to right: **surname → given name → middle name or initial**.' },
   ],
   'cler-0054': [
     { type: 'correct_answer', text: 'D — San Juan Development Corporation (The)' },
@@ -28,7 +27,6 @@ const EXPECTED_BLOCKS = {
       { type: 'paragraph', text: '**C:** Moves **San** incorrectly to the end instead of preserving the business name.' },
       { type: 'paragraph', text: '**E:** Places **The** after San but before Development, rather than at the end in parentheses.' },
     ] },
-    { type: 'paragraph', label: 'Filing Rule', text: 'Ignore a leading business-name article when alphabetizing; place the article at the end in parentheses.' },
   ],
   'cler-0058': [
     { type: 'correct_answer', text: 'B — Subject filing' },
@@ -39,7 +37,6 @@ const EXPECTED_BLOCKS = {
       { type: 'paragraph', text: '**D:** Straight numerical filing organizes records by assigned numbers.' },
       { type: 'paragraph', text: '**E:** Functional-alphabetical filing is not the method demonstrated by the examples; the primary basis shown is the subject or function.' },
     ] },
-    { type: 'paragraph', label: 'Filing Rule', text: '**Subject filing** organizes records by **topic or function**.' },
   ],
   'cler-0059': [
     { type: 'correct_answer', text: 'B — Atty. Crisanto Banal' },
@@ -50,7 +47,6 @@ const EXPECTED_BLOCKS = {
       { type: 'paragraph', text: '**D:** Santos files under **S**, which comes after Banal.' },
       { type: 'paragraph', text: '**E:** Zamora files under **Z**, which comes after Banal.' },
     ] },
-    { type: 'paragraph', label: 'Filing Rule', text: 'Ignore personal titles and file the name by **surname**.' },
   ],
   'cler-0060': [
     { type: 'correct_answer', text: 'A — Judge Erlinda Manalastas' },
@@ -61,7 +57,6 @@ const EXPECTED_BLOCKS = {
       { type: 'paragraph', text: '**D:** Ferrer comes second.' },
       { type: 'paragraph', text: '**E:** Urbano comes fifth.' },
     ] },
-    { type: 'paragraph', label: 'Filing Rule', text: 'Ignore personal titles and file names by **surname**.' },
   ],
   'cler-0001': [
     { type: 'correct_answer', text: 'D — 1-3-2-4' },
@@ -72,7 +67,6 @@ const EXPECTED_BLOCKS = {
       { type: 'paragraph', text: '**C:** Places Bondoc before Bartolome.' },
       { type: 'paragraph', text: '**E:** Places Buenaventura before Bondoc.' },
     ] },
-    { type: 'paragraph', label: 'Filing Rule', text: 'When surnames share the same beginning, continue comparing letter by letter until a difference appears.' },
   ],
   'cler-0002': [
     { type: 'correct_answer', text: 'D — Reyes, Albert' },
@@ -83,7 +77,6 @@ const EXPECTED_BLOCKS = {
       { type: 'paragraph', text: '**C:** Amelia begins with **Am**, which comes after **Al**.' },
       { type: 'paragraph', text: '**E:** Alma begins with **Al**, but after comparing the next letters, **Albert** comes first.' },
     ] },
-    { type: 'paragraph', label: 'Filing Rule', text: 'When surnames are identical, compare given names **character by character**, not by length.' },
   ],
   'cler-0003': [
     { type: 'correct_answer', text: 'C — Santos, A.' },
@@ -94,7 +87,6 @@ const EXPECTED_BLOCKS = {
       { type: 'paragraph', text: '**D:** B. comes after all the A-entries.' },
       { type: 'paragraph', text: '**E:** Anna follows Ana because **Ana** ends before the additional **n**.' },
     ] },
-    { type: 'paragraph', label: 'Filing Rule', text: 'Under **nothing-before-something**, a shorter entry comes before a longer entry beginning with the same characters.' },
   ],
   'cler-0004': [
     { type: 'correct_answer', text: 'A — 3-2-1-4' },
@@ -105,7 +97,6 @@ const EXPECTED_BLOCKS = {
       { type: 'paragraph', text: '**D:** Places Ferrer before Fajardo and Flores.' },
       { type: 'paragraph', text: '**E:** Places Fungo first even though its second letter **u** comes after **a, e,** and **l**.' },
     ] },
-    { type: 'paragraph', label: 'Filing Rule', text: 'When entries share a prefix, compare the **next differing letter**.' },
   ],
   'cler-0005': [
     { type: 'correct_answer', text: 'D — Villarin, Cesar' },
@@ -116,7 +107,6 @@ const EXPECTED_BLOCKS = {
       { type: 'paragraph', text: '**C:** Villalobos comes first.' },
       { type: 'paragraph', text: '**E:** Villaranda comes third.' },
     ] },
-    { type: 'paragraph', label: 'Filing Rule', text: 'When surnames share a long prefix, skip the common letters and compare the **first differing letter**.' },
   ],
 } as const;
 
@@ -163,7 +153,6 @@ describe('Filing Batch 1 structured explanations', () => {
       const blocks = catalog.questions.get(id)?.structuredExplanation?.blocks ?? [];
       const labels = blocks.flatMap((block) => block.type === 'paragraph' && block.label ? [block.label] : []);
       expect(labels).toContain('Rationale');
-      expect(labels).toContain('Filing Rule');
       expect(labels).not.toContain('What to Notice');
       expect(labels).not.toContain('Apply the Rule');
       expect(labels).not.toContain('Filing Order');

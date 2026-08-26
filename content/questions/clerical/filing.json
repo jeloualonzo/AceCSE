@@ -90,11 +90,6 @@
               "text": "**E:** Only Folder 3 is misplaced; Folder 1 is not out of order."
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "label": "Filing Rule",
-          "text": "Compare filing units from left to right: **surname → given name → middle name or initial**."
         }
       ]
     }
@@ -188,11 +183,6 @@
               "text": "**E:** Places **The** after San but before Development, rather than at the end in parentheses."
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "label": "Filing Rule",
-          "text": "Ignore a leading business-name article when alphabetizing; place the article at the end in parentheses."
         }
       ]
     }
@@ -286,11 +276,6 @@
               "text": "**E:** Functional-alphabetical filing is not the method demonstrated by the examples; the primary basis shown is the subject or function."
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "label": "Filing Rule",
-          "text": "**Subject filing** organizes records by **topic or function**."
         }
       ]
     }
@@ -386,11 +371,6 @@
               "text": "**E:** Zamora files under **Z**, which comes after Banal."
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "label": "Filing Rule",
-          "text": "Ignore personal titles and file the name by **surname**."
         }
       ]
     }
@@ -486,11 +466,6 @@
               "text": "**E:** Urbano comes fifth."
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "label": "Filing Rule",
-          "text": "Ignore personal titles and file names by **surname**."
         }
       ]
     }
@@ -585,11 +560,6 @@
               "text": "**E:** Places Buenaventura before Bondoc."
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "label": "Filing Rule",
-          "text": "When surnames share the same beginning, continue comparing letter by letter until a difference appears."
         }
       ]
     }
@@ -675,11 +645,6 @@
               "text": "**E:** Alma begins with **Al**, but after comparing the next letters, **Albert** comes first."
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "label": "Filing Rule",
-          "text": "When surnames are identical, compare given names **character by character**, not by length."
         }
       ]
     }
@@ -765,11 +730,6 @@
               "text": "**E:** Anna follows Ana because **Ana** ends before the additional **n**."
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "label": "Filing Rule",
-          "text": "Under **nothing-before-something**, a shorter entry comes before a longer entry beginning with the same characters."
         }
       ]
     }
@@ -863,11 +823,6 @@
               "text": "**E:** Places Fungo first even though its second letter **u** comes after **a, e,** and **l**."
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "label": "Filing Rule",
-          "text": "When entries share a prefix, compare the **next differing letter**."
         }
       ]
     }
@@ -952,11 +907,6 @@
               "text": "**E:** Villaranda comes third."
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "label": "Filing Rule",
-          "text": "When surnames share a long prefix, skip the common letters and compare the **first differing letter**."
         }
       ]
     }
