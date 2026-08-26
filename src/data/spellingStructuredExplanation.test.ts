@@ -12,91 +12,52 @@ type ApprovedId = (typeof APPROVED_IDS)[number];
 
 const EXPECTED_BLOCKS = {
   'cler-0055': [
-        { type: 'correct_answer', text: 'C — *Personnel*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*Personnel*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The correct spelling has **double n** and a **single l**.' },
-    { type: 'rule', text: '*Personnel* means employees or staff, while *personal* means individual or private.' },
+    { type: 'correct_answer', text: 'C — *Personnel*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The correct spelling is **personnel**, with **double n** and a **single l**. *Personnel* refers to employees or staff, while *personal* means individual or private.' },
   ],
   'cler-0012': [
-        { type: 'correct_answer', text: 'D — *accommodate*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*accommodate*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The word has **double c** and **double m**.' },
-    { type: 'paragraph', label: 'Double c', text: '*access*, *accident*, *occur*, *occasion*, *occurrence*' },
-    { type: 'paragraph', label: 'Double m', text: '*common*, *committee*, *immediate*, *recommend*, *commitment*' },
-    { type: 'paragraph', label: 'Memory Aid', text: 'Accommodate has **double c** and **double m**.' },
+    { type: 'correct_answer', text: 'D — *accommodate*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The correct spelling is **accommodate**, with **double c** and **double m**. Remembering the two doubled consonants helps distinguish it from common misspellings such as *accomodate* and *acommodate*.\n\n**Memory aid:** Accommodate has **double c** and **double m**.' },
   ],
   'cler-0013': [
-        { type: 'correct_answer', text: 'E — *seperate*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*separate*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The correct spelling uses **a**, not **e**, after p:\n\n*sep-a-rate*' },
-    { type: 'paragraph', label: 'Memory Aid', text: 'There is a **RAT** in sepa-**RAT**-e.' },
+    { type: 'correct_answer', text: 'E — *seperate*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The misspelled word is **seperate**. The correct spelling is **separate**, with **a**, not **e**, after **p**: *sep-a-rate*.\n\n**Memory aid:** There is a **RAT** in sepa-**RAT**-e.' },
   ],
   'cler-0014': [
-        { type: 'correct_answer', text: 'D — *embarrass*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*embarrass*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The word has **double r** and **double s**.' },
+    { type: 'correct_answer', text: 'D — *embarrass*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The correct spelling is **embarrass**, with **double r** and **double s**.' },
   ],
   'cler-0015': [
-        { type: 'correct_answer', text: 'D — *priviledge*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*privilege*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The correct ending is **~lege**, not **~ledge**.' },
-    { type: 'paragraph', label: '~lege', text: '*privilege*, *college*, *sacrilege*, *allege*' },
-    { type: 'paragraph', label: '~ledge', text: '*knowledge*, *acknowledge*, *ledge*, *pledge*, *sledge*' },
-    { type: 'paragraph', label: 'Memory Aid', text: 'Privi-**LEGE**.' },
+    { type: 'correct_answer', text: 'D — *priviledge*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The misspelled word is **priviledge**. The correct spelling is **privilege**, ending in **-lege**, not **-ledge**.\n\nA useful comparison is *privilege, college, sacrilege,* and *allege* versus *knowledge, acknowledge, pledge,* and *sledge*.\n\n**Memory aid:** Privi-**LEGE**.' },
   ],
   'cler-0016': [
-        { type: 'correct_answer', text: 'A — *maintenance*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*maintenance*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The middle of the word is **~ten~**, not **~tain~**, and the ending is **~ance**, not **~ence**.' },
-    { type: 'paragraph', label: '~ance', text: '*maintenance*, *attendance*, *assistance*, *importance*, *resistance*' },
-    { type: 'paragraph', label: '~ence', text: '*difference*, *reference*, *existence*, *dependence*, *confidence*' },
-    { type: 'paragraph', label: 'Memory Aid', text: 'Think *MAIN-ten-ance*, not *MAIN-tain-ance*.' },
+    { type: 'correct_answer', text: 'A — *maintenance*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The correct spelling is **maintenance**. It contains **-ten-** in the middle, not **-tain-**, and ends in **-ance**, not **-ence**.\n\nCompare **maintenance, attendance, assistance, importance,** and **resistance** with words such as **difference, reference, existence, dependence,** and **confidence**.\n\n**Memory aid:** Think **MAIN-ten-ance**, not *MAIN-tain-ance*.' },
   ],
   'cler-0017': [
-        { type: 'correct_answer', text: 'B — *conscientous*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*conscientious*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The correct ending contains **~ious**, not **~ous**.' },
-    { type: 'paragraph', label: '~ious', text: '*conscientious*, *curious*, *serious*, *delicious*, *gracious*' },
-    { type: 'paragraph', label: '~ous', text: '*famous*, *nervous*, *dangerous*, *generous*, *enormous*' },
-    { type: 'paragraph', label: 'Memory Aid', text: '*Conscientious* contains **~ious**.' },
+    { type: 'correct_answer', text: 'B — *conscientous*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The misspelled word is **conscientous**. The correct spelling is **conscientious**, with **-ious**, not **-ous**.\n\nExamples with **-ious** include *conscientious, curious, serious, delicious,* and *gracious*, while words such as *famous, nervous, dangerous, generous,* and *enormous* use **-ous**.\n\n**Memory aid:** *Conscientious* contains **-ious**.' },
   ],
   'cler-0018': [
-        { type: 'correct_answer', text: 'E — *perseverance*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*perseverance*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The word keeps the root **persever-** and ends in **~ance**.' },
-    { type: 'paragraph', label: '~ance', text: '*perseverance*, *appearance*, *endurance*, *attendance*, *resistance*' },
-    { type: 'paragraph', label: '~ence', text: '*difference*, *reference*, *existence*, *dependence*, *confidence*' },
-    { type: 'paragraph', label: 'Memory Aid', text: 'Connect *perseverance* with *persevere*: **persever-** + **~ance**.' },
+    { type: 'correct_answer', text: 'E — *perseverance*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The correct spelling is **perseverance**. It keeps the root **persever-** and ends in **-ance**.\n\nCompare *perseverance, appearance, endurance, attendance,* and *resistance* with *difference, reference, existence, dependence,* and *confidence*.\n\n**Memory aid:** Connect *perseverance* with *persevere*: **persever-** + **-ance**.' },
   ],
   'cler-0019': [
-        { type: 'correct_answer', text: 'E — *supercede*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*supersede*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The correct word ends in **~sede**. Other words in this spelling family use **~cede** or **~ceed**.' },
-    { type: 'paragraph', label: '~sede', text: '*supersede*' },
-    { type: 'paragraph', label: '~cede', text: '*precede*, *recede*, *concede*, *intercede*, *accede*' },
-    { type: 'paragraph', label: '~ceed', text: '*proceed*, *exceed*, *succeed*' },
-    { type: 'paragraph', label: 'Memory Aid', text: '*Supersede* uses **~sede**.' },
+    { type: 'correct_answer', text: 'E — *supercede*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The misspelled word is **supercede**. The correct spelling is **supersede**, which uses **-sede**. Other words in this spelling family use different endings: *precede, recede, concede,* and *intercede* use **-cede**, while *proceed, exceed,* and *succeed* use **-ceed**.\n\n**Memory aid:** *Supersede* uses **-sede**.' },
   ],
   'cler-0046': [
-        { type: 'correct_answer', text: 'C — *achieve*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*achieve*' },
-    { type: 'paragraph', label: 'What to Notice', text: '*Achieve* uses **~ie**, while many words use **~ei after c**.' },
-    { type: 'paragraph', label: '~ie', text: '*believe*, *achieve*, *friend*, *field*, *piece*' },
-    { type: 'paragraph', label: '~ei after c', text: '*receive*, *deceive*, *conceive*, *perceive*, *ceiling*' },
-    { type: 'paragraph', label: 'Memory Aid', text: 'Check the actual spelling rather than relying on the **“i before e”** rule alone.' },
+    { type: 'correct_answer', text: 'C — *achieve*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The correctly spelled word is **achieve**, with **-ie**. Compare it with words such as *believe, friend, field,* and *piece*, while words such as *receive, deceive, conceive, perceive,* and *ceiling* use **-ei** after **c**.\n\nThe familiar “i before e” rule has exceptions, so the spelling of the individual word still needs to be checked.' },
   ],
   'cler-0047': [
-        { type: 'correct_answer', text: 'B — *afidavit*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*affidavit*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The word has **double f**.' },
-    { type: 'paragraph', label: 'Double f', text: '*affidavit*, *afford*, *effort*, *difficult*, *official*' },
-    { type: 'paragraph', label: 'Memory Aid', text: '*Affidavit* has **double f**.' },
+    { type: 'correct_answer', text: 'B — *afidavit*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The misspelled word is **afidavit**. The correct spelling is **affidavit**, with **double f**.\n\n**Memory aid:** *Affidavit* has **double f**.' },
   ],
   'cler-0048': [
-        { type: 'correct_answer', text: 'D — *inoculate*' },
-    { type: 'paragraph', label: 'Correct Spelling', text: '*inoculate*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The word has **one n** and **one c**.' },
-    { type: 'paragraph', label: 'Memory Aid', text: 'Think *i-NOC-u-late*: one **n**, one **c**.' },
+    { type: 'correct_answer', text: 'D — *inoculate*' },
+    { type: 'paragraph', label: 'Rationale', text: 'The correct spelling is **inoculate**, with **one n** and **one c**.\n\n**Memory aid:** Think **i-NOC-u-late**: one **n**, one **c**.' },
   ],
 } as const satisfies Record<ApprovedId, readonly Record<string, unknown>[]>;
 
@@ -187,7 +148,10 @@ describe('Canonical Spelling structured explanations', () => {
       expect(question.taskInstance).toBeTruthy();
 
       expect(question.structuredExplanation?.blocks).toEqual(EXPECTED_BLOCKS[id]);
-      expect(JSON.stringify(question.structuredExplanation)).not.toMatch(/distractor|Option [A-E]|Latin|etymolog|Other Choices|corrected alternative/i);
+      expect(question.structuredExplanation?.blocks).toHaveLength(2);
+      expect(question.structuredExplanation?.blocks[0]?.type).toBe('correct_answer');
+      expect(question.structuredExplanation?.blocks[1]).toMatchObject({ type: 'paragraph', label: 'Rationale' });
+      expect(JSON.stringify(question.structuredExplanation)).not.toMatch(/distractor|Option [A-E]|Latin|etymolog|Other Choices/i);
     }
   });
 

@@ -117,15 +117,14 @@ describe('Spelling task architecture', () => {
     expect(repaired?.correctOptionId).toBe('D');
     expect(repaired?.structuredExplanation?.blocks).toEqual(expect.arrayContaining([
       { type: 'correct_answer', text: 'D — *embarrass*' },
-      { type: 'paragraph', label: 'Correct Spelling', text: '*embarrass*' },
+      { type: 'paragraph', label: 'Rationale', text: 'The correct spelling is **embarrass**, with **double r** and **double s**.' },
     ]));
     const accommodate = catalog.getQuestion('cler-0012');
     expect(accommodate?.choices.map((choice) => choice.text)).toEqual(['accomodate', 'acommodate', 'acomodate', 'accommodate', 'accommadate']);
     expect(accommodate?.correctOptionId).toBe('D');
     expect(accommodate?.structuredExplanation?.blocks).toEqual(expect.arrayContaining([
       { type: 'correct_answer', text: 'D — *accommodate*' },
-      { type: 'paragraph', label: 'Correct Spelling', text: '*accommodate*' },
-      { type: 'paragraph', label: 'Memory Aid', text: 'Accommodate has **double c** and **double m**.' },
+      { type: 'paragraph', label: 'Rationale', text: 'The correct spelling is **accommodate**, with **double c** and **double m**. Remembering the two doubled consonants helps distinguish it from common misspellings such as *accomodate* and *acommodate*.\n\n**Memory aid:** Accommodate has **double c** and **double m**.' },
     ]));
 
     expect(JSON.stringify(spelling)).not.toMatch(/AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|training rules|authored task/i);

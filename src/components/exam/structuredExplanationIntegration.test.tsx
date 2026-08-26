@@ -664,34 +664,21 @@ describe('structured explanation Practice/Results integration V3', () => {
       'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
       'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
     ];
-    const memoryAidIds = new Set([
-      'cler-0012', 'cler-0013', 'cler-0015',
-      'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
-    ]);
     const questions = spellingIds.map((id) => catalog.questions.get(id)!);
-    const correctSpellingText = new Map<string, string>();
-    const memoryAidText = new Map<string, string>();
+    const rationaleText = new Map<string, string>();
 
     for (const question of questions) {
       const id = question.id;
-      const correctSpellingBlock = question.structuredExplanation?.blocks.find(
-        (block) => block.type === 'paragraph' && block.label === 'Correct Spelling'
+      const rationaleBlock = question.structuredExplanation?.blocks.find(
+        (block) => block.type === 'paragraph' && block.label === 'Rationale'
       );
-      const memoryAidBlock = question.structuredExplanation?.blocks.find(
-        (block) => block.type === 'paragraph' && block.label === 'Memory Aid'
-      );
-      if (!correctSpellingBlock || correctSpellingBlock.type !== 'paragraph') {
-        throw new Error(`${id}: Correct Spelling paragraph is missing`);
+      if (!rationaleBlock || rationaleBlock.type !== 'paragraph') {
+        throw new Error(`${id}: Rationale paragraph is missing`);
       }
-      correctSpellingText.set(id, correctSpellingBlock.text);
-      if (memoryAidIds.has(id)) {
-        if (memoryAidBlock?.type !== 'paragraph') {
-          throw new Error(`${id}: visible Memory Aid paragraph is missing`);
-        }
-        memoryAidText.set(id, memoryAidBlock.text);
-      } else {
-        expect(memoryAidBlock).toBeUndefined();
-      }
+      rationaleText.set(id, rationaleBlock.text);
+      expect(question.structuredExplanation?.blocks).toHaveLength(2);
+      expect(question.structuredExplanation?.blocks[0]?.type).toBe('correct_answer');
+      expect(question.structuredExplanation?.blocks[1]).toEqual(rationaleBlock);
 
       renderWithTheme(
         <QuestionCard
@@ -705,18 +692,14 @@ describe('structured explanation Practice/Results integration V3', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Show Explanation' }));
       const practiceRoots = screen.getAllByTestId('structured-explanation');
       expect(practiceRoots).toHaveLength(2);
-      expect(practiceRoots.every((root) => within(root).getByText('Correct Spelling'))).toBe(true);
-      expect(practiceRoots.every((root) => root.textContent?.includes(stripInlineFormatting(correctSpellingBlock.text)))).toBe(true);
+      expect(practiceRoots.every((root) => within(root).getByText('Rationale'))).toBe(true);
+      expect(practiceRoots.every((root) => root.textContent?.includes(stripInlineFormatting(rationaleText.get(id)!)))).toBe(true);
       expect(practiceRoots.every((root) => root.querySelector('strong, em') !== null)).toBe(true);
+      expect(practiceRoots.every((root) => within(root).queryByText('Correct Spelling') === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Pattern/) === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Step [123]/) === null)).toBe(true);
       expect(practiceRoots.every((root) => within(root).queryByText(/Other Choices|corrected alternatives/i) === null)).toBe(true);
-      expect(practiceRoots.every((root) => within(root).queryByRole('button', { name: /Memory Aid/ }) === null)).toBe(true);
-      const aid = memoryAidText.get(id);
-      if (aid !== undefined) {
-        expect(practiceRoots.every((root) => within(root).getByText('Memory Aid'))).toBe(true);
-        expect(practiceRoots.every((root) => root.textContent?.includes(stripInlineFormatting(aid)))).toBe(true);
-      }
+      expect(practiceRoots.every((root) => within(root).queryByText('Memory Aid') === null)).toBe(true);
       cleanup();
     }
 
@@ -733,16 +716,12 @@ describe('structured explanation Practice/Results integration V3', () => {
 
     for (const id of spellingIds) {
       const resultsRoot = resultsCards.get(id)!;
-      expect(within(resultsRoot).getByText('Correct Spelling')).toBeInTheDocument();
-      expect(resultsRoot.textContent).toContain(stripInlineFormatting(correctSpellingText.get(id)!));
+      expect(within(resultsRoot).getByText('Rationale')).toBeInTheDocument();
+      expect(resultsRoot.textContent).toContain(stripInlineFormatting(rationaleText.get(id)!));
       expect(resultsRoot.querySelector('strong, em')).not.toBeNull();
+      expect(within(resultsRoot).queryByText('Correct Spelling')).toBeNull();
       expect(within(resultsRoot).queryByText(/Pattern/)).not.toBeInTheDocument();
-      expect(within(resultsRoot).queryByRole('button', { name: /Memory Aid/ })).toBeNull();
-      const aid = memoryAidText.get(id);
-      if (aid !== undefined) {
-        expect(within(resultsRoot).getByText('Memory Aid')).toBeInTheDocument();
-        expect(resultsRoot.textContent).toContain(stripInlineFormatting(aid));
-      }
+      expect(within(resultsRoot).queryByText('Memory Aid')).toBeNull();
     }
   });
 

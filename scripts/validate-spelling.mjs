@@ -3,9 +3,6 @@ import path from 'node:path';
 
 const root = process.cwd();
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
-const stripInlineFormatting = (text) => text
-  .replace(/\*\*([^*]+)\*\*/g, '$1')
-  .replace(/\*([^*]+)\*/g, '$1');
 const fail = (message) => {
   console.error(`✗ ${message}`);
   process.exitCode = 1;
@@ -46,24 +43,34 @@ const approvedStructuredIds = new Set([
   'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
   'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
 ]);
-const approvedCorrectSpellings = {
-  'cler-0055': 'Personnel',
-  'cler-0012': 'accommodate',
-  'cler-0013': 'separate',
-  'cler-0014': 'embarrass',
-  'cler-0015': 'privilege',
-  'cler-0016': 'maintenance',
-  'cler-0017': 'conscientious',
-  'cler-0018': 'perseverance',
-  'cler-0019': 'supersede',
-  'cler-0046': 'achieve',
-  'cler-0047': 'affidavit',
-  'cler-0048': 'inoculate',
+const approvedAnswerTexts = {
+  'cler-0055': 'C — *Personnel*',
+  'cler-0012': 'D — *accommodate*',
+  'cler-0013': 'E — *seperate*',
+  'cler-0014': 'D — *embarrass*',
+  'cler-0015': 'D — *priviledge*',
+  'cler-0016': 'A — *maintenance*',
+  'cler-0017': 'B — *conscientous*',
+  'cler-0018': 'E — *perseverance*',
+  'cler-0019': 'E — *supercede*',
+  'cler-0046': 'C — *achieve*',
+  'cler-0047': 'B — *afidavit*',
+  'cler-0048': 'D — *inoculate*',
 };
-const visibleMemoryAidIds = new Set([
-  'cler-0012', 'cler-0013', 'cler-0015',
-  'cler-0016', 'cler-0017', 'cler-0018', 'cler-0019', 'cler-0046', 'cler-0047', 'cler-0048',
-]);
+const approvedRationaleTexts = {
+  'cler-0055': 'The correct spelling is **personnel**, with **double n** and a **single l**. *Personnel* refers to employees or staff, while *personal* means individual or private.',
+  'cler-0012': 'The correct spelling is **accommodate**, with **double c** and **double m**. Remembering the two doubled consonants helps distinguish it from common misspellings such as *accomodate* and *acommodate*.\n\n**Memory aid:** Accommodate has **double c** and **double m**.',
+  'cler-0013': 'The misspelled word is **seperate**. The correct spelling is **separate**, with **a**, not **e**, after **p**: *sep-a-rate*.\n\n**Memory aid:** There is a **RAT** in sepa-**RAT**-e.',
+  'cler-0014': 'The correct spelling is **embarrass**, with **double r** and **double s**.',
+  'cler-0015': 'The misspelled word is **priviledge**. The correct spelling is **privilege**, ending in **-lege**, not **-ledge**.\n\nA useful comparison is *privilege, college, sacrilege,* and *allege* versus *knowledge, acknowledge, pledge,* and *sledge*.\n\n**Memory aid:** Privi-**LEGE**.',
+  'cler-0016': 'The correct spelling is **maintenance**. It contains **-ten-** in the middle, not **-tain-**, and ends in **-ance**, not **-ence**.\n\nCompare **maintenance, attendance, assistance, importance,** and **resistance** with words such as **difference, reference, existence, dependence,** and **confidence**.\n\n**Memory aid:** Think **MAIN-ten-ance**, not *MAIN-tain-ance*.',
+  'cler-0017': 'The misspelled word is **conscientous**. The correct spelling is **conscientious**, with **-ious**, not **-ous**.\n\nExamples with **-ious** include *conscientious, curious, serious, delicious,* and *gracious*, while words such as *famous, nervous, dangerous, generous,* and *enormous* use **-ous**.\n\n**Memory aid:** *Conscientious* contains **-ious**.',
+  'cler-0018': 'The correct spelling is **perseverance**. It keeps the root **persever-** and ends in **-ance**.\n\nCompare *perseverance, appearance, endurance, attendance,* and *resistance* with *difference, reference, existence, dependence,* and *confidence*.\n\n**Memory aid:** Connect *perseverance* with *persevere*: **persever-** + **-ance**.',
+  'cler-0019': 'The misspelled word is **supercede**. The correct spelling is **supersede**, which uses **-sede**. Other words in this spelling family use different endings: *precede, recede, concede,* and *intercede* use **-cede**, while *proceed, exceed,* and *succeed* use **-ceed**.\n\n**Memory aid:** *Supersede* uses **-sede**.',
+  'cler-0046': 'The correctly spelled word is **achieve**, with **-ie**. Compare it with words such as *believe, friend, field,* and *piece*, while words such as *receive, deceive, conceive, perceive,* and *ceiling* use **-ei** after **c**.\n\nThe familiar “i before e” rule has exceptions, so the spelling of the individual word still needs to be checked.',
+  'cler-0047': 'The misspelled word is **afidavit**. The correct spelling is **affidavit**, with **double f**.\n\n**Memory aid:** *Affidavit* has **double f**.',
+  'cler-0048': 'The correct spelling is **inoculate**, with **one n** and **one c**.\n\n**Memory aid:** Think **i-NOC-u-late**: one **n**, one **c**.',
+};
 const forbidden = /AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|training rules|authored task/i;
 const expectedCorrect = {
   'cler-0012': 'D', 'cler-0013': 'E', 'cler-0014': 'D', 'cler-0015': 'D', 'cler-0016': 'A',
@@ -119,24 +126,15 @@ for (const question of spelling) {
     for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
       if (Object.hasOwn(question, field)) fail(`${question.id}: legacy field ${field} must be removed from canonical Spelling records`);
     }
-    const correctSpellingBlock = question.structuredExplanation?.blocks?.find((block) => block.type === 'paragraph' && block.label === 'Correct Spelling');
-
-    if (stripInlineFormatting(correctSpellingBlock?.text ?? '') !== approvedCorrectSpellings[question.id]) fail(`${question.id}: approved Correct Spelling block is missing or incorrect`);
-    const memoryAidBlocks = question.structuredExplanation?.blocks?.filter((block) => block.type === 'paragraph' && block.label === 'Memory Aid') ?? [];
-    const alternativeMemoryAids = question.structuredExplanation?.blocks?.filter((block) => block.type === 'alternative_solution' && block.title === 'Memory Aid') ?? [];
-    if (visibleMemoryAidIds.has(question.id)) {
-      if (memoryAidBlocks.length !== 1 || alternativeMemoryAids.length !== 0) fail(`${question.id}: Memory Aid must be a visible labeled paragraph, not a collapsible alternative`);
-    } else if (memoryAidBlocks.length !== 0 || alternativeMemoryAids.length !== 0) {
-      fail(`${question.id}: unexpected Memory Aid block`);
-    }
-    if (question.structuredExplanation?.blocks?.some((block) => block.type === 'alternative_solution' && /other choices|corrected alternatives/i.test(block.title ?? ''))) {
-      fail(`${question.id}: Other Choices/corrected alternatives are not approved for canonical Spelling`);
-    }
+    const blocks = question.structuredExplanation?.blocks ?? [];
+    if (blocks.length !== 2 || blocks[0]?.type !== 'correct_answer' || blocks[0]?.text !== approvedAnswerTexts[question.id]) fail(`${question.id}: structured explanation must begin with the exact approved correct_answer block`);
+    if (blocks[1]?.type !== 'paragraph' || blocks[1]?.label !== 'Rationale' || blocks[1]?.text !== approvedRationaleTexts[question.id]) fail(`${question.id}: exact approved Rationale paragraph is missing or incorrect`);
+    if (blocks.some((block) => block.type === 'heading' || block.type === 'distractor_section' || block.type === 'rule' || block.type === 'step' || block.type === 'alternative_solution')) fail(`${question.id}: only correct_answer and Rationale blocks are permitted for canonical Spelling`);
   }
   if (question.id === 'cler-0014') {
     const expectedChoices = ['embarass', 'embarras', 'embaras', 'embarrass', 'embarrased'];
     if (JSON.stringify(question.choices.map((choice) => choice.text)) !== JSON.stringify(expectedChoices)) fail('cler-0014: repaired choices do not match the verified single-answer set');
-    if (question.structuredExplanation?.blocks?.some((block) => block.type === 'paragraph' && block.label === 'Correct Spelling' && stripInlineFormatting(block.text) === 'embarrass') !== true) fail('cler-0014: structured explanation does not establish D as the correctly spelled word');
+    if (question.structuredExplanation?.blocks?.[0]?.type !== 'correct_answer' || question.structuredExplanation.blocks[0].text !== approvedAnswerTexts['cler-0014']) fail('cler-0014: structured explanation does not establish D as the correctly spelled word');
 
   }
   const visible = JSON.stringify({ question: question.question, choices: question.choices, explanation: question.explanation, steps: question.steps, distractors: question.distractorExplanations, tip: question.tip, reference: question.reference, taskInstance: question.taskInstance });
