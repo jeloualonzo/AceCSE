@@ -16,6 +16,10 @@ import { BatchCard } from '@/components/contentBank/BatchCard';
 import { CreateBatchPanel } from '@/components/contentBank/CreateBatchPanel';
 import { FamilyQuestionPicker } from '@/components/contentBank/FamilyQuestionPicker';
 import { StoreDegradedNotice } from '@/components/contentBank/StoreDegradedNotice';
+import {
+  buildContentBankPracticeLaunch,
+  openContentBankPracticeInNewTab,
+} from '@/lib/contentBankPractice';
 import { FrozenProgressBar, ProgressBadge, StatFigure } from '@/components/contentBank/badges';
 import {
   CONTENT_BANK_BASE,
@@ -44,6 +48,7 @@ function FamilyWorkspace({ subject, familySlug }: { subject: Subject; familySlug
   const batchState = useRefinementBatches();
   // Ordered, not a set: this is the order the batch stores, exports, and runs in.
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [practiceError, setPracticeError] = useState<string | null>(null);
 
   const workspace = useMemo(
     () => (catalog ? buildSubjectWorkspaceData(subject, catalog, batchState.batches) : null),
@@ -132,6 +137,23 @@ function FamilyWorkspace({ subject, familySlug }: { subject: Subject; familySlug
     navigate(contentBankBatchPath(batch.id));
   };
 
+  const practiceFamily = () => {
+    const questionIds = familyQuestions.map((item) => item.question.id);
+    const launch = buildContentBankPracticeLaunch(
+      questionIds,
+      familyQuestions.map((item) => item.question),
+    );
+    if (!launch) {
+      setPracticeError('Family Practice is unavailable because the active family questions could not be resolved exactly.');
+      return;
+    }
+    if (!openContentBankPracticeInNewTab(launch)) {
+      setPracticeError('Family Practice could not open a new tab. Allow pop-ups for this site and try again.');
+      return;
+    }
+    setPracticeError(null);
+  };
+
   return (
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
       <ContentBankBreadcrumbs
@@ -206,6 +228,38 @@ function FamilyWorkspace({ subject, familySlug }: { subject: Subject; familySlug
         onCreate={batchState.createBatch}
         onCreated={onCreated}
       />
+
+      <section
+        aria-labelledby="family-practice-heading"
+        className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 shadow-sm dark:border-emerald-500/30 dark:bg-emerald-950/30"
+      >
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 id="family-practice-heading" className="text-sm font-bold uppercase tracking-wider text-emerald-900 dark:text-emerald-200">
+              Family Practice
+            </h2>
+            <p className="mt-1 text-xs text-emerald-800 dark:text-emerald-300">
+              {familyQuestions.length} active {familyQuestions.length === 1 ? 'question' : 'questions'}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={practiceFamily}
+            disabled={familyQuestions.length === 0}
+            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-emerald-600 px-4 text-xs font-bold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          >
+            Practice all {familyQuestions.length} questions
+          </button>
+        </div>
+        {practiceError && (
+          <p
+            role="alert"
+            className="mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-800 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300"
+          >
+            {practiceError}
+          </p>
+        )}
+      </section>
 
       <section aria-labelledby="family-batches-heading" className="space-y-3">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">

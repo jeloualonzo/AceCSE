@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useMemo, useState } from 'react';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { Loader2, PlayCircle } from 'lucide-react';
 import { SUBJECTS_BY_LEVEL } from '@/config/exam';
 import { getQuestionPreview } from '@/data/contentBankWorkspace';
@@ -12,14 +12,16 @@ import { StoreDegradedNotice } from '@/components/contentBank/StoreDegradedNotic
 import { WorkflowStatusControl } from '@/components/contentBank/WorkflowStatusControl';
 import { WorkflowBadge } from '@/components/contentBank/badges';
 import { ReviewExportPanel } from '@/components/contentBank/ReviewExportPanel';
-import { EXAM_ROUTE } from '@/navigation/appRoutes';
+import {
+  buildContentBankPracticeLaunch,
+  openContentBankPracticeInNewTab,
+} from '@/lib/contentBankPractice';
 import {
   CONTENT_BANK_BASE,
   contentBankFamilyPath,
   contentBankSubjectPath,
 } from '@/navigation/contentBankRoutes';
-import type { ExamLaunchRequest } from '@/pages/ExamPage';
-import type { ExamLevel, Question, Subject } from '@/types';
+import type { Question, Subject } from '@/types';
 
 /**
  * Every subject, because a batch is addressed by id alone and the admin app has
@@ -29,29 +31,6 @@ import type { ExamLevel, Question, Subject } from '@/types';
 const ALL_SUBJECTS: readonly Subject[] = [
   ...new Set([...SUBJECTS_BY_LEVEL.Professional, ...SUBJECTS_BY_LEVEL.Subprofessional]),
 ];
-
-/**
- * The level to record an exact-ID review run as, derived from the batch itself.
- *
- * Level is pure session metadata here: `buildQuestionIdsPracticeSession` loads
- * every subject regardless, because the run is defined by its ids. Deriving it
- * from the batch's own questions is what lets the admin app carry no selected
- * level at all while still labelling the session honestly.
- */
-function levelForQuestions(questions: readonly Question[]): ExamLevel {
-  const subjects = new Set(questions.map((question) => question.subject));
-  // A subject that exists at only one level pins the run to that level.
-  if ([...subjects].some((subject) => !SUBJECTS_BY_LEVEL.Subprofessional.includes(subject))) {
-    return 'Professional';
-  }
-  if ([...subjects].some((subject) => !SUBJECTS_BY_LEVEL.Professional.includes(subject))) {
-    return 'Subprofessional';
-  }
-  // Shared subjects: fall back to the questions' own level metadata.
-  return questions.some((question) => question.examLevel === 'Professional')
-    ? 'Professional'
-    : 'Subprofessional';
-}
 
 function formatTimestamp(value: string): string {
   const timestamp = Date.parse(value);
@@ -77,8 +56,8 @@ function Fact({ label, children }: { label: string; children: React.ReactNode })
  * exist is the kind of quiet inaccuracy this project refuses.
  */
 function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: RefinementBatchesState }) {
-  const navigate = useNavigate();
   const { catalog, error, loading } = useContentCatalog(ALL_SUBJECTS);
+  const [practiceError, setPracticeError] = useState<string | null>(null);
 
   useDocumentTitle(batch.title);
 
@@ -106,14 +85,16 @@ function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: Refin
   const exportsReady = Boolean(catalog) && missingIds.length === 0 && resolvedQuestions.length > 0;
 
   const practice = () => {
-    const launch: ExamLaunchRequest = {
-      kind: 'practice',
-      examLevel: levelForQuestions(resolvedQuestions),
-      questionCount: batch.questionIds.length,
-      questionIds: [...batch.questionIds],
-      internalReview: true,
-    };
-    navigate(EXAM_ROUTE, { state: { launch } });
+    const launch = buildContentBankPracticeLaunch(batch.questionIds, resolvedQuestions);
+    if (!launch) {
+      setPracticeError('Practice is unavailable because the batch questions could not be resolved exactly.');
+      return;
+    }
+    if (!openContentBankPracticeInNewTab(launch)) {
+      setPracticeError('Practice could not open a new tab. Allow pop-ups for this site and try again.');
+      return;
+    }
+    setPracticeError(null);
   };
 
   return (
@@ -289,6 +270,15 @@ function BatchWorkspace({ batch, state }: { batch: RefinementBatch; state: Refin
             >
               Run and review
             </h2>
+
+            {practiceError && (
+              <p
+                role="alert"
+                className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-800 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300"
+              >
+                {practiceError}
+              </p>
+            )}
 
             {missingIds.length > 0 && (
               <p

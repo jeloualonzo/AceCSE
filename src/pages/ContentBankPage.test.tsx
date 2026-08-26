@@ -38,6 +38,7 @@ import {
   slugForFamily,
   WORKSPACE_BATCHES_STORAGE_KEY,
 } from '@/data/contentBankWorkspace';
+import { contentBankPracticePath } from '@/lib/contentBankPractice';
 import { ContentBankPage, getQAFocusGroups, QA_FOCUS_GROUPS } from './ContentBankPage';
 import ContentBankBatchPage from './ContentBankBatchPage';
 import ContentBankFamilyPage from './ContentBankFamilyPage';
@@ -45,6 +46,7 @@ import ContentBankReviewPage from './ContentBankReviewPage';
 import ContentBankSubjectPage from './ContentBankSubjectPage';
 
 const navigateMock = vi.hoisted(() => vi.fn());
+const openMock = vi.hoisted(() => vi.fn());
 
 vi.mock('@/context/AuthContext', () => ({
   AuthProvider: ({ children }: { children: React.ReactNode }) => children,
@@ -154,9 +156,15 @@ async function familyWithRemaining(subject: Subject, minimum: number) {
 afterEach(() => {
   cleanup();
   localStorage.clear();
+  vi.restoreAllMocks();
 });
 
-beforeEach(() => navigateMock.mockReset());
+beforeEach(() => {
+  navigateMock.mockReset();
+  openMock.mockReset();
+  openMock.mockReturnValue({ opener: null } as unknown as Window);
+  vi.spyOn(window, 'open').mockImplementation(openMock as typeof window.open);
+});
 
 describe('Content Bank dashboard', () => {
   it('renders all current subjects as reusable workspace entry points', () => {
@@ -324,7 +332,7 @@ describe('Content Bank workspaces', () => {
     expect(screen.queryByText('Verbal Ability')).not.toBeInTheDocument();
   }, SLOW);
 
-  it('routes a batch URL to the Batch Workspace and launches the learner Practice engine on its exact IDs', async () => {
+  it('routes a batch URL to the Batch Workspace and launches the learner Practice engine on its exact IDs in a new tab', async () => {
     const user = userEvent.setup();
     const batch = getRefinementBatches().find((candidate) => candidate.id === 'filing-batch-02')!;
     renderRoute(contentBankBatchPath(batch.id));
@@ -349,21 +357,52 @@ describe('Content Bank workspaces', () => {
     expect(screen.queryByRole('link', { name: 'Review & export' })).not.toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: `Practice these ${batch.questionIds.length} questions` }));
-    // The exact IDs, in order, through the learner exam route. `internalReview`
-    // is what keeps this graded and reviewable but never written as an attempt.
-    // The level is derived from the batch itself — Clerical Ability exists only
-    // at Subprofessional — because the admin app has no selected level to read.
-    expect(navigateMock).toHaveBeenCalledWith(EXAM_ROUTE, {
-      state: {
-        launch: {
-          kind: 'practice',
-          examLevel: 'Subprofessional',
-          questionCount: batch.questionIds.length,
-          questionIds: batch.questionIds,
-          internalReview: true,
-        },
-      },
+    // The exact IDs, in order, through the canonical learner exam route in a
+    // new tab. `internalReview` keeps this graded and reviewable but never
+    // written as an attempt.
+    const expectedLaunch = {
+      kind: 'practice' as const,
+      examLevel: 'Subprofessional' as const,
+      questionCount: batch.questionIds.length,
+      questionIds: batch.questionIds,
+      internalReview: true as const,
+    };
+    expect(openMock).toHaveBeenCalledWith(contentBankPracticePath(expectedLaunch), '_blank');
+    expect(navigateMock).not.toHaveBeenCalledWith(EXAM_ROUTE, expect.anything());
+    expect(openMock.mock.results[0]?.value).toMatchObject({ opener: null });
+  }, SLOW);
+
+  it('practices the complete active family in canonical order through a new internal-review tab', async () => {
+    const user = userEvent.setup();
+    const catalog = await loadContentCatalog(['Clerical Ability']);
+    const workspace = buildSubjectWorkspaceData('Clerical Ability', catalog, getRefinementBatches());
+    const familyGroup = workspace.families.find(
+      (group) => group.remainingQuestionIds.length >= 3 && group.activeQuestionIds.some((id) => !group.remainingQuestionIds.includes(id)),
+    ) ?? workspace.families.find((group) => group.remainingQuestionIds.length >= 3);
+    if (!familyGroup) throw new Error('No Clerical Ability family has enough active questions for this test.');
+    const familyIds = workspace.questions
+      .filter((item) => item.family === familyGroup.family)
+      .map((item) => item.question.id);
+    expect(familyIds).toEqual(familyGroup.activeQuestionIds);
+
+    renderRoute(contentBankFamilyPath('Clerical Ability', familyGroup.family));
+    await waitFor(() => expect(screen.getByRole('heading', { name: familyGroup.family, level: 1 })).toBeInTheDocument(), {
+      timeout: SLOW,
     });
+    await batchesLoaded();
+
+    const practiceButton = screen.getByRole('button', { name: `Practice all ${familyIds.length} questions` });
+    await user.click(practiceButton);
+
+    const expectedLaunch = {
+      kind: 'practice' as const,
+      examLevel: 'Subprofessional' as const,
+      questionCount: familyIds.length,
+      questionIds: familyIds,
+      internalReview: true as const,
+    };
+    expect(openMock).toHaveBeenCalledWith(contentBankPracticePath(expectedLaunch), '_blank');
+    expect(navigateMock).not.toHaveBeenCalledWith(EXAM_ROUTE, expect.anything());
   }, SLOW);
 
   it('offers workflow status only as controlled buttons, and a transition survives the next read', async () => {
@@ -508,6 +547,7 @@ describe('Content Bank workspaces', () => {
     expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)).toEqual([
       'Select questions for the next batch',
       'Create refinement batch',
+      'Family Practice',
       'Batches in this family',
     ]);
 

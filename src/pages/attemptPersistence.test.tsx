@@ -7,6 +7,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { EXAM_ROUTE } from '@/navigation/appRoutes';
+import { contentBankPracticePath } from '@/lib/contentBankPractice';
+import type { ContentBankPracticeLaunch } from '@/lib/contentBankPractice';
 import { ExamPage, type ExamLaunchRequest } from './ExamPage';
 
 const saveAttemptMock = vi.hoisted(() =>
@@ -47,6 +49,18 @@ function renderExam(launch: ExamLaunchRequest) {
   return render(
     <ThemeProvider>
       <MemoryRouter initialEntries={[{ pathname: EXAM_ROUTE, state: { launch } }]}>
+        <Routes>
+          <Route path={EXAM_ROUTE} element={<ExamPage />} />
+        </Routes>
+      </MemoryRouter>
+    </ThemeProvider>
+  );
+}
+
+function renderExamFromUrl(launch: ContentBankPracticeLaunch) {
+  return render(
+    <ThemeProvider>
+      <MemoryRouter initialEntries={[contentBankPracticePath(launch)]}>
         <Routes>
           <Route path={EXAM_ROUTE} element={<ExamPage />} />
         </Routes>
@@ -123,6 +137,25 @@ describe('attempt persistence', () => {
     const recorded = attempt as { examLevel: string; mode: string };
     expect(recorded.mode).toBe('practice');
     expect(recorded.examLevel).toBe('Subprofessional');
+  }, SLOW);
+
+  it('accepts a new-tab Content Bank URL handoff and never writes the internal review to attempt history', async () => {
+    const user = userEvent.setup();
+    renderExamFromUrl(launchOf(true) as ContentBankPracticeLaunch);
+
+    await submitSession(user);
+
+    await waitFor(
+      () =>
+        expect(
+          screen.getByRole('heading', {
+            name: 'Civil Service Examination — Subprofessional Level',
+            level: 1,
+          })
+        ).toBeInTheDocument(),
+      { timeout: SLOW }
+    );
+    expect(saveAttemptMock).not.toHaveBeenCalled();
   }, SLOW);
 
   it('grades an internal review run but never writes it to attempt history', async () => {

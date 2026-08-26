@@ -145,6 +145,40 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(container.querySelectorAll('[data-testid="structured-explanation"]')).toHaveLength(1);
   });
 
+  it('renders separate distractor paragraphs and stacked Apply the Rule steps without nested cards', () => {
+    render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [
+            { type: 'heading', text: 'Solution' },
+            { type: 'step', title: 'Apply the Rule', blocks: [
+              { type: 'paragraph', text: 'First compare the entries.' },
+              { type: 'paragraph', text: 'Then identify the differing position.' },
+            ] },
+            { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** reverses the required order.' },
+            { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** uses the wrong code.' },
+            { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** omits a required field.' },
+          ],
+        }}
+        theme="light"
+      />
+    );
+
+    const root = screen.getByTestId('structured-explanation');
+    expect(within(root).getAllByText('Why the other choices fail')).toHaveLength(3);
+    const paragraphText = [...root.querySelectorAll('p')].map((paragraph) => paragraph.textContent?.replace(/\s+/g, ' ').trim());
+    expect(paragraphText).toContain('Choice A reverses the required order.');
+    expect(paragraphText).toContain('Choice B uses the wrong code.');
+    expect(paragraphText).toContain('Choice C omits a required field.');
+    const applyHeading = within(root).getByRole('heading', { level: 5, name: 'Apply the Rule' });
+    const applySection = applyHeading.closest('section');
+    expect(applySection).not.toBeNull();
+    expect(within(applySection as HTMLElement).getByText('First compare the entries.')).toBeInTheDocument();
+    expect(within(applySection as HTMLElement).getByText('Then identify the differing position.')).toBeInTheDocument();
+    expect(root.querySelector('.rounded-lg')).toBeNull();
+    expect(root.querySelector('.border')).toBeNull();
+  });
+
   it('renders Filing Order as stacked numbered entries with shared inline rich text', () => {
     render(
       <StructuredExplanationRenderer

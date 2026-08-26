@@ -18,6 +18,7 @@ import {
 } from '@/lib/examEngine';
 import { gradeSession } from '@/lib/grading';
 import { loadContentCatalog } from '@/data/questionBank';
+import { readContentBankPracticeLaunch } from '@/lib/contentBankPractice';
 import { getEdqItem } from '@/data/edq';
 import type { NormalizedContentCatalog } from '@/data/contentCatalog';
 import {
@@ -267,10 +268,13 @@ export const ExamPage: React.FC = () => {
   // ---- Session bootstrap: launch request > resumable session > bail out ----
   useEffect(() => {
     if (stage !== null) return;
-    const request = (location.state as { launch?: ExamLaunchRequest } | null)?.launch;
+    const stateRequest = (location.state as { launch?: ExamLaunchRequest } | null)?.launch;
+    const queryRequest = readContentBankPracticeLaunch(location.search);
+    const request = stateRequest ?? queryRequest;
     if (request) {
-      // Clear router state so a refresh doesn't rebuild a fresh session.
-      window.history.replaceState({}, '');
+      // Clear router state and a one-shot Content Bank query handoff so a
+      // refresh resumes the saved session instead of rebuilding a fresh one.
+      window.history.replaceState({}, '', location.pathname + location.hash);
       // Never silently destroy an in-progress session: ask first.
       const existing = loadActiveSession();
       if (existing && (existing.deadlineAt === null || existing.deadlineAt > Date.now())) {
