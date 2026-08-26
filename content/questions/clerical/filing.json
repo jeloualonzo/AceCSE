@@ -977,22 +977,30 @@
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "Compare each **surname from left to right** and stop at the first differing letter."
+          "label": "Rationale",
+          "text": "Arrange the surnames by comparing letters from left to right. **Lacsina** comes before **Lacson** because **i < o**. **Lagman** comes before **Laguna** because **m < u**. The correct filing order is **2-1-3-4**."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *Lacsina, Myrna*\n**2.** *Lacson, Iris*\n**3.** *Lagman, Pio*\n**4.** *Laguna, Rene*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "In *Lacsina* and *Lacson*, **i** comes before **o**. In *Lagman* and *Laguna*, **m** comes before **u**. Therefore the order is **2-1-3-4**."
-        },
-        {
-          "type": "rule",
-          "text": "Use the first differing letter to resolve each surname comparison; do not rely on name length when an earlier letter decides the order."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** Places Lacsina after Lacson."
+            },
+            {
+              "type": "paragraph",
+              "text": "**B:** Puts Lagman and Laguna before the Lac-surnames."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** Reverses Lagman and Laguna."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Reverses the two Lac-surnames and places them after the Lag-surnames."
+            }
+          ]
         }
       ]
     }
@@ -1065,22 +1073,30 @@
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "Treat **De la** and **Dela** as part of the surname filing unit and compare the normalized surname continuously."
+          "label": "Rationale",
+          "text": "Treat **De la** and **Dela** as part of the surname and compare the filing units continuously. **De la Cruz** comes before **Dela Torre** because **c < t**. Both come before **Dimaculangan** and **Dionisio**, with **m < o** deciding the final pair. The correct order is **1-2-3-4**."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *De la Cruz, Maria*\n**2.** *Dela Torre, Jose*\n**3.** *Dimaculangan, Risa*\n**4.** *Dionisio, Pao*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "*delacruz* comes before *delatorre* because **c < t**. Both *dela...* names precede *dima...* and *dio...*; between those last two, **m < o**."
-        },
-        {
-          "type": "rule",
-          "text": "Keep a surname prefix such as **De la** or **Dela** with the surname and compare the resulting filing unit from left to right."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**B:** Places Dela Torre before De la Cruz and reverses the order of Dimaculangan and Dionisio."
+            },
+            {
+              "type": "paragraph",
+              "text": "**C:** Places the Dima- and Dio-surnames before the De la/Dela names."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** Places Dimaculangan before Dela Torre."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Reverses Dionisio and Dimaculangan."
+            }
+          ]
         }
       ]
     }
@@ -1152,22 +1168,30 @@
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "Treat **San** as part of the surname filing unit and compare the names from the beginning."
+          "label": "Rationale",
+          "text": "Treat **San** as part of the surname. **Salazar** comes before the San-surnames because **l < n**. Among the remaining names, **San Juan** comes before **Santiago** because **j < t**, and **Santiago** comes before **Santos** because **i < o**. The correct order is **1-2-3-4**."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *Salazar, Mila*\n**2.** *San Juan, Pedro*\n**3.** *Santiago, Rosa*\n**4.** *Santos, Celia*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "*Salazar* comes before the *San...* names because **l < n**. *San Juan* comes before *Santiago* and *Santos* because **j < t**; *Santiago* comes before *Santos* because **i < o**."
-        },
-        {
-          "type": "rule",
-          "text": "When a prefix such as **San** is part of the surname, compare it as part of the complete filing unit."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**B:** Places San Juan before Salazar."
+            },
+            {
+              "type": "paragraph",
+              "text": "**C:** Places Santiago before San Juan."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** Places Santos before San Juan and Santiago."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Reverses San Juan and the other S-surnames."
+            }
+          ]
         }
       ]
     }
@@ -1235,26 +1259,34 @@
       "blocks": [
         {
           "type": "correct_answer",
-          "text": "C — *Garcia-Lopez, Alma*"
+          "text": "C — Garcia-Lopez, Alma"
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "A hyphenated surname is one continuous filing unit for this item. The four names being arranged are *Garces*, *Garcia*, *Garcia-Lopez*, and *Garrido*."
+          "label": "Rationale",
+          "text": "The four surnames are ordered as **Garces, Garcia, Garcia-Lopez, Garrido**. **Garces** comes first because **e < i**. **Garcia** comes before **Garcia-Lopez** because the shorter matching entry ends first. **Garrido** comes after the Garc-surnames because **r > c**. Therefore, **Garcia-Lopez, Alma** is third."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *Garces, Tony*\n**2.** *Garcia, Zoe*\n**3.** *Garcia-Lopez, Alma*\n**4.** *Garrido, Lara*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "**e < i** puts *Garces* before the two *Garcia...* names. *Garcia* ends before *Garcia-Lopez* continues, so the shorter matching string comes first. **r > c** puts *Garrido* after the *Garc...* names."
-        },
-        {
-          "type": "rule",
-          "text": "Treat a hyphenated surname as one continuous unit and apply **nothing-before-something** when one matching string ends before the other continues."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** Garrido is fourth, not third."
+            },
+            {
+              "type": "paragraph",
+              "text": "**B:** Garcia is second because it ends before Garcia-Lopez continues."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** Garces is first."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Garciatorres is not one of the four names being arranged and is only a distractor choice."
+            }
+          ]
         }
       ]
     }
@@ -1328,22 +1360,30 @@
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "The surname and given name are identical, so the **suffix becomes the deciding filing unit**."
+          "label": "Rationale",
+          "text": "For this practice item, the task note establishes the filing convention: the **unsuffixed name first, followed by Jr., Sr., and III**. Therefore, the correct order is **1-2-3-4**. The explanation should follow the stated convention for this item rather than infer an order from family-generation history."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *Mendoza, Roberto (no suffix)*\n**2.** *Mendoza, Roberto Jr.*\n**3.** *Mendoza, Roberto Sr.*\n**4.** *Mendoza, Roberto III*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "The surname and given name are identical, so compare the **suffix as the final filing unit**. The unsuffixed form ends first, so **nothing comes before something** and it is filed before the suffixed forms. Among the suffix labels in this filing set, the order is **Jr.**, **Sr.**, then **III**, giving **no suffix → Jr. → Sr. → III**."
-        },
-        {
-          "type": "rule",
-          "text": "For this item, apply the established suffix convention shown in its task note. Do not explain the order as family-generation history."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** Places Jr. before the unsuffixed name."
+            },
+            {
+              "type": "paragraph",
+              "text": "**C:** Places Sr. first and changes the stated order."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** Places Sr. before Jr."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Places III before Jr. and Sr."
+            }
+          ]
         }
       ]
     }
@@ -1417,22 +1457,30 @@
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "Treat **De**, **Del**, and **Delos** as part of each surname filing unit and compare the normalized strings."
+          "label": "Rationale",
+          "text": "Treat **De**, **Del**, and **Delos** as part of each surname and compare the filing units from left to right. **De Jesus** comes before **Del Mundo** and **Delos Reyes** because **j < l**. Among the Del- names, **Del Mundo** comes before **Delos Reyes** because **m < o**. **De Vera** comes last because **v** is later than the other deciding letters. The correct order is **1-2-3-4**."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *De Jesus, Mario*\n**2.** *Del Mundo, Carla*\n**3.** *Delos Reyes, Tina*\n**4.** *De Vera, Luis*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "At the decisive position, **j < l < v**, so *De Jesus* comes first and *De Vera* comes last. Among the two *Del...* names, **m < o**, so *Del Mundo* precedes *Delos Reyes*."
-        },
-        {
-          "type": "rule",
-          "text": "Keep compound surname prefixes with the surname and compare the next differing letter."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** Places De Vera first even though **v** comes after the deciding letters."
+            },
+            {
+              "type": "paragraph",
+              "text": "**B:** Reverses De Jesus with the Del-surnames and places De Vera first."
+            },
+            {
+              "type": "paragraph",
+              "text": "**C:** Places Delos Reyes before Del Mundo."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Places De Vera before the other surnames."
+            }
+          ]
         }
       ]
     }
@@ -1500,26 +1548,34 @@
       "blocks": [
         {
           "type": "correct_answer",
-          "text": "C — *Banzon, Felipe*"
+          "text": "C — Banzon, Felipe"
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "All four **Ba...** surnames share the first two letters, so compare the third letter. *Bermudez* begins **Be** and follows every **Ba...** surname."
+          "label": "Rationale",
+          "text": "The four **Ba...** surnames are ordered by their third letters: **n, s, u, y**. **Bermudez** begins with **Be**, so it follows all of the Ba-surnames. Therefore, **Banzon, Felipe** is filed first."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *Banzon, Felipe*\n**2.** *Basilio, Corazon*\n**3.** *Bautista, Armando*\n**4.** *Bayani, Dolores*\n**5.** *Bermudez, Silvia*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "The decisive third letters are **n < s < u < y**. Therefore *Banzon, Felipe* is filed first."
-        },
-        {
-          "type": "rule",
-          "text": "When several surnames share a prefix, compare the first letter at which they differ."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** Bautista is third, after Banzon and Basilio."
+            },
+            {
+              "type": "paragraph",
+              "text": "**B:** Basilio is second."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** Bayani is fourth."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Bermudez begins with **Be** and is fifth."
+            }
+          ]
         }
       ]
     }
@@ -1590,26 +1646,34 @@
       "blocks": [
         {
           "type": "correct_answer",
-          "text": "B — *Santos, Maria*"
+          "text": "B — Santos, Maria"
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "All five names must be included. Treat **San** as part of the surname and compare the complete filing units."
+          "label": "Rationale",
+          "text": "The complete filing order is **Samson, San Jose, Santiago, Santillan, Santos**. **Samson** comes first because **m < n** after **Sa**. **San Jose** follows because **j < t**. Among the Sant- names, **Santiago** comes before **Santillan**, and both come before **Santos**. Therefore, **Santos, Maria** is last."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *Samson, Rafael*\n**2.** *San Jose, Pedro*\n**3.** *Santiago, Luz*\n**4.** *Santillan, Jose*\n**5.** *Santos, Maria*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "*Samson* comes first because **m < n** after **Sa**. *San Jose* comes next because **j < t**. Among the remaining **Sant...** names, **i < o**, then **a < l**, so *Santiago* precedes *Santillan*, and both precede *Santos*. Thus *Santos* is last."
-        },
-        {
-          "type": "rule",
-          "text": "Compare all five surnames letter by letter; do not stop after ordering only the names that share the same visible prefix."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** San Jose is second."
+            },
+            {
+              "type": "paragraph",
+              "text": "**C:** Samson is first."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** Santiago is third."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Santillan is fourth."
+            }
+          ]
         }
       ]
     }
@@ -1677,26 +1741,34 @@
       "blocks": [
         {
           "type": "correct_answer",
-          "text": "D — *Villamor, Ben*"
+          "text": "D — Villamor, Ben"
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "All five choices must be accounted for. *Villa* ends before the other matching names continue, so nothing-before-something puts it first."
+          "label": "Rationale",
+          "text": "**Villa** comes first because it ends before the other Villa- names continue. After that, compare the next letters: **m < n < r**, so **Villamor** comes before Villanueva and the Villar- names. Between **Villar** and **Villareal**, the shorter **Villar** comes first under nothing-before-something. Therefore, **Villamor, Ben** is second."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *Villa, Carmen*\n**2.** *Villamor, Ben*\n**3.** *Villanueva, Jose*\n**4.** *Villar, Ana*\n**5.** *Villareal, Tomas*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "After *Villa*, compare the next differing letters: **m < n < r**. Between *Villar* and *Villareal*, the shorter *Villar* ends first. Therefore *Villamor* is second."
-        },
-        {
-          "type": "rule",
-          "text": "Use nothing-before-something when a surname ends at a shared prefix, then continue letter-by-letter for the remaining names."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** Villanueva is third."
+            },
+            {
+              "type": "paragraph",
+              "text": "**B:** Villar is fourth."
+            },
+            {
+              "type": "paragraph",
+              "text": "**C:** Villa is first."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Villareal is fifth."
+            }
+          ]
         }
       ]
     }
@@ -1765,26 +1837,34 @@
       "blocks": [
         {
           "type": "correct_answer",
-          "text": "C — *Del Fierro, Ana*"
+          "text": "C — Del Fierro, Ana"
         },
         {
           "type": "paragraph",
-          "label": "Four names being arranged",
-          "text": "The filing set contains exactly four names:"
+          "label": "Rationale",
+          "text": "The four names being arranged are **De Castro, De La Cruz, Del Fierro, and Del Rosario**. **De Castro** comes first because **c < l** after **de**. Among the Del- names, **Del Fierro** comes before **Del Rosario** because **f < r**. Therefore, **Del Fierro, Ana** is third. **De la Rama, Pilar** is an answer choice but is not part of the four-name filing set."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *De Castro, Pedro*\n**2.** *De La Cruz, Juan*\n**3.** *Del Fierro, Ana*\n**4.** *Del Rosario, Maria*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "*De Castro* comes first because **c < l** after **de**. Among the *del...* names, **a < f < r**, so *Del Fierro, Ana* is third. *De la Rama, Pilar* is an answer choice and distractor, not part of the four-name filing set."
-        },
-        {
-          "type": "rule",
-          "text": "Order only the four authored filing entries; distinguish the displayed answer choices from the entries being arranged."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** De Castro is first."
+            },
+            {
+              "type": "paragraph",
+              "text": "**B:** De La Cruz is second."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** Del Rosario is fourth."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** De la Rama is a distractor choice and is not one of the four names being arranged."
+            }
+          ]
         }
       ]
     }
@@ -1855,26 +1935,34 @@
       "blocks": [
         {
           "type": "correct_answer",
-          "text": "C — *San Pedro, Lito*"
+          "text": "C — San Pedro, Lito"
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "For this item, interpret **Sta.** as **Santa** before comparing the filing units."
+          "label": "Rationale",
+          "text": "For this item, **Sta.** is treated as **Santa** when comparing the filing units. **San Pedro** comes before the Santa names because **n < t**. Between **Santa Cruz** and **Sta. Maria (Santa Maria)**, **c < m**. **Santos** follows the San/Santa entries, and **Serrano** follows all of the Sa-surnames. Therefore, **San Pedro, Lito** is first."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *San Pedro, Lito*\n**2.** *Santa Cruz, Elia*\n**3.** *Sta. Maria, Rosario*\n**4.** *Santos, Domingo*\n**5.** *Serrano, Lorna*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "*San Pedro* precedes the **Santa...** names. Between the Santa entries, **c < m**; *Santos* follows them, and *Serrano* follows every **Sa...** entry."
-        },
-        {
-          "type": "rule",
-          "text": "Apply the item’s abbreviation convention consistently: read **Sta.** as **Santa** for comparison, while preserving the authored entry as displayed."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** Sta. Maria is third, not first."
+            },
+            {
+              "type": "paragraph",
+              "text": "**B:** Santos is fourth."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** Santa Cruz is second."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Serrano is fifth."
+            }
+          ]
         }
       ]
     }
@@ -1943,26 +2031,34 @@
       "blocks": [
         {
           "type": "correct_answer",
-          "text": "D — *Bureau of Local Government Finance*"
+          "text": "D — Bureau of Local Government Finance"
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "There are five choices, and all five office names must be compared. The shared prefix is **Bureau of**."
+          "label": "Rationale",
+          "text": "All five names begin with **Bureau of**, so compare the next words. The order is **Customs, Immigration, Internal Revenue, Land Management, Local Government Finance**. **Immigration** comes before **Internal** because **m < n**, and **Land** comes before **Local** because **a < o**. Therefore, **Bureau of Local Government Finance** is last."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *Bureau of Customs*\n**2.** *Bureau of Immigration*\n**3.** *Bureau of Internal Revenue*\n**4.** *Bureau of Land Management*\n**5.** *Bureau of Local Government Finance*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "Compare the next meaningful word: **C**, **I**, **I**, **L**, **L**. *Immigration* precedes *Internal* because **m < n**. Between *Land* and *Local*, **a < o**, so *Bureau of Local Government Finance* is last."
-        },
-        {
-          "type": "rule",
-          "text": "Keep government office names in their authored form and compare the first meaningful word after a shared prefix."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** Bureau of Internal Revenue is third."
+            },
+            {
+              "type": "paragraph",
+              "text": "**B:** Bureau of Immigration is second."
+            },
+            {
+              "type": "paragraph",
+              "text": "**C:** Bureau of Customs is first."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Bureau of Land Management is fourth."
+            }
+          ]
         }
       ]
     }
@@ -2032,26 +2128,34 @@
       "blocks": [
         {
           "type": "correct_answer",
-          "text": "B — *Ng, Bernard*"
+          "text": "B — Ng, Bernard"
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "Compare the surnames letter by letter, including the short **Ng** entry and the longer **Ngo** entry."
+          "label": "Rationale",
+          "text": "The filing order is **Navarro, Ng, Ngo, Nieto, Nolasco**. **Navarro** comes first because **a < g**. **Ng** ends after the shared **Ng**, so nothing-before-something places it before **Ngo**. The **Ni** names follow the Ng names, and **Nieto** comes before **Nolasco** because **i < o**. Therefore, **Ng, Bernard** is second."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *Navarro, Cecile*\n**2.** *Ng, Bernard*\n**3.** *Ngo, Alfonso*\n**4.** *Nieto, Diana*\n**5.** *Nolasco, Elena*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "*Navarro* begins **Na** and comes first. *Ng* ends after the second letter, so nothing-before-something places it before *Ngo*. The **Ni...** name follows the **Ng...** names, and **i < o** places *Nieto* before *Nolasco*."
-        },
-        {
-          "type": "rule",
-          "text": "When one surname ends while another continues after the same prefix, the shorter entry files first."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** Ngo is third because Ng comes first among the two matching prefixes."
+            },
+            {
+              "type": "paragraph",
+              "text": "**C:** Navarro is first."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** Nieto is fourth."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Nolasco is fifth."
+            }
+          ]
         }
       ]
     }
@@ -2121,26 +2225,34 @@
       "blocks": [
         {
           "type": "correct_answer",
-          "text": "B — *Ace Hardware Philippines*"
+          "text": "B — Ace Hardware Philippines"
         },
         {
           "type": "paragraph",
-          "label": "What to Notice",
-          "text": "Account for all five business names. Under the repository’s business-name convention, compare numeric starters in their spelled-out form, treat **A.G.** letter by letter, and ignore punctuation as a separator."
+          "label": "Rationale",
+          "text": "Under the **practice item’s stated business-name convention**, the five leading forms are compared as **Ace, A.G., Alpha, Seven, and Three**. **Ace** comes before **A.G.** because **c < g**, and **A.G.** comes before **Alpha** because **g < l**. The A-starting names therefore come before the numeric-starting names under this item’s convention, making **Ace Hardware Philippines** first."
         },
         {
-          "type": "paragraph",
-          "label": "Filing Order",
-          "text": "**1.** *Ace Hardware Philippines*\n**2.** *A.G. Reyes & Associates*\n**3.** *Alpha Business Solutions*\n**4.** *7-Eleven Convenience Store*\n**5.** *3M Philippines, Inc.*"
-        },
-        {
-          "type": "paragraph",
-          "label": "Apply the Rule",
-          "text": "The leading forms compare as *Ace*, *A.G.*, *Alpha*, *Seven*, and *Three*. *Ace* comes before *A.G.* because **c < g**, and *A.G.* comes before *Alpha* because **g < l** at the second letter. The **A...** entries therefore precede *Seven* and *Three* under the established numeric-starter convention, so *Ace Hardware Philippines* remains first."
-        },
-        {
-          "type": "rule",
-          "text": "Use the established business-name comparison: normalize numeric starters for alphabetizing, compare abbreviations letter by letter, and retain the complete authored name."
+          "type": "distractor_section",
+          "title": "Why the others are incorrect",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "**A:** 7-Eleven is fourth under the stated numeric-starter convention."
+            },
+            {
+              "type": "paragraph",
+              "text": "**C:** 3M is fifth under the stated numeric-starter convention."
+            },
+            {
+              "type": "paragraph",
+              "text": "**D:** A.G. Reyes & Associates is second."
+            },
+            {
+              "type": "paragraph",
+              "text": "**E:** Alpha Business Solutions is third."
+            }
+          ]
         }
       ]
     }

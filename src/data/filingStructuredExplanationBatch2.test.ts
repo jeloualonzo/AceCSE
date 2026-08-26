@@ -8,110 +8,152 @@ const BATCH2_IDS = [
   'cler-0038', 'cler-0039',
 ] as const;
 
-const filingOrder = (entries: readonly string[]) => ({
-  type: 'paragraph' as const,
-  label: 'Filing Order',
-  text: entries.map((entry, index) => `**${index + 1}.** *${entry}*`).join('\n'),
+const distractorSection = (entries: readonly [string, string][]) => ({
+  type: 'distractor_section' as const,
+  title: 'Why the others are incorrect',
+  blocks: entries.map(([choice, text]) => ({ type: 'paragraph' as const, text: `**${choice}:** ${text}` })),
 });
 
 const EXPECTED_BLOCKS = {
   'cler-0006': [
-        { type: 'correct_answer', text: 'C — 2-1-3-4' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Compare each **surname from left to right** and stop at the first differing letter.' },
-    filingOrder(['Lacsina, Myrna', 'Lacson, Iris', 'Lagman, Pio', 'Laguna, Rene']),
-    { type: 'paragraph', label: 'Apply the Rule', text: 'In *Lacsina* and *Lacson*, **i** comes before **o**. In *Lagman* and *Laguna*, **m** comes before **u**. Therefore the order is **2-1-3-4**.' },
-    { type: 'rule', text: 'Use the first differing letter to resolve each surname comparison; do not rely on name length when an earlier letter decides the order.' },
+    { type: 'correct_answer', text: 'C — 2-1-3-4' },
+    { type: 'paragraph', label: 'Rationale', text: 'Arrange the surnames by comparing letters from left to right. **Lacsina** comes before **Lacson** because **i < o**. **Lagman** comes before **Laguna** because **m < u**. The correct filing order is **2-1-3-4**.' },
+    distractorSection([
+      ['A', 'Places Lacsina after Lacson.'],
+      ['B', 'Puts Lagman and Laguna before the Lac-surnames.'],
+      ['D', 'Reverses Lagman and Laguna.'],
+      ['E', 'Reverses the two Lac-surnames and places them after the Lag-surnames.'],
+    ]),
   ],
   'cler-0007': [
-        { type: 'correct_answer', text: 'A — 1-2-3-4' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Treat **De la** and **Dela** as part of the surname filing unit and compare the normalized surname continuously.' },
-    filingOrder(['De la Cruz, Maria', 'Dela Torre, Jose', 'Dimaculangan, Risa', 'Dionisio, Pao']),
-    { type: 'paragraph', label: 'Apply the Rule', text: '*delacruz* comes before *delatorre* because **c < t**. Both *dela...* names precede *dima...* and *dio...*; between those last two, **m < o**.' },
-    { type: 'rule', text: 'Keep a surname prefix such as **De la** or **Dela** with the surname and compare the resulting filing unit from left to right.' },
+    { type: 'correct_answer', text: 'A — 1-2-3-4' },
+    { type: 'paragraph', label: 'Rationale', text: 'Treat **De la** and **Dela** as part of the surname and compare the filing units continuously. **De la Cruz** comes before **Dela Torre** because **c < t**. Both come before **Dimaculangan** and **Dionisio**, with **m < o** deciding the final pair. The correct order is **1-2-3-4**.' },
+    distractorSection([
+      ['B', 'Places Dela Torre before De la Cruz and reverses the order of Dimaculangan and Dionisio.'],
+      ['C', 'Places the Dima- and Dio-surnames before the De la/Dela names.'],
+      ['D', 'Places Dimaculangan before Dela Torre.'],
+      ['E', 'Reverses Dionisio and Dimaculangan.'],
+    ]),
   ],
   'cler-0008': [
-        { type: 'correct_answer', text: 'A — 1-2-3-4' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Treat **San** as part of the surname filing unit and compare the names from the beginning.' },
-    filingOrder(['Salazar, Mila', 'San Juan, Pedro', 'Santiago, Rosa', 'Santos, Celia']),
-    { type: 'paragraph', label: 'Apply the Rule', text: '*Salazar* comes before the *San...* names because **l < n**. *San Juan* comes before *Santiago* and *Santos* because **j < t**; *Santiago* comes before *Santos* because **i < o**.' },
-    { type: 'rule', text: 'When a prefix such as **San** is part of the surname, compare it as part of the complete filing unit.' },
+    { type: 'correct_answer', text: 'A — 1-2-3-4' },
+    { type: 'paragraph', label: 'Rationale', text: 'Treat **San** as part of the surname. **Salazar** comes before the San-surnames because **l < n**. Among the remaining names, **San Juan** comes before **Santiago** because **j < t**, and **Santiago** comes before **Santos** because **i < o**. The correct order is **1-2-3-4**.' },
+    distractorSection([
+      ['B', 'Places San Juan before Salazar.'],
+      ['C', 'Places Santiago before San Juan.'],
+      ['D', 'Places Santos before San Juan and Santiago.'],
+      ['E', 'Reverses San Juan and the other S-surnames.'],
+    ]),
   ],
   'cler-0009': [
-        { type: 'correct_answer', text: 'C — *Garcia-Lopez, Alma*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'A hyphenated surname is one continuous filing unit for this item. The four names being arranged are *Garces*, *Garcia*, *Garcia-Lopez*, and *Garrido*.' },
-    filingOrder(['Garces, Tony', 'Garcia, Zoe', 'Garcia-Lopez, Alma', 'Garrido, Lara']),
-    { type: 'paragraph', label: 'Apply the Rule', text: '**e < i** puts *Garces* before the two *Garcia...* names. *Garcia* ends before *Garcia-Lopez* continues, so the shorter matching string comes first. **r > c** puts *Garrido* after the *Garc...* names.' },
-    { type: 'rule', text: 'Treat a hyphenated surname as one continuous unit and apply **nothing-before-something** when one matching string ends before the other continues.' },
+    { type: 'correct_answer', text: 'C — Garcia-Lopez, Alma' },
+    { type: 'paragraph', label: 'Rationale', text: 'The four surnames are ordered as **Garces, Garcia, Garcia-Lopez, Garrido**. **Garces** comes first because **e < i**. **Garcia** comes before **Garcia-Lopez** because the shorter matching entry ends first. **Garrido** comes after the Garc-surnames because **r > c**. Therefore, **Garcia-Lopez, Alma** is third.' },
+    distractorSection([
+      ['A', 'Garrido is fourth, not third.'],
+      ['B', 'Garcia is second because it ends before Garcia-Lopez continues.'],
+      ['D', 'Garces is first.'],
+      ['E', 'Garciatorres is not one of the four names being arranged and is only a distractor choice.'],
+    ]),
   ],
   'cler-0010': [
-        { type: 'correct_answer', text: 'B — 1-2-3-4' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The surname and given name are identical, so the **suffix becomes the deciding filing unit**.' },
-    filingOrder(['Mendoza, Roberto (no suffix)', 'Mendoza, Roberto Jr.', 'Mendoza, Roberto Sr.', 'Mendoza, Roberto III']),
-    { type: 'paragraph', label: 'Apply the Rule', text: 'The surname and given name are identical, so compare the **suffix as the final filing unit**. The unsuffixed form ends first, so **nothing comes before something** and it is filed before the suffixed forms. Among the suffix labels in this filing set, the order is **Jr.**, **Sr.**, then **III**, giving **no suffix → Jr. → Sr. → III**.' },
-    { type: 'rule', text: 'For this item, apply the established suffix convention shown in its task note. Do not explain the order as family-generation history.' },
+    { type: 'correct_answer', text: 'B — 1-2-3-4' },
+    { type: 'paragraph', label: 'Rationale', text: 'For this practice item, the task note establishes the filing convention: the **unsuffixed name first, followed by Jr., Sr., and III**. Therefore, the correct order is **1-2-3-4**. The explanation should follow the stated convention for this item rather than infer an order from family-generation history.' },
+    distractorSection([
+      ['A', 'Places Jr. before the unsuffixed name.'],
+      ['C', 'Places Sr. first and changes the stated order.'],
+      ['D', 'Places Sr. before Jr.'],
+      ['E', 'Places III before Jr. and Sr.'],
+    ]),
   ],
   'cler-0011': [
-        { type: 'correct_answer', text: 'D — 1-2-3-4' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Treat **De**, **Del**, and **Delos** as part of each surname filing unit and compare the normalized strings.' },
-    filingOrder(['De Jesus, Mario', 'Del Mundo, Carla', 'Delos Reyes, Tina', 'De Vera, Luis']),
-    { type: 'paragraph', label: 'Apply the Rule', text: 'At the decisive position, **j < l < v**, so *De Jesus* comes first and *De Vera* comes last. Among the two *Del...* names, **m < o**, so *Del Mundo* precedes *Delos Reyes*.' },
-    { type: 'rule', text: 'Keep compound surname prefixes with the surname and compare the next differing letter.' },
+    { type: 'correct_answer', text: 'D — 1-2-3-4' },
+    { type: 'paragraph', label: 'Rationale', text: 'Treat **De**, **Del**, and **Delos** as part of each surname and compare the filing units from left to right. **De Jesus** comes before **Del Mundo** and **Delos Reyes** because **j < l**. Among the Del- names, **Del Mundo** comes before **Delos Reyes** because **m < o**. **De Vera** comes last because **v** is later than the other deciding letters. The correct order is **1-2-3-4**.' },
+    distractorSection([
+      ['A', 'Places De Vera first even though **v** comes after the deciding letters.'],
+      ['B', 'Reverses De Jesus with the Del-surnames and places De Vera first.'],
+      ['C', 'Places Delos Reyes before Del Mundo.'],
+      ['E', 'Places De Vera before the other surnames.'],
+    ]),
   ],
   'cler-0031': [
-        { type: 'correct_answer', text: 'C — *Banzon, Felipe*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'All four **Ba...** surnames share the first two letters, so compare the third letter. *Bermudez* begins **Be** and follows every **Ba...** surname.' },
-    filingOrder(['Banzon, Felipe', 'Basilio, Corazon', 'Bautista, Armando', 'Bayani, Dolores', 'Bermudez, Silvia']),
-    { type: 'paragraph', label: 'Apply the Rule', text: 'The decisive third letters are **n < s < u < y**. Therefore *Banzon, Felipe* is filed first.' },
-    { type: 'rule', text: 'When several surnames share a prefix, compare the first letter at which they differ.' },
+    { type: 'correct_answer', text: 'C — Banzon, Felipe' },
+    { type: 'paragraph', label: 'Rationale', text: 'The four **Ba...** surnames are ordered by their third letters: **n, s, u, y**. **Bermudez** begins with **Be**, so it follows all of the Ba-surnames. Therefore, **Banzon, Felipe** is filed first.' },
+    distractorSection([
+      ['A', 'Bautista is third, after Banzon and Basilio.'],
+      ['B', 'Basilio is second.'],
+      ['D', 'Bayani is fourth.'],
+      ['E', 'Bermudez begins with **Be** and is fifth.'],
+    ]),
   ],
   'cler-0032': [
-        { type: 'correct_answer', text: 'B — *Santos, Maria*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'All five names must be included. Treat **San** as part of the surname and compare the complete filing units.' },
-    filingOrder(['Samson, Rafael', 'San Jose, Pedro', 'Santiago, Luz', 'Santillan, Jose', 'Santos, Maria']),
-    { type: 'paragraph', label: 'Apply the Rule', text: '*Samson* comes first because **m < n** after **Sa**. *San Jose* comes next because **j < t**. Among the remaining **Sant...** names, **i < o**, then **a < l**, so *Santiago* precedes *Santillan*, and both precede *Santos*. Thus *Santos* is last.' },
-    { type: 'rule', text: 'Compare all five surnames letter by letter; do not stop after ordering only the names that share the same visible prefix.' },
+    { type: 'correct_answer', text: 'B — Santos, Maria' },
+    { type: 'paragraph', label: 'Rationale', text: 'The complete filing order is **Samson, San Jose, Santiago, Santillan, Santos**. **Samson** comes first because **m < n** after **Sa**. **San Jose** follows because **j < t**. Among the Sant- names, **Santiago** comes before **Santillan**, and both come before **Santos**. Therefore, **Santos, Maria** is last.' },
+    distractorSection([
+      ['A', 'San Jose is second.'],
+      ['C', 'Samson is first.'],
+      ['D', 'Santiago is third.'],
+      ['E', 'Santillan is fourth.'],
+    ]),
   ],
   'cler-0033': [
-        { type: 'correct_answer', text: 'D — *Villamor, Ben*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'All five choices must be accounted for. *Villa* ends before the other matching names continue, so nothing-before-something puts it first.' },
-    filingOrder(['Villa, Carmen', 'Villamor, Ben', 'Villanueva, Jose', 'Villar, Ana', 'Villareal, Tomas']),
-    { type: 'paragraph', label: 'Apply the Rule', text: 'After *Villa*, compare the next differing letters: **m < n < r**. Between *Villar* and *Villareal*, the shorter *Villar* ends first. Therefore *Villamor* is second.' },
-    { type: 'rule', text: 'Use nothing-before-something when a surname ends at a shared prefix, then continue letter-by-letter for the remaining names.' },
+    { type: 'correct_answer', text: 'D — Villamor, Ben' },
+    { type: 'paragraph', label: 'Rationale', text: '**Villa** comes first because it ends before the other Villa- names continue. After that, compare the next letters: **m < n < r**, so **Villamor** comes before Villanueva and the Villar- names. Between **Villar** and **Villareal**, the shorter **Villar** comes first under nothing-before-something. Therefore, **Villamor, Ben** is second.' },
+    distractorSection([
+      ['A', 'Villanueva is third.'],
+      ['B', 'Villar is fourth.'],
+      ['C', 'Villa is first.'],
+      ['E', 'Villareal is fifth.'],
+    ]),
   ],
   'seed-cler-001': [
-        { type: 'correct_answer', text: 'C — *Del Fierro, Ana*' },
-    { type: 'paragraph', label: 'Four names being arranged', text: 'The filing set contains exactly four names:' },
-    filingOrder(['De Castro, Pedro', 'De La Cruz, Juan', 'Del Fierro, Ana', 'Del Rosario, Maria']),
-    { type: 'paragraph', label: 'Apply the Rule', text: '*De Castro* comes first because **c < l** after **de**. Among the *del...* names, **a < f < r**, so *Del Fierro, Ana* is third. *De la Rama, Pilar* is an answer choice and distractor, not part of the four-name filing set.' },
-    { type: 'rule', text: 'Order only the four authored filing entries; distinguish the displayed answer choices from the entries being arranged.' },
+    { type: 'correct_answer', text: 'C — Del Fierro, Ana' },
+    { type: 'paragraph', label: 'Rationale', text: 'The four names being arranged are **De Castro, De La Cruz, Del Fierro, and Del Rosario**. **De Castro** comes first because **c < l** after **de**. Among the Del- names, **Del Fierro** comes before **Del Rosario** because **f < r**. Therefore, **Del Fierro, Ana** is third. **De la Rama, Pilar** is an answer choice but is not part of the four-name filing set.' },
+    distractorSection([
+      ['A', 'De Castro is first.'],
+      ['B', 'De La Cruz is second.'],
+      ['D', 'Del Rosario is fourth.'],
+      ['E', 'De la Rama is a distractor choice and is not one of the four names being arranged.'],
+    ]),
   ],
   'cler-0036': [
-        { type: 'correct_answer', text: 'C — *San Pedro, Lito*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'For this item, interpret **Sta.** as **Santa** before comparing the filing units.' },
-    filingOrder(['San Pedro, Lito', 'Santa Cruz, Elia', 'Sta. Maria, Rosario', 'Santos, Domingo', 'Serrano, Lorna']),
-    { type: 'paragraph', label: 'Apply the Rule', text: '*San Pedro* precedes the **Santa...** names. Between the Santa entries, **c < m**; *Santos* follows them, and *Serrano* follows every **Sa...** entry.' },
-    { type: 'rule', text: 'Apply the item’s abbreviation convention consistently: read **Sta.** as **Santa** for comparison, while preserving the authored entry as displayed.' },
+    { type: 'correct_answer', text: 'C — San Pedro, Lito' },
+    { type: 'paragraph', label: 'Rationale', text: 'For this item, **Sta.** is treated as **Santa** when comparing the filing units. **San Pedro** comes before the Santa names because **n < t**. Between **Santa Cruz** and **Sta. Maria (Santa Maria)**, **c < m**. **Santos** follows the San/Santa entries, and **Serrano** follows all of the Sa-surnames. Therefore, **San Pedro, Lito** is first.' },
+    distractorSection([
+      ['A', 'Sta. Maria is third, not first.'],
+      ['B', 'Santos is fourth.'],
+      ['D', 'Santa Cruz is second.'],
+      ['E', 'Serrano is fifth.'],
+    ]),
   ],
   'cler-0037': [
-        { type: 'correct_answer', text: 'D — *Bureau of Local Government Finance*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'There are five choices, and all five office names must be compared. The shared prefix is **Bureau of**.' },
-    filingOrder(['Bureau of Customs', 'Bureau of Immigration', 'Bureau of Internal Revenue', 'Bureau of Land Management', 'Bureau of Local Government Finance']),
-    { type: 'paragraph', label: 'Apply the Rule', text: 'Compare the next meaningful word: **C**, **I**, **I**, **L**, **L**. *Immigration* precedes *Internal* because **m < n**. Between *Land* and *Local*, **a < o**, so *Bureau of Local Government Finance* is last.' },
-    { type: 'rule', text: 'Keep government office names in their authored form and compare the first meaningful word after a shared prefix.' },
+    { type: 'correct_answer', text: 'D — Bureau of Local Government Finance' },
+    { type: 'paragraph', label: 'Rationale', text: 'All five names begin with **Bureau of**, so compare the next words. The order is **Customs, Immigration, Internal Revenue, Land Management, Local Government Finance**. **Immigration** comes before **Internal** because **m < n**, and **Land** comes before **Local** because **a < o**. Therefore, **Bureau of Local Government Finance** is last.' },
+    distractorSection([
+      ['A', 'Bureau of Internal Revenue is third.'],
+      ['B', 'Bureau of Immigration is second.'],
+      ['C', 'Bureau of Customs is first.'],
+      ['E', 'Bureau of Land Management is fourth.'],
+    ]),
   ],
   'cler-0038': [
-        { type: 'correct_answer', text: 'B — *Ng, Bernard*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Compare the surnames letter by letter, including the short **Ng** entry and the longer **Ngo** entry.' },
-    filingOrder(['Navarro, Cecile', 'Ng, Bernard', 'Ngo, Alfonso', 'Nieto, Diana', 'Nolasco, Elena']),
-    { type: 'paragraph', label: 'Apply the Rule', text: '*Navarro* begins **Na** and comes first. *Ng* ends after the second letter, so nothing-before-something places it before *Ngo*. The **Ni...** name follows the **Ng...** names, and **i < o** places *Nieto* before *Nolasco*.' },
-    { type: 'rule', text: 'When one surname ends while another continues after the same prefix, the shorter entry files first.' },
+    { type: 'correct_answer', text: 'B — Ng, Bernard' },
+    { type: 'paragraph', label: 'Rationale', text: 'The filing order is **Navarro, Ng, Ngo, Nieto, Nolasco**. **Navarro** comes first because **a < g**. **Ng** ends after the shared **Ng**, so nothing-before-something places it before **Ngo**. The **Ni** names follow the Ng names, and **Nieto** comes before **Nolasco** because **i < o**. Therefore, **Ng, Bernard** is second.' },
+    distractorSection([
+      ['A', 'Ngo is third because Ng comes first among the two matching prefixes.'],
+      ['C', 'Navarro is first.'],
+      ['D', 'Nieto is fourth.'],
+      ['E', 'Nolasco is fifth.'],
+    ]),
   ],
   'cler-0039': [
-        { type: 'correct_answer', text: 'B — *Ace Hardware Philippines*' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Account for all five business names. Under the repository’s business-name convention, compare numeric starters in their spelled-out form, treat **A.G.** letter by letter, and ignore punctuation as a separator.' },
-    filingOrder(['Ace Hardware Philippines', 'A.G. Reyes & Associates', 'Alpha Business Solutions', '7-Eleven Convenience Store', '3M Philippines, Inc.']),
-    { type: 'paragraph', label: 'Apply the Rule', text: 'The leading forms compare as *Ace*, *A.G.*, *Alpha*, *Seven*, and *Three*. *Ace* comes before *A.G.* because **c < g**, and *A.G.* comes before *Alpha* because **g < l** at the second letter. The **A...** entries therefore precede *Seven* and *Three* under the established numeric-starter convention, so *Ace Hardware Philippines* remains first.' },
-    { type: 'rule', text: 'Use the established business-name comparison: normalize numeric starters for alphabetizing, compare abbreviations letter by letter, and retain the complete authored name.' },
+    { type: 'correct_answer', text: 'B — Ace Hardware Philippines' },
+    { type: 'paragraph', label: 'Rationale', text: 'Under the **practice item’s stated business-name convention**, the five leading forms are compared as **Ace, A.G., Alpha, Seven, and Three**. **Ace** comes before **A.G.** because **c < g**, and **A.G.** comes before **Alpha** because **g < l**. The A-starting names therefore come before the numeric-starting names under this item’s convention, making **Ace Hardware Philippines** first.' },
+    distractorSection([
+      ['A', '7-Eleven is fourth under the stated numeric-starter convention.'],
+      ['C', '3M is fifth under the stated numeric-starter convention.'],
+      ['D', 'A.G. Reyes & Associates is second.'],
+      ['E', 'Alpha Business Solutions is third.'],
+    ]),
   ],
 } as const;
 
@@ -133,7 +175,7 @@ const EXPECTED_QUESTIONS = {
 } as const;
 
 describe('Filing Batch 2 structured explanations', () => {
-  it('contains the approved blocks, preserved question fixtures, and task formats for all 14 IDs', async () => {
+  it('contains the exact approved blocks, preserved question fixtures, and task formats for all 14 IDs', async () => {
     const catalog = await loadContentCatalog(['Clerical Ability']);
     for (const id of BATCH2_IDS) {
       const question = catalog.questions.get(id);
@@ -154,15 +196,22 @@ describe('Filing Batch 2 structured explanations', () => {
     }
   });
 
-  it('uses stacked Filing Order blocks with no arrow-separated order lists', async () => {
+  it('uses only the requested Rationale and one grouped distractor section for every Batch 2 explanation', async () => {
     const catalog = await loadContentCatalog(['Clerical Ability']);
     for (const id of BATCH2_IDS) {
       const blocks = catalog.questions.get(id)?.structuredExplanation?.blocks ?? [];
-      const orderBlock = blocks.find((block) => block.type === 'paragraph' && block.label === 'Filing Order');
-      expect(orderBlock?.type).toBe('paragraph');
-      if (!orderBlock || orderBlock.type !== 'paragraph') continue;
-      expect(orderBlock.text).not.toContain('→');
-      expect(orderBlock.text.split('\n').every((line, index) => line.startsWith(`**${index + 1}.** *`))).toBe(true);
+      const labels = blocks.flatMap((block) => block.type === 'paragraph' && block.label ? [block.label] : []);
+      expect(labels).toEqual(['Rationale']);
+      expect(labels).not.toContain('What to Notice');
+      expect(labels).not.toContain('Apply the Rule');
+      expect(labels).not.toContain('Filing Order');
+      expect(labels).not.toContain('Rule');
+      expect(blocks.filter((block) => block.type === 'heading' && block.text === 'Solution')).toHaveLength(0);
+      const distractors = blocks.filter((block) => block.type === 'distractor_section');
+      expect(distractors).toHaveLength(1);
+      expect(distractors[0]?.title).toBe('Why the others are incorrect');
+      expect(distractors[0]?.blocks).toHaveLength(4);
+      expect(distractors[0]?.blocks.every((block) => block.type === 'paragraph')).toBe(true);
     }
   });
 
