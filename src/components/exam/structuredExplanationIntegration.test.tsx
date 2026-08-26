@@ -324,7 +324,8 @@ describe('structured explanation Practice/Results integration V3', () => {
       }
       if (id === 'num-0137') {
         const fractionValues = screen.getAllByTestId('fraction-math-value');
-        expect(fractionValues).toHaveLength(12);
+        expect(fractionValues).toHaveLength(16);
+        expect(fractionValues.filter((value) => value.getAttribute('aria-label') === '1/5')).toHaveLength(5);
         expect(fractionValues.every((value) => value.getAttribute('role') === 'math' && value.querySelector('mfrac'))).toBe(true);
       } else {
         expect(screen.queryByTestId('fraction-math-value')).toBeNull();
@@ -366,7 +367,8 @@ describe('structured explanation Practice/Results integration V3', () => {
       assertProductionMath(screen.getByTestId('structured-explanation'), expectedEquationCount);
       if (id === 'num-0137') {
         const fractionValues = screen.getAllByTestId('fraction-math-value');
-        expect(fractionValues).toHaveLength(12);
+        expect(fractionValues).toHaveLength(14);
+        expect(fractionValues.filter((value) => value.getAttribute('aria-label') === '1/5')).toHaveLength(3);
         expect(fractionValues.every((value) => value.getAttribute('role') === 'math' && value.querySelector('mfrac'))).toBe(true);
       } else {
         expect(screen.queryByTestId('fraction-math-value')).toBeNull();

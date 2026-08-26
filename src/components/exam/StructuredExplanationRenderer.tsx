@@ -1,5 +1,5 @@
-import { createElement, useState } from 'react';
-import { renderInlineRichText } from '@/lib/inlineRichText';
+import { createElement, Fragment, useState } from 'react';
+import { MathValue } from './MathValue';
 import type {
   StructuredExplanation,
   StructuredExplanationAlternativeSolutionBlock,
@@ -27,6 +27,37 @@ function mathLines(expression: string): string[] {
 }
 
 const DISPLAY_MATH_PATTERN = /\\\[([\s\S]*?)\\\]/g;
+const INLINE_FRACTION_PATTERN = /(?<![\w./])([−-]?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)(?![\w./])/g;
+
+function renderInlineFractionText(text: string, keyPrefix: string): React.ReactNode[] {
+  const parts: React.ReactNode[] = [];
+  let cursor = 0;
+  let matchIndex = 0;
+
+  for (const match of text.matchAll(INLINE_FRACTION_PATTERN)) {
+    const start = match.index ?? cursor;
+    if (start > cursor) parts.push(text.slice(cursor, start));
+    parts.push(<MathValue key={`${keyPrefix}-fraction-${matchIndex++}`} value={match[0]} />);
+    cursor = start + match[0].length;
+  }
+
+  if (cursor < text.length) parts.push(text.slice(cursor));
+  return parts.length > 0 ? parts : [text];
+}
+
+function renderInlineMathRichText(text: string): React.ReactNode {
+  const tokens = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).filter(Boolean);
+  return tokens.map((token, index) => {
+    const key = `inline-${index}`;
+    if (token.startsWith('**') && token.endsWith('**')) {
+      return <strong key={key}>{renderInlineFractionText(token.slice(2, -2), key)}</strong>;
+    }
+    if (token.startsWith('*') && token.endsWith('*')) {
+      return <em key={key}>{renderInlineFractionText(token.slice(1, -1), key)}</em>;
+    }
+    return <Fragment key={key}>{renderInlineFractionText(token, key)}</Fragment>;
+  });
+}
 
 function readLatexGroup(source: string, start: number): { content: string; end: number } | null {
   if (source[start] !== '{') return null;
@@ -220,7 +251,7 @@ function LatexMathDisplay({ expression, dark }: { expression: string; dark: bool
 function renderParagraphText(text: string, dark: boolean): React.ReactNode {
   const matches = [...text.matchAll(DISPLAY_MATH_PATTERN)];
   if (matches.length === 0) {
-    return <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(text)}</p>;
+    return <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineMathRichText(text)}</p>;
   }
 
   const parts: React.ReactNode[] = [];
@@ -246,7 +277,7 @@ function renderParagraphText(text: string, dark: boolean): React.ReactNode {
       pushMath();
       parts.push(
         <p key={`text-${partIndex++}`} className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
-          {renderInlineRichText(before.trim())}
+          {renderInlineMathRichText(before.trim())}
         </p>,
       );
     }
@@ -259,7 +290,7 @@ function renderParagraphText(text: string, dark: boolean): React.ReactNode {
   if (after) {
     parts.push(
       <p key={`text-${partIndex++}`} className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
-        {renderInlineRichText(after)}
+        {renderInlineMathRichText(after)}
       </p>,
     );
   }
@@ -367,7 +398,7 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
     case 'correct_answer':
       return (
         <p key={key} className={`font-semibold ${dark ? 'text-emerald-300' : 'text-emerald-800'}`}>
-          Correct Answer: <span className="font-mono font-bold">{renderInlineRichText(block.text)}</span>
+          Correct Answer: <span className="font-mono font-bold">{renderInlineMathRichText(block.text)}</span>
         </p>
       );
     case 'paragraph':
@@ -405,20 +436,20 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       return (
         <div key={key} className="space-y-2">
           <SectionHeading dark={dark}>Rule</SectionHeading>
-          <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
+          <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineMathRichText(block.text)}</p>
         </div>
       );
     case 'common_trap':
       return (
         <div key={key} className="space-y-2">
           <SectionHeading dark={dark}>Common Trap</SectionHeading>
-          <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
+          <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineMathRichText(block.text)}</p>
         </div>
       );
     case 'answer':
       return (
         <p key={key} className={`font-semibold text-base ${dark ? 'text-emerald-300' : 'text-emerald-800'}`}>
-          Answer: <span className="font-mono font-bold">{renderInlineRichText(block.text)}</span>
+          Answer: <span className="font-mono font-bold">{renderInlineMathRichText(block.text)}</span>
         </p>
       );
     case 'step':

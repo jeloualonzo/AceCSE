@@ -145,6 +145,32 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(root.textContent).not.toContain('\\]');
   });
 
+  it('renders standalone inline fractions in answers and prose without converting ordinary slash text', () => {
+    const { container } = render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [
+            { type: 'correct_answer', text: 'A — 1/5' },
+            {
+              type: 'paragraph',
+              label: 'Rationale',
+              text: 'The missing term is **1/5**. Keep the path docs/1/5 and the A/B label as ordinary text.',
+            },
+          ],
+        }}
+        theme="light"
+      />
+    );
+
+    const fractions = container.querySelectorAll('[data-testid="fraction-math-value"]');
+    expect(fractions).toHaveLength(2);
+    expect([...fractions].every((fraction) => fraction.getAttribute('role') === 'math' && fraction.querySelector('mfrac'))).toBe(true);
+    expect(container.querySelectorAll('[aria-label="1/5"]')).toHaveLength(2);
+    expect(screen.getByText(/Keep the path docs\/1\/5 and the A\/B label/)).toBeInTheDocument();
+    expect(container.textContent).not.toContain('A — 1/5');
+    expect(container.textContent).not.toContain('**1/5**');
+  });
+
   it('restores the original readable rhythm while trimming redundant boundary whitespace', () => {
     render(
       <StructuredExplanationRenderer
@@ -229,8 +255,8 @@ After the math.`,
     );
 
     const root = screen.getByTestId('structured-explanation');
-    const fractionPattern = within(root).getByRole('math', { name: 'Pattern: 2/4 → 1/2; 2/6 → 1/3; 2/8 → 1/4; 2/10 → ___' });
-    const fractionSolution = within(root).getByRole('math', { name: 'Apply the Pattern: 2/10 ÷ 2 = 1/5' });
+    const fractionPattern = root.querySelector('[role="math"][aria-label="Pattern: 2/4 → 1/2; 2/6 → 1/3; 2/8 → 1/4; 2/10 → ___"]');
+    const fractionSolution = root.querySelector('[role="math"][aria-label="Apply the Pattern: 2/10 ÷ 2 = 1/5"]');
     expect(fractionPattern).toBeInTheDocument();
     expect(fractionSolution).toBeInTheDocument();
     expect(fractionPattern).toHaveTextContent('2/4 → 1/2');
@@ -239,8 +265,8 @@ After the math.`,
     expect(fractionPattern).not.toHaveTextContent('1 ÷ 2');
     expect(fractionSolution).toHaveTextContent('2/10 ÷ 2 = 1/5');
     expect(fractionSolution).not.toHaveTextContent('2 ÷ 10 ÷ 2 = 1 ÷ 5');
-    expect(within(root).getByRole('math', { name: 'Pattern, Signs: +, −, +, −, +' })).toBeInTheDocument();
-    expect(within(root).getByRole('math', { name: 'Apply the Pattern: 55 + 89 = 144; −144' })).toBeInTheDocument();
+    expect(root.querySelector('[role="math"][aria-label="Pattern, Signs: +, −, +, −, +"]')).toBeInTheDocument();
+    expect(root.querySelector('[role="math"][aria-label="Apply the Pattern: 55 + 89 = 144; −144"]')).toBeInTheDocument();
     expect(root.textContent).not.toContain('Step 1');
     expect(root.textContent).not.toContain('Why A is wrong');
     expect(root.querySelector('.rounded-lg')).toBeNull();
