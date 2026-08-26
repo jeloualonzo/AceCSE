@@ -16,20 +16,34 @@ const TARGETS = {
     ],
     correctOptionId: 'C',
     blocks: [
-            { type: 'correct_answer', text: 'C — The summary total is understated by ₱30.00 because the actual sum is ₱8,100.00.' },
-      { type: 'paragraph', label: 'What to Notice', text: 'Compare the actual sum of the line items with the reported total. The actual total is ₱8,100.00, while the report lists ₱8,070.00.' },
-      { type: 'step', title: 'Apply the Rule', blocks: [
-        { type: 'paragraph', text: 'Add the line items:' },
-        { type: 'math', expression: '₱1,450 + ₱2,875 = ₱4,325\n₱4,325 + ₱625 = ₱4,950\n₱4,950 + ₱3,150 = ₱8,100' },
-        { type: 'paragraph', text: 'The reported total is ₱30.00 lower, so it is understated by ₱30.00.' },
-      ] },
-      { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-        { type: 'paragraph', text: 'A and E. Use incorrect actual sums: the line items total ₱8,100.00, not ₱8,040.00 or ₱8,170.00.' },
-        { type: 'paragraph', text: 'B. Treats the reported total as correct, although the line items add to ₱8,100.00.' },
-        { type: 'paragraph', text: 'D. Introduces tax even though the question asks only for the sum of the listed amounts; no tax percentage is needed.' },
-      ] },
-      { type: 'rule', text: 'Compute the actual total first, then compare it with the reported total. If the actual total is higher, the reported total is understated; if it is lower, the reported total is overstated.' },
-    ],
+  {
+    "type": "correct_answer",
+    "text": "C — The summary total is understated by ₱30.00 because the actual sum is ₱8,100.00."
+  },
+  {
+    "type": "paragraph",
+    "label": "Rationale",
+    "text": "The four line items total **₱8,100.00**: ₱1,450 + ₱2,875 + ₱625 + ₱3,150. The report lists **₱8,070.00**, which is **₱30.00 lower** than the actual total. Therefore, the summary total is understated by **₱30.00**."
+  },
+  {
+    "type": "distractor_section",
+    "title": "Why the other choices fail",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A and E. Use incorrect actual totals; the line items add to ₱8,100.00."
+      },
+      {
+        "type": "paragraph",
+        "text": "B. Treats ₱8,070.00 as correct even though the line items total ₱8,100.00."
+      },
+      {
+        "type": "paragraph",
+        "text": "D. Adds a tax requirement that is not part of the stated calculation."
+      }
+    ]
+  }
+],
   },
   'cler-0057': {
     question: 'A clerical officer compares two ledger entries for the same account:\n\n  Entry 1: Account #8492015 — Amount ₱14,582.00\n  Entry 2: Account #8492015 — Amount ₱14,852.00\n\nWhat type of clerical error occurred in Entry 2?',
@@ -42,18 +56,30 @@ const TARGETS = {
     ],
     correctOptionId: 'E',
     blocks: [
-            { type: 'correct_answer', text: "E — A transposition error — the digits '5' and '8' were swapped in the amount." },
-      { type: 'paragraph', label: 'What to Notice', text: 'The account numbers match, but the amounts differ at the third and fourth digits: 14-5-8-2 versus 14-8-5-2.' },
-      { type: 'step', title: 'Apply the Rule', blocks: [
-        { type: 'paragraph', text: 'Compare the amounts digit by digit.' },
-        { type: 'paragraph', text: 'The third and fourth digits change from 5-8 to 8-5, so the digits 5 and 8 have been transposed.' },
-      ] },
-      { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-        { type: 'paragraph', text: 'Choices A, B, and D identify the wrong type of clerical error. The account numbers match, no column total is being checked, and no digit is repeated. The actual error is the transposition of 5 and 8.' },
-        { type: 'paragraph', text: 'Choice C claims there is no error, but ₱14,582.00 and ₱14,852.00 are different.' },
-      ] },
-      { type: 'rule', text: 'Compare numerical entries from left to right. A transposition occurs when the same digits appear in a different order.' },
-    ],
+  {
+    "type": "correct_answer",
+    "text": "E — A transposition error — the digits '5' and '8' were swapped in the amount."
+  },
+  {
+    "type": "paragraph",
+    "label": "Rationale",
+    "text": "The account numbers are identical, but the amounts change from **₱14,582.00** to **₱14,852.00**. The digits **5** and **8** have changed positions, which is a **transposition error**."
+  },
+  {
+    "type": "distractor_section",
+    "title": "Why the other choices fail",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A, B, and D. Describe different types of errors that are not present in the entries."
+      },
+      {
+        "type": "paragraph",
+        "text": "C. The amounts are different, so the entries do contain an error."
+      }
+    ]
+  }
+],
   },
   'seed-cler-003': {
     question: 'Compare the Original Code with the Transcribed Code:\n\nOriginal:  CSC-2026-PH-89014-X\nTranscribed: CSC-2026-PH-89041-X\n\nThe Transcribed Code is:',
@@ -66,21 +92,38 @@ const TARGETS = {
     ],
     correctOptionId: 'B',
     blocks: [
-            { type: 'correct_answer', text: 'B — Different due to transposed numbers (14 vs 41)' },
-      { type: 'paragraph', label: 'What to Notice', text: 'The prefixes, year, and final letter match. Only the last two digits of the numeric segment change from 14 to 41.' },
-      { type: 'step', title: 'Apply the Rule', blocks: [
-        { type: 'paragraph', text: 'Compare the code segment by segment:' },
-        { type: 'paragraph', text: 'CSC = CSC\n2026 = 2026\nPH = PH\n89014 versus 89041\nX = X' },
-        { type: 'paragraph', text: 'The digits 1 and 4 have changed order, so the transcribed code contains a transposition.' },
-      ] },
-      { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-        { type: 'paragraph', text: 'A. The numeric segment changes from 89014 to 89041, so the codes are not identical.' },
-        { type: 'paragraph', text: 'C. The prefixes CSC and PH match in both codes.' },
-        { type: 'paragraph', text: 'D. All hyphens are present in both codes.' },
-        { type: 'paragraph', text: 'E. The issue is not repetition; the digits 1 and 4 change order from 14 to 41.' },
-      ] },
-      { type: 'rule', text: 'Compare each code segment from left to right. A transposition occurs when the same digits appear in a different order.' },
-    ],
+  {
+    "type": "correct_answer",
+    "text": "B — Different due to transposed numbers (14 vs 41)"
+  },
+  {
+    "type": "paragraph",
+    "label": "Rationale",
+    "text": "The prefixes, year, hyphens, and final letter are identical. The only change is in the numeric segment: **89014** becomes **89041**. The final digits **14** have been reversed to **41**, so the transcribed code contains a **transposition error**."
+  },
+  {
+    "type": "distractor_section",
+    "title": "Why the other choices fail",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A. The numeric segment changes from 89014 to 89041, so the codes are not identical."
+      },
+      {
+        "type": "paragraph",
+        "text": "C. The letter prefixes are the same in both codes."
+      },
+      {
+        "type": "paragraph",
+        "text": "D. All hyphens are present in both codes."
+      },
+      {
+        "type": "paragraph",
+        "text": "E. No digit is repeated; the digits 1 and 4 have changed order."
+      }
+    ]
+  }
+],
   },
 } as const;
 
@@ -138,12 +181,12 @@ describe('Clerical Operations Batch 2 structured explanations', () => {
     expect(rawGroups).toHaveLength(3);
     expect(rawGroups.every((groups) => groups.length === 1 && groups[0].title === 'Why the other choices fail')).toBe(true);
     expect(rawGroups.every((groups) => groups[0].blocks?.every((child) => child.type === 'paragraph' && child.label === undefined))).toBe(true);
-    expect(markdown.match(/- type: step\n  title: Apply the Rule/g) ?? []).toHaveLength(3);
-    expect(markdown).toContain('The reported total is ₱30.00 lower, so it is understated by ₱30.00.');
-    expect(markdown).toContain('The third and fourth digits change from 5-8 to 8-5, so the digits 5 and 8 have been transposed.');
+    expect(markdown.match(/- type: step\n  title: Apply the Rule/g) ?? []).toHaveLength(0);
+    expect(markdown).toContain('The four line items total **₱8,100.00**');
+    expect(markdown).toContain('The account numbers are identical, but the amounts change');
   });
 
-  it('teaches direct discrepancy and transposition checks without divisibility shortcuts', async () => {
+  it('teaches the supplied discrepancy and transposition rationales without divisibility shortcuts', async () => {
     const catalog = await loadContentCatalog(['Clerical Ability']);
     const question0051 = catalog.questions.get('cler-0051')!;
     const question0057 = catalog.questions.get('cler-0057')!;
@@ -153,10 +196,10 @@ describe('Clerical Operations Batch 2 structured explanations', () => {
       .map((block) => JSON.stringify(block))
       .join(' ');
 
-    expect(renderedText).toContain('If the actual total is higher, the reported total is understated');
-    expect(renderedText).toContain('Compare the amounts digit by digit.');
-    expect(renderedText).toContain('The third and fourth digits change from 5-8 to 8-5');
-    expect(renderedText).toContain('Compare each code segment from left to right. A transposition occurs when the same digits appear in a different order.');
+    expect(renderedText).toContain('The four line items total **₱8,100.00**');
+    expect(renderedText).toContain('The report lists **₱8,070.00**');
+    expect(renderedText).toContain('The digits **5** and **8** have changed positions');
+    expect(renderedText).toContain('The final digits **14** have been reversed to **41**');
     expect(renderedText.toLowerCase()).not.toContain('divisibility');
     expect(renderedText.toLowerCase()).not.toContain('divisible by 9');
   });

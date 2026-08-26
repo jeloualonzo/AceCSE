@@ -82,120 +82,262 @@ const EXPECTED_QUESTIONS: Record<TargetId, {
 };
 
 const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> = {
-  'cler-0020': [
-        { type: 'correct_answer', text: 'E — Reyes, Maria L. — Reyes, Maria I.' },
-    { type: 'paragraph', label: 'What to Notice', text: 'An exact match requires every character to be the same, including letters, numbers, punctuation, and spaces.' },
-    { type: 'step', title: 'Apply the Rule', blocks: [
-      { type: 'paragraph', text: 'Pairs **A**, **B**, **C**, and **D** are identical.' },
-      { type: 'paragraph', text: 'Pair **E** differs in the middle initial: **L** versus **I**.' },
-    ] },
-    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-      { type: 'paragraph', text: 'A, B, C, and D are exact matches. Because the question asks for the pair that is NOT an exact match, none of these choices satisfies the question.' },
-    ] },
-    { type: 'rule', text: 'Compare entries character by character. One different letter, number, punctuation mark, or space means the pair is not an exact match.' },
+  "cler-0020": [
+    {
+      "type": "correct_answer",
+      "text": "E — Reyes, Maria L. — Reyes, Maria I."
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "An exact match requires every character to be identical, including letters, numbers, punctuation, and spaces. Pairs A, B, C, and D match exactly. Pair E differs in the middle initial: **L** versus **I**, so it is the only pair that is not an exact match."
+    },
+    {
+      "type": "distractor_section",
+      "title": "Why the other choices fail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A, B, C, and D are exact matches because every character in each pair is the same."
+        }
+      ]
+    }
   ],
-  'cler-0021': [
-        { type: 'correct_answer', text: 'A — Dela Rosa, Benigno T. — Dela Rosa, Benigno T.' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Exact matching depends on character-by-character comparison and the order of those characters. Similar-looking entries are not enough.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: 'Choice **A** repeats the same name, including the comma, spaces, middle initial, and period. It is the only pair with every character in the same position.' },
-    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-      { type: 'paragraph', text: 'B. The final digits change from 00187 to 00178, so the entries do not match.' },
-      { type: 'paragraph', text: 'C. The year changes from 2025 to 2026, so the entries do not match.' },
-      { type: 'paragraph', text: 'D. The middle digits change from 56 to 65, so 5566 and 5656 are different.' },
-      { type: 'paragraph', text: 'E. The sequence changes from 0055 to 0555, so a digit position and value differ.' },
-    ] },
-    { type: 'rule', text: 'For an exact match, compare each character from left to right and verify its position. Having the same characters in a different order is still a mismatch.' },
+  "cler-0021": [
+    {
+      "type": "correct_answer",
+      "text": "A — Dela Rosa, Benigno T. — Dela Rosa, Benigno T."
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Choice A is the only pair with every character in the same position. The other pairs contain changes in digits, years, or character order, so they do not match exactly."
+    },
+    {
+      "type": "distractor_section",
+      "title": "Why the other choices fail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "B. The final digits change from 00187 to 00178."
+        },
+        {
+          "type": "paragraph",
+          "text": "C. The year changes from 2025 to 2026."
+        },
+        {
+          "type": "paragraph",
+          "text": "D. The digits change from 5566 to 5656."
+        },
+        {
+          "type": "paragraph",
+          "text": "E. The sequence changes from 0055 to 0555."
+        }
+      ]
+    }
   ],
-  'cler-0022': [
-        { type: 'correct_answer', text: 'B — 3' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Check each pair separately. A pair counts only when every character on the left matches the character in the same position on the right.' },
-    { type: 'step', title: 'Apply the Rule', blocks: [
-      { type: 'paragraph', text: 'Pairs **1**, **2**, and **3** match.' },
-      { type: 'paragraph', text: 'Pair **4** does not: **5512781** differs from **5512871** because the **7** and **8** are transposed. Therefore, **3** pairs are exact matches.' },
-    ] },
-    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-      { type: 'paragraph', text: 'A. Counts Pair 4 as a match, but Pair 4 contains a transposition.' },
-      { type: 'paragraph', text: 'C, D, and E. Undercount the exact matches; Pairs 1, 2, and 3 are identical, so the correct count is 3.' },
-    ] },
-    { type: 'rule', text: 'In a multi-pair comparison, inspect one pair at a time and count only exact matches. A transposition makes the entire pair incorrect.' },
+  "cler-0022": [
+    {
+      "type": "correct_answer",
+      "text": "B — 3"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Pairs 1, 2, and 3 are exact matches. Pair 4 is not because **5512781** differs from **5512871**; the digits **7** and **8** are transposed. Therefore, **3** pairs are exact matches."
+    },
+    {
+      "type": "distractor_section",
+      "title": "Why the other choices fail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A. Counts Pair 4 as a match even though it contains a transposition."
+        },
+        {
+          "type": "paragraph",
+          "text": "C, D, and E. Undercount the exact matches because Pairs 1, 2, and 3 are identical."
+        }
+      ]
+    }
   ],
-  'cler-0023': [
-        { type: 'correct_answer', text: 'A — 15-I-2025' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The supplied lookup assigns **A** to January and advances one letter per month. September is the ninth month, so its code is **I**.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: 'The day and year remain **15** and **2025**. Replacing September with its lookup code gives **15-I-2025**.' },
-    { type: 'rule', text: 'Use the lookup scheme provided in the question directly: September is month 9, which corresponds to the ninth letter, **I**.' },
+  "cler-0023": [
+    {
+      "type": "correct_answer",
+      "text": "A — 15-I-2025"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "September is the ninth month, so the supplied month code is **I**. The day and year remain **15** and **2025**, giving the code **15-I-2025**."
+    }
   ],
-  'cler-0024': [
-        { type: 'correct_answer', text: 'E — 5' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Classify the document by its actual document type. The reference number or subject mentioned in its label does not change that type.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: 'The document is a **Notice** about Memo No. 31. The table assigns **Notice = 5**, so the correct code is **5**.' },
-    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-      { type: 'paragraph', text: 'A. Treats the reference word “Memo” as the document type, but code 1 is for a Memorandum.' },
-      { type: 'paragraph', text: 'B, C, and D. Use the codes for Letter, Report, and Form, respectively; none matches the required Notice code 5.' },
-    ] },
-    { type: 'rule', text: 'Use the document’s actual type when assigning a classification code. A reference number or subject does not replace the type of document being filed.' },
+  "cler-0024": [
+    {
+      "type": "correct_answer",
+      "text": "E — 5"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The document's actual type is **Notice**, not Memorandum. The classification table assigns **Notice = 5**, so the correct filing code is **5**. The word “Memo” in the reference label does not change the document type."
+    },
+    {
+      "type": "distractor_section",
+      "title": "Why the other choices fail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A. Uses the code for Memorandum because it treats the reference word “Memo” as the document type."
+        },
+        {
+          "type": "paragraph",
+          "text": "B, C, and D. Use the codes for Letter, Report, and Form rather than Notice."
+        }
+      ]
+    }
   ],
-  'cler-0025': [
-        { type: 'correct_answer', text: 'C — Entry B' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Recompute net pay for every entry using **Gross Pay − Total Deductions = Net Pay**. Compare the result with the listed net pay.' },
-    { type: 'step', title: 'Apply the Rule', blocks: [
-      { type: 'paragraph', text: 'Recompute the four entries and compare each result with the listed net pay.' },
-      { type: 'paragraph', text: '**Entry A:** 18,500 − 3,200 = 15,300, correct.' },
-      { type: 'paragraph', text: '**Entry B:** 22,000 − 4,750 = 17,250, not 17,430, incorrect.' },
-      { type: 'paragraph', text: '**Entry C:** 16,800 − 2,900 = 13,900, correct.' },
-      { type: 'paragraph', text: '**Entry D:** 25,500 − 5,100 = 20,400, correct.' },
-      { type: 'paragraph', text: 'Therefore, **Entry B** is the only incorrect entry.' },
-    ] },
-    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-      { type: 'paragraph', text: 'Choices A, B, and D select Entries A, C, and D, respectively; all three have correct net-pay calculations.' },
-      { type: 'paragraph', text: 'Choice E claims that Entries B and D are both incorrect, but Entry D is correct.' },
-    ] },
-    { type: 'rule', text: 'For a payroll check, subtract the listed deductions from the listed gross pay and compare the result with the listed net. Do not infer an unseen amount.' },
+  "cler-0025": [
+    {
+      "type": "correct_answer",
+      "text": "C — Entry B"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Recomputing each entry gives: **A:** 18,500 − 3,200 = 15,300; **B:** 22,000 − 4,750 = 17,250; **C:** 16,800 − 2,900 = 13,900; **D:** 25,500 − 5,100 = 20,400. Only Entry B lists an incorrect net pay, so **Entry B** is the answer."
+    },
+    {
+      "type": "distractor_section",
+      "title": "Why the other choices fail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A, B, and D select Entries A, C, and D, all of which have correct net-pay calculations."
+        },
+        {
+          "type": "paragraph",
+          "text": "E. Entry D is correct, so Entries B and D are not both incorrect."
+        }
+      ]
+    }
   ],
-  'cler-0042': [
-        { type: 'correct_answer', text: 'A — 2-F' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The position code and region code come from separate lookups: **Clerk II = 2** and **NCR = F**. The region code is a suffix.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: 'Combine the position code with the region suffix: **2-F**.' },
-    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-      { type: 'paragraph', text: 'B. Reverses the required order by placing the region code before the position code.' },
-      { type: 'paragraph', text: 'C. Uses E, which the table assigns to Region V, not NCR.' },
-      { type: 'paragraph', text: 'D. Uses 1, the code for Clerk I, not Clerk II.' },
-      { type: 'paragraph', text: 'E. Uses G, which the table does not assign to NCR.' },
-    ] },
-    { type: 'rule', text: 'For a two-part code, look up each component separately and apply the stated order: position code first, region suffix second.' },
+  "cler-0042": [
+    {
+      "type": "correct_answer",
+      "text": "A — 2-F"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The position table gives **Clerk II = 2**, and the region table gives **NCR = F**. Because the region code is appended as a suffix, the correct code is **2-F**."
+    },
+    {
+      "type": "distractor_section",
+      "title": "Why the other choices fail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "B. Reverses the required order."
+        },
+        {
+          "type": "paragraph",
+          "text": "C. Uses E, which represents Region V."
+        },
+        {
+          "type": "paragraph",
+          "text": "D. Uses 1, the code for Clerk I."
+        },
+        {
+          "type": "paragraph",
+          "text": "E. Uses G, which is not the code for NCR."
+        }
+      ]
+    }
   ],
-  'cler-0043': [
-        { type: 'correct_answer', text: 'C — R-P-D-F' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The status code records the document’s events in the order they occurred: Received, Processed, Disapproved, then Filed.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: '**Received = R**, **Processed = P**, **Disapproved = D**, and **Filed = F**. The stated sequence is therefore **R-P-D-F**.' },
-    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-      { type: 'paragraph', text: 'A, D, and E. Change the chronological order: A places Filed before Disapproved, D places Processed before Received, and E ends with Received instead of the final Filed event.' },
-      { type: 'paragraph', text: 'B. Inserts Approved, an event that did not occur.' },
-    ] },
-    { type: 'rule', text: 'Map each stated event to its code, then preserve the events’ chronological order when combining the codes.' },
+  "cler-0043": [
+    {
+      "type": "correct_answer",
+      "text": "C — R-P-D-F"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Map each event to its code in the order it occurred: **Received = R**, **Processed = P**, **Disapproved = D**, and **Filed = F**. The correct status code is therefore **R-P-D-F**."
+    },
+    {
+      "type": "distractor_section",
+      "title": "Why the other choices fail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A, D, and E change the stated sequence of events."
+        },
+        {
+          "type": "paragraph",
+          "text": "B. Inserts Approved, even though the document was never stated to be approved."
+        }
+      ]
+    }
   ],
-  'cler-0044': [
-        { type: 'correct_answer', text: 'A — LG-05' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The code requires two lookups: first the department, then the document type. The required order is **[Department Code]-[Document Type Code]**.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: 'Legal Department = **LG**. Contract = **05**. Combining the two codes gives **LG-05**.' },
-    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-      { type: 'paragraph', text: 'B, D, and E. Use the wrong document-type code: 03 is Report, 02 is Letter, and 04 is Request Form, not Contract 05.' },
-      { type: 'paragraph', text: 'C. Uses Administrative AD instead of Legal LG.' },
-    ] },
-    { type: 'rule', text: 'Solve two-part codes in order: identify the department, identify the document type, and then join their codes with the required separator.' },
+  "cler-0044": [
+    {
+      "type": "correct_answer",
+      "text": "A — LG-05"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The department is **Legal = LG**, and the document type is **Contract = 05**. Following the required [Department Code]-[Document Type Code] format gives **LG-05**."
+    },
+    {
+      "type": "distractor_section",
+      "title": "Why the other choices fail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "B, D, and E. Use the wrong document-type codes for Report, Letter, and Request Form."
+        },
+        {
+          "type": "paragraph",
+          "text": "C. Uses Administrative (**AD**) instead of Legal (**LG**)."
+        }
+      ]
+    }
   ],
-  'cler-0045': [
-        { type: 'correct_answer', text: 'A — 26-11-03-007' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The code has four fields with fixed lengths and order: last two digits of the year, a two-digit month code, a two-digit day, and a three-digit series number.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: '2026 → **26**; November → **11**; day 3 → **03**; seventh document → **007**. The complete code is **26-11-03-007**.' },
-    { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
-      { type: 'paragraph', text: 'B. Uses the full year instead of the last two digits.' },
-      { type: 'paragraph', text: 'C. Reverses the month and day fields.' },
-      { type: 'paragraph', text: 'D. Omits the leading zero required for a two-digit day.' },
-      { type: 'paragraph', text: 'E. Writes the series as two digits instead of the required three.' },
-    ] },
-    { type: 'rule', text: 'Apply each field’s specified length and position. Zero-pad the day and series number when necessary, and do not change the field order.' },
-  ],
+  "cler-0045": [
+    {
+      "type": "correct_answer",
+      "text": "A — 26-11-03-007"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The code uses the last two digits of the year, a two-digit month, a two-digit day, and a three-digit series number. Thus **2026 → 26**, **November → 11**, **day 3 → 03**, and **7th document → 007**, giving **26-11-03-007**."
+    },
+    {
+      "type": "distractor_section",
+      "title": "Why the other choices fail",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "B. Uses the full year instead of the last two digits."
+        },
+        {
+          "type": "paragraph",
+          "text": "C. Reverses the month and day fields."
+        },
+        {
+          "type": "paragraph",
+          "text": "D. Omits the leading zero from the day."
+        },
+        {
+          "type": "paragraph",
+          "text": "E. Uses only two digits for the series number."
+        }
+      ]
+    }
+  ]
 };
 
 describe('Clerical Operations Batch 1 structured explanations', () => {
@@ -351,7 +493,7 @@ describe('Clerical Operations Batch 1 structured explanations', () => {
 
     expect(question0025.question).toContain('Net P17,430');
     expect(JSON.stringify(question0025)).not.toContain('P4,570');
-    expect(question0025.structuredExplanation?.blocks.map((block) => JSON.stringify(block)).join(' ')).toContain('22,000 − 4,750 = 17,250, not 17,430');
+    expect(question0025.structuredExplanation?.blocks.map((block) => JSON.stringify(block)).join(' ')).toContain('22,000 − 4,750 = 17,250');
 
     expect(question0045.passage).toBeUndefined();
     expect(JSON.stringify(question0045.contentBlocks)).toContain('"Day","2 digits, zero-padded when necessary"');
