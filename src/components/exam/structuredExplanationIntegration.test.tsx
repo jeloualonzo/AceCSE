@@ -395,6 +395,86 @@ describe('structured explanation Practice/Results integration V3', () => {
     expect(screen.queryByText('Legacy explanation remains available as fallback.')).not.toBeInTheDocument();
   });
 
+  it('renders the three production Number Series Rationales as vertically stacked equations in Practice and Results', async () => {
+    const user = userEvent.setup();
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    const targets = [
+      ['num-0019', 4],
+      ['num-0020', 4],
+      ['num-0021', 5],
+    ] as const;
+
+    const assertProductionMath = (root: HTMLElement, expectedEquationCount: number) => {
+      expect(within(root).getByText('Rationale')).toBeInTheDocument();
+      expect(root.textContent).not.toContain('\\[');
+      expect(root.textContent).not.toContain('\\]');
+      expect(root.querySelectorAll('[data-testid="structured-latex-math"]')).toHaveLength(2);
+      const equations = [...root.querySelectorAll('[data-testid="structured-latex-equation"]')];
+      expect(equations).toHaveLength(expectedEquationCount);
+      expect(equations.every((equation) => equation.getAttribute('role') === 'math')).toBe(true);
+      expect(equations.every((equation) => equation.parentElement?.getAttribute('data-testid') === 'structured-latex-math')).toBe(true);
+      expect(equations.every((equation) => equation.className.includes('overflow-hidden'))).toBe(true);
+      expect(root.querySelector('.overflow-x-auto')).toBeNull();
+      expect(root.querySelector('.overflow-y-auto')).toBeNull();
+      expect(root.querySelector('.overflow-y-scroll')).toBeNull();
+    };
+
+    for (const [id, expectedEquationCount] of targets) {
+      const question = catalog.questions.get(id);
+      expect(question).toBeTruthy();
+      if (!question) continue;
+
+      renderWithTheme(
+        <QuestionCard
+          question={question}
+          selectedOptionId={question.correctOptionId}
+          onSelectOption={vi.fn()}
+          instantFeedback
+        />
+      );
+      await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
+      for (const root of screen.getAllByTestId('structured-explanation')) {
+        assertProductionMath(root, expectedEquationCount);
+      }
+
+      cleanup();
+      const attempt: Attempt = {
+        id: `number-series-results-${id}`,
+        mode: 'practice',
+        examLevel: 'Professional',
+        questionCount: 1,
+        correctCount: 1,
+        answeredCount: 1,
+        unansweredCount: 0,
+        percentage: 100,
+        passed: false,
+        durationSeconds: 12,
+        startedAt: 1,
+        completedAt: 12_001,
+        subjects: [{ subject: question.subject, total: 1, correct: 1, answered: 1, unanswered: 0, percentage: 100 }],
+        items: [{
+          questionId: question.id,
+          subject: question.subject,
+          topic: question.topic,
+          selected: question.correctOptionId,
+          correct: question.correctOptionId,
+          isCorrect: true,
+        }],
+      };
+      renderWithTheme(
+        <ResultsScreen
+          attempt={attempt}
+          questionIndex={new Map([[question.id, question]])}
+          onRetake={vi.fn()}
+          onReturnToDashboard={vi.fn()}
+        />
+      );
+      await user.click(screen.getByRole('button', { name: 'Expand question details' }));
+      assertProductionMath(screen.getByTestId('structured-explanation'), expectedEquationCount);
+      cleanup();
+    }
+  });
+
   it('renders num-0025 labeled subsequences through the shared Practice and Results renderer', async () => {
     const user = userEvent.setup();
     renderWithTheme(

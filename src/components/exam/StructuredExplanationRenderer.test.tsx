@@ -97,25 +97,27 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     const root = screen.getByTestId('structured-explanation');
     const displays = screen.getAllByTestId('structured-latex-math');
     expect(displays).toHaveLength(2);
-    expect(displays[0]).toHaveAttribute('role', 'math');
-    expect(displays[0]).toHaveAttribute('aria-label', '9-4=5, 14-9=5, 19-14=5');
-    expect(displays[0].querySelectorAll('mn').length).toBeGreaterThan(0);
-    expect(displays[0].querySelectorAll('mo').length).toBeGreaterThan(0);
-    expect(root.querySelectorAll('math')).toHaveLength(2);
+    const equations = screen.getAllByTestId('structured-latex-equation');
+    expect(equations[0]).toHaveAttribute('role', 'math');
+    expect(equations[0]).toHaveAttribute('aria-label', '9-4=5');
+    expect(equations[0].querySelectorAll('mn').length).toBeGreaterThan(0);
+    expect(equations[0].querySelectorAll('mo').length).toBeGreaterThan(0);
+    expect(root.querySelectorAll('math')).toHaveLength(4);
     expect(root.textContent).toContain('The difference is 5:');
     expect(root.textContent).toContain('Continuing:');
     expect(root.textContent).not.toContain('\\[');
     expect(root.textContent).not.toContain('\\]');
   });
 
-  it('keeps long expressions inside a horizontally safe scroll container', () => {
+  it('keeps long expressions inside a clipped expression container without a scrollbar control', () => {
     const { container } = render(
       <StructuredExplanationRenderer
         explanation={{ blocks: [{ type: 'solution', expression: '123456789 + 987654321 = 1111111110' }] }}
       />
     );
 
-    expect(container.querySelector('.overflow-x-auto')).not.toBeNull();
+    expect(container.querySelector('.overflow-hidden')).not.toBeNull();
+    expect(container.querySelector('.overflow-x-auto')).toBeNull();
   });
 
   it('renders labeled interleaved subsequences as distinct Pattern sections', () => {

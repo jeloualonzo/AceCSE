@@ -50,27 +50,30 @@ function renderLatexTokens(line: string): React.ReactNode[] {
 }
 
 function LatexMathDisplay({ expression, dark }: { expression: string; dark: boolean }) {
-  const lines = expression.split(/\r?\n/).filter((line) => line.trim().length > 0);
+  const lines = expression
+    .split(/,\s*\\quad\s*|\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
   return (
     <div
-      role="math"
       data-testid="structured-latex-math"
-      aria-label={formatLatexForAria(expression)}
-      className={`overflow-x-auto px-1 py-1 ${dark ? 'text-slate-100' : 'text-slate-900'}`}
+      className={`w-full overflow-hidden space-y-3 px-1 py-1 text-center ${dark ? 'text-slate-100' : 'text-slate-900'}`}
     >
-      {createElement(
-        'math',
-        { xmlns: 'http://www.w3.org/1998/Math/MathML', display: 'block' },
-        createElement(
-          'mtable',
-          { columnalign: 'left' },
-          lines.map((line, index) => createElement(
-            'mtr',
-            { key: `${line}-${index}` },
-            createElement('mtd', null, createElement('mrow', null, renderLatexTokens(line))),
-          )),
-        ),
-      )}
+      {lines.map((line, index) => (
+        <div
+          key={`${line}-${index}`}
+          role="math"
+          data-testid="structured-latex-equation"
+          aria-label={formatLatexForAria(line)}
+          className="w-full overflow-hidden"
+        >
+          {createElement(
+            'math',
+            { xmlns: 'http://www.w3.org/1998/Math/MathML', display: 'block' },
+            createElement('mrow', null, renderLatexTokens(line)),
+          )}
+        </div>
+      ))}
     </div>
   );
 }
@@ -113,7 +116,7 @@ function MathDisplay({ expression, dark, label }: { expression: string; dark: bo
     <div
       role="math"
       aria-label={label ? `${label}: ${lines.join('; ')}` : lines.join('; ')}
-      className={`overflow-x-auto px-1 py-1 font-mono text-sm sm:text-base tracking-wide whitespace-nowrap ${
+      className={`w-full overflow-hidden px-1 py-1 text-center font-mono text-sm sm:text-base tracking-wide whitespace-nowrap ${
         dark ? 'text-slate-100' : 'text-slate-900'
       }`}
     >
