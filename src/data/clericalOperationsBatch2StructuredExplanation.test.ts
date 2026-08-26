@@ -24,10 +24,12 @@ const TARGETS = {
         { type: 'math', expression: '₱1,450 + ₱2,875 = ₱4,325\n₱4,325 + ₱625 = ₱4,950\n₱4,950 + ₱3,150 = ₱8,100' },
         { type: 'paragraph', text: 'The reported total is ₱30.00 lower, so it is understated by ₱30.00.' },
       ] },
-      { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** reverses the direction of the discrepancy and gives the wrong actual sum. Because ₱8,100.00 is higher than ₱8,070.00, the report is understated, not overstated.' },
-      { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** treats the reported total as correct, but the line items add to ₱8,100.00, not ₱8,070.00.' },
-      { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** introduces tax even though the question asks only for the sum of the listed amounts; no tax percentage is needed.' },
-      { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **E** gives the wrong actual sum and discrepancy. The correct actual total is ₱8,100.00, which is ₱30.00 above the report.' },
+      { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+        { type: 'paragraph', text: 'Choice **A** reverses the direction of the discrepancy and gives the wrong actual sum. Because ₱8,100.00 is higher than ₱8,070.00, the report is understated, not overstated.' },
+        { type: 'paragraph', text: 'Choice **B** treats the reported total as correct, but the line items add to ₱8,100.00, not ₱8,070.00.' },
+        { type: 'paragraph', text: 'Choice **D** introduces tax even though the question asks only for the sum of the listed amounts; no tax percentage is needed.' },
+        { type: 'paragraph', text: 'Choice **E** gives the wrong actual sum and discrepancy. The correct actual total is ₱8,100.00, which is ₱30.00 above the report.' },
+      ] },
       { type: 'rule', text: 'Compute the actual total first, then compare it with the reported total. If the actual total is higher, the reported total is understated; if it is lower, the reported total is overstated.' },
     ],
   },
@@ -49,10 +51,12 @@ const TARGETS = {
         { type: 'paragraph', text: 'Compare the amounts digit by digit.' },
         { type: 'paragraph', text: 'The third and fourth digits change from 5-8 to 8-5, so the digits 5 and 8 have been transposed.' },
       ] },
-      { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** is incorrect because the account number is identical in both entries, so no account-number omission occurred.' },
-      { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** is incorrect because the question compares two individual amounts, not a column total.' },
-      { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** is incorrect because ₱14,582.00 and ₱14,852.00 differ.' },
-      { type: 'paragraph', label: 'Why the other choices fail', text: "Choice **D** is incorrect because the amount does not contain a repeated 4; the actual error is that 5 and 8 were swapped." },
+      { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+        { type: 'paragraph', text: 'Choice **A** is incorrect because the account number is identical in both entries, so no account-number omission occurred.' },
+        { type: 'paragraph', text: 'Choice **B** is incorrect because the question compares two individual amounts, not a column total.' },
+        { type: 'paragraph', text: 'Choice **C** is incorrect because ₱14,582.00 and ₱14,852.00 differ.' },
+        { type: 'paragraph', text: "Choice **D** is incorrect because the amount does not contain a repeated 4; the actual error is that 5 and 8 were swapped." },
+      ] },
       { type: 'rule', text: 'Compare numerical entries from left to right. A transposition occurs when the same digits appear in a different order.' },
     ],
   },
@@ -75,10 +79,12 @@ const TARGETS = {
         { type: 'paragraph', text: 'CSC = CSC\n2026 = 2026\nPH = PH\n89014 versus 89041\nX = X' },
         { type: 'paragraph', text: 'The digits 1 and 4 have changed order, so the transcribed code contains a transposition.' },
       ] },
-      { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** is incorrect because the codes are not identical: 89014 was transcribed as 89041.' },
-      { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** is incorrect because the letter prefixes CSC and PH match in both codes.' },
-      { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **D** is incorrect because all hyphens appear in both codes.' },
-      { type: 'paragraph', label: 'Why the other choices fail', text: "Choice **E** is incorrect because the issue is not repetition; the digits 1 and 4 were swapped from 14 to 41." },
+      { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+        { type: 'paragraph', text: 'Choice **A** is incorrect because the codes are not identical: 89014 was transcribed as 89041.' },
+        { type: 'paragraph', text: 'Choice **C** is incorrect because the letter prefixes CSC and PH match in both codes.' },
+        { type: 'paragraph', text: 'Choice **D** is incorrect because all hyphens appear in both codes.' },
+        { type: 'paragraph', text: "Choice **E** is incorrect because the issue is not repetition; the digits 1 and 4 were swapped from 14 to 41." },
+      ] },
       { type: 'rule', text: 'Compare each code segment from left to right. A transposition occurs when the same digits appear in a different order.' },
     ],
   },
@@ -118,10 +124,13 @@ describe('Clerical Operations Batch 2 structured explanations', () => {
 
     const markdown = createReviewMarkdown(batch, questions);
     const learnerDistractors = markdown.match(/\*\*Why the other choices fail\*\*/g) ?? [];
-    const authoringDistractors = markdown.match(/- type: paragraph\n  label: Why the other choices fail/g) ?? [];
+    const authoringSections = markdown.match(/- type: distractor_section\n  title: Why the other choices fail/g) ?? [];
+    const groupedAuthoringChildren = [...markdown.matchAll(/- type: distractor_section\n  title: Why the other choices fail\n  blocks:\n([\s\S]*?)(?=\n- type: [a-z_]+|$)/g)].map((match) => match[1]);
 
-    expect(learnerDistractors).toHaveLength(12);
-    expect(authoringDistractors).toHaveLength(12);
+    expect(learnerDistractors).toHaveLength(3);
+    expect(authoringSections).toHaveLength(3);
+    expect(groupedAuthoringChildren).toHaveLength(3);
+    expect(groupedAuthoringChildren.every((section) => (section.match(/type: paragraph\n\s+label: \(none\)/g) ?? []).length === 4)).toBe(true);
     expect(markdown.match(/- type: step\n  title: Apply the Rule/g) ?? []).toHaveLength(3);
     expect(markdown).toContain('The reported total is ₱30.00 lower, so it is understated by ₱30.00.');
     expect(markdown).toContain('The third and fourth digits change from 5-8 to 8-5, so the digits 5 and 8 have been transposed.');

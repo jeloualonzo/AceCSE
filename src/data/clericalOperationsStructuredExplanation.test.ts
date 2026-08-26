@@ -204,6 +204,28 @@ const EXPECTED_BLOCKS: Record<TargetId, readonly StructuredExplanationBlock[]> =
   ],
 };
 
+function groupExpectedDistractors(blocks: readonly StructuredExplanationBlock[]): StructuredExplanationBlock[] {
+  const result: StructuredExplanationBlock[] = [];
+  let index = 0;
+  while (index < blocks.length) {
+    const block = blocks[index];
+    if (block.type !== 'paragraph' || block.label !== 'Why the other choices fail') {
+      result.push(block);
+      index += 1;
+      continue;
+    }
+    const children: Array<{ type: 'paragraph'; text: string }> = [];
+    while (index < blocks.length) {
+      const candidate = blocks[index];
+      if (candidate.type !== 'paragraph' || candidate.label !== 'Why the other choices fail') break;
+      children.push({ type: 'paragraph', text: candidate.text });
+      index += 1;
+    }
+    result.push({ type: 'distractor_section', title: 'Why the other choices fail', blocks: children });
+  }
+  return result;
+}
+
 describe('Clerical Operations Batch 1 structured explanations', () => {
   it('contains exactly the approved content, answer keys, and structured-only cleanup for all ten IDs', async () => {
     const catalog = await loadContentCatalog(['Clerical Ability']);
@@ -217,7 +239,7 @@ describe('Clerical Operations Batch 1 structured explanations', () => {
       expect(question?.question, id).toBe(expected.question);
       expect(question?.choices.map((choice) => choice.text), id).toEqual(expected.choices);
       expect(question?.correctOptionId, id).toBe(expected.correctOptionId);
-      expect(question?.structuredExplanation?.blocks, id).toEqual(EXPECTED_BLOCKS[id]);
+      expect(question?.structuredExplanation?.blocks, id).toEqual(groupExpectedDistractors(EXPECTED_BLOCKS[id]));
       expect(isValidStructuredExplanation(question?.structuredExplanation), id).toBe(true);
       expect(question?.explanation, id).toBeUndefined();
       expect(question?.steps, id).toBeUndefined();

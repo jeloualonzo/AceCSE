@@ -1,8 +1,13 @@
-import type { StructuredExplanation, StructuredExplanationBlock } from '@/types';
+import type {
+  StructuredExplanation,
+  StructuredExplanationBlock,
+  StructuredExplanationDistractorSectionBlock,
+} from '@/types';
 
 const BLOCK_TYPES = new Set<StructuredExplanationBlock['type']>([
   'heading',
   'paragraph',
+  'distractor_section',
   'math',
   'pattern',
   'solution',
@@ -16,6 +21,21 @@ const BLOCK_TYPES = new Set<StructuredExplanationBlock['type']>([
 
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0;
+}
+
+function isDistractorSection(value: unknown): value is StructuredExplanationDistractorSectionBlock {
+  if (typeof value !== 'object' || value === null) return false;
+  const section = value as Record<string, unknown>;
+  return isNonEmptyString(section.title)
+    && Array.isArray(section.blocks)
+    && section.blocks.length > 0
+    && section.blocks.every((child) => (
+      typeof child === 'object'
+      && child !== null
+      && (child as Record<string, unknown>).type === 'paragraph'
+      && isNonEmptyString((child as Record<string, unknown>).text)
+      && !Object.hasOwn(child, 'label')
+    ));
 }
 
 function isBlock(value: unknown): value is StructuredExplanationBlock {
@@ -32,6 +52,8 @@ function isBlock(value: unknown): value is StructuredExplanationBlock {
       return isNonEmptyString(block.text);
     case 'paragraph':
       return isNonEmptyString(block.text) && (block.label === undefined || isNonEmptyString(block.label));
+    case 'distractor_section':
+      return isDistractorSection(block);
     case 'math':
     case 'pattern':
     case 'solution':

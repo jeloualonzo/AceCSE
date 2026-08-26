@@ -596,6 +596,7 @@ function renderLearnerBlock(block: NonNullable<Question['structuredExplanation']
     case 'heading': return `## ${block.text}`;
     case 'correct_answer': return `**Correct Answer:** ${block.text}`;
     case 'paragraph': return block.label ? `**${block.label}**\n\n${block.text}` : block.text;
+    case 'distractor_section': return `**${block.title}**\n\n${block.blocks.map(renderLearnerBlock).join('\n\n')}`;
     case 'rule': return `**Rule**\n\n${block.text}`;
     case 'common_trap': return `**Common Trap**\n\n${block.text}`;
     case 'math': return `**Calculation**${renderCodeBlock(block.expression)}`;
@@ -617,6 +618,7 @@ function renderAuthoringBlock(block: NonNullable<Question['structuredExplanation
     case 'heading': return `- type: heading\n  text: ${block.text}`;
     case 'correct_answer': return `- type: correct_answer\n  text: ${block.text}`;
     case 'paragraph': return `- type: paragraph\n  label: ${block.label ?? '(none)'}\n  text: |\n${indentText(block.text, 4)}`;
+    case 'distractor_section': return `- type: distractor_section\n  title: ${block.title}\n  blocks:\n${indentText(block.blocks.map(renderAuthoringBlock).join('\n'), 4)}`;
     case 'rule': return `- type: rule\n  text: |\n${indentText(block.text, 4)}`;
     case 'common_trap': return `- type: common_trap\n  text: |\n${indentText(block.text, 4)}`;
     case 'math': return `- type: math\n  expression: |\n${indentText(block.expression, 4)}`;

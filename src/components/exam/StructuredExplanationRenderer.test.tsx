@@ -155,9 +155,11 @@ describe('StructuredExplanationRenderer Batch 2', () => {
               { type: 'paragraph', text: 'First compare the entries.' },
               { type: 'paragraph', text: 'Then identify the differing position.' },
             ] },
-            { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **A** reverses the required order.' },
-            { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **B** uses the wrong code.' },
-            { type: 'paragraph', label: 'Why the other choices fail', text: 'Choice **C** omits a required field.' },
+            { type: 'distractor_section', title: 'Why the other choices fail', blocks: [
+              { type: 'paragraph', text: 'Choice **A** reverses the required order.' },
+              { type: 'paragraph', text: 'Choice **B** uses the wrong code.' },
+              { type: 'paragraph', text: 'Choice **C** omits a required field.' },
+            ] },
           ],
         }}
         theme="light"
@@ -165,8 +167,10 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     );
 
     const root = screen.getByTestId('structured-explanation');
-    expect(within(root).getAllByText('Why the other choices fail')).toHaveLength(3);
-    const paragraphText = [...root.querySelectorAll('p')].map((paragraph) => paragraph.textContent?.replace(/\s+/g, ' ').trim());
+    const distractorSection = within(root).getByTestId('structured-distractor-section');
+    expect(within(distractorSection).getByText('Why the other choices fail')).toBeInTheDocument();
+    expect(within(root).getAllByText('Why the other choices fail')).toHaveLength(1);
+    const paragraphText = [...distractorSection.querySelectorAll('p')].map((paragraph) => paragraph.textContent?.replace(/\s+/g, ' ').trim());
     expect(paragraphText).toContain('Choice A reverses the required order.');
     expect(paragraphText).toContain('Choice B uses the wrong code.');
     expect(paragraphText).toContain('Choice C omits a required field.');

@@ -66,29 +66,30 @@
           ]
         },
         {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **A** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **B** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **C** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **D** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **E** differs at one position—middle initial **L** versus **I**—so it is the only non-match."
+          "type": "distractor_section",
+          "title": "Why the other choices fail",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choice **A** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **B** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **C** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **D** is a distractor because it satisfies the exact-match condition; selecting it reverses the question’s **NOT**."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **E** differs at one position—middle initial **L** versus **I**—so it is the only non-match."
+            }
+          ]
         },
         {
           "type": "rule",
@@ -155,24 +156,26 @@
           "text": "Choice **A** repeats the same name, including the comma, spaces, middle initial, and period. It is the only pair with every character in the same position."
         },
         {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **B** changes the final digits from **00187** to **00178**."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **C** changes the year from **2025** to **2026**."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **D** changes **5566** to **5656**; the middle digits are **56** in the first entry and **65** in the second."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **E** changes **0055** to **0555**, so a digit position and value differ."
+          "type": "distractor_section",
+          "title": "Why the other choices fail",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choice **B** changes the final digits from **00187** to **00178**."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **C** changes the year from **2025** to **2026**."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **D** changes **5566** to **5656**; the middle digits are **56** in the first entry and **65** in the second."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **E** changes **0055** to **0555**, so a digit position and value differ."
+            }
+          ]
         },
         {
           "type": "rule",
@@ -248,24 +251,26 @@
           ]
         },
         {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **A** counts Pair 4 as a match even though the **7** and **8** are in the wrong order."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **C** undercounts the matches; Pairs **1**, **2**, and **3** are identical."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **D** undercounts the matches; Pairs **1**, **2**, and **3** are identical."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **E** undercounts the matches; Pairs **1**, **2**, and **3** are identical."
+          "type": "distractor_section",
+          "title": "Why the other choices fail",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choice **A** counts Pair 4 as a match even though the **7** and **8** are in the wrong order."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **C** undercounts the matches; Pairs **1**, **2**, and **3** are identical."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **D** undercounts the matches; Pairs **1**, **2**, and **3** are identical."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **E** undercounts the matches; Pairs **1**, **2**, and **3** are identical."
+            }
+          ]
         },
         {
           "type": "rule",
@@ -396,24 +401,26 @@
           "text": "The document is a **Notice** about Memo No. 31. The table assigns **Notice = 5**, so the correct code is **5**."
         },
         {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **A** treats the reference word “Memo” as the document type, but code **1** is for a Memorandum."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **B** is Letter."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **C** is Report."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **D** is Form. None matches the document’s actual type, Notice."
+          "type": "distractor_section",
+          "title": "Why the other choices fail",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choice **A** treats the reference word “Memo” as the document type, but code **1** is for a Memorandum."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **B** is Letter."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **C** is Report."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **D** is Form. None matches the document’s actual type, Notice."
+            }
+          ]
         },
         {
           "type": "rule",
@@ -506,24 +513,26 @@
           ]
         },
         {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **A** selects Entry A, but its subtraction is correct."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **B** selects Entry C, which also computes correctly."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **D** selects Entry D, whose net pay is correct."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **E** claims that Entries B and D are wrong, but Entry D is accurate."
+          "type": "distractor_section",
+          "title": "Why the other choices fail",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choice **A** selects Entry A, but its subtraction is correct."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **B** selects Entry C, which also computes correctly."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **D** selects Entry D, whose net pay is correct."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **E** claims that Entries B and D are wrong, but Entry D is accurate."
+            }
+          ]
         },
         {
           "type": "rule",
@@ -915,24 +924,26 @@
           ]
         },
         {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **A** is incorrect because the codes are not identical: 89014 was transcribed as 89041."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **C** is incorrect because the letter prefixes CSC and PH match in both codes."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **D** is incorrect because all hyphens appear in both codes."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **E** is incorrect because the issue is not repetition; the digits 1 and 4 were swapped from 14 to 41."
+          "type": "distractor_section",
+          "title": "Why the other choices fail",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choice **A** is incorrect because the codes are not identical: 89014 was transcribed as 89041."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **C** is incorrect because the letter prefixes CSC and PH match in both codes."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **D** is incorrect because all hyphens appear in both codes."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **E** is incorrect because the issue is not repetition; the digits 1 and 4 were swapped from 14 to 41."
+            }
+          ]
         },
         {
           "type": "rule",
@@ -1136,24 +1147,26 @@
           "text": "Combine the position code with the region suffix: **2-F**."
         },
         {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **B** reverses the required order."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **C** uses **E**, which is Region V, not NCR."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **D** uses **1**, the code for Clerk I."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **E** uses **G**, which is not the NCR code in the table."
+          "type": "distractor_section",
+          "title": "Why the other choices fail",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choice **B** reverses the required order."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **C** uses **E**, which is Region V, not NCR."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **D** uses **1**, the code for Clerk I."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **E** uses **G**, which is not the NCR code in the table."
+            }
+          ]
         },
         {
           "type": "rule",
@@ -1299,24 +1312,26 @@
           "text": "**Received = R**, **Processed = P**, **Disapproved = D**, and **Filed = F**. The stated sequence is therefore **R-P-D-F**."
         },
         {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **A** places Filed before Disapproved."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **B** inserts Approved, an event that did not occur."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **D** places Processed before Received."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **E** ends with Received instead of the final Filed event."
+          "type": "distractor_section",
+          "title": "Why the other choices fail",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choice **A** places Filed before Disapproved."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **B** inserts Approved, an event that did not occur."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **D** places Processed before Received."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **E** ends with Received instead of the final Filed event."
+            }
+          ]
         },
         {
           "type": "rule",
@@ -1427,24 +1442,26 @@
           "text": "Legal Department = **LG**. Contract = **05**. Combining the two codes gives **LG-05**."
         },
         {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **B** uses the Report code **03** instead of Contract **05**."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **C** uses Administrative **AD** instead of Legal **LG**."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **D** uses the Letter code **02**."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **E** uses **04**, which the table assigns to Request Form, not Contract."
+          "type": "distractor_section",
+          "title": "Why the other choices fail",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choice **B** uses the Report code **03** instead of Contract **05**."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **C** uses Administrative **AD** instead of Legal **LG**."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **D** uses the Letter code **02**."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **E** uses **04**, which the table assigns to Request Form, not Contract."
+            }
+          ]
         },
         {
           "type": "rule",
@@ -1586,24 +1603,26 @@
           "text": "2026 → **26**; November → **11**; day 3 → **03**; seventh document → **007**. The complete code is **26-11-03-007**."
         },
         {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **B** uses the full year instead of the last two digits."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **C** reverses the month and day fields."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **D** omits the leading zero required for a two-digit day."
-        },
-        {
-          "type": "paragraph",
-          "label": "Why the other choices fail",
-          "text": "Choice **E** writes the series as two digits instead of the required three."
+          "type": "distractor_section",
+          "title": "Why the other choices fail",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Choice **B** uses the full year instead of the last two digits."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **C** reverses the month and day fields."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **D** omits the leading zero required for a two-digit day."
+            },
+            {
+              "type": "paragraph",
+              "text": "Choice **E** writes the series as two digits instead of the required three."
+            }
+          ]
         },
         {
           "type": "rule",

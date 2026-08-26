@@ -53,6 +53,12 @@ export interface StructuredExplanationParagraphBlock {
   text: string;
 }
 
+export interface StructuredExplanationDistractorSectionBlock {
+  type: 'distractor_section';
+  title: string;
+  blocks: Array<Omit<StructuredExplanationParagraphBlock, 'label'>>;
+}
+
 export interface StructuredExplanationMathBlock {
   type: 'math';
   expression: string;
@@ -106,6 +112,7 @@ export interface StructuredExplanationAlternativeSolutionBlock {
 export type StructuredExplanationBlock =
   | StructuredExplanationHeadingBlock
   | StructuredExplanationParagraphBlock
+  | StructuredExplanationDistractorSectionBlock
   | StructuredExplanationMathBlock
   | StructuredExplanationPatternBlock
   | StructuredExplanationSolutionBlock

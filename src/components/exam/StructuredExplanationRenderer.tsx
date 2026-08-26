@@ -4,6 +4,7 @@ import type {
   StructuredExplanation,
   StructuredExplanationAlternativeSolutionBlock,
   StructuredExplanationBlock,
+  StructuredExplanationDistractorSectionBlock,
   StructuredExplanationStepBlock,
 } from '@/types';
 
@@ -45,6 +46,35 @@ function SectionLabel({ children, dark }: { children: React.ReactNode; dark: boo
     <h5 className={`text-[11px] font-bold uppercase tracking-wider ${dark ? 'text-slate-400' : 'text-slate-500'}`}>
       {children}
     </h5>
+  );
+}
+
+function DistractorSection({
+  block,
+  dark,
+  id,
+}: {
+  block: StructuredExplanationDistractorSectionBlock;
+  dark: boolean;
+  id: string;
+}) {
+  const titleId = `${id}-title`;
+  return (
+    <section
+      data-testid="structured-distractor-section"
+      aria-labelledby={titleId}
+      className="space-y-2"
+    >
+      <h5
+        id={titleId}
+        className={`text-[11px] font-bold uppercase tracking-wider ${dark ? 'text-slate-400' : 'text-slate-500'}`}
+      >
+        {block.title}
+      </h5>
+      <div className="space-y-3">
+        {block.blocks.map((child, childIndex) => renderBlock(child, childIndex, dark))}
+      </div>
+    </section>
   );
 }
 
@@ -106,6 +136,8 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
           <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
         </div>
       );
+    case 'distractor_section':
+      return <DistractorSection key={key} block={block} dark={dark} id={key} />;
     case 'pattern':
       return (
         <div key={key} className="space-y-1">
