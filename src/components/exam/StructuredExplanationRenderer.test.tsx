@@ -145,7 +145,7 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(root.textContent).not.toContain('\\]');
   });
 
-  it('uses compact controlled spacing around and between stacked display equations', () => {
+  it('restores the original readable rhythm while trimming redundant boundary whitespace', () => {
     render(
       <StructuredExplanationRenderer
         explanation={{
@@ -173,9 +173,9 @@ After the math.`,
     const paragraphs = [...root.querySelectorAll('p')];
     expect(paragraphs.map((paragraph) => paragraph.textContent)).toEqual(['Before the math:', 'After the math.']);
     const mathStack = screen.getByTestId('structured-latex-math');
-    expect(mathStack).toHaveClass('space-y-1', 'py-0');
+    expect(mathStack).toHaveClass('space-y-3', 'py-1');
     expect(mathStack.querySelectorAll('[data-testid="structured-latex-equation"]')).toHaveLength(2);
-    expect([...mathStack.querySelectorAll('[data-testid="structured-latex-equation"]')].every((equation) => equation.className.includes('py-0'))).toBe(true);
+    expect([...mathStack.querySelectorAll('[data-testid="structured-latex-equation"]')].every((equation) => !equation.className.match(/(?:^| )py-/))).toBe(true);
     expect(root.textContent).not.toContain('\\[');
     expect(root.textContent).not.toContain('\\]');
   });

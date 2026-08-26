@@ -168,6 +168,9 @@ function assertProductionMath(root: HTMLElement, expectedEquationCount: number) 
   expect(equations.every((equation) => equation.getAttribute('role') === 'math')).toBe(true);
   expect(equations.every((equation) => equation.parentElement?.getAttribute('data-testid') === 'structured-latex-math')).toBe(true);
   expect(equations.every((equation) => equation.className.includes('overflow-hidden'))).toBe(true);
+  const mathStacks = [...root.querySelectorAll('[data-testid="structured-latex-math"]')];
+  expect(mathStacks.every((stack) => stack.className.includes('space-y-3') && stack.className.includes('py-1'))).toBe(true);
+  expect(equations.every((equation) => !equation.className.match(/(?:^| )py-/))).toBe(true);
   expect(root.querySelector('.overflow-x-auto')).toBeNull();
   expect(root.querySelector('.overflow-y-auto')).toBeNull();
   expect(root.querySelector('.overflow-y-scroll')).toBeNull();
