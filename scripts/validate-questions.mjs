@@ -16,10 +16,12 @@
  *     the eleven frozen Number Series records, twelve canonical Spelling records,
  *     twenty-four canonical Filing records, four canonical Grammar records, and
  *     thirteen canonical Clerical Operations records whose obsolete fields were removed
+ *     (the three Rationale-only Number Series pilots also use structured-only content)
  *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the twelve canonical
  *     Spelling records, twenty-four canonical Filing records, four canonical Grammar
  *     records, and thirteen canonical Clerical Operations records that use
- *     structuredExplanation as their sole aid
+ *     structuredExplanation as their sole aid, plus the three Rationale-only Number
+ *     Series pilots
  *
  * Also prints supply, difficulty, and answer-letter reports.
  */
@@ -47,6 +49,7 @@ const CANONICAL_NUMBER_SERIES_IDS = new Set([
   'num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024',
   'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
 ]);
+const CANONICAL_STRUCTURED_NUMBER_SERIES_IDS = new Set(['num-0019', 'num-0020', 'num-0021']);
 const CANONICAL_SPELLING_FILE = 'clerical/spelling.json';
 const CANONICAL_SPELLING_IDS = new Set([
   'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
@@ -184,12 +187,13 @@ for (const path of jsonFiles(questionsDir)) {
     const canonicalStructuredFiling = file === CANONICAL_FILING_FILE && CANONICAL_FILING_IDS.has(q.id);
     const canonicalStructuredGrammar = file === CANONICAL_GRAMMAR_FILE && CANONICAL_GRAMMAR_IDS.has(q.id);
     const canonicalStructuredClericalOperations = CANONICAL_CLERICAL_OPERATIONS_FILES.has(file) && CANONICAL_CLERICAL_OPERATIONS_IDS.has(q.id);
-    const canonicalStructured = canonicalStructuredSpelling || canonicalStructuredFiling || canonicalStructuredGrammar || canonicalStructuredClericalOperations;
+    const canonicalStructuredNumberSeries = file === CANONICAL_NUMBER_SERIES_FILE && CANONICAL_STRUCTURED_NUMBER_SERIES_IDS.has(q.id);
+    const canonicalStructured = canonicalStructuredSpelling || canonicalStructuredFiling || canonicalStructuredGrammar || canonicalStructuredClericalOperations || canonicalStructuredNumberSeries;
     if (!canonicalStructured && (typeof q.explanation !== 'string' || q.explanation.length < 100)) {
       errors.push(`${where}: explanation must teach (≥ 100 chars), got ${q.explanation?.length ?? 0}`);
     }
 
-    if (needsSteps(q)) {
+    if (needsSteps(q) && !canonicalStructuredNumberSeries) {
       if (!Array.isArray(q.steps) || q.steps.length < 2) {
         errors.push(`${where}: computational item requires a worked solution (steps ≥ 2)`);
       }

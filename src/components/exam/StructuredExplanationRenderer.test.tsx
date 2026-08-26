@@ -80,6 +80,34 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(root.textContent).not.toContain('*access*');
   });
 
+  it('renders LaTeX display expressions inside a Rationale paragraph as mathematical markup', () => {
+    render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [{
+            type: 'paragraph',
+            label: 'Rationale',
+            text: 'The difference is **5**:\n\n\\[\n9-4=5,\\quad 14-9=5,\\quad 19-14=5\n\\]\n\nContinuing:\n\n\\[\n19+5=24\n\\]',
+          }],
+        }}
+        theme="light"
+      />
+    );
+
+    const root = screen.getByTestId('structured-explanation');
+    const displays = screen.getAllByTestId('structured-latex-math');
+    expect(displays).toHaveLength(2);
+    expect(displays[0]).toHaveAttribute('role', 'math');
+    expect(displays[0]).toHaveAttribute('aria-label', '9-4=5, 14-9=5, 19-14=5');
+    expect(displays[0].querySelectorAll('mn').length).toBeGreaterThan(0);
+    expect(displays[0].querySelectorAll('mo').length).toBeGreaterThan(0);
+    expect(root.querySelectorAll('math')).toHaveLength(2);
+    expect(root.textContent).toContain('The difference is 5:');
+    expect(root.textContent).toContain('Continuing:');
+    expect(root.textContent).not.toContain('\\[');
+    expect(root.textContent).not.toContain('\\]');
+  });
+
   it('keeps long expressions inside a horizontally safe scroll container', () => {
     const { container } = render(
       <StructuredExplanationRenderer

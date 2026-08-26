@@ -40,10 +40,14 @@ const CANONICAL_STRUCTURED_CLERICAL_OPERATIONS_IDS = new Set([
   'cler-0025', 'cler-0042', 'cler-0043', 'cler-0044', 'cler-0045',
   'cler-0051', 'cler-0057', 'seed-cler-003',
 ]);
+const CANONICAL_STRUCTURED_NUMBER_SERIES_IDS = new Set([
+  'num-0019', 'num-0020', 'num-0021',
+]);
 
 /**
- * Narrow migration exceptions: approved canonical Spelling, Filing, Grammar, and
- * Clerical Operations records whose legacy `explanation`/`steps`/`distractorExplanations`/`tip` were
+ * Narrow migration exceptions: approved canonical Spelling, Filing, Grammar,
+ * Clerical Operations, and Number Series records whose legacy
+ * `explanation`/`steps`/`distractorExplanations`/`tip` were
  * removed, so their `structuredExplanation` IS the learner-facing explanation.
  *
  * Because there is no legacy prose to fall back on, the structured payload must
@@ -60,12 +64,16 @@ function hasApprovedStructuredOnlyExplanation(question: Record<string, unknown>)
     CANONICAL_STRUCTURED_GRAMMAR_IDS.has(question.id as string) && question.topic === 'Grammar & Usage';
   const isCanonicalClericalOperations =
     CANONICAL_STRUCTURED_CLERICAL_OPERATIONS_IDS.has(question.id as string) && question.topic === 'Clerical Operations';
+  const isCanonicalNumberSeries =
+    CANONICAL_STRUCTURED_NUMBER_SERIES_IDS.has(question.id as string) && question.topic === 'Number Series';
   const isClericalCanonical = isCanonicalSpelling || isCanonicalFiling || isCanonicalClericalOperations;
   const hasCanonicalSubject = isClericalCanonical
     ? question.subject === 'Clerical Ability'
-    : isCanonicalGrammar && question.subject === 'Verbal Ability';
+    : isCanonicalGrammar
+      ? question.subject === 'Verbal Ability'
+      : isCanonicalNumberSeries && question.subject === 'Numerical Reasoning';
   return (
-    (isClericalCanonical || isCanonicalGrammar) &&
+    (isClericalCanonical || isCanonicalGrammar || isCanonicalNumberSeries) &&
     hasCanonicalSubject &&
     isValidStructuredExplanation(question.structuredExplanation)
   );

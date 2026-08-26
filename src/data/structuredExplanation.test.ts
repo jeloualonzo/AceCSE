@@ -46,34 +46,39 @@ function containsLegacySolutionHeading(value: unknown): boolean {
 }
 
 const EXPECTED_FROZEN_BLOCKS = {
-  'num-0019': [
-        { type: 'correct_answer', text: 'B — 24' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Check the difference between consecutive terms.' },
-    { type: 'pattern', expression: '4 + 5 = 9\n9 + 5 = 14\n14 + 5 = 19' },
-    { type: 'paragraph', text: 'The same operation is repeated: +5.' },
-    { type: 'solution', expression: '19 + 5 = 24' },
-    { type: 'answer', text: '24', variant: 'final' },
-    { type: 'rule', text: 'Arithmetic sequence: consecutive terms have a constant difference.' },
+  "num-0019": [
+    {
+      "type": "correct_answer",
+      "text": "B — 24"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The difference between each consecutive term is **5**:\n\n\\[\n9-4=5,\\quad 14-9=5,\\quad 19-14=5\n\\]\n\nContinuing the same pattern:\n\n\\[\n19+5=24\n\\]\n\nTherefore, the missing term is **24**."
+    }
   ],
-  'num-0020': [
-        { type: 'correct_answer', text: 'E — 48' },
-    { type: 'paragraph', label: 'What to Notice', text: 'Check how each term changes to the next.' },
-    { type: 'pattern', expression: '3 × 2 = 6\n6 × 2 = 12\n12 × 2 = 24' },
-    { type: 'paragraph', text: 'The same operation is repeated: ×2.' },
-    { type: 'solution', expression: '24 × 2 = 48' },
-    { type: 'answer', text: '48', variant: 'final' },
-    { type: 'rule', text: 'Geometric sequence: consecutive terms have a constant multiplication ratio.' },
+  "num-0020": [
+    {
+      "type": "correct_answer",
+      "text": "E — 48"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Each term is multiplied by **2**:\n\n\\[\n3\\times2=6,\\quad 6\\times2=12,\\quad 12\\times2=24\n\\]\n\nContinuing the same pattern:\n\n\\[\n24\\times2=48\n\\]\n\nTherefore, the missing term is **48**."
+    }
   ],
-  'num-0021': [
-        { type: 'correct_answer', text: 'C — 27' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The terms do not increase by the same amount, so check the differences.' },
-    { type: 'pattern', expression: '5 − 2 = 3\n9 − 5 = 4\n14 − 9 = 5\n20 − 14 = 6' },
-    { type: 'paragraph', text: 'The differences increase by 1:' },
-    { type: 'math', expression: '+3, +4, +5, +6, +7' },
-    { type: 'solution', expression: '20 + 7 = 27' },
-    { type: 'answer', text: '27', variant: 'final' },
-    { type: 'rule', text: 'When consecutive differences increase regularly, continue the pattern in the differences.' },
-  ],
+  "num-0021": [
+    {
+      "type": "correct_answer",
+      "text": "C — 27"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The differences increase by **1** each time:\n\n\\[\n5-2=3,\\quad 9-5=4,\\quad 14-9=5,\\quad 20-14=6\n\\]\n\nThe next difference is therefore **7**:\n\n\\[\n20+7=27\n\\]\n\nTherefore, the missing term is **27**."
+    }
+  ]
 } as const;
 
 const EXPECTED_BATCH2_BLOCKS = {
@@ -262,10 +267,19 @@ describe('Number Series structured explanation Batch 4', () => {
     expect(num0147Text).toContain('−144');
   });
 
-  it('keeps the first three frozen pilot payloads unchanged', async () => {
+  it('contains the exact Rationale-first payloads for the first three frozen pilot questions', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
     for (const id of FROZEN_PILOT_IDS) {
-      expect(catalog.questions.get(id)?.structuredExplanation?.blocks).toEqual(EXPECTED_FROZEN_BLOCKS[id]);
+      const question = catalog.questions.get(id);
+      const blocks = question?.structuredExplanation?.blocks ?? [];
+      expect(blocks).toEqual(EXPECTED_FROZEN_BLOCKS[id]);
+      expect(blocks).toHaveLength(2);
+      expect(blocks[0]?.type).toBe('correct_answer');
+      expect(blocks[1]).toMatchObject({ type: 'paragraph', label: 'Rationale' });
+      expect(blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution'].includes(block.type))).toBe(false);
+      for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+        expect(Object.hasOwn(question ?? {}, field), `${id}:${field}`).toBe(false);
+      }
     }
   });
 

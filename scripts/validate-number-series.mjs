@@ -46,6 +46,20 @@ const expected = {
   'num-0137': { sequence: ['2/4', '1/2', '2/6', '1/3', '2/8', '1/4', '2/10', null], correct: 'A', choices: ['1/5', '1/6', '2/5', '3/4', '4/5'] },
   'num-0147': { sequence: ['13', '−21', '34', '−55', '89', null], correct: 'D', choices: ['−95', '104', '−130', '−144', '−109'] },
 };
+const approvedPilotExplanations = {
+  'num-0019': {
+    answer: 'B — 24',
+    rationale: 'The difference between each consecutive term is **5**:\n\n\\[\n9-4=5,\\quad 14-9=5,\\quad 19-14=5\n\\]\n\nContinuing the same pattern:\n\n\\[\n19+5=24\n\\]\n\nTherefore, the missing term is **24**.',
+  },
+  'num-0020': {
+    answer: 'E — 48',
+    rationale: 'Each term is multiplied by **2**:\n\n\\[\n3\\times2=6,\\quad 6\\times2=12,\\quad 12\\times2=24\n\\]\n\nContinuing the same pattern:\n\n\\[\n24\\times2=48\n\\]\n\nTherefore, the missing term is **48**.',
+  },
+  'num-0021': {
+    answer: 'C — 27',
+    rationale: 'The differences increase by **1** each time:\n\n\\[\n5-2=3,\\quad 9-5=4,\\quad 14-9=5,\\quad 20-14=6\n\\]\n\nThe next difference is therefore **7**:\n\n\\[\n20+7=27\n\\]\n\nTherefore, the missing term is **27**.',
+  },
+};
 const actualSet = new Set(numberSeries.map((question) => question.id));
 const canonicalSource = 'content/questions/numerical/number-series.json';
 const canonicalRecords = readJson(canonicalSource);
@@ -58,8 +72,13 @@ for (const id of expectedIds) {
   if (JSON.stringify(occurrences) !== JSON.stringify([canonicalSource])) fail(`${id}: expected one active source occurrence in ${canonicalSource}, got ${JSON.stringify(occurrences)}`);
   const canonicalQuestion = canonicalRecords.find((question) => question.id === id);
   if (!canonicalQuestion || Object.hasOwn(canonicalQuestion, 'distractorExplanations')) fail(`${id}: canonical record still has distractorExplanations or is missing`);
-  for (const field of ['explanation', 'steps', 'tip', 'structuredExplanation', 'numberSeries', 'taskInstance']) {
+  for (const field of ['structuredExplanation', 'numberSeries', 'taskInstance']) {
     if (!Object.hasOwn(canonicalQuestion, field)) fail(`${id}: required preserved field ${field} is missing from canonical record`);
+  }
+  if (!approvedPilotExplanations[id]) {
+    for (const field of ['explanation', 'steps', 'tip']) {
+      if (!Object.hasOwn(canonicalQuestion, field)) fail(`${id}: required preserved legacy field ${field} is missing from canonical record`);
+    }
   }
   if (rows.get(id)?.sourceFile !== canonicalSource) fail(`${id}: classification manifest sourceFile is not ${canonicalSource}`);
 }
@@ -95,6 +114,17 @@ for (const question of numberSeries) {
   if (JSON.stringify(question.choices.map((choice) => choice.text)) !== JSON.stringify(expectedItem.choices)) fail(`${question.id}: authored choice text/order changed`);
   if (new Set(question.choices.map((choice) => choice.text)).size !== question.choices.length) fail(`${question.id}: duplicate choice text is not allowed`);
   if (question.correctOptionId !== expectedItem.correct || !question.choices.some((choice) => choice.id === question.correctOptionId)) fail(`${question.id}: answer key is invalid or changed`);
+  const approvedPilot = approvedPilotExplanations[question.id];
+  if (approvedPilot) {
+    const blocks = question.structuredExplanation?.blocks ?? [];
+    if (blocks.length !== 2) fail(`${question.id}: approved pilot explanation must contain exactly correct_answer plus Rationale`);
+    if (blocks[0]?.type !== 'correct_answer' || blocks[0]?.text !== approvedPilot.answer) fail(`${question.id}: approved pilot correct_answer block is missing or incorrect`);
+    if (blocks[1]?.type !== 'paragraph' || blocks[1]?.label !== 'Rationale' || blocks[1]?.text !== approvedPilot.rationale) fail(`${question.id}: approved pilot Rationale paragraph is missing or incorrect`);
+    if (blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution'].includes(block.type))) fail(`${question.id}: obsolete Number Series explanation block remains`);
+    for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+      if (Object.hasOwn(question, field)) fail(`${question.id}: obsolete legacy explanation field ${field} remains`);
+    }
+  }
   const visible = JSON.stringify({ question: question.question, choices: question.choices, explanation: question.explanation, steps: question.steps, tip: question.tip, reference: question.reference, taskInstance: question.taskInstance });
   if (forbidden.test(visible)) fail(`${question.id}: user-visible Number Series content contains forbidden language`);
 }

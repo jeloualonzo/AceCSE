@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { createElement, useState } from 'react';
 import { renderInlineRichText } from '@/lib/inlineRichText';
 import type {
   StructuredExplanation,
@@ -24,6 +24,87 @@ function formatMathExpression(expression: string): string {
 
 function mathLines(expression: string): string[] {
   return expression.split(/\r?\n/).map(formatMathExpression).filter(Boolean);
+}
+
+const DISPLAY_MATH_PATTERN = /\\\[([\s\S]*?)\\\]/g;
+
+function formatLatexForAria(expression: string): string {
+  return expression
+    .split(/\r?\n/)
+    .map((line) => line.replaceAll('\\times', '×').replaceAll('\\quad', ' ').replace(/\s+/g, ' ').trim())
+    .filter(Boolean)
+    .join('; ');
+}
+
+function renderLatexTokens(line: string): React.ReactNode[] {
+  const tokens = line.split(/(\\times|\\quad|[=+\-−,]|\s+)/g).filter(Boolean);
+  return tokens.map((token, index) => {
+    const key = token + '-' + index;
+    if (token === '\\times') return createElement('mo', { key }, '×');
+    if (token === '\\quad') return createElement('mspace', { key, width: '1em' });
+    if (/^\s+$/.test(token)) return createElement('mspace', { key, width: '0.25em' });
+    if (/^\d+(?:\.\d+)?$/.test(token)) return createElement('mn', { key }, token);
+    if (/^[=+\-−,]$/.test(token)) return createElement('mo', { key }, token === '-' ? '−' : token);
+    return createElement('mi', { key }, token);
+  });
+}
+
+function LatexMathDisplay({ expression, dark }: { expression: string; dark: boolean }) {
+  const lines = expression.split(/\r?\n/).filter((line) => line.trim().length > 0);
+  return (
+    <div
+      role="math"
+      data-testid="structured-latex-math"
+      aria-label={formatLatexForAria(expression)}
+      className={`overflow-x-auto px-1 py-1 ${dark ? 'text-slate-100' : 'text-slate-900'}`}
+    >
+      {createElement(
+        'math',
+        { xmlns: 'http://www.w3.org/1998/Math/MathML', display: 'block' },
+        createElement(
+          'mtable',
+          { columnalign: 'left' },
+          lines.map((line, index) => createElement(
+            'mtr',
+            { key: `${line}-${index}` },
+            createElement('mtd', null, createElement('mrow', null, renderLatexTokens(line))),
+          )),
+        ),
+      )}
+    </div>
+  );
+}
+
+function renderParagraphText(text: string, dark: boolean): React.ReactNode {
+  const matches = [...text.matchAll(DISPLAY_MATH_PATTERN)];
+  if (matches.length === 0) {
+    return <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(text)}</p>;
+  }
+
+  const parts: React.ReactNode[] = [];
+  let cursor = 0;
+  matches.forEach((match, index) => {
+    const start = match.index ?? cursor;
+    const before = text.slice(cursor, start);
+    if (before) {
+      parts.push(
+        <p key={`text-${index}`} className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
+          {renderInlineRichText(before)}
+        </p>,
+      );
+    }
+    parts.push(<LatexMathDisplay key={`math-${index}`} expression={match[1] ?? ''} dark={dark} />);
+    cursor = start + match[0].length;
+  });
+  const after = text.slice(cursor);
+  if (after) {
+    parts.push(
+      <p key="text-after" className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>
+        {renderInlineRichText(after)}
+      </p>,
+    );
+  }
+  return <div className="space-y-2">{parts}</div>;
 }
 
 function MathDisplay({ expression, dark, label }: { expression: string; dark: boolean; label?: string }) {
@@ -134,7 +215,7 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       return (
         <div key={key} className="space-y-2">
           {block.label && <SectionHeading dark={dark}>{block.label}</SectionHeading>}
-          <p className={`leading-relaxed whitespace-pre-line ${dark ? 'text-slate-200' : 'text-slate-700'}`}>{renderInlineRichText(block.text)}</p>
+          {renderParagraphText(block.text, dark)}
         </div>
       );
     case 'distractor_section':
