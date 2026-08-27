@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Clock, Grid, XCircle } from 'lucide-react';
 import type { ActiveFocus, ExamLevel, ExamSession, NormalizedQuestionGroup, OptionId, Question } from '@/types';
 import {
@@ -33,6 +33,26 @@ function isAllSubjectsPracticeSession(session: ExamSession): boolean {
     && subjects.length === ALL_PRACTICE_SUBJECTS.size
     && subjects.every((subject) => ALL_PRACTICE_SUBJECTS.has(subject));
 }
+
+type GridTileState = 'current' | 'answered' | 'unanswered';
+
+function getGridTileState(isCurrent: boolean, isAnswered: boolean): GridTileState {
+  if (isCurrent) return 'current';
+  if (isAnswered) return 'answered';
+  return 'unanswered';
+}
+
+const GRID_TILE_CLASSES: Record<GridTileState, string> = {
+  current: 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md',
+  answered: 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50',
+  unanswered: 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200',
+};
+
+const GRID_LEGEND_CLASSES: Record<GridTileState, string> = {
+  current: 'bg-emerald-600 text-white ring-2 ring-emerald-400 shadow-md',
+  answered: 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50',
+  unanswered: 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80',
+};
 
 export interface BookletExamLayoutProps {
   examLevel: ExamLevel;
@@ -82,6 +102,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   edq,
 }) => {
   const scrollRef = useRef<HTMLElement | null>(null);
+  const navigatorScrollRef = useRef<HTMLDivElement | null>(null);
   const navTriggerRef = useRef<HTMLButtonElement | null>(null);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState<string | null>(null);
@@ -328,6 +349,37 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     });
   };
 
+  const positionNavigatorAtCurrent = useCallback(() => {
+    const container = navigatorScrollRef.current;
+    if (!container || !currentQuestionId) return;
+    const tile = container.querySelector<HTMLElement>(`[data-question-id="${CSS.escape(currentQuestionId)}"]`);
+    if (!tile) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const tileRect = tile.getBoundingClientRect();
+    const containerHeight = container.clientHeight || containerRect.height;
+    if (containerHeight <= 0 || tileRect.height <= 0) return;
+
+    const tileTop = tileRect.top - containerRect.top;
+    const tileBottom = tileRect.bottom - containerRect.top;
+    let nextScrollTop = container.scrollTop;
+    if (tileTop < 0) nextScrollTop += tileTop;
+    else if (tileBottom > containerHeight) nextScrollTop += tileBottom - containerHeight;
+    if (nextScrollTop === container.scrollTop) return;
+
+    if (typeof container.scrollTo === 'function') {
+      container.scrollTo({ top: Math.max(0, nextScrollTop), behavior: 'auto' });
+    } else {
+      container.scrollTop = Math.max(0, nextScrollTop);
+    }
+  }, [currentQuestionId]);
+
+  useLayoutEffect(() => {
+    if (!isNavigatorOpen) return;
+    const frame = requestAnimationFrame(positionNavigatorAtCurrent);
+    return () => cancelAnimationFrame(frame);
+  }, [currentQuestionId, isNavigatorOpen, positionNavigatorAtCurrent]);
+
   useEffect(() => {
     if (!isNavigatorOpen) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -349,7 +401,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     [activeSectionId, currentQuestionId, closeNavigator]
   );
 
-  /** Clicking a specific question number in the drawer — may belong to a non-active subject. */
+  /** Clicking a specific question number in the drawer — may belong to a non-active subject.
+      The drawer intentionally stays open so the learner can make repeated selections. */
   const jumpToQuestion = useCallback(
     (sectionId: string, questionId: string) => {
       if (sectionId === activeSectionId) {
@@ -359,9 +412,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
         pendingTargetRef.current = questionId;
         setActiveSectionId(sectionId);
       }
-      closeNavigator();
     },
-    [activeSectionId, currentQuestionId, scrollToQuestion, closeNavigator]
+    [activeSectionId, currentQuestionId, scrollToQuestion]
   );
 
   /** Move between adjacent non-empty subjects and start at the destination top. */
@@ -555,20 +607,17 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               </button>
             </div>
 
-            <div className="flex-1 min-h-0 overflow-y-auto pr-1" data-drawer-scroll="true">
-              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
-              <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded bg-emerald-600 border border-emerald-500" />
-                <span>Answered</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700" />
-                <span>Unanswered</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded bg-white dark:bg-slate-900 ring-2 ring-emerald-400" />
-                <span>Current</span>
-              </div>
+            <div ref={navigatorScrollRef} className="flex-1 min-h-0 overflow-y-auto pr-1" data-drawer-scroll="true">
+              <div data-grid-legend="true" className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
+              {(['answered', 'unanswered', 'current'] as const).map((state) => (
+                <div key={state} className="flex items-center gap-1.5">
+                  <span
+                    className={`w-3 h-3 rounded ${GRID_LEGEND_CLASSES[state]}`}
+                    aria-hidden="true"
+                  />
+                  <span>{state[0].toUpperCase() + state.slice(1)}</span>
+                </div>
+              ))}
             </div>
 
             {/* Subject switcher lives HERE, not in the header. 2-column grid. */}
@@ -638,21 +687,17 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                         const isAnswered = block.administrative
                           ? Boolean((session.edqAnswers ?? {})[id])
                           : Boolean(session.answers[id]);
+                        const tileState = getGridTileState(isCurrent, isAnswered);
                         const state = block.administrative
                           ? ', administrative, not scored'
                           : isAnswered ? ', answered' : ', unanswered';
                         return (
                           <button
                             key={id}
+                            data-question-id={id}
                             onClick={() => jumpToQuestion(section.sectionId, id)}
                             aria-current={isCurrent ? 'true' : undefined}
-                            className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${
-                              isCurrent
-                                ? 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md'
-                                : isAnswered
-                                  ? 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50'
-                                  : 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
-                            }`}
+                            className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${GRID_TILE_CLASSES[tileState]}`}
                             aria-label={`${
                               isPractice
                                 ? `Go to ${sectionTitle(section.sectionId)} question ${num}`
@@ -669,7 +714,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               })}
               </div>
             </div>
-            <div className="sm:hidden shrink-0 border-t border-slate-200 dark:border-slate-800 pt-3 mt-3" data-drawer-footer="true">
+            <div className="sm:hidden shrink-0 pt-3 mt-3" data-drawer-footer="true">
               {exitButton('inline-flex w-full justify-center')}
             </div>
           </div>

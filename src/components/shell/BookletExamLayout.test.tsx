@@ -170,6 +170,45 @@ function countingTo(count: number): string[] {
   return Array.from({ length: count }, (_, index) => String(index + 1));
 }
 
+function testRect(top: number, bottom: number): DOMRect {
+  return {
+    top,
+    bottom,
+    left: 0,
+    right: 100,
+    width: 100,
+    height: bottom - top,
+    x: 0,
+    y: top,
+    toJSON: () => ({}),
+  } as DOMRect;
+}
+
+function deepSimulationFixture(answeredCount = 46) {
+  const questionIds = Array.from({ length: 60 }, (_, index) => `V${index + 1}`);
+  return {
+    session: baseSession({
+      config: {
+        mode: 'simulation',
+        examLevel: 'Professional',
+        questionCount: questionIds.length,
+        timed: true,
+        durationSeconds: 3600,
+      },
+      questionIds,
+      answers: Object.fromEntries(questionIds.slice(0, answeredCount).map((id) => [id, 'A'])),
+      items: questionIds.map((questionId) => ({ kind: 'question' as const, questionId, sectionId: 'Verbal Ability' })),
+    }),
+    questionIndex: new Map(questionIds.map((id) => [id, makeQuestion(id, 'Verbal Ability')])),
+  };
+}
+
+async function waitForAnimationFrame() {
+  await act(async () => {
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+  });
+}
+
 function renderLayout(props: Partial<React.ComponentProps<typeof BookletExamLayout>> = {}) {
   const onSelectOption = vi.fn();
   const onSubmitExam = vi.fn();
@@ -292,7 +331,8 @@ describe('BookletExamLayout — mobile Grid drawer Exit footer', () => {
 
     expect(dialog).toHaveClass('overflow-hidden');
     expect(scrollArea).toHaveClass('flex-1', 'min-h-0', 'overflow-y-auto');
-    expect(footer).toHaveClass('shrink-0', 'border-t', 'sm:hidden');
+    expect(footer).toHaveClass('shrink-0', 'sm:hidden', 'pt-3', 'mt-3');
+    expect(footer).not.toHaveClass('border-t', 'border-slate-200', 'border-slate-300', 'border-slate-800');
     expect(scrollArea.parentElement).toBe(dialog);
     expect(footer.parentElement).toBe(dialog);
     expect(dialog.lastElementChild).toBe(footer);
@@ -451,6 +491,152 @@ describe('BookletExamLayout — Practice navigation cleanup', () => {
   });
 });
 
+describe('BookletExamLayout — Grid state visuals and legend', () => {
+  it('renders unanswered and current-unanswered tiles with distinct neutral and emerald treatments', async () => {
+    const user = userEvent.setup();
+    renderLayout();
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const q1 = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
+    const q2 = within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i });
+
+    expect(q1).toHaveAttribute('aria-current', 'true');
+    expect(q1).toHaveClass('bg-emerald-600', 'text-white', 'ring-2', 'ring-emerald-400', 'shadow-md');
+    expect(q1).toHaveAccessibleName(/unanswered, current/i);
+    expect(q2).not.toHaveAttribute('aria-current');
+    expect(q2).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border', 'border-slate-300');
+    expect(q2).toHaveAccessibleName(/unanswered/i);
+  });
+
+  it('renders answered non-current tiles distinctly and keeps Current as the primary treatment when answered', async () => {
+    const user = userEvent.setup();
+    const answeredSession = baseSession({
+      questionIds: ['V1', 'V2', 'N1', 'N2'],
+      items: TWO_SUBJECT_ITEMS,
+      answers: { V1: 'A' },
+    });
+    renderLayout({ session: answeredSession });
+    await openNavigator(user);
+    let dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const q1 = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
+    const q2 = within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i });
+
+    expect(q1).not.toHaveAttribute('aria-current');
+    expect(q1).toHaveClass('bg-slate-100', 'text-emerald-600', 'border', 'border-emerald-500/50');
+    expect(q1).not.toHaveClass('shadow-md');
+    expect(q1).toHaveAccessibleName(/answered/i);
+    expect(q2).toHaveAttribute('aria-current', 'true');
+    expect(q2).toHaveClass('bg-emerald-600', 'text-white', 'ring-2', 'ring-emerald-400', 'shadow-md');
+    expect(q2).toHaveAccessibleName(/unanswered, current/i);
+
+    await user.click(q1);
+    dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const currentAnsweredQ1 = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
+    expect(dialog).toBeInTheDocument();
+    expect(currentAnsweredQ1).toHaveAttribute('aria-current', 'true');
+    expect(currentAnsweredQ1).toHaveClass('bg-emerald-600', 'text-white', 'ring-2', 'ring-emerald-400', 'shadow-md');
+    expect(currentAnsweredQ1).toHaveAccessibleName(/answered, current/i);
+  });
+
+  it('uses the same visual classes for legend swatches and their corresponding tile states', async () => {
+    const user = userEvent.setup();
+    renderLayout();
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const legend = dialog.querySelector('[data-grid-legend="true"]') as HTMLElement;
+    const swatches = [...legend.querySelectorAll('span[aria-hidden="true"]')];
+
+    expect(swatches).toHaveLength(3);
+    expect(swatches[0]).toHaveClass('bg-slate-100', 'text-emerald-600', 'border', 'border-emerald-500/50');
+    expect(swatches[1]).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border', 'border-slate-300');
+    expect(swatches[2]).toHaveClass('bg-emerald-600', 'text-white', 'ring-2', 'ring-emerald-400', 'shadow-md');
+    expect(within(legend).getByText('Answered')).toBeInTheDocument();
+    expect(within(legend).getByText('Unanswered')).toBeInTheDocument();
+    expect(within(legend).getByText('Current')).toBeInTheDocument();
+  });
+});
+
+describe('BookletExamLayout — Grid active-tile positioning', () => {
+  it('positions the drawer list around the current active tile on open and again on reopen', async () => {
+    const user = userEvent.setup();
+    const fixture = deepSimulationFixture();
+    renderLayout({ session: fixture.session, questionIndex: fixture.questionIndex });
+
+    await openNavigator(user);
+    let dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const scrollArea = dialog.querySelector('[data-drawer-scroll="true"]') as HTMLDivElement;
+    const currentTile = within(dialog).getByRole('button', { name: /go to item 47 in Verbal Ability/i });
+    Object.defineProperty(scrollArea, 'clientHeight', { configurable: true, value: 100 });
+    Object.defineProperty(scrollArea, 'scrollTop', { configurable: true, writable: true, value: 0 });
+    vi.spyOn(scrollArea, 'getBoundingClientRect').mockReturnValue(testRect(0, 100));
+    vi.spyOn(currentTile, 'getBoundingClientRect').mockReturnValue(testRect(240, 278));
+    const scrollTo = vi.fn();
+    Object.defineProperty(scrollArea, 'scrollTo', { configurable: true, value: scrollTo });
+
+    await waitForAnimationFrame();
+    expect(scrollTo).toHaveBeenCalledWith({ top: 178, behavior: 'auto' });
+    expect(screen.getByRole('dialog', { name: 'Question navigation' })).toBeInTheDocument();
+
+    await user.click(within(dialog).getByRole('button', { name: 'Close' }));
+    expect(screen.queryByRole('dialog', { name: 'Question navigation' })).not.toBeInTheDocument();
+    await openNavigator(user);
+    dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const reopenedScrollArea = dialog.querySelector('[data-drawer-scroll="true"]') as HTMLDivElement;
+    const reopenedCurrentTile = within(dialog).getByRole('button', { name: /go to item 47 in Verbal Ability/i });
+    Object.defineProperty(reopenedScrollArea, 'clientHeight', { configurable: true, value: 100 });
+    Object.defineProperty(reopenedScrollArea, 'scrollTop', { configurable: true, writable: true, value: 0 });
+    vi.spyOn(reopenedScrollArea, 'getBoundingClientRect').mockReturnValue(testRect(0, 100));
+    vi.spyOn(reopenedCurrentTile, 'getBoundingClientRect').mockReturnValue(testRect(240, 278));
+    const reopenedScrollTo = vi.fn();
+    Object.defineProperty(reopenedScrollArea, 'scrollTo', { configurable: true, value: reopenedScrollTo });
+
+    await waitForAnimationFrame();
+    expect(reopenedScrollTo).toHaveBeenCalledWith({ top: 178, behavior: 'auto' });
+  });
+
+  it('does not move the drawer list when the current tile is already visible and never scrolls the exam page', async () => {
+    const user = userEvent.setup();
+    renderLayout();
+    const examScroll = screen.getByRole('main');
+    const examScrollTo = vi.fn();
+    Object.defineProperty(examScroll, 'scrollTo', { configurable: true, value: examScrollTo });
+
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const scrollArea = dialog.querySelector('[data-drawer-scroll="true"]') as HTMLDivElement;
+    const currentTile = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
+    Object.defineProperty(scrollArea, 'clientHeight', { configurable: true, value: 100 });
+    Object.defineProperty(scrollArea, 'scrollTop', { configurable: true, writable: true, value: 20 });
+    vi.spyOn(scrollArea, 'getBoundingClientRect').mockReturnValue(testRect(0, 100));
+    vi.spyOn(currentTile, 'getBoundingClientRect').mockReturnValue(testRect(20, 58));
+    const drawerScrollTo = vi.fn();
+    Object.defineProperty(scrollArea, 'scrollTo', { configurable: true, value: drawerScrollTo });
+
+    await waitForAnimationFrame();
+    expect(drawerScrollTo).not.toHaveBeenCalled();
+    expect(examScrollTo).not.toHaveBeenCalled();
+  });
+
+  it('keeps the drawer open and preserves its scroll position across repeated question selections', async () => {
+    const user = userEvent.setup();
+    renderLayout();
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const scrollArea = dialog.querySelector('[data-drawer-scroll="true"]') as HTMLDivElement;
+    Object.defineProperty(scrollArea, 'scrollTop', { configurable: true, writable: true, value: 240 });
+
+    await user.click(within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i }));
+    expect(screen.getByRole('dialog', { name: 'Question navigation' })).toBeInTheDocument();
+    expect(scrollArea.scrollTop).toBe(240);
+    expect(within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i })).toHaveAttribute('aria-current', 'true');
+
+    await user.click(within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i }));
+    expect(screen.getByRole('dialog', { name: 'Question navigation' })).toBeInTheDocument();
+    expect(scrollArea.scrollTop).toBe(240);
+    expect(within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i })).toHaveAttribute('aria-current', 'true');
+  });
+});
+
 describe('BookletExamLayout — active question visual state', () => {
   it('marks exactly one primary card and moves the emphasis with a retained Grid jump', async () => {
     const user = userEvent.setup();
@@ -495,9 +681,8 @@ describe('BookletExamLayout — programmatic navigation target synchronization',
     let dialog = screen.getByRole('dialog', { name: 'Question navigation' });
     await user.click(within(dialog).getByRole('button', { name: /go to item 3 in Verbal Ability/i }));
     expect(document.getElementById('question-V3')).toHaveAttribute('data-primary-active', 'true');
+    expect(screen.getByRole('dialog', { name: 'Question navigation' })).toBeInTheDocument();
 
-    await openNavigator(user);
-    dialog = screen.getByRole('dialog', { name: 'Question navigation' });
     await user.click(within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i }));
     expect(document.getElementById('question-V2')).toHaveAttribute('data-primary-active', 'true');
     expect(document.getElementById('question-V1')).toHaveAttribute('data-primary-active', 'false');
@@ -509,10 +694,9 @@ describe('BookletExamLayout — programmatic navigation target synchronization',
     const onActiveQuestionChange = vi.fn();
     renderLayout({ onActiveQuestionChange });
     await openNavigator(user);
-    let dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
     await user.click(within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i }));
-    await openNavigator(user);
-    dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    expect(screen.getByRole('dialog', { name: 'Question navigation' })).toBeInTheDocument();
     await user.click(within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i }));
 
     expect(screen.getByText('Question text for V1')).toBeInTheDocument();
@@ -1058,9 +1242,8 @@ describe('BookletExamLayout — position restored when returning to a subject', 
     await openNavigator(user);
     let dialog = screen.getByRole('dialog', { name: 'Question navigation' });
     await user.click(within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i }));
+    expect(screen.getByRole('dialog', { name: 'Question navigation' })).toBeInTheDocument();
 
-    await openNavigator(user);
-    dialog = screen.getByRole('dialog', { name: 'Question navigation' });
     await user.click(getSubjectSwitchButton(dialog, 'Numerical Reasoning'));
 
     (Element.prototype.scrollIntoView as ReturnType<typeof vi.fn>).mockClear();
