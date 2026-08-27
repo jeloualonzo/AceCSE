@@ -210,17 +210,17 @@ const EXPECTED_AGE_PROBLEMS_BLOCKS = {
   'num-0142': [
     {
       type: 'correct_answer',
-      text: 'C — 21 years old',
+      text: 'C — 30 years old',
     },
     {
       type: 'paragraph',
       label: 'Rationale',
-      text: 'Let A be the assistant’s current age, so the supervisor’s age is A + 12. In 2 years, their ages will be A + 2 and A + 14. Their future ages must total 58:\n\n\\[\n(A+2)+(A+14)=58\n\\]\n\n\\[\n2A+16=58\n\\]\n\n\\[\n2A+16-16=58-16\n\\]\n\n\\[\n2A=42\n\\]\n\n\\[\n\\frac{2A}{2}=\\frac{42}{2}\n\\]\n\n\\[\nA=21\n\\]\n\nTherefore, the assistant is **21 years old**.\n\nCheck:\n\n\\[\n23+35=58\n\\]\n\nThe future-age condition is satisfied.',
+      text: 'Let I be the intern’s current age. The assistant is I + 10, and the supervisor is I + 25. In 5 years, their ages will be I + 5, I + 15, and I + 30. Their future ages must total 110:\n\n\\[\n(I+5)+(I+15)+(I+30)=110\n\\]\n\n\\[\n3I+50=110\n\\]\n\n\\[\n3I+50-50=110-50\n\\]\n\n\\[\n3I=60\n\\]\n\n\\[\n\\frac{3I}{3}=\\frac{60}{3}\n\\]\n\n\\[\nI=20\n\\]\n\nThe assistant is 10 years older than the intern:\n\n\\[\n20+10=30\n\\]\n\nTherefore, the assistant is **30 years old**.\n\nCheck:\n\n\\[\n25+35+50=110\n\\]\n\nThe future-age condition is satisfied.',
     },
     {
       type: 'collapsible',
       title: 'Mental Shortcut',
-      content: 'Both people become 2 years older, so their combined age increases by 4.\n\n\\[\n58-4=54\n\\]\n\nTheir current ages total **54**, and the supervisor is **12 years older**.\n\nRemove the 12-year difference:\n\n\\[\n54-12=42\n\\]\n\nThe remaining 42 is split equally between the two ages:\n\n\\[\n42\\div2=21\n\\]\n\nSo the assistant is **21 years old**.\n\nAdd the 12-year difference to get the supervisor’s age:\n\n\\[\n21+12=33\n\\]\n\nCheck:\n\n\\[\n21+33=54\n\\]\n\nAnd in two years:\n\n\\[\n23+35=58\n\\]\n\nTherefore, the assistant is **21 years old**.',
+      content: 'In 5 years, three people gain a total of 15 years.\n\n\\[\n110-15=95\n\\]\n\nTheir current ages total **95**.\n\nExpress everyone relative to the youngest:\n\n\\[\nIntern=x,\\quad Assistant=x+10,\\quad Supervisor=x+25\n\\]\n\nThe age differences above the intern are:\n\n\\[\n0+10+25=35\n\\]\n\nRemove those differences:\n\n\\[\n95-35=60\n\\]\n\nThe remaining 60 is divided equally among the three people:\n\n\\[\n60\\div3=20\n\\]\n\nSo the intern is **20**.\n\nThe assistant is 10 years older:\n\n\\[\n20+10=30\n\\]\n\nTherefore, the assistant is **30 years old**.',
     },
   ],
 } as const;

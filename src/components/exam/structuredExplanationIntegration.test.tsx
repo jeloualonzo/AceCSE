@@ -393,7 +393,7 @@ describe('structured explanation Practice/Results integration V3', () => {
     const targets = [
       ['num-0030', 10, 0],
       ['num-0031', 8, 6],
-      ['num-0142', 7, 6],
+      ['num-0142', 8, 8],
     ] as const;
 
     for (const [id, standardEquationCount, shortcutEquationCount] of targets) {
@@ -433,7 +433,10 @@ describe('structured explanation Practice/Results integration V3', () => {
         await user.click(shortcutControl!);
         expect(shortcutControl).toHaveAttribute('aria-expanded', 'true');
         expect(shortcutContent).not.toHaveAttribute('hidden');
-        expect(within(shortcutContent).getByText(/Both people become 2 years older/)).toBeVisible();
+        const shortcutLead = id === 'num-0142'
+          ? /In 5 years, three people gain a total of 15 years/
+          : /Both people become 2 years older/;
+        expect(within(shortcutContent).getByText(shortcutLead)).toBeVisible();
         assertProductionMath(root, standardEquationCount + shortcutEquationCount);
         await user.click(shortcutControl!);
         expect(shortcutContent).toHaveAttribute('hidden');
