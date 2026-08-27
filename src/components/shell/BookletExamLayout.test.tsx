@@ -492,7 +492,7 @@ describe('BookletExamLayout — Practice navigation cleanup', () => {
 });
 
 describe('BookletExamLayout — Grid state visuals and legend', () => {
-  it('renders Current as a white emerald outline and Unanswered as a neutral tile', async () => {
+  it('renders Current with the normal neutral surface and emerald outline while Unanswered stays neutral', async () => {
     const user = userEvent.setup();
     renderLayout();
     await openNavigator(user);
@@ -501,8 +501,8 @@ describe('BookletExamLayout — Grid state visuals and legend', () => {
     const q2 = within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i });
 
     expect(q1).toHaveAttribute('aria-current', 'true');
-    expect(q1).toHaveClass('bg-white', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
-    expect(q1).not.toHaveClass('bg-emerald-600', 'shadow-md');
+    expect(q1).toHaveClass('bg-slate-100/60', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
+    expect(q1).not.toHaveClass('bg-white', 'bg-emerald-600', 'shadow-md');
     expect(q1).toHaveAccessibleName(/unanswered, current/i);
     expect(q2).not.toHaveAttribute('aria-current');
     expect(q2).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border', 'border-slate-300');
@@ -527,8 +527,8 @@ describe('BookletExamLayout — Grid state visuals and legend', () => {
     expect(q1).not.toHaveClass('ring-2', 'shadow-md');
     expect(q1).toHaveAccessibleName(/answered/i);
     expect(q2).toHaveAttribute('aria-current', 'true');
-    expect(q2).toHaveClass('bg-white', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
-    expect(q2).not.toHaveClass('bg-emerald-600', 'shadow-md');
+    expect(q2).toHaveClass('bg-slate-100/60', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
+    expect(q2).not.toHaveClass('bg-white', 'bg-emerald-600', 'shadow-md');
     expect(q2).toHaveAccessibleName(/unanswered, current/i);
 
     await user.click(q1);
@@ -536,8 +536,8 @@ describe('BookletExamLayout — Grid state visuals and legend', () => {
     const currentAnsweredQ1 = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
     expect(dialog).toBeInTheDocument();
     expect(currentAnsweredQ1).toHaveAttribute('aria-current', 'true');
-    expect(currentAnsweredQ1).toHaveClass('bg-white', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
-    expect(currentAnsweredQ1).not.toHaveClass('bg-emerald-600', 'shadow-md');
+    expect(currentAnsweredQ1).toHaveClass('bg-slate-100/60', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
+    expect(currentAnsweredQ1).not.toHaveClass('bg-white', 'bg-emerald-600', 'shadow-md');
     expect(currentAnsweredQ1).toHaveAccessibleName(/answered, current/i);
   });
 
@@ -552,8 +552,8 @@ describe('BookletExamLayout — Grid state visuals and legend', () => {
     expect(swatches).toHaveLength(3);
     expect(swatches[0]).toHaveClass('bg-emerald-600', 'text-white', 'border', 'border-emerald-600');
     expect(swatches[1]).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border', 'border-slate-300');
-    expect(swatches[2]).toHaveClass('bg-white', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
-    expect(swatches[2]).not.toHaveClass('shadow-md');
+    expect(swatches[2]).toHaveClass('bg-slate-100/60', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
+    expect(swatches[2]).not.toHaveClass('bg-white', 'shadow-md');
     expect(within(legend).getByText('Answered')).toBeInTheDocument();
     expect(within(legend).getByText('Unanswered')).toBeInTheDocument();
     expect(within(legend).getByText('Current')).toBeInTheDocument();

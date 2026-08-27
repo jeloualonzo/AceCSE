@@ -43,7 +43,7 @@ function getGridTileState(isCurrent: boolean, isAnswered: boolean): GridTileStat
 }
 
 const GRID_STATE_CLASSES: Record<GridTileState, string> = {
-  current: 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 font-extrabold border-2 border-emerald-500 ring-2 ring-emerald-400',
+  current: 'bg-slate-100/60 dark:bg-slate-800/60 text-emerald-600 dark:text-emerald-400 font-extrabold border-2 border-emerald-500 ring-2 ring-emerald-400',
   answered: 'bg-emerald-600 text-white border border-emerald-600',
   unanswered: 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80',
 };
