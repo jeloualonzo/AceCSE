@@ -2175,11 +2175,6 @@
           "type": "paragraph",
           "label": "Rationale",
           "text": "An average of 38 for 5 numbers means their total must be:\n\n\\[\n38\\times5=190\n\\]\n\nThe four known numbers total:\n\n\\[\n30+42+35+46=153\n\\]\n\nSo the fifth number is the difference:\n\n\\[\n190-153=37\n\\]\n\nTherefore, the missing number is **37**."
-        },
-        {
-          "type": "collapsible",
-          "title": "Mental Shortcut",
-          "content": "For a missing value, first find the total required by the average:\n\n\\[\n38\\times5=190\n\\]\n\nThe four known numbers total **153**, so mentally subtract:\n\n\\[\n190-153=37\n\\]\n\nTherefore, the missing number is **37**."
         }
       ]
     },
@@ -2497,11 +2492,6 @@
           "type": "paragraph",
           "label": "Rationale",
           "text": "The first 4 department heads have an average of 88, so their total score is:\n\n\\[\n88\\times4=352\n\\]\n\nWith 5 department heads, the new average is 90, so the total score must be:\n\n\\[\n90\\times5=450\n\\]\n\nThe fifth score is the difference between the new total and the original total:\n\n\\[\n450-352=98\n\\]\n\nTherefore, the fifth department head scored **98**.\n\nCheck:\n\n\\[\n352+98=450\n\\]\n\nand\n\n\\[\n450\\div5=90\n\\]"
-        },
-        {
-          "type": "collapsible",
-          "title": "Mental Shortcut",
-          "content": "The first 4 scores total:\n\n\\[\n88\\times4=352\n\\]\n\nThe 5 scores must total:\n\n\\[\n90\\times5=450\n\\]\n\nSo the fifth score is:\n\n\\[\n450-352=98\n\\]\n\nTherefore, the fifth department head scored **98**."
         }
       ]
     },

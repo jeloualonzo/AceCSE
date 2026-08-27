@@ -250,11 +250,6 @@ const EXPECTED_AVERAGES_BLOCKS = {
       label: 'Rationale',
       text: 'An average of 38 for 5 numbers means their total must be:\n\n\\[\n38\\times5=190\n\\]\n\nThe four known numbers total:\n\n\\[\n30+42+35+46=153\n\\]\n\nSo the fifth number is the difference:\n\n\\[\n190-153=37\n\\]\n\nTherefore, the missing number is **37**.',
     },
-    {
-      type: 'collapsible',
-      title: 'Mental Shortcut',
-      content: 'For a missing value, first find the total required by the average:\n\n\\[\n38\\times5=190\n\\]\n\nThe four known numbers total **153**, so mentally subtract:\n\n\\[\n190-153=37\n\\]\n\nTherefore, the missing number is **37**.',
-    },
   ],
   'num-0145': [
     { type: 'correct_answer', text: 'C — 26' },
@@ -271,11 +266,6 @@ const EXPECTED_AVERAGES_BLOCKS = {
       label: 'Rationale',
       text: 'The first 8 assessments have an average of 85, so their total is:\n\n\\[\n85\\times8=680\n\\]\n\nAfter the ninth assessment, the average is 81 for 9 assessments, so the new total is:\n\n\\[\n81\\times9=729\n\\]\n\nThe ninth score is the increase in total:\n\n\\[\n729-680=49\n\\]\n\nTherefore, the ninth assessment score is **49**.\n\nCheck:\n\n\\[\n680+49=729\n\\]\n\nand\n\n\\[\n729\\div9=81\n\\]',
     },
-    {
-      type: 'collapsible',
-      title: 'Mental Shortcut',
-      content: 'Think in terms of total points instead of averages.\n\nThe old total is:\n\n\\[\n85\\times8=680\n\\]\n\nThe new total is:\n\n\\[\n81\\times9=729\n\\]\n\nThe ninth score is simply the difference:\n\n\\[\n729-680=49\n\\]\n\nSo the ninth assessment score is **49**.',
-    },
   ],
   'seed-num-005': [
     { type: 'correct_answer', text: 'C — 98' },
@@ -283,11 +273,6 @@ const EXPECTED_AVERAGES_BLOCKS = {
       type: 'paragraph',
       label: 'Rationale',
       text: 'The first 4 department heads have an average of 88, so their total score is:\n\n\\[\n88\\times4=352\n\\]\n\nWith 5 department heads, the new average is 90, so the total score must be:\n\n\\[\n90\\times5=450\n\\]\n\nThe fifth score is the difference between the new total and the original total:\n\n\\[\n450-352=98\n\\]\n\nTherefore, the fifth department head scored **98**.\n\nCheck:\n\n\\[\n352+98=450\n\\]\n\nand\n\n\\[\n450\\div5=90\n\\]',
-    },
-    {
-      type: 'collapsible',
-      title: 'Mental Shortcut',
-      content: 'The first 4 scores total:\n\n\\[\n88\\times4=352\n\\]\n\nThe 5 scores must total:\n\n\\[\n90\\times5=450\n\\]\n\nSo the fifth score is:\n\n\\[\n450-352=98\n\\]\n\nTherefore, the fifth department head scored **98**.',
     },
   ],
 } as const;
@@ -366,24 +351,18 @@ describe('Age Problems structured explanation', () => {
 });
 
 describe('Averages structured explanation Batch 1', () => {
-  it('contains the exact supplied payloads and no legacy explanation fields', async () => {
+  it('contains the exact supplied Rationale-only payloads and no legacy explanation fields', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
-    const shortcutIds = new Set(['num-0049', 'num-0146', 'seed-num-005']);
 
     for (const id of AVERAGES_BATCH1_IDS) {
       const question = catalog.questions.get(id);
       const blocks = question?.structuredExplanation?.blocks ?? [];
       expect(question, id).toBeTruthy();
       expect(blocks, id).toEqual(EXPECTED_AVERAGES_BLOCKS[id]);
-      expect(blocks, id).toHaveLength(shortcutIds.has(id) ? 3 : 2);
+      expect(blocks, id).toHaveLength(2);
       expect(blocks[0], id).toMatchObject({ type: 'correct_answer' });
       expect(blocks[1], id).toMatchObject({ type: 'paragraph', label: 'Rationale' });
-      expect(blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution'].includes(block.type)), id).toBe(false);
-      if (shortcutIds.has(id)) {
-        expect(blocks[2], id).toMatchObject({ type: 'collapsible', title: 'Mental Shortcut' });
-      } else {
-        expect(blocks.some((block) => block.type === 'collapsible'), id).toBe(false);
-      }
+      expect(blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution', 'collapsible'].includes(block.type)), id).toBe(false);
       expect(isValidStructuredExplanation(question?.structuredExplanation), id).toBe(true);
       for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
         expect(Object.hasOwn(question ?? {}, field), `${id}:${field}`).toBe(false);
