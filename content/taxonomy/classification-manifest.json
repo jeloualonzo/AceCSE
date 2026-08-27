@@ -6920,7 +6920,7 @@
       "subject": "Numerical Reasoning",
       "examLevel": "Both",
       "topic": "Age Problems",
-      "subtopic": "Three-Person Age System with Future Constraint",
+      "subtopic": "Two-Person Age System with Future Constraint",
       "questionType": "algebra_word_problem",
       "questionFormat": "algebra_word_problem",
       "taskFormat": "standard_multiple_choice",

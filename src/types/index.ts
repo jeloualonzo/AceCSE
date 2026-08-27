@@ -53,6 +53,12 @@ export interface StructuredExplanationParagraphBlock {
   text: string;
 }
 
+export interface StructuredExplanationCollapsibleBlock {
+  type: 'collapsible';
+  title: string;
+  content: string;
+}
+
 export interface StructuredExplanationDistractorSectionBlock {
   type: 'distractor_section';
   title: string;
@@ -112,6 +118,7 @@ export interface StructuredExplanationAlternativeSolutionBlock {
 export type StructuredExplanationBlock =
   | StructuredExplanationHeadingBlock
   | StructuredExplanationParagraphBlock
+  | StructuredExplanationCollapsibleBlock
   | StructuredExplanationDistractorSectionBlock
   | StructuredExplanationMathBlock
   | StructuredExplanationPatternBlock

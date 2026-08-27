@@ -17,6 +17,7 @@ const BLOCK_TYPES = new Set<StructuredExplanationBlock['type']>([
   'common_trap',
   'step',
   'alternative_solution',
+  'collapsible',
 ]);
 
 function isNonEmptyString(value: unknown): value is string {
@@ -53,6 +54,8 @@ function isBlock(value: unknown): value is StructuredExplanationBlock {
       return isNonEmptyString(block.text);
     case 'paragraph':
       return isNonEmptyString(block.text) && (block.label === undefined || isNonEmptyString(block.label));
+    case 'collapsible':
+      return isNonEmptyString(block.title) && isNonEmptyString(block.content);
     case 'distractor_section':
       return isDistractorSection(block);
     case 'math':

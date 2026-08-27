@@ -4,6 +4,7 @@ import type {
   StructuredExplanation,
   StructuredExplanationAlternativeSolutionBlock,
   StructuredExplanationBlock,
+  StructuredExplanationCollapsibleBlock,
   StructuredExplanationDistractorSectionBlock,
   StructuredExplanationStepBlock,
 } from '@/types';
@@ -432,6 +433,46 @@ function AlternativeSolution({
   );
 }
 
+function CollapsibleExplanation({
+  block,
+  dark,
+  id,
+}: {
+  block: StructuredExplanationCollapsibleBlock;
+  dark: boolean;
+  id: string;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const contentId = `${id}-content`;
+
+  return (
+    <div data-testid="structured-collapsible" className="pt-1">
+      <button
+        type="button"
+        aria-expanded={expanded}
+        aria-controls={contentId}
+        onClick={() => setExpanded((value) => !value)}
+        className={`inline-flex items-center gap-1 px-0 py-1 text-[11px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 ${
+          dark
+            ? 'text-slate-400 hover:text-slate-200 focus-visible:ring-emerald-400'
+            : 'text-slate-500 hover:text-slate-800 focus-visible:ring-emerald-600'
+        }`}
+      >
+        <span>{block.title}</span>
+        <span aria-hidden="true">{expanded ? '⌄' : '›'}</span>
+      </button>
+      <div
+        id={contentId}
+        hidden={!expanded}
+        data-testid="structured-collapsible-content"
+        className="pt-2"
+      >
+        {renderParagraphText(block.content, dark)}
+      </div>
+    </div>
+  );
+}
+
 function renderBlock(block: StructuredExplanationBlock, index: number, dark: boolean): React.ReactNode {
   const key = `${block.type}-${index}`;
   switch (block.type) {
@@ -496,6 +537,8 @@ function renderBlock(block: StructuredExplanationBlock, index: number, dark: boo
       );
     case 'step':
       return renderFutureStep(block, key, dark);
+    case 'collapsible':
+      return <CollapsibleExplanation key={key} block={block} dark={dark} id={key} />;
     case 'alternative_solution':
       return <AlternativeSolution key={key} block={block} dark={dark} id={key} />;
     default:

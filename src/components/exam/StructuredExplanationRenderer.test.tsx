@@ -364,6 +364,53 @@ After the math.`,
     expect(orderParagraph?.querySelectorAll('em')).toHaveLength(4);
   });
 
+  it('renders Mental Shortcut as a subtle collapsed disclosure with reusable rich math content', async () => {
+    const user = userEvent.setup();
+    const { container } = render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [
+            { type: 'correct_answer', text: 'C — 21' },
+            {
+              type: 'collapsible',
+              title: 'Mental Shortcut',
+              content: `Subtract the future increase.\n\n\\[\n58-4=54\n\\]\n\n\\[\n\\frac{42}{2}=21\n\\]`,
+            },
+          ],
+        }}
+        theme="light"
+      />
+    );
+
+    const control = screen.getByTestId('structured-collapsible').querySelector('button') as HTMLButtonElement;
+    const content = screen.getByTestId('structured-collapsible-content');
+
+    expect(control).toBeTruthy();
+    expect(control).toHaveTextContent('Mental Shortcut›');
+    expect(control).toHaveAttribute('aria-expanded', 'false');
+    expect(control).toHaveAttribute('aria-controls', content.id);
+    expect(content).toHaveAttribute('hidden');
+    expect(control.className).not.toMatch(/rounded|bg-|border|shadow/);
+    expect(container.querySelector('.rounded-lg')).toBeNull();
+    expect(container.querySelector('.grid')).toBeNull();
+
+    await user.click(control);
+
+    expect(control).toHaveTextContent('Mental Shortcut⌄');
+    expect(control).toHaveAttribute('aria-expanded', 'true');
+    expect(content).not.toHaveAttribute('hidden');
+    expect(within(content).getByText('Subtract the future increase.')).toBeVisible();
+    const firstEquation = content.querySelector('[data-testid="structured-latex-equation"]');
+    expect(firstEquation).toBeVisible();
+    expect(firstEquation).toHaveAttribute('aria-label', '58-4=54');
+    expect(content.querySelector('mfrac')).toBeTruthy();
+
+    await user.click(control);
+    expect(control).toHaveTextContent('Mental Shortcut›');
+    expect(control).toHaveAttribute('aria-expanded', 'false');
+    expect(content).toHaveAttribute('hidden');
+  });
+
   it('keeps Alternative Method collapsed by default and expands vertically inside the same card', async () => {
     const user = userEvent.setup();
     const { container } = render(

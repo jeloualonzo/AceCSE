@@ -443,6 +443,8 @@ describe('structured-only Age Problems admission exception', () => {
   it('rejects malformed or missing Age Problems structured explanations', () => {
     expect(isValidQuestion(structuredOnlyAgeProblems({ structuredExplanation: { blocks: [] } }))).toBe(false);
     expect(isValidQuestion(structuredOnlyAgeProblems({ structuredExplanation: { blocks: [{ type: 'unsupported', text: 'bad' }] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyAgeProblems({ structuredExplanation: { blocks: [{ type: 'collapsible', title: 'Mental Shortcut', content: ' ' }] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyAgeProblems({ structuredExplanation: { blocks: [{ type: 'collapsible', title: '', content: 'shortcut' }] } }))).toBe(false);
     const question = structuredOnlyAgeProblems();
     delete question.structuredExplanation;
     expect(isValidQuestion(question)).toBe(false);

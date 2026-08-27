@@ -618,6 +618,7 @@ function renderLearnerBlock(block: StructuredExplanationBlock): string {
     case 'answer': return `**Answer:** ${block.text}`;
     case 'step': return `**${block.title}**\n\n${renderLearnerBlocks(block.blocks)}`;
     case 'alternative_solution': return `### ${block.title}\n\n${renderLearnerBlocks(block.blocks)}`;
+    case 'collapsible': return `**${block.title}**\n\n${block.content}`;
   }
 }
 
@@ -649,6 +650,7 @@ function renderAuthoringBlock(block: StructuredExplanationBlock): string {
     case 'answer': return `- type: answer\n  variant: ${block.variant ?? '(none)'}\n  text: ${block.text}`;
     case 'step': return `- type: step\n  title: ${block.title}\n  blocks:\n${indentText(renderAuthoringBlocks(block.blocks), 4)}`;
     case 'alternative_solution': return `- type: alternative_solution\n  title: ${block.title}\n  blocks:\n${indentText(renderAuthoringBlocks(block.blocks), 4)}`;
+    case 'collapsible': return `- type: collapsible\n  title: ${block.title}\n  content: |\n${indentText(block.content, 4)}`;
   }
 }
 

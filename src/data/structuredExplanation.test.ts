@@ -194,23 +194,33 @@ const EXPECTED_AGE_PROBLEMS_BLOCKS = {
   'num-0031': [
     {
       type: 'correct_answer',
-      text: 'D — 24',
+      text: 'D — 33',
     },
     {
       type: 'paragraph',
       label: 'Rationale',
-      text: 'Let S be Sonia’s current age, so Romy’s age is S + 6. In 4 years, their ages will be S + 4 and S + 10. Their future ages must total 50:\n\n\\[\n(S+4)+(S+10)=50\n\\]\n\n\\[\n2S+14=50\n\\]\n\n\\[\n2S+14-14=50-14\n\\]\n\n\\[\n2S=36\n\\]\n\n\\[\n\\frac{2S}{2}=\\frac{36}{2}\n\\]\n\n\\[\nS=18\n\\]\n\nRomy is 6 years older:\n\n\\[\n18+6=24\n\\]\n\nTherefore, Romy is **24 years old**.\n\nCheck:\n\n\\[\n28+22=50\n\\]\n\nso the future-age condition is satisfied.',
+      text: 'Let S be Sonia’s current age, so Romy’s age is S + 12. In 2 years, their ages will be S + 2 and S + 14. Their future ages must total 58:\n\n\\[\n(S+2)+(S+14)=58\n\\]\n\n\\[\n2S+16=58\n\\]\n\n\\[\n2S+16-16=58-16\n\\]\n\n\\[\n2S=42\n\\]\n\n\\[\n\\frac{2S}{2}=\\frac{42}{2}\n\\]\n\n\\[\nS=21\n\\]\n\nRomy is 12 years older:\n\n\\[\n21+12=33\n\\]\n\nTherefore, Romy is **33 years old**.\n\nCheck:\n\n\\[\n23+35=58\n\\]\n\nso the future-age condition is satisfied.',
+    },
+    {
+      type: 'collapsible',
+      title: 'Mental Shortcut',
+      content: 'Both people become 2 years older, so their combined age increases by 4.\n\n\\[\n58-4=54\n\\]\n\nTheir current ages total **54**, and Romy is **12 years older** than Sonia.\n\nRemove the 12-year difference:\n\n\\[\n54-12=42\n\\]\n\nThe remaining 42 is split equally between the two ages:\n\n\\[\n42\\div2=21\n\\]\n\nSo Sonia is **21 years old**.\n\nAdd the 12-year difference back to get Romy’s age:\n\n\\[\n21+12=33\n\\]\n\nCheck the current total:\n\n\\[\n21+33=54\n\\]\n\nAnd in two years:\n\n\\[\n23+35=58\n\\]\n\nTherefore, Romy is **33 years old**.',
     },
   ],
   'num-0142': [
     {
       type: 'correct_answer',
-      text: 'C — 8 years old',
+      text: 'C — 21 years old',
     },
     {
       type: 'paragraph',
       label: 'Rationale',
-      text: 'Let a be the assistant’s current age. The supervisor is 5a, and the intern is \\(\\frac{a}{2}\\). In 2 years, their ages will be 5a + 2, a + 2, and \\(\\frac{a}{2}+2\\). Their future ages must total 58:\n\n\\[\n(5a+2)+(a+2)+\\left(\\frac{a}{2}+2\\right)=58\n\\]\n\n\\[\n5a+a+\\frac{a}{2}+6=58\n\\]\n\n\\[\n6.5a+6=58\n\\]\n\n\\[\n6.5a+6-6=58-6\n\\]\n\n\\[\n6.5a=52\n\\]\n\n\\[\n\\frac{6.5a}{6.5}=\\frac{52}{6.5}\n\\]\n\n\\[\na=8\n\\]\n\nTherefore, the assistant is **8 years old**.\n\nCheck:\n\n\\[\n5(8)=40,\\qquad \\frac{8}{2}=4\n\\]\n\n\\[\n42+10+6=58\n\\]\n\nThe future-age condition is satisfied.',
+      text: 'Let A be the assistant’s current age, so the supervisor’s age is A + 12. In 2 years, their ages will be A + 2 and A + 14. Their future ages must total 58:\n\n\\[\n(A+2)+(A+14)=58\n\\]\n\n\\[\n2A+16=58\n\\]\n\n\\[\n2A+16-16=58-16\n\\]\n\n\\[\n2A=42\n\\]\n\n\\[\n\\frac{2A}{2}=\\frac{42}{2}\n\\]\n\n\\[\nA=21\n\\]\n\nTherefore, the assistant is **21 years old**.\n\nCheck:\n\n\\[\n23+35=58\n\\]\n\nThe future-age condition is satisfied.',
+    },
+    {
+      type: 'collapsible',
+      title: 'Mental Shortcut',
+      content: 'Both people become 2 years older, so their combined age increases by 4.\n\n\\[\n58-4=54\n\\]\n\nTheir current ages total **54**, and the supervisor is **12 years older**.\n\nRemove the 12-year difference:\n\n\\[\n54-12=42\n\\]\n\nThe remaining 42 is split equally between the two ages:\n\n\\[\n42\\div2=21\n\\]\n\nSo the assistant is **21 years old**.\n\nAdd the 12-year difference to get the supervisor’s age:\n\n\\[\n21+12=33\n\\]\n\nCheck:\n\n\\[\n21+33=54\n\\]\n\nAnd in two years:\n\n\\[\n23+35=58\n\\]\n\nTherefore, the assistant is **21 years old**.',
     },
   ],
 } as const;
@@ -255,20 +265,35 @@ describe('Grammar structured explanation final pilot', () => {
 });
 
 describe('Age Problems structured explanation', () => {
-  it('contains the exact supplied two-block payloads without legacy fields', async () => {
+  it('contains the exact supplied payloads without legacy fields', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    const rationaleOnlyIds = ['num-0030'] as const;
+    const shortcutIds = ['num-0031', 'num-0142'] as const;
+
     for (const id of AGE_PROBLEMS_IDS) {
       const question = catalog.questions.get(id);
+      const blocks = question?.structuredExplanation?.blocks ?? [];
       expect(question).toBeTruthy();
-      expect(question?.structuredExplanation?.blocks).toEqual(EXPECTED_AGE_PROBLEMS_BLOCKS[id]);
-      expect(question?.structuredExplanation?.blocks).toHaveLength(2);
-      expect(question?.structuredExplanation?.blocks[0]?.type).toBe('correct_answer');
-      expect(question?.structuredExplanation?.blocks[1]).toMatchObject({ type: 'paragraph', label: 'Rationale' });
+      expect(blocks).toEqual(EXPECTED_AGE_PROBLEMS_BLOCKS[id]);
+      expect(blocks[0]?.type).toBe('correct_answer');
+      expect(blocks[1]).toMatchObject({ type: 'paragraph', label: 'Rationale' });
       expect(isValidStructuredExplanation(question?.structuredExplanation)).toBe(true);
-      expect(question?.structuredExplanation?.blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution'].includes(block.type))).toBe(false);
+      expect(blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution'].includes(block.type))).toBe(false);
       for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
         expect(Object.hasOwn(question ?? {}, field), `${id}:${field}`).toBe(false);
       }
+    }
+
+    for (const id of rationaleOnlyIds) {
+      expect(catalog.questions.get(id)?.structuredExplanation?.blocks).toHaveLength(2);
+      expect(catalog.questions.get(id)?.structuredExplanation?.blocks.some((block) => block.type === 'collapsible')).toBe(false);
+    }
+
+    for (const id of shortcutIds) {
+      const blocks = catalog.questions.get(id)?.structuredExplanation?.blocks ?? [];
+      expect(blocks).toHaveLength(3);
+      expect(blocks[2]).toMatchObject({ type: 'collapsible', title: 'Mental Shortcut' });
+      expect((blocks[2]?.type === 'collapsible' ? blocks[2].content : '')).toContain('Therefore,');
     }
   });
 });

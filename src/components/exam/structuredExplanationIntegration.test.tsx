@@ -163,12 +163,14 @@ function assertProductionMath(root: HTMLElement, expectedEquationCount: number) 
   expect(root.textContent).not.toContain('\\[');
   expect(root.textContent).not.toContain('\\]');
   expect(root.querySelectorAll('[data-testid="structured-latex-math"]').length).toBeGreaterThan(0);
-  const equations = [...root.querySelectorAll('[data-testid="structured-latex-equation"]')];
+  const equations = [...root.querySelectorAll('[data-testid="structured-latex-equation"]')]
+    .filter((equation) => !equation.closest('[hidden]'));
   expect(equations).toHaveLength(expectedEquationCount);
   expect(equations.every((equation) => equation.getAttribute('role') === 'math')).toBe(true);
   expect(equations.every((equation) => equation.parentElement?.getAttribute('data-testid') === 'structured-latex-math')).toBe(true);
   expect(equations.every((equation) => equation.className.includes('overflow-hidden'))).toBe(true);
-  const mathStacks = [...root.querySelectorAll('[data-testid="structured-latex-math"]')];
+  const mathStacks = [...root.querySelectorAll('[data-testid="structured-latex-math"]')]
+    .filter((stack) => !stack.closest('[hidden]'));
   expect(mathStacks.every((stack) => stack.className.includes('space-y-3') && stack.className.includes('py-1'))).toBe(true);
   expect(equations.every((equation) => !equation.className.match(/(?:^| )py-/))).toBe(true);
   expect(root.querySelector('.overflow-x-auto')).toBeNull();
@@ -385,16 +387,16 @@ describe('structured explanation Practice/Results integration V3', () => {
     }
   });
 
-  it('renders the Age Problems Rationales with all supplied algebra steps in Practice and Results', async () => {
+  it('renders Age Problems Rationales and optional Mental Shortcuts consistently in Practice and Results', async () => {
     const user = userEvent.setup();
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
     const targets = [
-      ['num-0030', 10],
-      ['num-0031', 8],
-      ['num-0142', 9],
+      ['num-0030', 10, 0],
+      ['num-0031', 8, 6],
+      ['num-0142', 7, 6],
     ] as const;
 
-    for (const [id, expectedEquationCount] of targets) {
+    for (const [id, standardEquationCount, shortcutEquationCount] of targets) {
       const question = catalog.questions.get(id);
       expect(question).toBeTruthy();
       if (!question) continue;
@@ -409,19 +411,32 @@ describe('structured explanation Practice/Results integration V3', () => {
       );
       await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
       for (const root of screen.getAllByTestId('structured-explanation')) {
-        assertProductionMath(root, expectedEquationCount);
+        assertProductionMath(root, standardEquationCount);
         expect(root.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
         expect(within(root).getByText('Rationale')).toBeInTheDocument();
         expect(root.querySelectorAll('h5')).toHaveLength(1);
         expect(root.textContent).not.toMatch(/Solution|Remember|Exam Tip|Alternative Method|Rule|Step [123]/);
         expect(root.textContent).not.toContain('\\(');
         expect(root.textContent).not.toContain('\\)');
-      }
-      if (id === 'num-0142') {
-        expect(screen.getAllByTestId('structured-inline-math')).toHaveLength(4);
-        expect(screen.getAllByTestId('structured-inline-math').every((node) => node.querySelector('mfrac'))).toBe(true);
-      } else {
-        expect(screen.queryByTestId('structured-inline-math')).toBeNull();
+
+        const shortcutControl = within(root).queryByRole('button', { name: 'Mental Shortcut' });
+        if (shortcutEquationCount === 0) {
+          expect(shortcutControl).toBeNull();
+          expect(within(root).queryByTestId('structured-collapsible')).toBeNull();
+          continue;
+        }
+
+        expect(shortcutControl).toBeInTheDocument();
+        const shortcutContent = within(root).getByTestId('structured-collapsible-content');
+        expect(shortcutControl).toHaveAttribute('aria-expanded', 'false');
+        expect(shortcutContent).toHaveAttribute('hidden');
+        await user.click(shortcutControl!);
+        expect(shortcutControl).toHaveAttribute('aria-expanded', 'true');
+        expect(shortcutContent).not.toHaveAttribute('hidden');
+        expect(within(shortcutContent).getByText(/Both people become 2 years older/)).toBeVisible();
+        assertProductionMath(root, standardEquationCount + shortcutEquationCount);
+        await user.click(shortcutControl!);
+        expect(shortcutContent).toHaveAttribute('hidden');
       }
       cleanup();
 
@@ -434,14 +449,19 @@ describe('structured explanation Practice/Results integration V3', () => {
         />
       );
       const resultsRoot = screen.getByTestId('structured-explanation');
-      assertProductionMath(resultsRoot, expectedEquationCount);
+      assertProductionMath(resultsRoot, standardEquationCount);
       expect(resultsRoot.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
       expect(within(resultsRoot).getByText('Rationale')).toBeInTheDocument();
-      if (id === 'num-0142') {
-        expect(screen.getAllByTestId('structured-inline-math')).toHaveLength(2);
-        expect(screen.getAllByTestId('structured-inline-math').every((node) => node.querySelector('mfrac'))).toBe(true);
+      const resultsShortcut = within(resultsRoot).queryByRole('button', { name: 'Mental Shortcut' });
+      if (shortcutEquationCount === 0) {
+        expect(resultsShortcut).toBeNull();
       } else {
-        expect(screen.queryByTestId('structured-inline-math')).toBeNull();
+        expect(resultsShortcut).toBeInTheDocument();
+        const resultsShortcutContent = within(resultsRoot).getByTestId('structured-collapsible-content');
+        expect(resultsShortcutContent).toHaveAttribute('hidden');
+        await user.click(resultsShortcut!);
+        expect(resultsShortcutContent).not.toHaveAttribute('hidden');
+        assertProductionMath(resultsRoot, standardEquationCount + shortcutEquationCount);
       }
       cleanup();
     }

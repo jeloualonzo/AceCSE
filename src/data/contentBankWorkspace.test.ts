@@ -326,6 +326,25 @@ describe('Content Bank workspace data', () => {
     expect(markdown).not.toContain('- type: heading');
   });
 
+  it('preserves collapsible Mental Shortcut content in learner and authoring exports', () => {
+    const shortcutQuestion: Question = {
+      ...question('cler-export-shortcut', 'Clerical Operations'),
+      structuredExplanation: {
+        blocks: [
+          { type: 'correct_answer', text: 'A — 21' },
+          { type: 'collapsible', title: 'Mental Shortcut', content: `Subtract the future increase.\n\n\\[\n58-4=54\n\\]` },
+        ],
+      },
+    };
+    const batch = { ...readyBatch, questionIds: [shortcutQuestion.id] };
+    const markdown = createReviewMarkdown(batch, [shortcutQuestion]);
+
+    expect(markdown).toContain('**Mental Shortcut**');
+    expect(markdown).toContain('58-4=54');
+    expect(markdown).toContain(`- type: collapsible\n  title: Mental Shortcut\n  content: |`);
+    expect(markdown).toContain('    58-4=54');
+  });
+
   it('exports question-level semantic tables as structured Markdown and raw JSON', () => {
     const tableQuestion: Question = {
       ...question('cler-table-001', 'Clerical Operations'),
