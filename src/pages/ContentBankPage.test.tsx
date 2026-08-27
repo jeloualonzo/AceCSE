@@ -278,12 +278,15 @@ describe('Content Bank dashboard', () => {
     renderRoute(CONTENT_BANK_ROUTE);
     await batchesLoaded();
 
-    // The batch list an admin actually sees: the legitimate local batch, then the
-    // shipped registry. No batch2 anywhere in it.
+    // The batch list an admin actually sees: the merged newest-first list places
+    // the newer shipped Averages batch before this legitimate local batch. No
+    // batch2 appears anywhere in it.
+    const shippedBatches = getRefinementBatches();
     await waitFor(() =>
       expect(batchIdsInOrder()).toEqual([
+        shippedBatches[0]?.id,
         legitimate.id,
-        ...getRefinementBatches().slice(0, 5).map((batch) => batch.id),
+        ...shippedBatches.slice(1, 5).map((batch) => batch.id),
       ])
     );
     expect(document.querySelector('[data-refinement-batch="batch2"]')).toBeNull();

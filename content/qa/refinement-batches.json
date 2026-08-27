@@ -1,5 +1,20 @@
 [
   {
+    "id": "averages-batch-01",
+    "title": "Averages — Batch 1",
+    "family": "Averages",
+    "status": "frozen",
+    "createdAt": "2026-08-27T12:00:00+08:00",
+    "questionIds": [
+      "num-0046",
+      "num-0047",
+      "num-0049",
+      "num-0145",
+      "num-0146",
+      "seed-num-005"
+    ]
+  },
+  {
     "id": "age-problems-batch-01",
     "title": "Age Problems — Batch 1",
     "family": "Age Problems",
