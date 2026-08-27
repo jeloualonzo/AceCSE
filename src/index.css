@@ -14,6 +14,16 @@
   --radius-2xl: 0.625rem;
 }
 
+/* Light learner surfaces: subtle contrast without changing layout or state colors. */
+:root {
+  --acecse-page-surface: #f8f9fa;
+  --acecse-secondary-surface: #f9fafb;
+  --acecse-subtle-border: #e5e7eb;
+  --acecse-primary-text: #1f2937;
+  --acecse-secondary-text: #475569;
+  --acecse-tertiary-text: #64748b;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

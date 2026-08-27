@@ -30,11 +30,11 @@ export const ExplanationPanel: React.FC<ExplanationPanelProps> = ({
   const dark = theme === 'dark';
   const c = {
     correctHeading: dark ? 'text-emerald-400' : 'text-emerald-700',
-    body: dark ? 'text-slate-200' : 'text-black',
-    bodyMuted: dark ? 'text-slate-300' : 'text-black',
+    body: dark ? 'text-slate-200' : 'text-[var(--acecse-primary-text)]',
+    bodyMuted: dark ? 'text-slate-300' : 'text-[var(--acecse-secondary-text)]',
     faint: dark ? 'text-slate-400' : 'text-slate-500',
     sectionHeading: dark ? 'text-slate-300' : 'text-slate-600',
-    stepsBox: dark ? 'bg-slate-900/70 border-slate-700/60' : 'bg-slate-50 border-slate-200',
+    stepsBox: dark ? 'bg-slate-900/70 border-slate-700/60' : 'bg-[var(--acecse-secondary-surface)] border-slate-200',
     stepBadge: dark ? 'bg-slate-700 text-slate-200' : 'bg-slate-200 text-slate-700',
     wrongPickRow: dark ? 'bg-slate-800/70 border border-slate-600/60' : 'bg-slate-100 border border-slate-300',
     wrongPickBadge: dark
@@ -43,7 +43,7 @@ export const ExplanationPanel: React.FC<ExplanationPanelProps> = ({
     optionBadge: dark
       ? 'bg-slate-800 text-slate-300 border-slate-600'
       : 'bg-slate-100 text-slate-600 border-slate-300',
-    wrongPickLabel: dark ? 'text-slate-100' : 'text-black',
+    wrongPickLabel: dark ? 'text-slate-100' : 'text-[var(--acecse-primary-text)]',
     tipBox: dark ? 'bg-emerald-950/40 border-emerald-500/30' : 'bg-emerald-50 border-emerald-200',
     tipLabel: dark ? 'text-emerald-300' : 'text-emerald-800',
     tipIcon: dark ? 'text-emerald-400' : 'text-emerald-600',

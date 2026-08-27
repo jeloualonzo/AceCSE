@@ -463,7 +463,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   );
 
   return (
-    <div className="fixed inset-0 z-50 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 flex flex-col overflow-hidden font-sans">
+    <div className="fixed inset-0 z-50 bg-[var(--acecse-page-surface)] dark:bg-slate-900 text-slate-900 dark:text-slate-100 flex flex-col overflow-hidden font-sans">
       {/* Header — identical layout/positions to Practice's ExamFocusLayout.
           Exit/Submit/Grid stay on the left, Timer centered, Previous/Next
           on the right. Practice has no in-session restart control.
@@ -655,7 +655,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
           </div>
         )}
 
-        <main ref={scrollRef} className="flex-1 bg-white dark:bg-slate-950 overflow-y-auto px-4 sm:px-6 py-6 sm:py-8">
+        <main ref={scrollRef} className="flex-1 bg-[var(--acecse-page-surface)] dark:bg-slate-950 overflow-y-auto px-4 sm:px-6 py-6 sm:py-8">
           <div className="w-full max-w-5xl mx-auto space-y-6 pb-24">
             {!isLegacy && activeSection && (
               <div className="pb-3 border-b border-slate-200 dark:border-slate-800">

@@ -21,7 +21,7 @@ export const QuestionStimulusRenderer: React.FC<QuestionStimulusRendererProps> =
     return (
       <div
         data-question-stimulus="structured"
-        className={`space-y-4 text-sm leading-relaxed text-black dark:text-slate-300 ${className}`.trim()}
+        className={`space-y-4 text-sm leading-relaxed text-[var(--acecse-secondary-text)] dark:text-slate-300 ${className}`.trim()}
       >
         {question.contentBlocks.map((block) => (
           <ContentBlockRenderer key={block.id} block={block} />
@@ -35,7 +35,7 @@ export const QuestionStimulusRenderer: React.FC<QuestionStimulusRendererProps> =
   return (
     <div
       data-question-stimulus="legacy"
-      className={`border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-black dark:text-slate-300 whitespace-pre-line ${className}`.trim()}
+      className={`border-l-2 border-slate-300 dark:border-slate-700 pl-4 text-sm leading-relaxed text-[var(--acecse-secondary-text)] dark:text-slate-300 whitespace-pre-line ${className}`.trim()}
     >
       {question.passage}
     </div>

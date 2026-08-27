@@ -106,7 +106,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
       ) : hasCompactGrammarInstance(question) ? (
         <GrammarInstanceRenderer question={question} />
       ) : (
-        <p className="text-base sm:text-lg font-medium text-black dark:text-slate-100 leading-relaxed whitespace-pre-line mb-4">
+        <p className="text-base sm:text-lg font-medium text-[var(--acecse-primary-text)] dark:text-slate-100 leading-relaxed whitespace-pre-line mb-4">
           {question.question}
         </p>
       )}
@@ -127,8 +127,8 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
               aria-checked={isSelected}
               className={`w-full text-left p-4 min-h-[52px] rounded-lg border transition-colors flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:outline-2 focus-visible:outline-emerald-500 focus-visible:outline-offset-2 ${
                 isSelected
-                  ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 dark:border-emerald-500 text-black dark:text-white ring-1 ring-emerald-500/40'
-                  : 'bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700/70 text-black dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 dark:border-emerald-500 text-[var(--acecse-primary-text)] dark:text-white ring-1 ring-emerald-500/40'
+                  : 'bg-[var(--acecse-secondary-surface)] dark:bg-slate-800/80 border-slate-200 dark:border-slate-700/70 text-[var(--acecse-primary-text)] dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
               <span className="flex items-center gap-3.5 flex-1 min-w-0">

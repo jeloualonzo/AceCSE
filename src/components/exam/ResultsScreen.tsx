@@ -83,7 +83,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-4 sm:p-6 lg:p-8 font-sans">
+    <div className="min-h-screen bg-[var(--acecse-page-surface)] dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-4 sm:p-6 lg:p-8 font-sans">
       <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -395,7 +395,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                     {hasCompactNumberSeriesInstance(question) ? (
                       <NumberSeriesInstanceRenderer question={question} />
                     ) : (
-                      <div className="text-sm sm:text-base font-medium text-black dark:text-slate-100 mb-4 whitespace-pre-line leading-relaxed">
+                      <div className="text-sm sm:text-base font-medium text-[var(--acecse-primary-text)] dark:text-slate-100 mb-4 whitespace-pre-line leading-relaxed">
                         {question.question}
                       </div>
                     )}
@@ -404,13 +404,13 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({
                       <>
                         <QuestionStimulusRenderer
                           question={question}
-                          className="mb-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 text-xs sm:text-sm"
+                          className="mb-4 p-4 rounded-xl bg-[var(--acecse-secondary-surface)] dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 text-xs sm:text-sm"
                         />
                         <div className="space-y-2 mb-4">
                           {question.choices.map((option) => {
                             const isUserPick = item.selected === option.id;
                             const isCorrectOption = question.correctOptionId === option.id;
-                            let optionStyle = 'bg-slate-50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 text-black dark:text-slate-300';
+                            let optionStyle = 'bg-[var(--acecse-secondary-surface)] dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 text-[var(--acecse-secondary-text)] dark:text-slate-300';
                             if (isCorrectOption) {
                               optionStyle =
                                 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-300 dark:border-emerald-500/80 text-emerald-800 dark:text-emerald-100 font-semibold';

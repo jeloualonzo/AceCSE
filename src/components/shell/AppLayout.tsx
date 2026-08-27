@@ -16,7 +16,7 @@ import { AppBottomNav } from './AppBottomNav';
  * anything stored here.
  */
 export const AppLayout: React.FC = () => (
-  <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col font-sans text-slate-900 dark:text-slate-100">
+  <div className="min-h-screen bg-[var(--acecse-page-surface)] dark:bg-slate-950 flex flex-col font-sans text-slate-900 dark:text-slate-100">
     <AppHeader />
     <div className="flex-1 flex">
       <AppSidebar />
