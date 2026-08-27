@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Grid, XCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Clock, Grid, XCircle } from 'lucide-react';
 import type { ActiveFocus, ExamLevel, ExamSession, NormalizedQuestionGroup, OptionId, Question } from '@/types';
 import {
   buildBooklet,
@@ -57,11 +57,10 @@ export interface BookletExamLayoutProps {
 
 /**
  * Continuous CSE-booklet exam experience — continuous WITHIN a subject, not
- * across the whole exam. Subject switching lives inside the navigator
- * drawer (not the header), so the header/chrome stays compact: Exit + Submit
- * + Grid/Navigator on the left, Timer centered, and Previous/Next on the right.
- * Only the active section is mounted and scrolled; the navigator drawer shows
- * subject grids so the user can jump straight to any encountered question.
+ * across the whole exam. Simulation uses the Grid plus lightweight subject
+ * controls at the top and the end of each subject; Practice keeps its own
+ * single-subject Show More flow. Only the active section is mounted and
+ * scrolled, so a subject switch always establishes a fresh reading position.
  *
  * Practice and Simulation both use this component. The session mode is
  * passed to scored item renderers so only Practice exposes explanations.
@@ -177,6 +176,16 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
 
   const lastPositionRef = useRef<Record<string, string>>({});
   const pendingTargetRef = useRef<string | null>(null);
+  const subjectStartRef = useRef(false);
+  const resetScrollToSubjectStart = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    if (typeof container.scrollTo === 'function') {
+      container.scrollTo({ top: 0, behavior: 'auto' });
+    } else {
+      container.scrollTop = 0;
+    }
+  }, []);
 
   const scrollToQuestion = useCallback((questionId: string, behavior: ScrollBehavior = 'smooth') => {
     const container = scrollRef.current;
@@ -206,9 +215,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   }, [setPrimaryFocus]);
 
   // Lands on the right question every time the active section changes —
-  // covers first mount, subject switches, and Previous/Next crossing a
-  // subject boundary (via pendingTargetRef, which wins over the remembered/
-  // first-unanswered default when a boundary crossing set an explicit target).
+  // covers first mount, Grid jumps, subject switches, and EDQ skip. An explicit
+  // pending target wins over the remembered/first-unanswered default.
   useEffect(() => {
     if (!activeSection) {
       setPrimaryFocus(null);
@@ -216,6 +224,14 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     }
     const order = sectionItemOrder(activeSection);
     if (order.length === 0) {
+      setPrimaryFocus(null);
+      return;
+    }
+
+    if (subjectStartRef.current) {
+      subjectStartRef.current = false;
+      pendingTargetRef.current = null;
+      resetScrollToSubjectStart();
       setPrimaryFocus(null);
       return;
     }
@@ -239,7 +255,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     pendingTargetRef.current = null;
     scrollToQuestion(target, 'auto');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSectionId, activeSection, currentQuestionId, activeFocus, setPrimaryFocus]);
+  }, [activeSectionId, activeSection, resetScrollToSubjectStart, setPrimaryFocus]);
 
   // Scroll-spy within the active section only — the DOM never holds more
   // than one subject's questions at a time. A focus line, not any visible
@@ -348,24 +364,24 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     [activeSectionId, currentQuestionId, scrollToQuestion, closeNavigator]
   );
 
-  const goPrev = useCallback(() => {
-    if (!activeSection) return;
-    const idx = currentQuestionId ? localOrder.indexOf(currentQuestionId) : -1;
-    if (idx > 0) {
-      scrollToQuestion(localOrder[idx - 1]);
-      return;
-    }
-    const sectionIdx = sections.findIndex((s) => s.sectionId === activeSectionId);
-    let previousIdx = sectionIdx - 1;
-    while (previousIdx >= 0 && sectionItemOrder(sections[previousIdx]).length === 0) previousIdx -= 1;
-    if (previousIdx >= 0) {
-      const prevSection = sections[previousIdx];
-      const prevOrder = sectionItemOrder(prevSection);
-      if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
-      pendingTargetRef.current = prevOrder[prevOrder.length - 1];
-      setActiveSectionId(prevSection.sectionId);
-    }
-  }, [activeSection, activeSectionId, currentQuestionId, localOrder, scrollToQuestion, sections]);
+  /** Move between adjacent non-empty subjects and start at the destination top. */
+  const switchToSubject = useCallback(
+    (direction: 'previous' | 'next') => {
+      if (isPractice || isLegacy || !activeSection) return;
+      const sectionIndex = sections.findIndex((section) => section.sectionId === activeSectionId);
+      const step = direction === 'previous' ? -1 : 1;
+      let targetIndex = sectionIndex + step;
+      while (targetIndex >= 0 && targetIndex < sections.length && sectionItemOrder(sections[targetIndex]).length === 0) {
+        targetIndex += step;
+      }
+      const targetSection = sections[targetIndex];
+      if (!targetSection) return;
+      const targetOrder = sectionItemOrder(targetSection);
+      if (targetOrder.length === 0) return;
+      subjectStartRef.current = true;
+      pendingTargetRef.current = null;
+      setActiveSectionId(targetSection.sectionId);
+    }, [activeSection, activeSectionId, isLegacy, isPractice, resetScrollToSubjectStart, sections]);
 
   const skipEdq = useCallback(() => {
     if (activeSectionId !== EDQ_SECTION_ID) return;
@@ -378,33 +394,13 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     setActiveSectionId(nextScored.sectionId);
   }, [activeSectionId, sections]);
 
-  const goNext = useCallback(() => {
-    if (!activeSection) return;
-    const idx = currentQuestionId ? localOrder.indexOf(currentQuestionId) : -1;
-    if (idx !== -1 && idx < localOrder.length - 1) {
-      scrollToQuestion(localOrder[idx + 1]);
-      return;
-    }
-    const sectionIdx = sections.findIndex((s) => s.sectionId === activeSectionId);
-    let nextIdx = sectionIdx + 1;
-    while (nextIdx < sections.length && sectionItemOrder(sections[nextIdx]).length === 0) nextIdx += 1;
-    if (nextIdx < sections.length) {
-      const nextSection = sections[nextIdx];
-      const nextOrder = sectionItemOrder(nextSection);
-      if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
-      pendingTargetRef.current = nextOrder[0];
-      setActiveSectionId(nextSection.sectionId);
-    }
-  }, [activeSection, activeSectionId, currentQuestionId, localOrder, scrollToQuestion, sections]);
-
   const activeSectionIndex = sections.findIndex((s) => s.sectionId === activeSectionId);
-  const hasPreviousSection = sections.slice(0, Math.max(0, activeSectionIndex)).some((section) => sectionItemOrder(section).length > 0);
-  const hasNextSection = sections.slice(activeSectionIndex + 1).some((section) => sectionItemOrder(section).length > 0);
-  const localIdx = currentQuestionId ? localOrder.indexOf(currentQuestionId) : -1;
-  const isAtFirstLocalItem = localOrder.length === 0 || localIdx <= 0;
-  const isAtLastLocalItem = localOrder.length === 0 || localIdx === -1 || localIdx >= localOrder.length - 1;
-  const isPrevDisabled = isAtFirstLocalItem && !hasPreviousSection;
-  const isNextDisabled = isAtLastLocalItem && !hasNextSection;
+  const hasPreviousSubject = !isPractice && !isLegacy && sections
+    .slice(0, Math.max(0, activeSectionIndex))
+    .some((section) => sectionItemOrder(section).length > 0);
+  const hasNextSubject = !isPractice && !isLegacy && sections
+    .slice(activeSectionIndex + 1)
+    .some((section) => sectionItemOrder(section).length > 0);
   const currentDisplayLabel =
     (currentQuestionId ? displayLabels.get(currentQuestionId) : undefined) ??
     displayLabels.get(localOrder[0] ?? '') ??
@@ -412,9 +408,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   const isProfessional = examLevel === 'Professional';
   const gridIconColor = isProfessional ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400';
 
-  // Same trigger, same two render sites (left of header on desktop, right on
-  // mobile) as ExamFocusLayout's paletteButton — this is deliberately the
-  // same control in the same place, not a new one.
+  // The same Grid trigger is used for the shared header; its touch target and
+  // accessible label remain identical across desktop and mobile.
   const navigatorButton = (displayClasses: string) => (
     <button
       onClick={(e) => toggleNavigator(e.currentTarget)}
@@ -450,24 +445,50 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     </button>
   );
 
-  const nextButton = (displayClasses: string) => (
-    <button
-      onClick={goNext}
-      disabled={isNextDisabled}
-      className={`${displayClasses} items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
-      aria-label="Next question"
-    >
-      <span>Next</span>
-      <ArrowRight className="w-4 h-4" aria-hidden="true" />
-    </button>
-  );
+  const subjectBoundaryNavigation = (placement: 'top' | 'bottom') => {
+    if (isPractice || isLegacy || !activeSection) return null;
+    const isTop = placement === 'top';
+    const previousLabel = hasPreviousSubject ? 'Previous subject' : 'Previous subject, unavailable';
+    const nextLabel = hasNextSubject ? 'Next subject' : 'Next subject, unavailable';
+    return (
+      <nav
+        aria-label={isTop ? 'Subject navigation' : 'Subject boundary navigation'}
+        data-subject-navigation={placement}
+        className={isTop
+          ? 'flex items-center justify-center gap-2 pb-3 border-b border-slate-200 dark:border-slate-800'
+          : 'flex items-center justify-between pt-2'}
+      >
+        <button
+          type="button"
+          onClick={() => switchToSubject('previous')}
+          disabled={!hasPreviousSubject}
+          aria-label={previousLabel}
+          className="inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200 disabled:cursor-not-allowed disabled:opacity-30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+        >
+          <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+        </button>
+        {isTop && (
+          <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
+            {sectionTitle(activeSectionId)}
+          </h2>
+        )}
+        <button
+          type="button"
+          onClick={() => switchToSubject('next')}
+          disabled={!hasNextSubject}
+          aria-label={nextLabel}
+          className="inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200 disabled:cursor-not-allowed disabled:opacity-30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+        >
+          <ChevronRight className="h-5 w-5" aria-hidden="true" />
+        </button>
+      </nav>
+    );
+  };
 
   return (
     <div className="fixed inset-0 z-50 bg-[var(--acecse-page-surface)] dark:bg-slate-900 text-slate-900 dark:text-slate-100 flex flex-col overflow-hidden font-sans">
-      {/* Header — identical layout/positions to Practice's ExamFocusLayout.
-          Exit/Submit/Grid stay on the left, Timer centered, Previous/Next
-          on the right. Practice has no in-session restart control.
-          No subject switcher and no "Question X of Y" text live here. */}
+      {/* Shared Exam/Practice header: Exit + Grid on the left, timer centered,
+          and the mode-appropriate primary action on the right. */}
       <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 relative shrink-0">
         <div className="h-14 sm:h-16 px-4 sm:px-6 grid grid-cols-3 items-center">
           <div className="flex items-center gap-2 justify-self-start">
@@ -479,24 +500,13 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               <XCircle className="w-4 h-4 text-slate-500 dark:text-slate-400" aria-hidden="true" />
               <span className="hidden sm:inline">{exitLabel}</span>
             </button>
-            {submitButton('hidden sm:inline-flex')}
-            {navigatorButton('hidden sm:inline-flex')}
+            {navigatorButton('inline-flex')}
           </div>
 
           <div className="justify-self-center">{timerBadge}</div>
 
           <div className="flex items-center gap-2 justify-self-end">
-            {navigatorButton('inline-flex sm:hidden')}
-            <button
-              onClick={goPrev}
-              disabled={isPrevDisabled}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 min-h-[40px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-              aria-label="Previous question"
-            >
-              <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-              <span>Previous</span>
-            </button>
-            {nextButton('hidden sm:inline-flex')}
+            {submitButton('inline-flex')}
           </div>
         </div>
 
@@ -658,11 +668,13 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
         <main ref={scrollRef} className="flex-1 bg-[var(--acecse-page-surface)] dark:bg-slate-950 overflow-y-auto px-4 sm:px-6 py-6 sm:py-8">
           <div className="w-full max-w-5xl mx-auto space-y-6 pb-24">
             {!isLegacy && activeSection && (
-              <div className="pb-3 border-b border-slate-200 dark:border-slate-800">
-                <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
-                  {sectionTitle(activeSectionId)}
-                </h2>
-              </div>
+              isPractice ? (
+                <div className="pb-3 border-b border-slate-200 dark:border-slate-800">
+                  <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
+                    {sectionTitle(activeSectionId)}
+                  </h2>
+                </div>
+              ) : subjectBoundaryNavigation('top')
             )}
             {activeSectionId === EDQ_SECTION_ID && edq && (
               <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 p-4 sm:p-5 space-y-3 -mt-6">
@@ -722,25 +734,11 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                 </button>
               </div>
             )}
+            {!isPractice && subjectBoundaryNavigation('bottom')}
           </div>
         </main>
       </div>
 
-      {/* Mobile-only footer — always keeps Previous, Submit, and Next in
-          dedicated positions so Submit never replaces Next in Practice. */}
-      <footer className="sm:hidden min-h-[64px] bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] grid grid-cols-3 items-center shrink-0">
-        <button
-          onClick={goPrev}
-          disabled={isPrevDisabled}
-          className="justify-self-start inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-          aria-label="Previous question"
-        >
-          <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-          <span>Prev</span>
-        </button>
-        {submitButton('justify-self-center inline-flex')}
-        {nextButton('justify-self-end inline-flex')}
-      </footer>
     </div>
   );
 };
