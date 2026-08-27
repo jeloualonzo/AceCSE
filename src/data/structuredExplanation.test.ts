@@ -27,7 +27,8 @@ const CLERICAL_OPERATIONS_STRUCTURED_IDS = [
 ] as const;
 const ALL_NUMBER_SERIES_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS, ...BATCH4_IDS];
 const AGE_PROBLEMS_IDS = ['num-0030', 'num-0031', 'num-0142'] as const;
-const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...AGE_PROBLEMS_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS, ...CLERICAL_OPERATIONS_STRUCTURED_IDS];
+const AVERAGES_BATCH1_IDS = ['num-0046', 'num-0047', 'num-0049', 'num-0145', 'num-0146', 'seed-num-005'] as const;
+const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...AGE_PROBLEMS_IDS, ...AVERAGES_BATCH1_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS, ...CLERICAL_OPERATIONS_STRUCTURED_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -225,6 +226,72 @@ const EXPECTED_AGE_PROBLEMS_BLOCKS = {
   ],
 } as const;
 
+const EXPECTED_AVERAGES_BLOCKS = {
+  'num-0046': [
+    { type: 'correct_answer', text: 'B — 80' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'The average is the total of all scores divided by the number of scores.\n\nFirst, add the five scores:\n\n\\[\n82+75+91+68+84=400\n\\]\n\nThen divide by 5:\n\n\\[\n400\\div5=80\n\\]\n\nTherefore, the average score is **80**.',
+    },
+  ],
+  'num-0047': [
+    { type: 'correct_answer', text: 'C — 85.75' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'The third exam has weight 2, so its score counts twice. Multiply each score by its weight:\n\n\\[\n78\\times1=78\n\\]\n\n\\[\n85\\times1=85\n\\]\n\n\\[\n90\\times2=180\n\\]\n\nAdd the weighted scores:\n\n\\[\n78+85+180=343\n\\]\n\nAdd the weights:\n\n\\[\n1+1+2=4\n\\]\n\nThen divide the weighted total by the total weight:\n\n\\[\n343\\div4=85.75\n\\]\n\nTherefore, the weighted average is **85.75**.',
+    },
+  ],
+  'num-0049': [
+    { type: 'correct_answer', text: 'D — 37' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'An average of 38 for 5 numbers means their total must be:\n\n\\[\n38\\times5=190\n\\]\n\nThe four known numbers total:\n\n\\[\n30+42+35+46=153\n\\]\n\nSo the fifth number is the difference:\n\n\\[\n190-153=37\n\\]\n\nTherefore, the missing number is **37**.',
+    },
+    {
+      type: 'collapsible',
+      title: 'Mental Shortcut',
+      content: 'For a missing value, first find the total required by the average:\n\n\\[\n38\\times5=190\n\\]\n\nThe four known numbers total **153**, so mentally subtract:\n\n\\[\n190-153=37\n\\]\n\nTherefore, the missing number is **37**.',
+    },
+  ],
+  'num-0145': [
+    { type: 'correct_answer', text: 'C — 26' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'There are 5 numbers in the set, so the average is their sum divided by 5:\n\n\\[\nx=\\frac{2+4x+6+8+10}{5}\n\\]\n\nCombine the fixed numbers:\n\n\\[\nx=\\frac{26+4x}{5}\n\\]\n\nMultiply both sides by 5:\n\n\\[\n5x=26+4x\n\\]\n\nSubtract \\(4x\\) from both sides:\n\n\\[\n5x-4x=26+4x-4x\n\\]\n\n\\[\nx=26\n\\]\n\nTherefore, **x = 26**.\n\nCheck:\n\n\\[\n\\frac{2+104+6+8+10}{5}=\\frac{130}{5}=26\n\\]\n\nThe average is indeed **26**.',
+    },
+  ],
+  'num-0146': [
+    { type: 'correct_answer', text: 'C — 49' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'The first 8 assessments have an average of 85, so their total is:\n\n\\[\n85\\times8=680\n\\]\n\nAfter the ninth assessment, the average is 81 for 9 assessments, so the new total is:\n\n\\[\n81\\times9=729\n\\]\n\nThe ninth score is the increase in total:\n\n\\[\n729-680=49\n\\]\n\nTherefore, the ninth assessment score is **49**.\n\nCheck:\n\n\\[\n680+49=729\n\\]\n\nand\n\n\\[\n729\\div9=81\n\\]',
+    },
+    {
+      type: 'collapsible',
+      title: 'Mental Shortcut',
+      content: 'Think in terms of total points instead of averages.\n\nThe old total is:\n\n\\[\n85\\times8=680\n\\]\n\nThe new total is:\n\n\\[\n81\\times9=729\n\\]\n\nThe ninth score is simply the difference:\n\n\\[\n729-680=49\n\\]\n\nSo the ninth assessment score is **49**.',
+    },
+  ],
+  'seed-num-005': [
+    { type: 'correct_answer', text: 'C — 98' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'The first 4 department heads have an average of 88, so their total score is:\n\n\\[\n88\\times4=352\n\\]\n\nWith 5 department heads, the new average is 90, so the total score must be:\n\n\\[\n90\\times5=450\n\\]\n\nThe fifth score is the difference between the new total and the original total:\n\n\\[\n450-352=98\n\\]\n\nTherefore, the fifth department head scored **98**.\n\nCheck:\n\n\\[\n352+98=450\n\\]\n\nand\n\n\\[\n450\\div5=90\n\\]',
+    },
+    {
+      type: 'collapsible',
+      title: 'Mental Shortcut',
+      content: 'The first 4 scores total:\n\n\\[\n88\\times4=352\n\\]\n\nThe 5 scores must total:\n\n\\[\n90\\times5=450\n\\]\n\nSo the fifth score is:\n\n\\[\n450-352=98\n\\]\n\nTherefore, the fifth department head scored **98**.',
+    },
+  ],
+} as const;
+
 const EXPECTED_GRAMMAR_BLOCKS = {
   'verb-0059': [
     { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
@@ -295,6 +362,38 @@ describe('Age Problems structured explanation', () => {
       expect(blocks[2]).toMatchObject({ type: 'collapsible', title: 'Mental Shortcut' });
       expect((blocks[2]?.type === 'collapsible' ? blocks[2].content : '')).toContain('Therefore,');
     }
+  });
+});
+
+describe('Averages structured explanation Batch 1', () => {
+  it('contains the exact supplied payloads and no legacy explanation fields', async () => {
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    const shortcutIds = new Set(['num-0049', 'num-0146', 'seed-num-005']);
+
+    for (const id of AVERAGES_BATCH1_IDS) {
+      const question = catalog.questions.get(id);
+      const blocks = question?.structuredExplanation?.blocks ?? [];
+      expect(question, id).toBeTruthy();
+      expect(blocks, id).toEqual(EXPECTED_AVERAGES_BLOCKS[id]);
+      expect(blocks, id).toHaveLength(shortcutIds.has(id) ? 3 : 2);
+      expect(blocks[0], id).toMatchObject({ type: 'correct_answer' });
+      expect(blocks[1], id).toMatchObject({ type: 'paragraph', label: 'Rationale' });
+      expect(blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution'].includes(block.type)), id).toBe(false);
+      if (shortcutIds.has(id)) {
+        expect(blocks[2], id).toMatchObject({ type: 'collapsible', title: 'Mental Shortcut' });
+      } else {
+        expect(blocks.some((block) => block.type === 'collapsible'), id).toBe(false);
+      }
+      expect(isValidStructuredExplanation(question?.structuredExplanation), id).toBe(true);
+      for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+        expect(Object.hasOwn(question ?? {}, field), `${id}:${field}`).toBe(false);
+      }
+    }
+
+    const structuredAveragesIds = [...catalog.questions.values()]
+      .filter((question) => question.topic === 'Averages' && question.structuredExplanation)
+      .map((question) => question.id);
+    expect(structuredAveragesIds.sort()).toEqual([...AVERAGES_BATCH1_IDS].sort());
   });
 });
 

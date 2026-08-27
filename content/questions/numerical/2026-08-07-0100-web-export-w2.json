@@ -199,23 +199,18 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "The average of a set of n numbers equals the sum divided by n. Here the set has 5 elements, so the average = (2 + 4x + 6 + 8 + 10) ÷ 5 = (26 + 4x) ÷ 5. The problem requires x to equal this average: x = (26 + 4x) ÷ 5. Multiply both sides by 5: 5x = 26 + 4x. Subtract 4x: x = 26. Verify: the set becomes {2, 104, 6, 8, 10}; sum = 130; average = 130 ÷ 5 = 26 = x. ✓ The key difficulty is recognising that x appears on both sides of the equation — both as the required average and as an element of the set — so standard 'find the average' computation is replaced by an algebraic equation.",
-    "steps": [
-      "Write the average as an expression: average = (2 + 4x + 6 + 8 + 10) ÷ 5 = (26 + 4x) ÷ 5.",
-      "Set average equal to x: x = (26 + 4x) ÷ 5.",
-      "Multiply both sides by 5: 5x = 26 + 4x.",
-      "Subtract 4x: x = 26.",
-      "Verify: {2, 104, 6, 8, 10}, sum = 130, average = 26 = x. ✓"
-    ],
-    "distractorExplanations": {
-      "A": "Choosing x = 4 likely comes from treating 4x as a fixed element equal to 4, then computing the average of {2, 4, 6, 8, 10} = 30 ÷ 5 = 6, which is not 4. The element 4x depends on x, so the set itself changes as x changes.",
-      "B": "x = 12 would give the set {2, 48, 6, 8, 10}; sum = 74; average = 74 ÷ 5 = 14.8 ≠ 12. Choosing 12 may come from adding the fixed elements (2 + 6 + 8 + 10 = 26) and then dividing by something other than 5, or from confusing the coefficient 4 in 4x with the count of elements.",
-      "D": "x = 39 would give the set {2, 156, 6, 8, 10}; sum = 182; average = 182 ÷ 5 = 36.4 ≠ 39. This may come from solving 5x = 26 + 4x as 5x − 4 = 26, arriving at x = 30, and then applying an additional arithmetic error, or from solving a related equation with an incorrect number of terms.",
-      "E": "Solves x=(26+4x)/5 → 5x=26+4x → x=26 correctly, then doubles the answer: 2×26=52 — an off-by-two multiplication error at the final step."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "When the unknown appears both in the set and as the required average, set up the equation: x = (fixed sum + coefficient × x) ÷ n. Multiply through by n, collect x terms, and solve. Always verify by substituting x back into the set and recomputing the average."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "C — 26"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "There are 5 numbers in the set, so the average is their sum divided by 5:\n\n\\[\nx=\\frac{2+4x+6+8+10}{5}\n\\]\n\nCombine the fixed numbers:\n\n\\[\nx=\\frac{26+4x}{5}\n\\]\n\nMultiply both sides by 5:\n\n\\[\n5x=26+4x\n\\]\n\nSubtract \\(4x\\) from both sides:\n\n\\[\n5x-4x=26+4x-4x\n\\]\n\n\\[\nx=26\n\\]\n\nTherefore, **x = 26**.\n\nCheck:\n\n\\[\n\\frac{2+104+6+8+10}{5}=\\frac{130}{5}=26\n\\]\n\nThe average is indeed **26**."
+        }
+      ]
     },
     "tags": [
       "averages",
@@ -255,22 +250,23 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "Use the relationship between average and total. Total score for 8 assessments = 85 × 8 = 680. After the 9th assessment the new average is 81 over 9 assessments, so the new total = 81 × 9 = 729. The ninth assessment score = new total − old total = 729 − 680 = 49. Notice that the average dropped — the ninth score must be below the original average of 85. Verify: (680 + 49) ÷ 9 = 729 ÷ 9 = 81. ✓ The essential insight is that 'average' encodes total information: reconstruct each total separately, then find the difference.",
-    "steps": [
-      "Total for first 8 assessments: 85 × 8 = 680.",
-      "Total for all 9 assessments: 81 × 9 = 729.",
-      "Ninth assessment score: 729 − 680 = 49.",
-      "Verify: 729 ÷ 9 = 81. ✓"
-    ],
-    "distractorExplanations": {
-      "A": "Uses a slightly wrong first-eight average (86 instead of 85): 9×81−8×86=729−688=41 — a one-unit arithmetic slip in recalling the original average.",
-      "B": "45 results from computing 81 × 8 = 648 and then subtracting 680 − 648 = 32, then misidentifying a related calculation, or from (85 − 81) × 8 = 32 and subtracting from the new average: 81 − 32 = 49 but slipping to 45 through arithmetic error. The correct path is total₉ − total₈ = 729 − 680 = 49.",
-      "D": "53 would require total₉ = 680 + 53 = 733, giving 733 ÷ 9 ≈ 81.4 ≠ 81. Choosing 53 may come from computing 85 − (85 − 81) = 81 and confusing this with the ninth score, or from computing (85 + 81) ÷ 2 = 83 and then making an arithmetic slip.",
-      "E": "55 would give total₉ = 735, and 735 ÷ 9 ≈ 81.7, not 81. Choosing 55 likely comes from computing the average drop (85 − 81 = 4) and multiplying by the wrong count (4 × 4 = 16? …) rather than using total = average × count directly."
-    },
-    "tip": {
-      "label": "Formula",
-      "text": "To find a new data point when the average shifts: new value = new total − old total = (new average × new count) − (old average × old count). If the average drops, the new score must be below the old average; if it rises, the new score must be above it — use this as a quick sanity check."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "C — 49"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "The first 8 assessments have an average of 85, so their total is:\n\n\\[\n85\\times8=680\n\\]\n\nAfter the ninth assessment, the average is 81 for 9 assessments, so the new total is:\n\n\\[\n81\\times9=729\n\\]\n\nThe ninth score is the increase in total:\n\n\\[\n729-680=49\n\\]\n\nTherefore, the ninth assessment score is **49**.\n\nCheck:\n\n\\[\n680+49=729\n\\]\n\nand\n\n\\[\n729\\div9=81\n\\]"
+        },
+        {
+          "type": "collapsible",
+          "title": "Mental Shortcut",
+          "content": "Think in terms of total points instead of averages.\n\nThe old total is:\n\n\\[\n85\\times8=680\n\\]\n\nThe new total is:\n\n\\[\n81\\times9=729\n\\]\n\nThe ninth score is simply the difference:\n\n\\[\n729-680=49\n\\]\n\nSo the ninth assessment score is **49**."
+        }
+      ]
     },
     "tags": [
       "averages",

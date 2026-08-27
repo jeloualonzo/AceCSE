@@ -144,6 +144,36 @@ function structuredOnlyAgeProblems(overrides: Record<string, unknown> = {}): Rec
   return q;
 }
 
+function structuredOnlyAverages(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  const q = {
+    ...base({
+      id: 'num-0046',
+      subject: 'Numerical Reasoning',
+      topic: 'Averages',
+      choices: [
+        { id: 'A', text: '78' },
+        { id: 'B', text: '80' },
+        { id: 'C', text: '82' },
+        { id: 'D', text: '79' },
+        { id: 'E', text: '77' },
+      ],
+      correctOptionId: 'B',
+      structuredExplanation: {
+        blocks: [
+          { type: 'correct_answer', text: 'B — 80' },
+          { type: 'paragraph', label: 'Rationale', text: 'Add the scores and divide by five.' },
+        ],
+      },
+    }),
+    ...overrides,
+  } as Record<string, unknown>;
+  delete q.explanation;
+  delete q.steps;
+  delete q.distractorExplanations;
+  delete q.tip;
+  return q;
+}
+
 function structuredOnlyGrammar(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   const q = {
     ...base({
@@ -454,6 +484,35 @@ describe('structured-only Age Problems admission exception', () => {
     expect(isValidQuestion(structuredOnlyAgeProblems({ id: 'num-0032' }))).toBe(false);
     expect(isValidQuestion(structuredOnlyAgeProblems({ subject: 'Verbal Ability' }))).toBe(false);
     expect(isValidQuestion(structuredOnlyAgeProblems({ topic: 'Mixture Problems' }))).toBe(false);
+  });
+});
+
+describe('structured-only Averages admission exception', () => {
+  const averagesIds = ['num-0046', 'num-0047', 'num-0049', 'num-0145', 'num-0146', 'seed-num-005'];
+
+  it('accepts exactly the six canonical Averages IDs without legacy explanation fields', () => {
+    for (const id of averagesIds) {
+      const question = structuredOnlyAverages({ id });
+      expect(isValidQuestion(question), id).toBe(true);
+      expect(Object.hasOwn(question, 'explanation'), id).toBe(false);
+      expect(Object.hasOwn(question, 'steps'), id).toBe(false);
+      expect(Object.hasOwn(question, 'distractorExplanations'), id).toBe(false);
+      expect(Object.hasOwn(question, 'tip'), id).toBe(false);
+    }
+  });
+
+  it('rejects malformed or missing Averages structured explanations', () => {
+    expect(isValidQuestion(structuredOnlyAverages({ structuredExplanation: { blocks: [] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyAverages({ structuredExplanation: { blocks: [{ type: 'unsupported', text: 'bad' }] } }))).toBe(false);
+    const question = structuredOnlyAverages();
+    delete question.structuredExplanation;
+    expect(isValidQuestion(question)).toBe(false);
+  });
+
+  it('keeps the Averages exception scoped to approved IDs, subject, and topic', () => {
+    expect(isValidQuestion(structuredOnlyAverages({ id: 'num-0050' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyAverages({ subject: 'Verbal Ability' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyAverages({ topic: 'Number Series' }))).toBe(false);
   });
 });
 

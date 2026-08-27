@@ -15,13 +15,14 @@
  *   - distractor explanations for all three incorrect options (≥ 20 chars), except
  *     the eleven frozen Number Series records, three canonical Age Problems records,
  *     twelve canonical Spelling records, twenty-four canonical Filing records, four
- *     canonical Grammar records, and thirteen canonical Clerical Operations records
- *     whose obsolete fields were removed (all approved records use structured-only content)
+ *     canonical Grammar records, thirteen canonical Clerical Operations records, and six
+ *     canonical Averages records whose obsolete fields were removed (all approved records
+ *     use structured-only content)
  *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the twelve canonical
  *     Spelling records, three canonical Age Problems records, twenty-four canonical
  *     Filing records, four canonical Grammar records, thirteen canonical Clerical
- *     Operations records, and eleven canonical Number Series records that use
- *     structuredExplanation as their sole aid
+ *     Operations records, six canonical Averages records, and eleven canonical Number
+ *     Series records that use structuredExplanation as their sole aid
  *
  * Also prints supply, difficulty, and answer-letter reports.
  */
@@ -58,6 +59,11 @@ const CANONICAL_STRUCTURED_AGE_PROBLEMS_FILES = new Set([
   'numerical/2026-08-07-0100-web-export-w2.json',
 ]);
 const CANONICAL_STRUCTURED_AGE_PROBLEMS_IDS = new Set(['num-0030', 'num-0031', 'num-0142']);
+const CANONICAL_STRUCTURED_AVERAGES_FILES = new Set([
+  'numerical/core.json',
+  'numerical/2026-08-07-0100-web-export-w2.json',
+]);
+const CANONICAL_STRUCTURED_AVERAGES_IDS = new Set(['num-0046', 'num-0047', 'num-0049', 'num-0145', 'num-0146', 'seed-num-005']);
 const CANONICAL_SPELLING_FILE = 'clerical/spelling.json';
 const CANONICAL_SPELLING_IDS = new Set([
   'cler-0055', 'cler-0012', 'cler-0013', 'cler-0014', 'cler-0015',
@@ -197,12 +203,13 @@ for (const path of jsonFiles(questionsDir)) {
     const canonicalStructuredClericalOperations = CANONICAL_CLERICAL_OPERATIONS_FILES.has(file) && CANONICAL_CLERICAL_OPERATIONS_IDS.has(q.id);
     const canonicalStructuredNumberSeries = file === CANONICAL_NUMBER_SERIES_FILE && CANONICAL_STRUCTURED_NUMBER_SERIES_IDS.has(q.id);
     const canonicalStructuredAgeProblems = CANONICAL_STRUCTURED_AGE_PROBLEMS_FILES.has(file) && CANONICAL_STRUCTURED_AGE_PROBLEMS_IDS.has(q.id);
-    const canonicalStructured = canonicalStructuredSpelling || canonicalStructuredFiling || canonicalStructuredGrammar || canonicalStructuredClericalOperations || canonicalStructuredNumberSeries || canonicalStructuredAgeProblems;
+    const canonicalStructuredAverages = CANONICAL_STRUCTURED_AVERAGES_FILES.has(file) && CANONICAL_STRUCTURED_AVERAGES_IDS.has(q.id);
+    const canonicalStructured = canonicalStructuredSpelling || canonicalStructuredFiling || canonicalStructuredGrammar || canonicalStructuredClericalOperations || canonicalStructuredNumberSeries || canonicalStructuredAgeProblems || canonicalStructuredAverages;
     if (!canonicalStructured && (typeof q.explanation !== 'string' || q.explanation.length < 100)) {
       errors.push(`${where}: explanation must teach (≥ 100 chars), got ${q.explanation?.length ?? 0}`);
     }
 
-    if (needsSteps(q) && !canonicalStructuredNumberSeries && !canonicalStructuredAgeProblems) {
+    if (needsSteps(q) && !canonicalStructuredNumberSeries && !canonicalStructuredAgeProblems && !canonicalStructuredAverages) {
       if (!Array.isArray(q.steps) || q.steps.length < 2) {
         errors.push(`${where}: computational item requires a worked solution (steps ≥ 2)`);
       }

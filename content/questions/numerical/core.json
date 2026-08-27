@@ -2013,20 +2013,18 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "The arithmetic mean (average) is found by adding all values and dividing by the count of values. Sum = 82 + 75 + 91 + 68 + 84. Let's add methodically: 82 + 75 = 157; 157 + 91 = 248; 248 + 68 = 316; 316 + 84 = 400. Divide by 5 scores: 400 ÷ 5 = 80. The answer is 80. A useful mental check: if you suspect the average is around 80, compare each score to 80 — the deviations are +2, –5, +11, –12, +4. These deviations sum to zero (2–5+11–12+4 = 0), confirming that 80 is the exact mean.",
-    "steps": [
-      "Sum all scores: 82 + 75 + 91 + 68 + 84 = 400.",
-      "Divide by the number of scores: 400 ÷ 5 = 80."
-    ],
-    "distractorExplanations": {
-      "A": "78 results from a sum error — perhaps adding the five numbers as 390 instead of 400, and 390÷5=78. Check: 82+75=157, not 155.",
-      "C": "82 is the first score listed, and some test-takers mistakenly select it as the average when pressed for time, without computing the actual sum.",
-      "D": "79 results from a sum of 395 (off by 5), giving 395÷5=79. This might come from misreading 84 as 79 or 68 as 63 in the addition.",
-      "E": "Sums only four of the five scores (drops the highest, 91): 82+75+68+84=309, divides by 4: 309/4≈77."
-    },
-    "tip": {
-      "label": "Math Shortcut",
-      "text": "To verify an average, check that deviations above and below the mean cancel out. For mean=80: deviations are +2, –5, +11, –12, +4, which sum to 0. ✓"
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "B — 80"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "The average is the total of all scores divided by the number of scores.\n\nFirst, add the five scores:\n\n\\[\n82+75+91+68+84=400\n\\]\n\nThen divide by 5:\n\n\\[\n400\\div5=80\n\\]\n\nTherefore, the average score is **80**."
+        }
+      ]
     },
     "tags": [
       "averages",
@@ -2064,22 +2062,18 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "In a weighted average, some values count more than others. Here the third exam counts double (weight 2), meaning it has twice the influence on the final average as either of the first two exams. Weighted sum = (78 × 1) + (85 × 1) + (90 × 2) = 78 + 85 + 180 = 343. Total weight = 1 + 1 + 2 = 4. Weighted average = 343 ÷ 4 = 85.75. Notice that the third exam's score of 90 is the highest, and the weighted average (85.75) is pulled higher than the simple average (78+85+90)/3 = 251/3 ≈ 83.67 — confirming that the heavy-weighted high score is pulling the result up.",
-    "steps": [
-      "Multiply each score by its weight: 78×1=78; 85×1=85; 90×2=180.",
-      "Sum the weighted scores: 78+85+180=343.",
-      "Sum the weights: 1+1+2=4.",
-      "Divide: 343÷4=85.75."
-    ],
-    "distractorExplanations": {
-      "A": "84.33 = 253/3, which is close to the simple (unweighted) average of the three scores: (78+85+90)/3 = 253/3 ≈ 84.33. This is the result of ignoring the weights entirely.",
-      "B": "85.00 might arise from computing a partially weighted average — for instance, using only the last two scores weighted: (85+90×2)/(1+2) = 265/3 ≈ 88.3, or from some other incomplete method.",
-      "D": "Adds the three scores (78+85+90=253) and divides by (1+1+2)/2=2 instead of 4 total weight units: 253/3=84.33 is existing; student divides 344 (adds 90 twice=253+90=343, rounds to 344) by 4: 344/4=86.00.",
-      "E": "86.25 = 345/4, which would result from the weighted sum of 345 instead of 343 — perhaps computing 90×2=182 instead of 180, or misadding 78+85=165 instead of 163."
-    },
-    "tip": {
-      "label": "Formula",
-      "text": "Weighted average = Σ(score × weight) ÷ Σ(weights). The score with a higher weight has a bigger effect on the average — think of it as counting that score multiple times."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "C — 85.75"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "The third exam has weight 2, so its score counts twice. Multiply each score by its weight:\n\n\\[\n78\\times1=78\n\\]\n\n\\[\n85\\times1=85\n\\]\n\n\\[\n90\\times2=180\n\\]\n\nAdd the weighted scores:\n\n\\[\n78+85+180=343\n\\]\n\nAdd the weights:\n\n\\[\n1+1+2=4\n\\]\n\nThen divide the weighted total by the total weight:\n\n\\[\n343\\div4=85.75\n\\]\n\nTherefore, the weighted average is **85.75**."
+        }
+      ]
     },
     "tags": [
       "averages",
@@ -2171,21 +2165,23 @@
       }
     ],
     "correctOptionId": "D",
-    "explanation": "When the average and count are known, you can compute the required total sum. Total sum of all five numbers = average × count = 38 × 5 = 190. Sum of the four known numbers = 30 + 42 + 35 + 46 = 153. The fifth number must be the difference: 190 – 153 = 37. Verify: 30 + 42 + 35 + 46 + 37 = 190 and 190 ÷ 5 = 38. ✓ This 'reverse average' technique is extremely common on the Philippine Civil Service Exam.",
-    "steps": [
-      "Required total: 38 × 5 = 190.",
-      "Sum of known four: 30+42+35+46 = 153.",
-      "Fifth number: 190 – 153 = 37."
-    ],
-    "distractorExplanations": {
-      "A": "35 is already one of the given four numbers. Choosing 35 would make the sum 30+42+35+46+35=188, giving average 188÷5=37.6, not 38.",
-      "B": "39 would give total = 30+42+35+46+39=192, and 192÷5=38.4 ≠ 38. This might come from computing 38×5=195 (arithmetic error) and then 195–153=42 — but 42 is not a choice, so the solver might round to 39.",
-      "C": "33 would give total = 153+33=186, and 186÷5=37.2 ≠ 38. Might come from computing the sum of four numbers as 157 (off by 4) and then 190–157=33.",
-      "E": "Multiplies mean by 4 (not 5): 38×4=152, subtracts three known values (30+42+35=107): 152−107=45, then incorrectly rounds to 43."
-    },
-    "tip": {
-      "label": "Math Shortcut",
-      "text": "Missing value = (Target average × Count) – (Sum of known values). This works whenever you know the average, the count, and all values but one."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "D — 37"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "An average of 38 for 5 numbers means their total must be:\n\n\\[\n38\\times5=190\n\\]\n\nThe four known numbers total:\n\n\\[\n30+42+35+46=153\n\\]\n\nSo the fifth number is the difference:\n\n\\[\n190-153=37\n\\]\n\nTherefore, the missing number is **37**."
+        },
+        {
+          "type": "collapsible",
+          "title": "Mental Shortcut",
+          "content": "For a missing value, first find the total required by the average:\n\n\\[\n38\\times5=190\n\\]\n\nThe four known numbers total **153**, so mentally subtract:\n\n\\[\n190-153=37\n\\]\n\nTherefore, the missing number is **37**."
+        }
+      ]
     },
     "tags": [
       "averages",
@@ -2491,21 +2487,23 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "When a new member joins a group and the average increases, the newcomer's score must be higher than the new average. Here's how to find it precisely. The sum of the first 4 scores = 88 × 4 = 352. The sum of all 5 scores = 90 × 5 = 450. The 5th score = 450 – 352 = 98. Notice that the average rose by 2 points (from 88 to 90) across all 5 people — the new member essentially 'contributed' 2 extra points to each of the 5 averages, meaning their contribution was 2 × 5 = 10 points above the new average of 90: 90 + 10 = 100... wait, that's not right. The correct way: 5th score = 450 – 352 = 98. Verify: (352 + 98) / 5 = 450 / 5 = 90. ✓",
-    "steps": [
-      "Sum of first 4 scores: 88 × 4 = 352.",
-      "Required total for 5 people at average 90: 90 × 5 = 450.",
-      "5th score: 450 – 352 = 98."
-    ],
-    "distractorExplanations": {
-      "A": "92: Adding 92 gives total = 352+92 = 444, and 444÷5 = 88.8 ≠ 90. Too low — the new member's score must be at least 90 to raise the average to 90.",
-      "B": "95: Adding 95 gives total = 447, and 447÷5 = 89.4 ≠ 90. Still not enough to reach an average of 90.",
-      "D": "100: Adding 100 gives total = 452, and 452÷5 = 90.4 ≠ 90. Slightly too high. This might come from reasoning '2 extra points × 5 people = 10 points above old average of 88 → 88+10=98' — actually that IS the right answer! Or from using the new average instead of the new total.",
-      "E": "Uses new average of 90 with 6 evaluees instead of 5: 90×6−88×4=540−352=188? Student incorrectly uses 5×new_avg=5×92=460 (wrong new avg=92): 460−352=108≈106 via a 2-point slip."
-    },
-    "tip": {
-      "label": "Formula",
-      "text": "New score = (New average × New count) – (Old average × Old count) = (90×5) – (88×4) = 450 – 352 = 98."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "C — 98"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "The first 4 department heads have an average of 88, so their total score is:\n\n\\[\n88\\times4=352\n\\]\n\nWith 5 department heads, the new average is 90, so the total score must be:\n\n\\[\n90\\times5=450\n\\]\n\nThe fifth score is the difference between the new total and the original total:\n\n\\[\n450-352=98\n\\]\n\nTherefore, the fifth department head scored **98**.\n\nCheck:\n\n\\[\n352+98=450\n\\]\n\nand\n\n\\[\n450\\div5=90\n\\]"
+        },
+        {
+          "type": "collapsible",
+          "title": "Mental Shortcut",
+          "content": "The first 4 scores total:\n\n\\[\n88\\times4=352\n\\]\n\nThe 5 scores must total:\n\n\\[\n90\\times5=450\n\\]\n\nSo the fifth score is:\n\n\\[\n450-352=98\n\\]\n\nTherefore, the fifth department head scored **98**."
+        }
+      ]
     },
     "tags": [
       "averages",
