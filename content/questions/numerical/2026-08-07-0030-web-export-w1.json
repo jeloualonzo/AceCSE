@@ -255,7 +255,7 @@
         {
           "type": "paragraph",
           "label": "Rationale",
-          "text": "Electrical energy is power multiplied by time. First find the total power of the 10 lamps:\n\n\\[\n10\\times40\\text{ W}=400\\text{ W}\n\\]\n\nConvert watts to kilowatts:\n\n\\[\n400\\div1000=0.4\\text{ kW}\n\\]\n\nThe lamps run for 5 hours each day:\n\n\\[\n0.4\\text{ kW}\\times5\\text{ h}=2\\text{ kWh}\n\\]\n\nTherefore, the lamps consume **2 kWh per day**."
+          "text": "Electrical energy is power multiplied by time. First find the total power of the 10 lamps:\n\n\\[\n10\\times40=400\n\\]\n\nThe total power is **400 W**. Convert watts to kilowatts:\n\n\\[\n400\\div1000=0.4\n\\]\n\nSo the total power is **0.4 kW**. The lamps run for 5 hours each day:\n\n\\[\n0.4\\times5=2\n\\]\n\nTherefore, the lamps consume **2 kWh per day**."
         }
       ]
     },

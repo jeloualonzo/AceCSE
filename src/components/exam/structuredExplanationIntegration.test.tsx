@@ -542,6 +542,13 @@ describe('structured explanation Practice/Results integration V3', () => {
       ['num-0150', 10, 0],
     ] as const;
     const shortcutIds = new Set(['num-0085', 'num-0094']);
+    const assertEnergyUnits = (root: HTMLElement) => {
+      expect(root.textContent).toContain('400 W');
+      expect(root.textContent).toContain('0.4 kW');
+      expect(root.textContent).toContain('5 hours');
+      expect(root.textContent).toContain('2 kWh');
+      expect(root.innerHTML).not.toContain('\\text{');
+    };
 
     for (const [id, expectedEquationCount, shortcutEquationCount] of targets) {
       const question = catalog.questions.get(id);
@@ -563,6 +570,7 @@ describe('structured explanation Practice/Results integration V3', () => {
       expect(practiceRoots).toHaveLength(2);
       for (const root of practiceRoots) {
         assertProductionMath(root, expectedEquationCount);
+        if (id === 'num-0128') assertEnergyUnits(root);
         expect(within(root).getByText('Rationale')).toBeInTheDocument();
         expect(root.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
         expect(root.querySelectorAll('h5')).toHaveLength(1);
@@ -600,6 +608,7 @@ describe('structured explanation Practice/Results integration V3', () => {
       await user.click(expandDetails!);
       const resultsRoot = screen.getByTestId('structured-explanation');
       assertProductionMath(resultsRoot, expectedEquationCount);
+      if (id === 'num-0128') assertEnergyUnits(resultsRoot);
       expect(within(resultsRoot).getByText('Rationale')).toBeInTheDocument();
       expect(resultsRoot.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
       const resultsShortcut = resultsRoot.querySelector('[data-testid="structured-collapsible"] button') as HTMLButtonElement | null;
