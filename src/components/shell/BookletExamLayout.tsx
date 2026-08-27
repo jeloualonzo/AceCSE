@@ -34,20 +34,20 @@ function isAllSubjectsPracticeSession(session: ExamSession): boolean {
     && subjects.every((subject) => ALL_PRACTICE_SUBJECTS.has(subject));
 }
 
-type GridTileState = 'current' | 'answered' | 'unanswered';
-
-function getGridTileState(isCurrent: boolean, isAnswered: boolean): GridTileState {
-  if (isCurrent) return 'current';
-  if (isAnswered) return 'answered';
-  return 'unanswered';
+type GridBaseState = 'answered' | 'unanswered';
+function getGridBaseState(isAnswered: boolean): GridBaseState {
+  return isAnswered ? 'answered' : 'unanswered';
 }
-
-const GRID_STATE_CLASSES: Record<GridTileState, string> = {
-  current: 'bg-slate-100/60 dark:bg-slate-800/60 text-emerald-600 dark:text-emerald-400 font-extrabold border-2 border-emerald-500 ring-2 ring-emerald-400',
+const GRID_BASE_CLASSES: Record<GridBaseState, string> = {
   answered: 'bg-emerald-600 text-white border border-emerald-600',
   unanswered: 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80',
 };
-
+const GRID_CURRENT_OVERLAY_CLASSES = 'border-2 border-emerald-500 ring-2 ring-emerald-400';
+const GRID_LEGEND_CLASSES = {
+  answered: GRID_BASE_CLASSES.answered,
+  unanswered: GRID_BASE_CLASSES.unanswered,
+  current: `${GRID_BASE_CLASSES.unanswered} ${GRID_CURRENT_OVERLAY_CLASSES}`,
+} as const;
 const GRID_TILE_INTERACTION_CLASSES = 'hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200';
 
 export interface BookletExamLayoutProps {
@@ -614,7 +614,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               {(['answered', 'unanswered', 'current'] as const).map((state) => (
                 <div key={state} className="flex items-center gap-1.5">
                   <span
-                    className={`w-3 h-3 rounded ${GRID_STATE_CLASSES[state]}`}
+                    className={`w-3 h-3 rounded ${GRID_LEGEND_CLASSES[state]}`}
                     aria-hidden="true"
                   />
                   <span>{state[0].toUpperCase() + state.slice(1)}</span>
@@ -689,7 +689,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                         const isAnswered = block.administrative
                           ? Boolean((session.edqAnswers ?? {})[id])
                           : Boolean(session.answers[id]);
-                        const tileState = getGridTileState(isCurrent, isAnswered);
+                          const baseState = getGridBaseState(isAnswered);
                         const state = block.administrative
                           ? ', administrative, not scored'
                           : isAnswered ? ', answered' : ', unanswered';
@@ -699,7 +699,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                             data-question-id={id}
                             onClick={() => jumpToQuestion(section.sectionId, id)}
                             aria-current={isCurrent ? 'true' : undefined}
-                            className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${GRID_STATE_CLASSES[tileState]} ${tileState === 'unanswered' ? GRID_TILE_INTERACTION_CLASSES : ''}`}
+                            className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${GRID_BASE_CLASSES[baseState]} ${isCurrent ? GRID_CURRENT_OVERLAY_CLASSES : ''} ${baseState === 'unanswered' ? GRID_TILE_INTERACTION_CLASSES : ''}`}
                             aria-label={`${
                               isPractice
                                 ? `Go to ${sectionTitle(section.sectionId)} question ${num}`

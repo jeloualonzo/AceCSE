@@ -492,24 +492,32 @@ describe('BookletExamLayout — Practice navigation cleanup', () => {
 });
 
 describe('BookletExamLayout — Grid state visuals and legend', () => {
-  it('renders Current with the normal neutral surface and emerald outline while Unanswered stays neutral', async () => {
+  it('adds and removes only the Current overlay on an Unanswered base tile', async () => {
     const user = userEvent.setup();
     renderLayout();
     await openNavigator(user);
     const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
     const q1 = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
     const q2 = within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i });
+    const unansweredBaseClasses = q2.className;
 
     expect(q1).toHaveAttribute('aria-current', 'true');
-    expect(q1).toHaveClass('bg-slate-100/60', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
-    expect(q1).not.toHaveClass('bg-white', 'bg-emerald-600', 'shadow-md');
+    expect(q1).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border', 'border-slate-300', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
+    expect(q1).not.toHaveClass('bg-white', 'bg-emerald-600', 'shadow-md', 'font-extrabold');
     expect(q1).toHaveAccessibleName(/unanswered, current/i);
     expect(q2).not.toHaveAttribute('aria-current');
     expect(q2).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border', 'border-slate-300');
+    expect(q2).not.toHaveClass('border-2', 'border-emerald-500', 'ring-2', 'shadow-md');
     expect(q2).toHaveAccessibleName(/unanswered/i);
+
+    await user.click(q2);
+    expect(q1).not.toHaveAttribute('aria-current');
+    expect(q1.className).toBe(unansweredBaseClasses);
+    expect(q2).toHaveAttribute('aria-current', 'true');
+    expect(q2).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
   });
 
-  it('renders Answered as emerald-filled and keeps Current primary when an answered item is active', async () => {
+  it('adds and removes only the Current overlay on an Answered base tile', async () => {
     const user = userEvent.setup();
     const answeredSession = baseSession({
       questionIds: ['V1', 'V2', 'N1', 'N2'],
@@ -518,30 +526,31 @@ describe('BookletExamLayout — Grid state visuals and legend', () => {
     });
     renderLayout({ session: answeredSession });
     await openNavigator(user);
-    let dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
     const q1 = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
     const q2 = within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i });
+    const answeredBaseClasses = q1.className;
 
     expect(q1).not.toHaveAttribute('aria-current');
-    expect(q1).toHaveClass('bg-emerald-600', 'text-white', 'border', 'border-emerald-600');
-    expect(q1).not.toHaveClass('ring-2', 'shadow-md');
+    expect(q1).toHaveClass('bg-emerald-600', 'text-white', 'border', 'border-emerald-600', 'font-bold');
+    expect(q1).not.toHaveClass('border-2', 'ring-2', 'shadow-md');
     expect(q1).toHaveAccessibleName(/answered/i);
     expect(q2).toHaveAttribute('aria-current', 'true');
-    expect(q2).toHaveClass('bg-slate-100/60', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
-    expect(q2).not.toHaveClass('bg-white', 'bg-emerald-600', 'shadow-md');
     expect(q2).toHaveAccessibleName(/unanswered, current/i);
 
     await user.click(q1);
-    dialog = screen.getByRole('dialog', { name: 'Question navigation' });
     const currentAnsweredQ1 = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
-    expect(dialog).toBeInTheDocument();
     expect(currentAnsweredQ1).toHaveAttribute('aria-current', 'true');
-    expect(currentAnsweredQ1).toHaveClass('bg-slate-100/60', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
-    expect(currentAnsweredQ1).not.toHaveClass('bg-white', 'bg-emerald-600', 'shadow-md');
+    expect(currentAnsweredQ1).toHaveClass('bg-emerald-600', 'text-white', 'border-2', 'ring-2', 'ring-emerald-400', 'font-bold');
+    expect(currentAnsweredQ1).not.toHaveClass('bg-white', 'shadow-md');
     expect(currentAnsweredQ1).toHaveAccessibleName(/answered, current/i);
+
+    await user.click(q2);
+    expect(currentAnsweredQ1).not.toHaveAttribute('aria-current');
+    expect(currentAnsweredQ1.className).toBe(answeredBaseClasses);
   });
 
-  it('uses the same visual classes for legend swatches and their corresponding tile states', async () => {
+  it('uses matching compositional classes for legend swatches and tile states', async () => {
     const user = userEvent.setup();
     renderLayout();
     await openNavigator(user);
@@ -552,8 +561,8 @@ describe('BookletExamLayout — Grid state visuals and legend', () => {
     expect(swatches).toHaveLength(3);
     expect(swatches[0]).toHaveClass('bg-emerald-600', 'text-white', 'border', 'border-emerald-600');
     expect(swatches[1]).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border', 'border-slate-300');
-    expect(swatches[2]).toHaveClass('bg-slate-100/60', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
-    expect(swatches[2]).not.toHaveClass('bg-white', 'shadow-md');
+    expect(swatches[2]).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
+    expect(swatches[2]).not.toHaveClass('bg-white', 'shadow-md', 'font-extrabold');
     expect(within(legend).getByText('Answered')).toBeInTheDocument();
     expect(within(legend).getByText('Unanswered')).toBeInTheDocument();
     expect(within(legend).getByText('Current')).toBeInTheDocument();
