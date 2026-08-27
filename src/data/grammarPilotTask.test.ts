@@ -135,7 +135,9 @@ describe('Grammar pilot content corrections', () => {
     for (const question of questions) {
       expect(question?.structuredExplanation).toBeDefined();
       expect(isValidStructuredExplanation(question?.structuredExplanation)).toBe(true);
-      expect(question?.structuredExplanation?.blocks).toHaveLength(question?.id === 'verb-0059' ? 5 : 4);
+      expect(question?.structuredExplanation?.blocks).toHaveLength(2);
+      expect(question?.structuredExplanation?.blocks[0]).toMatchObject({ type: 'correct_answer' });
+      expect(question?.structuredExplanation?.blocks[1]).toMatchObject({ type: 'paragraph', label: 'Rationale' });
       for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
         expect(Object.hasOwn(question ?? {}, field), `${question?.id}:${field}`).toBe(false);
       }
@@ -145,19 +147,11 @@ describe('Grammar pilot content corrections', () => {
     const causalText = JSON.stringify(catalog.getQuestion('verb-0060')?.structuredExplanation);
     const reasonText = JSON.stringify(catalog.getQuestion('verb-0061')?.structuredExplanation);
     const parallelText = JSON.stringify(catalog.getQuestion('verb-0062')?.structuredExplanation);
-    expect(panelText).toMatch(/formal American-English.*collective unit/i);
-    expect(panelText).toMatch(/plural agreement.*other contexts/i);
-    expect(panelText).toMatch(/A and D.*plural.*have.*one unit/i);
-    expect(panelText).toMatch(/B.*singular.*has.*plural.*their.*do not agree/i);
-    expect(panelText).toMatch(/E.*plural.*their.*individual verdicts.*single-unit/i);
-    expect(causalText).toMatch(/subordinating conjunction.*complete causal clause/i);
-    expect(causalText).toMatch(/being she was late.*defective/i);
-    expect(causalText).toMatch(/since of.*conjunction.*preposition/i);
-    expect(reasonText).toMatch(/formal-edited-English convention/i);
-    expect(reasonText).toMatch(/choices A and E.*is because/i);
-    expect(reasonText).toMatch(/ordinary contemporary English/i);
-    expect(parallelText).toMatch(/parallel grammatical elements/i);
-    expect(parallelText).toMatch(/scrutinizing.*past-tense.*scrutinized/i);
+    expect(panelText).toMatch(/formal American-English/i);
+    expect(panelText).toMatch(/single collective unit.*singular verb.*singular pronoun/i);
+    expect(causalText).toMatch(/subordinating conjunction.*correctly introduces.*complete clause.*she arrived late/i);
+    expect(reasonText).toMatch(/formal-edited-English convention.*is that.*is because/i);
+    expect(parallelText).toMatch(/parallel grammatical elements.*reviewed.*scrutinized.*past-tense verb phrases/i);
     expect(JSON.stringify(questions)).not.toMatch(/former recognized|competing answer|AI drafting residue|generated question|authored task/i);
   });
 });
@@ -258,7 +252,7 @@ describe('Grammar pilot compact task architecture', () => {
     expect(screen.getAllByRole('button', { name: 'Show Explanation' })).toHaveLength(1);
 
     fireEvent.click(screen.getByRole('button', { name: 'Show Explanation' }));
-    expect(practice.container.querySelector('#question-verb-0059')?.textContent).toMatch(/formal American-English.*one unit/i);
+    expect(practice.container.querySelector('#question-verb-0059')?.textContent).toMatch(/single collective unit.*singular verb.*singular pronoun/i);
 
     practice.unmount();
     const simulation = renderTask(false, { 'verb-0059': 'C' });

@@ -442,7 +442,7 @@ describe('structured explanation Practice/Results integration V3', () => {
     }
   });
 
-  it('renders all four Grammar pilot explanations through Practice and Results in the shared renderer', async () => {
+  it('renders all four Grammar pilot explanations as exact Rationale-only blocks through Practice and Results', async () => {
     const user = userEvent.setup();
     const catalog = await loadContentCatalog(['Verbal Ability']);
     const grammarIds = ['verb-0059', 'verb-0060', 'verb-0061', 'verb-0062'];
@@ -455,6 +455,12 @@ describe('structured explanation Practice/Results integration V3', () => {
 
     for (const id of grammarIds) {
       const question = catalog.questions.get(id)!;
+      const blocks = question.structuredExplanation?.blocks ?? [];
+      expect(blocks).toHaveLength(2);
+      expect(blocks[0]?.type).toBe('correct_answer');
+      expect(blocks[1]).toMatchObject({ type: 'paragraph', label: 'Rationale' });
+      expect(blocks.some((block) => block.type === 'alternative_solution' || block.type === 'step' || block.type === 'rule')).toBe(false);
+
       renderWithTheme(
         <QuestionCard
           question={question}
@@ -467,28 +473,12 @@ describe('structured explanation Practice/Results integration V3', () => {
       await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
       const practiceRoots = screen.getAllByTestId('structured-explanation');
       expect(practiceRoots).toHaveLength(2);
-      expect(practiceRoots.every((root) => root.textContent?.includes('Correct Answer:'))).toBe(true);
+      expect(practiceRoots.every((root) => root.textContent?.includes(`Correct Answer: ${question.correctOptionId}.`))).toBe(true);
       expect(practiceRoots.every((root) => root.textContent?.includes(answerTexts[id]))).toBe(true);
-      expect(practiceRoots.every((root) => within(root).getByText('What to Notice'))).toBe(true);
-      expect(practiceRoots.every((root) => within(root).getByText('Apply the Rule'))).toBe(true);
-      expect(practiceRoots.every((root) => within(root).getByText('Rule'))).toBe(true);
+      expect(practiceRoots.every((root) => within(root).getByText('Rationale'))).toBe(true);
+      expect(practiceRoots.every((root) => root.querySelectorAll('h5').length === 1)).toBe(true);
+      expect(practiceRoots.every((root) => !/What to Notice|Apply the Rule|Why the other choices fail|Rule|Alternative Method|Pattern|Step [123]/.test(root.textContent ?? ''))).toBe(true);
       expect(practiceRoots.every((root) => root.querySelector('strong, em') !== null)).toBe(true);
-      expect(practiceRoots.every((root) => within(root).queryByText(/^Pattern(?: — .+)?$/) === null)).toBe(true);
-
-      // What the pilot forbids is a *section*, not the word "choices". verb-0059's
-      // approved blocks include a "Why the other choices fail" paragraph — the
-      // validator ships that exact text as the reference explanation — so assert
-      // the real rule, then assert the card carries precisely the distractor
-      // paragraph the authored blocks declare, with per-choice reasoning in it.
-      expect(practiceRoots.every((root) => noAlternativeSection(root))).toBe(true);
-      const authoredDistractor = question.structuredExplanation?.blocks.some(
-        (block) => block.type === 'paragraph' && block.label === DISTRACTOR_LABEL
-      ) ?? false;
-      expect(authoredDistractor).toBe(id === 'verb-0059');
-      expect(practiceRoots.every((root) => (distractorParagraph(root) !== null) === authoredDistractor)).toBe(true);
-      if (authoredDistractor) {
-        expect(practiceRoots.every((root) => choicesRuledOut(distractorParagraph(root)!).size >= 2)).toBe(true);
-      }
 
       cleanup();
       const attempt: Attempt = {
@@ -525,18 +515,12 @@ describe('structured explanation Practice/Results integration V3', () => {
       );
       await user.click(screen.getByRole('button', { name: 'Expand question details' }));
       const resultsRoot = screen.getByTestId('structured-explanation');
-      expect(resultsRoot.textContent).toContain('Correct Answer:');
+      expect(resultsRoot.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
       expect(resultsRoot.textContent).toContain(answerTexts[id]);
-      expect(within(resultsRoot).getByText('What to Notice')).toBeInTheDocument();
-      expect(within(resultsRoot).getByText('Apply the Rule')).toBeInTheDocument();
-      expect(within(resultsRoot).getByText('Rule')).toBeInTheDocument();
+      expect(within(resultsRoot).getByText('Rationale')).toBeInTheDocument();
+      expect(resultsRoot.querySelectorAll('h5')).toHaveLength(1);
+      expect(/What to Notice|Apply the Rule|Why the other choices fail|Rule|Alternative Method|Pattern|Step [123]/.test(resultsRoot.textContent ?? '')).toBe(false);
       expect(resultsRoot.querySelector('strong, em')).not.toBeNull();
-      expect(within(resultsRoot).queryByText(/^Pattern(?: — .+)?$/)).toBeNull();
-      expect(noAlternativeSection(resultsRoot)).toBe(true);
-      expect(distractorParagraph(resultsRoot) !== null).toBe(authoredDistractor);
-      if (authoredDistractor) {
-        expect(choicesRuledOut(distractorParagraph(resultsRoot)!).size).toBeGreaterThanOrEqual(2);
-      }
       cleanup();
     }
   });

@@ -22,29 +22,20 @@ const expectedAnswers = {
 };
 const expectedStructuredBlocks = {
   'verb-0059': [
-        { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The question sets a formal American-English convention that treats *panel* as one collective unit. That convention requires a singular verb and a singular pronoun.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: 'The panel of judges **has** announced **its** decision.' },
-    { type: 'paragraph', label: 'Why the other choices fail', text: 'Choices A and D use plural **have**, which conflicts with treating *panel* as one unit. Choice B uses singular **has** but plural **their**, so the verb and pronoun do not agree under the stated convention. Choice E also uses singular **has** with plural **their**; the phrase **individual verdicts** foregrounds the members, which conflicts with the required single-unit reading.' },
-    { type: 'rule', text: 'When a collective noun is treated as one unit under the stated formal convention, use a singular verb and singular pronoun. Collective nouns may take plural agreement in other contexts when their members are foregrounded; that is not the convention used here.' },
+    { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
+    { type: 'paragraph', label: 'Rationale', text: 'The question treats **panel** as a single collective unit, so it takes the singular verb **has** and the singular pronoun **its**. Therefore, **The panel of judges has announced its decision** follows the stated formal American-English convention.' },
   ],
   'verb-0060': [
-        { type: 'correct_answer', text: 'C — Because she arrived late, her application was disqualified.' },
-    { type: 'paragraph', label: 'What to Notice', text: '*Because* is a subordinating conjunction that can introduce a complete causal clause: **because + subject + verb**. In choice C, *she arrived late* supplies that complete clause.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: '**Because** she arrived late, her application was disqualified.' },
-    { type: 'rule', text: 'Use *because* to connect a cause expressed as a complete clause. In choice A, *Being she was late* is defective; a preposition such as *due to* or *on account of* normally takes a noun or gerund phrase, not a finite clause, as in choices B and D. *Since* can introduce a clause, but *since of* in choice E improperly combines a conjunction with a preposition.' },
+    { type: 'correct_answer', text: 'C — Because she arrived late, her application was disqualified.' },
+    { type: 'paragraph', label: 'Rationale', text: '**Because** is a subordinating conjunction that correctly introduces the complete clause **she arrived late**. The other choices incorrectly combine a preposition with a finite clause or use the defective construction **since of**. Therefore, **Because she arrived late, her application was disqualified** is the correctly written sentence.' },
   ],
   'verb-0061': [
-        { type: 'correct_answer', text: 'B — The reason the memorandum was delayed is that the signatory was absent.' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The question sets a formal-edited-English convention: use *the reason ... is that ...* rather than *the reason ... is because ...*. Choice B follows that target pattern.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: 'The reason the memorandum was delayed **is that** the signatory was absent.' },
-    { type: 'rule', text: 'Under the formal-edited-English convention stated here, pair *the reason ...* with *is that ...*. Choices A and E use *the reason ... is because*, a wording that occurs in ordinary contemporary English but is not the construction selected here; choice C compounds *reason why* with *is because*, while choice D is syntactically defective.' },
+    { type: 'correct_answer', text: 'B — The reason the memorandum was delayed is that the signatory was absent.' },
+    { type: 'paragraph', label: 'Rationale', text: "Under the question's stated formal-edited-English convention, use **the reason ... is that ...** rather than **the reason ... is because ...**. Choice B follows that construction directly. The other choices either use the disfavored **is because** pattern, combine **reason why** with **is because**, or are syntactically defective." },
   ],
   'verb-0062': [
-        { type: 'correct_answer', text: 'B — The commission not only reviewed the budget but also scrutinized the disbursements.' },
-    { type: 'paragraph', label: 'What to Notice', text: 'The correlative pair *not only ... but also* should connect parallel grammatical elements. Here, **reviewed** and **scrutinized** are both past-tense verb phrases.' },
-    { type: 'paragraph', label: 'Apply the Rule', text: 'The commission not only **reviewed** the budget but also **scrutinized** the disbursements.' },
-    { type: 'rule', text: 'With *not only ... but also*, keep the two coordinated elements grammatically parallel. The distractors break that pattern by inserting *it*, pairing an object phrase with a verb phrase, using faulty inversion and singular *was* with plural *disbursements*, or using *scrutinizing* instead of the past-tense *scrutinized*.' },
+    { type: 'correct_answer', text: 'B — The commission not only reviewed the budget but also scrutinized the disbursements.' },
+    { type: 'paragraph', label: 'Rationale', text: 'The correlative pair **not only ... but also** should connect parallel grammatical elements. Here, **reviewed** and **scrutinized** are both past-tense verb phrases, so the sentence maintains proper parallel structure. The other choices break that parallelism or contain additional grammatical errors.' },
   ],
 };
 const forbidden = /AceCSE|simulator|training platform|\bapp\b|software|AI-generated|generated question|authored task|former recognized|competing answer|authoring|process commentary/i;
