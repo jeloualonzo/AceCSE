@@ -260,7 +260,7 @@ describe('Content Bank dashboard', () => {
       id: 'clerical-ops-check-01',
       title: 'Clerical Ops Check 1',
       family: 'Filing & Alphabetizing',
-      status: 'builder',
+      status: 'builder' as const,
       createdAt: '2026-08-23T15:00:00+08:00',
       questionIds: ['cler-0056'],
     };
@@ -278,17 +278,13 @@ describe('Content Bank dashboard', () => {
     renderRoute(CONTENT_BANK_ROUTE);
     await batchesLoaded();
 
-    // The batch list an admin actually sees: the merged newest-first list places
-    // the newer shipped Averages batch before this legitimate local batch. No
-    // batch2 appears anywhere in it.
-    const shippedBatches = getRefinementBatches();
-    await waitFor(() =>
-      expect(batchIdsInOrder()).toEqual([
-        shippedBatches[0]?.id,
-        legitimate.id,
-        ...shippedBatches.slice(1, 5).map((batch) => batch.id),
-      ])
-    );
+    // The batch list an admin actually sees is the merged newest-first list.
+    // No retired batch2 appears anywhere in it.
+    const expectedVisibleBatchIds = getRefinementBatches([
+      ...getRefinementBatches(),
+      legitimate,
+    ]).slice(0, 6).map((batch) => batch.id);
+    await waitFor(() => expect(batchIdsInOrder()).toEqual(expectedVisibleBatchIds));
     expect(document.querySelector('[data-refinement-batch="batch2"]')).toBeNull();
     expect(screen.queryByTestId('refinement-count-batch2')).not.toBeInTheDocument();
 

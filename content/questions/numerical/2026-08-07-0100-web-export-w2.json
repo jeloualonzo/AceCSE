@@ -413,23 +413,18 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "Set up two equations. Let b = Ranger B's beetle count. Then Ranger A has (b + 5) beetles. Total spots: 2(b + 5) + 7b = 100. Expand: 2b + 10 + 7b = 100 → 9b = 90 → b = 10. Ranger A has 15, Ranger B has 10, for a combined total of 25. Verify: 2 × 15 + 7 × 10 = 30 + 70 = 100 spots. ✓ Ranger A − Ranger B = 15 − 10 = 5. ✓ The trap is solving for b and then reporting b (10) or b + 5 (15) instead of the combined total b + (b + 5) = 2b + 5.",
-    "steps": [
-      "Let b = Ranger B's count; Ranger A's count = b + 5.",
-      "Total spots equation: 2(b + 5) + 7b = 100 → 9b + 10 = 100 → 9b = 90.",
-      "Solve: b = 10. Ranger A = 15.",
-      "Combined total = 10 + 15 = 25.",
-      "Verify: 2×15 + 7×10 = 30 + 70 = 100 spots. ✓"
-    ],
-    "distractorExplanations": {
-      "A": "17 beetles would give 2(11) + 7(6) = 22 + 42 = 64 spots — far below 100. Choosing 17 likely comes from incorrectly combining the two equations or from computing (100 − 10) ÷ (2 + 7) = 10 and then adding 7 (some confusion with the spot counts rather than the beetle counts).",
-      "C": "21 beetles would require 2(13) + 7(8) = 26 + 56 = 82 spots. Not 100. Choosing 21 may come from using b = 8 as if 9b = 72 rather than 90, or from confusing the 5-beetle difference with the 5 extra spots that Ranger A's side contributes per extra beetle.",
-      "D": "23 beetles would require 2(14) + 7(9) = 28 + 63 = 91 spots. Not 100. Choosing 23 likely comes from computing b = 9 (perhaps solving 9b = 81 by rounding 90 down) and then adding 9 + 14 = 23. Always solve 9b = 90 exactly: b = 10.",
-      "E": "Solves correctly for A=15 and B=10 but adds the 5-beetle offset twice: 15+10+2=27 instead of 15+10=25."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "When two groups differ by a fixed count and contribute to a total through different rates (spots per beetle), define one variable for the smaller group, express the larger in terms of it, then write one equation using the total. Remember: the question may ask for the COMBINED total, not just one group's count."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "B — 25"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Let \\(b\\) be the number of beetles collected by Ranger B. Ranger A has 5 more beetles, so Ranger A has \\(b+5\\) beetles.\n\nThe total number of spots is:\n\n\\[\n2(b+5)+7b=100\n\\]\n\nExpand:\n\n\\[\n2b+10+7b=100\n\\]\n\nCombine like terms:\n\n\\[\n9b+10=100\n\\]\n\nSubtract 10 from both sides:\n\n\\[\n9b+10-10=100-10\n\\]\n\n\\[\n9b=90\n\\]\n\nDivide both sides by 9:\n\n\\[\n\\frac{9b}{9}=\\frac{90}{9}\n\\]\n\n\\[\nb=10\n\\]\n\nSo Ranger B has 10 beetles and Ranger A has:\n\n\\[\n10+5=15\n\\]\n\nThe combined collection is:\n\n\\[\n10+15=25\n\\]\n\nTherefore, there are **25 beetles** in total.\n\nCheck:\n\n\\[\n2(15)+7(10)=30+70=100\n\\]"
+        }
+      ]
     },
     "tags": [
       "basic-algebra",

@@ -298,23 +298,23 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "Consecutive even integers differ by 2, not by 1. Let the smallest even integer be n. Then the three integers are n, n + 2, and n + 4. Their sum: n + (n + 2) + (n + 4) = 3n + 6 = 90. Solving: 3n = 84 → n = 28. The three integers are 28, 30, and 32. The largest is 32. Verify: 28 + 30 + 32 = 90. ✓ The key difference from consecutive odd or plain consecutive integers is that the common difference is 2, giving a total offset of 6 for three terms.",
-    "steps": [
-      "Let the three consecutive even integers be n, n+2, and n+4.",
-      "Sum equation: n + (n+2) + (n+4) = 90 → 3n + 6 = 90.",
-      "Solve: 3n = 84 → n = 28.",
-      "The three integers: 28, 30, 32. Largest = 32.",
-      "Verify: 28 + 30 + 32 = 90. ✓"
-    ],
-    "distractorExplanations": {
-      "A": "30 is the MIDDLE integer, not the largest. The three integers are 28, 30, and 32 — 30 is the second one. A quick check: 30 as the largest would make the integers 26, 28, 30, whose sum is 84, not 90.",
-      "C": "34 would be the largest if the three integers were 30, 32, 34 — but 30 + 32 + 34 = 96 ≠ 90. Choosing 34 comes from rounding the correct value of 32 upward by one step in the even sequence.",
-      "D": "28 is the SMALLEST of the three integers, not the largest. The question asks for the largest, which is 28 + 4 = 32. Picking the smallest may mean the solver forgot to add the step offset of +4.",
-      "E": "Uses consecutive integers differing by 1 instead of consecutive even integers differing by 2: x+(x+1)+(x+2)=90 gives largest=31."
-    },
-    "tip": {
-      "label": "Remember",
-      "text": "Consecutive even integers: n, n+2, n+4. Consecutive odd integers: same form. Consecutive integers: n, n+1, n+2. Set up the sum equation with the smallest as n, solve, then read off the required value."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "B — 32"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Consecutive even integers differ by 2. Let the smallest integer be \\(n\\). Then the three integers are:\n\n\\[\nn,\\quad n+2,\\quad n+4\n\\]\n\nTheir sum is:\n\n\\[\nn+(n+2)+(n+4)=90\n\\]\n\nCombine like terms:\n\n\\[\n3n+6=90\n\\]\n\nSubtract 6 from both sides:\n\n\\[\n3n+6-6=90-6\n\\]\n\n\\[\n3n=84\n\\]\n\nDivide both sides by 3:\n\n\\[\n\\frac{3n}{3}=\\frac{84}{3}\n\\]\n\n\\[\nn=28\n\\]\n\nSo the three integers are:\n\n\\[\n28,\\quad30,\\quad32\n\\]\n\nTherefore, the largest integer is **32**.\n\nCheck:\n\n\\[\n28+30+32=90\n\\]"
+        },
+        {
+          "type": "collapsible",
+          "title": "Mental Shortcut",
+          "content": "For three consecutive even integers, the middle integer is the average.\n\n\\[\n90\\div3=30\n\\]\n\nSo 30 is the middle integer. Since consecutive even integers differ by 2, the largest is:\n\n\\[\n30+2=32\n\\]\n\nTherefore, the largest integer is **32**."
+        }
+      ]
     },
     "tags": [
       "algebra",

@@ -174,6 +174,36 @@ function structuredOnlyAverages(overrides: Record<string, unknown> = {}): Record
   return q;
 }
 
+function structuredOnlyBasicAlgebra(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  const q = {
+    ...base({
+      id: 'num-0048',
+      subject: 'Numerical Reasoning',
+      topic: 'Basic Algebra',
+      choices: [
+        { id: 'A', text: 'x = 15' },
+        { id: 'B', text: 'x = 12' },
+        { id: 'C', text: 'x = 18' },
+        { id: 'D', text: 'x = 21' },
+        { id: 'E', text: 'x = 9' },
+      ],
+      correctOptionId: 'A',
+      structuredExplanation: {
+        blocks: [
+          { type: 'correct_answer', text: 'A — x = 15' },
+          { type: 'paragraph', label: 'Rationale', text: 'Solve the equation and verify both sides.' },
+        ],
+      },
+    }),
+    ...overrides,
+  } as Record<string, unknown>;
+  delete q.explanation;
+  delete q.steps;
+  delete q.distractorExplanations;
+  delete q.tip;
+  return q;
+}
+
 function structuredOnlyGrammar(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   const q = {
     ...base({
@@ -513,6 +543,35 @@ describe('structured-only Averages admission exception', () => {
     expect(isValidQuestion(structuredOnlyAverages({ id: 'num-0050' }))).toBe(false);
     expect(isValidQuestion(structuredOnlyAverages({ subject: 'Verbal Ability' }))).toBe(false);
     expect(isValidQuestion(structuredOnlyAverages({ topic: 'Number Series' }))).toBe(false);
+  });
+});
+
+describe('structured-only Basic Algebra admission exception', () => {
+  const basicAlgebraIds = ['num-0048', 'num-0050', 'num-0073', 'num-0085', 'num-0094', 'num-0122', 'num-0128', 'num-0140', 'num-0150'];
+
+  it('accepts exactly the nine canonical Basic Algebra IDs without legacy explanation fields', () => {
+    for (const id of basicAlgebraIds) {
+      const question = structuredOnlyBasicAlgebra({ id });
+      expect(isValidQuestion(question), id).toBe(true);
+      expect(Object.hasOwn(question, 'explanation'), id).toBe(false);
+      expect(Object.hasOwn(question, 'steps'), id).toBe(false);
+      expect(Object.hasOwn(question, 'distractorExplanations'), id).toBe(false);
+      expect(Object.hasOwn(question, 'tip'), id).toBe(false);
+    }
+  });
+
+  it('rejects malformed or missing Basic Algebra structured explanations', () => {
+    expect(isValidQuestion(structuredOnlyBasicAlgebra({ structuredExplanation: { blocks: [] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyBasicAlgebra({ structuredExplanation: { blocks: [{ type: 'unsupported', text: 'bad' }] } }))).toBe(false);
+    const question = structuredOnlyBasicAlgebra();
+    delete question.structuredExplanation;
+    expect(isValidQuestion(question)).toBe(false);
+  });
+
+  it('keeps the Basic Algebra exception scoped to approved IDs, subject, and topic', () => {
+    expect(isValidQuestion(structuredOnlyBasicAlgebra({ id: 'num-0051' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyBasicAlgebra({ subject: 'Verbal Ability' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyBasicAlgebra({ topic: 'Averages' }))).toBe(false);
   });
 });
 

@@ -28,7 +28,8 @@ const CLERICAL_OPERATIONS_STRUCTURED_IDS = [
 const ALL_NUMBER_SERIES_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS, ...BATCH4_IDS];
 const AGE_PROBLEMS_IDS = ['num-0030', 'num-0031', 'num-0142'] as const;
 const AVERAGES_BATCH1_IDS = ['num-0046', 'num-0047', 'num-0049', 'num-0145', 'num-0146', 'seed-num-005'] as const;
-const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...AGE_PROBLEMS_IDS, ...AVERAGES_BATCH1_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS, ...CLERICAL_OPERATIONS_STRUCTURED_IDS];
+const BASIC_ALGEBRA_BATCH1_IDS = ['num-0048', 'num-0050', 'num-0073', 'num-0085', 'num-0094', 'num-0122', 'num-0128', 'num-0140', 'num-0150'] as const;
+const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...AGE_PROBLEMS_IDS, ...AVERAGES_BATCH1_IDS, ...BASIC_ALGEBRA_BATCH1_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS, ...CLERICAL_OPERATIONS_STRUCTURED_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -226,6 +227,118 @@ const EXPECTED_AGE_PROBLEMS_BLOCKS = {
   ],
 } as const;
 
+const EXPECTED_BASIC_ALGEBRA_BLOCKS = {
+  "num-0048": [
+    {
+      "type": "correct_answer",
+      "text": "A — x = 15"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Solve the equation by first expanding the expression in parentheses:\n\n\\[\n3x-7=2(x+4)\n\\]\n\n\\[\n3x-7=2x+8\n\\]\n\nSubtract \\(2x\\) from both sides:\n\n\\[\n3x-2x-7=2x-2x+8\n\\]\n\n\\[\nx-7=8\n\\]\n\nAdd 7 to both sides:\n\n\\[\nx-7+7=8+7\n\\]\n\n\\[\nx=15\n\\]\n\nCheck:\n\n\\[\n3(15)-7=38\n\\]\n\n\\[\n2(15+4)=38\n\\]\n\nBoth sides are equal, so **x = 15**."
+    }
+  ],
+  "num-0050": [
+    {
+      "type": "correct_answer",
+      "text": "D — x = 12"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "The two equations contain \\(+y\\) and \\(-y\\), so add them to eliminate \\(y\\):\n\n\\[\nx+y=20\n\\]\n\n\\[\n3x-y=28\n\\]\n\nAdding the equations:\n\n\\[\n(x+y)+(3x-y)=20+28\n\\]\n\n\\[\n4x=48\n\\]\n\nDivide both sides by 4:\n\n\\[\n\\frac{4x}{4}=\\frac{48}{4}\n\\]\n\n\\[\nx=12\n\\]\n\nTherefore, **x = 12**.\n\nCheck:\n\n\\[\n12+y=20\n\\]\n\nso \\(y=8\\). Then:\n\n\\[\n3(12)-8=28\n\\]\n\nBoth equations are satisfied."
+    }
+  ],
+  "num-0073": [
+    {
+      "type": "correct_answer",
+      "text": "C — 19"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Translate the statement into an equation:\n\n\\[\n2n+13=51\n\\]\n\nSubtract 13 from both sides:\n\n\\[\n2n+13-13=51-13\n\\]\n\n\\[\n2n=38\n\\]\n\nDivide both sides by 2:\n\n\\[\n\\frac{2n}{2}=\\frac{38}{2}\n\\]\n\n\\[\nn=19\n\\]\n\nCheck:\n\n\\[\n2(19)+13=38+13=51\n\\]\n\nTherefore, the number is **19**."
+    }
+  ],
+  "num-0085": [
+    {
+      "type": "correct_answer",
+      "text": "D — 33"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Let the middle integer be \\(n\\). Then the three consecutive integers are:\n\n\\[\nn-1,\\quad n,\\quad n+1\n\\]\n\nTheir sum is:\n\n\\[\n(n-1)+n+(n+1)=96\n\\]\n\nThe \\(-1\\) and \\(+1\\) cancel:\n\n\\[\n3n=96\n\\]\n\nDivide both sides by 3:\n\n\\[\n\\frac{3n}{3}=\\frac{96}{3}\n\\]\n\n\\[\nn=32\n\\]\n\nSo the three integers are:\n\n\\[\n31,\\quad32,\\quad33\n\\]\n\nTherefore, the largest integer is **33**.\n\nCheck:\n\n\\[\n31+32+33=96\n\\]"
+    },
+    {
+      "type": "collapsible",
+      "title": "Mental Shortcut",
+      "content": "For three consecutive integers, the middle integer is the average.\n\n\\[\n96\\div3=32\n\\]\n\nSo 32 is the middle number. The largest is one step higher:\n\n\\[\n32+1=33\n\\]\n\nTherefore, the largest integer is **33**."
+    }
+  ],
+  "num-0094": [
+    {
+      "type": "correct_answer",
+      "text": "B — 32"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Consecutive even integers differ by 2. Let the smallest integer be \\(n\\). Then the three integers are:\n\n\\[\nn,\\quad n+2,\\quad n+4\n\\]\n\nTheir sum is:\n\n\\[\nn+(n+2)+(n+4)=90\n\\]\n\nCombine like terms:\n\n\\[\n3n+6=90\n\\]\n\nSubtract 6 from both sides:\n\n\\[\n3n+6-6=90-6\n\\]\n\n\\[\n3n=84\n\\]\n\nDivide both sides by 3:\n\n\\[\n\\frac{3n}{3}=\\frac{84}{3}\n\\]\n\n\\[\nn=28\n\\]\n\nSo the three integers are:\n\n\\[\n28,\\quad30,\\quad32\n\\]\n\nTherefore, the largest integer is **32**.\n\nCheck:\n\n\\[\n28+30+32=90\n\\]"
+    },
+    {
+      "type": "collapsible",
+      "title": "Mental Shortcut",
+      "content": "For three consecutive even integers, the middle integer is the average.\n\n\\[\n90\\div3=30\n\\]\n\nSo 30 is the middle integer. Since consecutive even integers differ by 2, the largest is:\n\n\\[\n30+2=32\n\\]\n\nTherefore, the largest integer is **32**."
+    }
+  ],
+  "num-0122": [
+    {
+      "type": "correct_answer",
+      "text": "E — 6"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Because the family has an equal number of adults and children, think of each adult and child as one pair.\n\nOne adult and one child cost:\n\n\\[\n₱60+₱35=₱95\n\\]\n\nThe family paid ₱285, so the number of pairs is:\n\n\\[\n₱285\\div₱95=3\n\\]\n\nEach pair contains 2 people:\n\n\\[\n3\\times2=6\n\\]\n\nTherefore, there are **6 people** in the family.\n\nCheck:\n\n\\[\n3\\times₱60+3\\times₱35=₱180+₱105=₱285\n\\]"
+    }
+  ],
+  "num-0128": [
+    {
+      "type": "correct_answer",
+      "text": "B — 2 kWh"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Electrical energy is power multiplied by time. First find the total power of the 10 lamps:\n\n\\[\n10\\times40\\text{ W}=400\\text{ W}\n\\]\n\nConvert watts to kilowatts:\n\n\\[\n400\\div1000=0.4\\text{ kW}\n\\]\n\nThe lamps run for 5 hours each day:\n\n\\[\n0.4\\text{ kW}\\times5\\text{ h}=2\\text{ kWh}\n\\]\n\nTherefore, the lamps consume **2 kWh per day**."
+    }
+  ],
+  "num-0140": [
+    {
+      "type": "correct_answer",
+      "text": "A — −6"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Translate the statement into an inequality:\n\n\\[\n-3n-8>7\n\\]\n\nAdd 8 to both sides:\n\n\\[\n-3n-8+8>7+8\n\\]\n\n\\[\n-3n>15\n\\]\n\nDivide both sides by \\(-3\\). Because we divide by a negative number, the inequality sign reverses:\n\n\\[\n\\frac{-3n}{-3}<\\frac{15}{-3}\n\\]\n\n\\[\nn<-5\n\\]\n\nNow check the choices. Only \\(-6\\) is less than \\(-5\\):\n\n\\[\n-6<-5\n\\]\n\nCheck in the original inequality:\n\n\\[\n(-3)(-6)-8=18-8=10\n\\]\n\n\\[\n10>7\n\\]\n\nTherefore, the number could be **−6**."
+    }
+  ],
+  "num-0150": [
+    {
+      "type": "correct_answer",
+      "text": "B — 25"
+    },
+    {
+      "type": "paragraph",
+      "label": "Rationale",
+      "text": "Let \\(b\\) be the number of beetles collected by Ranger B. Ranger A has 5 more beetles, so Ranger A has \\(b+5\\) beetles.\n\nThe total number of spots is:\n\n\\[\n2(b+5)+7b=100\n\\]\n\nExpand:\n\n\\[\n2b+10+7b=100\n\\]\n\nCombine like terms:\n\n\\[\n9b+10=100\n\\]\n\nSubtract 10 from both sides:\n\n\\[\n9b+10-10=100-10\n\\]\n\n\\[\n9b=90\n\\]\n\nDivide both sides by 9:\n\n\\[\n\\frac{9b}{9}=\\frac{90}{9}\n\\]\n\n\\[\nb=10\n\\]\n\nSo Ranger B has 10 beetles and Ranger A has:\n\n\\[\n10+5=15\n\\]\n\nThe combined collection is:\n\n\\[\n10+15=25\n\\]\n\nTherefore, there are **25 beetles** in total.\n\nCheck:\n\n\\[\n2(15)+7(10)=30+70=100\n\\]"
+    }
+  ]
+} as const;
+
 const EXPECTED_AVERAGES_BLOCKS = {
   'num-0046': [
     { type: 'correct_answer', text: 'B — 80' },
@@ -373,6 +486,38 @@ describe('Averages structured explanation Batch 1', () => {
       .filter((question) => question.topic === 'Averages' && question.structuredExplanation)
       .map((question) => question.id);
     expect(structuredAveragesIds.sort()).toEqual([...AVERAGES_BATCH1_IDS].sort());
+  });
+});
+
+describe('Basic Algebra structured explanation Batch 1', () => {
+  it('contains exactly the supplied blocks and no legacy learner fields for all nine IDs', async () => {
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    const shortcutIds = new Set(['num-0085', 'num-0094']);
+
+    for (const id of BASIC_ALGEBRA_BATCH1_IDS) {
+      const question = catalog.questions.get(id);
+      const blocks = question?.structuredExplanation?.blocks ?? [];
+      expect(question, id).toBeTruthy();
+      expect(blocks, id).toEqual(EXPECTED_BASIC_ALGEBRA_BLOCKS[id]);
+      expect(blocks, id).toHaveLength(shortcutIds.has(id) ? 3 : 2);
+      expect(blocks[0], id).toMatchObject({ type: 'correct_answer' });
+      expect(blocks[1], id).toMatchObject({ type: 'paragraph', label: 'Rationale' });
+      expect(blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution'].includes(block.type)), id).toBe(false);
+      expect(isValidStructuredExplanation(question?.structuredExplanation), id).toBe(true);
+      if (shortcutIds.has(id)) {
+        expect(blocks[2], id).toMatchObject({ type: 'collapsible', title: 'Mental Shortcut' });
+      } else {
+        expect(blocks.some((block) => block.type === 'collapsible'), id).toBe(false);
+      }
+      for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+        expect(Object.hasOwn(question ?? {}, field), `${id}:${field}`).toBe(false);
+      }
+    }
+
+    const structuredBasicAlgebraIds = [...catalog.questions.values()]
+      .filter((question) => question.topic === 'Basic Algebra' && question.structuredExplanation)
+      .map((question) => question.id);
+    expect(structuredBasicAlgebraIds.sort()).toEqual([...BASIC_ALGEBRA_BATCH1_IDS].sort());
   });
 });
 

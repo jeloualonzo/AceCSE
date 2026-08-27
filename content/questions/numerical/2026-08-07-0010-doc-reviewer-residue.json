@@ -412,23 +412,18 @@
       }
     ],
     "correctOptionId": "E",
-    "explanation": "Let n = the number of adults = the number of children (they are equal). Each adult pays ₱60 and each child pays ₱35, so the total is 60n + 35n = 95n. Setting this equal to ₱285: 95n = 285, so n = 285 ÷ 95 = 3. There are 3 adults and 3 children, giving a total family size of 3 + 3 = 6. Verify: 3 × ₱60 + 3 × ₱35 = ₱180 + ₱105 = ₱285. ✓ The key is reading 'equal number of adults and children' as letting n stand for each group, then combining the rates before dividing — not dividing ₱285 by one rate alone.",
-    "steps": [
-      "Let n = adults = children (equal groups).",
-      "Total cost equation: 60n + 35n = 285 → 95n = 285.",
-      "Solve: n = 285 ÷ 95 = 3.",
-      "Total family members = 3 adults + 3 children = 6.",
-      "Verify: 3 × ₱60 + 3 × ₱35 = ₱180 + ₱105 = ₱285. ✓"
-    ],
-    "distractorExplanations": {
-      "A": "3 is the count of adults (or children) — the value of n — not the total family size. The question asks how many people are in the family altogether: n adults + n children = 2n = 6. Stopping at n = 3 reports one group, not the whole family.",
-      "B": "9 = 3n, which would be three equal groups, not two. This might arise from dividing ₱285 by ₱95 to get 3, then multiplying by 3 instead of 2 to find the total. The family has two groups (adults and children), so total = 2 × 3 = 6.",
-      "C": "12 = 4n, which would require four equal groups at an unequal rate split — nothing in the problem supports four groups. This value may come from guessing that the total is doubled again (6 × 2 = 12) without any algebraic basis.",
-      "D": "Separately divides total cost by each admission price (285÷60≈5 adults, 285÷35≈8 children) and sums without the equal-number constraint: 5+8=13."
-    },
-    "tip": {
-      "label": "Formula",
-      "text": "Equal-group fee: if adults cost r₁ and children cost r₂, and counts are equal (both = n), then total = (r₁ + r₂) × n. Solve for n first, then multiply by 2 for the total headcount. Never divide the total cost by just one rate."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "E — 6"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Because the family has an equal number of adults and children, think of each adult and child as one pair.\n\nOne adult and one child cost:\n\n\\[\n₱60+₱35=₱95\n\\]\n\nThe family paid ₱285, so the number of pairs is:\n\n\\[\n₱285\\div₱95=3\n\\]\n\nEach pair contains 2 people:\n\n\\[\n3\\times2=6\n\\]\n\nTherefore, there are **6 people** in the family.\n\nCheck:\n\n\\[\n3\\times₱60+3\\times₱35=₱180+₱105=₱285\n\\]"
+        }
+      ]
     },
     "tags": [
       "basic-algebra",

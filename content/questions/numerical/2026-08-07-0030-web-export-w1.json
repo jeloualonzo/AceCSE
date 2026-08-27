@@ -246,21 +246,18 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "Electrical energy is computed as Power × Time, where power is expressed in kilowatts and time in hours. First, find the total power: 10 lamps × 40 W each = 400 W = 0.4 kW (since 1 kW = 1,000 W). Then multiply by the daily usage: 0.4 kW × 5 h = 2 kWh. The kilowatt (kW) is the unit of power; the kilowatt-hour (kWh) is the unit of energy and is what appears on electricity bills. The most common error is forgetting to convert watts to kilowatts before multiplying, which inflates the answer by a factor of 1,000.",
-    "steps": [
-      "Total power: 10 lamps × 40 W = 400 W.",
-      "Convert to kilowatts: 400 W ÷ 1,000 = 0.4 kW.",
-      "Energy per day: 0.4 kW × 5 h = 2 kWh."
-    ],
-    "distractorExplanations": {
-      "A": "200 kWh results from multiplying the total wattage directly by hours without converting to kilowatts: 400 W × 5 = 2,000 — then misreading as 200 kWh, or from computing 40 × 5 = 200 and treating the result as kWh. Always divide watts by 1,000 first.",
-      "C": "20 kWh results from multiplying 40 watts (one lamp's power) by 5 hours to get 200 Wh, then dividing by 10 instead of multiplying — or from computing 40 × 5 = 200 Wh for all lamps and misplacing the decimal when converting to kWh.",
-      "D": "0.2 kWh results from dividing instead of multiplying in the last step: 0.4 kW ÷ 5 h = 0.08 kWh, or from computing the energy for just one lamp (40 W × 5 h = 200 Wh = 0.2 kWh) and forgetting to multiply by 10 lamps.",
-      "E": "Uses 8 hours (a full workday) instead of the stated 5 hours per day: 10×40W×8h÷1,000=3.2 kWh."
-    },
-    "tip": {
-      "label": "Formula",
-      "text": "Energy (kWh) = Total Power (kW) × Time (hours). Convert watts to kW first: divide by 1,000. For multiple devices: Total Power = number of devices × watts each. Your electricity bill is in kWh — it measures energy, not power."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "B — 2 kWh"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Electrical energy is power multiplied by time. First find the total power of the 10 lamps:\n\n\\[\n10\\times40\\text{ W}=400\\text{ W}\n\\]\n\nConvert watts to kilowatts:\n\n\\[\n400\\div1000=0.4\\text{ kW}\n\\]\n\nThe lamps run for 5 hours each day:\n\n\\[\n0.4\\text{ kW}\\times5\\text{ h}=2\\text{ kWh}\n\\]\n\nTherefore, the lamps consume **2 kWh per day**."
+        }
+      ]
     },
     "tags": [
       "basic-algebra",
@@ -842,23 +839,18 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "Translate the words into algebra: '8 less than the product of n and −3' means (−3n) − 8. The full condition is (−3n) − 8 > 7. Solve step by step: add 8 to both sides → −3n > 15. Divide both sides by −3, and remember: dividing by a negative number reverses the inequality sign → n < −5. Among the options, only n = −6 satisfies n < −5. Verify: (−3)(−6) − 8 = 18 − 8 = 10 > 7. ✓ The inequality reversal when dividing by a negative is the critical step — skipping it leads to n > −5, which would select 5 or 6 instead.",
-    "steps": [
-      "Translate: (−3n) − 8 > 7.",
-      "Add 8 to both sides: −3n > 15.",
-      "Divide by −3 and FLIP the inequality: n < −5.",
-      "Check options: −6 < −5 ✓; −5 is not less than −5 (strict inequality); 5 and 6 are positive, not less than −5.",
-      "The answer is n = −6."
-    ],
-    "distractorExplanations": {
-      "B": "−5 does not satisfy n < −5 because the inequality is strict (greater than, not greater-than-or-equal). Test: (−3)(−5) − 8 = 15 − 8 = 7. The condition requires the result to be strictly greater than 7; here it equals 7, so −5 fails.",
-      "C": "5 satisfies n > −5 but not n < −5. Choosing 5 results from forgetting to flip the inequality when dividing by −3: after dividing both sides of −3n > 15 by −3 without flipping, one incorrectly gets n > −5, which then makes 5 and 6 both appear valid.",
-      "D": "6 has the same flaw as option C — it satisfies n > −5 under the incorrect (un-flipped) inequality. Verify directly: (−3)(6) − 8 = −18 − 8 = −26 < 7. This is far below 7, confirming 6 does not satisfy the original condition.",
-      "E": "Close to the boundary but −3(−4)−8=4, which is not greater than 7; results from a sign slip that loses the strict bound."
-    },
-    "tip": {
-      "label": "Common Mistake",
-      "text": "When solving an inequality, dividing or multiplying both sides by a NEGATIVE number reverses the inequality sign: > becomes <, and < becomes >. Forgetting this flip is the most common error in inequality problems. Always check your final answer by substituting it into the original inequality."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "A — −6"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Translate the statement into an inequality:\n\n\\[\n-3n-8>7\n\\]\n\nAdd 8 to both sides:\n\n\\[\n-3n-8+8>7+8\n\\]\n\n\\[\n-3n>15\n\\]\n\nDivide both sides by \\(-3\\). Because we divide by a negative number, the inequality sign reverses:\n\n\\[\n\\frac{-3n}{-3}<\\frac{15}{-3}\n\\]\n\n\\[\nn<-5\n\\]\n\nNow check the choices. Only \\(-6\\) is less than \\(-5\\):\n\n\\[\n-6<-5\n\\]\n\nCheck in the original inequality:\n\n\\[\n(-3)(-6)-8=18-8=10\n\\]\n\n\\[\n10>7\n\\]\n\nTherefore, the number could be **−6**."
+        }
+      ]
     },
     "tags": [
       "basic-algebra",

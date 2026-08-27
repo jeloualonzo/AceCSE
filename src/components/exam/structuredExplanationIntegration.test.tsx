@@ -527,6 +527,102 @@ describe('structured explanation Practice/Results integration V3', () => {
     }
   });
 
+  it('renders all nine Basic Algebra Rationales in Practice and Results with only the two approved Mental Shortcuts', async () => {
+    const user = userEvent.setup();
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    const targets = [
+      ['num-0048', 8, 0],
+      ['num-0050', 8, 0],
+      ['num-0073', 6, 0],
+      ['num-0085', 11, 2],
+      ['num-0094', 13, 2],
+      ['num-0122', 4, 0],
+      ['num-0128', 3, 0],
+      ['num-0140', 8, 0],
+      ['num-0150', 10, 0],
+    ] as const;
+    const shortcutIds = new Set(['num-0085', 'num-0094']);
+
+    for (const [id, expectedEquationCount, shortcutEquationCount] of targets) {
+      const question = catalog.questions.get(id);
+      expect(question).toBeTruthy();
+      if (!question) continue;
+
+      renderWithTheme(
+        <QuestionCard
+          question={question}
+          selectedOptionId={question.correctOptionId}
+          onSelectOption={vi.fn()}
+          instantFeedback
+        />
+      );
+      const showExplanation = [...document.querySelectorAll('button')].find((button) => button.textContent?.trim() === 'Show Explanation');
+      expect(showExplanation).not.toBeNull();
+      await user.click(showExplanation!);
+      const practiceRoots = screen.getAllByTestId('structured-explanation');
+      expect(practiceRoots).toHaveLength(2);
+      for (const root of practiceRoots) {
+        assertProductionMath(root, expectedEquationCount);
+        expect(within(root).getByText('Rationale')).toBeInTheDocument();
+        expect(root.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
+        expect(root.querySelectorAll('h5')).toHaveLength(1);
+        const shortcutControl = root.querySelector('[data-testid="structured-collapsible"] button') as HTMLButtonElement | null;
+        if (shortcutIds.has(id)) {
+          expect(shortcutControl).not.toBeNull();
+          expect(shortcutControl).toHaveAttribute('aria-expanded', 'false');
+          const shortcutContent = root.querySelector('[data-testid="structured-collapsible-content"]');
+          expect(shortcutContent).not.toBeNull();
+          expect(shortcutContent).toHaveAttribute('hidden');
+          await user.click(shortcutControl!);
+          expect(shortcutControl).toHaveAttribute('aria-expanded', 'true');
+          expect(shortcutContent).not.toHaveAttribute('hidden');
+          assertProductionMath(root, expectedEquationCount + shortcutEquationCount);
+          await user.click(shortcutControl!);
+          expect(shortcutControl).toHaveAttribute('aria-expanded', 'false');
+          expect(shortcutContent).toHaveAttribute('hidden');
+        } else {
+          expect(shortcutControl).toBeNull();
+          expect(shortcutEquationCount).toBe(0);
+        }
+      }
+      cleanup();
+
+      renderWithTheme(
+        <ResultsScreen
+          attempt={attemptOver(`basic-algebra-results-${id}`, 'Professional', [question])}
+          questionIndex={new Map([[question.id, question]])}
+          onRetake={vi.fn()}
+          onReturnToDashboard={vi.fn()}
+        />
+      );
+      const expandDetails = [...document.querySelectorAll('button')].find((button) => button.textContent?.trim() === 'Expand question details');
+      expect(expandDetails).not.toBeNull();
+      await user.click(expandDetails!);
+      const resultsRoot = screen.getByTestId('structured-explanation');
+      assertProductionMath(resultsRoot, expectedEquationCount);
+      expect(within(resultsRoot).getByText('Rationale')).toBeInTheDocument();
+      expect(resultsRoot.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
+      const resultsShortcut = resultsRoot.querySelector('[data-testid="structured-collapsible"] button') as HTMLButtonElement | null;
+      if (shortcutIds.has(id)) {
+        expect(resultsShortcut).not.toBeNull();
+        expect(resultsShortcut).toHaveAttribute('aria-expanded', 'false');
+        const resultsShortcutContent = resultsRoot.querySelector('[data-testid="structured-collapsible-content"]');
+        expect(resultsShortcutContent).not.toBeNull();
+        expect(resultsShortcutContent).toHaveAttribute('hidden');
+        await user.click(resultsShortcut!);
+        expect(resultsShortcut).toHaveAttribute('aria-expanded', 'true');
+        expect(resultsShortcutContent).not.toHaveAttribute('hidden');
+        assertProductionMath(resultsRoot, expectedEquationCount + shortcutEquationCount);
+        await user.click(resultsShortcut!);
+        expect(resultsShortcut).toHaveAttribute('aria-expanded', 'false');
+        expect(resultsShortcutContent).toHaveAttribute('hidden');
+      } else {
+        expect(resultsShortcut).toBeNull();
+      }
+      cleanup();
+    }
+  });
+
   it('renders the migrated Batch 2–4 production Rationales as one clean section in Practice and Results', async () => {
     const user = userEvent.setup();
     const catalog = await loadContentCatalog(['Numerical Reasoning']);

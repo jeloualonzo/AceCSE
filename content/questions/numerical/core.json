@@ -2111,22 +2111,18 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "Solving a linear equation means isolating x on one side. Start by expanding the right side: 2(x + 4) = 2x + 8. The equation becomes 3x – 7 = 2x + 8. To isolate x, move the x-term to the left by subtracting 2x from both sides: 3x – 2x – 7 = 8 → x – 7 = 8. Add 7 to both sides: x = 15. Always verify by substituting back: left side = 3(15) – 7 = 45 – 7 = 38. Right side = 2(15 + 4) = 2 × 19 = 38. Both sides equal 38, so x = 15 is correct.",
-    "steps": [
-      "Expand: 2(x+4) = 2x+8. Equation: 3x–7 = 2x+8.",
-      "Subtract 2x from both sides: x–7 = 8.",
-      "Add 7 to both sides: x = 15.",
-      "Verify: 3(15)–7 = 38 = 2(15+4) = 38. ✓"
-    ],
-    "distractorExplanations": {
-      "B": "x=12: Check: 3(12)–7=29 and 2(12+4)=32. Not equal — x=12 does not satisfy the equation.",
-      "C": "x=18: Check: 3(18)–7=47 and 2(18+4)=44. Not equal — likely results from expanding 2(x+4) as 2x+4 (forgetting to multiply 4 by 2): then 3x–7=2x+4 → x=11 (still wrong), or from a different expansion error.",
-      "D": "x=21: Check: 3(21)–7=56 and 2(21+4)=50. Not equal — may result from incorrectly moving terms, e.g., adding 2x to both sides instead of subtracting.",
-      "E": "Expands correctly to 3x−7=2x+8 but then subtracts 8 from both sides instead of adding 7: 3x−7−8=2x → x=15−6=9."
-    },
-    "tip": {
-      "label": "Remember",
-      "text": "When expanding brackets, multiply EVERY term inside by the number outside. 2(x+4) = 2x + 8, NOT 2x + 4. Then collect x-terms on one side, constants on the other."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "A — x = 15"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Solve the equation by first expanding the expression in parentheses:\n\n\\[\n3x-7=2(x+4)\n\\]\n\n\\[\n3x-7=2x+8\n\\]\n\nSubtract \\(2x\\) from both sides:\n\n\\[\n3x-2x-7=2x-2x+8\n\\]\n\n\\[\nx-7=8\n\\]\n\nAdd 7 to both sides:\n\n\\[\nx-7+7=8+7\n\\]\n\n\\[\nx=15\n\\]\n\nCheck:\n\n\\[\n3(15)-7=38\n\\]\n\n\\[\n2(15+4)=38\n\\]\n\nBoth sides are equal, so **x = 15**."
+        }
+      ]
     },
     "tags": [
       "algebra",
@@ -2215,22 +2211,18 @@
       }
     ],
     "correctOptionId": "D",
-    "explanation": "Systems of two equations with two unknowns can often be solved by the elimination method — adding or subtracting equations to cancel one variable. Here, y appears as +y in the first equation and –y in the second. Adding both equations eliminates y entirely: (x + y) + (3x – y) = 20 + 28 → 4x = 48 → x = 12. Now find y: y = 20 – x = 20 – 12 = 8. Verify both equations: 12 + 8 = 20 ✓ and 3(12) – 8 = 36 – 8 = 28 ✓. Elimination is usually faster than substitution for CSE-style algebra problems when coefficients line up nicely like this.",
-    "steps": [
-      "Add the equations: (x+y) + (3x–y) = 20+28 → 4x = 48.",
-      "Divide: x = 48÷4 = 12.",
-      "Find y: y = 20–12 = 8.",
-      "Verify: 12+8=20 ✓ and 3(12)–8=28 ✓."
-    ],
-    "distractorExplanations": {
-      "A": "x=10 gives y=10. Check: 3(10)–10=20 ≠ 28. This might arise from dividing the sum of the constants (20+28=48) by 4 incorrectly, or from solving only the first equation without using the second.",
-      "B": "x=14 gives y=6. Check: 3(14)–6=36 ≠ 28. Might come from subtracting (not adding) the equations: (3x–y)–(x+y) = 28–20 → 2x–2y=8 → x–y=4, then solving x–y=4 and x+y=20 gives x=12 — actually the right answer. So x=14 likely comes from an arithmetic slip in the subtraction step.",
-      "C": "x=16 gives y=4. Check: 3(16)–4=44 ≠ 28. Might come from using substitution with an error: from x+y=20 → y=20–x, then 3x–(20–x)=28 → 4x=48 → x=12 (correct). Using x=16 likely stems from computing 4x=64 (adding 48+16=64 by error).",
-      "E": "Subtracts the equations instead of adding: (3x−y)−(x+y)=28−20 → 2x−2y=8 → x−y=4; then uses x+y=20 to get x=12 (correct), but student instead solves x−y=4 and takes x=11 as the midpoint between 4 and (20-4)/2=8."
-    },
-    "tip": {
-      "label": "Math Shortcut",
-      "text": "Elimination works best when the same variable has opposite signs in the two equations (+y and –y). Simply ADD the equations — the opposite-sign variable cancels."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "D — x = 12"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "The two equations contain \\(+y\\) and \\(-y\\), so add them to eliminate \\(y\\):\n\n\\[\nx+y=20\n\\]\n\n\\[\n3x-y=28\n\\]\n\nAdding the equations:\n\n\\[\n(x+y)+(3x-y)=20+28\n\\]\n\n\\[\n4x=48\n\\]\n\nDivide both sides by 4:\n\n\\[\n\\frac{4x}{4}=\\frac{48}{4}\n\\]\n\n\\[\nx=12\n\\]\n\nTherefore, **x = 12**.\n\nCheck:\n\n\\[\n12+y=20\n\\]\n\nso \\(y=8\\). Then:\n\n\\[\n3(12)-8=28\n\\]\n\nBoth equations are satisfied."
+        }
+      ]
     },
     "tags": [
       "algebra",
@@ -3714,22 +3706,18 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "Translate the sentence phrase by phrase and the algebra writes itself: 'twice a number' → 2n, 'increased by 13' → + 13, 'is' → =, '51' → 51. That gives 2n + 13 = 51. Undo the operations in reverse order — addition first, then multiplication. Subtract 13 from both sides: 2n = 38. Divide both sides by 2: n = 19. Substituting back is quick and non-negotiable on this item type: 2(19) + 13 = 38 + 13 = 51. ✔ Note that the +13 must be removed before the ×2 is undone; reversing that order produces a number that is far too large.",
-    "steps": [
-      "Translate the sentence into an equation: 2n + 13 = 51.",
-      "Subtract 13 from both sides: 2n = 51 − 13 = 38.",
-      "Divide both sides by 2: n = 38 ÷ 2 = 19.",
-      "Substitute to check: 2(19) + 13 = 38 + 13 = 51. The number is 19."
-    ],
-    "distractorExplanations": {
-      "A": "17 comes from reaching 2n = 38 correctly and then halving carelessly. Substitution catches it at once: 2(17) + 13 = 47, which is four short of 51.",
-      "B": "18 results from subtracting 15 rather than 13 (51 − 15 = 36, halved to 18). Test it: 2(18) + 13 = 49, so the equation does not balance.",
-      "D": "Adds 13 to 51 before halving: (51+13)/2=64/2=32? That gives 32 (existing D). Instead: student subtracts 2 from 51 then divides by 13: (51-2)/13=49/13≈3.77... Or: student halves 51 first: 51/2=25.5, then subtracts 13/2=6.5: 25.5-6.5=19 (correct). Use: 2n=51-13=38, n=19 (correct) — for 24: student does (2n+13)/2=51/2→n+13/2=25.5→n=25.5-6.5=19 (correct). Pick: student misreads as 'twice a number decreased by 13': 2n-13=51→2n=64→n=32 (existing D). Use: interprets 'increased by 13' as ×13: 2n×13=51→n≈2? No. Student uses n=51-13=38, then n/2=... no: n=38/2=... pick n=24: (51+13)/2−13=32−13=19 → not 24. Let me use: student does 51÷2=25.5, rounds to 25, then subtracts 1: 24.",
-      "E": "32 = (51 + 13) ÷ 2, adding the 13 instead of removing it. To undo 'increased by 13' you must subtract 13 — this is the single most common inversion error in word-to-equation items."
-    },
-    "tip": {
-      "label": "Pattern Recognition",
-      "text": "Phrase-to-symbol map: 'twice' = 2n, 'increased by' = +, 'less than' = −, 'of' = ×, 'is' = =. Then unwind in reverse PEMDAS — undo + and − before × and ÷."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "C — 19"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Translate the statement into an equation:\n\n\\[\n2n+13=51\n\\]\n\nSubtract 13 from both sides:\n\n\\[\n2n+13-13=51-13\n\\]\n\n\\[\n2n=38\n\\]\n\nDivide both sides by 2:\n\n\\[\n\\frac{2n}{2}=\\frac{38}{2}\n\\]\n\n\\[\nn=19\n\\]\n\nCheck:\n\n\\[\n2(19)+13=38+13=51\n\\]\n\nTherefore, the number is **19**."
+        }
+      ]
     },
     "tags": [
       "basic-algebra",
@@ -4365,22 +4353,23 @@
       }
     ],
     "correctOptionId": "D",
-    "explanation": "Centre the unknown on the MIDDLE integer and the algebra collapses. Let the three numbers be n − 1, n, and n + 1. Their sum is (n − 1) + n + (n + 1) = 3n, because the −1 and +1 annihilate each other. So 3n = 96 and n = 32. The three integers are 31, 32, and 33, and the largest is 33. Check: 31 + 32 + 33 = 96. ✔ The generalisation is worth carrying into the exam — for any ODD count of consecutive integers, the mean is the middle term, so dividing the sum by the count lands you straight on the centre. From there, read off whichever term the question actually names, which here is the largest, not the middle.",
-    "steps": [
-      "Let the middle integer be n, so the three numbers are n − 1, n, and n + 1.",
-      "Add them: (n − 1) + n + (n + 1) = 3n, and set 3n = 96.",
-      "Solve for the middle value: n = 96 ÷ 3 = 32, so the integers are 31, 32, and 33.",
-      "Confirm the sum, 31 + 32 + 33 = 96, and read off the largest integer: 33."
-    ],
-    "distractorExplanations": {
-      "A": "31 is the SMALLEST of the three integers. It is the value of n when the unknown is anchored on the first term instead of the middle, and it answers the wrong end of the sequence.",
-      "B": "32 is the middle integer and the average of the set, 96 ÷ 3. Stopping at the division is the most common way to lose this item — the question asks for the largest, one step further on.",
-      "C": "34 comes from treating 32 as the FIRST integer, giving 32, 33, 34. That set sums to 99, not 96, so the anchor was placed one position too early.",
-      "E": "Solves for the middle integer (32) correctly but then adds 3 instead of 1 to get the largest: 32+3=35 — applies the wrong increment."
-    },
-    "tip": {
-      "label": "Math Shortcut",
-      "text": "For an odd count of consecutive integers, sum ÷ count = the MIDDLE term. Find the centre in one division, then step out to whichever term the question actually names."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "D — 33"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Let the middle integer be \\(n\\). Then the three consecutive integers are:\n\n\\[\nn-1,\\quad n,\\quad n+1\n\\]\n\nTheir sum is:\n\n\\[\n(n-1)+n+(n+1)=96\n\\]\n\nThe \\(-1\\) and \\(+1\\) cancel:\n\n\\[\n3n=96\n\\]\n\nDivide both sides by 3:\n\n\\[\n\\frac{3n}{3}=\\frac{96}{3}\n\\]\n\n\\[\nn=32\n\\]\n\nSo the three integers are:\n\n\\[\n31,\\quad32,\\quad33\n\\]\n\nTherefore, the largest integer is **33**.\n\nCheck:\n\n\\[\n31+32+33=96\n\\]"
+        },
+        {
+          "type": "collapsible",
+          "title": "Mental Shortcut",
+          "content": "For three consecutive integers, the middle integer is the average.\n\n\\[\n96\\div3=32\n\\]\n\nSo 32 is the middle number. The largest is one step higher:\n\n\\[\n32+1=33\n\\]\n\nTherefore, the largest integer is **33**."
+        }
+      ]
     },
     "tags": [
       "basic-algebra",

@@ -50,10 +50,14 @@ const CANONICAL_STRUCTURED_AGE_PROBLEMS_IDS = new Set([
 const CANONICAL_STRUCTURED_AVERAGES_IDS = new Set([
   'num-0046', 'num-0047', 'num-0049', 'num-0145', 'num-0146', 'seed-num-005',
 ]);
+const CANONICAL_STRUCTURED_BASIC_ALGEBRA_IDS = new Set([
+  'num-0048', 'num-0050', 'num-0073', 'num-0085', 'num-0094',
+  'num-0122', 'num-0128', 'num-0140', 'num-0150',
+]);
 
 /**
  * Narrow migration exceptions: approved canonical Spelling, Filing, Grammar,
- * Clerical Operations, Number Series, Age Problems, and Averages records whose legacy
+ * Clerical Operations, Number Series, Age Problems, Averages, and Basic Algebra records whose legacy
  * `explanation`/`steps`/`distractorExplanations`/`tip` were
  * removed, so their `structuredExplanation` IS the learner-facing explanation.
  *
@@ -77,8 +81,10 @@ function hasApprovedStructuredOnlyExplanation(question: Record<string, unknown>)
     CANONICAL_STRUCTURED_AGE_PROBLEMS_IDS.has(question.id as string) && question.topic === 'Age Problems';
   const isCanonicalAverages =
     CANONICAL_STRUCTURED_AVERAGES_IDS.has(question.id as string) && question.topic === 'Averages';
+  const isCanonicalBasicAlgebra =
+    CANONICAL_STRUCTURED_BASIC_ALGEBRA_IDS.has(question.id as string) && question.topic === 'Basic Algebra';
   const isClericalCanonical = isCanonicalSpelling || isCanonicalFiling || isCanonicalClericalOperations;
-  const isNumericalCanonical = isCanonicalNumberSeries || isCanonicalAgeProblems || isCanonicalAverages;
+  const isNumericalCanonical = isCanonicalNumberSeries || isCanonicalAgeProblems || isCanonicalAverages || isCanonicalBasicAlgebra;
   const hasCanonicalSubject = isClericalCanonical
     ? question.subject === 'Clerical Ability'
     : isCanonicalGrammar

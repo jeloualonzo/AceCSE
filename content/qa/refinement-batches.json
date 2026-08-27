@@ -1,5 +1,23 @@
 [
   {
+    "id": "basic-algebra-batch-01",
+    "title": "Basic Algebra — Batch 1",
+    "family": "Basic Algebra",
+    "status": "frozen",
+    "createdAt": "2026-08-27T14:15:48.753Z",
+    "questionIds": [
+      "num-0048",
+      "num-0050",
+      "num-0073",
+      "num-0085",
+      "num-0094",
+      "num-0122",
+      "num-0128",
+      "num-0140",
+      "num-0150"
+    ]
+  },
+  {
     "id": "averages-batch-01",
     "title": "Averages — Batch 1",
     "family": "Averages",
