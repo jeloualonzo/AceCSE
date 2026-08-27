@@ -42,17 +42,13 @@ function getGridTileState(isCurrent: boolean, isAnswered: boolean): GridTileStat
   return 'unanswered';
 }
 
-const GRID_TILE_CLASSES: Record<GridTileState, string> = {
-  current: 'bg-emerald-600 text-white font-extrabold ring-2 ring-emerald-400 shadow-md',
-  answered: 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50',
-  unanswered: 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200',
-};
-
-const GRID_LEGEND_CLASSES: Record<GridTileState, string> = {
-  current: 'bg-emerald-600 text-white ring-2 ring-emerald-400 shadow-md',
-  answered: 'bg-slate-100 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-500/50',
+const GRID_STATE_CLASSES: Record<GridTileState, string> = {
+  current: 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 font-extrabold border-2 border-emerald-500 ring-2 ring-emerald-400',
+  answered: 'bg-emerald-600 text-white border border-emerald-600',
   unanswered: 'bg-slate-100/60 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700/80',
 };
+
+const GRID_TILE_INTERACTION_CLASSES = 'hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200';
 
 export interface BookletExamLayoutProps {
   examLevel: ExamLevel;
@@ -208,12 +204,13 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
     }
   }, []);
 
-  const scrollToQuestion = useCallback((questionId: string, behavior: ScrollBehavior = 'smooth') => {
+  const scrollToQuestion = useCallback((questionId: string, behavior: ScrollBehavior = 'smooth', claimFocus = false) => {
     const container = scrollRef.current;
     if (!container) return;
     const target = container.querySelector<HTMLElement>(`#question-${CSS.escape(questionId)}`);
     if (!target) return;
     navigationTargetRef.current = questionId;
+    if (claimFocus) setPrimaryFocus({ type: 'question', questionId });
     target.scrollIntoView({ behavior, block: 'start' });
     target.focus({ preventScroll: true });
     const initialContainerRect = container.getBoundingClientRect();
@@ -226,7 +223,10 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       const targetRect = target.getBoundingClientRect();
       const focusY = focusLineY(containerRect.top, container.clientHeight || containerRect.height);
       const hasGeometry = containerRect.height > 0 || targetRect.height > 0;
-      if (!hasGeometry || (targetRect.top <= focusY && targetRect.bottom >= focusY)) {
+      const targetAtScrollStart = targetRect.top >= containerRect.top - 1
+        && targetRect.top <= containerRect.top + 1
+        && targetRect.bottom >= containerRect.top;
+      if (!hasGeometry || targetAtScrollStart || (targetRect.top <= focusY && targetRect.bottom >= focusY)) {
         navigationTargetRef.current = null;
         setPrimaryFocus({ type: 'question', questionId });
       }
@@ -263,9 +263,11 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       (currentQuestionId && order.includes(currentQuestionId)) || taskBelongsToSection
     )) return;
 
+    const pendingTarget = pendingTargetRef.current;
+    const hasExplicitTarget = Boolean(pendingTarget && order.includes(pendingTarget));
     let target: string;
-    if (pendingTargetRef.current && order.includes(pendingTargetRef.current)) {
-      target = pendingTargetRef.current;
+    if (hasExplicitTarget) {
+      target = pendingTarget as string;
     } else {
       const remembered = lastPositionRef.current[activeSectionId];
       target =
@@ -274,7 +276,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
           : order.find((id) => !session.answers[id] && !(session.edqAnswers ?? {})[id]) ?? order[0];
     }
     pendingTargetRef.current = null;
-    scrollToQuestion(target, 'auto');
+    scrollToQuestion(target, 'auto', hasExplicitTarget);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeSectionId, activeSection, resetScrollToSubjectStart, setPrimaryFocus]);
 
@@ -406,7 +408,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   const jumpToQuestion = useCallback(
     (sectionId: string, questionId: string) => {
       if (sectionId === activeSectionId) {
-        scrollToQuestion(questionId);
+        scrollToQuestion(questionId, 'smooth', true);
       } else {
         if (currentQuestionId) lastPositionRef.current[activeSectionId] = currentQuestionId;
         pendingTargetRef.current = questionId;
@@ -612,7 +614,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               {(['answered', 'unanswered', 'current'] as const).map((state) => (
                 <div key={state} className="flex items-center gap-1.5">
                   <span
-                    className={`w-3 h-3 rounded ${GRID_LEGEND_CLASSES[state]}`}
+                    className={`w-3 h-3 rounded ${GRID_STATE_CLASSES[state]}`}
                     aria-hidden="true"
                   />
                   <span>{state[0].toUpperCase() + state.slice(1)}</span>
@@ -678,9 +680,9 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                         every item is flattened into that single grid: a real
                         multi-question group used to open its own nested grid,
                         which ended the row early and made the drawer wrap 5 / 2 /
-                        3 / 4 instead of filling rows. Order, per-item state
-                        styling, and click behaviour are unchanged. */}
-                    <div className="grid grid-cols-5 gap-2">
+                        3 / 4 instead of filling rows. Order and click behaviour
+                        are unchanged; state styling is centralized above. */}
+                    <div className="grid grid-cols-5 gap-2 px-1" data-grid-question-list="true">
                       {blocks.flatMap((block) => block.ids.map((id) => {
                         const num = displayLabels.get(id) ?? '0';
                         const isCurrent = section.sectionId === activeSectionId && id === currentQuestionId;
@@ -697,7 +699,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                             data-question-id={id}
                             onClick={() => jumpToQuestion(section.sectionId, id)}
                             aria-current={isCurrent ? 'true' : undefined}
-                            className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${GRID_TILE_CLASSES[tileState]}`}
+                            className={`relative min-h-[38px] rounded-lg text-xs font-bold flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ${GRID_STATE_CLASSES[tileState]} ${tileState === 'unanswered' ? GRID_TILE_INTERACTION_CLASSES : ''}`}
                             aria-label={`${
                               isPractice
                                 ? `Go to ${sectionTitle(section.sectionId)} question ${num}`

@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import React from 'react';
-import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
@@ -492,7 +492,7 @@ describe('BookletExamLayout — Practice navigation cleanup', () => {
 });
 
 describe('BookletExamLayout — Grid state visuals and legend', () => {
-  it('renders unanswered and current-unanswered tiles with distinct neutral and emerald treatments', async () => {
+  it('renders Current as a white emerald outline and Unanswered as a neutral tile', async () => {
     const user = userEvent.setup();
     renderLayout();
     await openNavigator(user);
@@ -501,14 +501,15 @@ describe('BookletExamLayout — Grid state visuals and legend', () => {
     const q2 = within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i });
 
     expect(q1).toHaveAttribute('aria-current', 'true');
-    expect(q1).toHaveClass('bg-emerald-600', 'text-white', 'ring-2', 'ring-emerald-400', 'shadow-md');
+    expect(q1).toHaveClass('bg-white', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
+    expect(q1).not.toHaveClass('bg-emerald-600', 'shadow-md');
     expect(q1).toHaveAccessibleName(/unanswered, current/i);
     expect(q2).not.toHaveAttribute('aria-current');
     expect(q2).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border', 'border-slate-300');
     expect(q2).toHaveAccessibleName(/unanswered/i);
   });
 
-  it('renders answered non-current tiles distinctly and keeps Current as the primary treatment when answered', async () => {
+  it('renders Answered as emerald-filled and keeps Current primary when an answered item is active', async () => {
     const user = userEvent.setup();
     const answeredSession = baseSession({
       questionIds: ['V1', 'V2', 'N1', 'N2'],
@@ -522,11 +523,12 @@ describe('BookletExamLayout — Grid state visuals and legend', () => {
     const q2 = within(dialog).getByRole('button', { name: /go to item 2 in Verbal Ability/i });
 
     expect(q1).not.toHaveAttribute('aria-current');
-    expect(q1).toHaveClass('bg-slate-100', 'text-emerald-600', 'border', 'border-emerald-500/50');
-    expect(q1).not.toHaveClass('shadow-md');
+    expect(q1).toHaveClass('bg-emerald-600', 'text-white', 'border', 'border-emerald-600');
+    expect(q1).not.toHaveClass('ring-2', 'shadow-md');
     expect(q1).toHaveAccessibleName(/answered/i);
     expect(q2).toHaveAttribute('aria-current', 'true');
-    expect(q2).toHaveClass('bg-emerald-600', 'text-white', 'ring-2', 'ring-emerald-400', 'shadow-md');
+    expect(q2).toHaveClass('bg-white', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
+    expect(q2).not.toHaveClass('bg-emerald-600', 'shadow-md');
     expect(q2).toHaveAccessibleName(/unanswered, current/i);
 
     await user.click(q1);
@@ -534,7 +536,8 @@ describe('BookletExamLayout — Grid state visuals and legend', () => {
     const currentAnsweredQ1 = within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i });
     expect(dialog).toBeInTheDocument();
     expect(currentAnsweredQ1).toHaveAttribute('aria-current', 'true');
-    expect(currentAnsweredQ1).toHaveClass('bg-emerald-600', 'text-white', 'ring-2', 'ring-emerald-400', 'shadow-md');
+    expect(currentAnsweredQ1).toHaveClass('bg-white', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
+    expect(currentAnsweredQ1).not.toHaveClass('bg-emerald-600', 'shadow-md');
     expect(currentAnsweredQ1).toHaveAccessibleName(/answered, current/i);
   });
 
@@ -547,9 +550,10 @@ describe('BookletExamLayout — Grid state visuals and legend', () => {
     const swatches = [...legend.querySelectorAll('span[aria-hidden="true"]')];
 
     expect(swatches).toHaveLength(3);
-    expect(swatches[0]).toHaveClass('bg-slate-100', 'text-emerald-600', 'border', 'border-emerald-500/50');
+    expect(swatches[0]).toHaveClass('bg-emerald-600', 'text-white', 'border', 'border-emerald-600');
     expect(swatches[1]).toHaveClass('bg-slate-100/60', 'text-slate-500', 'border', 'border-slate-300');
-    expect(swatches[2]).toHaveClass('bg-emerald-600', 'text-white', 'ring-2', 'ring-emerald-400', 'shadow-md');
+    expect(swatches[2]).toHaveClass('bg-white', 'text-emerald-600', 'border-2', 'border-emerald-500', 'ring-2', 'ring-emerald-400');
+    expect(swatches[2]).not.toHaveClass('shadow-md');
     expect(within(legend).getByText('Answered')).toBeInTheDocument();
     expect(within(legend).getByText('Unanswered')).toBeInTheDocument();
     expect(within(legend).getByText('Current')).toBeInTheDocument();
@@ -573,8 +577,7 @@ describe('BookletExamLayout — Grid active-tile positioning', () => {
     const scrollTo = vi.fn();
     Object.defineProperty(scrollArea, 'scrollTo', { configurable: true, value: scrollTo });
 
-    await waitForAnimationFrame();
-    expect(scrollTo).toHaveBeenCalledWith({ top: 178, behavior: 'auto' });
+    await waitFor(() => expect(scrollTo).toHaveBeenCalledWith({ top: 178, behavior: 'auto' }));
     expect(screen.getByRole('dialog', { name: 'Question navigation' })).toBeInTheDocument();
 
     await user.click(within(dialog).getByRole('button', { name: 'Close' }));
@@ -590,8 +593,7 @@ describe('BookletExamLayout — Grid active-tile positioning', () => {
     const reopenedScrollTo = vi.fn();
     Object.defineProperty(reopenedScrollArea, 'scrollTo', { configurable: true, value: reopenedScrollTo });
 
-    await waitForAnimationFrame();
-    expect(reopenedScrollTo).toHaveBeenCalledWith({ top: 178, behavior: 'auto' });
+    await waitFor(() => expect(reopenedScrollTo).toHaveBeenCalledWith({ top: 178, behavior: 'auto' }));
   });
 
   it('does not move the drawer list when the current tile is already visible and never scrolls the exam page', async () => {
@@ -634,6 +636,62 @@ describe('BookletExamLayout — Grid active-tile positioning', () => {
     expect(screen.getByRole('dialog', { name: 'Question navigation' })).toBeInTheDocument();
     expect(scrollArea.scrollTop).toBe(240);
     expect(within(dialog).getByRole('button', { name: /go to item 1 in Verbal Ability/i })).toHaveAttribute('aria-current', 'true');
+  });
+
+  it('synchronizes every repeated lower- and higher-number selection with the active card and one Current tile', async () => {
+    const user = userEvent.setup();
+    const questionIds = Array.from({ length: 12 }, (_, index) => `V${index + 1}`);
+    const session = baseSession({
+      questionIds,
+      items: questionIds.map((questionId) => ({ kind: 'question' as const, questionId, sectionId: 'Verbal Ability' })),
+    });
+    const questionIndex = new Map(questionIds.map((id) => [id, makeQuestion(id, 'Verbal Ability')]));
+    renderLayout({ session, questionIndex });
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const scrollArea = dialog.querySelector('[data-drawer-scroll="true"]') as HTMLDivElement;
+    Object.defineProperty(scrollArea, 'scrollTop', { configurable: true, writable: true, value: 240 });
+
+    for (const number of [10, 5, 8, 3, 12, 2, 10]) {
+      const tile = within(dialog).getByRole('button', { name: new RegExp(`go to item ${number} in Verbal Ability`, 'i') });
+      await user.click(tile);
+
+      const activeCard = document.getElementById(`question-V${number}`);
+      expect(activeCard).toHaveAttribute('data-primary-active', 'true');
+      const questionTiles = [...dialog.querySelectorAll('[data-grid-question-list="true"] button')];
+      expect(questionTiles.filter((button) => button.getAttribute('aria-current') === 'true')).toHaveLength(1);
+      expect(within(dialog).getByRole('button', { name: new RegExp(`go to item ${number} in Verbal Ability`, 'i') })).toHaveAttribute('aria-current', 'true');
+      expect(scrollArea.scrollTop).toBe(240);
+      expect(screen.getByRole('dialog', { name: 'Question navigation' })).toBeInTheDocument();
+    }
+
+    expect(document.querySelectorAll('[data-primary-active="true"]')).toHaveLength(1);
+  });
+});
+
+describe('BookletExamLayout — Grid edge geometry and keyboard focus', () => {
+  it('keeps first- and last-column tiles inside the padded five-column list with intact focus rings', async () => {
+    const user = userEvent.setup();
+    renderLayout();
+    await openNavigator(user);
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const scrollArea = dialog.querySelector('[data-drawer-scroll="true"]') as HTMLElement;
+    const list = dialog.querySelector('[data-grid-question-list="true"]') as HTMLElement;
+    const tiles = [...list.querySelectorAll('button')];
+    const firstTile = tiles[0];
+    const lastTile = tiles[tiles.length - 1];
+
+    expect(dialog).toHaveClass('w-full', 'sm:w-80', 'overflow-hidden');
+    expect(scrollArea).toHaveClass('overflow-y-auto');
+    expect(scrollArea).not.toHaveClass('overflow-x-hidden');
+    expect(list).toHaveClass('grid', 'grid-cols-5', 'gap-2', 'px-1');
+    expect(firstTile).toHaveClass('focus-visible:ring-2');
+    expect(lastTile).toHaveClass('focus-visible:ring-2');
+
+    firstTile.focus();
+    expect(firstTile).toHaveFocus();
+    lastTile.focus();
+    expect(lastTile).toHaveFocus();
   });
 });
 
