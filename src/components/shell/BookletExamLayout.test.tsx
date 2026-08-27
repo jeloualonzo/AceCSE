@@ -234,6 +234,19 @@ describe('BookletExamLayout — shared header and subject navigation separation'
     expect(screen.queryByRole('button', { name: 'Previous question' })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Next question' })).not.toBeInTheDocument();
   });
+
+  it('hides only Exit at mobile while preserving the desktop Exit class and visible Grid/action positions', () => {
+    renderLayout();
+    const header = document.querySelector('header') as HTMLElement;
+    const exit = within(header).getByRole('button', { name: 'Exit Exam' });
+    const grid = within(header).getByRole('button', { name: /open question navigation/i });
+    const submit = within(header).getByRole('button', { name: /submit exam/i });
+
+    expect(exit).toHaveClass('hidden', 'sm:inline-flex');
+    expect(grid).toHaveClass('inline-flex');
+    expect(submit).toHaveClass('inline-flex');
+    expect(within(header).getByText('1:00:00')).toBeInTheDocument();
+  });
 });
 
 describe('BookletExamLayout — subject switching lives in the navigator drawer', () => {
@@ -263,6 +276,60 @@ describe('BookletExamLayout — subject switching lives in the navigator drawer'
     expect(screen.getByText('Question text for N1')).toBeInTheDocument();
     // Drawer closes after switching.
     expect(screen.queryByRole('dialog', { name: 'Question navigation' })).not.toBeInTheDocument();
+  });
+});
+
+describe('BookletExamLayout — mobile Grid drawer Exit footer', () => {
+  it('keeps Exit outside the scrollable Grid content and triggers the existing Exit handler', async () => {
+    const user = userEvent.setup();
+    const { onExitExam } = renderLayout();
+    await openNavigator(user);
+
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const scrollArea = dialog.querySelector('[data-drawer-scroll="true"]') as HTMLElement;
+    const footer = dialog.querySelector('[data-drawer-footer="true"]') as HTMLElement;
+    const exit = within(footer).getByRole('button', { name: 'Exit Exam' });
+
+    expect(dialog).toHaveClass('overflow-hidden');
+    expect(scrollArea).toHaveClass('flex-1', 'min-h-0', 'overflow-y-auto');
+    expect(footer).toHaveClass('shrink-0', 'border-t', 'sm:hidden');
+    expect(scrollArea.parentElement).toBe(dialog);
+    expect(footer.parentElement).toBe(dialog);
+    expect(dialog.lastElementChild).toBe(footer);
+    expect(exit).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: 'Exit Exam' })).toHaveLength(2);
+
+    await user.click(exit);
+    expect(onExitExam).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps the drawer Exit footer present while a long question grid scrolls', async () => {
+    const user = userEvent.setup();
+    const questionIds = Array.from({ length: 60 }, (_, index) => `V${index + 1}`);
+    const longSession = baseSession({
+      config: {
+        mode: 'simulation',
+        examLevel: 'Professional',
+        questionCount: questionIds.length,
+        timed: true,
+        durationSeconds: 3600,
+      },
+      questionIds,
+      items: questionIds.map((questionId) => ({ kind: 'question' as const, questionId, sectionId: 'Verbal Ability' })),
+    });
+    const longIndex = new Map(questionIds.map((id) => [id, makeQuestion(id, 'Verbal Ability')]));
+    renderLayout({ session: longSession, questionIndex: longIndex });
+    await openNavigator(user);
+
+    const dialog = screen.getByRole('dialog', { name: 'Question navigation' });
+    const scrollArea = dialog.querySelector('[data-drawer-scroll="true"]') as HTMLElement;
+    const footer = dialog.querySelector('[data-drawer-footer="true"]') as HTMLElement;
+    scrollArea.scrollTop = 5000;
+    fireEvent.scroll(scrollArea);
+
+    expect(scrollArea.querySelectorAll('button[aria-label^="Go to item"]')).toHaveLength(60);
+    expect(footer).toBeInTheDocument();
+    expect(within(footer).getByRole('button', { name: 'Exit Exam' })).toBeVisible();
   });
 });
 

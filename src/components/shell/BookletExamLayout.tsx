@@ -408,6 +408,18 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
   const isProfessional = examLevel === 'Professional';
   const gridIconColor = isProfessional ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400';
 
+  const exitButton = (displayClasses: string) => (
+    <button
+      type="button"
+      onClick={onExitExam}
+      className={`${displayClasses} items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-3 py-1.5 min-h-[40px] rounded-lg border border-slate-300 dark:border-slate-700/80 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500`}
+      aria-label={exitLabel}
+    >
+      <XCircle className="w-4 h-4 text-slate-500 dark:text-slate-400" aria-hidden="true" />
+      <span>{exitLabel}</span>
+    </button>
+  );
+
   // The same Grid trigger is used for the shared header; its touch target and
   // accessible label remain identical across desktop and mobile.
   const navigatorButton = (displayClasses: string) => (
@@ -492,14 +504,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
       <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 relative shrink-0">
         <div className="h-14 sm:h-16 px-4 sm:px-6 grid grid-cols-3 items-center">
           <div className="flex items-center gap-2 justify-self-start">
-            <button
-              onClick={onExitExam}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-3 py-1.5 min-h-[40px] rounded-lg border border-slate-300 dark:border-slate-700/80 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
-              aria-label={exitLabel}
-            >
-              <XCircle className="w-4 h-4 text-slate-500 dark:text-slate-400" aria-hidden="true" />
-              <span className="hidden sm:inline">{exitLabel}</span>
-            </button>
+            {exitButton('hidden sm:inline-flex')}
             {navigatorButton('inline-flex')}
           </div>
 
@@ -527,7 +532,7 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
             role="dialog"
             aria-modal="false"
             aria-label="Question navigation"
-            className="absolute inset-y-0 left-0 z-30 w-full sm:w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-xl flex flex-col p-4 overflow-y-auto"
+            className="absolute inset-y-0 left-0 z-30 w-full sm:w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-xl flex flex-col p-4 overflow-hidden"
           >
             <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
               <span className="flex items-baseline gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -550,7 +555,8 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
               </button>
             </div>
 
-            <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
+            <div className="flex-1 min-h-0 overflow-y-auto pr-1" data-drawer-scroll="true">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded bg-emerald-600 border border-emerald-500" />
                 <span>Answered</span>
@@ -661,6 +667,10 @@ export const BookletExamLayout: React.FC<BookletExamLayoutProps> = ({
                   </div>
                 );
               })}
+              </div>
+            </div>
+            <div className="sm:hidden shrink-0 border-t border-slate-200 dark:border-slate-800 pt-3 mt-3" data-drawer-footer="true">
+              {exitButton('inline-flex w-full justify-center')}
             </div>
           </div>
         )}
