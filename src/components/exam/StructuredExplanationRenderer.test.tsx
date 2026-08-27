@@ -171,6 +171,34 @@ describe('StructuredExplanationRenderer Batch 2', () => {
     expect(container.textContent).not.toContain('**1/5**');
   });
 
+  it('renders authored inline LaTeX fractions and delimiters as semantic MathML', () => {
+    render(
+      <StructuredExplanationRenderer
+        explanation={{
+          blocks: [{
+            type: 'paragraph',
+            label: 'Rationale',
+            text: String.raw`The intern is \(\frac{a}{2}\), and the future age is \(\left(\frac{a}{2}+2\right)\).`,
+          }],
+        }}
+        theme="light"
+      />
+    );
+
+    const root = screen.getByTestId('structured-explanation');
+    const inlineMath = screen.getAllByTestId('structured-inline-math');
+    expect(inlineMath).toHaveLength(2);
+    expect(inlineMath[0].getAttribute('role')).toBe('math');
+    expect(inlineMath[0].getAttribute('aria-label')).toBe('a/2');
+    expect(inlineMath[1].getAttribute('aria-label')).toBe('(a/2+2)');
+    expect(inlineMath.every((node) => node.querySelector('mfrac'))).toBe(true);
+    expect(root.textContent).not.toContain('\\(');
+    expect(root.textContent).not.toContain('\\)');
+    expect(root.textContent).not.toContain('\\frac');
+    expect(root.textContent).not.toContain('\\left');
+    expect(root.textContent).not.toContain('\\right');
+  });
+
   it('restores the original readable rhythm while trimming redundant boundary whitespace', () => {
     render(
       <StructuredExplanationRenderer

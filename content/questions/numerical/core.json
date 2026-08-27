@@ -1157,29 +1157,24 @@
       }
     ],
     "correctOptionId": "D",
-    "explanation": "Age problems become straightforward when you assign a variable and translate the English sentences into equations. Let S = the son's current age. Then Mia's current age = 3S (she is 3 times older). In 8 years, the son will be S + 8 and Mia will be 3S + 8. The future condition says Mia will be twice the son's age: 3S + 8 = 2(S + 8). Expand: 3S + 8 = 2S + 16. Subtract 2S: S + 8 = 16. Subtract 8: S = 8. Check: son is 8, Mia is 24. In 8 years: son is 16, Mia is 32 = 2 × 16. ✓",
-    "steps": [
-      "Let S = son's current age. Mia's age = 3S.",
-      "In 8 years: son's age = S + 8; Mia's age = 3S + 8.",
-      "Set up equation: 3S + 8 = 2(S + 8).",
-      "Expand and solve: 3S + 8 = 2S + 16 → S = 8.",
-      "Verify: Mia = 24; in 8 years Mia is 32, son is 16, and 32 = 2 × 16. ✓"
-    ],
-    "distractorExplanations": {
-      "A": "6 would mean Mia is currently 18. In 8 years: Mia 26, son 14. Is 26 = 2×14 = 28? No. So 6 doesn't satisfy the future condition.",
-      "B": "10 would mean Mia is 30. In 8 years: Mia 38, son 18. Is 38 = 2×18 = 36? No. So 10 is also wrong.",
-      "C": "7 would mean Mia is 21. In 8 years: Mia 29, son 15. Is 29 = 2×15 = 30? No. Close but not correct.",
-      "E": "Sets up equations in 8 years but forgets Mia's age also increases: uses Mia+8=2×son (not 2×(son+8)): 3s+8=2s → s=−8 → takes absolute value and doubles: 12."
-    },
-    "tip": {
-      "label": "Remember",
-      "text": "In age problems, set up a variable for one person's current age. Add the number of years to both ages, then write the future condition as an equation."
-    },
     "tags": [
       "age-problems",
       "word-problems",
       "algebra"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "D — 8"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Let S be the son’s current age, so Mia’s age is 3S. In 8 years, their ages will be S + 8 and 3S + 8. Since Mia will then be twice her son’s age:\n\n\\[\n3S+8=2(S+8)\n\\]\n\n\\[\n3S+8=2S+16\n\\]\n\n\\[\n3S-2S+8=2S-2S+16\n\\]\n\n\\[\nS+8=16\n\\]\n\n\\[\nS+8-8=16-8\n\\]\n\n\\[\nS=8\n\\]\n\nTherefore, the son is **8 years old**.\n\nCheck:\n\n\\[\n3(8)=24\n\\]\n\n\\[\n24+8=32,\\quad 8+8=16,\\quad 32=2(16)\n\\]\n\nThe answer is **8**."
+        }
+      ]
+    }
   },
   {
     "id": "num-0031",
@@ -1212,28 +1207,24 @@
       }
     ],
     "correctOptionId": "D",
-    "explanation": "This problem links a current age difference to a future age sum — two conditions that together pin down the exact ages. Let Sonia's current age = S. Then Romy's current age = S + 6. In 4 years: Sonia will be S + 4 and Romy will be S + 6 + 4 = S + 10. Their future sum is 50: (S + 4) + (S + 10) = 50. Combine: 2S + 14 = 50. Subtract 14: 2S = 36. Divide by 2: S = 18. So Romy is S + 6 = 18 + 6 = 24 years old now. Check: in 4 years Romy is 28 and Sonia is 22, and 28 + 22 = 50. ✓",
-    "steps": [
-      "Let Sonia's age = S; Romy's age = S + 6.",
-      "In 4 years: Sonia = S+4; Romy = S+10.",
-      "Future sum equation: (S+4) + (S+10) = 50 → 2S + 14 = 50.",
-      "Solve: 2S = 36 → S = 18. Romy = 18 + 6 = 24."
-    ],
-    "distractorExplanations": {
-      "A": "Ignores the 4-year forward shift entirely: uses current sum R+S=50, R=S+6 → 2S+6=50 → S=22, R=22? Student misidentifies who is R: takes S=22 and subtracts 6 to get R=16, or uses R+S=50 and gets R=(50+6)/2=28→ assigns the other: 18.",
-      "B": "20 gives Sonia's age as 14. In 4 years: Romy 24, Sonia 18; sum = 42 ≠ 50. The future sum condition is not satisfied.",
-      "C": "22 gives Sonia's age as 16. In 4 years: Romy 26, Sonia 20; sum = 46 ≠ 50. Still not right.",
-      "E": "26 gives Sonia's age as 20. In 4 years: Romy 30, Sonia 24; sum = 54 ≠ 50. This is 4 too many, meaning Romy was rounded up by 2 years."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "When both current and future ages are involved, always write the future ages in terms of current variables first. A future age is simply (current age + number of years)."
-    },
     "tags": [
       "age-problems",
       "word-problems",
       "algebra"
-    ]
+    ],
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "D — 24"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Let S be Sonia’s current age, so Romy’s age is S + 6. In 4 years, their ages will be S + 4 and S + 10. Their future ages must total 50:\n\n\\[\n(S+4)+(S+10)=50\n\\]\n\n\\[\n2S+14=50\n\\]\n\n\\[\n2S+14-14=50-14\n\\]\n\n\\[\n2S=36\n\\]\n\n\\[\n\\frac{2S}{2}=\\frac{36}{2}\n\\]\n\n\\[\nS=18\n\\]\n\nRomy is 6 years older:\n\n\\[\n18+6=24\n\\]\n\nTherefore, Romy is **24 years old**.\n\nCheck:\n\n\\[\n28+22=50\n\\]\n\nso the future-age condition is satisfied."
+        }
+      ]
+    }
   },
   {
     "id": "num-0032",

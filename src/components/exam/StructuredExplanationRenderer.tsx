@@ -27,17 +27,36 @@ function mathLines(expression: string): string[] {
 }
 
 const DISPLAY_MATH_PATTERN = /\\\[([\s\S]*?)\\\]/g;
-const INLINE_FRACTION_PATTERN = /(?<![\w./])([−-]?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)(?![\w./])/g;
+const INLINE_MATH_PATTERN = /\\\(([\s\S]*?)\\\)|(?<![\w./])([−-]?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)(?![\w./])/g;
 
-function renderInlineFractionText(text: string, keyPrefix: string): React.ReactNode[] {
+function InlineLatexMath({ expression, keyPrefix }: { expression: string; keyPrefix: string }): React.ReactNode {
+  return createElement(
+    'math',
+    {
+      key: `${keyPrefix}-latex`,
+      role: 'math',
+      'data-testid': 'structured-inline-math',
+      'aria-label': formatLatexForAria(expression),
+      className: 'inline-block align-middle text-[1.2em]',
+      xmlns: 'http://www.w3.org/1998/Math/MathML',
+    },
+    createElement('mrow', null, renderLatexTokens(expression, `${keyPrefix}-latex`)),
+  );
+}
+
+function renderInlineMathText(text: string, keyPrefix: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
   let cursor = 0;
   let matchIndex = 0;
 
-  for (const match of text.matchAll(INLINE_FRACTION_PATTERN)) {
+  for (const match of text.matchAll(INLINE_MATH_PATTERN)) {
     const start = match.index ?? cursor;
     if (start > cursor) parts.push(text.slice(cursor, start));
-    parts.push(<MathValue key={`${keyPrefix}-fraction-${matchIndex++}`} value={match[0]} />);
+    if (match[1] !== undefined) {
+      parts.push(<InlineLatexMath key={`${keyPrefix}-latex-${matchIndex++}`} expression={match[1]} keyPrefix={keyPrefix} />);
+    } else {
+      parts.push(<MathValue key={`${keyPrefix}-fraction-${matchIndex++}`} value={match[0]} />);
+    }
     cursor = start + match[0].length;
   }
 
@@ -50,12 +69,12 @@ function renderInlineMathRichText(text: string): React.ReactNode {
   return tokens.map((token, index) => {
     const key = `inline-${index}`;
     if (token.startsWith('**') && token.endsWith('**')) {
-      return <strong key={key}>{renderInlineFractionText(token.slice(2, -2), key)}</strong>;
+      return <strong key={key}>{renderInlineMathText(token.slice(2, -2), key)}</strong>;
     }
     if (token.startsWith('*') && token.endsWith('*')) {
-      return <em key={key}>{renderInlineFractionText(token.slice(1, -1), key)}</em>;
+      return <em key={key}>{renderInlineMathText(token.slice(1, -1), key)}</em>;
     }
-    return <Fragment key={key}>{renderInlineFractionText(token, key)}</Fragment>;
+    return <Fragment key={key}>{renderInlineMathText(token, key)}</Fragment>;
   });
 }
 
@@ -98,7 +117,10 @@ function formatLatexForAriaLine(line: string): string {
     .replaceAll('\\times', ' × ')
     .replaceAll('\\div', ' ÷ ')
     .replaceAll('\\rightarrow', ' → ')
+    .replaceAll('\\qquad', '  ')
     .replaceAll('\\quad', ' ')
+    .replaceAll('\\left', '')
+    .replaceAll('\\right', '')
     .replace(/\\\s+-/g, '−')
     .replaceAll('\\_', '_')
     .replace(/\\\s/g, ' ')
@@ -154,9 +176,22 @@ function renderLatexTokens(line: string, keyPrefix = 'math'): React.ReactNode[] 
       index += '\\rightarrow'.length;
       continue;
     }
+    if (line.startsWith('\\qquad', index)) {
+      nodes.push(createElement('mspace', { key: nextKey(), width: '2em' }));
+      index += '\\qquad'.length;
+      continue;
+    }
     if (line.startsWith('\\quad', index)) {
       nodes.push(createElement('mspace', { key: nextKey(), width: '1em' }));
       index += '\\quad'.length;
+      continue;
+    }
+    if (line.startsWith('\\left', index)) {
+      index += '\\left'.length;
+      continue;
+    }
+    if (line.startsWith('\\right', index)) {
+      index += '\\right'.length;
       continue;
     }
     if (line.startsWith('\\_', index)) {

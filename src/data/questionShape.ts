@@ -1,7 +1,7 @@
 /**
  * Shared structural knowledge about the question bank, used in TWO runtimes:
  *
- *  - the browser (defensive validation when a lazy question chunk loads), and
+ *  - the browser (defensive validation when a lazy question chunk loads),
  *  - Node at build time (the manifest Vite plugin in `scripts/`).
  *
  * Keep this file dependency-free and framework-free — sibling pure modules in
@@ -44,10 +44,13 @@ const CANONICAL_STRUCTURED_NUMBER_SERIES_IDS = new Set([
   'num-0019', 'num-0020', 'num-0021', 'num-0022', 'num-0023', 'num-0024',
   'num-0025', 'num-0026', 'num-0108', 'num-0137', 'num-0147',
 ]);
+const CANONICAL_STRUCTURED_AGE_PROBLEMS_IDS = new Set([
+  'num-0030', 'num-0031', 'num-0142',
+]);
 
 /**
  * Narrow migration exceptions: approved canonical Spelling, Filing, Grammar,
- * Clerical Operations, and Number Series records whose legacy
+ * Clerical Operations, Number Series, and Age Problems records whose legacy
  * `explanation`/`steps`/`distractorExplanations`/`tip` were
  * removed, so their `structuredExplanation` IS the learner-facing explanation.
  *
@@ -67,14 +70,17 @@ function hasApprovedStructuredOnlyExplanation(question: Record<string, unknown>)
     CANONICAL_STRUCTURED_CLERICAL_OPERATIONS_IDS.has(question.id as string) && question.topic === 'Clerical Operations';
   const isCanonicalNumberSeries =
     CANONICAL_STRUCTURED_NUMBER_SERIES_IDS.has(question.id as string) && question.topic === 'Number Series';
+  const isCanonicalAgeProblems =
+    CANONICAL_STRUCTURED_AGE_PROBLEMS_IDS.has(question.id as string) && question.topic === 'Age Problems';
   const isClericalCanonical = isCanonicalSpelling || isCanonicalFiling || isCanonicalClericalOperations;
+  const isNumericalCanonical = isCanonicalNumberSeries || isCanonicalAgeProblems;
   const hasCanonicalSubject = isClericalCanonical
     ? question.subject === 'Clerical Ability'
     : isCanonicalGrammar
       ? question.subject === 'Verbal Ability'
-      : isCanonicalNumberSeries && question.subject === 'Numerical Reasoning';
+      : isNumericalCanonical && question.subject === 'Numerical Reasoning';
   return (
-    (isClericalCanonical || isCanonicalGrammar || isCanonicalNumberSeries) &&
+    (isClericalCanonical || isCanonicalGrammar || isNumericalCanonical) &&
     hasCanonicalSubject &&
     isValidStructuredExplanation(question.structuredExplanation)
   );

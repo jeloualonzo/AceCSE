@@ -114,6 +114,36 @@ function structuredOnlyClericalOperations(overrides: Record<string, unknown> = {
   return q;
 }
 
+function structuredOnlyAgeProblems(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  const q = {
+    ...base({
+      id: 'num-0030',
+      subject: 'Numerical Reasoning',
+      topic: 'Age Problems',
+      choices: [
+        { id: 'A', text: '6' },
+        { id: 'B', text: '10' },
+        { id: 'C', text: '7' },
+        { id: 'D', text: '8' },
+        { id: 'E', text: '12' },
+      ],
+      correctOptionId: 'D',
+      structuredExplanation: {
+        blocks: [
+          { type: 'correct_answer', text: 'D — 8' },
+          { type: 'paragraph', label: 'Rationale', text: 'Let S be the son’s current age and solve the future-age equation.' },
+        ],
+      },
+    }),
+    ...overrides,
+  } as Record<string, unknown>;
+  delete q.explanation;
+  delete q.steps;
+  delete q.distractorExplanations;
+  delete q.tip;
+  return q;
+}
+
 function structuredOnlyGrammar(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   const q = {
     ...base({
@@ -393,6 +423,35 @@ describe('structured-only Clerical Operations admission exception', () => {
     expect(isValidQuestion(structuredOnlyClericalOperations({ id: 'cler-0026' }))).toBe(false);
     expect(isValidQuestion(structuredOnlyClericalOperations({ subject: 'Verbal Ability' }))).toBe(false);
     expect(isValidQuestion(structuredOnlyClericalOperations({ topic: 'Office Procedures & Correspondence' }))).toBe(false);
+  });
+});
+
+describe('structured-only Age Problems admission exception', () => {
+  const ageProblemsIds = ['num-0030', 'num-0031', 'num-0142'];
+
+  it('accepts exactly the three canonical Age Problems IDs without legacy explanation fields', () => {
+    for (const id of ageProblemsIds) {
+      const question = structuredOnlyAgeProblems({ id });
+      expect(isValidQuestion(question), id).toBe(true);
+      expect(Object.hasOwn(question, 'explanation'), id).toBe(false);
+      expect(Object.hasOwn(question, 'steps'), id).toBe(false);
+      expect(Object.hasOwn(question, 'distractorExplanations'), id).toBe(false);
+      expect(Object.hasOwn(question, 'tip'), id).toBe(false);
+    }
+  });
+
+  it('rejects malformed or missing Age Problems structured explanations', () => {
+    expect(isValidQuestion(structuredOnlyAgeProblems({ structuredExplanation: { blocks: [] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyAgeProblems({ structuredExplanation: { blocks: [{ type: 'unsupported', text: 'bad' }] } }))).toBe(false);
+    const question = structuredOnlyAgeProblems();
+    delete question.structuredExplanation;
+    expect(isValidQuestion(question)).toBe(false);
+  });
+
+  it('keeps the Age Problems exception scoped to approved IDs, subject, and topic', () => {
+    expect(isValidQuestion(structuredOnlyAgeProblems({ id: 'num-0032' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyAgeProblems({ subject: 'Verbal Ability' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyAgeProblems({ topic: 'Mixture Problems' }))).toBe(false);
   });
 });
 

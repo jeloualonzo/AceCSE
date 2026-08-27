@@ -26,7 +26,8 @@ const CLERICAL_OPERATIONS_STRUCTURED_IDS = [
   'cler-0051', 'cler-0057', 'seed-cler-003',
 ] as const;
 const ALL_NUMBER_SERIES_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS, ...BATCH4_IDS];
-const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS, ...CLERICAL_OPERATIONS_STRUCTURED_IDS];
+const AGE_PROBLEMS_IDS = ['num-0030', 'num-0031', 'num-0142'] as const;
+const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...AGE_PROBLEMS_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS, ...CLERICAL_OPERATIONS_STRUCTURED_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -178,6 +179,42 @@ const EXPECTED_BATCH4_BLOCKS = {
   ]
 } as const;
 
+const EXPECTED_AGE_PROBLEMS_BLOCKS = {
+  'num-0030': [
+    {
+      type: 'correct_answer',
+      text: 'D — 8',
+    },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Let S be the son’s current age, so Mia’s age is 3S. In 8 years, their ages will be S + 8 and 3S + 8. Since Mia will then be twice her son’s age:\n\n\\[\n3S+8=2(S+8)\n\\]\n\n\\[\n3S+8=2S+16\n\\]\n\n\\[\n3S-2S+8=2S-2S+16\n\\]\n\n\\[\nS+8=16\n\\]\n\n\\[\nS+8-8=16-8\n\\]\n\n\\[\nS=8\n\\]\n\nTherefore, the son is **8 years old**.\n\nCheck:\n\n\\[\n3(8)=24\n\\]\n\n\\[\n24+8=32,\\quad 8+8=16,\\quad 32=2(16)\n\\]\n\nThe answer is **8**.',
+    },
+  ],
+  'num-0031': [
+    {
+      type: 'correct_answer',
+      text: 'D — 24',
+    },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Let S be Sonia’s current age, so Romy’s age is S + 6. In 4 years, their ages will be S + 4 and S + 10. Their future ages must total 50:\n\n\\[\n(S+4)+(S+10)=50\n\\]\n\n\\[\n2S+14=50\n\\]\n\n\\[\n2S+14-14=50-14\n\\]\n\n\\[\n2S=36\n\\]\n\n\\[\n\\frac{2S}{2}=\\frac{36}{2}\n\\]\n\n\\[\nS=18\n\\]\n\nRomy is 6 years older:\n\n\\[\n18+6=24\n\\]\n\nTherefore, Romy is **24 years old**.\n\nCheck:\n\n\\[\n28+22=50\n\\]\n\nso the future-age condition is satisfied.',
+    },
+  ],
+  'num-0142': [
+    {
+      type: 'correct_answer',
+      text: 'C — 8 years old',
+    },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Let a be the assistant’s current age. The supervisor is 5a, and the intern is \\(\\frac{a}{2}\\). In 2 years, their ages will be 5a + 2, a + 2, and \\(\\frac{a}{2}+2\\). Their future ages must total 58:\n\n\\[\n(5a+2)+(a+2)+\\left(\\frac{a}{2}+2\\right)=58\n\\]\n\n\\[\n5a+a+\\frac{a}{2}+6=58\n\\]\n\n\\[\n6.5a+6=58\n\\]\n\n\\[\n6.5a+6-6=58-6\n\\]\n\n\\[\n6.5a=52\n\\]\n\n\\[\n\\frac{6.5a}{6.5}=\\frac{52}{6.5}\n\\]\n\n\\[\na=8\n\\]\n\nTherefore, the assistant is **8 years old**.\n\nCheck:\n\n\\[\n5(8)=40,\\qquad \\frac{8}{2}=4\n\\]\n\n\\[\n42+10+6=58\n\\]\n\nThe future-age condition is satisfied.',
+    },
+  ],
+} as const;
+
 const EXPECTED_GRAMMAR_BLOCKS = {
   'verb-0059': [
     { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
@@ -217,6 +254,25 @@ describe('Grammar structured explanation final pilot', () => {
   });
 });
 
+describe('Age Problems structured explanation', () => {
+  it('contains the exact supplied two-block payloads without legacy fields', async () => {
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    for (const id of AGE_PROBLEMS_IDS) {
+      const question = catalog.questions.get(id);
+      expect(question).toBeTruthy();
+      expect(question?.structuredExplanation?.blocks).toEqual(EXPECTED_AGE_PROBLEMS_BLOCKS[id]);
+      expect(question?.structuredExplanation?.blocks).toHaveLength(2);
+      expect(question?.structuredExplanation?.blocks[0]?.type).toBe('correct_answer');
+      expect(question?.structuredExplanation?.blocks[1]).toMatchObject({ type: 'paragraph', label: 'Rationale' });
+      expect(isValidStructuredExplanation(question?.structuredExplanation)).toBe(true);
+      expect(question?.structuredExplanation?.blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution'].includes(block.type))).toBe(false);
+      for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+        expect(Object.hasOwn(question ?? {}, field), `${id}:${field}`).toBe(false);
+      }
+    }
+  });
+});
+
 describe('Number Series structured explanation Batch 4', () => {
   it('contains exactly the approved semantic content for num-0025 and num-0026', async () => {
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
@@ -231,7 +287,7 @@ describe('Number Series structured explanation Batch 4', () => {
     }
 
     const structuredIds = [...catalog.questions.values()]
-      .filter((question) => question.structuredExplanation)
+      .filter((question) => question.topic === 'Number Series' && question.structuredExplanation)
       .map((question) => question.id);
     expect([...structuredIds].sort()).toEqual([...ALL_NUMBER_SERIES_IDS].sort());
   });
@@ -377,7 +433,7 @@ describe('Number Series structured explanation Batch 4', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('does not add structured explanations outside the approved Number Series, Spelling, Filing, Grammar, and Clerical Operations sets', async () => {
+  it('does not add structured explanations outside the approved Number Series, Age Problems, Spelling, Filing, Grammar, and Clerical Operations sets', async () => {
     const catalog = await loadContentCatalog(ALL_SUBJECTS);
     const structuredIds = [...catalog.questions.values()]
       .filter((question) => question.structuredExplanation)

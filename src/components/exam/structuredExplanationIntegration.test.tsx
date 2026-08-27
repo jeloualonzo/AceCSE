@@ -385,6 +385,68 @@ describe('structured explanation Practice/Results integration V3', () => {
     }
   });
 
+  it('renders the Age Problems Rationales with all supplied algebra steps in Practice and Results', async () => {
+    const user = userEvent.setup();
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    const targets = [
+      ['num-0030', 10],
+      ['num-0031', 8],
+      ['num-0142', 9],
+    ] as const;
+
+    for (const [id, expectedEquationCount] of targets) {
+      const question = catalog.questions.get(id);
+      expect(question).toBeTruthy();
+      if (!question) continue;
+
+      renderWithTheme(
+        <QuestionCard
+          question={question}
+          selectedOptionId={question.correctOptionId}
+          onSelectOption={vi.fn()}
+          instantFeedback
+        />
+      );
+      await user.click(screen.getByRole('button', { name: 'Show Explanation' }));
+      for (const root of screen.getAllByTestId('structured-explanation')) {
+        assertProductionMath(root, expectedEquationCount);
+        expect(root.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
+        expect(within(root).getByText('Rationale')).toBeInTheDocument();
+        expect(root.querySelectorAll('h5')).toHaveLength(1);
+        expect(root.textContent).not.toMatch(/Solution|Remember|Exam Tip|Alternative Method|Rule|Step [123]/);
+        expect(root.textContent).not.toContain('\\(');
+        expect(root.textContent).not.toContain('\\)');
+      }
+      if (id === 'num-0142') {
+        expect(screen.getAllByTestId('structured-inline-math')).toHaveLength(4);
+        expect(screen.getAllByTestId('structured-inline-math').every((node) => node.querySelector('mfrac'))).toBe(true);
+      } else {
+        expect(screen.queryByTestId('structured-inline-math')).toBeNull();
+      }
+      cleanup();
+
+      renderWithTheme(
+        <ResultsScreen
+          attempt={attemptOver(`age-problems-results-${id}`, 'Professional', [question])}
+          questionIndex={new Map([[question.id, question]])}
+          onRetake={vi.fn()}
+          onReturnToDashboard={vi.fn()}
+        />
+      );
+      const resultsRoot = screen.getByTestId('structured-explanation');
+      assertProductionMath(resultsRoot, expectedEquationCount);
+      expect(resultsRoot.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
+      expect(within(resultsRoot).getByText('Rationale')).toBeInTheDocument();
+      if (id === 'num-0142') {
+        expect(screen.getAllByTestId('structured-inline-math')).toHaveLength(2);
+        expect(screen.getAllByTestId('structured-inline-math').every((node) => node.querySelector('mfrac'))).toBe(true);
+      } else {
+        expect(screen.queryByTestId('structured-inline-math')).toBeNull();
+      }
+      cleanup();
+    }
+  });
+
   it('renders the migrated Batch 2–4 production Rationales as one clean section in Practice and Results', async () => {
     const user = userEvent.setup();
     const catalog = await loadContentCatalog(['Numerical Reasoning']);
