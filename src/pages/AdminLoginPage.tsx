@@ -160,12 +160,7 @@ export const AdminLoginPage: React.FC = () => {
 
           <div className="mt-6 border-t border-slate-800 pt-5">
             <p className="text-xs leading-relaxed text-slate-400">
-              Admin accounts are not created here. An existing admin runs{' '}
-              <code className="rounded bg-slate-800 px-1 py-0.5 text-[11px] text-slate-200">
-                npm run admin:create
-              </code>{' '}
-              and the account gains access only once the <span className="font-semibold">admin</span>{' '}
-              claim is minted on it. See docs/admin/ADMIN_ACCESS.md.
+              Administrator access is restricted to authorized accounts.
             </p>
           </div>
         </div>

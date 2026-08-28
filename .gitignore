@@ -6,6 +6,7 @@ coverage/
 *.log
 .env*
 !.env.example
+opencode.json
 
 # Firebase service account keys — used only by scripts/set-admin-claim.mjs and
 # never by the frontend. Keep them outside the repo when you can; these patterns

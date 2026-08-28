@@ -122,6 +122,39 @@ describe('RequireAdmin', () => {
   });
 
   /**
+   * The refusal screen speaks in user-facing outcomes only. Provisioning is an
+   * out-of-band conversation, so the screen must not leak the commands, claim
+   * mechanics, or repository documentation behind it.
+   */
+  it('explains the refusal without exposing internal provisioning details', () => {
+    renderGuard();
+
+    expect(
+      screen.getByText(/This area is restricted to authorized administrator accounts/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/If you believe you should have administrator access, contact the system administrator/),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Check again' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Back to Dashboard' })).toBeInTheDocument();
+
+    const rendered = document.body.textContent ?? '';
+    for (const internal of [
+      'npm run',
+      'admin:grant',
+      'admin:create',
+      'ADMIN_ACCESS.md',
+      'docs/',
+      'claim',
+      'minted',
+      'token',
+      'Firebase',
+    ]) {
+      expect(rendered, `expected the refusal screen not to mention "${internal}"`).not.toContain(internal);
+    }
+  });
+
+  /**
    * A bookmarked `/admin/...` URL belongs to the admin sign-in page. Sending a
    * guest to `/auth` instead would offer them Google sign-in and sign-up for an
    * app they are trying to administer.
@@ -174,11 +207,11 @@ describe('RequireAdmin', () => {
     renderGuard();
 
     // No premature status line: the message only appears after a real check.
-    expect(screen.queryByText(/Still no admin claim/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/still does not have administrator access/)).not.toBeInTheDocument();
 
     await userEvent.click(screen.getByRole('button', { name: 'Check again' }));
 
     expect(refreshAdminClaim).toHaveBeenCalledTimes(1);
-    expect(await screen.findByText(/Still no admin claim/)).toBeInTheDocument();
+    expect(await screen.findByText(/still does not have administrator access/)).toBeInTheDocument();
   });
 });

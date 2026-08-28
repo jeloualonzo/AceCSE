@@ -73,22 +73,18 @@ const AdminAccessDenied: React.FC = () => {
         </span>
         <h1 className="mt-5 text-xl font-semibold text-slate-900 dark:text-slate-100">Admin access required</h1>
         <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-          The AceCSE admin app is limited to accounts that carry the admin claim. Your practice
-          history, simulations, and settings are unaffected.
+          This area is restricted to authorized administrator accounts. Your practice history,
+          simulations, and settings are unaffected.
         </p>
         <dl className="mt-6 space-y-3 text-sm">
           <div>
             <dt className="text-slate-500 dark:text-slate-400">Signed in as</dt>
             <dd className="font-medium text-slate-900 dark:text-slate-100">{user?.email ?? user?.uid ?? 'Unknown account'}</dd>
           </div>
-          <div>
-            <dt className="text-slate-500 dark:text-slate-400">Granting access</dt>
-            <dd className="text-slate-700 dark:text-slate-300">
-              An existing admin runs <code className="rounded bg-slate-100 px-1 py-0.5 text-xs dark:bg-slate-800">npm run admin:grant</code>{' '}
-              for this account, then you re-check below. See docs/admin/ADMIN_ACCESS.md.
-            </dd>
-          </div>
         </dl>
+        <p className="mt-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          If you believe you should have administrator access, contact the system administrator.
+        </p>
         <div className="mt-7 flex flex-wrap items-center gap-3">
           <button
             type="button"
@@ -107,7 +103,7 @@ const AdminAccessDenied: React.FC = () => {
         </div>
         {checked ? (
           <p role="status" className="mt-4 text-sm text-slate-600 dark:text-slate-400">
-            Still no admin claim on this account&apos;s token.
+            This account still does not have administrator access.
           </p>
         ) : null}
       </div>
