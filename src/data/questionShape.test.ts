@@ -204,6 +204,36 @@ function structuredOnlyBasicAlgebra(overrides: Record<string, unknown> = {}): Re
   return q;
 }
 
+function structuredOnlyDecimals(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  const q = {
+    ...base({
+      id: 'num-0002',
+      subject: 'Numerical Reasoning',
+      topic: 'Decimals',
+      choices: [
+        { id: 'A', text: '15.3' },
+        { id: 'B', text: '14.7' },
+        { id: 'C', text: '15.9' },
+        { id: 'D', text: '16.2' },
+        { id: 'E', text: '15.0' },
+      ],
+      correctOptionId: 'A',
+      structuredExplanation: {
+        blocks: [
+          { type: 'correct_answer', text: 'A — 15.3' },
+          { type: 'paragraph', label: 'Rationale', text: 'Multiply as whole numbers, then restore the decimal places.' },
+        ],
+      },
+    }),
+    ...overrides,
+  } as Record<string, unknown>;
+  delete q.explanation;
+  delete q.steps;
+  delete q.distractorExplanations;
+  delete q.tip;
+  return q;
+}
+
 function structuredOnlyGrammar(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   const q = {
     ...base({
@@ -572,6 +602,35 @@ describe('structured-only Basic Algebra admission exception', () => {
     expect(isValidQuestion(structuredOnlyBasicAlgebra({ id: 'num-0051' }))).toBe(false);
     expect(isValidQuestion(structuredOnlyBasicAlgebra({ subject: 'Verbal Ability' }))).toBe(false);
     expect(isValidQuestion(structuredOnlyBasicAlgebra({ topic: 'Averages' }))).toBe(false);
+  });
+});
+
+describe('structured-only Decimals admission exception', () => {
+  const decimalsIds = ['num-0002', 'num-0005', 'num-0066', 'num-0127'];
+
+  it('accepts exactly the four canonical Decimals IDs without legacy explanation fields', () => {
+    for (const id of decimalsIds) {
+      const question = structuredOnlyDecimals({ id });
+      expect(isValidQuestion(question), id).toBe(true);
+      expect(Object.hasOwn(question, 'explanation'), id).toBe(false);
+      expect(Object.hasOwn(question, 'steps'), id).toBe(false);
+      expect(Object.hasOwn(question, 'distractorExplanations'), id).toBe(false);
+      expect(Object.hasOwn(question, 'tip'), id).toBe(false);
+    }
+  });
+
+  it('rejects malformed or missing Decimals structured explanations', () => {
+    expect(isValidQuestion(structuredOnlyDecimals({ structuredExplanation: { blocks: [] } }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyDecimals({ structuredExplanation: { blocks: [{ type: 'unsupported', text: 'bad' }] } }))).toBe(false);
+    const question = structuredOnlyDecimals();
+    delete question.structuredExplanation;
+    expect(isValidQuestion(question)).toBe(false);
+  });
+
+  it('keeps the Decimals exception scoped to approved IDs, subject, and topic', () => {
+    expect(isValidQuestion(structuredOnlyDecimals({ id: 'num-0003' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyDecimals({ subject: 'Verbal Ability' }))).toBe(false);
+    expect(isValidQuestion(structuredOnlyDecimals({ topic: 'Fractions' }))).toBe(false);
   });
 });
 

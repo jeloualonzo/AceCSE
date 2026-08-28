@@ -193,21 +193,18 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "The distributive property lets you factor out 123 before multiplying: 123 × (0.1 + 0.01 + 0.001) = 123 × 0.111. Now compute each decimal place: 0.1 + 0.01 + 0.001 = 0.111. Multiplying: 123 × 0.111 = 123 × 111 ÷ 1,000 = 13,653 ÷ 1,000 = 13.653. Alternatively, compute each term separately: 123 × 0.1 = 12.3; 123 × 0.01 = 1.23; 123 × 0.001 = 0.123; then add: 12.3 + 1.23 + 0.123 = 13.653. The key insight is that each successive multiplier shifts the decimal one more place to the left, so the three results differ only in decimal position.",
-    "steps": [
-      "Factor out 123: 123 × (0.1 + 0.01 + 0.001) = 123 × 0.111.",
-      "Alternatively, compute each term: 12.3 + 1.23 + 0.123.",
-      "Add with aligned decimal places: 12.300 + 1.230 + 0.123 = 13.653."
-    ],
-    "distractorExplanations": {
-      "B": "Treats all three multipliers as 0.1, summing them to 0.3: 123×0.3=36.9, failing to distinguish the three different decimal place values.",
-      "C": "135.53 arises from misaligning the decimal places when adding — for example, adding 12.3 + 1.23 + 0.123 as if they share the tenths column, or from computing 123 × 0.11 = 13.53 and then adding a misplaced 123 × 0.001.",
-      "D": "1,356.3 comes from computing the sum of the three terms (12.3 + 1.23 + 0.123) but then treating the result as 1,356.3 — a decimal-point placement error of three positions, equivalent to multiplying the correct answer by 100.",
-      "E": "13,563 results from ignoring the decimal points entirely and computing 123 × (1 + 1 + 1) = 123 × 3 = 369, then misreading the original as 123 × (100 + 10 + 1) = 123 × 111 = 13,653 — but failing to divide by 1,000 to restore the decimal position."
-    },
-    "tip": {
-      "label": "Math Shortcut",
-      "text": "When the same number is multiplied by 0.1, 0.01, and 0.001, factor it out: n × (0.1 + 0.01 + 0.001) = n × 0.111. Each extra decimal place in the multiplier shifts the product one more place left. Align decimal points carefully when adding."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "A — 13.653"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Factor out 123:\n\n\\[\n123(0.1+0.01+0.001)\n\\]\n\nAdd the decimal multipliers:\n\n\\[\n0.1+0.01+0.001=0.111\n\\]\n\nSo:\n\n\\[\n123\\times0.111=13.653\n\\]\n\nTherefore, **123 × 0.1 + 123 × 0.01 + 123 × 0.001 = 13.653**."
+        }
+      ]
     },
     "tags": [
       "decimals",

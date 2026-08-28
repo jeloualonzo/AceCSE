@@ -29,7 +29,8 @@ const ALL_NUMBER_SERIES_IDS = [...FROZEN_PILOT_IDS, ...BATCH2_IDS, ...BATCH3_IDS
 const AGE_PROBLEMS_IDS = ['num-0030', 'num-0031', 'num-0142'] as const;
 const AVERAGES_BATCH1_IDS = ['num-0046', 'num-0047', 'num-0049', 'num-0145', 'num-0146', 'seed-num-005'] as const;
 const BASIC_ALGEBRA_BATCH1_IDS = ['num-0048', 'num-0050', 'num-0073', 'num-0085', 'num-0094', 'num-0122', 'num-0128', 'num-0140', 'num-0150'] as const;
-const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...AGE_PROBLEMS_IDS, ...AVERAGES_BATCH1_IDS, ...BASIC_ALGEBRA_BATCH1_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS, ...CLERICAL_OPERATIONS_STRUCTURED_IDS];
+const DECIMALS_BATCH1_IDS = ['num-0002', 'num-0005', 'num-0066', 'num-0127'] as const;
+const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...AGE_PROBLEMS_IDS, ...AVERAGES_BATCH1_IDS, ...BASIC_ALGEBRA_BATCH1_IDS, ...DECIMALS_BATCH1_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS, ...CLERICAL_OPERATIONS_STRUCTURED_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -390,6 +391,41 @@ const EXPECTED_AVERAGES_BLOCKS = {
   ],
 } as const;
 
+const EXPECTED_DECIMALS_BLOCKS = {
+  'num-0002': [
+    { type: 'correct_answer', text: 'A — 15.3' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'To multiply decimals, first multiply the numbers without the decimal points:\n\n\\[\n425\\times36=15300\n\\]\n\nThere are 3 decimal places altogether: 2 in 4.25 and 1 in 3.6. Place the decimal 3 places from the right:\n\n\\[\n15300=15.300=15.3\n\\]\n\nTherefore, **4.25 × 3.6 = 15.3**.',
+    },
+  ],
+  'num-0005': [
+    { type: 'correct_answer', text: 'B — 1,620' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Move the decimal point three places to the right in both numbers so the divisor becomes a whole number:\n\n\\[\n56.7\\times1000=56700\n\\]\n\n\\[\n0.035\\times1000=35\n\\]\n\nSo:\n\n\\[\n56.7\\div0.035=56700\\div35\n\\]\n\nNow divide:\n\n\\[\n56700\\div35=1620\n\\]\n\nTherefore, **56.7 ÷ 0.035 = 1,620**.',
+    },
+  ],
+  'num-0066': [
+    { type: 'correct_answer', text: 'C — 55.925' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Align the decimal places by adding trailing zeros:\n\n\\[\n48.750+16.800-9.625\n\\]\n\nAdd the first two numbers:\n\n\\[\n48.750+16.800=65.550\n\\]\n\nThen subtract:\n\n\\[\n65.550-9.625=55.925\n\\]\n\nTherefore, **48.75 + 16.8 − 9.625 = 55.925**.',
+    },
+  ],
+  'num-0127': [
+    { type: 'correct_answer', text: 'A — 13.653' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Factor out 123:\n\n\\[\n123(0.1+0.01+0.001)\n\\]\n\nAdd the decimal multipliers:\n\n\\[\n0.1+0.01+0.001=0.111\n\\]\n\nSo:\n\n\\[\n123\\times0.111=13.653\n\\]\n\nTherefore, **123 × 0.1 + 123 × 0.01 + 123 × 0.001 = 13.653**.',
+    },
+  ],
+} as const;
+
 const EXPECTED_GRAMMAR_BLOCKS = {
   'verb-0059': [
     { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
@@ -518,6 +554,32 @@ describe('Basic Algebra structured explanation Batch 1', () => {
       .filter((question) => question.topic === 'Basic Algebra' && question.structuredExplanation)
       .map((question) => question.id);
     expect(structuredBasicAlgebraIds.sort()).toEqual([...BASIC_ALGEBRA_BATCH1_IDS].sort());
+  });
+});
+
+describe('Decimals structured explanation Batch 1', () => {
+  it('contains the exact supplied Rationale-only payloads and no legacy explanation fields', async () => {
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+
+    for (const id of DECIMALS_BATCH1_IDS) {
+      const question = catalog.questions.get(id);
+      const blocks = question?.structuredExplanation?.blocks ?? [];
+      expect(question, id).toBeTruthy();
+      expect(blocks, id).toEqual(EXPECTED_DECIMALS_BLOCKS[id]);
+      expect(blocks, id).toHaveLength(2);
+      expect(blocks[0], id).toMatchObject({ type: 'correct_answer' });
+      expect(blocks[1], id).toMatchObject({ type: 'paragraph', label: 'Rationale' });
+      expect(blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution', 'collapsible', 'distractor_section', 'common_trap'].includes(block.type)), id).toBe(false);
+      expect(isValidStructuredExplanation(question?.structuredExplanation), id).toBe(true);
+      for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+        expect(Object.hasOwn(question ?? {}, field), `${id}:${field}`).toBe(false);
+      }
+    }
+
+    const structuredDecimalsIds = [...catalog.questions.values()]
+      .filter((question) => question.topic === 'Decimals' && question.structuredExplanation)
+      .map((question) => question.id);
+    expect(structuredDecimalsIds.sort()).toEqual([...DECIMALS_BATCH1_IDS].sort());
   });
 });
 

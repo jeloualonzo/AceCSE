@@ -1,5 +1,18 @@
 [
   {
+    "id": "decimals-batch-01",
+    "title": "Decimals — Batch 1",
+    "family": "Decimals",
+    "status": "frozen",
+    "createdAt": "2026-08-27T15:59:05.857Z",
+    "questionIds": [
+      "num-0002",
+      "num-0005",
+      "num-0066",
+      "num-0127"
+    ]
+  },
+  {
     "id": "basic-algebra-batch-01",
     "title": "Basic Algebra — Batch 1",
     "family": "Basic Algebra",

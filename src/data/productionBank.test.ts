@@ -39,6 +39,7 @@ const structuredBasicAlgebraIds = new Set([
   'num-0048', 'num-0050', 'num-0073', 'num-0085', 'num-0094',
   'num-0122', 'num-0128', 'num-0140', 'num-0150',
 ]);
+const structuredDecimalsIds = new Set(['num-0002', 'num-0005', 'num-0066', 'num-0127']);
 
 describe('production bank — five-choice migration', () => {
   it('every production question has exactly five contiguous choices and a valid key', async () => {
@@ -48,7 +49,7 @@ describe('production bank — five-choice migration', () => {
       expect(q.choices).toHaveLength(5);
       expect(q.choices.map((c) => c.id)).toEqual(['A', 'B', 'C', 'D', 'E']);
       expect(q.choices.some((c) => c.id === q.correctOptionId)).toBe(true);
-      if (migratedNumberSeriesIds.has(q.id) || cleanedSpellingIds.has(q.id) || structuredFilingIds.has(q.id) || structuredGrammarIds.has(q.id) || structuredClericalOperationsIds.has(q.id) || structuredAgeProblemsIds.has(q.id) || structuredAveragesIds.has(q.id) || structuredBasicAlgebraIds.has(q.id)) {
+      if (migratedNumberSeriesIds.has(q.id) || cleanedSpellingIds.has(q.id) || structuredFilingIds.has(q.id) || structuredGrammarIds.has(q.id) || structuredClericalOperationsIds.has(q.id) || structuredAgeProblemsIds.has(q.id) || structuredAveragesIds.has(q.id) || structuredBasicAlgebraIds.has(q.id) || structuredDecimalsIds.has(q.id)) {
         expect(q.distractorExplanations).toBeUndefined();
       } else {
 

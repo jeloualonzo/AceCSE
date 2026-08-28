@@ -29,6 +29,7 @@ const ALL_SUBJECTS = [
 ] as const;
 
 const EXPECTED_BATCHES = [
+  { id: 'decimals-batch-01', title: 'Decimals — Batch 1', family: 'Decimals', status: 'frozen', count: 4, ids: ['num-0002','num-0005','num-0066','num-0127'] },
   { id: 'basic-algebra-batch-01', title: 'Basic Algebra — Batch 1', family: 'Basic Algebra', status: 'frozen', count: 9, ids: ['num-0048','num-0050','num-0073','num-0085','num-0094','num-0122','num-0128','num-0140','num-0150'] },
   { id: 'averages-batch-01', title: 'Averages — Batch 1', family: 'Averages', status: 'frozen', count: 6, ids: ['num-0046','num-0047','num-0049','num-0145','num-0146','seed-num-005'] },
   { id: 'age-problems-batch-01', title: 'Age Problems — Batch 1', status: 'frozen', count: 3, ids: ['num-0030','num-0031','num-0142'] },
@@ -44,9 +45,9 @@ const EXPECTED_BATCHES = [
 ] as const;
 
 describe('refinement batch registry', () => {
-  it('loads exactly the twelve approved batches with valid schema and status labels', () => {
+  it('loads exactly the thirteen approved batches with valid schema and status labels', () => {
     expect(validateRefinementBatches(REFINEMENT_BATCHES)).toEqual([]);
-    expect(REFINEMENT_BATCHES).toHaveLength(12);
+    expect(REFINEMENT_BATCHES).toHaveLength(13);
     for (const [index, expected] of EXPECTED_BATCHES.entries()) {
       const batch = getRefinementBatches()[index];
       expect(batch).toMatchObject({ id: expected.id, title: expected.title, status: expected.status });
@@ -119,7 +120,7 @@ describe('refinement batch question-ID resolution', () => {
     return new Set((await loadQuestionIndex(ALL_SUBJECTS)).keys());
   }
 
-  it('accepts the twelve-batch registry against the active production catalog', async () => {
+  it('accepts the thirteen-batch registry against the active production catalog', async () => {
     expect(await validateRefinementBatchesAgainstCatalog()).toEqual([]);
     expect(await validateRefinementBatchesAgainstCatalog(REFINEMENT_BATCHES)).toEqual([]);
   });
