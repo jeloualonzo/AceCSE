@@ -29,6 +29,11 @@ export interface ExportDocumentPanelProps {
   sources: readonly ExportSource[];
   /** Optional scope/provenance notice rendered above the figures. */
   notice?: ReactNode;
+  /**
+   * Whole-document totals (characters, chunk count, line breaks). Off where the
+   * per-chunk figures already carry every number a reviewer acts on.
+   */
+  showFigures?: boolean;
 }
 
 function formatCount(value: number): string {
@@ -144,6 +149,7 @@ export function ExportDocumentPanel({
   heading = 'Review & Export',
   sources,
   notice,
+  showFigures = true,
 }: ExportDocumentPanelProps) {
   const [kind, setKind] = useState<string>(() => sources[0]?.kind ?? '');
   const [revealed, setRevealed] = useState<ReadonlySet<number>>(() => new Set());
@@ -241,11 +247,13 @@ export function ExportDocumentPanel({
 
       {document && (
         <>
-          <dl className="grid grid-cols-2 gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:grid-cols-3 dark:border-slate-700 dark:bg-slate-950">
-            <Figure label="Total characters" value={formatCount(document.characterCount)} />
-            <Figure label="Chunks" value={formatCount(document.chunks.length)} hint={`${formatCount(document.chunkCharacterLimit)} max each`} />
-            <Figure label="Line breaks" value={formatCount(document.lineBreakCount)} />
-          </dl>
+          {showFigures && (
+            <dl className="grid grid-cols-2 gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:grid-cols-3 dark:border-slate-700 dark:bg-slate-950">
+              <Figure label="Total characters" value={formatCount(document.characterCount)} />
+              <Figure label="Chunks" value={formatCount(document.chunks.length)} hint={`${formatCount(document.chunkCharacterLimit)} max each`} />
+              <Figure label="Line breaks" value={formatCount(document.lineBreakCount)} />
+            </dl>
+          )}
 
           {status && <StatusMessage tone={status.tone} message={status.message} />}
 

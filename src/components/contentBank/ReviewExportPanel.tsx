@@ -1,6 +1,6 @@
-import { FileJson, FileText } from 'lucide-react';
+import { FileJson, FileText, ListChecks } from 'lucide-react';
 import { useMemo } from 'react';
-import { createRawJsonExport, createReviewExport } from '@/data/contentBankWorkspace';
+import { createQuestionSetExport, createRawJsonExport, createReviewExport } from '@/data/contentBankWorkspace';
 import { ExportDocumentPanel, type ExportSource } from '@/components/contentBank/ExportDocumentPanel';
 import type { RefinementBatch } from '@/data/refinementBatches';
 import type { Question } from '@/types';
@@ -8,7 +8,7 @@ import type { Question } from '@/types';
 /**
  * Batch review & export.
  *
- * Only the two document sources live here — every character count, chunk
+ * Only the document sources live here — every character count, chunk
  * boundary, Copy Chunk button, and the integrity gate come from
  * {@link ExportDocumentPanel}, which the structures workspace drives the same
  * way. There is exactly one copy/chunk implementation in the app.
@@ -34,11 +34,17 @@ export function ReviewExportPanel({
         icon: FileJson,
         build: () => createRawJsonExport(batch, questions),
       },
+      {
+        kind: 'question-set',
+        label: 'Question Set',
+        icon: ListChecks,
+        build: () => createQuestionSetExport(batch, questions),
+      },
     ],
     [batch, questions],
   );
 
-  return <ExportDocumentPanel headingId="review-export-heading" sources={sources} />;
+  return <ExportDocumentPanel headingId="review-export-heading" sources={sources} showFigures={false} />;
 }
 
 export default ReviewExportPanel;

@@ -35,6 +35,8 @@ import type { Subject } from '@/types';
 import {
   buildSubjectDashboardSummaries,
   buildSubjectWorkspaceData,
+  createQuestionSetMarkdown,
+  REVIEW_MARKDOWN_FORMAT,
   slugForFamily,
   WORKSPACE_BATCHES_STORAGE_KEY,
 } from '@/data/contentBankWorkspace';
@@ -125,6 +127,24 @@ function batchesLoaded() {
 
 function reviewPanelLoaded() {
   return waitFor(() => expect(screen.getByRole('button', { name: 'Review Markdown' })).toBeInTheDocument(), { timeout: SLOW });
+}
+
+/**
+ * The batch card starts collapsed, so its facts and its question list are behind
+ * the title toggle. Tests that assert on either have to open it the way an admin
+ * does — which also keeps the default-collapsed contract under test everywhere.
+ */
+async function expandBatchCard(user: ReturnType<typeof userEvent.setup>, title: string) {
+  const toggle = screen.getByRole('button', { name: title, expanded: false });
+  await user.click(toggle);
+  await waitFor(() => expect(toggle).toHaveAttribute('aria-expanded', 'true'));
+  return toggle;
+}
+
+function batchQuestionIdsInOrder(): (string | undefined)[] {
+  return [...document.querySelectorAll<HTMLElement>('[data-batch-question]')].map(
+    (node) => node.dataset.batchQuestion
+  );
 }
 
 function batchIdsInOrder(): (string | undefined)[] {
@@ -342,11 +362,10 @@ describe('Content Bank workspaces', () => {
     await waitFor(() => expect(screen.getByRole('heading', { name: batch.title, level: 1 })).toBeInTheDocument(), {
       timeout: SLOW,
     });
-    await waitFor(() =>
-      expect(
-        [...document.querySelectorAll<HTMLElement>('[data-batch-question]')].map((node) => node.dataset.batchQuestion)
-      ).toEqual(batch.questionIds)
-    );
+    // The card holds the list, and it opens on demand rather than on load.
+    expect(batchQuestionIdsInOrder()).toEqual([]);
+    await expandBatchCard(user, batch.title);
+    await waitFor(() => expect(batchQuestionIdsInOrder()).toEqual(batch.questionIds));
     expect(screen.getByTestId('batch-family-link')).toHaveAttribute(
       'href',
       contentBankFamilyPath('Clerical Ability', batch.family)
@@ -369,6 +388,49 @@ describe('Content Bank workspaces', () => {
     expect(openMock).toHaveBeenCalledWith(contentBankPracticePath(expectedLaunch), '_blank');
     expect(navigateMock).not.toHaveBeenCalledWith(EXAM_ROUTE, expect.anything());
     expect(openMock.mock.results[0]?.value).toMatchObject({ opener: null });
+  }, SLOW);
+
+  it('holds the batch facts and question list in one card that starts collapsed and toggles', async () => {
+    const user = userEvent.setup();
+    const batch = getRefinementBatches().find((candidate) => candidate.id === 'filing-batch-02')!;
+    renderRoute(contentBankBatchPath(batch.id));
+
+    await waitFor(() => expect(screen.getByRole('heading', { name: batch.title, level: 1 })).toBeInTheDocument(), {
+      timeout: SLOW,
+    });
+    await batchesLoaded();
+
+    // Collapsed on load: nothing auto-expands, so the long list is opt-in.
+    const toggle = screen.getByRole('button', { name: batch.title });
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    expect(toggle).toHaveAttribute('aria-controls', 'batch-card-details');
+    expect(screen.queryByRole('heading', { name: 'Exact question list' })).not.toBeInTheDocument();
+    expect(screen.queryByText(`Batch ID`)).not.toBeInTheDocument();
+
+    // Both controls live in the card header, so they work while collapsed.
+    const card = screen.getByRole('region', { name: batch.title });
+    expect(within(card).getByRole('combobox', { name: 'Batch status' })).toBeInTheDocument();
+    expect(
+      within(card).getByRole('button', { name: `Practice these ${batch.questionIds.length} questions` })
+    ).toBeEnabled();
+
+    await user.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    const details = document.getElementById('batch-card-details')!;
+    expect(card).toContainElement(details);
+    // The facts and the exact list are inside the card, not in sections of their own.
+    expect(within(details).getByText('Batch ID')).toBeInTheDocument();
+    expect(within(details).getByText('Questions')).toBeInTheDocument();
+    expect(within(details).getByText('Created')).toBeInTheDocument();
+    expect(within(details).getByRole('heading', { name: 'Exact question list' })).toBeInTheDocument();
+    await waitFor(() => expect(batchQuestionIdsInOrder()).toEqual(batch.questionIds));
+    // No per-question copy affordance anywhere in the list.
+    expect(screen.queryByRole('button', { name: 'Copy Question' })).not.toBeInTheDocument();
+    expect(within(details).queryByRole('columnheader', { name: 'Copy' })).not.toBeInTheDocument();
+
+    await user.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    expect(batchQuestionIdsInOrder()).toEqual([]);
   }, SLOW);
 
   it('practices the complete active family in canonical order through a new internal-review tab', async () => {
@@ -407,16 +469,17 @@ describe('Content Bank workspaces', () => {
   it('offers a direct controlled status selector and persists every direct change without no-op writes', async () => {
     const user = userEvent.setup();
     renderRoute(contentBankBatchPath('grammar-pilot-01'));
-    await waitFor(() => expect(screen.getByRole('heading', { name: 'Workflow status' })).toBeInTheDocument(), {
-      timeout: SLOW,
-    });
+    // The control sits in the card header, so it is reachable while collapsed.
+    const status = await waitFor(() => screen.getByRole('combobox', { name: 'Batch status' }), { timeout: SLOW });
     await batchesLoaded();
 
-    const workflow = screen.getByRole('heading', { name: 'Workflow status' }).closest('section')!;
-    const status = within(workflow).getByRole('combobox', { name: 'Batch status' });
+    // Only the control itself, with no heading and no explanatory copy around it.
+    const control = status.closest<HTMLElement>('[aria-busy]')!;
     expect(status).toHaveValue('ready-for-qa');
-    expect(within(workflow).queryAllByRole('textbox')).toHaveLength(0);
-    expect(within(workflow).queryAllByRole('button')).toHaveLength(0);
+    expect(within(control).queryAllByRole('textbox')).toHaveLength(0);
+    expect(within(control).queryAllByRole('button')).toHaveLength(0);
+    expect(screen.queryByRole('heading', { name: 'Workflow status' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Run and review' })).not.toBeInTheDocument();
 
     // Choosing the already persisted state does not create a local write.
     await user.selectOptions(status, 'ready-for-qa');
@@ -583,6 +646,7 @@ describe('Content Bank workspaces', () => {
   }, SLOW);
 
   it('blocks Practice and export for a batch whose IDs no longer resolve instead of quietly shrinking it', async () => {
+    const user = userEvent.setup();
     localStorage.setItem(WORKSPACE_BATCHES_STORAGE_KEY, JSON.stringify([{
       id: 'ui-broken-batch',
       title: 'UI Broken Batch',
@@ -596,21 +660,25 @@ describe('Content Bank workspaces', () => {
     await waitFor(() => expect(screen.getByRole('heading', { name: 'UI Broken Batch', level: 1 })).toBeInTheDocument(), {
       timeout: SLOW,
     });
-    // Scoped to the actions section: the store is also degraded in this test
-    // (batches came from localStorage), and that notice is an alert of its own.
-    const actions = screen.getByRole('region', { name: 'Run and review' });
-    const alert = await waitFor(() => within(actions).getByRole('alert'));
+    // Scoped to the batch card: the store is also degraded in this test (batches
+    // came from localStorage), and that notice is an alert of its own. The
+    // unresolved IDs are reported while the card is still collapsed, so a
+    // disabled Practice button is never left unexplained.
+    const card = screen.getByRole('region', { name: 'UI Broken Batch' });
+    const alert = await waitFor(() => within(card).getByRole('alert'));
     expect(alert).toHaveTextContent('Practice and export are unavailable.');
     expect(alert).toHaveTextContent('cler-9999');
     expect(screen.getByRole('button', { name: 'Practice these 2 questions' })).toBeDisabled();
     // The review link is withheld, not left live against a partial batch.
     expect(screen.queryByRole('link', { name: 'Review & export' })).not.toBeInTheDocument();
     const exportPanel = screen.getByRole('region', { name: 'Review & Export' });
-    await waitFor(() => expect(exportPanel).toHaveTextContent('Review Markdown and Raw JSON are unavailable.'), { timeout: SLOW });
+    await waitFor(
+      () => expect(exportPanel).toHaveTextContent('Review Markdown, Raw JSON, and Question Set are unavailable.'),
+      { timeout: SLOW },
+    );
     // Both IDs are still listed, so the batch is not silently rewritten.
-    expect(
-      [...document.querySelectorAll<HTMLElement>('[data-batch-question]')].map((node) => node.dataset.batchQuestion)
-    ).toEqual(['cler-0056', 'cler-9999']);
+    await expandBatchCard(user, 'UI Broken Batch');
+    expect(batchQuestionIdsInOrder()).toEqual(['cler-0056', 'cler-9999']);
   }, SLOW);
 });
 
@@ -642,8 +710,11 @@ describe('Batch Workspace Review & Export', () => {
     await reviewPanelLoaded();
     const panel = screen.getByRole('region', { name: 'Review & Export' });
 
-    // The count the UI shows must be the count of the string it hands over.
-    const displayedTotal = Number(panel.querySelector('dd')!.textContent!.replaceAll(',', ''));
+    // The whole-document summary figures are gone; the per-chunk counts are the
+    // numbers a reviewer acts on, and each one must be the count of the string
+    // its own button hands over.
+    expect(within(panel).queryByText('Total characters')).not.toBeInTheDocument();
+    expect(within(panel).queryByText('Line breaks')).not.toBeInTheDocument();
     const chunkLabels = screen.getAllByText(/^Chunk \d+ of \d+$/);
     expect(chunkLabels.length).toBeGreaterThan(1);
     expect(chunkLabels.map((node) => node.textContent)).toEqual(
@@ -653,7 +724,7 @@ describe('Batch Workspace Review & Export', () => {
       .map((node) => Number(node.textContent!.replace(' characters', '').replaceAll(',', '')));
     expect(displayedChunkCounts).toHaveLength(chunkLabels.length);
     expect(displayedChunkCounts.every((count) => count <= EXPORT_CHUNK_CHARACTER_LIMIT)).toBe(true);
-    expect(displayedChunkCounts.reduce((total, count) => total + count, 0)).toBe(displayedTotal);
+    const displayedTotal = displayedChunkCounts.reduce((total, count) => total + count, 0);
 
     const copyButtons = screen.getAllByRole('button', { name: 'Copy Chunk' });
     expect(copyButtons).toHaveLength(chunkLabels.length);
@@ -762,5 +833,68 @@ describe('Batch Workspace Review & Export', () => {
     expect(preview.className).toContain('whitespace-pre');
     expect(preview.className).toContain('overflow-auto');
     expect(preview.textContent).toContain('# UI Inspect Batch');
+  }, SLOW);
+
+  it('exports the Question Set as Review Markdown without the explanation sections, chunked whole', async () => {
+    const user = userEvent.setup();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
+    // filing-batch-02 is the largest shipped batch — the real multi-chunk case.
+    const batch = getRefinementBatches().find((candidate) => candidate.id === 'filing-batch-02')!;
+    renderRoute(contentBankBatchPath(batch.id));
+
+    await waitFor(() => expect(screen.getByRole('heading', { name: batch.title, level: 1 })).toBeInTheDocument(), { timeout: SLOW });
+    await reviewPanelLoaded();
+    const panel = screen.getByRole('region', { name: 'Review & Export' });
+    const formats = within(panel).getByRole('group', { name: 'Export format' });
+    // Additive: the two existing modes are untouched and Review Markdown is still
+    // the default.
+    expect(within(formats).getAllByRole('button').map((button) => button.textContent)).toEqual([
+      'Review Markdown',
+      'Raw JSON',
+      'Question Set',
+    ]);
+    expect(within(formats).getByRole('button', { name: 'Review Markdown' })).toHaveAttribute('aria-pressed', 'true');
+
+    await user.click(within(formats).getByRole('button', { name: 'Question Set' }));
+    expect(within(formats).getByRole('button', { name: 'Question Set' })).toHaveAttribute('aria-pressed', 'true');
+
+    // Copy behaviour is the existing one: per-chunk buttons, each reporting the
+    // count of the exact string it wrote.
+    const displayedChunkCounts = within(panel).getAllByText(/^[\d,]+ characters$/)
+      .map((node) => Number(node.textContent!.replace(' characters', '').replaceAll(',', '')));
+    const copyButtons = within(panel).getAllByRole('button', { name: 'Copy Chunk' });
+    expect(copyButtons).toHaveLength(displayedChunkCounts.length);
+    expect(displayedChunkCounts.every((count) => count <= EXPORT_CHUNK_CHARACTER_LIMIT)).toBe(true);
+    for (const button of copyButtons) await user.click(button);
+    const copied = writeText.mock.calls.map((call) => String(call[0]));
+    expect(copied.map((text) => text.length)).toEqual(displayedChunkCounts);
+
+    const whole = copied.join('');
+    const catalog = await loadContentCatalog(INVENTORY_SUBJECTS);
+    const questions = batch.questionIds.map((id) => catalog.getQuestion(id)!);
+    // The chunks reassemble into exactly the generated Markdown — same batch
+    // header, same metadata tables, same choice formatting as Review Markdown.
+    expect(whole).toBe(createQuestionSetMarkdown(batch, questions));
+    expect(whole).toContain(`# ${batch.title}`);
+    expect(whole).toContain(`- Batch ID: ${batch.id}`);
+    expect(whole).toContain(`- Export format: ${REVIEW_MARKDOWN_FORMAT}`);
+    expect(whole).toContain('### Metadata');
+    expect(whole).toContain(`| ID | ${batch.questionIds[0]} |`);
+    expect(whole).toContain('### Question');
+    expect(whole).toContain('### Choices');
+    expect(whole).toContain('### Correct Answer');
+    expect(whole).toContain(`- **A.** ${questions[0].choices[0].text}`);
+    // No explanation content, in any of its projections.
+    expect(whole).not.toContain('### Learner View');
+    expect(whole).not.toContain('### Authoring View');
+    expect(whole).not.toContain('Mental Shortcut');
+    expect(whole).not.toContain('Distractor');
+    expect(whole).not.toContain('```');
+    expect(whole).not.toContain(questions[0].explanation);
+    // No question is split: every stem lands in exactly one chunk.
+    for (const question of questions) {
+      expect(copied.filter((chunk) => chunk.includes(question.question)), question.id).toHaveLength(1);
+    }
   }, SLOW);
 });

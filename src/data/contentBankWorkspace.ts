@@ -14,6 +14,7 @@ import {
 import { isRetiredRefinementBatchId } from '@/data/retiredRefinementBatches';
 import {
   buildExportDocument,
+  buildExportDocumentFromUnits,
   type BuildExportDocumentOptions,
   type ExportDocument,
 } from '@/lib/exportText';
@@ -681,12 +682,22 @@ function renderLegacyAuthoring(question: Question): string {
   return lines.join('\n');
 }
 
-function renderSupportingQuestionContent(question: Question): string {
+/**
+ * The stimulus sections that sit under `### Question`.
+ *
+ * The passage and the structured stimulus are what the question asks about, so
+ * they always render. `includeAuthoringData` adds the two raw-JSON sections,
+ * which are authoring payloads rather than anything an examinee reads — the
+ * number series and task instance both restate a stem that already contains the
+ * sequence (`4, 9, 14, 19, ___`), so a practice set loses nothing without them.
+ */
+function renderSupportingQuestionContent(question: Question, includeAuthoringData: boolean): string {
   const sections: string[] = [];
   if (question.passage) sections.push(`### Passage / Stimulus\n\n${question.passage}`);
   if (question.contentBlocks?.length) {
     sections.push(`### Structured Stimulus\n\n${question.contentBlocks.map(renderContentBlockMarkdown).join('\n\n')}`);
   }
+  if (!includeAuthoringData) return sections.join('\n\n');
   if (question.numberSeries) sections.push(`### Number-Series Data\n\n${renderCodeBlock(JSON.stringify(question.numberSeries, null, 2))}`);
   if (question.taskInstance) {
     sections.push(`### Task Instance\n\n- kind: ${question.taskInstance.kind}\n- payload:\n${indentText(JSON.stringify(question.taskInstance.payload, null, 2), 2)}`);
@@ -759,29 +770,48 @@ function renderQuestionMetadata(
   return rows.map(([field, value]) => `| ${field} | ${metadataCell(value)} |`).join('\n');
 }
 
-export function createReviewMarkdown(
+/** Between two question entries, in both Markdown formats. */
+const QUESTION_ENTRY_SEPARATOR = '\n\n---\n\n';
+
+/**
+ * The header and the per-question entries of the review Markdown, unjoined.
+ *
+ * Both Markdown formats come from here, so the metadata table, the section
+ * headings, the choice formatting, and the numbering cannot drift between them.
+ * `includeExplanations` is the ONLY difference: with it off, each entry stops
+ * after Correct Answer and the two explanation sections are never rendered.
+ *
+ * Returning the pieces rather than the joined string is what lets the Question
+ * Set chunk on question boundaries without a second projection.
+ */
+function renderBatchMarkdownParts(
   batch: RefinementBatch,
   questions: readonly Question[],
-  options: ReviewMarkdownOptions = {},
-): string {
+  options: ReviewMarkdownOptions,
+  includeExplanations: boolean,
+): { header: string; entries: string[] } {
   const questionById = new Map(questions.map((question) => [question.id, question]));
   const missing = batch.questionIds.filter((questionId) => !questionById.has(questionId));
   if (missing.length) throw new Error(`Could not export batch: question ${missing[0]} is not in the active production catalog.`);
   const classificationIndex = buildClassificationIndex(options.classifications ?? allClassifications());
-  const body = batch.questionIds.map((questionId, index) => {
+
+  const entries = batch.questionIds.map((questionId, index) => {
     const question = questionById.get(questionId)!;
     const correctChoice = question.choices.find((choice) => choice.id === question.correctOptionId);
+    const supportingContent = renderSupportingQuestionContent(question, includeExplanations);
+    const choices = question.choices.map((choice) => `- **${choice.id}.** ${choice.text}`).join('\n');
+    const metadata = renderQuestionMetadata(question, classificationIndex.get(questionId));
+    const entry = `## ${index + 1}. ${question.id}\n\n### Metadata\n\n| Field | Value |\n|---|---|\n${metadata}\n\n### Question\n\n${question.question}${supportingContent ? `\n\n${supportingContent}` : ''}\n\n### Choices\n\n${choices}\n\n### Correct Answer\n\n**${question.correctOptionId}.** ${correctChoice?.text ?? 'Unavailable'}`;
+    if (!includeExplanations) return entry;
     const structured = question.structuredExplanation
       ? renderLearnerBlocks(question.structuredExplanation.blocks)
       : renderLegacyQuestionExplanation(question);
     const authoring = question.structuredExplanation
       ? renderAuthoringBlocks(question.structuredExplanation.blocks)
       : renderLegacyAuthoring(question);
-    const supportingContent = renderSupportingQuestionContent(question);
-    const choices = question.choices.map((choice) => `- **${choice.id}.** ${choice.text}`).join('\n');
-    const metadata = renderQuestionMetadata(question, classificationIndex.get(questionId));
-    return `## ${index + 1}. ${question.id}\n\n### Metadata\n\n| Field | Value |\n|---|---|\n${metadata}\n\n### Question\n\n${question.question}${supportingContent ? `\n\n${supportingContent}` : ''}\n\n### Choices\n\n${choices}\n\n### Correct Answer\n\n**${question.correctOptionId}.** ${correctChoice?.text ?? 'Unavailable'}\n\n### Learner View\n\n${structured}\n\n### Authoring View\n\n${authoring}`;
-  }).join('\n\n---\n\n');
+    return `${entry}\n\n### Learner View\n\n${structured}\n\n### Authoring View\n\n${authoring}`;
+  });
+
   // Deliberately no character count in the header: the count depends on the
   // finished string, so embedding it would be self-referential and never settle.
   const header = [
@@ -795,7 +825,37 @@ export function createReviewMarkdown(
     `- Question IDs (batch order): ${batch.questionIds.join(', ')}`,
     `- Export format: ${REVIEW_MARKDOWN_FORMAT}`,
   ].join('\n');
-  return `${header}\n\n${body}\n`;
+
+  return { header, entries };
+}
+
+export function createReviewMarkdown(
+  batch: RefinementBatch,
+  questions: readonly Question[],
+  options: ReviewMarkdownOptions = {},
+): string {
+  const { header, entries } = renderBatchMarkdownParts(batch, questions, options, true);
+  return `${header}\n\n${entries.join(QUESTION_ENTRY_SEPARATOR)}\n`;
+}
+
+/**
+ * The review Markdown with every explanation section removed: batch header,
+ * numbered item, metadata table, Question, Choices, Correct Answer, next.
+ *
+ * Same generator as {@link createReviewMarkdown} — not a second format. What is
+ * absent is exactly the teaching content: Learner View, Authoring View, and the
+ * rationale, steps, mental shortcut, formula, tip, and distractor blocks they
+ * project, plus the two raw-JSON authoring sections (Number-Series Data, Task
+ * Instance). The authored passage and structured stimulus stay, because they are
+ * what the question asks about.
+ */
+export function createQuestionSetMarkdown(
+  batch: RefinementBatch,
+  questions: readonly Question[],
+  options: ReviewMarkdownOptions = {},
+): string {
+  const { header, entries } = renderBatchMarkdownParts(batch, questions, options, false);
+  return `${header}\n\n${entries.join(QUESTION_ENTRY_SEPARATOR)}\n`;
 }
 
 export function createRawBatchJson(
@@ -841,6 +901,37 @@ export function createRawJsonExport(
   options: BuildExportDocumentOptions = {},
 ): ExportDocument {
   return buildExportDocument(createRawBatchJson(batch, questions), options);
+}
+
+/**
+ * The batch as a practice set: the exact Review Markdown v2 projection, stopped
+ * after Correct Answer.
+ *
+ * Chunked with {@link buildExportDocumentFromUnits} rather than the line-boundary
+ * chunker, because a set pasted into a tutor or a document is only usable if
+ * every question it contains arrives whole. The units carry their own separators
+ * (`unitSeparator: ''`), so the pieces concatenate to exactly the string
+ * {@link createQuestionSetMarkdown} returns — the batch header, then one whole
+ * question per unit. Same fail-closed contract as the other two formats: an
+ * unresolved batch ID throws instead of shortening the set silently.
+ */
+export function createQuestionSetExport(
+  batch: RefinementBatch,
+  questions: readonly Question[],
+  options: ReviewExportOptions = {},
+): ExportDocument {
+  const parts = renderBatchMarkdownParts(batch, questions, options, false);
+  const units = [
+    `${parts.header}\n\n`,
+    ...parts.entries.map((entry, index) =>
+      index === parts.entries.length - 1 ? `${entry}\n` : `${entry}${QUESTION_ENTRY_SEPARATOR}`),
+  ];
+  return buildExportDocumentFromUnits(units, {
+    ...options,
+    unitSeparator: '',
+    describeUnit: (index) =>
+      index === 0 ? 'the batch header' : `question ${batch.questionIds[index - 1] ?? index}`,
+  });
 }
 
 export function workspaceStateLabel(state: WorkspaceQuestionState): string {

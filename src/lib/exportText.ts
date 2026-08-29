@@ -207,8 +207,21 @@ export function buildExportDocument(
   const lineEnding = options.lineEnding ?? EXPORT_LINE_ENDING;
   const chunkCharacterLimit = options.chunkCharacterLimit ?? EXPORT_CHUNK_CHARACTER_LIMIT;
   const text = normalizeLineEndings(rawText, lineEnding);
-  const pieces = splitExportText(text, chunkCharacterLimit);
+  return assembleExportDocument(
+    text,
+    splitExportText(text, chunkCharacterLimit),
+    lineEnding,
+    chunkCharacterLimit,
+  );
+}
 
+/** Numbers the pieces and measures each one. Shared by both builders. */
+function assembleExportDocument(
+  text: string,
+  pieces: readonly string[],
+  lineEnding: ExportLineEnding,
+  chunkCharacterLimit: number,
+): ExportDocument {
   let startOffset = 0;
   const chunks = pieces.map((piece, index) => {
     const chunk: ExportChunk = {
@@ -232,6 +245,67 @@ export function buildExportDocument(
     chunkCharacterLimit,
     chunks,
   };
+}
+
+export interface BuildExportDocumentFromUnitsOptions extends BuildExportDocumentOptions {
+  /** Placed between consecutive units, and counted as part of the earlier one. */
+  unitSeparator?: string;
+  /** Names a unit in the error thrown when it cannot fit a chunk on its own. */
+  describeUnit?: (index: number) => string;
+}
+
+/**
+ * Same counting and copying contract as {@link buildExportDocument}, but the
+ * boundaries are chosen so that no unit is ever split across two chunks.
+ *
+ * Each unit becomes one indivisible segment (the unit plus the separator that
+ * follows it, except for the last), and chunks are packed greedily: a segment
+ * that would push the chunk past the limit starts the next chunk instead. The
+ * segments still concatenate to `text` in order, so `chunks.join('')` reproduces
+ * `text` exactly and every {@link exportDocumentIntegrityErrors} check holds.
+ *
+ * Fails closed rather than quietly truncating: a single unit longer than the
+ * limit cannot be represented under this contract, so it throws.
+ */
+export function buildExportDocumentFromUnits(
+  units: readonly string[],
+  options: BuildExportDocumentFromUnitsOptions = {},
+): ExportDocument {
+  const lineEnding = options.lineEnding ?? EXPORT_LINE_ENDING;
+  const chunkCharacterLimit = options.chunkCharacterLimit ?? EXPORT_CHUNK_CHARACTER_LIMIT;
+  if (!Number.isInteger(chunkCharacterLimit) || chunkCharacterLimit < 1) {
+    throw new RangeError(`Chunk character limit must be a positive integer, received ${String(chunkCharacterLimit)}.`);
+  }
+  const separator = normalizeLineEndings(options.unitSeparator ?? '\n\n', lineEnding);
+
+  // An empty unit contributes nothing at all, separator included — otherwise it
+  // would pad the document with a break that belongs to no question.
+  const present = units
+    .map((unit, index) => ({ index, text: normalizeLineEndings(unit, lineEnding) }))
+    .filter((unit) => unit.text.length > 0);
+  const segments = present.map((unit, position) => ({
+    index: unit.index,
+    text: position === present.length - 1 ? unit.text : unit.text + separator,
+  }));
+
+  const pieces: string[] = [];
+  let current = '';
+  for (const segment of segments) {
+    if (segment.text.length > chunkCharacterLimit) {
+      const name = options.describeUnit?.(segment.index) ?? `unit ${segment.index + 1}`;
+      throw new RangeError(
+        `Could not chunk this export: ${name} is ${segment.text.length} characters, over the ${chunkCharacterLimit}-character limit, and splitting it would break the question apart.`,
+      );
+    }
+    if (current.length > 0 && current.length + segment.text.length > chunkCharacterLimit) {
+      pieces.push(current);
+      current = '';
+    }
+    current += segment.text;
+  }
+  if (current.length > 0) pieces.push(current);
+
+  return assembleExportDocument(pieces.join(''), pieces, lineEnding, chunkCharacterLimit);
 }
 
 /**

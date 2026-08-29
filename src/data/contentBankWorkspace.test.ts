@@ -3,6 +3,8 @@ import { createNormalizedCatalog } from './contentCatalog';
 import {
   buildSubjectDashboardSummary,
   buildSubjectWorkspaceData,
+  createQuestionSetExport,
+  createQuestionSetMarkdown,
   createRawBatchJson,
   createRawJsonExport,
   createReviewExport,
@@ -17,7 +19,7 @@ import {
   validateWorkspaceBatch,
   workspaceStateLabel,
 } from './contentBankWorkspace';
-import { exportDocumentIntegrityErrors } from '@/lib/exportText';
+import { EXPORT_CHUNK_CHARACTER_LIMIT, exportDocumentIntegrityErrors } from '@/lib/exportText';
 import type { ClassificationRecord } from './taxonomy';
 import type { Question, Subject } from '@/types';
 
@@ -462,5 +464,332 @@ describe('Content Bank workspace data', () => {
     expect(() => createReviewMarkdown(invalid, [])).toThrow('question cler-missing is not in the active production catalog');
     expect(() => createRawBatchJson(invalid, [])).toThrow('question cler-missing is not in the active production catalog');
     expect(getBatchQuestions(invalid, catalog)).toEqual([]);
+  });
+});
+
+describe('Question Set export — review Markdown minus the explanations', () => {
+  const SEPARATOR = '\n\n---\n\n';
+
+  /** Numbered question headings, e.g. `## 3. cler-test-002`. */
+  const questionHeadings = (text: string): number => text.match(/^## \d+\. /gm)?.length ?? 0;
+  const occurrences = (text: string, needle: string): number => text.split(needle).length - 1;
+
+  /**
+   * The indivisible units the chunker is handed, recovered from the finished
+   * Markdown: the batch header, then one unit per question carrying the
+   * separator that follows it. Every test that asserts a chunk boundary checks
+   * this reconstruction against the real output first.
+   */
+  function markdownUnits(markdown: string): string[] {
+    const headerEnd = markdown.indexOf('## 1. ');
+    const entries = markdown.slice(headerEnd).split(SEPARATOR);
+    return [
+      markdown.slice(0, headerEnd),
+      ...entries.map((entry, index) => (index === entries.length - 1 ? entry : entry + SEPARATOR)),
+    ];
+  }
+
+  const richQuestion: Question = {
+    id: 'num-9990',
+    examLevel: 'Both',
+    subject: 'Numerical Reasoning',
+    topic: 'Decimals',
+    subtopic: 'Multiplication of Decimals',
+    difficulty: 'Easy',
+    question: 'What is 4.25 × 3.6?',
+    choices: [
+      { id: 'A', text: '15.3' },
+      { id: 'B', text: '14.7' },
+      { id: 'C', text: '15.9' },
+      { id: 'D', text: '16.2' },
+      { id: 'E', text: '15.0' },
+    ],
+    correctOptionId: 'E',
+    explanation: 'Legacy explanation prose that must never reach the export.',
+    steps: ['A worked step that must never reach the export.'],
+    distractorExplanations: { B: 'A distractor note that must never reach the export.' },
+    tip: { label: 'Exam Tip', text: 'A tip that must never reach the export.' },
+    tags: ['decimals', 'multiplication'],
+    reference: 'Test reference',
+    source: 'Test source',
+    numberSeries: { sequence: [2, 4, null], missingPosition: 3 },
+  } as Question;
+
+  const richBatch = {
+    id: 'test-question-set',
+    title: 'Test Question Set',
+    family: 'Decimals',
+    status: 'ready-for-qa' as const,
+    createdAt: '2026-08-24T09:00:00+08:00',
+    questionIds: ['num-9990'],
+  };
+
+  /** A batch large enough to exceed the real 8,000-character chunk limit. */
+  function bulk(count: number) {
+    const questions = Array.from({ length: count }, (_, index) =>
+      question(`cler-bulk-${String(index + 1).padStart(3, '0')}`, 'Filing & Alphabetizing'));
+    return {
+      batch: { ...readyBatch, id: 'test-bulk', title: 'Test Bulk', questionIds: questions.map((item) => item.id) },
+      questions,
+      options: { classifications: questions.map((item) => classification(item.id, item.topic)) },
+    };
+  }
+
+  it('is the review Markdown with each entry cut after Correct Answer', () => {
+    const catalog = testCatalog();
+    const batch = { ...readyBatch, questionIds: ['cler-test-001', 'cler-test-003'] };
+    const questions = batch.questionIds.map((id) => catalog.getQuestion(id)!);
+    const options = { classifications: questions.map((item) => classification(item.id, item.topic)) };
+
+    const review = createReviewMarkdown(batch, questions, options);
+    const set = createQuestionSetMarkdown(batch, questions, options);
+
+    // Not a second format: cutting each review entry at `### Learner View`
+    // reproduces the Question Set exactly — same header, numbering, metadata
+    // table, section headings, and choice formatting. Legacy prose (001) and a
+    // structured explanation (003) are both covered.
+    const reviewEntries = review.split(SEPARATOR);
+    const setEntries = set.split(SEPARATOR);
+    expect(setEntries).toHaveLength(reviewEntries.length);
+    setEntries.forEach((entry, index) => {
+      const cut = reviewEntries[index].indexOf('\n\n### Learner View');
+      expect(cut).toBeGreaterThan(0);
+      const trailingNewline = index === setEntries.length - 1 ? '\n' : '';
+      expect(entry).toBe(reviewEntries[index].slice(0, cut) + trailingNewline);
+    });
+  });
+
+  it('opens with the batch header and the complete per-question metadata table', () => {
+    const document = createQuestionSetExport(richBatch, [richQuestion]);
+    const { text } = document;
+
+    expect(text.startsWith([
+      '# Test Question Set',
+      '',
+      '- Batch ID: test-question-set',
+      '- Family: Decimals',
+      '- Status: Ready for QA',
+      '- Question count: 1',
+      '- Created: 2026-08-24T09:00:00+08:00',
+      '- Question IDs (batch order): num-9990',
+      `- Export format: ${REVIEW_MARKDOWN_FORMAT}`,
+      '',
+      '## 1. num-9990',
+      '',
+      '### Metadata',
+      '',
+      '| Field | Value |',
+      '|---|---|',
+      '| ID | num-9990 |',
+    ].join('\n'))).toBe(true);
+
+    // Every metadata row the review export renders, in the same order — the
+    // Question Set drops explanations, never metadata.
+    const fields = [
+      'ID', 'Subject', 'Exam level', 'Topic / family', 'Question topic', 'Subtopic', 'Difficulty',
+      'Correct option', 'Choice count', 'Question type', 'Question format', 'Task format', 'Pool',
+      'Storage mode', 'Group', 'Tags', 'Reference', 'Source', 'Content version', 'Content status',
+      'Explanation source',
+    ];
+    const positions = fields.map((field) => text.indexOf(`| ${field} |`));
+    fields.forEach((field, index) => {
+      expect(positions[index], `| ${field} | must be present`).toBeGreaterThan(0);
+    });
+    expect([...positions].sort((left, right) => left - right)).toEqual(positions);
+
+    expect(text).toContain('| Subject | Numerical Reasoning |');
+    expect(text).toContain('| Difficulty | Easy |');
+    expect(text).toContain('| Correct option | E |');
+    expect(text).toContain('| Choice count | 5 |');
+    expect(text).toContain('| Tags | decimals, multiplication |');
+    expect(text).toContain('| Reference | Test reference |');
+    expect(text).toContain('| Explanation source | legacy prose |');
+
+    expect(exportDocumentIntegrityErrors(document)).toEqual([]);
+    expect(document.characterCount).toBe(text.length);
+    expect(document.chunkCharacterLimit).toBe(EXPORT_CHUNK_CHARACTER_LIMIT);
+    expect(document.lineEnding).toBe('LF');
+    expect(text).not.toContain('\r');
+    expect(text).toBe(createQuestionSetMarkdown(richBatch, [richQuestion]));
+  });
+
+  it('renders Question, Choices, and Correct Answer, then stops', () => {
+    const { text } = createQuestionSetExport(richBatch, [richQuestion]);
+
+    expect(text).toContain([
+      '### Question',
+      '',
+      'What is 4.25 × 3.6?',
+      '',
+      '### Choices',
+      '',
+      '- **A.** 15.3',
+      '- **B.** 14.7',
+      '- **C.** 15.9',
+      '- **D.** 16.2',
+      '- **E.** 15.0',
+      '',
+      '### Correct Answer',
+      '',
+      '**E.** 15.0',
+    ].join('\n'));
+    // Nothing follows the answer but the document's final newline.
+    expect(text.endsWith('### Correct Answer\n\n**E.** 15.0\n')).toBe(true);
+  });
+
+  it('contains no explanation, rationale, shortcut, authoring section, or JSON syntax', () => {
+    const structured = question('cler-test-003', 'Spelling', 'Medium', true);
+    const batch = { ...richBatch, questionIds: [richQuestion.id, structured.id] };
+    const { text } = createQuestionSetExport(batch, [richQuestion, structured]);
+
+    for (const forbidden of [
+      '### Learner View',
+      '### Authoring View',
+      '**Explanation**',
+      'Legacy explanation prose',
+      'Legacy explanation for cler-test-003.',
+      '**Steps**',
+      'A worked step',
+      '**Distractor Explanations**',
+      'A distractor note',
+      'Exam Tip',
+      'A tip that',
+      'Mental Shortcut',
+      'Rationale',
+      '**Rule**',
+      'Apply the rule.',
+      'What to Notice',
+      '**Correct Answer:**',
+      'structuredExplanation',
+      '- type: ',
+      '### Number-Series Data',
+      'missingPosition',
+      '```',
+      '{',
+    ]) {
+      expect(text, `${forbidden} must not appear`).not.toContain(forbidden);
+    }
+    // The structured question keeps its metadata row — only its blocks are gone.
+    expect(text).toContain('| Explanation source | structured |');
+  });
+
+  it('keeps the stimulus a question cannot be answered without, and drops the raw authoring payloads', () => {
+    const withStimulus: Question = {
+      ...richQuestion,
+      question: 'What is the main idea of the passage?',
+      passage: 'Ang programa ay nagbigay ng ₱1,250 kada pamilya sa loob ng tatlong buwan.',
+      contentBlocks: [
+        { kind: 'text', id: 'blk-notice', title: 'Notice', body: 'Read the memo before answering.' },
+        { kind: 'table', id: 'blk-rates', title: 'Rates', columns: ['Year', 'Rate'], rows: [['2024', '4%'], ['2025', '6%']] },
+      ],
+      taskInstance: { kind: 'spelling_choice', payload: { correct: 'accommodate' } },
+    };
+    const batch = { ...richBatch, questionIds: [withStimulus.id] };
+    const { text } = createQuestionSetExport(batch, [withStimulus]);
+    const review = createReviewMarkdown(batch, [withStimulus]);
+
+    expect(text).toContain('### Passage / Stimulus\n\nAng programa ay nagbigay ng ₱1,250 kada pamilya sa loob ng tatlong buwan.');
+    expect(text).toContain('### Structured Stimulus\n\n**Notice** (text)\n\nRead the memo before answering.');
+    expect(text).toContain('| Year | Rate |');
+    expect(text).toContain('| 2025 | 6% |');
+
+    // The two raw-JSON authoring sections are the only difference from the
+    // review export above the answer: they are payloads, not stimulus.
+    expect(review).toContain('### Number-Series Data');
+    expect(review).toContain('### Task Instance');
+    expect(text).not.toContain('### Number-Series Data');
+    expect(text).not.toContain('### Task Instance');
+    expect(text).not.toContain('accommodate');
+    expect(text).not.toContain('```');
+  });
+
+  it('numbers every question in batch order, once each, separated by a rule', () => {
+    const catalog = testCatalog();
+    const batch = { ...readyBatch, questionIds: ['cler-test-003', 'cler-test-001', 'cler-test-002'] };
+    const questions = ['cler-test-001', 'cler-test-002', 'cler-test-003'].map((id) => catalog.getQuestion(id)!);
+    const { text } = createQuestionSetExport(batch, questions);
+
+    expect(text).toContain('- Question IDs (batch order): cler-test-003, cler-test-001, cler-test-002');
+    expect(questionHeadings(text)).toBe(3);
+    expect(text.split(SEPARATOR)).toHaveLength(3);
+    batch.questionIds.forEach((id, index) => {
+      expect(text).toContain(`## ${index + 1}. ${id}`);
+      expect(occurrences(text, `Which answer is correct for ${id}?`)).toBe(1);
+      expect(occurrences(text, `**B.** ${id} B`)).toBe(2); // the choice, then the answer
+    });
+    expect(text.indexOf('## 1. cler-test-003')).toBeLessThan(text.indexOf('## 2. cler-test-001'));
+    expect(text.indexOf('## 2. cler-test-001')).toBeLessThan(text.indexOf('## 3. cler-test-002'));
+  });
+
+  it('chunks a large batch at 8,000 characters without splitting a question', () => {
+    const { batch, questions, options } = bulk(40);
+    const document = createQuestionSetExport(batch, questions, options);
+
+    expect(document.text).toBe(createQuestionSetMarkdown(batch, questions, options));
+    expect(document.chunkCharacterLimit).toBe(EXPORT_CHUNK_CHARACTER_LIMIT);
+    expect(document.characterCount).toBeGreaterThan(EXPORT_CHUNK_CHARACTER_LIMIT);
+    expect(document.chunks.length).toBeGreaterThan(1);
+    expect(exportDocumentIntegrityErrors(document)).toEqual([]);
+    expect(document.chunks.map((chunk) => chunk.text).join('')).toBe(document.text);
+
+    for (const chunk of document.chunks) {
+      expect(chunk.characterCount).toBeLessThanOrEqual(EXPORT_CHUNK_CHARACTER_LIMIT);
+      // A split question would leave a heading without its metadata table,
+      // choices, and answer — or an answer without its heading.
+      const heads = questionHeadings(chunk.text);
+      expect(heads).toBeGreaterThan(0);
+      expect(occurrences(chunk.text, '### Metadata')).toBe(heads);
+      expect(occurrences(chunk.text, '### Question')).toBe(heads);
+      expect(occurrences(chunk.text, '### Choices')).toBe(heads);
+      expect(occurrences(chunk.text, '### Correct Answer')).toBe(heads);
+    }
+    expect(document.chunks.reduce((total, chunk) => total + questionHeadings(chunk.text), 0)).toBe(40);
+    for (const item of questions) {
+      expect(document.chunks.filter((chunk) => chunk.text.includes(`## `) && chunk.text.includes(`. ${item.id}\n`))).toHaveLength(1);
+    }
+  });
+
+  it('packs as many whole questions into a chunk as fit', () => {
+    const catalog = testCatalog();
+    const batch = { ...readyBatch, questionIds: ['cler-test-001', 'cler-test-002', 'cler-test-003'] };
+    const questions = batch.questionIds.map((id) => catalog.getQuestion(id)!);
+    const options = { classifications: questions.map((item) => classification(item.id, item.topic)) };
+
+    const markdown = createQuestionSetMarkdown(batch, questions, options);
+    const units = markdownUnits(markdown);
+    expect(units).toHaveLength(4); // header + three questions
+    expect(units.join('')).toBe(markdown);
+
+    // Exactly enough room for the header and the first two questions.
+    const chunkCharacterLimit = units[0].length + units[1].length + units[2].length;
+    const document = createQuestionSetExport(batch, questions, { ...options, chunkCharacterLimit });
+
+    expect(document.text).toBe(markdown);
+    expect(document.chunks).toHaveLength(2);
+    expect(document.chunks[0].text).toBe(units[0] + units[1] + units[2]);
+    expect(document.chunks[1].text).toBe(units[3]);
+    expect(document.chunks.every((chunk) => chunk.characterCount <= chunkCharacterLimit)).toBe(true);
+    expect(exportDocumentIntegrityErrors(document)).toEqual([]);
+  });
+
+  it('fails closed on an unresolved ID and on a question too large to chunk whole', () => {
+    const catalog = testCatalog();
+    const invalid = { ...readyBatch, questionIds: ['cler-missing'] };
+    expect(() => createQuestionSetMarkdown(invalid, [])).toThrow('question cler-missing is not in the active production catalog');
+    expect(() => createQuestionSetExport(invalid, [])).toThrow('question cler-missing is not in the active production catalog');
+
+    const batch = { ...readyBatch, questionIds: ['cler-test-001'] };
+    const questions = [catalog.getQuestion('cler-test-001')!];
+    const options = { classifications: questions.map((item) => classification(item.id, item.topic)) };
+    const [header, entry] = markdownUnits(createQuestionSetMarkdown(batch, questions, options));
+
+    // Room for the header but not for the question: truncating or splitting it
+    // would be worse than refusing.
+    const chunkCharacterLimit = header.length + 1;
+    expect(chunkCharacterLimit).toBeLessThan(entry.length);
+    expect(() => createQuestionSetExport(batch, questions, { ...options, chunkCharacterLimit }))
+      .toThrow(/question cler-test-001 is \d+ characters, over the \d+-character limit, and splitting it would break the question apart/);
+    expect(() => createQuestionSetExport(batch, questions, { ...options, chunkCharacterLimit: 40 }))
+      .toThrow(/the batch header is \d+ characters, over the 40-character limit/);
   });
 });

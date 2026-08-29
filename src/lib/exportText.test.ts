@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   buildExportDocument,
+  buildExportDocumentFromUnits,
   characterCountCountingBreaksAsOne,
   characterCountCountingBreaksAsTwo,
   countLineBreaks,
@@ -370,6 +371,107 @@ describe('export chunking', () => {
       const document = buildExportDocument(syntheticReviewMarkdown(questionCount));
       expect(exportDocumentIntegrityErrors(document), `questionCount ${questionCount}`).toEqual([]);
       expect(document.chunks.every((chunk) => chunk.characterCount <= EXPORT_CHUNK_CHARACTER_LIMIT)).toBe(true);
+    }
+  });
+});
+
+describe('unit-aware export chunking', () => {
+  /** Three questions, each shaped like a Question Set entry. */
+  const UNITS = [
+    'What is 4.25 × 3.6?\n\nA. 15.3\nB. 14.7\nC. 15.9\nD. 16.2\nE. 15.0\n\nCorrect Answer: A. 15.3',
+    'Which name files first?\n\nA. Santos\nB. Santos-Reyes\nC. Santos Reyes\nD. Santoso\nE. Santo\n\nCorrect Answer: E. Santo',
+    'Ang halaga ay ₱1,250 — ilan ang kada buwan?\n\nA. ₱100\nB. ₱250\nC. ₱500\nD. ₱750\nE. ₱1,000\n\nCorrect Answer: B. ₱250',
+  ];
+
+  it('joins units with one blank line and keeps the same document contract', () => {
+    const document = buildExportDocumentFromUnits(UNITS);
+    expect(document.text).toBe(UNITS.join('\n\n'));
+    expect(document.characterCount).toBe(document.text.length);
+    expect(document.chunkCharacterLimit).toBe(EXPORT_CHUNK_CHARACTER_LIMIT);
+    expect(document.lineEnding).toBe('LF');
+    expect(document.chunks).toHaveLength(1);
+    expect(exportDocumentIntegrityErrors(document)).toEqual([]);
+    // No trailing separator, and nothing added after the last unit.
+    expect(document.text.endsWith('Correct Answer: B. ₱250')).toBe(true);
+  });
+
+  it('starts a new chunk rather than splitting a unit, at every limit down to the largest unit', () => {
+    const largest = Math.max(...UNITS.map((unit) => unit.length + 2));
+    for (let limit = largest; limit <= 400; limit += 1) {
+      const document = buildExportDocumentFromUnits(UNITS, { chunkCharacterLimit: limit });
+      expect(exportDocumentIntegrityErrors(document), `limit ${limit}`).toEqual([]);
+      expect(document.text, `limit ${limit}`).toBe(UNITS.join('\n\n'));
+      expect(document.chunks.map((chunk) => chunk.text).join('')).toBe(document.text);
+      // Every unit sits whole inside exactly one chunk.
+      for (const unit of UNITS) {
+        expect(document.chunks.filter((chunk) => chunk.text.includes(unit)), `limit ${limit}`).toHaveLength(1);
+      }
+    }
+  });
+
+  it('packs greedily: as many whole units per chunk as the limit allows', () => {
+    const segments = UNITS.map((unit, index) => (index === UNITS.length - 1 ? unit : `${unit}\n\n`));
+    const twoFit = segments[0].length + segments[1].length;
+
+    const perChunk = buildExportDocumentFromUnits(UNITS, { chunkCharacterLimit: twoFit - 1 });
+    expect(perChunk.chunks).toHaveLength(3);
+
+    const paired = buildExportDocumentFromUnits(UNITS, { chunkCharacterLimit: twoFit });
+    expect(paired.chunks).toHaveLength(2);
+    expect(paired.chunks[0].text).toBe(segments[0] + segments[1]);
+    expect(paired.chunks[1].text).toBe(segments[2]);
+    expect(exportDocumentIntegrityErrors(paired)).toEqual([]);
+  });
+
+  it('refuses to emit a document at all when one unit cannot fit a chunk', () => {
+    expect(() => buildExportDocumentFromUnits(UNITS, { chunkCharacterLimit: 40 }))
+      .toThrow(RangeError);
+    expect(() => buildExportDocumentFromUnits(UNITS, {
+      chunkCharacterLimit: 40,
+      describeUnit: (index) => `question q-${index + 1}`,
+    })).toThrow('question q-1 is 87 characters, over the 40-character limit');
+    expect(() => buildExportDocumentFromUnits(UNITS, { chunkCharacterLimit: 0 })).toThrow(RangeError);
+  });
+
+  it('normalizes line endings once, per unit, exactly as the text builder does', () => {
+    const document = buildExportDocumentFromUnits(['alpha\r\nbravo', 'charlie\rdelta']);
+    expect(document.text).toBe('alpha\nbravo\n\ncharlie\ndelta');
+    expect(document.text).not.toContain('\r');
+    expect(document.lineBreakCount).toBe(countLineBreaks(document.text));
+
+    const crlf = buildExportDocumentFromUnits(['alpha\nbravo', 'charlie'], { lineEnding: 'CRLF' });
+    expect(crlf.text).toBe('alpha\r\nbravo\r\n\r\ncharlie');
+    expect(exportDocumentIntegrityErrors(crlf)).toEqual([]);
+  });
+
+  it('accepts a custom separator and skips empty units without emitting empty chunks', () => {
+    const document = buildExportDocumentFromUnits(['one', 'two'], { unitSeparator: '\n---\n' });
+    expect(document.text).toBe('one\n---\ntwo');
+
+    const sparse = buildExportDocumentFromUnits(['', 'only', '']);
+    expect(sparse.text).toBe('only');
+    expect(sparse.chunks).toHaveLength(1);
+    expect(exportDocumentIntegrityErrors(sparse)).toEqual([]);
+
+    const empty = buildExportDocumentFromUnits([]);
+    expect(empty.characterCount).toBe(0);
+    expect(empty.chunks).toEqual([]);
+    expect(exportDocumentIntegrityErrors(empty)).toEqual([]);
+  });
+
+  it('keeps a real-sized set of questions inside the default limit, every unit whole', () => {
+    // Each stem carries its own index, so "this unit appears in exactly one
+    // chunk" is a real assertion rather than a coincidence of repeated text.
+    const many = Array.from({ length: 120 }, (_, index) =>
+      UNITS[index % UNITS.length].replace('?', ` (item ${index})?`));
+    expect(new Set(many).size).toBe(many.length);
+    const document = buildExportDocumentFromUnits(many);
+    expect(document.characterCount).toBeGreaterThan(10_000);
+    expect(document.chunks.length).toBeGreaterThan(1);
+    expect(exportDocumentIntegrityErrors(document)).toEqual([]);
+    expect(document.chunks.every((chunk) => chunk.characterCount <= EXPORT_CHUNK_CHARACTER_LIMIT)).toBe(true);
+    for (const unit of many) {
+      expect(document.chunks.filter((chunk) => chunk.text.includes(unit))).toHaveLength(1);
     }
   });
 });
