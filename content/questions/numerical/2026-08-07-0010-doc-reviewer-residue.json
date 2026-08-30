@@ -6,7 +6,7 @@
     "topic": "Fractions",
     "subtopic": "Ordering Fractions by Value",
     "difficulty": "Medium",
-    "question": "The following four fractions are arranged from least to greatest. Which fraction has the SECOND GREATEST value?\n\n3/8, 5/9, 7/12, 11/18",
+    "question": "Which fraction has the SECOND GREATEST value among the following?\n\n3/8, 5/9, 7/12, 11/18",
     "choices": [
       {
         "id": "A",
@@ -30,22 +30,18 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "To order fractions reliably, convert each to a common denominator or to decimals. The LCD of 8, 9, 12, and 18 is 72: 3/8 = 27/72 ≈ 0.375; 5/9 = 40/72 ≈ 0.556; 7/12 = 42/72 ≈ 0.583; 11/18 = 44/72 ≈ 0.611. Ranked from least to greatest: 3/8 < 5/9 < 7/12 < 11/18. The greatest value is 11/18 and the second greatest is 7/12. A common trap is to rank fractions by numerator or denominator alone — a larger numerator does not guarantee a larger fraction if the denominators differ. Always convert to a common denominator (or decimal) before placing fractions in order.",
-    "steps": [
-      "Convert each fraction to 72nds: 3/8 = 27/72, 5/9 = 40/72, 7/12 = 42/72, 11/18 = 44/72.",
-      "Rank by numerator (now safe because denominators match): 27 < 40 < 42 < 44.",
-      "Full order: 3/8 < 5/9 < 7/12 < 11/18.",
-      "Greatest is 11/18; second greatest is 7/12."
-    ],
-    "distractorExplanations": {
-      "B": "3/8 is the LEAST of the four fractions, not the second greatest. It equals 27/72, the smallest numerator among the 72nds. Choosing it suggests comparing raw numerators (3 < 5 < 7 < 11) without converting, which ranks them correctly here only by coincidence — a method that fails as soon as denominators differ.",
-      "C": "5/9 is the second smallest (40/72), not the second greatest. Confusing 'second from the bottom' with 'second from the top' is a direction error — the question asks for the second greatest, which is the one just below the maximum.",
-      "D": "11/18 is the GREATEST value (44/72), not the second greatest. Picking the outright winner when the question asks for the runner-up is a reading error; always check whether the question asks for the largest or the one just below it.",
-      "E": "Estimates 7/12≈0.583 then substitutes the superficially similar fraction 4/7≈0.571 — a close but distinct value arising from incorrect fraction equivalence reasoning."
-    },
-    "tip": {
-      "label": "Math Shortcut",
-      "text": "To compare fractions quickly, convert to decimals: divide numerator by denominator. 7/12 ≈ 0.583, 11/18 ≈ 0.611. A single decimal glance settles most ordering questions without finding the LCD."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "A — 7/12"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Compare the four fractions:\n\n\\[\n\\frac{3}{8}=0.375\n\\]\n\n\\[\n\\frac{5}{9}≈0.556\n\\]\n\n\\[\n\\frac{7}{12}≈0.583\n\\]\n\n\\[\n\\frac{11}{18}≈0.611\n\\]\n\nFrom least to greatest:\n\n\\[\n\\frac{3}{8}<\\frac{5}{9}<\\frac{7}{12}<\\frac{11}{18}\n\\]\n\nTherefore, the second greatest fraction is **7/12**."
+        }
+      ]
     },
     "tags": [
       "fractions",
@@ -248,21 +244,23 @@
       }
     ],
     "correctOptionId": "E",
-    "explanation": "Convert every value to the same form to compare — decimals are the fastest. 3/5 = 0.6; 0.6 = 0.6; 60% = 60/100 = 0.6; 12/25 = 0.48. The first three all equal 0.6, but 12/25 = 0.48, which is different. To convert a fraction to a decimal, divide the numerator by the denominator: 12 ÷ 25 = 0.48. The confusion arises because 12/25 looks superficially similar to 12/20 = 0.6 — the denominator 25 is close to 20 but the values differ by 0.12. Whenever you see a set of mixed representations, convert them all to the same form before deciding.",
-    "steps": [
-      "Convert each value to a decimal: 3/5 = 0.6; 0.6 = 0.6; 60% = 0.60; 12/25 = 0.48.",
-      "Compare: 0.6 = 0.6 = 0.6 ≠ 0.48.",
-      "The outlier is 12/25 = 0.48."
-    ],
-    "distractorExplanations": {
-      "A": "3/5 = 6/10 = 0.6 = 60%. Choosing 3/5 as the outlier suggests confusing 3/5 with 3/8 (= 0.375) or 3/4 (= 0.75). Divide 3 by 5 directly: 3 ÷ 5 = 0.6, which matches the others.",
-      "B": "60% = 60/100 = 3/5 = 0.6. Choosing it as the outlier confuses 60% with 6% (= 0.06) or with percent-to-decimal conversion errors. Per cent means 'per hundred,' so 60% = 0.60, not 0.006 or 6.",
-      "C": "0.6 is 0.6 — the same decimal that 3/5 and 60% both reduce to. Choosing it as the outlier may stem from writing 0.6 as 6/10 and then incorrectly simplifying 6/10 to get something other than 3/5.",
-      "D": "9/15 reduces to 3/5 = 0.6, so it belongs with the equivalent group — verify by dividing 9 by 15 rather than judging by unfamiliar digits."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "To compare mixed representations quickly, convert everything to decimals: fraction ÷ = decimal; percent ÷ 100 = decimal. 12/25: 12 ÷ 25 = 0.48, not 0.6 — the denominator 25 is not the same as 20."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "E — 12/25"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Convert the values to decimals.\n\n\\[\n\\frac{3}{5}=0.6\n\\]\n\n\\[\n60%=0.6\n\\]\n\n\\[\n0.6=0.6\n\\]\n\n\\[\n\\frac{9}{15}=\\frac{3}{5}=0.6\n\\]\n\nBut:\n\n\\[\n\\frac{12}{25}=0.48\n\\]\n\nTherefore, **12/25** is the value that is not equivalent to the others."
+        },
+        {
+          "type": "collapsible",
+          "title": "Mental Shortcut",
+          "content": "Look for the outlier instead of converting every value in detail.\n\n\\[\n\\frac{12}{25}=\\frac{48}{100}=0.48\n\\]\n\nThe other listed values are all equal to 0.60, so **12/25** is the odd one out."
+        }
+      ]
     },
     "tags": [
       "fractions",

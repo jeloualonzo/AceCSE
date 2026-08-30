@@ -632,6 +632,152 @@ describe('structured explanation Practice/Results integration V3', () => {
     }
   });
 
+  it('renders all twelve Fractions Rationales in Practice and Results with only the four approved Mental Shortcuts', async () => {
+    const user = userEvent.setup();
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    const targets = [
+      ['num-0001', 3, 0],
+      ['num-0004', 4, 0],
+      ['num-0006', 4, 0],
+      ['num-0007', 3, 4],
+      ['num-0008', 5, 0],
+      ['num-0067', 2, 3],
+      ['num-0070', 2, 0],
+      ['num-0103', 4, 2],
+      ['num-0115', 5, 0],
+      ['num-0119', 5, 1],
+      ['num-0138', 2, 0],
+      ['num-0139', 3, 0],
+    ] as const;
+    const shortcutIds = new Set(['num-0007', 'num-0067', 'num-0103', 'num-0119']);
+    // No macro may reach the learner as raw backslash text. `\approx`, `\%`, and
+    // `\text{` are not implemented at all; `\cancel{`/`\cancelto{` now are, so the
+    // check on those two is that the tokenizer consumed them into MathML instead
+    // of printing them.
+    const assertSafeNotation = (root: HTMLElement, id: string) => {
+      for (const rawMacro of ['\\cancel{', '\\cancelto{', '\\approx', '\\%', '\\text{']) {
+        expect(root.innerHTML, `${id}:${rawMacro}`).not.toContain(rawMacro);
+      }
+      if (id === 'num-0115') expect(root.textContent).toContain('≈');
+      if (id === 'num-0119') expect(root.textContent).toContain('%');
+      if (id === 'num-0139') expect(root.textContent).not.toContain('\\(');
+    };
+
+    for (const [id, expectedEquationCount, shortcutEquationCount] of targets) {
+      const question = catalog.questions.get(id);
+      expect(question).toBeTruthy();
+      if (!question) continue;
+
+      renderWithTheme(
+        <QuestionCard
+          question={question}
+          selectedOptionId={question.correctOptionId}
+          onSelectOption={vi.fn()}
+          instantFeedback
+        />
+      );
+      const showExplanation = [...document.querySelectorAll('button')].find((button) => button.textContent?.trim() === 'Show Explanation');
+      expect(showExplanation).not.toBeNull();
+      await user.click(showExplanation!);
+      const practiceRoots = screen.getAllByTestId('structured-explanation');
+      expect(practiceRoots).toHaveLength(2);
+      for (const root of practiceRoots) {
+        assertProductionMath(root, expectedEquationCount);
+        assertSafeNotation(root, id);
+        expect(within(root).getByText('Rationale')).toBeInTheDocument();
+        expect(root.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
+        if (id === 'num-0006') {
+          // Each cancellation is its own visible step, so the learner sees what
+          // the divided numbers become — not just a claim that they cancelled.
+          expect(root.textContent).toContain('Divide 2 and 14 by 2:');
+          expect(root.textContent).toContain('Then divide 9 and 3 by 3:');
+        }
+        expect(root.querySelectorAll('h5')).toHaveLength(1);
+        const shortcutControl = root.querySelector('[data-testid="structured-collapsible"] button') as HTMLButtonElement | null;
+        if (shortcutIds.has(id)) {
+          expect(shortcutControl).not.toBeNull();
+          expect(shortcutControl).toHaveAttribute('aria-expanded', 'false');
+          const shortcutContent = root.querySelector('[data-testid="structured-collapsible-content"]');
+          expect(shortcutContent).not.toBeNull();
+          expect(shortcutContent).toHaveAttribute('hidden');
+          await user.click(shortcutControl!);
+          expect(shortcutControl).toHaveAttribute('aria-expanded', 'true');
+          expect(shortcutContent).not.toHaveAttribute('hidden');
+          assertProductionMath(root, expectedEquationCount + shortcutEquationCount);
+          assertSafeNotation(root, id);
+          if (id === 'num-0007') {
+            // The prose names the common factor and `\cancelto` then draws it:
+            // both 13s struck through, each carrying the 1 it becomes, followed by
+            // the reduced line. The learner sees what cancelled AND what it became.
+            expect(root.textContent).toContain(
+              'The 13 in the numerator and denominator are common factors. Divide both by 13:'
+            );
+            const cancels = [...root.querySelectorAll('[data-testid="math-cancel"]')]
+              .filter((mark) => !mark.closest('[hidden]'));
+            expect(cancels).toHaveLength(2);
+            for (const mark of cancels) {
+              const from = mark.querySelector('[data-cancel="from"]');
+              const to = mark.querySelector('[data-cancel="to"]');
+              expect(from?.textContent).toBe('13');
+              expect(from?.getAttribute('class')).toContain('line-through');
+              expect(to?.textContent).toBe('1');
+            }
+            const cancelEquation = [...root.querySelectorAll('[data-testid="structured-latex-equation"]')]
+              .find((equation) => equation.querySelector('[data-testid="math-cancel"]'));
+            expect(cancelEquation?.getAttribute('aria-label')).toBe(
+              '13 (cancels to 1)/12 × 24/13 (cancels to 1)'
+            );
+          }
+          await user.click(shortcutControl!);
+          expect(shortcutControl).toHaveAttribute('aria-expanded', 'false');
+          expect(shortcutContent).toHaveAttribute('hidden');
+        } else {
+          expect(shortcutControl).toBeNull();
+          expect(shortcutEquationCount).toBe(0);
+        }
+      }
+      cleanup();
+
+      renderWithTheme(
+        <ResultsScreen
+          attempt={attemptOver(`fractions-results-${id}`, 'Professional', [question])}
+          questionIndex={new Map([[question.id, question]])}
+          onRetake={vi.fn()}
+          onReturnToDashboard={vi.fn()}
+        />
+      );
+      const expandDetails = [...document.querySelectorAll('button')].find((button) => button.textContent?.trim() === 'Expand question details');
+      expect(expandDetails).not.toBeNull();
+      await user.click(expandDetails!);
+      const resultsRoot = screen.getByTestId('structured-explanation');
+      assertProductionMath(resultsRoot, expectedEquationCount);
+      assertSafeNotation(resultsRoot, id);
+      expect(within(resultsRoot).getByText('Rationale')).toBeInTheDocument();
+      expect(resultsRoot.textContent).toContain(`Correct Answer: ${question.correctOptionId}.`);
+      const resultsShortcut = resultsRoot.querySelector('[data-testid="structured-collapsible"] button') as HTMLButtonElement | null;
+      if (shortcutIds.has(id)) {
+        expect(resultsShortcut).not.toBeNull();
+        expect(resultsShortcut).toHaveAttribute('aria-expanded', 'false');
+        const resultsShortcutContent = resultsRoot.querySelector('[data-testid="structured-collapsible-content"]');
+        expect(resultsShortcutContent).not.toBeNull();
+        expect(resultsShortcutContent).toHaveAttribute('hidden');
+        await user.click(resultsShortcut!);
+        expect(resultsShortcut).toHaveAttribute('aria-expanded', 'true');
+        expect(resultsShortcutContent).not.toHaveAttribute('hidden');
+        assertProductionMath(resultsRoot, expectedEquationCount + shortcutEquationCount);
+        assertSafeNotation(resultsRoot, id);
+        await user.click(resultsShortcut!);
+        expect(resultsShortcut).toHaveAttribute('aria-expanded', 'false');
+        expect(resultsShortcutContent).toHaveAttribute('hidden');
+      } else {
+        expect(resultsShortcut).toBeNull();
+      }
+      cleanup();
+    }
+    // Twelve IDs, four of them with an expandable shortcut, drive ~48 real user
+    // events across Practice and Results — past the 5s default, and not a hang.
+  }, 15000);
+
   it('renders the migrated Batch 2–4 production Rationales as one clean section in Practice and Results', async () => {
     const user = userEvent.setup();
     const catalog = await loadContentCatalog(['Numerical Reasoning']);

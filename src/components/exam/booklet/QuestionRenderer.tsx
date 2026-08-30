@@ -8,7 +8,7 @@ import { NumberSeriesInstanceRenderer, hasCompactNumberSeriesInstance } from '..
 import { GrammarInstanceRenderer, hasCompactGrammarInstance } from '../GrammarInstanceRenderer';
 import { ExplanationPanel } from '../ExplanationPanel';
 import { QuestionStimulusRenderer } from '../QuestionStimulusRenderer';
-import { MathValue } from '../MathValue';
+import { MathText } from '../mathText';
 
 export interface QuestionRendererProps {
   question: Question;
@@ -107,7 +107,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
         <GrammarInstanceRenderer question={question} />
       ) : (
         <p className="text-base sm:text-lg font-medium text-[var(--acecse-primary-text)] dark:text-slate-100 leading-relaxed whitespace-pre-line mb-4">
-          {question.question}
+          <MathText text={question.question} keyPrefix="stem" />
         </p>
       )}
 
@@ -141,7 +141,7 @@ export const QuestionRenderer: React.FC<QuestionRendererProps> = React.memo(func
                 >
                   {option.id}
                 </span>
-                                  <span className="text-sm sm:text-base leading-snug"><MathValue value={option.text} /></span>
+                                  <span className="text-sm sm:text-base leading-snug"><MathText text={option.text} keyPrefix={`choice-${option.id}`} /></span>
 
               </span>
               <span

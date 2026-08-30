@@ -86,21 +86,23 @@
       }
     ],
     "correctOptionId": "B",
-    "explanation": "Two operations chain here: multiply the mixed numbers first, then convert dozens to individual items. Convert to improper fractions: 3⅓ = 10/3 and 2¼ = 9/4. Multiply: (10/3) × (9/4) = 90/12 = 7.5 dozen. Convert to items: 7.5 × 12 = 90 folders. Cross-cancellation speeds this up: the 3 in the denominator of 10/3 and the 9 in the numerator of 9/4 share a factor of 3, giving (10 × 3) / (1 × 4) = 30/4 = 7.5 dozen. The commmon trap is to truncate 3⅓ to 3 before multiplying, which loses one-third of a box.",
-    "steps": [
-      "Convert to improper fractions: 3⅓ = 10/3; 2¼ = 9/4.",
-      "Multiply: (10/3) × (9/4). Cross-cancel: 9 ÷ 3 = 3, giving (10 × 3) / (1 × 4) = 30/4 = 7.5 dozen.",
-      "Convert dozens to individual folders: 7.5 × 12 = 90 folders."
-    ],
-    "distractorExplanations": {
-      "A": "81 results from truncating 3⅓ to 3 boxes before multiplying: 3 × (9/4) × 12 = 3 × 27 = 81. Dropping the fractional third of a box loses 9 folders from the total.",
-      "C": "84 comes from computing the total dozens correctly as 7.5 but then rounding down to 7 before converting: 7 × 12 = 84. A fraction of a dozen is still a real quantity — 0.5 × 12 = 6 additional folders must be included.",
-      "D": "108 results from rounding 3⅓ up to 4 boxes before multiplying: 4 × (9/4) × 12 = 4 × 27 = 108. The officer has 3⅓ boxes, not 4 — the partial box counts as exactly one-third of a full box.",
-      "E": "Treats a 'dozen' as ten instead of twelve: (10/3)×(9/4)×10=75 individual folders."
-    },
-    "tip": {
-      "label": "Math Shortcut",
-      "text": "When multiplying mixed numbers, convert to improper fractions first, then look for cross-cancellation before multiplying out. Never truncate or round a mixed number before operating — fractions represent exact quantities."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "B — 90"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Convert the mixed numbers:\n\n\\[\n3\\frac{1}{3}=\\frac{10}{3}\n\\]\n\n\\[\n2\\frac{1}{4}=\\frac{9}{4}\n\\]\n\nMultiply:\n\n\\[\n\\frac{10}{3}\\times\\frac{9}{4}=\\frac{90}{12}=7.5\n\\]\n\nSo there are 7.5 dozen folders. Since one dozen is 12 folders:\n\n\\[\n7.5\\times12=90\n\\]\n\nTherefore, the officer has **90 folders**."
+        },
+        {
+          "type": "collapsible",
+          "title": "Mental Shortcut",
+          "content": "Convert the number of folders per box first.\n\nEach box holds 2¼ dozen, and 1 dozen is 12 folders, so:\n\n\\[\n2\\frac{1}{4}\\times12=27\n\\]\n\nEach box holds 27 folders.\n\nThen:\n\n\\[\n3\\frac{1}{3}\\times27=\\frac{10}{3}\\times27=90\n\\]\n\nSo the total is **90 folders**."
+        }
+      ]
     },
     "tags": [
       "fractions",

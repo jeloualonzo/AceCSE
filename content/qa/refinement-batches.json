@@ -1,5 +1,26 @@
 [
   {
+    "id": "fractions-batch-01",
+    "title": "Fractions — Batch 1",
+    "family": "Fractions",
+    "status": "frozen",
+    "createdAt": "2026-08-28T14:21:56.419Z",
+    "questionIds": [
+      "num-0001",
+      "num-0004",
+      "num-0006",
+      "num-0007",
+      "num-0008",
+      "num-0067",
+      "num-0070",
+      "num-0103",
+      "num-0115",
+      "num-0119",
+      "num-0138",
+      "num-0139"
+    ]
+  },
+  {
     "id": "decimals-batch-01",
     "title": "Decimals — Batch 1",
     "family": "Decimals",

@@ -16,16 +16,16 @@
  *     the eleven frozen Number Series records, three canonical Age Problems records,
  *     twelve canonical Spelling records, twenty-four canonical Filing records, four
  *     canonical Grammar records, thirteen canonical Clerical Operations records, six
- *     canonical Averages records, nine canonical Basic Algebra records, and four
- *     canonical Decimals records whose obsolete fields
+ *     canonical Averages records, nine canonical Basic Algebra records, four
+ *     canonical Decimals records, and twelve canonical Fractions records whose obsolete fields
  *     were removed (all approved records
  *     use structured-only content)
  *   - a labeled tip ("Exam Tip", "Common Mistake", …), except the twelve canonical
  *     Spelling records, three canonical Age Problems records, twenty-four canonical
  *     Filing records, four canonical Grammar records, thirteen canonical Clerical
  *     Operations records, six canonical Averages records, nine canonical Basic Algebra
- *     records, four canonical Decimals records, and eleven canonical Number Series
- *     records that use structuredExplanation as their sole aid
+ *     records, four canonical Decimals records, twelve canonical Fractions records, and eleven
+ *     canonical Number Series records that use structuredExplanation as their sole aid
  *
  * Also prints supply, difficulty, and answer-letter reports.
  */
@@ -84,6 +84,16 @@ const CANONICAL_STRUCTURED_DECIMALS_FILES = new Set([
 ]);
 const CANONICAL_STRUCTURED_DECIMALS_IDS = new Set([
   'num-0002', 'num-0005', 'num-0066', 'num-0127',
+]);
+const CANONICAL_STRUCTURED_FRACTIONS_FILES = new Set([
+  'numerical/core.json',
+  'numerical/2026-08-06-2300-gemini-draft-import.json',
+  'numerical/2026-08-07-0010-doc-reviewer-residue.json',
+  'numerical/2026-08-07-0030-web-export-w1.json',
+]);
+const CANONICAL_STRUCTURED_FRACTIONS_IDS = new Set([
+  'num-0001', 'num-0004', 'num-0006', 'num-0007', 'num-0008', 'num-0067',
+  'num-0070', 'num-0103', 'num-0115', 'num-0119', 'num-0138', 'num-0139',
 ]);
 const CANONICAL_SPELLING_FILE = 'clerical/spelling.json';
 const CANONICAL_SPELLING_IDS = new Set([
@@ -227,12 +237,13 @@ for (const path of jsonFiles(questionsDir)) {
     const canonicalStructuredAverages = CANONICAL_STRUCTURED_AVERAGES_FILES.has(file) && CANONICAL_STRUCTURED_AVERAGES_IDS.has(q.id);
     const canonicalStructuredBasicAlgebra = CANONICAL_STRUCTURED_BASIC_ALGEBRA_FILES.has(file) && CANONICAL_STRUCTURED_BASIC_ALGEBRA_IDS.has(q.id);
     const canonicalStructuredDecimals = CANONICAL_STRUCTURED_DECIMALS_FILES.has(file) && CANONICAL_STRUCTURED_DECIMALS_IDS.has(q.id);
-    const canonicalStructured = canonicalStructuredSpelling || canonicalStructuredFiling || canonicalStructuredGrammar || canonicalStructuredClericalOperations || canonicalStructuredNumberSeries || canonicalStructuredAgeProblems || canonicalStructuredAverages || canonicalStructuredBasicAlgebra || canonicalStructuredDecimals;
+    const canonicalStructuredFractions = CANONICAL_STRUCTURED_FRACTIONS_FILES.has(file) && CANONICAL_STRUCTURED_FRACTIONS_IDS.has(q.id);
+    const canonicalStructured = canonicalStructuredSpelling || canonicalStructuredFiling || canonicalStructuredGrammar || canonicalStructuredClericalOperations || canonicalStructuredNumberSeries || canonicalStructuredAgeProblems || canonicalStructuredAverages || canonicalStructuredBasicAlgebra || canonicalStructuredDecimals || canonicalStructuredFractions;
     if (!canonicalStructured && (typeof q.explanation !== 'string' || q.explanation.length < 100)) {
       errors.push(`${where}: explanation must teach (≥ 100 chars), got ${q.explanation?.length ?? 0}`);
     }
 
-    if (needsSteps(q) && !canonicalStructuredNumberSeries && !canonicalStructuredAgeProblems && !canonicalStructuredAverages && !canonicalStructuredBasicAlgebra && !canonicalStructuredDecimals) {
+    if (needsSteps(q) && !canonicalStructuredNumberSeries && !canonicalStructuredAgeProblems && !canonicalStructuredAverages && !canonicalStructuredBasicAlgebra && !canonicalStructuredDecimals && !canonicalStructuredFractions) {
       if (!Array.isArray(q.steps) || q.steps.length < 2) {
         errors.push(`${where}: computational item requires a worked solution (steps ≥ 2)`);
       }

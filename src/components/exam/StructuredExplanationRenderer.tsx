@@ -1,5 +1,5 @@
 import { createElement, Fragment, useState } from 'react';
-import { MathValue } from './MathValue';
+import { formatLatexForAria, renderLatexTokens, renderMathText } from './mathText';
 import type {
   StructuredExplanation,
   StructuredExplanationAlternativeSolutionBlock,
@@ -28,54 +28,18 @@ function mathLines(expression: string): string[] {
 }
 
 const DISPLAY_MATH_PATTERN = /\\\[([\s\S]*?)\\\]/g;
-const INLINE_MATH_PATTERN = /\\\(([\s\S]*?)\\\)|(?<![\w./])([−-]?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)(?![\w./])/g;
-
-function InlineLatexMath({ expression, keyPrefix }: { expression: string; keyPrefix: string }): React.ReactNode {
-  return createElement(
-    'math',
-    {
-      key: `${keyPrefix}-latex`,
-      role: 'math',
-      'data-testid': 'structured-inline-math',
-      'aria-label': formatLatexForAria(expression),
-      className: 'inline-block align-middle text-[1.2em]',
-      xmlns: 'http://www.w3.org/1998/Math/MathML',
-    },
-    createElement('mrow', null, renderLatexTokens(expression, `${keyPrefix}-latex`)),
-  );
-}
-
-function renderInlineMathText(text: string, keyPrefix: string): React.ReactNode[] {
-  const parts: React.ReactNode[] = [];
-  let cursor = 0;
-  let matchIndex = 0;
-
-  for (const match of text.matchAll(INLINE_MATH_PATTERN)) {
-    const start = match.index ?? cursor;
-    if (start > cursor) parts.push(text.slice(cursor, start));
-    if (match[1] !== undefined) {
-      parts.push(<InlineLatexMath key={`${keyPrefix}-latex-${matchIndex++}`} expression={match[1]} keyPrefix={keyPrefix} />);
-    } else {
-      parts.push(<MathValue key={`${keyPrefix}-fraction-${matchIndex++}`} value={match[0]} />);
-    }
-    cursor = start + match[0].length;
-  }
-
-  if (cursor < text.length) parts.push(text.slice(cursor));
-  return parts.length > 0 ? parts : [text];
-}
 
 function renderInlineMathRichText(text: string): React.ReactNode {
   const tokens = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).filter(Boolean);
   return tokens.map((token, index) => {
     const key = `inline-${index}`;
     if (token.startsWith('**') && token.endsWith('**')) {
-      return <strong key={key}>{renderInlineMathText(token.slice(2, -2), key)}</strong>;
+      return <strong key={key}>{renderMathText(token.slice(2, -2), key)}</strong>;
     }
     if (token.startsWith('*') && token.endsWith('*')) {
-      return <em key={key}>{renderInlineMathText(token.slice(1, -1), key)}</em>;
+      return <em key={key}>{renderMathText(token.slice(1, -1), key)}</em>;
     }
-    return <Fragment key={key}>{renderInlineMathText(token, key)}</Fragment>;
+    return <Fragment key={key}>{renderMathText(token, key)}</Fragment>;
   });
 }
 
@@ -84,182 +48,6 @@ function renderCorrectAnswerText(text: string): React.ReactNode {
   if (!match) return renderInlineMathRichText(text);
 
   return <><span>{match[1]}.</span>{' '}{renderInlineMathRichText(match[2] ?? '')}</>;
-}
-
-function readLatexGroup(source: string, start: number): { content: string; end: number } | null {
-  if (source[start] !== '{') return null;
-  let depth = 0;
-  for (let index = start; index < source.length; index += 1) {
-    if (source[index] === '{') depth += 1;
-    if (source[index] === '}') depth -= 1;
-    if (depth === 0) return { content: source.slice(start + 1, index), end: index + 1 };
-  }
-  return null;
-}
-
-const SUPERSCRIPT_DIGITS: Record<string, string> = {
-  '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
-  '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
-};
-
-function formatSuperscript(value: string): string {
-  return [...value].map((character) => SUPERSCRIPT_DIGITS[character] ?? character).join('');
-}
-
-function formatLatexForAriaLine(line: string): string {
-  let formatted = line;
-  let previous: string;
-  do {
-    previous = formatted;
-    formatted = formatted.replace(/\\frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g, '$1/$2');
-  } while (formatted !== previous);
-
-  return formatted
-    .replaceAll('\\times', ' × ')
-    .replaceAll('\\div', ' ÷ ')
-    .replaceAll('\\rightarrow', ' → ')
-    .replaceAll('\\qquad', '  ')
-    .replaceAll('\\quad', ' ')
-    .replaceAll('\\left', '')
-    .replaceAll('\\right', '')
-    .replace(/\\\s+-/g, '−')
-    .replaceAll('\\_', '_')
-    .replace(/\\\s/g, ' ')
-    .replace(/\^\{([^{}]*)\}/g, (_, value: string) => formatSuperscript(value))
-    .replace(/\^([0-9]+)/g, (_, value: string) => formatSuperscript(value))
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function formatLatexForAria(expression: string): string {
-  return expression
-    .split(/\r?\n/)
-    .map(formatLatexForAriaLine)
-    .filter(Boolean)
-    .join('; ');
-}
-
-function renderLatexTokens(line: string, keyPrefix = 'math'): React.ReactNode[] {
-  const nodes: React.ReactNode[] = [];
-  let index = 0;
-  let keyIndex = 0;
-  const nextKey = () => `${keyPrefix}-${keyIndex++}`;
-  const appendOperator = (value: string) => nodes.push(createElement('mo', { key: nextKey() }, value));
-
-  while (index < line.length) {
-    if (line.startsWith('\\frac', index)) {
-      const numerator = readLatexGroup(line, index + 5);
-      const denominator = numerator ? readLatexGroup(line, numerator.end) : null;
-      if (numerator && denominator) {
-        nodes.push(createElement(
-          'mfrac',
-          { key: nextKey() },
-          createElement('mrow', null, renderLatexTokens(numerator.content, `${keyPrefix}-n`)),
-          createElement('mrow', null, renderLatexTokens(denominator.content, `${keyPrefix}-d`)),
-        ));
-        index = denominator.end;
-        continue;
-      }
-    }
-
-    if (line.startsWith('\\times', index)) {
-      appendOperator('×');
-      index += '\\times'.length;
-      continue;
-    }
-    if (line.startsWith('\\div', index)) {
-      appendOperator('÷');
-      index += '\\div'.length;
-      continue;
-    }
-    if (line.startsWith('\\rightarrow', index)) {
-      appendOperator('→');
-      index += '\\rightarrow'.length;
-      continue;
-    }
-    if (line.startsWith('\\qquad', index)) {
-      nodes.push(createElement('mspace', { key: nextKey(), width: '2em' }));
-      index += '\\qquad'.length;
-      continue;
-    }
-    if (line.startsWith('\\quad', index)) {
-      nodes.push(createElement('mspace', { key: nextKey(), width: '1em' }));
-      index += '\\quad'.length;
-      continue;
-    }
-    if (line.startsWith('\\left', index)) {
-      index += '\\left'.length;
-      continue;
-    }
-    if (line.startsWith('\\right', index)) {
-      index += '\\right'.length;
-      continue;
-    }
-    if (line.startsWith('\\_', index)) {
-      appendOperator('_');
-      index += 2;
-      continue;
-    }
-    if (line.startsWith('\\ ', index)) {
-      nodes.push(createElement('mspace', { key: nextKey(), width: '0.25em' }));
-      index += 2;
-      continue;
-    }
-    if (line.startsWith('\\-', index)) {
-      appendOperator('−');
-      index += 2;
-      continue;
-    }
-    if (line[index] === '^') {
-      const exponent = line[index + 1] === '{'
-        ? readLatexGroup(line, index + 1)
-        : { content: line[index + 1] ?? '', end: index + 2 };
-      const base = nodes.pop();
-      if (base && exponent?.content) {
-        nodes.push(createElement(
-          'msup',
-          { key: nextKey() },
-          base,
-          createElement('mrow', null, renderLatexTokens(exponent.content, `${keyPrefix}-sup`)),
-        ));
-        index = exponent.end;
-        continue;
-      }
-    }
-
-    const character = line[index];
-    if (/\s/.test(character)) {
-      while (index < line.length && /\s/.test(line[index])) index += 1;
-      nodes.push(createElement('mspace', { key: nextKey(), width: '0.25em' }));
-      continue;
-    }
-    if (/\d/.test(character)) {
-      const start = index;
-      while (index < line.length && /[\d.]/.test(line[index])) index += 1;
-      nodes.push(createElement('mn', { key: nextKey() }, line.slice(start, index)));
-      continue;
-    }
-    if ('=+−-,/→'.includes(character) || character === '-') {
-      appendOperator(character === '-' ? '−' : character);
-      index += 1;
-      continue;
-    }
-    if (character === '_') {
-      appendOperator('_');
-      index += 1;
-      continue;
-    }
-    if (/[a-zA-Z]/.test(character)) {
-      const start = index;
-      while (index < line.length && /[a-zA-Z]/.test(line[index])) index += 1;
-      nodes.push(createElement('mi', { key: nextKey() }, line.slice(start, index)));
-      continue;
-    }
-    nodes.push(createElement('mo', { key: nextKey() }, character));
-    index += 1;
-  }
-
-  return nodes;
 }
 
 function LatexMathDisplay({ expression, dark }: { expression: string; dark: boolean }) {

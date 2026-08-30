@@ -3,7 +3,7 @@ import { BookOpen, Lightbulb, ListOrdered, XCircle } from 'lucide-react';
 import type { OptionId, Question } from '@/types';
 import { getStructuredExplanation } from '@/data/structuredExplanation';
 import { StructuredExplanationRenderer } from './StructuredExplanationRenderer';
-import { MathValue } from './MathValue';
+import { MathText } from './mathText';
 
 interface ExplanationPanelProps {
   question: Question;
@@ -66,7 +66,7 @@ export const ExplanationPanel: React.FC<ExplanationPanelProps> = ({
       <div>
         <p className={`font-bold mb-1.5 ${c.correctHeading}`}>
           Correct Answer: {question.correctOptionId}.
-          {correctChoice ? <> <MathValue value={correctChoice.text} /></> : null}
+          {correctChoice ? <> <MathText text={correctChoice.text} keyPrefix="legacy-correct-choice" /></> : null}
         </p>
         <p className={`leading-relaxed ${c.body}`}>{question.explanation}</p>
       </div>

@@ -30,22 +30,18 @@
       }
     ],
     "correctOptionId": "E",
-    "explanation": "To add fractions, you need a common denominator — a number that both 8 and 12 divide into evenly. The least common multiple of 8 and 12 is 24. Convert each fraction: 3/8 becomes 9/24 (multiply top and bottom by 3), and 5/12 becomes 10/24 (multiply top and bottom by 2). Now that the denominators match, simply add the numerators: 9 + 10 = 19. The answer is 19/24, which is already in its simplest form since 19 is prime.",
-    "steps": [
-      "Find the least common multiple (LCM) of 8 and 12: multiples of 8 are 8, 16, 24; multiples of 12 are 12, 24 — so LCM = 24.",
-      "Convert 3/8 to 24ths: 3/8 × 3/3 = 9/24.",
-      "Convert 5/12 to 24ths: 5/12 × 2/2 = 10/24.",
-      "Add the numerators: 9/24 + 10/24 = 19/24. The denominator stays 24."
-    ],
-    "distractorExplanations": {
-      "A": "1/2 = 12/24, which would only be correct if the fractions were added incorrectly — perhaps by averaging the numerators (3+5=8) and the denominators (8+12=20) and simplifying 8/20 = 2/5, which is still wrong. A common error is to add numerators and denominators directly.",
-      "B": "8/20 results from the classic mistake of adding numerators together (3+5=8) and denominators together (8+12=20) — a method that does NOT work for fraction addition.",
-      "C": "7/12 appears if someone only converts one fraction and adds incorrectly, or picks the wrong common denominator. Always convert both fractions to the same denominator before adding.",
-      "D": "Adds numerators (3+5=8) and keeps the smaller denominator (24 from LCM) but then subtracts 3/24 from the numerator in a false 'cross-cancel': arrives at 11/24≈0.458, distinct from all existing options."
-    },
-    "tip": {
-      "label": "Math Shortcut",
-      "text": "LCM of two numbers = (first × second) ÷ GCD. Here GCD(8,12)=4, so LCM = 8×12÷4 = 24. Use this to find common denominators quickly."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "E — 19/24"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Find a common denominator for 8 and 12. Their least common multiple is 24.\n\n\\[\n\\frac{3}{8}=\\frac{9}{24}\n\\]\n\n\\[\n\\frac{5}{12}=\\frac{10}{24}\n\\]\n\nNow add the numerators:\n\n\\[\n\\frac{9}{24}+\\frac{10}{24}=\\frac{19}{24}\n\\]\n\nTherefore, the answer is **19/24**."
+        }
+      ]
     },
     "tags": [
       "fractions",
@@ -189,23 +185,18 @@
       }
     ],
     "correctOptionId": "E",
-    "explanation": "With mixed numbers, the easiest approach is to convert to improper fractions before subtracting. For 7¾: multiply the whole number by the denominator and add the numerator: 7×4 + 3 = 31, so 7¾ = 31/4. For 3⅝: 3×8 + 5 = 29, so 3⅝ = 29/8. Now find a common denominator — 8. Convert 31/4 to 62/8. Subtract: 62/8 – 29/8 = 33/8. Convert back: 33 ÷ 8 = 4 remainder 1, so 33/8 = 4 1/8. Notice that simply subtracting whole parts (7–3=4) and fraction parts (3/4 – 5/8) separately requires borrowing when the second fraction is larger, which is a common source of error.",
-    "steps": [
-      "Convert 7¾ to an improper fraction: (7 × 4) + 3 = 31, so 7¾ = 31/4.",
-      "Convert 3⅝ to an improper fraction: (3 × 8) + 5 = 29, so 3⅝ = 29/8.",
-      "Find a common denominator (LCD of 4 and 8 is 8): 31/4 = 62/8.",
-      "Subtract: 62/8 – 29/8 = 33/8.",
-      "Convert back to a mixed number: 33 ÷ 8 = 4 remainder 1, so the answer is 4 1/8."
-    ],
-    "distractorExplanations": {
-      "A": "4 3/8 comes from computing 7 – 3 = 4 for the whole part, and then subtracting 5/8 – 3/4 (reversing the order) to get 5/8 – 6/8 = –1/8 and mishandling the negative sign by taking the absolute value to get 1/8... but 3/8 would require 6/8 – 3/8. This is a borrowing confusion error.",
-      "B": "3 7/8 occurs when someone borrows 1 from the whole to handle the fractions but borrows incorrectly: 6 + (4/4 + 3/4) – 3 – 5/8 = 3 + 11/8 – 5/8 — a common mis-step in the regrouping process.",
-      "C": "4 5/8 results from subtracting the whole numbers correctly (7–3=4) but then adding the fractions (3/4 + 5/8 = 6/8 + 5/8 = 11/8) instead of subtracting, which is a sign-direction error.",
-      "D": "Subtracts the whole numbers correctly (7-3=4) but subtracts the fractions in reverse order (5/8-3/4=5/8-6/8=-1/8), then applies the negative to get 4-3/8=3⅝."
-    },
-    "tip": {
-      "label": "Math Shortcut",
-      "text": "Converting mixed numbers to improper fractions before operating avoids the tricky 'borrowing' step. Always convert first, operate, then convert back."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "E — 4 1/8"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Convert both mixed numbers to eighths.\n\n\\[\n7\\frac{3}{4}=\\frac{31}{4}=\\frac{62}{8}\n\\]\n\n\\[\n3\\frac{5}{8}=\\frac{29}{8}\n\\]\n\nSubtract:\n\n\\[\n\\frac{62}{8}-\\frac{29}{8}=\\frac{33}{8}\n\\]\n\nConvert back to a mixed number:\n\n\\[\n\\frac{33}{8}=4\\frac{1}{8}\n\\]\n\nTherefore, the answer is **4 1/8**."
+        }
+      ]
     },
     "tags": [
       "fractions",
@@ -294,23 +285,18 @@
       }
     ],
     "correctOptionId": "C",
-    "explanation": "Multiplying fractions is actually the friendliest operation: just multiply the numerators together and the denominators together. Here, that gives (2 × 9) / (3 × 14) = 18/42. But wait — before multiplying out completely, look for cross-cancellation to make the arithmetic easier. The 3 in the denominator of the first fraction and the 9 in the numerator of the second share a common factor of 3: 9 ÷ 3 = 3 and 3 ÷ 3 = 1. Similarly, 2 and 14 share a factor of 2: 2 ÷ 2 = 1 and 14 ÷ 2 = 7. After cross-cancelling: (1 × 3) / (1 × 7) = 3/7. This cross-cancellation trick saves time on exam day.",
-    "steps": [
-      "Write the multiplication: (2/3) × (9/14).",
-      "Cross-cancel: 3 and 9 share factor 3 → 9/3 = 3, 3/3 = 1. Also 2 and 14 share factor 2 → 2/2 = 1, 14/2 = 7.",
-      "Multiply simplified numerators: 1 × 3 = 3.",
-      "Multiply simplified denominators: 1 × 7 = 7.",
-      "Result: 3/7."
-    ],
-    "distractorExplanations": {
-      "A": "2/7 results from cross-cancelling only the factor of 3 (getting 2/(1×14/3)... leading to confusion) or from computing (2×1)/(1×7) after an error in the cross-cancel — cancelling the 9 to 1 instead of 3.",
-      "B": "11/42 likely comes from adding the numerators (2+9=11) instead of multiplying — a classic confusion between addition and multiplication of fractions.",
-      "D": "9/21 simplifies to 3/7, so if chosen it means the test-taker arrived at the right value but failed to simplify. Also, 9/21 could arise from incorrectly computing (2+9)/(14+…) type errors.",
-      "E": "Multiplies numerators and denominators but then incorrectly simplifies 18/42 by dividing by 18 instead of 6: 18÷18=1, 42÷18=2.33→rounds to 42÷6=7, giving 1/7."
-    },
-    "tip": {
-      "label": "Math Shortcut",
-      "text": "Before multiplying fractions, cancel common factors diagonally across the multiplication sign. This keeps numbers small and reduces simplification at the end."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "C — 3/7"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Multiply the fractions:\n\n\\[\n\\frac{2}{3}\\times\\frac{9}{14}\n\\]\n\nDivide 2 and 14 by 2:\n\n\\[\n\\frac{1}{3}\\times\\frac{9}{7}\n\\]\n\nThen divide 9 and 3 by 3:\n\n\\[\n\\frac{1}{1}\\times\\frac{3}{7}\n\\]\n\nNow multiply:\n\n\\[\n\\frac{1\\times3}{1\\times7}=\\frac{3}{7}\n\\]\n\nTherefore, the answer is **3/7**."
+        }
+      ]
     },
     "tags": [
       "fractions",
@@ -350,22 +336,23 @@
       }
     ],
     "correctOptionId": "E",
-    "explanation": "Think of this as two separate fraction problems — one for the numerator and one for the denominator — before dividing. Numerator: 5/6 + 1/4. The LCD of 6 and 4 is 12, so 5/6 = 10/12 and 1/4 = 3/12. Sum = 13/12. Denominator: 7/8 – 1/3. The LCD of 8 and 3 is 24, so 7/8 = 21/24 and 1/3 = 8/24. Difference = 13/24. Now divide: (13/12) ÷ (13/24) = (13/12) × (24/13). The 13s cancel! You get 24/12 = 2. The beautiful thing here is that both the numerator and denominator simplify to multiples of 13, causing complete cancellation.",
-    "steps": [
-      "Compute the numerator: 5/6 + 1/4. LCD = 12 → 10/12 + 3/12 = 13/12.",
-      "Compute the denominator: 7/8 – 1/3. LCD = 24 → 21/24 – 8/24 = 13/24.",
-      "Divide: (13/12) ÷ (13/24) = (13/12) × (24/13).",
-      "Cancel the 13s: (1/12) × (24/1) = 24/12 = 2."
-    ],
-    "distractorExplanations": {
-      "A": "5/3 might arise from computing the numerator correctly (13/12) but making a sign error in the denominator (adding instead of subtracting, giving 21/24 + 8/24 = 29/24), then dividing 13/12 by 29/24 ≈ 1.07… — not 5/3. More likely it comes from intermediate arithmetic errors in converting to common denominators.",
-      "B": "3/2 could arise from computing the numerator incorrectly, for example 5/6 + 1/4 = 6/10 = 3/5 (wrong method), then dividing by a correctly computed denominator.",
-      "C": "13/8 results from forgetting to compute the denominator separately and instead treating the subtraction in the denominator incorrectly, or from dividing 13/12 ÷ 1 (computing the denominator as 1 through an error).",
-      "D": "Computes numerator correctly (13/12) but uses the wrong common denominator for the subtraction (24 instead of 24 in denominator group): 7/8-1/3=7/8-1/3=(21-8)/24=13/24, giving 13/12÷13/24=2 (correct) — but student instead gets 13/12÷(7/8×1/3)=13/12÷7/24=26/7, then rounds incorrectly to 12/7."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "With complex fractions, always resolve the top and bottom separately first, then divide. Never try to operate across the main fraction bar in one step."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "E — 2"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "First simplify each expression.\n\n\\[\n\\frac{5}{6}+\\frac{1}{4}=\\frac{10}{12}+\\frac{3}{12}=\\frac{13}{12}\n\\]\n\nFor the second expression:\n\n\\[\n\\frac{7}{8}-\\frac{1}{3}=\\frac{21}{24}-\\frac{8}{24}=\\frac{13}{24}\n\\]\n\nNow divide the two fractions by multiplying by the reciprocal:\n\n\\[\n\\frac{13}{12}\\div\\frac{13}{24}=\\frac{13}{12}\\times\\frac{24}{13}=2\n\\]\n\nTherefore, the answer is **2**."
+        },
+        {
+          "type": "collapsible",
+          "title": "Mental Shortcut",
+          "content": "After simplifying the two expressions, we get:\n\n\\[\n\\frac{13}{12}\\times\\frac{24}{13}\n\\]\n\nThe 13 in the numerator and denominator are common factors. Divide both by 13:\n\n\\[\n\\frac{\\cancelto{1}{13}}{12}\\times\\frac{24}{\\cancelto{1}{13}}\n\\]\n\n\\[\n\\frac{1}{12}\\times\\frac{24}{1}\n\\]\n\nNow:\n\n\\[\n\\frac{24}{12}=2\n\\]\n\nThis avoids multiplying the larger numbers and is faster during an exam."
+        }
+      ]
     },
     "tags": [
       "fractions",
@@ -404,23 +391,18 @@
       }
     ],
     "correctOptionId": "D",
-    "explanation": "Following PEMDAS, multiplication and division are performed before subtraction. Step 1 — handle the multiplication: 2⅔ = 8/3 and 1½ = 3/2. Multiply: (8/3) × (3/2) = 24/6 = 4. Step 2 — handle the division inside parentheses: (4/5) ÷ (2/3) = (4/5) × (3/2) = 12/10 = 6/5. Step 3 — subtract: 4 – 6/5 = 20/5 – 6/5 = 14/5 = 2 4/5. Notice that the multiplication of the mixed numbers comes out to a whole number (4), which is a nice simplification.",
-    "steps": [
-      "Convert mixed numbers: 2⅔ = 8/3 and 1½ = 3/2.",
-      "Multiply: (8/3) × (3/2) = 24/6 = 4.",
-      "Division in parentheses: (4/5) ÷ (2/3) = (4/5) × (3/2) = 12/10 = 6/5.",
-      "Subtract: 4 – 6/5 = 20/5 – 6/5 = 14/5.",
-      "Convert to mixed number: 14/5 = 2 4/5."
-    ],
-    "distractorExplanations": {
-      "A": "3 1/5 = 16/5 results from adding instead of subtracting in the final step: 4 + 6/5 = 20/5 + 6/5 = 26/5 = 5 1/5 — actually that's not 3 1/5 either. More likely, 3 1/5 comes from a computation error in the division step, perhaps computing (4/5) ÷ (2/3) = (4×2)/(5×3) = 8/15 instead of 6/5, then 4 – 8/15 ≈ 3.47, rounded or misread.",
-      "B": "2 1/5 = 11/5 would result from computing the division step as 1 (perhaps (4/5) × (5/4) = 1, confusing reciprocals) and then 4 – 1 = 3, then miscalculating further — or from an arithmetic slip after correctly reaching 14/5.",
-      "C": "2 3/5 = 13/5 could arise from computing the division step as (4/5) ÷ (2/3) = (4/3) ÷ (2/5) — swapping which fraction is inverted — giving 20/6 = 10/3, then 4 – 10/3 = 12/3 – 10/3 = 2/3, and converting incorrectly.",
-      "E": "Adds instead of subtracts the parenthetical result: 2⅔×1½=4, 4/5÷2/3=6/5, so student computes 4+6/5=26/5=5⅕? No—uses 8/3×3/2=4, then 4+6/5=26/5. Simpler: computes 8/3×3/2=4 correctly, 4/5÷2/3=6/5, then adds: 4+6/5=26/5=5⅕. Or subtracts in wrong direction: 6/5-4=-14/5→ negative. Student gets 3⅗ by computing (8/3×3/2)-(4/5×2/3)=4-8/15=60/15-8/15=52/15=3⅗."
-    },
-    "tip": {
-      "label": "Remember",
-      "text": "When dividing fractions, flip (take the reciprocal of) the SECOND fraction only, then multiply. Never flip the first fraction."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "D — 2 4/5"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "Convert the mixed numbers:\n\n\\[\n2\\frac{2}{3}=\\frac{8}{3}\n\\]\n\n\\[\n1\\frac{1}{2}=\\frac{3}{2}\n\\]\n\nMultiply:\n\n\\[\n\\frac{8}{3}\\times\\frac{3}{2}=4\n\\]\n\nNow evaluate the division:\n\n\\[\n\\frac{4}{5}\\div\\frac{2}{3}=\\frac{4}{5}\\times\\frac{3}{2}=\\frac{6}{5}=1\\frac{1}{5}\n\\]\n\nSubtract:\n\n\\[\n4-1\\frac{1}{5}=2\\frac{4}{5}\n\\]\n\nTherefore, the answer is **2 4/5**."
+        }
+      ]
     },
     "tags": [
       "fractions",
@@ -3368,22 +3350,23 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "The whole stock is 8/8. If 5/8 went out, the fraction still on the shelf is 8/8 − 5/8 = 3/8, so you can go straight to the remainder without ever computing the amount distributed. Find one eighth first: 360 ÷ 8 = 45. Then 3 × 45 = 135 folders remain. The arithmetic here is easy; the item is really testing whether you read the final question. Computing 5/8 × 360 = 225 is a perfectly correct calculation of the wrong quantity, and that is precisely why 225 is offered as a choice.",
-    "steps": [
-      "Determine the fraction remaining: 8/8 − 5/8 = 3/8.",
-      "Find one eighth of the stock: 360 ÷ 8 = 45 folders.",
-      "Multiply by 3 to get three eighths: 3 × 45 = 135.",
-      "The number of folders remaining is 135."
-    ],
-    "distractorExplanations": {
-      "B": "125 is a slip in the unit-fraction step, using 360 ÷ 8 ≈ 41.7 or rounding to 125 as a 'near' value. Check it against the whole: 125 + 225 = 350, not 360, so the two parts do not rebuild the stock.",
-      "C": "180 is half of 360, which would be the answer only if 4/8 had been distributed. It comes from rounding 5/8 to 1/2 rather than working with eighths exactly.",
-      "D": "225 = 5/8 × 360 is the number of folders DISTRIBUTED, not the number left. The calculation is right but it answers a question the item did not ask — the most common way examinees lose this item.",
-      "E": "Computes 5/8 of 360=225 correctly but then takes the complement as 360×(1/4)=90, confusing 3/8 with 1/4."
-    },
-    "tip": {
-      "label": "Exam Tip",
-      "text": "When a problem states the fraction USED and asks for the fraction LEFT, subtract from 1 first, then multiply once. Computing the used amount first invites you to hand in the wrong quantity."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "A — 135"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "If 5/8 of the folders were distributed, the fraction remaining is:\n\n\\[\n1-\\frac{5}{8}=\\frac{3}{8}\n\\]\n\nNow find 3/8 of 360:\n\n\\[\n360\\times\\frac{3}{8}=45\\times3=135\n\\]\n\nTherefore, **135 folders** remained."
+        },
+        {
+          "type": "collapsible",
+          "title": "Mental Shortcut",
+          "content": "Find the remaining fraction first:\n\n\\[\n1-\\frac{5}{8}=\\frac{3}{8}\n\\]\n\nThen split 360 into 8 equal parts:\n\n\\[\n360\\div8=45\n\\]\n\nTake 3 of those parts:\n\n\\[\n45\\times3=135\n\\]\n\nSo **135 folders** remained."
+        }
+      ]
     },
     "tags": [
       "fractions",
@@ -3530,22 +3513,18 @@
       }
     ],
     "correctOptionId": "A",
-    "explanation": "Dividing by a fraction means multiplying by its reciprocal — keep the first fraction, change ÷ to ×, flip the SECOND fraction only. So 3/4 ÷ 5/8 becomes 3/4 × 8/5. Multiply across: (3 × 8)/(4 × 5) = 24/20, which simplifies to 6/5. Cancelling first is quicker: the 4 and the 8 share a factor of 4, leaving 3/1 × 2/5 = 6/5. Build in this sanity check — you are dividing by 5/8, a number smaller than 1, so the result MUST be larger than 3/4. Any option below 3/4 can be eliminated before you compute anything.",
-    "steps": [
-      "Keep the first fraction, change the operation, and flip the second: 3/4 ÷ 5/8 = 3/4 × 8/5.",
-      "Cancel the common factor of 4 between the 4 and the 8: 3/1 × 2/5.",
-      "Multiply across: (3 × 2)/(1 × 5) = 6/5.",
-      "Confirm the direction: 6/5 = 1.2, which is larger than 3/4 as dividing by a number under 1 requires. The answer is 6/5."
-    ],
-    "distractorExplanations": {
-      "B": "15/32 is straight multiplication with no flip at all: (3 × 5)/(4 × 8). It is smaller than 3/4, which already contradicts the rule that dividing by 5/8 must enlarge the value.",
-      "C": "5/6 flips the FIRST fraction instead of the second: 4/3 × 5/8 = 20/24 = 5/6. It is also the exact reciprocal of the correct 6/5, so it looks reassuringly familiar.",
-      "D": "8/15 lifts the 8 from 5/8 into the numerator and multiplies the two numerators, 3 × 5 = 15, for the denominator — cross-multiplication run in the wrong direction.",
-      "E": "Divides numerators and denominators directly instead of multiplying by the reciprocal: (3÷5)/(4÷8)=3/5 ÷ 1/2=6/5? No — student does (3÷5)/(4÷8)=0.6/0.5=... OR student does 3/4÷5/8=3×8/4×5=24/20→divides further: ÷3=8/10? No: 24/20÷3=8/6.67. Use: 3/4÷5/8=3×8/(4×5)=24/20=8/10? But 8/10=4/5≠6/5. Student reduces by dividing by 3: 24÷3=8, 20÷3≈6.67→rounds to 10: gets 8/10."
-    },
-    "tip": {
-      "label": "Remember",
-      "text": "Keep, change, flip — and flip only the divisor. Then apply the size test: dividing by a fraction LESS than 1 makes the result bigger; dividing by one GREATER than 1 makes it smaller."
+    "structuredExplanation": {
+      "blocks": [
+        {
+          "type": "correct_answer",
+          "text": "A — 6/5"
+        },
+        {
+          "type": "paragraph",
+          "label": "Rationale",
+          "text": "To divide by a fraction, multiply by its reciprocal:\n\n\\[\n\\frac{3}{4}\\div\\frac{5}{8}=\\frac{3}{4}\\times\\frac{8}{5}\n\\]\n\nSimplify 8 and 4:\n\n\\[\n\\frac{3\\times2}{5}=\\frac{6}{5}\n\\]\n\nTherefore, the answer is **6/5**."
+        }
+      ]
     },
     "tags": [
       "fractions",

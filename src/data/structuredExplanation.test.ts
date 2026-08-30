@@ -30,7 +30,8 @@ const AGE_PROBLEMS_IDS = ['num-0030', 'num-0031', 'num-0142'] as const;
 const AVERAGES_BATCH1_IDS = ['num-0046', 'num-0047', 'num-0049', 'num-0145', 'num-0146', 'seed-num-005'] as const;
 const BASIC_ALGEBRA_BATCH1_IDS = ['num-0048', 'num-0050', 'num-0073', 'num-0085', 'num-0094', 'num-0122', 'num-0128', 'num-0140', 'num-0150'] as const;
 const DECIMALS_BATCH1_IDS = ['num-0002', 'num-0005', 'num-0066', 'num-0127'] as const;
-const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...AGE_PROBLEMS_IDS, ...AVERAGES_BATCH1_IDS, ...BASIC_ALGEBRA_BATCH1_IDS, ...DECIMALS_BATCH1_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS, ...CLERICAL_OPERATIONS_STRUCTURED_IDS];
+const FRACTIONS_BATCH1_IDS = ['num-0001', 'num-0004', 'num-0006', 'num-0007', 'num-0008', 'num-0067', 'num-0070', 'num-0103', 'num-0115', 'num-0119', 'num-0138', 'num-0139'] as const;
+const ALL_STRUCTURED_IDS = [...ALL_NUMBER_SERIES_IDS, ...AGE_PROBLEMS_IDS, ...AVERAGES_BATCH1_IDS, ...BASIC_ALGEBRA_BATCH1_IDS, ...DECIMALS_BATCH1_IDS, ...FRACTIONS_BATCH1_IDS, ...SPELLING_PILOT_IDS, ...FILING_BATCH1_IDS, ...FILING_BATCH2_IDS, ...GRAMMAR_PILOT_IDS, ...CLERICAL_OPERATIONS_STRUCTURED_IDS];
 const ALL_SUBJECTS = [
   'Analytical Reasoning',
   'Clerical Ability',
@@ -426,6 +427,125 @@ const EXPECTED_DECIMALS_BLOCKS = {
   ],
 } as const;
 
+const EXPECTED_FRACTIONS_BLOCKS = {
+  'num-0001': [
+    { type: 'correct_answer', text: 'E — 19/24' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Find a common denominator for 8 and 12. Their least common multiple is 24.\n\n\\[\n\\frac{3}{8}=\\frac{9}{24}\n\\]\n\n\\[\n\\frac{5}{12}=\\frac{10}{24}\n\\]\n\nNow add the numerators:\n\n\\[\n\\frac{9}{24}+\\frac{10}{24}=\\frac{19}{24}\n\\]\n\nTherefore, the answer is **19/24**.',
+    },
+  ],
+  'num-0004': [
+    { type: 'correct_answer', text: 'E — 4 1/8' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Convert both mixed numbers to eighths.\n\n\\[\n7\\frac{3}{4}=\\frac{31}{4}=\\frac{62}{8}\n\\]\n\n\\[\n3\\frac{5}{8}=\\frac{29}{8}\n\\]\n\nSubtract:\n\n\\[\n\\frac{62}{8}-\\frac{29}{8}=\\frac{33}{8}\n\\]\n\nConvert back to a mixed number:\n\n\\[\n\\frac{33}{8}=4\\frac{1}{8}\n\\]\n\nTherefore, the answer is **4 1/8**.',
+    },
+  ],
+  'num-0006': [
+    { type: 'correct_answer', text: 'C — 3/7' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Multiply the fractions:\n\n\\[\n\\frac{2}{3}\\times\\frac{9}{14}\n\\]\n\nDivide 2 and 14 by 2:\n\n\\[\n\\frac{1}{3}\\times\\frac{9}{7}\n\\]\n\nThen divide 9 and 3 by 3:\n\n\\[\n\\frac{1}{1}\\times\\frac{3}{7}\n\\]\n\nNow multiply:\n\n\\[\n\\frac{1\\times3}{1\\times7}=\\frac{3}{7}\n\\]\n\nTherefore, the answer is **3/7**.',
+    },
+  ],
+  'num-0007': [
+    { type: 'correct_answer', text: 'E — 2' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'First simplify each expression.\n\n\\[\n\\frac{5}{6}+\\frac{1}{4}=\\frac{10}{12}+\\frac{3}{12}=\\frac{13}{12}\n\\]\n\nFor the second expression:\n\n\\[\n\\frac{7}{8}-\\frac{1}{3}=\\frac{21}{24}-\\frac{8}{24}=\\frac{13}{24}\n\\]\n\nNow divide the two fractions by multiplying by the reciprocal:\n\n\\[\n\\frac{13}{12}\\div\\frac{13}{24}=\\frac{13}{12}\\times\\frac{24}{13}=2\n\\]\n\nTherefore, the answer is **2**.',
+    },
+    {
+      type: 'collapsible',
+      title: 'Mental Shortcut',
+      content: 'After simplifying the two expressions, we get:\n\n\\[\n\\frac{13}{12}\\times\\frac{24}{13}\n\\]\n\nThe 13 in the numerator and denominator are common factors. Divide both by 13:\n\n\\[\n\\frac{\\cancelto{1}{13}}{12}\\times\\frac{24}{\\cancelto{1}{13}}\n\\]\n\n\\[\n\\frac{1}{12}\\times\\frac{24}{1}\n\\]\n\nNow:\n\n\\[\n\\frac{24}{12}=2\n\\]\n\nThis avoids multiplying the larger numbers and is faster during an exam.',
+    },
+  ],
+  'num-0008': [
+    { type: 'correct_answer', text: 'D — 2 4/5' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Convert the mixed numbers:\n\n\\[\n2\\frac{2}{3}=\\frac{8}{3}\n\\]\n\n\\[\n1\\frac{1}{2}=\\frac{3}{2}\n\\]\n\nMultiply:\n\n\\[\n\\frac{8}{3}\\times\\frac{3}{2}=4\n\\]\n\nNow evaluate the division:\n\n\\[\n\\frac{4}{5}\\div\\frac{2}{3}=\\frac{4}{5}\\times\\frac{3}{2}=\\frac{6}{5}=1\\frac{1}{5}\n\\]\n\nSubtract:\n\n\\[\n4-1\\frac{1}{5}=2\\frac{4}{5}\n\\]\n\nTherefore, the answer is **2 4/5**.',
+    },
+  ],
+  'num-0067': [
+    { type: 'correct_answer', text: 'A — 135' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'If 5/8 of the folders were distributed, the fraction remaining is:\n\n\\[\n1-\\frac{5}{8}=\\frac{3}{8}\n\\]\n\nNow find 3/8 of 360:\n\n\\[\n360\\times\\frac{3}{8}=45\\times3=135\n\\]\n\nTherefore, **135 folders** remained.',
+    },
+    {
+      type: 'collapsible',
+      title: 'Mental Shortcut',
+      content: 'Find the remaining fraction first:\n\n\\[\n1-\\frac{5}{8}=\\frac{3}{8}\n\\]\n\nThen split 360 into 8 equal parts:\n\n\\[\n360\\div8=45\n\\]\n\nTake 3 of those parts:\n\n\\[\n45\\times3=135\n\\]\n\nSo **135 folders** remained.',
+    },
+  ],
+  'num-0070': [
+    { type: 'correct_answer', text: 'A — 6/5' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'To divide by a fraction, multiply by its reciprocal:\n\n\\[\n\\frac{3}{4}\\div\\frac{5}{8}=\\frac{3}{4}\\times\\frac{8}{5}\n\\]\n\nSimplify 8 and 4:\n\n\\[\n\\frac{3\\times2}{5}=\\frac{6}{5}\n\\]\n\nTherefore, the answer is **6/5**.',
+    },
+  ],
+  'num-0103': [
+    { type: 'correct_answer', text: 'B — 90' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Convert the mixed numbers:\n\n\\[\n3\\frac{1}{3}=\\frac{10}{3}\n\\]\n\n\\[\n2\\frac{1}{4}=\\frac{9}{4}\n\\]\n\nMultiply:\n\n\\[\n\\frac{10}{3}\\times\\frac{9}{4}=\\frac{90}{12}=7.5\n\\]\n\nSo there are 7.5 dozen folders. Since one dozen is 12 folders:\n\n\\[\n7.5\\times12=90\n\\]\n\nTherefore, the officer has **90 folders**.',
+    },
+    {
+      type: 'collapsible',
+      title: 'Mental Shortcut',
+      content: 'Convert the number of folders per box first.\n\nEach box holds 2¼ dozen, and 1 dozen is 12 folders, so:\n\n\\[\n2\\frac{1}{4}\\times12=27\n\\]\n\nEach box holds 27 folders.\n\nThen:\n\n\\[\n3\\frac{1}{3}\\times27=\\frac{10}{3}\\times27=90\n\\]\n\nSo the total is **90 folders**.',
+    },
+  ],
+  'num-0115': [
+    { type: 'correct_answer', text: 'A — 7/12' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Compare the four fractions:\n\n\\[\n\\frac{3}{8}=0.375\n\\]\n\n\\[\n\\frac{5}{9}≈0.556\n\\]\n\n\\[\n\\frac{7}{12}≈0.583\n\\]\n\n\\[\n\\frac{11}{18}≈0.611\n\\]\n\nFrom least to greatest:\n\n\\[\n\\frac{3}{8}<\\frac{5}{9}<\\frac{7}{12}<\\frac{11}{18}\n\\]\n\nTherefore, the second greatest fraction is **7/12**.',
+    },
+  ],
+  'num-0119': [
+    { type: 'correct_answer', text: 'E — 12/25' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Convert the values to decimals.\n\n\\[\n\\frac{3}{5}=0.6\n\\]\n\n\\[\n60%=0.6\n\\]\n\n\\[\n0.6=0.6\n\\]\n\n\\[\n\\frac{9}{15}=\\frac{3}{5}=0.6\n\\]\n\nBut:\n\n\\[\n\\frac{12}{25}=0.48\n\\]\n\nTherefore, **12/25** is the value that is not equivalent to the others.',
+    },
+    {
+      type: 'collapsible',
+      title: 'Mental Shortcut',
+      content: 'Look for the outlier instead of converting every value in detail.\n\n\\[\n\\frac{12}{25}=\\frac{48}{100}=0.48\n\\]\n\nThe other listed values are all equal to 0.60, so **12/25** is the odd one out.',
+    },
+  ],
+  'num-0138': [
+    { type: 'correct_answer', text: 'D — 300 sacks' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: "If 80 sacks represent 1/5 of the silo's capacity, the full capacity is:\n\n\\[\n80\\div\\frac{1}{5}=80\\times5=400\n\\]\n\nNow find 3/4 of 400:\n\n\\[\n400\\times\\frac{3}{4}=300\n\\]\n\nTherefore, the silo will hold **300 sacks** when it is 3/4 full.",
+    },
+  ],
+  'num-0139': [
+    { type: 'correct_answer', text: 'A — 7 1/3' },
+    {
+      type: 'paragraph',
+      label: 'Rationale',
+      text: 'Let the other number be \\(x\\).\n\nSince the product is 8:\n\n\\[\n\\frac{4}{3}x=8\n\\]\n\nSolve for \\(x\\):\n\n\\[\nx=8\\times\\frac{3}{4}=6\n\\]\n\nNow add the two numbers:\n\n\\[\n6+\\frac{4}{3}=\\frac{18}{3}+\\frac{4}{3}=\\frac{22}{3}=7\\frac{1}{3}\n\\]\n\nTherefore, the answer is **7 1/3**.',
+    },
+  ],
+} as const;
+
 const EXPECTED_GRAMMAR_BLOCKS = {
   'verb-0059': [
     { type: 'correct_answer', text: 'C — The panel of judges has announced its decision.' },
@@ -580,6 +700,46 @@ describe('Decimals structured explanation Batch 1', () => {
       .filter((question) => question.topic === 'Decimals' && question.structuredExplanation)
       .map((question) => question.id);
     expect(structuredDecimalsIds.sort()).toEqual([...DECIMALS_BATCH1_IDS].sort());
+  });
+});
+
+describe('Fractions structured explanation Batch 1', () => {
+  it('contains exactly the supplied blocks and no legacy learner fields for all twelve IDs', async () => {
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    const shortcutIds = new Set(['num-0007', 'num-0067', 'num-0103', 'num-0119']);
+
+    for (const id of FRACTIONS_BATCH1_IDS) {
+      const question = catalog.questions.get(id);
+      const blocks = question?.structuredExplanation?.blocks ?? [];
+      expect(question, id).toBeTruthy();
+      expect(blocks, id).toEqual(EXPECTED_FRACTIONS_BLOCKS[id]);
+      expect(blocks, id).toHaveLength(shortcutIds.has(id) ? 3 : 2);
+      expect(blocks[0], id).toMatchObject({ type: 'correct_answer' });
+      expect(blocks[1], id).toMatchObject({ type: 'paragraph', label: 'Rationale' });
+      expect(blocks.some((block) => ['heading', 'pattern', 'solution', 'answer', 'rule', 'step', 'alternative_solution', 'distractor_section', 'common_trap'].includes(block.type)), id).toBe(false);
+      expect(isValidStructuredExplanation(question?.structuredExplanation), id).toBe(true);
+      if (shortcutIds.has(id)) {
+        expect(blocks[2], id).toMatchObject({ type: 'collapsible', title: 'Mental Shortcut' });
+      } else {
+        expect(blocks.some((block) => block.type === 'collapsible'), id).toBe(false);
+      }
+      for (const field of ['explanation', 'steps', 'distractorExplanations', 'tip']) {
+        expect(Object.hasOwn(question ?? {}, field), `${id}:${field}`).toBe(false);
+      }
+    }
+
+    const structuredFractionsIds = [...catalog.questions.values()]
+      .filter((question) => question.topic === 'Fractions' && question.structuredExplanation)
+      .map((question) => question.id);
+    expect(structuredFractionsIds.sort()).toEqual([...FRACTIONS_BATCH1_IDS].sort());
+  });
+
+  it('asks num-0115 for the second greatest value without pre-ordering the list', async () => {
+    const catalog = await loadContentCatalog(['Numerical Reasoning']);
+    const question = catalog.questions.get('num-0115');
+
+    expect(question?.question).toBe('Which fraction has the SECOND GREATEST value among the following?\n\n3/8, 5/9, 7/12, 11/18');
+    expect(question?.question).not.toContain('arranged from least to greatest');
   });
 });
 

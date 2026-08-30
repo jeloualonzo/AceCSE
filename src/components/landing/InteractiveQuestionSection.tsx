@@ -3,6 +3,7 @@ import { Check, ChevronDown, ChevronUp, RotateCcw } from 'lucide-react';
 import { SAMPLE_QUESTIONS } from '@/data/landing';
 import type { OptionId } from '@/types';
 import { ExplanationPanel } from '@/components/exam/ExplanationPanel';
+import { MathText } from '@/components/exam/mathText';
 
 const CATEGORIES = ['Numerical', 'Verbal', 'Analytical', 'General Info'] as const;
 
@@ -80,7 +81,7 @@ export const InteractiveQuestionSection: React.FC = () => {
           )}
 
           <p className="text-base sm:text-lg font-medium text-slate-900 leading-relaxed whitespace-pre-line">
-            {question.question}
+            <MathText text={question.question} keyPrefix="stem" />
           </p>
 
           <div className="space-y-2.5" role="radiogroup" aria-label="Answer options">
@@ -106,7 +107,7 @@ export const InteractiveQuestionSection: React.FC = () => {
                   >
                     {option.id}
                   </span>
-                  <span className="text-sm leading-snug flex-1">{option.text}</span>
+                  <span className="text-sm leading-snug flex-1"><MathText text={option.text} keyPrefix={`choice-${option.id}`} /></span>
                   {isSelected && (
                     <Check className="w-4 h-4 shrink-0 text-slate-500" aria-hidden="true" />
                   )}
