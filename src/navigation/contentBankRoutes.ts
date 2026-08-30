@@ -39,6 +39,21 @@ export const CONTENT_BANK_BATCH_SEGMENT = 'batch';
  */
 export const CONTENT_BANK_STRUCTURES_SEGMENT = 'structures';
 
+/**
+ * The literal segment that introduces the development QA fixture workspace.
+ *
+ * Static-first like `batch` and `structures`, so `qa` (10) outranks
+ * `:subjectSlug` (3) and cannot be read as a subject. No subject slug is `qa`;
+ * `contentBankRoutes.test.ts` holds that true.
+ *
+ * The route is registered only when `import.meta.env.DEV` is true, so this
+ * constant resolves to a real URL in `npm run dev` and in tests, and to nothing
+ * at all in a production build.
+ */
+export const CONTENT_BANK_QA_SEGMENT = 'qa';
+
+export const CONTENT_BANK_QA_ROUTE = `${CONTENT_BANK_BASE}/${CONTENT_BANK_QA_SEGMENT}`;
+
 export function contentBankSubjectPath(subject: Subject): string {
   return `${CONTENT_BANK_BASE}/${slugForSubject(subject)}`;
 }

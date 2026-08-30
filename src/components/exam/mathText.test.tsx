@@ -478,6 +478,19 @@ describe('shared math text renderer', () => {
     }
   });
 
+  it('renders plain numeric roots and caret powers as MathML, without requiring duplicate LaTex', () => {
+    const { container } = render(
+      <MathText text="√0.0081, ∛8, (2/3)^2, 10^-3, and x^2" keyPrefix="plain-notation" />,
+    );
+
+    const maths = [...container.querySelectorAll('math')];
+    expect(maths.some((math) => math.querySelector('msqrt')?.textContent === '0.0081')).toBe(true);
+    expect(maths.some((math) => math.querySelector('mroot')?.textContent === '83')).toBe(true);
+    expect(maths.filter((math) => math.querySelector('msup')).length).toBeGreaterThanOrEqual(3);
+    expect(container.textContent).not.toContain('^2');
+    expect(container.textContent).not.toContain('^-3');
+  });
+
   it('draws a cancellation as a struck value carrying what it becomes', () => {
     const { container } = render(
       <StructuredExplanationRenderer explanation={cancellationExplanation} theme="light" />

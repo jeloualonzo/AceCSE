@@ -59,7 +59,40 @@ export function readLatexGroup(source: string, start: number): { content: string
 const SUPERSCRIPT_DIGITS: Record<string, string> = {
   '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
   '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+  // Signs belong here for scientific notation: `8.5 × 10^{-3}` has to read
+  // `8.5 × 10⁻³`, not `8.5 × 10-³`.
+  '-': '⁻', '−': '⁻', '+': '⁺',
 };
+
+/**
+ * Spoken radical glyphs by index. Beyond the fourth root there is no Unicode
+ * radical, so the aria text falls back to `5√32` — honest, and still ordered
+ * index-then-radicand the way it is read aloud.
+ */
+const INDEX_RADICALS: Record<string, string> = { '2': '√', '3': '∛', '4': '∜' };
+
+/**
+ * Relational and sign macros that map straight onto one Unicode operator.
+ *
+ * Ordered so that no entry is reached through a longer entry's prefix — the scan
+ * takes the first match, and `\le` is a prefix of `\leq`. Before these existed,
+ * an authored `\approx` reached the learner DOM as a literal backslash followed
+ * by the identifier `approx`: a raw-LaTeX leak, just a quiet one.
+ */
+const LATEX_OPERATOR_MACROS: ReadonlyArray<readonly [string, string]> = [
+  ['\\approx', '≈'],
+  ['\\lbrace', '{'],
+  ['\\rbrace', '}'],
+  ['\\lvert', '|'],
+  ['\\rvert', '|'],
+  ['\\cdot', '·'],
+  ['\\leq', '≤'],
+  ['\\geq', '≥'],
+  ['\\neq', '≠'],
+  ['\\le', '≤'],
+  ['\\ge', '≥'],
+  ['\\pm', '±'],
+];
 
 function formatSuperscript(value: string): string {
   return [...value].map((character) => SUPERSCRIPT_DIGITS[character] ?? character).join('');
@@ -74,18 +107,45 @@ function formatSuperscript(value: string): string {
  */
 const CANCEL_STRIKE_CLASS = 'line-through';
 
+/**
+ * A fraction operand or a radicand that is itself compound keeps its own fence
+ * in the spoken text.
+ *
+ * The flattening below turns structure into slashes, and a compound operand
+ * loses its grouping on the way: `\frac{x+1}{2}` read as `x+1/2` says something
+ * the page does not draw, `\sqrt{2+3}` read as `√2+3` likewise, and a nested
+ * `\frac{\frac{1}{2}}{\frac{3}{4}}` flattened to `1/2/3/4` says nothing at all.
+ * An atomic operand — a number, an identifier, a cancellation note — is left
+ * bare, which is what keeps every label the bank already produces unchanged.
+ */
+function groupAriaOperand(operand: string): string {
+  const trimmed = operand.trim();
+  return /[/+×÷−-]/.test(trimmed) ? `(${trimmed})` : trimmed;
+}
+
 function formatLatexForAriaLine(line: string): string {
   let formatted = line;
   let previous: string;
   // Cancellations resolve before fractions: `\frac` flattening only matches
   // groups with no inner braces, so `\frac{\cancelto{1}{13}}{12}` has to lose
-  // its `\cancelto` first. Looping lets the two unwind in either nesting order.
+  // its `\cancelto` first. Looping lets them unwind in any nesting order,
+  // `\sqrt` included.
   do {
     previous = formatted;
     formatted = formatted
       .replace(/\\cancelto\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g, '$2 (cancels to $1)')
       .replace(/\\cancel\s*\{([^{}]*)\}/g, '$1 (cancels)')
-      .replace(/\\frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g, '$1/$2');
+      .replace(
+        /\\frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g,
+        (_, numerator: string, denominator: string) =>
+          `${groupAriaOperand(numerator)}/${groupAriaOperand(denominator)}`,
+      )
+      .replace(
+        /\\sqrt\s*\[([^[\]]*)\]\s*\{([^{}]*)\}/g,
+        (_, degree: string, radicand: string) =>
+          `${INDEX_RADICALS[degree.trim()] ?? `${degree.trim()}√`}${groupAriaOperand(radicand)}`,
+      )
+      .replace(/\\sqrt\s*\{([^{}]*)\}/g, (_, radicand: string) => `√${groupAriaOperand(radicand)}`);
   } while (formatted !== previous);
 
   return formatted
@@ -96,6 +156,20 @@ function formatLatexForAriaLine(line: string): string {
     .replaceAll('\\quad', ' ')
     .replaceAll('\\left', '')
     .replaceAll('\\right', '')
+    // After `\left`/`\right` are gone, so `\le` can never eat the `\left` in
+    // `\left(`. Longest-first among themselves for the same reason.
+    .replaceAll('\\approx', ' ≈ ')
+    .replaceAll('\\lbrace', '{')
+    .replaceAll('\\rbrace', '}')
+    .replaceAll('\\lvert', '|')
+    .replaceAll('\\rvert', '|')
+    .replaceAll('\\cdot', ' · ')
+    .replaceAll('\\leq', ' ≤ ')
+    .replaceAll('\\geq', ' ≥ ')
+    .replaceAll('\\neq', ' ≠ ')
+    .replaceAll('\\le', ' ≤ ')
+    .replaceAll('\\ge', ' ≥ ')
+    .replaceAll('\\pm', ' ± ')
     .replace(/\\\s+-/g, '−')
     .replaceAll('\\_', '_')
     .replace(/\\\s/g, ' ')
@@ -132,6 +206,42 @@ export function renderLatexTokens(line: string, keyPrefix = 'math'): React.React
           createElement('mrow', null, renderLatexTokens(denominator.content, `${keyPrefix}-d`)),
         ));
         index = denominator.end;
+        continue;
+      }
+    }
+
+    // `\sqrt{…}` is the root notation the bank authors, and stems already print
+    // the radical as text (`What is √0.0081?`). `msqrt` draws it with a real
+    // overbar, so the radicand's extent is unambiguous — the reason a `√` glyph
+    // followed by loose digits is not good enough in display math.
+    //
+    // `\sqrt[3]{8}` takes the same path into `mroot`, whose children are
+    // (radicand, index) in that order. Without this branch the optional degree
+    // was not read at all: `\sqrt[3]{8}` rendered as `∛`-less `√8` with a
+    // literal `[3]` stranded in front of it — raw authored LaTeX in the learner
+    // DOM. An index is only honoured when its bracket actually closes.
+    if (line.startsWith('\\sqrt', index)) {
+      let afterMacro = index + '\\sqrt'.length;
+      let degree: string | null = null;
+      if (line[afterMacro] === '[') {
+        const close = line.indexOf(']', afterMacro + 1);
+        if (close !== -1) {
+          degree = line.slice(afterMacro + 1, close);
+          afterMacro = close + 1;
+        }
+      }
+      const radicand = readLatexGroup(line, afterMacro);
+      if (radicand) {
+        const body = createElement('mrow', null, renderLatexTokens(radicand.content, `${keyPrefix}-sqrt`));
+        nodes.push(degree === null
+          ? createElement('msqrt', { key: nextKey() }, body)
+          : createElement(
+              'mroot',
+              { key: nextKey() },
+              body,
+              createElement('mrow', null, renderLatexTokens(degree, `${keyPrefix}-root-index`)),
+            ));
+        index = radicand.end;
         continue;
       }
     }
@@ -206,6 +316,14 @@ export function renderLatexTokens(line: string, keyPrefix = 'math'): React.React
     }
     if (line.startsWith('\\right', index)) {
       index += '\\right'.length;
+      continue;
+    }
+    // Deliberately after `\left`/`\right`, so `\le` can never claim the `\left`
+    // in `\left(`.
+    const operatorMacro = LATEX_OPERATOR_MACROS.find(([name]) => line.startsWith(name, index));
+    if (operatorMacro) {
+      appendOperator(operatorMacro[1]);
+      index += operatorMacro[0].length;
       continue;
     }
     if (line.startsWith('\\_', index)) {
@@ -359,7 +477,7 @@ const MATH_OPERATORS: Record<string, string> = {
   '÷': '\\div',
 };
 
-type MathAtomKind = 'fraction' | 'vulgar' | 'number' | 'operator' | 'open' | 'close' | 'space' | 'latex' | 'prose';
+type MathAtomKind = 'fraction' | 'vulgar' | 'number' | 'identifier' | 'operator' | 'power' | 'open' | 'close' | 'space' | 'latex' | 'prose';
 
 interface MathAtom {
   kind: MathAtomKind;
@@ -369,6 +487,52 @@ interface MathAtom {
   latex: string;
   /** Original source, so a lone authored fraction can go back to `MathValue`. */
   source: string;
+}
+
+/**
+ * A radical glyph is unambiguous mathematical notation, unlike a bare slash.
+ * Convert it into the same LaTex subset used by authored inline equations so
+ * a stem such as `What is √0.0081?` receives a genuine MathML radical rather
+ * than relying on a nearby fixture-only LaTeX duplicate.
+ */
+function readUnicodeRadical(text: string, start: number): { latex: string; end: number } | null {
+  const radical = text[start];
+  const macro = radical === '√'
+    ? '\\sqrt'
+    : radical === '∛'
+      ? '\\sqrt[3]'
+      : radical === '∜'
+        ? '\\sqrt[4]'
+        : null;
+  if (!macro) return null;
+
+  let end = start + 1;
+  if (text[end] === '(') {
+    let depth = 0;
+    for (let index = end; index < text.length; index += 1) {
+      if (text[index] === '(') depth += 1;
+      if (text[index] === ')') {
+        depth -= 1;
+        if (depth === 0) {
+          const radicand = text.slice(end + 1, index).replace(
+            /([−-]?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)/g,
+            (_match, numerator: string, denominator: string) => `\\frac{${numerator}}{${denominator}}`,
+          );
+          return { latex: `${macro}{${radicand}}`, end: index + 1 };
+        }
+      }
+    }
+    return null;
+  }
+
+  const radicandStart = end;
+  while (/\d/.test(text[end] ?? '')) end += 1;
+  if (text[end] === '.' && /\d/.test(text[end + 1] ?? '')) {
+    end += 1;
+    while (/\d/.test(text[end] ?? '')) end += 1;
+  }
+  if (end === radicandStart) return null;
+  return { latex: `${macro}{${text.slice(radicandStart, end)}}`, end };
 }
 
 /**
@@ -414,6 +578,12 @@ function scanMathAtoms(text: string): MathAtom[] {
     }
 
     const character = text[index];
+    const unicodeRadical = readUnicodeRadical(text, index);
+    if (unicodeRadical) {
+      push('latex', index, unicodeRadical.end, unicodeRadical.latex);
+      index = unicodeRadical.end;
+      continue;
+    }
     const vulgar = VULGAR_FRACTIONS[character];
     if (vulgar) {
       push('vulgar', index, index + 1, vulgar);
@@ -436,6 +606,17 @@ function scanMathAtoms(text: string): MathAtom[] {
         while (index < text.length && /\d/.test(text[index])) index += 1;
       }
       push('number', start, index, text.slice(start, index));
+      continue;
+    }
+    if (/[a-zA-Z]/.test(character)) {
+      const start = index;
+      while (/[a-zA-Z]/.test(text[index] ?? '')) index += 1;
+      push('identifier', start, index, text.slice(start, index));
+      continue;
+    }
+    if (character === '^') {
+      push('power', index, index + 1, '^');
+      index += 1;
       continue;
     }
     const operator = MATH_OPERATORS[character];
@@ -466,6 +647,8 @@ interface MathParse {
    * the flag that keeps ordinary numbers out of math.
    */
   hasFraction: boolean;
+  /** A plain-text exponent is also explicit mathematical notation. */
+  hasPower: boolean;
   /** The parse is exactly one authored `n/d`, so `MathValue` can render it. */
   loneFraction: MathAtom | null;
 }
@@ -482,20 +665,58 @@ function parseOperand(atoms: MathAtom[], index: number): MathParse | null {
       next: index + 1,
       latex: atom.latex,
       hasFraction: true,
+      hasPower: false,
       loneFraction: atom.kind === 'fraction' ? atom : null,
     };
   }
   if (atom.kind === 'number') {
-    return { next: index + 1, latex: atom.latex, hasFraction: false, loneFraction: null };
+    return { next: index + 1, latex: atom.latex, hasFraction: false, hasPower: false, loneFraction: null };
+  }
+  if (atom.kind === 'identifier') {
+    // A letter only enters the math grammar when the immediately following
+    // caret makes its intent explicit. Treating every prose word as an operand
+    // would let `rate — 3/4` swallow its trailing fraction into a false
+    // expression, while `x^2` and `a^m` remain supported.
+    if (atoms[index + 1]?.kind !== 'power') return null;
+    return { next: index + 1, latex: atom.latex, hasFraction: false, hasPower: false, loneFraction: null };
   }
   if (atom.kind === 'open') {
     const inner = parseExpression(atoms, skipSpace(atoms, index + 1));
     if (!inner) return null;
     const close = skipSpace(atoms, inner.next);
     if (atoms[close]?.kind !== 'close') return null;
-    return { next: close + 1, latex: `(${inner.latex})`, hasFraction: inner.hasFraction, loneFraction: null };
+    return {
+      next: close + 1,
+      latex: `(${inner.latex})`,
+      hasFraction: inner.hasFraction,
+      hasPower: inner.hasPower,
+      loneFraction: null,
+    };
   }
   return null;
+}
+
+/** Applies a tight caret exponent to a parsed base. */
+function withPower(atoms: MathAtom[], base: MathParse): MathParse {
+  const power = atoms[base.next];
+  if (power?.kind !== 'power') return base;
+
+  let next = base.next + 1;
+  let sign = '';
+  const signAtom = atoms[next];
+  if (signAtom?.kind === 'operator' && (signAtom.source === '-' || signAtom.source === '−')) {
+    sign = '−';
+    next += 1;
+  }
+  const exponent = atoms[next];
+  if (!exponent || (exponent.kind !== 'number' && exponent.kind !== 'identifier')) return base;
+  return {
+    next: next + 1,
+    latex: `${base.latex}^{${sign}${exponent.latex}}`,
+    hasFraction: base.hasFraction,
+    hasPower: true,
+    loneFraction: null,
+  };
 }
 
 /**
@@ -509,20 +730,32 @@ function parseOperand(atoms: MathAtom[], index: number): MathParse | null {
  */
 function parseTerm(atoms: MathAtom[], index: number): MathParse | null {
   const first = parseOperand(atoms, index);
-  if (!first || atoms[index].kind !== 'number') return first;
+  if (!first || atoms[index].kind !== 'number') return first ? withPower(atoms, first) : null;
 
   const tight = atoms[first.next];
   if (tight?.kind === 'vulgar') {
     // A thin space, not concatenation: `7 \frac{3}{4}` is how a mixed number is
     // typeset, and it is also what keeps the aria text honest — `73/4` would be
     // read as seventy-three quarters.
-    return { next: first.next + 1, latex: `${first.latex} ${tight.latex}`, hasFraction: true, loneFraction: null };
+    return withPower(atoms, {
+      next: first.next + 1,
+      latex: `${first.latex} ${tight.latex}`,
+      hasFraction: true,
+      hasPower: false,
+      loneFraction: null,
+    });
   }
   const spaced = tight?.kind === 'space' ? atoms[first.next + 1] : undefined;
   if (spaced && (spaced.kind === 'vulgar' || (spaced.kind === 'fraction' && !/^[−-]/.test(spaced.source)))) {
-    return { next: first.next + 2, latex: `${first.latex} ${spaced.latex}`, hasFraction: true, loneFraction: null };
+    return withPower(atoms, {
+      next: first.next + 2,
+      latex: `${first.latex} ${spaced.latex}`,
+      hasFraction: true,
+      hasPower: false,
+      loneFraction: null,
+    });
   }
-  return first;
+  return withPower(atoms, first);
 }
 
 /**
@@ -536,7 +769,7 @@ function parseExpression(atoms: MathAtom[], index: number): MathParse | null {
   const first = parseTerm(atoms, index);
   if (!first) return null;
 
-  let { next, latex, hasFraction, loneFraction } = first;
+  let { next, latex, hasFraction, hasPower, loneFraction } = first;
   for (;;) {
     const operatorIndex = skipSpace(atoms, next);
     const operator = atoms[operatorIndex];
@@ -545,10 +778,11 @@ function parseExpression(atoms: MathAtom[], index: number): MathParse | null {
     if (!term) break;
     latex += `${operator.latex}${term.latex}`;
     hasFraction = hasFraction || term.hasFraction;
+    hasPower = hasPower || term.hasPower;
     loneFraction = null;
     next = term.next;
   }
-  return { next, latex, hasFraction, loneFraction };
+  return { next, latex, hasFraction, hasPower, loneFraction };
 }
 
 /**
@@ -585,9 +819,9 @@ export function renderMathText(text: string, keyPrefix: string): React.ReactNode
       continue;
     }
 
-    const canStart = atom.kind === 'fraction' || atom.kind === 'vulgar' || atom.kind === 'number' || atom.kind === 'open';
+    const canStart = atom.kind === 'fraction' || atom.kind === 'vulgar' || atom.kind === 'number' || atom.kind === 'identifier' || atom.kind === 'open';
     const expression = canStart ? parseExpression(atoms, index) : null;
-    if (expression?.hasFraction) {
+    if (expression && (expression.hasFraction || expression.hasPower)) {
       flushTextBefore(atom.start);
       parts.push(expression.loneFraction
         ? <MathValue key={`${keyPrefix}-fraction-${matchIndex++}`} value={expression.loneFraction.source} />

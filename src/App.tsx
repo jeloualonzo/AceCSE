@@ -17,6 +17,7 @@ import {
 import {
   CONTENT_BANK_BASE,
   CONTENT_BANK_BATCH_SEGMENT,
+  CONTENT_BANK_QA_SEGMENT,
   CONTENT_BANK_STRUCTURES_SEGMENT,
 } from '@/navigation/contentBankRoutes';
 
@@ -45,6 +46,19 @@ const SettingsPage = lazy(() =>
   import('@/pages/SettingsPage').then((m) => ({ default: m.SettingsPage }))
 );
 const ExamPage = lazy(() => import('@/pages/ExamPage').then((m) => ({ default: m.ExamPage })));
+
+/**
+ * Development-only QA fixture workspace, inside the admin app.
+ *
+ * `import.meta.env.DEV` is a compile-time constant, so a production build
+ * resolves this to `null` and the dynamic import in the dead branch is dropped
+ * — the fixtures and this page never ship. It is not in `adminNavConfig` in a
+ * production build for the same reason, and it is in `navConfig` never: it is
+ * development tooling, not a learner surface.
+ */
+const ContentBankQaPage = import.meta.env.DEV
+  ? lazy(() => import('@/pages/ContentBankQaPage'))
+  : null;
 
 /** Admin app chunks — never fetched by a learner, who has no link to them. */
 const AdminLoginPage = lazy(() => import('@/pages/AdminLoginPage'));
@@ -196,6 +210,17 @@ export default function App() {
                     path={`${CONTENT_BANK_STRUCTURES_SEGMENT}/:subjectSlug`}
                     element={<ContentBankStructuresPage />}
                   />
+                  {/*
+                    Development QA fixtures. Guarded twice over: it is inside
+                    `RequireAdmin` like every other admin surface, and in a
+                    production build the guard below is `false`, so it is not a
+                    route at all and `/admin/content-bank/qa` falls through to
+                    the admin catch-all. React Router ignores non-element
+                    children, so the `false` branch is inert.
+                  */}
+                  {import.meta.env.DEV && ContentBankQaPage && (
+                    <Route path={CONTENT_BANK_QA_SEGMENT} element={<ContentBankQaPage />} />
+                  )}
                   <Route path=":subjectSlug" element={<ContentBankSubjectPage />} />
                   <Route path=":subjectSlug/:familySlug" element={<ContentBankFamilyPage />} />
                 </Route>

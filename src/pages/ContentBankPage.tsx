@@ -13,7 +13,7 @@ import { useRefinementBatches } from '@/hooks/useRefinementBatches';
 import { StoreDegradedNotice } from '@/components/contentBank/StoreDegradedNotice';
 import { BatchCard } from '@/components/contentBank/BatchCard';
 import { FrozenProgressBar, ProgressBadge } from '@/components/contentBank/badges';
-import { contentBankSubjectPath } from '@/navigation/contentBankRoutes';
+import { CONTENT_BANK_QA_ROUTE, contentBankSubjectPath } from '@/navigation/contentBankRoutes';
 
 export type QAGroupStatus = 'Frozen' | 'Pilot' | 'Active' | 'Standard' | 'Fixed Context';
 
@@ -266,6 +266,39 @@ export const ContentBankPage: React.FC = () => {
           </div>
         )}
       </section>
+
+      {/*
+        Development tooling, and only in development: `import.meta.env.DEV` is a
+        compile-time constant, so a production build drops this section along
+        with the route it points at. It is here rather than in the admin sidebar
+        because it is a Content Bank child, reached from its parent the same way
+        the Structures workspace is.
+      */}
+      {import.meta.env.DEV && (
+        <section aria-labelledby="development-qa-heading" className="space-y-3">
+          <h2
+            id="development-qa-heading"
+            className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+          >
+            Development tooling
+          </h2>
+          <Link
+            to={CONTENT_BANK_QA_ROUTE}
+            className="flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-800 dark:bg-slate-900"
+          >
+            <span>
+              <span className="block text-base font-extrabold text-slate-900 dark:text-white">
+                Development QA
+              </span>
+              <span className="mt-1 block text-xs text-slate-500 dark:text-slate-400">
+                Open a rendering fixture in the real learner Practice and Results UI. Graded in
+                memory, never recorded as an attempt.
+              </span>
+            </span>
+            <ArrowRight className="h-4 w-4 shrink-0 text-slate-400" aria-hidden="true" />
+          </Link>
+        </section>
+      )}
     </div>
   );
 };

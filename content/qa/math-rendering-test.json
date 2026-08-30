@@ -1,0 +1,323 @@
+{
+  "id": "math-rendering-test-20260830-all-notation-combinations-v1",
+  "title": "Mathematical Notation",
+  "category": "math",
+  "description": "Exercises the one shared math renderer (src/components/exam/mathText.tsx) across every notation AceCSE authors or might author, in the places a learner actually reads it: the question stem, the answer choices, the explanation, the Mental Shortcut, and the Results review. Opened in the Admin development QA workspace, which renders it with the real learner Practice booklet and the real ResultsScreen.",
+  "notProductionContent": true,
+  "isolation": "content/qa/ is outside every content root the app and the tooling walk: the build-time manifest (scripts/vite-plugin-question-manifest.ts) roots at content/questions and content/groups, questionBank.ts globs content/questions, content/fixtures, and content/groups, and scripts/validate-questions.mjs roots at content/questions and content/groups. This file is reachable only through the explicit relative import in src/dev/qaFixtures.ts, so it cannot change any production question count, pool, taxonomy, refinement batch, or family progress.",
+  "questions": [
+    {
+      "id": "math-rendering-test-20260830-all-notation-combinations-v1-q1",
+      "examLevel": "Both",
+      "subject": "Numerical Reasoning",
+      "topic": "Math Rendering Test",
+      "difficulty": "Easy",
+      "question": "Stem rendering check. Plain text: 3/8, 5/12, 2 1/3, (2/3) × (9/14), 2^5, (2/3)^2, 10^-3, √0.0081, √(9/16), ∛8, 4.07 × 10^4. Authored LaTeX: \\(\\frac{3}{8}\\), \\(\\frac{5}{12}\\), \\(2\\frac{1}{3}\\), \\(\\frac{2}{3}\\times\\frac{9}{14}\\), \\(2^5\\), \\((\\frac{2}{3})^2\\), \\(10^{-3}\\), \\(\\sqrt{0.0081}\\), \\(\\sqrt{\\frac{9}{16}}\\), \\(\\sqrt[3]{8}\\), \\(4.07\\times10^4\\). Which choice below has the greatest value?",
+      "choices": [
+        { "id": "A", "text": "1/2" },
+        { "id": "B", "text": "(2/3)^2" },
+        { "id": "C", "text": "√0.0081" },
+        { "id": "D", "text": "4.07 × 10^4" },
+        { "id": "E", "text": "3/4" }
+      ],
+      "correctOptionId": "D",
+      "explanation": "4.07 × 10^4 is 40,700, while every other choice is less than 1: 1/2 = 0.5, (2/3)^2 = 4/9 ≈ 0.444, √0.0081 = 0.09, and 3/4 = 0.75. The explanation below is also this fixture's full notation catalogue — each section shows a plain-text form first and the authored LaTeX form second, so any difference between the two is visible instead of assumed.",
+      "structuredExplanation": {
+        "blocks": [
+          {
+            "type": "correct_answer",
+            "text": "D — 4.07 × 10^4, which is 40,700"
+          },
+          {
+            "type": "paragraph",
+            "label": "Why D",
+            "text": "Only one choice is greater than 1:\n\n\\[\n4.07\\times10^4=40700\n\\]\n\nThe other four are all below 1:\n\n\\[\n\\frac{1}{2}=0.5, \\quad (\\frac{2}{3})^2=\\frac{4}{9}\\approx0.444, \\quad \\sqrt{0.0081}=0.09, \\quad \\frac{3}{4}=0.75\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "What This Item Is",
+            "text": "A QA fixture for the one shared math renderer. Every line below is authored the way real content is authored, so whatever it draws here is exactly what a learner would see in Practice, in a Simulation review, and in Results.\n\nEach section shows the plain-text form first and the explicit LaTeX form second. Where the two differ, the plain form is notation the renderer does not read as mathematics."
+          },
+          {
+            "type": "paragraph",
+            "label": "Fractions",
+            "text": "3/8, 5/12, 4/3, 7/4, 13/24, 123/1000"
+          },
+          {
+            "type": "paragraph",
+            "label": "Mixed Numbers",
+            "text": "Spaced: 2 1/3, 7 3/4, 12 5/8\n\nUnicode: 7¾, 2⅔, 1½"
+          },
+          {
+            "type": "paragraph",
+            "label": "Fraction Arithmetic",
+            "text": "3/8 + 5/12, 7/8 − 1/3, 2/3 × 9/14, 3/4 ÷ 5/8, 4/5 ÷ 2/3"
+          },
+          {
+            "type": "paragraph",
+            "label": "Grouped Fractions",
+            "text": "(2/3), (2/3 + 1/4), (5/6 + 1/4) ÷ (7/8 − 1/3)"
+          },
+          {
+            "type": "paragraph",
+            "label": "Fractions with Exponents",
+            "text": "Plain: (2/3)^2, (3/4)^3, (5/8)^-1\n\nLaTeX:\n\n\\[\n(\\frac{2}{3})^2, \\quad (\\frac{3}{4})^3, \\quad (\\frac{5}{8})^{-1}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Exponents",
+            "text": "Plain: 2^5, x^2, a^m, 10^4, 10^-3, 0.09^2\n\nLaTeX:\n\n\\[\n2^5, \\quad x^2, \\quad a^m, \\quad 10^4, \\quad 10^{-3}, \\quad 0.09^2\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Grouped Expressions with Exponents",
+            "text": "\\[\n(2+3)^2, \\quad (5-2)^3, \\quad (\\frac{2}{3}+\\frac{1}{3})^2\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Nested Grouping",
+            "text": "\\[\n[(\\frac{2}{3})^2], \\quad [(\\frac{2}{3}+\\frac{1}{4})^2], \\quad ((\\frac{3}{4})\\times(\\frac{2}{5}))^2\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Square Roots",
+            "text": "Plain Unicode: √81, √0.0081, √(9/16), √(2/3)\n\nLaTeX:\n\n\\[\n\\sqrt{81}, \\quad \\sqrt{0.0081}, \\quad \\sqrt{\\frac{9}{16}}, \\quad \\sqrt{\\frac{2}{3}}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Root Expressions",
+            "text": "\\[\n\\sqrt{2+3}, \\quad \\sqrt{\\frac{3}{4}+\\frac{1}{4}}, \\quad \\sqrt{(\\frac{2}{3})^2}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Indexed Roots",
+            "text": "Plain Unicode: ∛8, ∛(8/27), ⁴√16\n\nLaTeX:\n\n\\[\n\\sqrt[3]{8}, \\quad \\sqrt[3]{\\frac{8}{27}}, \\quad \\sqrt[4]{16}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Scientific Notation",
+            "text": "Plain: 4.07 × 10^4, 8.5 × 10^-3, 3.2 × 10^6\n\nLaTeX:\n\n\\[\n4.07\\times10^4, \\quad 8.5\\times10^{-3}, \\quad 3.2\\times10^6\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Scientific Notation with Grouping",
+            "text": "\\[\n(4.07\\times10^4)^2, \\quad (3\\times10^{-2})\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Algebraic Fractions",
+            "text": "Plain: x/2, a/b, (x + 1)/2, (x + 1)/(x − 1)\n\nLaTeX:\n\n\\[\n\\frac{x}{2}, \\quad \\frac{a}{b}, \\quad \\frac{x+1}{2}, \\quad \\frac{x+1}{x-1}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Fractions Containing Exponents",
+            "text": "Plain: x^2/3, 2^3/5, (x^2)/(y^2)\n\nLaTeX:\n\n\\[\n\\frac{x^2}{3}, \\quad \\frac{2^3}{5}, \\quad \\frac{x^2}{y^2}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Complex Fractions",
+            "text": "Plain: (1/2)/(3/4), (2/3 + 1/4)/(5/6 − 1/3)\n\nLaTeX:\n\n\\[\n\\frac{\\frac{1}{2}}{\\frac{3}{4}}, \\quad \\frac{\\frac{2}{3}+\\frac{1}{4}}{\\frac{5}{6}-\\frac{1}{3}}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Inequalities",
+            "text": "Plain: x > 5, x ≤ 10, 3/4 > 1/2\n\nLaTeX:\n\n\\[\nx>5, \\quad x\\leq10, \\quad \\frac{3}{4}>\\frac{1}{2}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Equality and Approximation",
+            "text": "Plain: 3/8 = 0.375, 5/9 ≈ 0.556, x = 2\n\nLaTeX:\n\n\\[\n\\frac{3}{8}=0.375, \\quad \\frac{5}{9}\\approx0.556, \\quad x=2\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Absolute Value",
+            "text": "Plain: |−5|, |x − 3|, |3/4 − 1/2|\n\nLaTeX:\n\n\\[\n\\lvert-5\\rvert, \\quad \\lvert x-3\\rvert, \\quad \\lvert\\frac{3}{4}-\\frac{1}{2}\\rvert\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Plus or Minus",
+            "text": "Plain: x ± 3, 5 ± 2, (3/4) ± (1/2)\n\nLaTeX:\n\n\\[\nx\\pm3, \\quad 5\\pm2, \\quad (\\frac{3}{4})\\pm(\\frac{1}{2})\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Brackets and Nested Brackets",
+            "text": "Plain: [3/4 + 1/2], [2 × (3/5)], {(2/3)^2}\n\nLaTeX:\n\n\\[\n[\\frac{3}{4}+\\frac{1}{2}], \\quad [2\\times(\\frac{3}{5})], \\quad \\lbrace(\\frac{2}{3})^2\\rbrace\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Cancellation",
+            "text": "Both 13s must visibly become 1:\n\n\\[\n\\frac{\\cancelto{1}{13}}{12}\\times\\frac{24}{\\cancelto{1}{13}}\n\\]\n\nThe same product after cancelling:\n\n\\[\n\\frac{1}{12}\\times\\frac{24}{1}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Nested Cancellation",
+            "text": "Both operands of this fraction cancel independently:\n\n\\[\n\\frac{\\cancelto{1}{2}}{\\cancelto{1}{3}}\\times\\frac{6}{2}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Mixed Prose and Mathematics",
+            "text": "One of the numbers is 4/3.\n\nThe office used 5/8 of the supplies.\n\nFind √0.0081.\n\nIf x = 2, find x^3.\n\nThe value is 3/4."
+          },
+          {
+            "type": "paragraph",
+            "label": "False-Positive Protection",
+            "text": "These stay ordinary text, with no math element wrapped around them: 08/30/2026, 1,061/8, https://csc.gov.ph/faq, and/or, A/B testing.\n\nTwo requested guards do NOT hold, and this fixture says so instead of hiding it: Room 3/4 and Section 2/3 each become a stacked fraction. A bare digits/digits run after a space is lexically identical to an authored fraction, so the shared pattern cannot tell a room number from two-thirds."
+          },
+          {
+            "type": "collapsible",
+            "title": "Renderer Notes",
+            "content": "Plain-text notation the renderer reads as mathematics: bare fractions, spaced and Unicode mixed numbers, clear numerical roots (√, ∛, ∜), tight caret exponents, and expressions built from those forms with + − × ÷ = and parentheses.\n\nPlain-text notation it leaves as ordinary text: Unicode superscripts (10⁴), bare algebraic fractions (x/2, a/b), and the relations ≈ ± > < ≤ ≥. Author those inside inline or display LaTeX delimiters when exact grouping or algebraic notation matters.\n\nThere is exactly one renderer. Nothing in this workspace uses a different code path from Practice or Results."
+          }
+        ]
+      },
+      "tags": ["qa-fixture", "math-rendering", "not-production-content"]
+    },
+    {
+      "id": "math-rendering-test-20260830-all-notation-combinations-v1-q2",
+      "examLevel": "Both",
+      "subject": "Numerical Reasoning",
+      "topic": "Math Rendering Test",
+      "difficulty": "Easy",
+      "question": "What is √0.0081? Authored as LaTeX in the same stem: \\(\\sqrt{0.0081}\\). Both forms must read as a square root here, not only inside the explanation.",
+      "choices": [
+        { "id": "A", "text": "0.9" },
+        { "id": "B", "text": "0.09" },
+        { "id": "C", "text": "0.0009" },
+        { "id": "D", "text": "0.003" },
+        { "id": "E", "text": "0.045" }
+      ],
+      "correctOptionId": "B",
+      "explanation": "0.09 × 0.09 = 0.0081, so √0.0081 = 0.09. Squaring each other choice overshoots or undershoots: 0.9² = 0.81, 0.0009² = 0.00000081, 0.003² = 0.000009, and 0.045² = 0.002025.",
+      "structuredExplanation": {
+        "blocks": [
+          { "type": "correct_answer", "text": "B — 0.09" },
+          {
+            "type": "paragraph",
+            "label": "Solve",
+            "text": "Square the candidate and compare:\n\n\\[\n\\sqrt{0.0081}=0.09\n\\]\n\n\\[\n0.09^2=0.0081\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Check the Distractors",
+            "text": "\\[\n0.9^2=0.81, \\quad 0.003^2=0.000009, \\quad 0.045^2=0.002025\n\\]"
+          },
+          {
+            "type": "collapsible",
+            "title": "Mental Shortcut",
+            "content": "Strip the decimal point and take the root of the whole number first:\n\n\\[\n\\sqrt{81}=9\n\\]\n\n0.0081 has four decimal places, so its root has two:\n\n\\[\n\\sqrt{0.0081}=0.09\n\\]\n\nThe same rule in general form, for an even number of decimal places \\(2k\\):\n\n\\[\n\\sqrt{\\frac{81}{10^4}}=\\frac{9}{10^2}=0.09\n\\]"
+          }
+        ]
+      },
+      "tags": ["qa-fixture", "math-rendering", "not-production-content"]
+    },
+    {
+      "id": "math-rendering-test-20260830-all-notation-combinations-v1-q3",
+      "examLevel": "Both",
+      "subject": "Numerical Reasoning",
+      "topic": "Math Rendering Test",
+      "difficulty": "Easy",
+      "question": "Evaluate: (2/3) × (9/14). Authored as LaTeX in the same stem: \\(\\frac{2}{3}\\times\\frac{9}{14}\\). The parentheses in the plain form must scale around the fractions rather than sit beside them.",
+      "choices": [
+        { "id": "A", "text": "7/3" },
+        { "id": "B", "text": "11/17" },
+        { "id": "C", "text": "18/28" },
+        { "id": "D", "text": "3/7" },
+        { "id": "E", "text": "1 2/7" }
+      ],
+      "correctOptionId": "D",
+      "explanation": "Multiply straight across: 2 × 9 = 18 and 3 × 14 = 42, so the product is 18/42, which reduces to 3/7. Choice A inverts the first fraction, choice B adds across instead of multiplying (2 + 9 = 11 over 3 + 14 = 17), choice C multiplies the wrong pair into the denominator, and choice E is 18/14 — the 3 was never multiplied into the denominator — rewritten as a mixed number.",
+      "structuredExplanation": {
+        "blocks": [
+          { "type": "correct_answer", "text": "D — 3/7" },
+          {
+            "type": "paragraph",
+            "label": "Multiply Across",
+            "text": "\\[\n\\frac{2}{3}\\times\\frac{9}{14}=\\frac{18}{42}=\\frac{3}{7}\n\\]"
+          },
+          {
+            "type": "collapsible",
+            "title": "Mental Shortcut",
+            "content": "Cancel before multiplying. The 2 divides into the 14, and the 3 divides into the 9 — both cancellations must be visible:\n\n\\[\n\\frac{\\cancelto{1}{2}}{\\cancelto{1}{3}}\\times\\frac{\\cancelto{3}{9}}{\\cancelto{7}{14}}\n\\]\n\nWhat is left is already reduced:\n\n\\[\n\\frac{1}{1}\\times\\frac{3}{7}=\\frac{3}{7}\n\\]\n\nCompare with the same product done the long way, \\(\\frac{18}{42}\\), which still needs a division by 6."
+          }
+        ]
+      },
+      "tags": ["qa-fixture", "math-rendering", "not-production-content"]
+    },
+    {
+      "id": "math-rendering-test-20260830-all-notation-combinations-v1-q4",
+      "examLevel": "Both",
+      "subject": "Numerical Reasoning",
+      "topic": "Math Rendering Test",
+      "difficulty": "Medium",
+      "question": "If (2/3)^2 = 4/9, what is the value of (3/4)^3? Authored as LaTeX in the same stem: \\((\\frac{2}{3})^2=\\frac{4}{9}\\) and \\((\\frac{3}{4})^3\\). The exponent must sit as a superscript on the closing parenthesis, not as a caret in running text.",
+      "choices": [
+        { "id": "A", "text": "9/12" },
+        { "id": "B", "text": "9/64" },
+        { "id": "C", "text": "27/64" },
+        { "id": "D", "text": "27/12" },
+        { "id": "E", "text": "3/12" }
+      ],
+      "correctOptionId": "C",
+      "explanation": "Raising a fraction to a power raises both parts to that power: (3/4)^3 = 3³/4³ = 27/64. Choice B cubes only the denominator, choice A multiplies the parts by the exponent, and choices D and E leave the denominator untouched.",
+      "structuredExplanation": {
+        "blocks": [
+          { "type": "correct_answer", "text": "C — 27/64" },
+          {
+            "type": "paragraph",
+            "label": "Rule",
+            "text": "The exponent applies to numerator and denominator alike:\n\n\\[\n(\\frac{3}{4})^3=\\frac{3^3}{4^3}=\\frac{27}{64}\n\\]\n\nThe worked example in the stem follows the same rule:\n\n\\[\n(\\frac{2}{3})^2=\\frac{2^2}{3^2}=\\frac{4}{9}\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Signed and Zero Exponents",
+            "text": "\\[\n(\\frac{3}{4})^{-1}=\\frac{4}{3}, \\quad (\\frac{3}{4})^0=1, \\quad 10^{-3}=0.001\n\\]"
+          },
+          {
+            "type": "collapsible",
+            "title": "Mental Shortcut",
+            "content": "Cube the small numbers separately and read the answer off:\n\n\\[\n3^3=27, \\quad 4^3=64\n\\]\n\nSo the value is \\(\\frac{27}{64}\\), a little over 0.42. Any choice at or above \\(\\frac{3}{4}\\) can be dropped without arithmetic, because cubing a proper fraction always makes it smaller:\n\n\\[\n(\\frac{3}{4})^3<\\frac{3}{4}<1\n\\]"
+          }
+        ]
+      },
+      "tags": ["qa-fixture", "math-rendering", "not-production-content"]
+    },
+    {
+      "id": "math-rendering-test-20260830-all-notation-combinations-v1-q5",
+      "examLevel": "Both",
+      "subject": "Numerical Reasoning",
+      "topic": "Math Rendering Test",
+      "difficulty": "Medium",
+      "question": "Choice rendering check. Each choice below is authored in a different notation — a grouped sum, a product of fractions, a root of a fraction, a negative power of ten, and a mixed number: \\((\\frac{5}{6}+\\frac{1}{4})\\), \\(\\frac{2}{3}\\times\\frac{9}{14}\\), \\(\\sqrt{\\frac{9}{16}}\\), \\(10^{-3}\\), \\(7\\frac{3}{4}\\). Which choice has the greatest value?",
+      "choices": [
+        { "id": "A", "text": "(5/6 + 1/4)" },
+        { "id": "B", "text": "(2/3) × (9/14)" },
+        { "id": "C", "text": "√(9/16)" },
+        { "id": "D", "text": "10^-3" },
+        { "id": "E", "text": "7 3/4" }
+      ],
+      "correctOptionId": "E",
+      "explanation": "7 3/4 is 7.75, larger than every other choice: (5/6 + 1/4) = 13/12 ≈ 1.083, (2/3) × (9/14) = 3/7 ≈ 0.429, √(9/16) = 3/4 = 0.75, and 10^-3 = 0.001.",
+      "structuredExplanation": {
+        "blocks": [
+          { "type": "correct_answer", "text": "E — 7 3/4, which is 7.75" },
+          {
+            "type": "paragraph",
+            "label": "Evaluate Each Choice",
+            "text": "\\[\n(\\frac{5}{6}+\\frac{1}{4})=\\frac{13}{12}\\approx1.083\n\\]\n\n\\[\n\\frac{2}{3}\\times\\frac{9}{14}=\\frac{3}{7}\\approx0.429\n\\]\n\n\\[\n\\sqrt{\\frac{9}{16}}=\\frac{3}{4}=0.75\n\\]\n\n\\[\n10^{-3}=0.001\n\\]\n\n\\[\n7\\frac{3}{4}=7.75\n\\]"
+          },
+          {
+            "type": "paragraph",
+            "label": "Order",
+            "text": "\\[\n10^{-3}<\\frac{3}{7}<\\frac{3}{4}<\\frac{13}{12}<7\\frac{3}{4}\n\\]"
+          },
+          {
+            "type": "collapsible",
+            "title": "Mental Shortcut",
+            "content": "Only one choice has a whole-number part at all, and every other choice is at most \\(\\frac{13}{12}\\), which is barely above 1. No common denominator is needed:\n\n\\[\n7\\frac{3}{4}>\\frac{13}{12}>1\n\\]"
+          }
+        ]
+      },
+      "tags": ["qa-fixture", "math-rendering", "not-production-content"]
+    }
+  ]
+}
